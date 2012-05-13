@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "WernerKassens 7/20/2011 13:48",
+	"super" : "KDTree",
+	"category" : "Math-KDTree",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"index"
+	],
+	"name" : "IndexedKDTree",
+	"type" : "normal"
+}

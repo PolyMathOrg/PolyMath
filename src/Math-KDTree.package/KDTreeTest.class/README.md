@@ -1,0 +1,1 @@
+KDTreeTest makes random checks of KDTree, comparing results with results of StupidNN. is not too fast.

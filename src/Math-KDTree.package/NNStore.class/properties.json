@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "WernerKassens 5/5/2011 14:40",
+	"super" : "Array",
+	"category" : "Math-KDTree",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"freeIndex",
+		"maxDistance"
+	],
+	"name" : "NNStore",
+	"type" : "variable"
+}
