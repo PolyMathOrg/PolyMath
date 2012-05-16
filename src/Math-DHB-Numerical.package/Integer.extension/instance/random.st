@@ -1,4 +1,4 @@
-*Math-DHB-Numerical
+*Math-DHB-Numerical-Extensions
 random
 		"Answer a random integer between 0 and the receiver.
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
