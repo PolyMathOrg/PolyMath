@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rows",
+		"permutation",
+		"parity"
+	],
+	"name" : "DhbLUPDecomposition",
+	"type" : "normal"
+}

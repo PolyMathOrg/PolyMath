@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"probabilityDensityFunction",
+		"count",
+		"binWidth"
+	],
+	"name" : "DhbScaledProbabilityDensityFunction",
+	"type" : "normal"
+}

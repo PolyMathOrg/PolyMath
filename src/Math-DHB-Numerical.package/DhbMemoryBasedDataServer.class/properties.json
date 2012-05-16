@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbAbstractDataServer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"data",
+		"position"
+	],
+	"name" : "DhbMemoryBasedDataServer",
+	"type" : "normal"
+}

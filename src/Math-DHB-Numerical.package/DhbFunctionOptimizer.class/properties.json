@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbFunctionalIterator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"optimizingPointClass",
+		"bestPoints"
+	],
+	"name" : "DhbFunctionOptimizer",
+	"type" : "normal"
+}

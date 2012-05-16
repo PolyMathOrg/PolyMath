@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbFunctionalIterator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"from",
+		"to",
+		"sum",
+		"step"
+	],
+	"name" : "DhbTrapezeIntegrator",
+	"type" : "normal"
+}

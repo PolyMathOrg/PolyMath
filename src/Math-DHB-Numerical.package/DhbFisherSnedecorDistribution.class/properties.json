@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProbabilityDensity",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dof1",
+		"dof2",
+		"norm",
+		"chiSquareDistribution1",
+		"chiSquareDistribution2",
+		"incompleteBetaFunction"
+	],
+	"name" : "DhbFisherSnedecorDistribution",
+	"type" : "normal"
+}

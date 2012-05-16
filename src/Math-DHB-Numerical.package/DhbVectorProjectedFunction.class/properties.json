@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProjectedOneVariableFunction",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbVectorProjectedFunction",
+	"type" : "normal"
+}

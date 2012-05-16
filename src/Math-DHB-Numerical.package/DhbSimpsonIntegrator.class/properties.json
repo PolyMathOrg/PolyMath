@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbTrapezeIntegrator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbSimpsonIntegrator",
+	"type" : "normal"
+}

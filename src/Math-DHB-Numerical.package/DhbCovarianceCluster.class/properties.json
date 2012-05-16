@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbCluster",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"center"
+	],
+	"name" : "DhbCovarianceCluster",
+	"type" : "normal"
+}

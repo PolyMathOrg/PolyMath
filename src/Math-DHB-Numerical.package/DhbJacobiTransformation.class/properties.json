@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbIterativeProcess",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lowerRows",
+		"transform"
+	],
+	"name" : "DhbJacobiTransformation",
+	"type" : "normal"
+}

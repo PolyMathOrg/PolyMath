@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"UniqueInstance"
+	],
+	"instvars" : [
+		"coefficients",
+		"sqrt2Pi"
+	],
+	"name" : "DhbLanczosFormula",
+	"type" : "normal"
+}

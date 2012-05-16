@@ -1,0 +1,6 @@
+information
+lowBinLimitAt: anInteger
+		"
+		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
+		 Initial code: 4/3/99 "
+	^( anInteger - 1) * binWidth + minimum

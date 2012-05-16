@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbMinimizingPoint",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbMaximizingPoint",
+	"type" : "normal"
+}

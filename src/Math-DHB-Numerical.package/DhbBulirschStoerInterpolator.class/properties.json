@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbNevilleInterpolator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbBulirschStoerInterpolator",
+	"type" : "normal"
+}

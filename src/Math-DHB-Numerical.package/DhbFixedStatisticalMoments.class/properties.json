@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbStatisticalMoments",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbFixedStatisticalMoments",
+	"type" : "normal"
+}

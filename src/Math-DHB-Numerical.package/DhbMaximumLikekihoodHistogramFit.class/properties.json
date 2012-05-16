@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbLeastSquareFit",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"count",
+		"countVariance"
+	],
+	"name" : "DhbMaximumLikekihoodHistogramFit",
+	"type" : "normal"
+}

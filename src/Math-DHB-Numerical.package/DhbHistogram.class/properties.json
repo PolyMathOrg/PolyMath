@@ -1,0 +1,21 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"minimum",
+		"binWidth",
+		"overflow",
+		"underflow",
+		"moments",
+		"contents",
+		"freeExtent",
+		"cacheSize",
+		"desiredNumberOfBins"
+	],
+	"name" : "DhbHistogram",
+	"type" : "normal"
+}

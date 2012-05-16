@@ -1,0 +1,3 @@
+operation
+computeInitialValues
+	self subclassResponsibility

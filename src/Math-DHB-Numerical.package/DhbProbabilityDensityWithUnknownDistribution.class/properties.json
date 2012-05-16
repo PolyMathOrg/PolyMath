@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProbabilityDensity",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbProbabilityDensityWithUnknownDistribution",
+	"type" : "normal"
+}

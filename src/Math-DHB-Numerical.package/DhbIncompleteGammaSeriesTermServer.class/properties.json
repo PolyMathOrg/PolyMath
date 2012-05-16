@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbSeriesTermServer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"sum"
+	],
+	"name" : "DhbIncompleteGammaSeriesTermServer",
+	"type" : "normal"
+}

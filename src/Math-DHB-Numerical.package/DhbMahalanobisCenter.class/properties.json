@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"center",
+		"inverseCovariance",
+		"accumulator"
+	],
+	"name" : "DhbMahalanobisCenter",
+	"type" : "normal"
+}

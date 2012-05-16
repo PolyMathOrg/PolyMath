@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "Array",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbVector",
+	"type" : "variable"
+}

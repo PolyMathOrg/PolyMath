@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"UniqueInstance"
+	],
+	"instvars" : [
+		"defaultNumericalPrecision",
+		"radix",
+		"machinePrecision",
+		"negativeMachinePrecision",
+		"smallestNumber",
+		"largestNumber",
+		"smallNumber",
+		"largestExponentArgument"
+	],
+	"name" : "DhbFloatingPointMachine",
+	"type" : "normal"
+}

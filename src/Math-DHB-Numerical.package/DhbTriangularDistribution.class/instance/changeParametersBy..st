@@ -1,0 +1,8 @@
+transformation
+changeParametersBy: aVector
+		"Modify the parameters of the receiver by aVector.
+		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
+		 Initial code: 12/3/99 "
+	lowLimit := lowLimit + ( aVector at: 1).
+	highLimit := highLimit + ( aVector at: 2).
+	peak := peak + ( aVector at: 3).

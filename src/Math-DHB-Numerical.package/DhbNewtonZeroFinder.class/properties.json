@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbFunctionalIterator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"derivativeBlock"
+	],
+	"name" : "DhbNewtonZeroFinder",
+	"type" : "normal"
+}

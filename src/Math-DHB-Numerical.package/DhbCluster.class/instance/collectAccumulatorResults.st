@@ -1,0 +1,3 @@
+transformation
+collectAccumulatorResults
+	self subclassResponsibility

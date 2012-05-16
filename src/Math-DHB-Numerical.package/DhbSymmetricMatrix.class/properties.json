@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbMatrix",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbSymmetricMatrix",
+	"type" : "normal"
+}

@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbFunctionOptimizer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"chromosomeManager"
+	],
+	"name" : "DhbGeneticOptimizer",
+	"type" : "normal"
+}

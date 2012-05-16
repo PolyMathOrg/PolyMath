@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbFunctionOptimizer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"worstVector"
+	],
+	"name" : "DhbSimplexOptimizer",
+	"type" : "normal"
+}

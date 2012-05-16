@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbGammaDistribution",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbChiSquareDistribution",
+	"type" : "normal"
+}
