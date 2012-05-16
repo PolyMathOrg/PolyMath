@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Math-Quaternion",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"qr",
+		"qi",
+		"qj",
+		"qk"
+	],
+	"name" : "Quaternion",
+	"type" : "normal"
+}
