@@ -1,3 +1,4 @@
 initialize-release
 initialize
-	hasNextGaussian := false
+	hasNextGaussian := false.
+	^ self

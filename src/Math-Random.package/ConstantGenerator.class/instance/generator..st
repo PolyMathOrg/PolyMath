@@ -1,3 +1,4 @@
 accessing
 generator: aRandomGenerator
-	^ self subclassResponsibility 
+	"Do nothing."
+	^ self

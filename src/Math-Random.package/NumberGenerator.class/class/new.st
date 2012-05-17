@@ -1,3 +1,3 @@
 instance-creation
 new
-	^ (self  basicNew) generator: self defaultGenerator.
+	^ ((self  basicNew) generator: self defaultGenerator new) initialize.
