@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "hfm 3/23/2009 21:02",
+	"super" : "Object",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"seed"
+	],
+	"name" : "RandomGenerator",
+	"type" : "normal"
+}

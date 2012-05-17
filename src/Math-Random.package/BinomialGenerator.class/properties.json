@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "NumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"n",
+		"p",
+		"rng"
+	],
+	"name" : "BinomialGenerator",
+	"type" : "normal"
+}

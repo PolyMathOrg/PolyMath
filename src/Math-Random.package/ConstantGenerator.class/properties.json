@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "SergeStinckwich 3/30/2010 15:31",
+	"super" : "NumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"constant"
+	],
+	"name" : "ConstantGenerator",
+	"type" : "normal"
+}

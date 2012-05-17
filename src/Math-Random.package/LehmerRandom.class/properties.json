@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "hfm 3/23/2009 21:22",
+	"super" : "RandomGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "LehmerRandom",
+	"type" : "normal"
+}

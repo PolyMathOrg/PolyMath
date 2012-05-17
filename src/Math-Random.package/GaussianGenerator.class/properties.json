@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "NumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rng",
+		"mean",
+		"standardDeviation",
+		"hasNextGaussian",
+		"nextGaussian"
+	],
+	"name" : "GaussianGenerator",
+	"type" : "normal"
+}

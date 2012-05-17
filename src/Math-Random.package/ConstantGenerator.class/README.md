@@ -1,0 +1,1 @@
+A ConstantGenerator is not really a random number generator.

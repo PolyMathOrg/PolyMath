@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "NumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lambda",
+		"rng"
+	],
+	"name" : "PoissonGenerator",
+	"type" : "normal"
+}
