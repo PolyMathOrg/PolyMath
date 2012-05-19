@@ -1,5 +1,5 @@
 linear algebra
-testMatrixOperation
+testMatrixMultiply
 	"Code Example 8.1"
 	| a b c |
 	a := DhbMatrix rows: #( ( 1 0 1) (-1 -2 3)).

@@ -3,8 +3,10 @@ atRow: rowIndex put: aCollection startingAt: startColumnNumber
 	" Fill the receiver with aCollection at rowIndex beggining at startColumnNumber. "
 		
 	aCollection withIndexDo: [: value : columnIndex |
-		self 
+		(columnIndex + startColumnNumber ) <= self numberOfColumns 
+		ifTrue:
+		[ self 
 			rowAt: rowIndex 
 			columnAt: columnIndex + startColumnNumber
-			put: value ]
+			put: value ]]
 	

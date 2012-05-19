@@ -4,7 +4,9 @@ atColumn: aColumnNumber put: aCollection startingAt: rowNumber
 	at rowNumber. "
 	
 	aCollection withIndexDo: [: value : rowIndex |
-		self rowAt: rowIndex + rowNumber
+		(rowIndex + rowNumber ) <= self numberOfRows 
+		ifTrue: 
+		[ self rowAt: rowIndex + rowNumber
 			columnAt: aColumnNumber 
-			put: value ]
+			put: value ]]
 	
