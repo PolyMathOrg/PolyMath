@@ -12,4 +12,4 @@ randomIndex: aNumberArray
 			ifTrue: [ ^n].
 		  n := n + 1.
 		].
-	^aNumberArray size	"Never reached unless an error occurs"
+	 self error: 'should not be reached'.  "the original line was there because of a bug that should be taken care of now"

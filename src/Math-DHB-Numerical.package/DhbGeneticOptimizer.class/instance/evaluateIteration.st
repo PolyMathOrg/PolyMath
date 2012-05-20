@@ -4,6 +4,7 @@ evaluateIteration
 		 Initial code: 23-Feb-00 "
 	| randomScale |
 	randomScale := self randomScale.
+	randomScale at: randomScale size put: 1. "for floating point errors in #randomScale "
 	chromosomeManager reset.
 	[ chromosomeManager isFullyPopulated]
 		whileFalse: [ self processRandomParents: randomScale].
