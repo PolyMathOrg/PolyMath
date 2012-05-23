@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ControlledStepper",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "Rosenbrock4Controller",
+	"type" : "normal"
+}

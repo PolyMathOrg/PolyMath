@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stepper",
+		"system",
+		"dt"
+	],
+	"name" : "ODESolver",
+	"type" : "normal"
+}

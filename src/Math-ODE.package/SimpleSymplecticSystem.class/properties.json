@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "SymplecticSystem",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "SimpleSymplecticSystem",
+	"type" : "normal"
+}

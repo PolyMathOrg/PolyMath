@@ -1,0 +1,1 @@
+An ODESystem is a wrapper for a system of or a single ordinary differential equation.

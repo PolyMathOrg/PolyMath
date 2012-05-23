@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "SymplecticStepper",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "RungeKuttaNystromStepper",
+	"type" : "normal"
+}
