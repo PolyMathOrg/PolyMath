@@ -2,7 +2,8 @@ solving
 solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	| state |
 	self system: aSystem.
-	self stepper: ((self stepperClass) onSystem: self system).
+	stepper ifNil: [
+		self stepper: ((self stepperClass) onSystem: self system)].
 	state := initialState.
 	(initialTime to: endTime by: self dt) do:
 		[:time | 

@@ -8,7 +8,7 @@ doStep: aState time: t
 		ifTrue: [^ (self stepSize * dxdt + aState)]
 	"a collection"	
 		ifFalse:
-			[(1 to aState size) 
+			[(1 to: aState size) 
 			do: [:i | | xi | 
 					xi := aState at: i.
 					aState at: i put: (dxdt at: i) * self stepSize + xi].
