@@ -7,7 +7,8 @@ dividingPolynomialWithRemainder: aPolynomial
 	m := aPolynomial degree.
 	quotientDegree := m - n.
 	quotientDegree < 0
-		ifTrue: [ ^Array with: ( self class new: #(0)) with: aPolynomial].
+		"this is a bugfix: variable sized instance : Behavior basicNew"
+		ifTrue: [ ^Array with: ( self class coefficients: #(0)) with: aPolynomial].
 	quotientCoefficients := Array new: quotientDegree + 1.
 	remainderCoefficients := ( 0 to: m) collect: [ :k | aPolynomial at: k].
 	norm := 1 / coefficients first.
