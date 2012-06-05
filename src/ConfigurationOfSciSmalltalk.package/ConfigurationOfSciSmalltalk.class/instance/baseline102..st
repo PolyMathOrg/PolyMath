@@ -16,13 +16,13 @@ baseline102: spec
 			"extensions"
 			package: 'Math-Number-Extensions.Pharo';
 			package: 'Math-RandomTests' with: [spec requires: 'Math-Random'];
-			package: 'Math-Complex-Extensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
-			package: 'Math-DHB-Numerical-Extensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
+			package: 'Math-ComplexExtensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
+			package: 'Math-DHB-NumericalExtensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
 			package: 'Math-Extensions';
-			package: 'Math-Quaternion-Extensions' with: [spec requires: 'Math-DHB-Numerical'; requires: 'Math-Complex'];
+			package: 'Math-QuaternionExtensions' with: [spec requires: 'Math-DHB-Numerical'; requires: 'Math-Complex'];
 			"tests"
-			package: 'Math-ComplexTests' with: [spec requires: 'Math-Complex-Extensions'];
-			package: 'Math-DHB-NumericalTests' with: [spec requires: 'Math-DHB-Numerical-Extensions'];
+			package: 'Math-ComplexTests' with: [spec requires: 'Math-ComplexExtensions'];
+			package: 'Math-DHB-NumericalTests' with: [spec requires: 'Math-DHB-NumericalExtensions'];
 			package: 'Math-ODETests' with: [spec requires: 'Math-ODE'];
 			package: 'Math-QuaternionTests' with: [spec requires: 'Math-Quaternion'];
 			package: 'Math-RandomTests' with: [spec requires: 'Math-Random'].
@@ -32,4 +32,4 @@ baseline102: spec
 				group: 'default' with: #('Core' 'Extensions' 'Tests');
                         group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
 				group: 'Tests' with: #('Math-DHB-NumericalTests' 'Math-ComplexTests' 'Math-QuaternionTests' 'Math-RandomTests' 'Math-ODETests');
-                        group: 'Extensions' with: #('Math-Extensions' 'Math-Complex-Extensions' 'Math-Number-Extensions.Pharo' 'Math-Quaternion-Extensions' 'Math-DHB-Numerical-Extensions'). ].
+                        group: 'Extensions' with: #('Math-Extensions' 'Math-ComplexExtensions' 'Math-Number-Extensions.Pharo' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions'). ].
