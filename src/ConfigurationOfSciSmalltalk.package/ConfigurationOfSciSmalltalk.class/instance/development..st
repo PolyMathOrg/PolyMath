@@ -1,5 +1,5 @@
 symbolic versions
-bleedingEdge: spec
-	<symbolicVersion: #'bleedingEdge'>
+development: spec
+	<symbolicVersion: #'development'>
 
 	spec for: #'common' version: '1.02'.
