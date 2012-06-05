@@ -1,4 +1,4 @@
-*Math-Complex-Extensions-private
+private
 floatClass
 	"Answer the class suitable for doing floating point operations.
 	In default Squeak, this is Float.
