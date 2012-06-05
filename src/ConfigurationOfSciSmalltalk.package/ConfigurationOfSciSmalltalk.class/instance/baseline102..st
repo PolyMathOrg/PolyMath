@@ -7,12 +7,12 @@ baseline102: spec
                 spec repository: 'http://ss3.gemstone.com/ss/SciSmalltalk'.    
                 spec 
 			"core"
-			package: 'Math-DHB-Numerical';
 			package: 'Math-Random';
 			package: 'Math-KDTree';
+			package: 'Math-ODE';
 			package: 'Math-Complex';
 			package: 'Math-Quaternion';
-			package: 'Math-ODE';
+			package: 'Math-DHB-Numerical';
 			"extensions"
 			package: 'Math-Number-Extensions.Pharo';
 			package: 'Math-RandomTests' with: [spec requires: 'Math-Random'];
@@ -30,6 +30,6 @@ baseline102: spec
 
 		spec
 				group: 'default' with: #('Core' 'Extensions' 'Tests');
-                        group: 'Core' with: #('Math-DHB-Numerical' 'Math-Complex' 'Math-Quaternion' 'Math-Random' 'Math-KDTree' 'Math-ODE');
+                        group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
 				group: 'Tests' with: #('Math-DHB-NumericalTests' 'Math-ComplexTests' 'Math-QuaternionTests' 'Math-RandomTests' 'Math-ODETests');
                         group: 'Extensions' with: #('Math-Extensions' 'Math-Complex-Extensions' 'Math-Number-Extensions.Pharo' 'Math-Quaternion-Extensions' 'Math-DHB-Numerical-Extensions'). ].
