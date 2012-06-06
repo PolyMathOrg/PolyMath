@@ -2,4 +2,4 @@ symbolic versions
 development: spec
 	<symbolicVersion: #'development'>
 
-	spec for: #'common' version: '1.03'.
+	spec for: #'common' version: #'notDefined'.

@@ -1,10 +1,9 @@
 versions
 version103: spec
-	<version: '1.03' imports: #('1-02-baseline' )>
 	<version: '1-03' imports: #('1-02-baseline' )>
-	
+
 	spec for: #'common' do: [
-		spec blessing: #'development'.
+		spec blessing: #'release'.
 		spec description: 'development version'.
 		spec author: 'DanielUber'.
 		spec timestamp: '6/6/2012 10:59'.
@@ -24,4 +23,4 @@ version103: spec
 			package: 'Math-ComplexTests' with: 'Math-ComplexTests-DanielUber.5';
 			package: 'Math-DHB-NumericalTests' with: 'Math-DHB-NumericalTests-DanielUber.7';
 			package: 'Math-ODETests' with: 'Math-ODETests-DanielUber.11';
-			package: 'Math-QuaternionTests' with: 'Math-QuaternionTests-DanielUber.4']
+			package: 'Math-QuaternionTests' with: 'Math-QuaternionTests-DanielUber.4'. ].
