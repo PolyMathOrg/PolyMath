@@ -1,6 +1,8 @@
 baselines
 baseline102: spec 
         <version: '1.02-baseline'>
+	"make MetacelloToolBox happy, it translates the dot in the version string to a hyphen"
+	  <version: '1-02-baseline'>
         "remove dependency on Math-All package"
         spec for: #common do: [
                 spec blessing: #baseline.
