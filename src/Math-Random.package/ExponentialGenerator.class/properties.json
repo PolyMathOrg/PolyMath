@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"mean",
-		"rng"
+		"mean"
 	],
 	"name" : "ExponentialGenerator",
 	"type" : "normal"

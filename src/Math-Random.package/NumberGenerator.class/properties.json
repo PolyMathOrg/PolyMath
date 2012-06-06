@@ -5,7 +5,9 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"rng"
+	],
 	"name" : "NumberGenerator",
 	"type" : "normal"
 }

@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"p",
-		"rng"
+		"p"
 	],
 	"name" : "BernoulliGenerator",
 	"type" : "normal"

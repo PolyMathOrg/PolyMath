@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"lambda",
-		"rng"
+		"lambda"
 	],
 	"name" : "PoissonGenerator",
 	"type" : "normal"

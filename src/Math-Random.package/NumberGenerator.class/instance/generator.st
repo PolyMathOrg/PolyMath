@@ -1,3 +1,3 @@
 accessing
 generator
- ^ rng .
+	^ rng

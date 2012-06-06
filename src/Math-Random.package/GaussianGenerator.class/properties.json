@@ -6,7 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"rng",
 		"mean",
 		"standardDeviation",
 		"hasNextGaussian",

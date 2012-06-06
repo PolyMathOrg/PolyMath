@@ -1,3 +1,3 @@
 accessing
 generator: aRandomGenerator
-	^ self subclassResponsibility 
+	rng := aRandomGenerator 
