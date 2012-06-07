@@ -4,18 +4,18 @@ version203: spec
 
 	spec for: #'common' do: [
 		spec blessing: #'development'.
-		spec description: ''.
+		spec description: 'modified Random tests and fixed an error in MTGenerator'.
 		spec author: 'DanielUber'.
-		spec timestamp: '6/6/2012 12:00'.
+		spec timestamp: '6/7/2012 14:08'.
 		spec 
-			package: 'Math-Random' with: 'Math-Random-DanielUber.5';
+			package: 'Math-Random' with: 'Math-Random-DanielUber.6';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.6';
 			package: 'Math-ODE' with: 'Math-ODE-DanielUber.10';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-DanielUber.5';
 			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-DanielUber.19';
 			package: 'Math-Number-Extensions.Pharo' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-			package: 'Math-RandomTests' with: 'Math-RandomTests-DanielUber.4';
+			package: 'Math-RandomTests' with: 'Math-RandomTests-DanielUber.5';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-DanielUber.1';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-DanielUber.2';
 			package: 'Math-Extensions' with: 'Math-Extensions-DanielUber.3';
