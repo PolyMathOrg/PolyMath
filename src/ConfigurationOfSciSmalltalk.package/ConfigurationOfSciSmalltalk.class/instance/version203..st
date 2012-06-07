@@ -4,9 +4,10 @@ version203: spec
 
 	spec for: #'common' do: [
 		spec blessing: #'development'.
-		spec description: 'modified Random tests and fixed an error in MTGenerator'.
+		spec description: 'modified Random tests and fixed an error in MTGenerator
+relaxed convergence bound on PoissonGenerator'.
 		spec author: 'DanielUber'.
-		spec timestamp: '6/7/2012 14:08'.
+		spec timestamp: '6/7/2012 14:27'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-DanielUber.6';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.6';
@@ -15,7 +16,7 @@ version203: spec
 			package: 'Math-Quaternion' with: 'Math-Quaternion-DanielUber.5';
 			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-DanielUber.19';
 			package: 'Math-Number-Extensions.Pharo' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-			package: 'Math-RandomTests' with: 'Math-RandomTests-DanielUber.5';
+			package: 'Math-RandomTests' with: 'Math-RandomTests-DanielUber.6';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-DanielUber.1';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-DanielUber.2';
 			package: 'Math-Extensions' with: 'Math-Extensions-DanielUber.3';
