@@ -1,16 +1,11 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "Object",
+	"super" : "ExplicitSolverSubscriber",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"stepper",
-		"system",
-		"dt",
-		"announcer"
-	],
-	"name" : "ODESolver",
+	"instvars" : [ ],
+	"name" : "TranscriptRecorder",
 	"type" : "normal"
 }

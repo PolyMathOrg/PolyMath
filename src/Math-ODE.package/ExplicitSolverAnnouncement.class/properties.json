@@ -1,16 +1,14 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "Object",
+	"super" : "Announcement",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"stepper",
-		"system",
-		"dt",
-		"announcer"
+		"t",
+		"state"
 	],
-	"name" : "ODESolver",
+	"name" : "ExplicitSolverAnnouncement",
 	"type" : "normal"
 }

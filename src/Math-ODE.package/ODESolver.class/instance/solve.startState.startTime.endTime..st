@@ -11,6 +11,7 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 				doStep: state 
 				time:  time 
 				stepSize: self dt.
-			self fixMe: 'add a monitor method/announcement here'.
-		].
+				"announce step results"
+				announcer announce: (ExplicitSolverAnnouncement x: state t: time).
+			].
 	^ state
