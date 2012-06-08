@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "<historical>",
 	"super" : "DhbLagrangeInterpolator",
 	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
