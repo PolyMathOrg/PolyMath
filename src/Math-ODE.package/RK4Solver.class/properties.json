@@ -1,14 +1,11 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "Object",
+	"super" : "ODESolver",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"announcers",
-		"block"
-	],
-	"name" : "ExplicitSolverSubscriber",
+	"instvars" : [ ],
+	"name" : "RK4Solver",
 	"type" : "normal"
 }

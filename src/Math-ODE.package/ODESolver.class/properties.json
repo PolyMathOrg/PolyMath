@@ -9,7 +9,9 @@
 		"stepper",
 		"system",
 		"dt",
-		"announcer"
+		"announcer",
+		"lastTime",
+		"state"
 	],
 	"name" : "ODESolver",
 	"type" : "normal"

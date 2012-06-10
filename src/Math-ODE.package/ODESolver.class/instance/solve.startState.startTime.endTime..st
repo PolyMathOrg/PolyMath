@@ -1,17 +1,21 @@
 solving
 solve: aSystem startState: initialState startTime: initialTime endTime: endTime
-	| state |
+
 	self system: aSystem.
 	stepper ifNil: [
 		self stepper: ((self stepperClass) onSystem: self system)].
 	state := initialState.
-	(initialTime to: endTime by: self dt) do:
-		[:time | 
-			state := stepper 
-				doStep: state 
-				time:  time 
-				stepSize: self dt.
-				"announce step results"
-				announcer announce: (ExplicitSolverAnnouncement x: state t: time).
-			].
+
+	"announce initial conditions"
+	self announceState: state time: initialTime.
+	"step until the end"
+	state := self mainStepsState: state startTime: initialTime endTime: endTime.
+	
+	"sanity check"
+	self assert: [(lastTime between: initialTime and: endTime) 
+				or: [lastTime between: endTime and: initialTime]].
+	
+	"take another step if needed"
+	state := self lastStepState: state endTime: endTime.
+
 	^ state

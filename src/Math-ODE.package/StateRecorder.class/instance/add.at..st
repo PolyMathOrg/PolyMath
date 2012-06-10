@@ -1,3 +1,3 @@
 accessing
 add: aState at: aTime
-	states add:  aState @ aTime
+	states add:  (StateTime state: aState time: aTime).

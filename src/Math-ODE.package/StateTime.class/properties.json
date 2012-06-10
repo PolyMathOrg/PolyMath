@@ -6,9 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"announcers",
-		"block"
+		"state",
+		"time"
 	],
-	"name" : "ExplicitSolverSubscriber",
+	"name" : "StateTime",
 	"type" : "normal"
 }
