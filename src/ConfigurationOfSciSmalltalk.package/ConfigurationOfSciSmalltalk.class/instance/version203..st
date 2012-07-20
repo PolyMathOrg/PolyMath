@@ -7,13 +7,14 @@ version203: spec
 		spec description: 'modified Random tests and fixed an error in MTGenerator
 relaxed convergence bound on PoissonGenerator
 added announcements/watchers to ODESolver 
-changes to Math-ODE'.
+changes to Math-ODE
+Added Tableau Stepper'.
 		spec author: 'DanielUber'.
-		spec timestamp: '6/10/2012 10:52'.
+		spec timestamp: '7/20/2012 13:04'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-DanielUber.6';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.6';
-			package: 'Math-ODE' with: 'Math-ODE-DanielUber.12';
+			package: 'Math-ODE' with: 'Math-ODE-DanielUber.13';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-DanielUber.5';
 			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-DanielUber.20';
