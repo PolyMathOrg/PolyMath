@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Stepper",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stageIncrements",
+		"stageCoefficients",
+		"stageWeights"
+	],
+	"name" : "ButcherTableauStepper",
+	"type" : "normal"
+}
