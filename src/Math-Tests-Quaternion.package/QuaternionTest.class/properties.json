@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "TestCase",
+	"category" : "Math-Tests-Quaternion",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"q1234",
+		"q1",
+		"q12",
+		"q123"
+	],
+	"name" : "QuaternionTest",
+	"type" : "normal"
+}
