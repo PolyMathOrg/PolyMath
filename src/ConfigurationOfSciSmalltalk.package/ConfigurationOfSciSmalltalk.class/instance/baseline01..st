@@ -1,6 +1,6 @@
 baselines
-baseline100: spec 
-        <version: '1.0-baseline'>
+baseline01: spec 
+        <version: '0.1-baseline'>
         
         spec for: #common do: [
                 spec blessing: #baseline.
