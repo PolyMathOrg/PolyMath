@@ -12,7 +12,7 @@ Added Tableau Stepper'.
 		spec author: 'DanielUber'.
 		spec timestamp: '7/20/2012 13:04'.
 		spec 
-			package: 'Math-Random' with: 'Math-Random-DanielUber.6';
+			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.7';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.6';
 			package: 'Math-ODE' with: 'Math-ODE-DanielUber.13';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
