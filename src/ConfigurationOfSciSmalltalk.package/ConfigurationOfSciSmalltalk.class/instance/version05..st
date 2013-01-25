@@ -17,7 +17,7 @@ Added Tableau Stepper'.
 			package: 'Math-ODE' with: 'Math-ODE-DanielUber.13';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-DanielUber.5';
-			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-DanielUber.20';
+			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-SergeStinckwich.21';
 			package: 'Math-Number-Extensions.Pharo' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.1';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-DanielUber.1';
