@@ -22,7 +22,6 @@ Added Tableau Stepper'.
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.1';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-DanielUber.1';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-DanielUber.2';
-			package: 'Math-Extensions' with: 'Math-Extensions-DanielUber.3';
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-DanielUber.1';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-SergeStinckwich.1';
 			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-SergeStinckwich.1';

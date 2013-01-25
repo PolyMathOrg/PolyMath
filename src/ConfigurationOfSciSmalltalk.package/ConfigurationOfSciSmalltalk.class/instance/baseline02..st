@@ -19,7 +19,6 @@ baseline02: spec
 			package: 'Math-Tests-Random' with: [spec requires: 'Math-Random'];
 			package: 'Math-ComplexExtensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
 			package: 'Math-DHB-NumericalExtensions' with: [spec requires: 'Math-Complex'; requires: 'Math-DHB-Numerical'; requires: 'Math-Quaternion'];
-			package: 'Math-Extensions';
 			package: 'Math-QuaternionExtensions' with: [spec requires: 'Math-DHB-Numerical'; requires: 'Math-Complex'];
 			"tests"
 			package: 'Math-Tests-Complex' with: [spec requires: 'Math-ComplexExtensions'];
@@ -32,4 +31,4 @@ baseline02: spec
 				group: 'default' with: #('Core' 'Extensions' 'Tests');
                         group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
 				group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE');
-                        group: 'Extensions' with: #('Math-Extensions' 'Math-ComplexExtensions' 'Math-Number-Extensions.Pharo' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions'). ].
+                        group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions.Pharo' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions'). ].
