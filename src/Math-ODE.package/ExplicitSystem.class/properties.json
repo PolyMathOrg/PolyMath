@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"block"
-	],
+	"instvars" : [ ],
 	"name" : "ExplicitSystem",
 	"type" : "normal"
 }
