@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ImplicitStepper",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "TrapezoidStepper",
+	"type" : "normal"
+}

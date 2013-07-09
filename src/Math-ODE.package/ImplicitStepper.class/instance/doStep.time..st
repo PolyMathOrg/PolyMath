@@ -11,5 +11,5 @@ doStep: aState time: t
 				| xi  ti |
 					ti := t + self stepSize.
 					xi := aState at: i.
-					aState at: xi +  i put: (system x: xi t: ti )* self stepSize ].
+					aState at: i put:  xi + (system x: xi t: ti )* self stepSize ].
 				^ aState.]
