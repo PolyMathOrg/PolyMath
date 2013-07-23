@@ -7,6 +7,6 @@ testVectorSystem
 												c at: 2 put: t cos.
 												c].
 	stepper := MidpointStepper onSystem: system.
-	solver := (ODESolver new) stepper: stepper; system: system; dt: dt.
+	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
 	self should: [((solver solve: system startState: #(-1 0) startTime: 0 endTime: Float pi ) at: 1)closeTo: 1].
 	self should: [((solver solve: system startState: #(-1 0) startTime: 0 endTime: Float pi / 2 ) at: 2 ) closeTo: 1].

@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"sys"
-	],
-	"name" : "ImplicitSystemTest",
+	"instvars" : [ ],
+	"name" : "ImplMidpointStepperTest",
 	"type" : "normal"
 }

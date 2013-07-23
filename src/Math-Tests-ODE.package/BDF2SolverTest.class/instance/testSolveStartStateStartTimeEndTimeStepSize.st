@@ -1,11 +1,11 @@
-tests-solving
+as yet unclassified
 testSolveStartStateStartTimeEndTimeStepSize
 	| solver stepper system dt finalState |
 	dt := 0.2.
-	system := ExplicitSystem block: [:x :t | (t * x ) exp].
-	stepper := ExplicitStepper onSystem: system.
+	system := ImplicitSystem block: [:x :t | (t * x ) exp].
+	stepper := ImplicitStepper onSystem: system.
 	stepper stepSize: dt.
-	solver := (ODESolver new 
+	solver := (BDF2Solver new 
 				system: system; 
 				stepper: stepper).
 	finalState := solver solve: solver system startState: 0 startTime: 0  endTime: 1 stepSize: dt. 
