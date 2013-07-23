@@ -5,7 +5,7 @@ baseline02: spec
 	"remove dependency on Math-All package"
         spec for: #common do: [
                 spec blessing: #baseline.
-                spec repository: 'http://ss3.gemstone.com/ss/SciSmalltalk'.    
+                spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.    
                 spec 
 			"core"
 			package: 'Math-Random';

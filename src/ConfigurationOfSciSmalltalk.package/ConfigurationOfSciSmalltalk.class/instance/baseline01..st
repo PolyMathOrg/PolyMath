@@ -4,7 +4,7 @@ baseline01: spec
         
         spec for: #common do: [
                 spec blessing: #baseline.
-                spec repository: 'http://ss3.gemstone.com/ss/SciSmalltalk'.    
+                spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.    
                 spec 
 			package: 'Math-All'.
                 spec
