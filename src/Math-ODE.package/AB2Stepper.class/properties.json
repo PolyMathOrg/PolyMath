@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MidpointStepper",
+	"name" : "AB2Stepper",
 	"type" : "normal"
 }

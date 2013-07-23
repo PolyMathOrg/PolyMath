@@ -1,4 +1,4 @@
-initialize-release
+as yet unclassified
 initialize
 	super initialize.
 	announcer := ExplicitAnnouncer new.

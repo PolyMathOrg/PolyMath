@@ -1,4 +1,4 @@
-solving
+as yet unclassified
 solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 
 	self system: aSystem.
@@ -11,6 +11,7 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	
 	
 	"step until the end"
+
 	state := self mainStepsState: state startTime: initialTime endTime: endTime.
 	
 	"sanity check"

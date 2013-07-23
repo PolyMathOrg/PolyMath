@@ -6,5 +6,6 @@ doStep: aState time: t
 	self stepSize isNil
 		ifTrue: [ self error: 'step size required by stepper' ].
 	k1 := system x: aState t: t.
-	k2 := system x: aState + (self stepSize / 2 * k1) t: t + (self stepSize / 2).
-	^ aState + (k2 * self stepSize)
+	k2 := system x: (aState + (self stepSize*(1/ 2)* k1)) t: t + (self stepSize *(1/ 2)).
+	^ aState + (k2 * self stepSize).
+	

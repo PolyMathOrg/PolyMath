@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "ExplicitStepper",
+	"super" : "ExplicitSolver",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "MidpointStepper",
+	"name" : "AB2Solver",
 	"type" : "normal"
 }

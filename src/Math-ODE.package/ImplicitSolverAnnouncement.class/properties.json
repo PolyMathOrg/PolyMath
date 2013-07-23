@@ -1,11 +1,14 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "ExplicitStepper",
+	"super" : "Announcement",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "MidpointStepper",
+	"instvars" : [
+		"t",
+		"state"
+	],
+	"name" : "ImplicitSolverAnnouncement",
 	"type" : "normal"
 }

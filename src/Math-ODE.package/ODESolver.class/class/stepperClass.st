@@ -1,3 +1,3 @@
 class variables
 stepperClass
-	^ ExplicitStepper.
+	^ShouldBeImplemented.
