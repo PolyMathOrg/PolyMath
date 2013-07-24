@@ -2,4 +2,4 @@ symbolic versions
 bleedingEdge: spec
 	<symbolicVersion: #'bleedingEdge'>
 	"bleeding edge = development"
-	self development: spec
+	spec for: #'common' version: '0.2-baseline'
