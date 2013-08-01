@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "AB2Solver",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AB3Solver",
+	"type" : "normal"
+}

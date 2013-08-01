@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "ExplicitStepper",
+	"category" : "Math-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AB3Stepper",
+	"type" : "normal"
+}
