@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "ImplicitSolver",
+	"super" : "AB3Solver",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ImplMidpointSolver",
+	"name" : "AB4Solver",
 	"type" : "normal"
 }

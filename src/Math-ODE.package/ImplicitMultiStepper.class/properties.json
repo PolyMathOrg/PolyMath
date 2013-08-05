@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "ImplicitSolver",
+	"super" : "MultiStepper",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "ImplMidpointSolver",
+	"instvars" : [
+		"dt"
+	],
+	"name" : "ImplicitMultiStepper",
 	"type" : "normal"
 }

@@ -1,13 +1,11 @@
 as yet unclassified
-mainStepsState: aState prevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime
-	|previousState previousPrevState ti |
-	state := aState.
+mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime
+	|previousState previousPrevState |
 	previousState := prevState.	
 	previousPrevState:=prevPrevState.
 	"don't go to end time to avoid overrunning"
 	(initialTime to: endTime - (3*self dt)  by: self dt) do:
 		[:time | | tempState1 tempState2|
-		      ti:=time.
 			tempState1 := state.
 			tempState2:=prevState.
 			state := stepper

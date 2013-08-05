@@ -12,43 +12,47 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	ifTrue:[
 		state :=self lastStepState: state endTime: endTime].
 	
-	lastTime+dt< endTime 
+	lastTime+dt<= endTime 
 	ifTrue:[
 		prevState:= initialState.
-		state := self firstStepState: state startTime: initialTime.
+		state := self firstStepStartTime: initialTime.
 		"announce first step"
 		self announceState: state time:lastTime.    
 	
-		self halt.
-	
 	      (lastTime+dt > endTime and: lastTime < endTime)
 		ifTrue:[
-			state :=self lastStepState: state prevState: prevState endTime: endTime].
+			self stepper: ((self secondStepperClass) onSystem: self system).
+			state :=self lastStepPrevState: prevState endTime: endTime].
 		
-		lastTime+dt< endTime 
+		lastTime+dt<= endTime 
 		ifTrue:[
 			prevPrevState := prevState.
 			prevState := state.
 			self stepper: ((self secondStepperClass) onSystem: self system).
-			state := self secondStepState: state prevState: prevState startTime: lastTime.  
+			state := self secondStepPrevState: prevPrevState startTime: lastTime.  
 			"announce second step"
 			self announceState: state time: lastTime.    
 			
 			(lastTime+dt > endTime and: lastTime < endTime)
-			ifTrue:[state := self lastStepState: statesPair second prevState: statesPair first prevPrevState:  prevPrevState endTime: endTime].
-			
-			lastTime+dt< endTime 
 			ifTrue:[
 				self stepper: ((self stepperClass) onSystem: self system).
-					"step until the end"                                                                            
-				statesPair := self mainStepsState: state prevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime.
+				state := self lastStepPrevState: prevState prevPrevState:  prevPrevState endTime: endTime].
+			
+			lastTime+dt<= endTime 
+			ifTrue:[
+				self stepper: ((self stepperClass) onSystem: self system).
+					"step until the end"  
+		                                                                                     
+				statesPair := self mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime.
     				prevPrevState:=prevState.
+				prevState:=statesPair first .
+				state:=statesPair second.
 
 				"sanity check"
 				self assert: [(lastTime between: initialTime and: endTime) 
 				or: [lastTime between: endTime and: initialTime]].
 		
 				"take another step if needed"                                                                
-				state := self lastStepState: statesPair second prevState: statesPair first prevPrevState:  prevPrevState endTime: endTime]]].
+				state := self lastStepPrevState: prevState prevPrevState:  prevPrevState endTime: endTime]]].
    		 
 	^ state  

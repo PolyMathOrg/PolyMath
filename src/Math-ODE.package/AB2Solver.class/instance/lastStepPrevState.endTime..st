@@ -1,5 +1,5 @@
 solving
-lastStepState: aState prevState: prevState endTime: endTime
+lastStepPrevState: prevState endTime: endTime
 	"catch partial or full step at end"
 	(lastTime equalsTo: endTime )
 	ifFalse:

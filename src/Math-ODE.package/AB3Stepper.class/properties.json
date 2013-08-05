@@ -1,6 +1,6 @@
 {
-	"commentStamp" : "",
-	"super" : "ExplicitStepper",
+	"commentStamp" : "<historical>",
+	"super" : "ExplicitMultiStepper",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],

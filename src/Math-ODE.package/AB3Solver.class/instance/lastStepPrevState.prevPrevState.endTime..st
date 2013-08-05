@@ -1,5 +1,5 @@
 as yet unclassified
-lastStepState: aState prevState: prevState prevPrevState: prevPrevState endTime: endTime
+lastStepPrevState: prevState prevPrevState: prevPrevState endTime: endTime
 	"catch partial or full step at end"
 	(lastTime equalsTo: endTime )
 	ifFalse:
