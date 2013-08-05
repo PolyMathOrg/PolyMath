@@ -6,7 +6,7 @@ testVectorSystem
 												c at: 1 put: t sin. 
 												c at: 2 put: t cos.
 												c].
-	stepper := AB3Stepper onSystem: system.
-	solver := (AB3Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := AB4Stepper onSystem: system.
+	solver := (AB4Solver new) stepper: stepper; system: system; dt: dt.
 	self should: [((   solver solve: system startState: #(-1 0) startTime: 0 endTime: Float pi ) at: 1  ) closeTo: 1].
 	self should: [((   solver solve: system startState: #(-1 0) startTime: 0 endTime: Float pi / 2 ) at: 2 ) closeTo: 1].
