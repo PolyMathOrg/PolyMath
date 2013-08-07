@@ -1,6 +1,6 @@
 as yet unclassified
 testVectorSystem
-	<expectedFailure>
+	
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [:x :t | | c | c:= DhbVector new: 2. 
