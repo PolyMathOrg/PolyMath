@@ -26,4 +26,4 @@ mainStepsPrevState: prevState prevPrevState: prevPrevState initState: initState 
 			self announceState: state time: time + self dt.
 			lastTime := time + (4*self dt)].
 			
-	^ { previousState . state}
+	^ { previousPrevState. previousState . state}

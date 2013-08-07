@@ -1,7 +1,7 @@
 as yet unclassified
-mainStepsState: aState prevState: prevState startTime: initialTime endTime: endTime
+mainStepsPrevState: prevState startTime: initialTime endTime: endTime
 	|previousState|
-	state := aState.
+
 	previousState := prevState.	
 	"don't go to end time to avoid overrunning"
 	(initialTime to: endTime - self dt  by: self dt) do:

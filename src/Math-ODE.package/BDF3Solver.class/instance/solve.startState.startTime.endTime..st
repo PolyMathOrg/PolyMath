@@ -42,7 +42,7 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 			ifTrue:[
 				self stepper: ((self stepperClass) onSystem: self system).
 					"step until the end"  
-		                                                                                 
+		                                                                                     
 				statesPair := self mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime.
     				prevPrevState:=statesPair first.
 				prevState:= statesPair second.
