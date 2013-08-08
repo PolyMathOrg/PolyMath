@@ -4,7 +4,7 @@ mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTim
 	previousState := prevState.	
 	previousPrevState:=prevPrevState.
 	"don't go to end time to avoid overrunning"
-	(lastTime to: endTime - self dt  by: self dt) do: "endTime - (3*self dt)"
+	(lastTime to: endTime - self dt  by: self dt) do: 
 		[:time | | tempState1 tempState2|
 			tempState1 := state.
 			tempState2:=previousState.
@@ -18,5 +18,5 @@ mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTim
 			previousState := tempState1.
 			"announce step results"
 			self announceState: state time: time + self dt.
-			lastTime := time + self dt].  "(3*self dt)]."
-		^ { previousPrevState. previousState . state}
+			lastTime := time + self dt].  
+		^ { previousPrevState. previousState }

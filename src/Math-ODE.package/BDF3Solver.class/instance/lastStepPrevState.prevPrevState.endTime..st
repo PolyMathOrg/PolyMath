@@ -7,7 +7,7 @@ lastStepPrevState: prevState prevPrevState: prevPrevState endTime: endTime
 			doStep: state 
 				prevState: prevState
 				prevPrevState: prevPrevState
-				time:  lastTime"-2dt" 
+				time:  lastTime
 			      stepSize: endTime - lastTime.
 			self announceState: state time: endTime].			
 	^ state

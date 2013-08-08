@@ -73,10 +73,11 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 										initState: initState
 										startTime: initialTime
 										endTime: endTime.
-									initState:=statesPair first.
+									initState := statesPair first.
 									prevPrevState:=statesPair second.
-					  				prevState:= statesPair third.
-																	
+									prevState:= statesPair third.
+									
+																			
 										"sanity check"
 									self
 										assert: [ (lastTime between: initialTime and: endTime) or: [ lastTime between: endTime and: initialTime ] ].	

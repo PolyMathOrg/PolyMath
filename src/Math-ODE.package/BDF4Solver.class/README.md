@@ -1,0 +1,1 @@
+We can't use BDF4 method until we have three old solution values and  approximate new one. A  BDF4 method is implicit. We found starting point with Backward Euler method and next points with BDF2 and BDF3.

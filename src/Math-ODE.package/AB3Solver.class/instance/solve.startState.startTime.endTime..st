@@ -46,7 +46,7 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 				statesPair := self mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTime endTime: endTime.
     				prevPrevState:=statesPair first.
 				prevState:= statesPair second.
-				state:= statesPair third.
+				
 
 				"sanity check"
 				self assert: [(lastTime between: initialTime and: endTime) 
