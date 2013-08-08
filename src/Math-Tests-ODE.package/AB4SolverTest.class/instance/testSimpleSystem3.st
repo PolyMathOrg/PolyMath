@@ -8,6 +8,6 @@ testSimpleSystem3
 	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 1  ) closeTo: 2.1875].
 	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 1.5  ) closeTo: 5.546875].
 	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 1.7  ) closeTo: 11.4082].
-	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 2.0  ) closeTo: 20.92285].
-	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 2.5  ) closeTo:99.50317].
+	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 2.0  ) closeTo: 20.2002].
+	self should: [(  solver solve: system startState: 1 startTime: 0 endTime: 2.5  ) closeTo: 95.5152].
 	
