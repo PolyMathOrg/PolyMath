@@ -1,3 +1,3 @@
-We can't use BDF2 until we have two old solution values. A  BDF2 method is implicit. We found starting point with Midpoint Method.
+It is Backward differentiation formulas method of order 2. We can't use BDF2 method until we have old solution value and approximate new one. A  BDF2 method is implicit. 
 
 

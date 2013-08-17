@@ -1,11 +1,11 @@
 {
-	"commentStamp" : "<historical>",
-	"super" : "ImplicitMultiStepper",
+	"commentStamp" : "",
+	"super" : "AM3Solver",
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "BDF3Stepper",
+	"name" : "AM4Solver",
 	"type" : "normal"
 }

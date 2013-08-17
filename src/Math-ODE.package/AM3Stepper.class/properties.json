@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "BDF3Stepper",
+	"name" : "AM3Stepper",
 	"type" : "normal"
 }
