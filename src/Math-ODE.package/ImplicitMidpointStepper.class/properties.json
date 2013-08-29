@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ImplMidpointStepper",
+	"name" : "ImplicitMidpointStepper",
 	"type" : "normal"
 }

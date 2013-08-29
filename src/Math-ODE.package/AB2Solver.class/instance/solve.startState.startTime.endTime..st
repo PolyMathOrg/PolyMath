@@ -4,10 +4,17 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	self system: aSystem.
 	self stepper: ((self firstStepperClass) onSystem: self system).
 	state := initialState.
+      lastTime:=initialTime.
 
 	"announce initial conditions"
 	self announceState: state time: initialTime.
 	
+	(lastTime+dt > endTime and: lastTime < endTime)
+	ifTrue:[
+		state :=self lastStepState: state endTime: endTime].
+	
+	lastTime+dt<= endTime 
+	ifTrue:[
 	prevState:= initialState.
 	
 	state := self firstStepStartTime: initialTime.
@@ -26,6 +33,6 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 				or: [lastTime between: endTime and: initialTime]].
 		
 	"take another step if needed"
-	state := self lastStepPrevState: prevState endTime: endTime.
+	state := self lastStepPrevState: prevState endTime: endTime.].
 
 	^ state

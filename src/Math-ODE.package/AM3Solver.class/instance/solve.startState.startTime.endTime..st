@@ -9,7 +9,12 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	"announce initial conditions"
 	self announceState: state time: initialTime.
 	
-
+(lastTime+dt > endTime and: lastTime < endTime)
+	ifTrue:[
+		state :=self lastStepState: state endTime: endTime].
+	
+	lastTime+dt<= endTime 
+	ifTrue:[	
 	prevState:= initialState.
 	state := self firstStepStartTime: initialTime.
 	"announce first step"
@@ -27,6 +32,6 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	
 	"take another step if needed"
 	prevState:= statesPair first.
-	state := self lastStepPrevState: prevState endTime: endTime.
+	state := self lastStepPrevState: prevState endTime: endTime.].
 
 	^ state

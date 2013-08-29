@@ -4,8 +4,9 @@ lastStepState: aState endTime: endTime
 	(lastTime equalsTo: endTime )
 	ifFalse:
 		[state := stepper 
-			doStep: state 
+			lastStep: state 
 			time: lastTime 
-			stepSize: endTime - lastTime.
+			stepSize: endTime - lastTime
+			deltaT: dt.
 			self announceState: state time: endTime].			
 	^ state
