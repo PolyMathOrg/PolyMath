@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ImplMidpointSolverTest",
+	"name" : "ImplicitMidpointStepperTest",
 	"type" : "normal"
 }
