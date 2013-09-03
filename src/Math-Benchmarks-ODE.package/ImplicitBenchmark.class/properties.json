@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "ODEBenchmark",
+	"category" : "Math-Benchmarks-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"system"
+	],
+	"name" : "ImplicitBenchmark",
+	"type" : "normal"
+}
