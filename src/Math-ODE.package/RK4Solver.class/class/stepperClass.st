@@ -1,3 +1,0 @@
-class variables
-stepperClass
-	^ RungeKuttaStepper 
