@@ -24,11 +24,18 @@ baseline02: spec
 			package: 'Math-Tests-Complex' with: [spec requires: 'Math-ComplexExtensions'];
 			package: 'Math-Tests-DHB-Numerical' with: [spec requires: 'Math-DHB-NumericalExtensions'];
 			package: 'Math-Tests-ODE' with: [spec requires: 'Math-ODE'];
-			package: 'Math-Tests-Quaternion' with: [spec requires: 'Math-Quaternion'].
-				
+			package: 'Math-Tests-Quaternion' with: [spec requires: 'Math-Quaternion'];
+			"benchmarks"
+			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'FullTextSearch-Core' 'SMark' )].	
+		
+		spec project: 'SMark' with: [
+			spec
+				className: 'ConfigurationOfBenchmarking';
+				repository: 'http://squeaksource.com/SMark' ].
 
 		spec
-				group: 'default' with: #('Core' 'Extensions' 'Tests');
+				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks');
                         group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
 				group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE');
-                        group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions'). ].
+                        group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions');
+				group: 'Benchmarks' with: 'Math-Benchmarks-ODE'].
