@@ -26,7 +26,7 @@ baseline02: spec
 			package: 'Math-Tests-ODE' with: [spec requires: 'Math-ODE'];
 			package: 'Math-Tests-Quaternion' with: [spec requires: 'Math-Quaternion'];
 			"benchmarks"
-			package: 'FullTextSearch-Core' with: [spec requires: #( 'FullTextSearch-Core' 'SMark' )].	
+			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' )].	
 		
 		spec project: 'SMark' with: [
 			spec
