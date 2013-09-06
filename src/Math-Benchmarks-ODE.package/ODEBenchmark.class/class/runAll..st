@@ -1,6 +1,3 @@
 as yet unclassified
-runAll:  numOfIterations 
-|collection|
-
-collection := self withAllSubclasses collect:[ :each| each run: numOfIterations ]  .
-^ collection joinUsing: Character cr.
+runAll: numOfIterations
+	^ (self withAllSubclasses collect: [ :each | each run: numOfIterations ]) joinUsing: Character cr
