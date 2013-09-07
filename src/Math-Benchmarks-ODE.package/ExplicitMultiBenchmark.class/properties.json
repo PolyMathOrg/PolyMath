@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "MultiBenchmark",
+	"super" : "ODEBenchmark",
 	"category" : "Math-Benchmarks-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
