@@ -30,8 +30,8 @@ baseline02: spec
 		
 		spec project: 'SMark' with: [
 			spec
-				className: 'ConfigurationOfBenchmarking';
-				repository: 'http://squeaksource.com/SMark' ].
+				className: 'ConfigurationOfSMark';
+				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ].
 
 		spec
 				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks');
