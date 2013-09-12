@@ -26,16 +26,20 @@ baseline02: spec
 			package: 'Math-Tests-ODE' with: [spec requires: 'Math-ODE'];
 			package: 'Math-Tests-Quaternion' with: [spec requires: 'Math-Quaternion'];
 			"benchmarks"
-			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' )].	
+			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')].	
 		
 		spec project: 'SMark' with: [
 			spec
 				className: 'ConfigurationOfSMark';
 				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ].
+		spec project: 'XMLWriter' with: [
+			spec
+				className: 'ConfigurationOfXMLWriter';
+				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ].
 
 		spec
-				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks');
-                        group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
-				group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE');
-                        group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions');
-				group: 'Benchmarks' with: 'Math-Benchmarks-ODE'].
+			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks');
+                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
+			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE');
+                  group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions');
+			group: 'Benchmarks' with: 'Math-Benchmarks-ODE'].
