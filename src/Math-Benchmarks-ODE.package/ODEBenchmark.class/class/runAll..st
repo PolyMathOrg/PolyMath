@@ -1,3 +1,5 @@
 as yet unclassified
 runAll: numOfIterations
-	^ (self withAllSubclasses collect: [ :each | each run: numOfIterations ]) joinUsing: Character cr
+	^ (self withAllSubclasses collect: [ :suite |
+		suite run: numOfIterations ]) reject: [ :runner |
+			runner results isEmpty ]
