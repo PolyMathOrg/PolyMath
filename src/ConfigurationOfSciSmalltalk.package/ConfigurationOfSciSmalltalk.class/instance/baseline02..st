@@ -26,7 +26,9 @@ baseline02: spec
 			package: 'Math-Tests-ODE' with: [spec requires: 'Math-ODE'];
 			package: 'Math-Tests-Quaternion' with: [spec requires: 'Math-Quaternion'];
 			"benchmarks"
-			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')].	
+			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')];
+			"accuracy"
+			package: 'Math-Accuracy-ODE' with: [ spec requires: 'Math-ODE' ].
 		
 		spec project: 'SMark' with: [
 			spec
@@ -38,8 +40,9 @@ baseline02: spec
 				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ].
 
 		spec
-			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks');
+			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy');
                   group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
 			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE');
                   group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions');
-			group: 'Benchmarks' with: 'Math-Benchmarks-ODE'].
+			group: 'Benchmarks' with: 'Math-Benchmarks-ODE';
+			group: 'Accuracy' with: 'Math-Accuracy-ODE']
