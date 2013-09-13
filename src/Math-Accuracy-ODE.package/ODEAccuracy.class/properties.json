@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-Accuracy-ODE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dt",
+		"function",
+		"startState",
+		"startTime",
+		"endTime",
+		"standard"
+	],
+	"name" : "ODEAccuracy",
+	"type" : "normal"
+}
