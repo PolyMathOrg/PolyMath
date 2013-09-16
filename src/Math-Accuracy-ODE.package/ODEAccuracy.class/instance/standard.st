@@ -1,5 +1,5 @@
 as yet unclassified
 standard
 	standard ifNil: [ 
-		standard := [:x | (x ** 5) * (x sin ** (2*x cos)) ] value: endTime ].
-	^ standard 
+		standard := [:t | (t ** 5) * (t sin ** (2*t cos))-0.000888511] value: endTime ].
+	^ standard  
