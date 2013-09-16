@@ -7,7 +7,7 @@ mainStepsPrevState: prevState prevPrevState: prevPrevState startTime: initialTim
 	(initialTime to: endTime - (3*self dt)  by: self dt) do:
 		[:time | | tempState1 tempState2|
 			tempState1 := state.
-			tempState2:=prevState.
+			tempState2:=previousState.
 			state := stepper
 				doStep: state 
 				prevState: previousState

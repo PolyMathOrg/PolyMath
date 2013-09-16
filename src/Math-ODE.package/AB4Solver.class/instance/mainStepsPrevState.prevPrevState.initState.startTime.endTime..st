@@ -10,8 +10,8 @@ mainStepsPrevState: prevState prevPrevState: prevPrevState initState: initState 
 		[:time | | tempState1 tempState2 tempState3|
 
 			tempState1:=state.
-			tempState2:=prevState.
-			tempState3:=prevPrevState.
+			tempState2:=previousState.
+			tempState3:=previousPrevState.
 			state := stepper
 				doStep3State: state 
 				secondState: previousState
