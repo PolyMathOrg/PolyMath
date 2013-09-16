@@ -28,7 +28,7 @@ baseline02: spec
 			"benchmarks"
 			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')];
 			"accuracy"
-			package: 'Math-Accuracy-ODE' with: [ spec requires: 'Math-ODE' ].
+			package: 'Math-Accuracy-ODE' with: [ spec requires: #( 'Math-ODE' 'XMLWriter')].
 		
 		spec project: 'SMark' with: [
 			spec
