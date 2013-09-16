@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "ExplicitStepperTest",
+	"name" : "EulerStepperTest",
 	"type" : "normal"
 }
