@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testSimpleSystem3
 	| solver stepper system dt |
 	dt := 0.5.
@@ -8,4 +8,4 @@ testSimpleSystem3
 	self should: [(solver solve: system startState: 1 startTime: 0 endTime: 0.2) closeTo: 1.11].
 	self should: [(solver solve: system startState: 1 startTime: 0 endTime: 1.5) closeTo: 11.0742].
 	self should: [(solver solve: system startState: 1.25 startTime: 0.5 endTime: 1.5) closeTo: 10.5468].
-	self should: [(solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo: 20.6718].
+	self should: [(solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo: 20.6718]

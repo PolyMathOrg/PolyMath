@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testSimpleSystem2
 	| solver stepper system dt |
 	dt := 1.5.
@@ -7,4 +7,4 @@ testSimpleSystem2
 	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  3.1299).
-       self should: ((solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo:  0.9103).
+   self should: ((solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo:  0.9103)
