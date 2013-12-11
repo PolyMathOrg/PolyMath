@@ -6,4 +6,4 @@ defaultBlock
 					tab; tab;
 					show: ' time: ';
 					show: ann t asString; 
-					cr ].
+					cr ]

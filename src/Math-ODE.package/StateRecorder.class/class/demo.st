@@ -1,9 +1,12 @@
 example
 demo
-	| solver system recorder |
+"self demo"
+	| solver system recorder stepper |
 
-	solver := RK4Solver new.
 	system := ExplicitSystem block: [:x :t | x collect: [:i | t]]. "exact solution x = 0.5 * t squared + x0"
+
+	stepper := RungeKuttaStepper onSystem: system.
+	solver := (ExplicitSolver new) stepper: stepper; system: system.
 
 	recorder := self forSolver:  solver.
 	"an example of moving backward in time with fractional dt"
@@ -14,4 +17,4 @@ demo
 	"these wont be captured. an example of moving forward in time with float dt."
 	solver solve: system  startState: #(0) startTime: 0 endTime: 5 stepSize: 0.1.
 	
-	recorder states  inspect.
+	recorder states inspect
