@@ -1,3 +1,3 @@
 testing
 isFull
-^freeIndex >self size 
+^lastUsedIndex =self size 

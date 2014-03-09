@@ -1,8 +1,8 @@
 evaluating
-nnSearch: aCollection i:anInt
-"search for i nearest neighbours of vector aCollection "
+nnSearch: aSequenceableCollection i: anInt
+"search for i nearest neighbours of vector aSequenceableCollection and return the vectors "
 |n|
 n :=NNStore new: anInt .
-self nnSearch: aCollection near: n .
+self nnSearch: aSequenceableCollection near: n .
 n :=n data .
 ^anInt =1 ifTrue: [n first ] ifFalse:   [n]  

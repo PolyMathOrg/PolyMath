@@ -1,3 +1,3 @@
 testing
 isEmpty 
-^freeIndex =1
+^lastUsedIndex =0

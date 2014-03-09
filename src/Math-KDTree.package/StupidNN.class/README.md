@@ -1,1 +1,1 @@
-StupidNN is a naive nearest neighbour search. KDTree is faster though if you have to do several searches.
+StupidNN is a naive nearest neighbour search. KDTree is much faster though, if you have to do several searches. StupidNN exists only for the KDTreeTests (and as an example, how simple it is to subclass NNStore) .

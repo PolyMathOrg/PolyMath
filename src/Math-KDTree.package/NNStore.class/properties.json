@@ -6,8 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"freeIndex",
-		"maxDistance"
+		"maxDistance",
+		"lastUsedIndex"
 	],
 	"name" : "NNStore",
 	"type" : "variable"

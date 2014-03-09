@@ -1,6 +1,7 @@
 printing
 printOn: aStream
-	aStream nextPutAll:  'KDTree (dim: ';
+      super printOn: aStream .
+	aStream nextPutAll:  ' (dim: ';
 	 print: dim ;
 	 nextPutAll:  ' value: ';
 	 print: value ;
