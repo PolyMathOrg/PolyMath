@@ -1,6 +1,6 @@
 versions
 version04: spec
-	<version: '0.4' imports: #('0.2-baseline' )>
+	<version: '0.4' imports: #('0.3-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'release'.
@@ -9,7 +9,8 @@ version04: spec
 		spec timestamp: '6/6/2012 10:59'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-DanielUber.5';
-			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.6';
+			package: 'Math-KDTree' with: 'Math-KDTree-wk.30';
+			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-WernerKassens.14';
 			package: 'Math-ODE' with: 'Math-ODE-DanielUber.10';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-DanielUber.5';
