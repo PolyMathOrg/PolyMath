@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "WernerKassens 5/3/2011 22:27",
+	"super" : "TestCase",
+	"category" : "Math-Tests-KDTree",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rand",
+		"stupid",
+		"tree"
+	],
+	"name" : "KDTreeTest",
+	"type" : "normal"
+}
