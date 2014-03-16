@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "nice 2/13/2010 00:39",
+	"super" : "NumberParser",
+	"category" : "ExtendedNumberParser",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ExtendedNumberParser",
+	"type" : "normal"
+}
