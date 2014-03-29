@@ -1,1 +1,1 @@
-IndexedKDTree returns the indices of the nearest neighbours instead of the nearest neighbours itself. additionally it returns the squared distances between the vector and its neighbours.
+IndexedKDTree returns the indices of the nearest neighbours instead of the nearest neighbours itself. additionally it returns the squared distances between the vector and its neighbours, if more than one neighbour is searched.
