@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "SMarkSuite",
+	"category" : "Math-Benchmarks-KDTree",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rand",
+		"bTree",
+		"aTree",
+		"r",
+		"collType",
+		"m"
+	],
+	"name" : "KDTreeBenchmark",
+	"type" : "normal"
+}
