@@ -5,5 +5,5 @@ error: aNumber
 		 Initial code: 18/3/99 "
 	| errorVector term nextTerm |
 	nextTerm := 1.
-	errorVector := ( coefficients collect: [ :each | term := nextTerm. nextTerm := aNumber * nextTerm. term]) asVector.
+	errorVector := ( coefficients collect: [ :each | term := nextTerm. nextTerm := aNumber * nextTerm. term]) asDhbVector.
 	^( errorVector * errorMatrix * errorVector) sqrt

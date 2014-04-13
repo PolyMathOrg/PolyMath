@@ -8,9 +8,9 @@ split
 	| n |
 	n := self largestPowerOf2SmallerThan: rows size.
 	^Array
-		with: (self class rows: ((1 to: n) asVector collect: [:k | (rows at: k)
+		with: (self class rows: ((1 to: n) asDhbVector collect: [:k | (rows at: k)
 						copyFrom: 1 to: n]))
-		with: (self class rows: ((n + 1 to: rows size) asVector collect: [:k | (rows at: k)
+		with: (self class rows: ((n + 1 to: rows size) asDhbVector collect: [:k | (rows at: k)
 						copyFrom: n + 1 to: rows size]))
-		with: (self class superclass rows: ((n + 1 to: rows size) asVector collect: [:k | (rows at: k)
+		with: (self class superclass rows: ((n + 1 to: rows size) asDhbVector collect: [:k | (rows at: k)
 						copyFrom: 1 to: n]))
