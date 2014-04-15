@@ -4,4 +4,4 @@ computeChanges
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 12/3/99 "
 	errorMatrix := DhbLUPDecomposition direct: equations.
-	^errorMatrix solve: constants
+	^(errorMatrix solve: constants)ifNil:[SingularMatrixError new signal:'singular Errormatrix']

@@ -4,6 +4,8 @@ countAt: aNumber
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/2/99 "
 	| n |
+	self isCached 				
+		ifTrue: [ self flushCache].
 	n := self binIndex: aNumber.
 	^( n between: 1 and: contents size)
 			ifTrue: [ contents at: n]

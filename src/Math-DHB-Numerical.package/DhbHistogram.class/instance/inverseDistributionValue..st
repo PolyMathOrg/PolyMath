@@ -6,14 +6,14 @@ inverseDistributionValue: aNumber
 		 Initial code: 8/3/99 "
 	| count x integral |
 	count := self count * aNumber.
-	x := self minimum.
+	x := minimum.
 	integral := 0.
 	contents do:
 		[ :each | | delta |
 		  delta := count - integral.
 		  each > delta
-			ifTrue: [ ^self binWidth * delta / each + x].
+			ifTrue: [ ^binWidth * delta / each + x].
 		  integral := integral + each.
-		  x := self binWidth + x.
+		  x := binWidth + x.
 		].
 	^self maximum

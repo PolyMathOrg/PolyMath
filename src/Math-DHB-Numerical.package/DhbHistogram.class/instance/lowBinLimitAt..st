@@ -3,4 +3,6 @@ lowBinLimitAt: anInteger
 		"
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 4/3/99 "
+	self isCached 				
+		ifTrue: [ self flushCache].
 	^( anInteger - 1) * binWidth + minimum
