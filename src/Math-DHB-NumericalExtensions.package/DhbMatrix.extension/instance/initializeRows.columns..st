@@ -2,4 +2,4 @@
 initializeRows: rowsInteger columns: columnsInteger
 	"Build empty components for a matrix."
 		
-	rows := ( 1 to: rowsInteger ) asVector collect: [ :each | DhbVector new: columnsInteger ].
+	rows := ( 1 to: rowsInteger ) asDhbVector collect: [ :each | DhbVector new: columnsInteger ].
