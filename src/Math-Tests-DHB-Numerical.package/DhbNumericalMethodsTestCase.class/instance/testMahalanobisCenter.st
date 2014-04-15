@@ -13,7 +13,7 @@ testMahalanobisCenter
 			( 3 1 2)
 			( 3 4 2)
 		)
-	do: [ :x | center accumulate: x asVector].
+	do: [ :x | center accumulate: x asDhbVector].
 	center computeParameters.
-	distance := center distanceTo: #(1 2 3) asVector.
+	distance := center distanceTo: #(1 2 3) asDhbVector.
 	self should: [ distance equalsTo: 2.26602282704126].

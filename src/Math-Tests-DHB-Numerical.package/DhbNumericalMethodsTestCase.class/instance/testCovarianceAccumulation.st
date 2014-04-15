@@ -13,7 +13,7 @@ testCovarianceAccumulation
 			( 3 1 2)
 			( 3 4 2)
 		)
-	do: [ :x | accumulator accumulate: x asVector].
+	do: [ :x | accumulator accumulate: x asDhbVector].
 	average := accumulator average.
 	self should: [ ( average at: 1) equalsTo: 2.0].
 	self should: [ ( average at: 2) equalsTo: 2.875].

@@ -3,7 +3,7 @@ testVectorTransposeMatrixOperation
 	"Code Example 8.1"
 	| c v w |
 	c := DhbMatrix rows: #( ( 6 8 10) (18 14 4)).
-	v := #(4 4) asVector.
+	v := #(4 4) asDhbVector.
 	w := c transpose * v.
 	self should: [ w size = 3].
 	self should: [ (w at: 1) = 96].

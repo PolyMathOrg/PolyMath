@@ -3,7 +3,7 @@ testOptimizeSimplex
 	"Code example 11.5"
 	| fBlock simplex educatedGuess result |
 	fBlock := [ :x | (x * x) negated exp].
-	educatedGuess := #( 0.5 1.0 0.5) asVector.
+	educatedGuess := #( 0.5 1.0 0.5) asDhbVector.
 	simplex := DhbSimplexOptimizer maximizingFunction: fBlock.
 	simplex initialValue: educatedGuess.
 	simplex desiredPrecision: 1.0e-6.

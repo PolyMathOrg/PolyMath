@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "WernerKassens 4/14/2014 13:02",
+	"super" : "TestCase",
+	"category" : "Math-Tests-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"h"
+	],
+	"name" : "DhbHistogramTestsAndBugs",
+	"type" : "normal"
+}

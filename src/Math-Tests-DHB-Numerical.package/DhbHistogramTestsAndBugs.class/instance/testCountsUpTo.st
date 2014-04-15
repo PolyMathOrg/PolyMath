@@ -1,0 +1,9 @@
+tests
+testCountsUpTo
+self assert: ((h countsUpTo:  4) =3).
+self assert: ((h countsUpTo:  2.1) =2).
+self assert: ((h countsUpTo:  3) =2). 
+self assert: ((h countsUpTo:  2) =1).
+self assert: ((h countsUpTo:  1.04) =1).			"at 1.04 a new bin starts"
+self assert:((h countsUpTo: 1.02)closeTo: 0.5).	"hence this is correct"
+self assert: ((h countsUpTo:  1) =0).

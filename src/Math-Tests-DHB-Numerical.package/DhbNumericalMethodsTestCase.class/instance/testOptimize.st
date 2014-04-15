@@ -5,7 +5,7 @@ testOptimize
 	fBlock := [ :x | |r| r := x * x. r = 0 ifTrue: [ 1] ifFalse: [ r sqrt sin / r] ].
 	finder := DhbMultiVariableGeneralOptimizer maximizingFunction: fBlock.
 	finder desiredPrecision: 1.0e-6.
-	finder origin: #( 0.5 1.0 0.5) asVector; range: #(2 2 2) asVector.
+	finder origin: #( 0.5 1.0 0.5) asDhbVector; range: #(2 2 2) asDhbVector.
 	result := finder evaluate.
 	self should: [ finder precision < 1.0e-6].
 	self should: [ (result at: 1) abs < 1.0e-6].
