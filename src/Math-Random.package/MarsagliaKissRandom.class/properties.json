@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "nice 4/21/2014 21:44",
+	"super" : "RandomGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"kernelRand1",
+		"kernelRand2"
+	],
+	"name" : "MarsagliaKissRandom",
+	"type" : "normal"
+}
