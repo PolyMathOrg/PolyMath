@@ -11,11 +11,11 @@ version011: spec
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9'.
 		spec 
-			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.7';
+			package: 'Math-Random' with: 'Math-Random-nice.9';
 			package: 'Math-KDTree' with: 'Math-KDTree-WernerKassens.33';
 			package: 'Math-ODE' with: 'Math-ODE-SergeStinckwich.29';
 			package: 'Math-Complex' with: 'Math-Complex-DanielUber.6';
-			package: 'Math-Quaternion' with: 'Math-Quaternion-YuriyTymchuk.6';
+			package: 'Math-Quaternion' with: 'Math-Quaternion-nice.7';
 			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-WernerKassens.25';
 			package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.1';
