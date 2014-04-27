@@ -2,7 +2,7 @@ tests
 testBinomialGeneratorConvergesToMean
 	"this test may fail one or more assertions, but its purpose is to verify correct convergence of the binomial distribution, should be Normal (np, np(1-p))"
 	| gen nums mean|
-	mean := Float random sqrt.
+	mean := Random new next sqrt.
 	gen := BinomialGenerator n: 3000 p: mean.
 	mean := mean * 3000.
 	nums := OrderedCollection new.
