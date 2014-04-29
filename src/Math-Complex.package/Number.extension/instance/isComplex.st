@@ -1,0 +1,3 @@
+*Math-Complex
+isComplex
+	^ false
