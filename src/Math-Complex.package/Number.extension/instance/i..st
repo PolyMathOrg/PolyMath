@@ -1,4 +1,4 @@
-*Math-Complex
+*Math-Complex-converting
 i: aNumber
 	"Form a complex number with
 		receiver as realPart

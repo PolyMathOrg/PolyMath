@@ -6,7 +6,7 @@ divideFastAndSecureBy: anObject
 	  Note: #reciprocal uses #/ for devision "
 	 
 	| r d newReal newImaginary |
-	anObject isComplex ifTrue:
+	anObject isComplexNumber ifTrue:
 		[anObject real abs > anObject imaginary abs
 		  ifTrue:
 		    [r := anObject imaginary / anObject real.

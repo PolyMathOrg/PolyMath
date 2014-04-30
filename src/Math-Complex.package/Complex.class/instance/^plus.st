@@ -2,7 +2,7 @@ arithmetic
 + anObject
 	"Answer the sum of the receiver and aNumber."
 	| a b c d newReal newImaginary |
-	anObject isComplex
+	anObject isComplexNumber
 		ifTrue:
 			[a := self real.
 			b := self imaginary.

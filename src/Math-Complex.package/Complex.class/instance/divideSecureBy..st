@@ -7,7 +7,7 @@ divideSecureBy: anObject
 	   Note: #reciprocal uses #/ for devision"
 	 
 	| s ars ais brs bis newReal newImaginary |
-	anObject isComplex ifTrue:
+	anObject isComplexNumber ifTrue:
 		[s := anObject real abs + anObject imaginary abs.
 		 ars := self real / s.
 		 ais := self imaginary / s.

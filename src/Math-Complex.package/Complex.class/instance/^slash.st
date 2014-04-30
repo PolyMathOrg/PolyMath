@@ -2,7 +2,7 @@ arithmetic
 / anObject
 	"Answer the result of dividing receiver by aNumber"
 	| a b c d newReal newImaginary |
-	anObject isComplex ifTrue:
+	anObject isComplexNumber ifTrue:
 		[a := self real.
 		b := self imaginary.
 		c := anObject real.

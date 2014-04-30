@@ -2,7 +2,7 @@ arithmetic
 * anObject
 	"Answer the result of multiplying the receiver by aNumber."
 	| a b c d newReal newImaginary |
-	anObject isComplex
+	anObject isComplexNumber
 		ifTrue:
 			[a := self real.
 			b := self imaginary.

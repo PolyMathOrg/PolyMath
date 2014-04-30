@@ -1,4 +1,4 @@
-*Math-Complex
+*Math-Complex-converting
 asComplex
 	"Answer a Complex number that represents value of the the receiver."
 
