@@ -14,7 +14,7 @@ arithmetic
 				qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
 				qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
 				qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)]
-		ifFalse: [(aQuaternion isNumber and: [aQuaternion isComplex not])
+		ifFalse: [(aQuaternion isNumber and: [aQuaternion isComplexNumber not])
 				ifTrue: ["handle case much faster than adapt..."
 					self species
 						qr: qr * aQuaternion
