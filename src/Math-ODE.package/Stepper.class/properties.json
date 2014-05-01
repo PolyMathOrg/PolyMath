@@ -4,9 +4,7 @@
 	"category" : "Math-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [
-		"order"
-	],
+	"classvars" : [ ],
 	"instvars" : [
 		"system"
 	],
