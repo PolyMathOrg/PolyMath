@@ -1,4 +1,4 @@
-as yet unclassified
+tests-stepping
 testDoStepTime
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 	| stepper sys dt |

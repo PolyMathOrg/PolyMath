@@ -1,4 +1,4 @@
-as yet unclassified
+tests-solving
 testSolveStartStateStartTimeEndTimeStepSize
 	| solver stepper system dt finalState |
 	dt := 0.2.
@@ -13,8 +13,8 @@ testSolveStartStateStartTimeEndTimeStepSize
 	
 	"Debgging information"
 	Transcript 
-		show: self class name asByteString;  cr; 
-		show: system block asText ; cr;
+		show: self class name;  cr; 
+		show: system block printString; cr;
 		show: 'from x(0) = 0 to x(1) = ';
 		show: finalState; cr;
 		show: 'with stepSize = ', solver dt printString; cr.

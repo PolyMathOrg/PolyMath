@@ -14,8 +14,8 @@ testSolveX0T0T1
 	
 	"Debgging information"
 	Transcript 
-		show: self class name asByteString;  cr; 
-		show: system block asText ; cr;
+		show: self class name;  cr; 
+		show: system block printString; cr;
 		show: 'from x(0) = 0 to x(1) = ';
 		show: finalState; cr;
 		show: 'with stepSize = ', solver dt printString; cr.

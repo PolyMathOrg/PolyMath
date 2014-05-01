@@ -1,4 +1,4 @@
-as yet unclassified
+tests-solving
 testSimpleSystem
 	| solver stepper system dt |
 	dt := 0.01.

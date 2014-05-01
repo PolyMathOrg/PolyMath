@@ -1,4 +1,4 @@
-as yet unclassified
+tests-stepping
 testDoStepTimeStepSize2
 	| stepper sys dt |
 	sys := ImplicitSystem block: [:x :t | 3 * t negated exp - (0.4 * x)].

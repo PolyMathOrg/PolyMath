@@ -1,4 +1,4 @@
-tests
+tests-solving
 testVectorSystem
 	
 	| solver stepper system dt |
