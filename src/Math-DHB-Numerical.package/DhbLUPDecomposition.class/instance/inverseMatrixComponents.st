@@ -9,9 +9,9 @@ inverseMatrixComponents
 		ifTrue: [ ^nil].	"Singular matrix has no inverse"
 	n := rows size.
 	inverseRows :=( 1 to: n) asDhbVector collect: [ :j | DhbVector new: n].
-	1 to: n do:
+	[1 to: n do:
 		[ :j |
 		  column := self solve: ( ( Array new: rows size) atAllPut: 0; at: j put: 1; yourself).
 		  1 to: n do: [ :i | ( inverseRows at: i) at: j put: ( column at: i)].
-		].
+		]] on: ZeroDivide do: [:e|  ^nil]. "Singular matrix has no inverse"
 	^inverseRows

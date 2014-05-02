@@ -4,4 +4,6 @@ inversePureLUP
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 11/2/99 "
 	lupDecomposition := nil.
-	^self class rows: self lupDecomposition inverseMatrixComponents
+	self lupDecomposition inverseMatrixComponents 
+		ifNil: [ SingularMatrixError new signal ] 
+		ifNotNilDo: [ :i| ^self class rows:i ].
