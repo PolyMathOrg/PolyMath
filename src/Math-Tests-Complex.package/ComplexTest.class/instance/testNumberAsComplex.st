@@ -5,4 +5,4 @@ testNumberAsComplex
 	self assert: minusOne real = -1.
 	self assert: minusOne imaginary = 0.
 	self assert: minusOne conjugated = minusOne.
-	self shouldnt: [minusOne sqrt] raise: Error
+	self assert: minusOne sqrt = 1 i
