@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "WernerKassens 4/25/2014 18:26",
+	"super" : "TestCase",
+	"category" : "Math-Tests-DHB-wk",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "AdditionalTests",
+	"type" : "normal"
+}
