@@ -7,5 +7,4 @@ testEquality
 	self deny: q1234 = 1.
 	self assert: (1 k k) = -1.
 	self assert: 1 = (-1 k k).
-	self shouldnt: [q1234 = nil] raise: Error.
 	self deny: q1234 = nil.
