@@ -1,7 +1,7 @@
 baselines
 baseline09: spec 
         <version: '0.9-baseline'>
-        spec for: #common do: [
+        spec for: #'common' do: [
                 spec blessing: #baseline.
 		    spec description: 'changes for squeak compatibility'.
 		    spec author: 'WernerKassens'.
@@ -11,7 +11,7 @@ baseline09: spec
 			"core"
 			package: 'Math-Random';
 			package: 'Math-KDTree';
-			package: 'Math-ODE';
+			package: 'Math-ODE'with: [spec requires: #('Math-DHB-Numerical' 'Math-DHB-NumericalExtensions' )];  "there is at the moment a dependency on DhbMatrix>>at:at:"
 			package: 'Math-Complex';
 			package: 'Math-Quaternion' with: [spec requires: 'Math-Complex'];
 			package: 'Math-DHB-Numerical';
