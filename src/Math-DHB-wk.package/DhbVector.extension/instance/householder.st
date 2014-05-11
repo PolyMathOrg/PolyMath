@@ -7,8 +7,8 @@ s :=s *s.
 v :=self copy.
 v at: 1 put: 1.  
 s =0 ifTrue: [b :=0] ifFalse:   [
-	u :=((self at:1)squared + s)sqrt .
-	((x:=self at: 1) <=0) ifTrue: [v at: 1 put:  x -u] ifFalse:  [v at: 1 put: 0 - s / (x + u)  ].
-	 b :=(v at: 1)squared * 2 / (s + (v at: 1)squared).
+	u :=((x:=self at:1)squared + s)sqrt .
+	v at: 1 put: ((x <=0) ifTrue: [x -u] ifFalse:  [0 - s / (x + u)]).
+	b :=(v at: 1)squared * 2 / (s + (v at: 1)squared).
 	v :=v / (v at: 1)  ].
 ^{b. v}
