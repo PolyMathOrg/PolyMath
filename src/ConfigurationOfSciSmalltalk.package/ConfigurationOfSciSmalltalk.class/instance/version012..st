@@ -37,4 +37,4 @@ version012: spec
 
 	spec for: #'squeak' do: [
 		spec 
-			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.2'].
+			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.3'].
