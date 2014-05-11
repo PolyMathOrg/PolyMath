@@ -60,4 +60,4 @@ baseline09: spec
 			package: 'Math-ODE' with: [ spec requires: 'Math-SqueakPrerequisite'];
 			package: 'Math-Tests-DHB-Numerical' with: [ spec requires: 'Math-SqueakPrerequisite'];
 			package: 'Math-Tests-KDTree' with: [ spec requires: 'Math-SqueakPrerequisite'];
-			package: 'Math-Tests-Random' with: [ spec requires: 'Math-SqueakPrerequisite'] ].
+			package: 'Math-Tests-Random' with: [ spec includes: 'Math-SqueakPrerequisite'] ].
