@@ -2,7 +2,7 @@ linear algebra
 testMatrixExtensionsAtRow
 	"testing at:at: and at:at:put:"
 	| a c |
-	(PackageInfo existPackageNamed: 'Math-DHB-NumericalExtensions') ifFalse:[^self skip].
+	(RPackage  organizer includesPackageNamed:'Math-DHB-NumericalExtensions') ifFalse:[^self skip].
 	a := DhbMatrix rows: #( ( 11 12 13) (21 22 23)).
 	c := a deepCopy .
 	self should: [(c at: 1 at: 1) = (a at: 1 at: 1)].
