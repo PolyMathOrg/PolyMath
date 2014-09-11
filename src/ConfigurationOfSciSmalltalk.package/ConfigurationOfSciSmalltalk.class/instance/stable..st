@@ -1,4 +1,5 @@
 symbolic versions
 stable: spec
 	<symbolicVersion: #'stable'>
-	spec for: #'common' version: '0.13'
+	spec for: #'squeak' version: '0.12'.
+	spec for: #'pharo' version: '0.13'.
