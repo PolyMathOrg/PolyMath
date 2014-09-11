@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "WernerKassens 9/11/2014 09:38",
+	"super" : "Accuracy",
+	"category" : "Math-AccuracyFramework",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"count"
+	],
+	"name" : "AccuracyTestExample",
+	"type" : "normal"
+}
