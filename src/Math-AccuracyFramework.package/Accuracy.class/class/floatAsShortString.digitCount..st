@@ -2,6 +2,7 @@ util
 floatAsShortString: aFloat digitCount: digitCount 
 "essentially copied fromFloat>>absPrintOn:base:digitCount:"
 	| fuzz x exp q fBase scale logScale xi aStream posFloat |
+	aFloat isNaN ifTrue:[^'NaN'].
 	aFloat =0 ifTrue:[^'0.0'].
 	aStream:=WriteStream on:''.
 	posFloat :=aFloat <0 
