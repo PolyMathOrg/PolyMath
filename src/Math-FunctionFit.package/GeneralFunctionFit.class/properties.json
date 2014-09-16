@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "wk 4/24/2012 17:27",
+	"super" : "Object",
+	"category" : "Math-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"go",
+		"manager",
+		"errorFunction",
+		"result",
+		"firstResult",
+		"verbose",
+		"data",
+		"dataTruncated"
+	],
+	"name" : "GeneralFunctionFit",
+	"type" : "normal"
+}

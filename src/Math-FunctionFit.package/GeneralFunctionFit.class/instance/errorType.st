@@ -1,0 +1,3 @@
+accessing
+errorType
+^errorFunction errorType

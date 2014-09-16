@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "WernerKassens 9/9/2014 09:18",
+	"super" : "DhbVectorChromosomeManager",
+	"category" : "Math-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"Primes"
+	],
+	"instvars" : [
+		"hammersley",
+		"rateOfLC",
+		"rateOfEir"
+	],
+	"name" : "AnotherChromosomeManager",
+	"type" : "normal"
+}
