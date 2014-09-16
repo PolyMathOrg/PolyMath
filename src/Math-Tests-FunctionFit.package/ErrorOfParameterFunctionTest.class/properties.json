@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"f",
+		"col"
+	],
+	"name" : "ErrorOfParameterFunctionTest",
+	"type" : "normal"
+}

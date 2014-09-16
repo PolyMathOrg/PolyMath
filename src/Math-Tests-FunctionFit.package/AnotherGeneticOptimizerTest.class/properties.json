@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"go"
+	],
+	"name" : "AnotherGeneticOptimizerTest",
+	"type" : "normal"
+}
