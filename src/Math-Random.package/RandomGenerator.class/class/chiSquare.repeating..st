@@ -6,7 +6,7 @@ chiSquare: range repeating: anInteger
       (which should be the same as the range), and the upper and lower 
       bounds for 'good' randomness (assuming that anInteger
       is at least 10 * range)."
-	"Random chiSquare: 100 repeating: 4000."
+	"LCRandom chiSquare: 100 repeating: 4000"
 	
 	| array rand ave |
     array := Array new: range withAll: 0.
