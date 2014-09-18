@@ -11,7 +11,7 @@ version014: spec
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9'.
 		spec 
-			package: 'Math-Random' with: 'Math-Random-nice.9';
+			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
 			package: 'Math-KDTree' with: 'Math-KDTree-WernerKassens.33';
 			package: 'Math-ODE' with: 'Math-ODE-nice.30';
 			package: 'Math-Complex' with: 'Math-Complex-nice.8';
@@ -23,7 +23,7 @@ version014: spec
 			package: 'Math-DHB-wk' with: 'Math-DHB-wk-WernerKassens.6';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-WernerKassens.2';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-nice.3';
-			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-wk.23';
+			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-WernerKassens.23';
 			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.7';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-nice.16';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-nice.3';
