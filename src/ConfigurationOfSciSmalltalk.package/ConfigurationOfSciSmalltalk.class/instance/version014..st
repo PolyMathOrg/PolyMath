@@ -33,7 +33,7 @@ version014: spec
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
 			package: 'Math-AccuraryFramework' with:'Math-AccuracyFramework-WernerKassens.29';	
 			package: 'Math-FunctionFit' with:'Math-FunctionFit-WernerKassens.1';
-			package: 'Math-Tests-FunctionFit' with:'Math-Tests-FunctionFit-KernerKassens.1'.
+			package: 'Math-Tests-FunctionFit' with:'Math-Tests-FunctionFit-WernerKassens.1'.
 			].
 
 	spec for: #'pharo' do: [
