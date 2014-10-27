@@ -1,4 +1,4 @@
-private
+sorting
 sort
 self ifEmpty: [^self].
 self sort: [:a :b| a first < b first ] .

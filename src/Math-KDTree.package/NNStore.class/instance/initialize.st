@@ -1,4 +1,4 @@
-initialize-release
+initialization
 initialize 
 "can also be used for resetting as eg in testEqual2"
 lastUsedIndex :=0.
