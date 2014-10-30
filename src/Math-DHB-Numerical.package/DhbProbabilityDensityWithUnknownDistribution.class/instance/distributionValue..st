@@ -5,4 +5,4 @@ distributionValue: aNumber
 		 This general purpose routine uses numerical integration.
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 15/2/99 "
-	^( DhbRombergIntegrator new: self from: self lowestValue to: aNumber) evaluate
+	^( DhbRombergIntegrator function: [:x| self value:x] from: self lowestValue to: aNumber) evaluate

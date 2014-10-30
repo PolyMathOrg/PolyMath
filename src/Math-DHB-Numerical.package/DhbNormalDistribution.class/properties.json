@@ -9,8 +9,7 @@
 	],
 	"instvars" : [
 		"mu",
-		"sigma",
-		"nextRandom"
+		"sigma"
 	],
 	"name" : "DhbNormalDistribution",
 	"type" : "normal"

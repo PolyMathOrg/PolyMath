@@ -5,8 +5,8 @@ collectPoints
 	Initial code: 23-Feb-00"
 
 	| bestPoint |
-	bestPoints isEmpty not ifTrue: [bestPoint := bestPoints removeFirst].
-	bestPoints removeAll: bestPoints asArray.
+	bestPoints isEmpty ifFalse: [bestPoint := bestPoints first].
+	bestPoints removeAll.
 	chromosomeManager population do: [:each | self addPointAt: each].
-	bestPoint notNil ifTrue: [bestPoints add: bestPoint].
+	bestPoint ifNotNil: [:b|bestPoints add: b].
 	result := bestPoints first position

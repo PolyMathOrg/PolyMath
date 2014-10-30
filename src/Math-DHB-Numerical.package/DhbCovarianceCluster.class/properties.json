@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"center"
-	],
+	"instvars" : [ ],
 	"name" : "DhbCovarianceCluster",
 	"type" : "normal"
 }

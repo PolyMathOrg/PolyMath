@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"functionBlock",
-		"relativePrecision"
+		"functionBlock"
 	],
 	"name" : "DhbFunctionalIterator",
 	"type" : "normal"

@@ -11,7 +11,7 @@ computeSmallestNumber
 	fullMantissaNumber := one - (floatingRadix * self negativeMachinePrecision).
 	smallestNumber := fullMantissaNumber.
 	[[fullMantissaNumber := fullMantissaNumber * inverseRadix.
-	fullMantissaNumber = 0.0 ifTrue: [Error raise].
+	fullMantissaNumber = 0.0 ifTrue: [Error signal ].
 	smallestNumber := fullMantissaNumber.
 	true]
 		whileTrue: []]

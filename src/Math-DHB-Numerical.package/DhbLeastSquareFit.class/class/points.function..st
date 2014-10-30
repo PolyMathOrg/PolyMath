@@ -5,4 +5,4 @@ points: aDataHolder function: aParametricFunction
 
 	^aParametricFunction isNil
 		ifTrue: [nil]
-		ifFalse: [super new initialize: aDataHolder data: aParametricFunction]
+		ifFalse: [self new initialize: aDataHolder data: aParametricFunction]

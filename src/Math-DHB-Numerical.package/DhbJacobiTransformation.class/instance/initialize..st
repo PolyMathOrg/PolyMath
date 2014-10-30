@@ -3,7 +3,7 @@ initialize: aSymmetricMatrix
 		"Private -
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 1/6/99 "
-	| n m |
+	| n |
 	n := aSymmetricMatrix numberOfRows.
 	lowerRows := Array new: n.
 	transform := Array new: n.
