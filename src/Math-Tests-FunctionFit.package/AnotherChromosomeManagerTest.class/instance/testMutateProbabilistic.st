@@ -1,5 +1,5 @@
 tests
-testMutate
+testMutateProbabilistic
 |a f s|
 a:=(1 to: 100)collect:  [:i| cm mutate: #(-4 4)].
 f:=a collect: [:i|i first].
