@@ -1,3 +1,0 @@
-*Math-Complex
-isComplex
-	^ false
