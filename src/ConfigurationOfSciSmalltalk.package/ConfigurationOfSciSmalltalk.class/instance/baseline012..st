@@ -49,11 +49,12 @@ baseline012: spec
 		spec project: 'XMLWriter' with: [
 			spec
 				className: 'ConfigurationOfXMLWriter';
-				"versionString: '';"
+				"versionString: '';" 
 				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ].
 		spec project: 'ArbitraryPrecisionFl' with:[
 			spec
 			className: 'ConfigurationOfArbitraryPrecisionFloat';
+			loads: #( 'ArbitraryPrecisionFloat' 'ArbitraryPrecisionFloatTests');
 			repository: 'http://www.squeaksource.com/ArbitraryPrecisionFl'.
 			 ].
 		
