@@ -14,7 +14,7 @@ baseline012: spec
 			package: 'Math-ODE'with: [spec requires: #('Math-DHB-Numerical' 'Math-DHB-NumericalExtensions' )];  "there is at the moment a dependency on DhbMatrix>>at:at:"
 			package: 'Math-Complex';
 			package: 'Math-Quaternion' with: [spec requires: 'Math-Complex'];
-			package: 'Math-DHB-Numerical';
+			package: 'Math-DHB-Numerical' with: [spec requires: 'ArbitraryPrecisionFl'];
 									
 			"extensions"
 			package: 'Math-ComplexExtensions' with: [spec requires: #('Math-Complex' 'Math-DHB-Numerical')];
