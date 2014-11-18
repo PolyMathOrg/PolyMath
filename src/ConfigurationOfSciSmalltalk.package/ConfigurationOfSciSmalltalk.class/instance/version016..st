@@ -10,7 +10,8 @@ version016: spec
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
-			project: 'ArbitraryPrecisionFloat' with:'1.0'.
+			project: 'ArbitraryPrecisionFloat' with:'1.0';
+			project: 'StatPseudoCollections' with: '23.2'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.34';
@@ -33,7 +34,7 @@ version016: spec
 			package: 'Math-Benchmarks-KDTree' with: 'Math-Benchmarks-KDTree-WernerKassens.8';
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
 			package: 'Math-AccuraryFramework' with: 'Math-AccuracyFramework-WernerKassens.29';	
-			package: 'Math-FunctionFit' with: 'Math-Tests-FunctionFit-wernerkassens.2';
+			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
 			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-WernerKassens.1'.
 			].
 
