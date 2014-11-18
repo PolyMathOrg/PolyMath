@@ -39,7 +39,7 @@ version016: spec
 
 	spec for: #'pharo' do: [
 		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.8'. ].
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.9'. ].
 
 	spec for: #'squeak' do: [
 		spec 
