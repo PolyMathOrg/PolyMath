@@ -9,7 +9,8 @@ version015: spec
 		spec timestamp: '2014-11-18T20:33:11.980491+09:00'.
 		spec 
 			project: 'SMark' with: '1.0.1';
-			project: 'XMLWriter' with: '2.3.9'.
+			project: 'XMLWriter' with: '2.3.9';
+			project: 'ArbitraryPrecisionFloat' with:'1.0'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
 			package: 'Math-KDTree' with: 'Math-KDTree-WernerKassens.33';
