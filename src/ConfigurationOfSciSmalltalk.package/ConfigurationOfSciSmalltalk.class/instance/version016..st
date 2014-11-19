@@ -33,9 +33,9 @@ version016: spec
 			package: 'Math-Benchmarks-ODE' with: 'Math-Benchmarks-ODE-YuriyTymchuk.7';
 			package: 'Math-Benchmarks-KDTree' with: 'Math-Benchmarks-KDTree-WernerKassens.8';
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
-			package: 'Math-AccuraryFramework' with: 'Math-AccuracyFramework-WernerKassens.29';	
+			package: 'Math-AccuracyFramework' with: 'Math-AccuracyFramework-wernerkassens.30';	
 			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
-			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-WernerKassens.1'.
+			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-wernerkassens.2'.
 			].
 
 	spec for: #'pharo' do: [
