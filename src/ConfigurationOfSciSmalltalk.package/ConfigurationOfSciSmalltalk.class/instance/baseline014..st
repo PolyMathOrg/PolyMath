@@ -3,9 +3,9 @@ baseline014: spec
         <version: '0.14-baseline'>
         spec for: #'common' do: [
                 spec blessing: #baseline.
-		    spec description: 'Fixed problems with StatPseudoCollections'.
+		    spec description: 'Fixed problems with StatPseudoCollections. made ArbitraryPrecisionFloat to load completely'.
 		    spec author: 'werner kassens'.
-		    spec timestamp: '  21 November 2014 7:49:48 am'.
+		    spec timestamp: '  21 November 2014 12:49:48 am'.
                 spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
 			spec
 				project: 'StatPseudoCollections' with: [
@@ -22,7 +22,7 @@ baseline014: spec
 			package: 'Math-ODE'with: [spec requires: #('Math-DHB-Numerical' 'Math-DHB-NumericalExtensions' )];  "there is at the moment a dependency on DhbMatrix>>at:at:"
 			package: 'Math-Complex';
 			package: 'Math-Quaternion' with: [spec requires: 'Math-Complex'];
-			package: 'Math-DHB-Numerical' with: [spec requires: 'ArbitraryPrecisionFl'];
+			package: 'Math-DHB-Numerical' ;
 									
 			"extensions"
 			package: 'Math-ComplexExtensions' with: [spec requires: #('Math-Complex' 'Math-DHB-Numerical')];
@@ -62,13 +62,13 @@ baseline014: spec
 		spec project: 'ArbitraryPrecisionFl' with:[
 			spec
 			className: 'ConfigurationOfArbitraryPrecisionFloat';
-			loads: #( 'ArbitraryPrecisionFloat' 'ArbitraryPrecisionFloatTests');
+			loads: #( 'Core' 'Tests');
 			repository: 'http://www.squeaksource.com/ArbitraryPrecisionFl'.
 			 ].
 		
 		spec
 			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' 'StatPseudoCollections');
-                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE');
+                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFl');
 			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit');
                   group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-FunctionFit');
 			group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');

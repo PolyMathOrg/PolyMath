@@ -10,7 +10,7 @@ version016: spec
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
-			project: 'ArbitraryPrecisionFloat' with:'1.0';
+			project: 'ArbitraryPrecisionFl' with:'1.0';
 			project: 'StatPseudoCollections' with: '23.2'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
@@ -39,9 +39,9 @@ version016: spec
 			].
 
 	spec for: #'pharo' do: [
-		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-wernerkassens.9'. ].
+		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8' ].
 
 	spec for: #'squeak' do: [
 		spec 
-			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.3'].
+			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.3';
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.7'].
