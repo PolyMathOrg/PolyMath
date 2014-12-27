@@ -1,18 +1,18 @@
 baselines
-baseline014: spec 
-        <version: '0.14-baseline'>
+baseline015: spec 
+        <version: '0.15-baseline'>
         spec for: #'common' do: [
                 spec blessing: #baseline.
-		    spec description: 'Fixed problems with StatPseudoCollections. made ArbitraryPrecisionFloat to load completely'.
-		    spec author: 'werner kassens'.
-		    spec timestamp: '  21 November 2014 12:49:48 am'.
+		    spec description: '3 different Combinations'.
+		    spec author: 'HwaJong'.
+		    spec timestamp: ' 2014-12-27T17:21:10.239685+09:00'.
                 spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
 			spec
 				project: 'StatPseudoCollections' with: [
 					spec
 						className: 'ConfigurationOfDaliotsPlayground';
 						loads: #('StatPseudoCollections' );
-						versionString: '23.2';
+						versionString: '23.4';
 						repository: 'http://smalltalkhub.com/mc/HwaJong/DaliotsPlayground/main' ].
 
                 spec 

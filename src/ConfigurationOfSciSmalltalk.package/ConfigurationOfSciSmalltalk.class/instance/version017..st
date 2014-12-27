@@ -1,16 +1,16 @@
 versions
 version017: spec
-	<version: '0.17' imports: #('0.14-baseline' )>
+	<version: '0.17' imports: #('0.15-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'release'.
-		spec description: 'Update several packages'.
-		spec author: 'SergeStinckwich'.
-		spec timestamp: ' 2014-11-18T13:08:37.011+01:00'.
+		spec description: '3 different Combinations'.
+		spec author: 'HwaJong'.
+		spec timestamp: ' 2014-12-27T17:21:10.239685+09:00'.
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
-			project: 'ArbitraryPrecisionFloat' with:'1.0';
+			project: 'ArbitraryPrecisionFl' with:'1.0';
 			project: 'StatPseudoCollections' with: '23.4'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
@@ -33,15 +33,15 @@ version017: spec
 			package: 'Math-Benchmarks-ODE' with: 'Math-Benchmarks-ODE-YuriyTymchuk.7';
 			package: 'Math-Benchmarks-KDTree' with: 'Math-Benchmarks-KDTree-WernerKassens.8';
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
-			package: 'Math-AccuraryFramework' with: 'Math-AccuracyFramework-WernerKassens.29';	
+			package: 'Math-AccuracyFramework' with: 'Math-AccuracyFramework-wernerkassens.30';	
 			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
-			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-WernerKassens.1'.
+			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-wernerkassens.2'.
 			].
 
 	spec for: #'pharo' do: [
-		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-wernerkassens.9'. ].
+		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8' ].
 
 	spec for: #'squeak' do: [
 		spec 
-			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.3'].
+			package: 'Math-SqueakPrerequisite' with: 'Math-SqueakPrerequisite-wk.3';
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.7'].
