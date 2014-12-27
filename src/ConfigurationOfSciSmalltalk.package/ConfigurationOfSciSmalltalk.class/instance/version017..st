@@ -1,6 +1,6 @@
 versions
-version016: spec
-	<version: '0.16' imports: #('0.13-baseline' )>
+version017: spec
+	<version: '0.17' imports: #('0.14-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'release'.
@@ -11,7 +11,7 @@ version016: spec
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
 			project: 'ArbitraryPrecisionFloat' with:'1.0';
-			project: 'StatPseudoCollections' with: '23.2'.
+			project: 'StatPseudoCollections' with: '23.4'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.10';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.34';

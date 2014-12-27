@@ -62,7 +62,7 @@ baseline013: spec
 		spec project: 'ArbitraryPrecisionFl' with:[
 			spec
 			className: 'ConfigurationOfArbitraryPrecisionFloat';
-			loads: #( 'Core' 'Tests');
+			loads: #( 'ArbitraryPrecisionFloat' 'ArbitraryPrecisionFloatTests');
 			repository: 'http://www.squeaksource.com/ArbitraryPrecisionFl'.
 			 ].
 		
