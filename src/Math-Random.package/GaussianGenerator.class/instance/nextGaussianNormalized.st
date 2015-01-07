@@ -1,10 +1,9 @@
 accessing
 nextGaussianNormalized
 	| x1 x2 w y1 y2 |
-	hasNextGaussian
+	self hasNextGaussian
 		ifTrue: [ 
-			hasNextGaussian := false.
-			^ nextGaussian ].
+			[^ nextGaussian] ensure: [ nextGaussian := nil ] ].
 	[ 
 	x1 := 2.0 * rng nextFloat - 1.0.
 	x2 := 2.0 * rng nextFloat - 1.0.

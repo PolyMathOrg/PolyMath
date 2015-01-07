@@ -8,7 +8,6 @@
 	"instvars" : [
 		"mean",
 		"standardDeviation",
-		"hasNextGaussian",
 		"nextGaussian"
 	],
 	"name" : "GaussianGenerator",
