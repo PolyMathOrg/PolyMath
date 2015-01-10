@@ -5,6 +5,6 @@ aStream :=ReadWriteStream with:''.
 ff:=  FunctionFit function: f data: d .
 ff printOn: aStream .
 s :=aStream contents .
-self assert: ((s findString: 'a * x / (b + x)')>0).
-self assert: ((s findString: '20')>0).
+self assert: ('a * x / (b + x)' search: s).
+self assert: ('20' search: s).
 
