@@ -1,6 +1,6 @@
 tests
 testBasic
-|fit d|
+|d|
 fit:=GeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 self assert: (fit evaluate equalsTo:  #(0.1 0.4)).
 (fit result - #(0.1 0.4))abs with: (fit secondaryResult - #(0.1 0.4))abs do:

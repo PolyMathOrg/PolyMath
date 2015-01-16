@@ -1,6 +1,6 @@
 tests
 testMaximumIterationsProbabilistic
-	| fit r correct |
+	| r correct |
 	fit := GeneralFunctionFit
 		function: f
 		data: col

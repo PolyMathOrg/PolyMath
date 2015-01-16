@@ -1,6 +1,6 @@
 tests
 testPrint
-|aStream s fit|
+|aStream s|
 fit:=GeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 aStream :=ReadWriteStream with:''.
 fit printOn: aStream .

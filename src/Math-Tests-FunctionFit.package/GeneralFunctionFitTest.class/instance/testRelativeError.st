@@ -1,6 +1,6 @@
 tests
 testRelativeError
-|fit r|
+|r|
 f:=[ :x :a| a].
 col:={1@2. 2@6}.
 fit:=GeneralFunctionFit function: f data: col minimumValues: -6 maximumValues: 6 .

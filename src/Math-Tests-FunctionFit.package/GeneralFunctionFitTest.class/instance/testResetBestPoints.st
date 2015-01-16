@@ -1,6 +1,5 @@
 tests
 testResetBestPoints
-|fit|
 fit:=GeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 fit evaluate .
 fit resetBestPoints.
