@@ -10,7 +10,7 @@ testMaximumLikelihood
 	hist freeExtent: true.
 	genDistr := DhbFisherTippettDistribution shape: shape scale: scale.
 	count timesRepeat: [ hist accumulate: genDistr random].
-	fit := DhbMaximumLikekihoodHistogramFit histogram: hist distributionClass: DhbFisherTippettDistribution.
+	fit := DhbMaximumLikelihoodHistogramFit histogram: hist distributionClass: DhbFisherTippettDistribution.
 	fittedDistr := fit evaluate.
 	parameters := fittedDistr parameters.
 	self should: [ ((parameters at: 1) - shape) abs < 0.1].
