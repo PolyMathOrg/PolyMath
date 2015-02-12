@@ -9,6 +9,6 @@
 		"count",
 		"countVariance"
 	],
-	"name" : "DhbMaximumLikekihoodHistogramFit",
+	"name" : "DhbMaximumLikelihoodHistogramFit",
 	"type" : "normal"
 }
