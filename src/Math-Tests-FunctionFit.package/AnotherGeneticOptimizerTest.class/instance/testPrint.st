@@ -4,6 +4,6 @@ testPrint
 aStream :=ReadWriteStream with:''.
 go printOn: aStream .
 s :=aStream contents .
-self assert: ('v * v' search: s).
-self assert: ('50' search: s).
-self assert: ('20' search: s).
+self assert: (s includesSubstring: 'v * v').
+self assert: (s includesSubstring: '50').
+self assert: (s includesSubstring: '20').
