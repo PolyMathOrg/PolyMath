@@ -1,4 +1,4 @@
-as yet unclassified
+loading
 aliasToTypoClassNameDhbMaximumLikekihoodHistogramFit
 
 	Smalltalk at: #DhbMaximumLikekihoodHistogramFit put: DhbMaximumLikelihoodHistogramFit

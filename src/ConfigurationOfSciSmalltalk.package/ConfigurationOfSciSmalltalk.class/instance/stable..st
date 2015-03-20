@@ -3,5 +3,5 @@ stable: spec
     <symbolicVersion: #'stable'>
     spec for: #'squeak' version: '0.12'.
     spec for: #'pharo2.x' version: '0.13'.
-    spec for: #'pharo3.x' version: '0.20'.
-    spec for: #'pharo4.x' version: '0.21'
+    spec for: #'pharo3.x' version: '0.22'.
+    spec for: #'pharo4.x' version: '0.22'
