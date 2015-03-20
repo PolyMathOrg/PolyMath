@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "StephaneDucasse 3/20/2015 08:50",
+	"super" : "Random",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"p",
+		"nextN",
+		"nextValue",
+		"nextModInv"
+	],
+	"name" : "ExplicitInverseCongruentialGenerator",
+	"type" : "normal"
+}
