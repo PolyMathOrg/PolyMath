@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "wernerkassens 4/28/2015 14:11",
+	"super" : "DhbIterativeProcess",
+	"category" : "Math-DHB-wk",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"cycleFlag",
+		"result2",
+		"result1",
+		"results",
+		"block",
+		"verbose"
+	],
+	"name" : "Fixpoint",
+	"type" : "normal"
+}
