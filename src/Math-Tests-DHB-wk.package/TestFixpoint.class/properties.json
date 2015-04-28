@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-DHB-wk",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"fp"
+	],
+	"name" : "TestFixpoint",
+	"type" : "normal"
+}
