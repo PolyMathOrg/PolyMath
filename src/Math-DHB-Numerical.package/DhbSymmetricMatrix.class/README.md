@@ -1,0 +1,1 @@
+DhbSymmetricMatrix can be made like DhbMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons.

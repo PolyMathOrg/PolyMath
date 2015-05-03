@@ -1,8 +1,6 @@
 operation
 inversePureCRL
-		"Answer the inverse of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+		"Answer the inverse of the receiver."
 	| matrices b1 cb1 cb1ct |
 	[rows size = 1
 		ifTrue: [ ^self inverse1By1]]on: ZeroDivide do: [:e| SingularMatrixError new signal].

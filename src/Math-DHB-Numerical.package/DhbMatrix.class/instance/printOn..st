@@ -1,9 +1,8 @@
-display
+printing
 printOn: aStream
-		"Append to the argument aStream, a sequence of characters that describes the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
 	| first |
+	(rows isNil or: [rows first isNil])
+		ifTrue:[super printOn: aStream. aStream nextPutAll:'(uninitialized)'. ^self].
 	first := true.
 	rows do: 
 		[ :each |
