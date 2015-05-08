@@ -5,8 +5,8 @@ testBenchmark
 aStream :=ReadWriteStream with:''.
 (KDTreeBenchmark fastRun: 1 with: Array)printOn: aStream . 
 s :=aStream contents .
-self assert: (s allRangesOfSubString: 'Benchmark')size = 5 .
+self assert: (s allRangesOfSubstring: 'Benchmark')size = 5 .
 aStream :=ReadWriteStream with:''.
 (KDTreeBenchmark run: 1 with: OrderedCollection )printOn: aStream . 
 s :=aStream contents .
-self assert:((s allRangesOfSubString: 'Benchmark')size =7).
+self assert:((s allRangesOfSubstring: 'Benchmark')size =7).
