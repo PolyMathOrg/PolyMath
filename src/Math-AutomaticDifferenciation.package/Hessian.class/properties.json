@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "wernerkassens 5/2/2015 12:29",
+	"super" : "Object",
+	"category" : "Math-AutomaticDifferenciation",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"function",
+		"result",
+		"gradient"
+	],
+	"name" : "Hessian",
+	"type" : "normal"
+}

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "wernerkassens 5/7/2015 17:02",
+	"super" : "Magnitude",
+	"category" : "Math-AutomaticDifferenciation",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"ZeroApproximation"
+	],
+	"instvars" : [
+		"value",
+		"eps"
+	],
+	"name" : "DualNumber",
+	"type" : "normal"
+}

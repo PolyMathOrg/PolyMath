@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "wernerkassens 5/7/2015 17:04",
+	"super" : "DualNumber",
+	"category" : "Math-AutomaticDifferenciation",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"eps2",
+		"eps1eps2"
+	],
+	"name" : "HyperDualNumber",
+	"type" : "normal"
+}

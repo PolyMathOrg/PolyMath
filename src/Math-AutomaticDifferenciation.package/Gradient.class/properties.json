@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "wernerkassens 4/25/2015 12:06",
+	"super" : "Object",
+	"category" : "Math-AutomaticDifferenciation",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"function"
+	],
+	"name" : "Gradient",
+	"type" : "normal"
+}

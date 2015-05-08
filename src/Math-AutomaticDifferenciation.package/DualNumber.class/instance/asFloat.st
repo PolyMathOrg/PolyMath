@@ -1,0 +1,3 @@
+converting
+asFloat
+^value asFloat
