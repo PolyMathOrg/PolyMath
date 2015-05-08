@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-AutomaticDifferenciation",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"zero",
+		"one",
+		"three",
+		"zeroc",
+		"onec"
+	],
+	"name" : "HyperDualNumberTest",
+	"type" : "normal"
+}
