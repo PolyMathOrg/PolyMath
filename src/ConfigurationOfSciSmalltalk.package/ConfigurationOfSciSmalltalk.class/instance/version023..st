@@ -36,8 +36,8 @@ version023: spec
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
 			package: 'Math-AccuracyFramework' with: 'Math-AccuracyFramework-wernerkassens.30';	
 			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
-			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-HwaJong.5'];
-			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-wernerkassens.1'. 			
+			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-HwaJong.5';
+			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-wernerkassens.1']. 			
 
 	spec for: #'pharo' do: [
 		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8' ].
