@@ -27,7 +27,7 @@ version025: spec
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.4';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-HwaJong.5';
 			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-wernerkassens.25';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-wernerkassens.12';
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-SergeStinckwich.13';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-nice.16';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-nice.3';
 			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-wernerkassens.5';
