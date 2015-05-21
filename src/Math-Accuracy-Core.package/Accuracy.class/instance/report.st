@@ -1,0 +1,3 @@
+printing
+report
+^aStream contents  
