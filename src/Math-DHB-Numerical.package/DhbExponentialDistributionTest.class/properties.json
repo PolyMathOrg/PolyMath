@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "TestCase",
-	"category" : "Math-DHB-Numerical-Tests",
+	"category" : "Math-Test-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
