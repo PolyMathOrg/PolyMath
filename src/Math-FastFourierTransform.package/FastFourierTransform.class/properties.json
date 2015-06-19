@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "wernerkassens 6/15/2015 18:35",
+	"super" : "Object",
+	"category" : "Math-FastFourierTransform",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"nu",
+		"n",
+		"sinTable",
+		"permTable",
+		"data"
+	],
+	"name" : "FastFourierTransform",
+	"type" : "normal"
+}
