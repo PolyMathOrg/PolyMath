@@ -39,7 +39,7 @@ version028: spec
 			package: 'Math-Tests-Accuracy' with:'Math-Tests-Accuracy-SergeStinckwich.1';
 			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
 			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-HwaJong.5';
-			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-wernerkassens.2']. 			
+			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-WernerKassens.2']. 			
 
 	spec for: #'pharo' do: [
 		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8' ].
