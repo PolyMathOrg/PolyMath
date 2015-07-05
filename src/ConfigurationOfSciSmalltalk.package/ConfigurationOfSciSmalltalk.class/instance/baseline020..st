@@ -24,7 +24,8 @@ baseline020: spec
 			package: 'Math-Quaternion' with: [spec requires: 'Math-Complex'];
 			package: 'Math-DHB-Numerical' ;
 			package: 'Math-FastFourierTransform' with: [spec requires: 'Math-Complex'];
-			package: 'ArbitraryPrecisionFloat';
+			package: 'ExtendedNumberParser';
+			package: 'ArbitraryPrecisionFloat' with: [spec requires: 'ExtendedNumberParser' ];
 									
 			"extensions"
 			package: 'Math-ComplexExtensions' with: [spec requires: #('Math-Complex' 'Math-DHB-Numerical')];
@@ -33,6 +34,7 @@ baseline020: spec
 			package: 'Math-DHB-wk' with: [spec requires: 'Math-DHB-Numerical'];
 			package: 'Math-FunctionFit' with: [spec requires: #('Math-DHB-Numerical' 'Math-Accuracy-Core')];
 			package: 'Math-AutomaticDifferenciation' with: [spec requires: 'Math-DHB-Numerical'];
+			
 			"tests"
 			package: 'Math-Tests-Random' with: [spec requires: 'Math-Random'];
 			package: 'Math-Tests-Complex' with: [spec requires: 'Math-ComplexExtensions'];
@@ -46,7 +48,7 @@ baseline020: spec
 			package: 'Math-Tests-Accuracy' with: [spec requires: 'Math-Accuracy-Core' ];
 			package: 'Math-Tests-FastFourierTransform' with: [spec requires: #('Math-FastFourierTransform' 'Math-DHB-Numerical') ];
 			package: 'ArbitraryPrecisionFloatTests' with: [spec requires: 'ArbitraryPrecisionFloat' ];
-				
+			
 			"benchmarks"
 			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')];
 			package: 'Math-Benchmarks-KDTree' with: [spec requires: #( 'Math-KDTree' 'SMark' )];
@@ -67,7 +69,7 @@ baseline020: spec
 				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ].
 		spec
 			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' 'StatPseudoCollections');
-                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFloat' 'Math-FastFourierTransform');
+                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser');
 			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'ArbitraryPrecisionFloatTests');
                   group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-FunctionFit' 'Math-AutomaticDifferenciation');
 			group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');

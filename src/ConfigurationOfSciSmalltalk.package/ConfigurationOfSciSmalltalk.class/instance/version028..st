@@ -23,6 +23,7 @@ version028: spec
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
 			package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-wernerkassens.1';
 			package: 'Math-DHB-wk' with: 'Math-DHB-wk-StephaneDucasse.9';
+			package: 'ExtendedNumberParser' with:'ExtendedNumberParser-nice.1';
 			package: 'ArbitraryPrecisionFloat' with:'ArbitraryPrecisionFloat-SergeStinckwich.52';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.4';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-HwaJong.5';
