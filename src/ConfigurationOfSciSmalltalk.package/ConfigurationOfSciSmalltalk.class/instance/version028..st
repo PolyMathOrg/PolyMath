@@ -1,17 +1,16 @@
 versions
-version026: spec
-	<version: '0.26' imports: #('0.18-baseline' )>
+version028: spec
+	<version: '0.28' imports: #('0.20-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'release'.
-		spec description: 'Cleaning Matrix and Vector classes'.
-		spec author: 'Stephane Ducasse'.
+		spec description: 'Move to 0.20 baseline'.
+		spec author: 'Serge Stinckwich'.
 		spec timestamp: '05 July 2015'.
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
-			project: 'ArbitraryPrecisionFl' with:'1.1.1';
-			project: 'StatPseudoCollections' with: '23.6'.
+			project: 'StatPseudoCollections' with: '23.8'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-SergeStinckwich.14';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.34';
@@ -24,6 +23,7 @@ version026: spec
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
 			package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-wernerkassens.1';
 			package: 'Math-DHB-wk' with: 'Math-DHB-wk-StephaneDucasse.9';
+			package: 'ArbitraryPrecisionFloat' with:'ArbitraryPrecisionFloat-SergeStinckwich.52';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.4';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-HwaJong.5';
 			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-wernerkassens.25';
@@ -31,6 +31,7 @@ version026: spec
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-nice.16';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-nice.3';
 			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-wernerkassens.5';
+			package: 'ArbitraryPrecisionFloatTests' with:'ArbitraryPrecisionFloatTests-nice.20';
 			package: 'Math-Benchmarks-ODE' with: 'Math-Benchmarks-ODE-YuriyTymchuk.7';
 			package: 'Math-Benchmarks-KDTree' with: 'Math-Benchmarks-KDTree-WernerKassens.8';
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
@@ -38,7 +39,7 @@ version026: spec
 			package: 'Math-Tests-Accuracy' with:'Math-Tests-Accuracy-SergeStinckwich.1';
 			package: 'Math-FunctionFit' with: 'Math-FunctionFit-WernerKassens.1';
 			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-HwaJong.5';
-			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-wernerkassens.1']. 			
+			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-wernerkassens.2']. 			
 
 	spec for: #'pharo' do: [
 		spec package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8' ].
