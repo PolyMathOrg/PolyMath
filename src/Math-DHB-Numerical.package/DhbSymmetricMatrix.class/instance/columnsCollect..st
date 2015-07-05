@@ -1,4 +1,3 @@
 iterators
 columnsCollect: aBlock
-		"optimized "
-	^rows  collect: aBlock 
+	^ rows collect: aBlock 
