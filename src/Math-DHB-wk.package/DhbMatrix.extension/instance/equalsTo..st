@@ -1,4 +1,6 @@
 *Math-DHB-wk
-equalsTo: aDhbMatrix
-self rows with: aDhbMatrix rows  do: [:a :b|(a equalsTo: b)ifFalse: [^false] ].
-^true 
+equalsTo: aMatrix
+	self rows 
+			with: aMatrix rows  
+			do: [:a :b| (a equalsTo: b) ifFalse: [ ^false ] ].
+	^ true 
