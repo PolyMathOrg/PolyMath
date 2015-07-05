@@ -1,9 +1,7 @@
-transformation
+private
 backwardSubstitution: anArray
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 30/3/99 "
-	| n sum answer|
+	"Private"
+	| n sum answer |
 	n := rows size.
 	answer := DhbVector new: n.
 	n to: 1 by: -1 do:

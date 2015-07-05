@@ -1,3 +1,3 @@
 comparing
 hash
-	^rows hash
+	^ rows hash

@@ -1,3 +1,3 @@
-information
+testing
 isSymmetric
-	^self = self transpose 
+	^ self = self transpose 

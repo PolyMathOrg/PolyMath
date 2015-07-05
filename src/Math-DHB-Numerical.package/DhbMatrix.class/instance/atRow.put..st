@@ -1,4 +1,4 @@
-information
+accessing
 atRow: rowIndex put: aCollection
 
 	aCollection withIndexDo: [: value : columnIndex |

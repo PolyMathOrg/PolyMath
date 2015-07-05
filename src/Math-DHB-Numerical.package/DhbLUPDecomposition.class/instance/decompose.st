@@ -1,8 +1,6 @@
-transformation
+private
 decompose
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 30/3/99 "
+	"Private"
 	| n |
 	n := rows size.
 	permutation := (1 to: n) asArray.

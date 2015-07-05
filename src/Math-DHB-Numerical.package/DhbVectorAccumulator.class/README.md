@@ -1,0 +1,1 @@
+I'm a simple object summing vectors.

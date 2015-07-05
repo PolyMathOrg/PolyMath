@@ -1,8 +1,6 @@
 transformation
 swapRow: anInteger1 withRow: anInteger2
-	"Private - Swap the rows indexed by the given integers.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/2/99 "
+	"Private - Swap the rows indexed by the given integers."
 
 	| swappedRow |
 	anInteger1 = anInteger2

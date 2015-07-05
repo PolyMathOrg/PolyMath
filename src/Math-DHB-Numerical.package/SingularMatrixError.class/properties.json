@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "WernerKassens 4/5/2014 11:53",
 	"super" : "ArithmeticError",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-Matrix",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,8 +1,6 @@
-operation
+private
 strassenProductWithMatrix: aMatrix
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 8/5/99 "
+	"Private"
 	| matrixSplit selfSplit p1 p2 p3 p4 p5 p6 p7 |
 	( self numberOfRows > 2 and: [ self numberOfColumns > 2])
 		ifFalse:[ ^self class rows: ( aMatrix rowsCollect: [ :row | self columnsCollect: [ :col | row * col]])].

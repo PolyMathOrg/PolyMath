@@ -1,6 +1,4 @@
 transformation
 accumulate: aVectorOrAnArray
-		"
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 8/3/99 "
-	1 to: self size do: [ :n | self at: n put: ( ( self at: n) + ( aVectorOrAnArray at: n))].
+	"Modify the receiver adding the contents of the argument to the receiver."
+	1 to: self size do: [ :n | self at: n put: ((self at: n) + (aVectorOrAnArray at: n))].
