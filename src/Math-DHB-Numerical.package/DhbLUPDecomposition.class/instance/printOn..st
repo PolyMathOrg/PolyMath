@@ -1,19 +1,15 @@
 printing
 printOn: aStream
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 30/3/99 "
-	| first delimitingString |
-	first := true.
+	
+	| delimitingString |
 	rows do:
 		[ :row |
-		  first ifTrue: [ first := false]
-				 ifFalse:[ aStream cr].
 		  delimitingString := '('.
 		  row do:
 			[ :each |
 				aStream nextPutAll: delimitingString.
 				each printOn: aStream.
-				delimitingString := ' '.
-			].
+				delimitingString := ' ' ].
 		  aStream nextPut: $).
-		].
+		]
+		separatedBy: [ aStream cr ]

@@ -1,3 +1,3 @@
 information
 atRow: aRowIndex put: aCollection
-self shouldNotImplement 
+	self shouldNotImplement 

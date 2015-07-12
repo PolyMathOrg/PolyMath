@@ -1,4 +1,3 @@
 iterators
 columnsDo: aBlock
-		"optimized"
-	^rows do: aBlock 
+	^ rows do: aBlock 
