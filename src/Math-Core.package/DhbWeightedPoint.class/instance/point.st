@@ -1,0 +1,4 @@
+accessing
+point
+
+	^ xValue @ yValue
