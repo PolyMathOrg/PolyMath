@@ -1,0 +1,4 @@
+testing
+fConfidenceLevel: aStatisticalMomentsOrHistogram
+
+	^ self moments fConfidenceLevel: aStatisticalMomentsOrHistogram
