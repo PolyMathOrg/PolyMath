@@ -1,18 +1,18 @@
 baselines
-baseline019: spec 
-        <version: '0.19-baseline'>
+baseline020: spec 
+        <version: '0.20-baseline'>
         spec for: #'common' do: [ 
                 spec blessing: #baseline.
-		    spec description: 'added  FastFourierTransform'.
-		    spec author: 'werner kassens'.
-		    spec timestamp: '19 june 2015'.
+		    spec description: 'Arbitrary float are manage now in the same repository'.
+		    spec author: 'Serge Stinckwich'.
+		    spec timestamp: '5 July 2015'.
                 spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
 			spec
 				project: 'StatPseudoCollections' with: [
 					spec
 						className: 'ConfigurationOfDaliotsPlayground';
 						loads: #('StatPseudoCollections' );
-						versionString: '23.6';
+						versionString: '23.8';
 						repository: 'http://smalltalkhub.com/mc/HwaJong/DaliotsPlayground/main' ].
 
                 spec 
@@ -24,6 +24,8 @@ baseline019: spec
 			package: 'Math-Quaternion' with: [spec requires: 'Math-Complex'];
 			package: 'Math-DHB-Numerical' ;
 			package: 'Math-FastFourierTransform' with: [spec requires: 'Math-Complex'];
+			package: 'ExtendedNumberParser';
+			package: 'ArbitraryPrecisionFloat' with: [spec requires: 'ExtendedNumberParser' ];
 									
 			"extensions"
 			package: 'Math-ComplexExtensions' with: [spec requires: #('Math-Complex' 'Math-DHB-Numerical')];
@@ -32,6 +34,7 @@ baseline019: spec
 			package: 'Math-DHB-wk' with: [spec requires: 'Math-DHB-Numerical'];
 			package: 'Math-FunctionFit' with: [spec requires: #('Math-DHB-Numerical' 'Math-Accuracy-Core')];
 			package: 'Math-AutomaticDifferenciation' with: [spec requires: 'Math-DHB-Numerical'];
+			
 			"tests"
 			package: 'Math-Tests-Random' with: [spec requires: 'Math-Random'];
 			package: 'Math-Tests-Complex' with: [spec requires: 'Math-ComplexExtensions'];
@@ -43,7 +46,9 @@ baseline019: spec
 			package: 'Math-Tests-FunctionFit' with: [spec requires: #('Math-FunctionFit' 'Math-DHB-wk')];
 			package: 'Math-Tests-AutomaticDifferenciation' with: [spec requires: 'Math-AutomaticDifferenciation'];	
 			package: 'Math-Tests-Accuracy' with: [spec requires: 'Math-Accuracy-Core' ];
-			package: 'Math-Tests-FastFourierTransform' with: [spec requires: #('Math-FastFourierTransform' 'Math-DHB-Numerical') ];	
+			package: 'Math-Tests-FastFourierTransform' with: [spec requires: #('Math-FastFourierTransform' 'Math-DHB-Numerical') ];
+			package: 'ArbitraryPrecisionFloatTests' with: [spec requires: 'ArbitraryPrecisionFloat' ];
+			
 			"benchmarks"
 			package: 'Math-Benchmarks-ODE' with: [spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter')];
 			package: 'Math-Benchmarks-KDTree' with: [spec requires: #( 'Math-KDTree' 'SMark' )];
@@ -62,17 +67,10 @@ baseline019: spec
 				className: 'ConfigurationOfXMLWriter';
 				"versionString: '';" 
 				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ].
-		spec project: 'ArbitraryPrecisionFl' with:[
-			spec
-			className: 'ConfigurationOfArbitraryPrecisionFloat';
-			loads: #( 'Core' 'Tests');
-			repository: 'http://www.squeaksource.com/ArbitraryPrecisionFl'.
-			 ].
-		
 		spec
 			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' 'StatPseudoCollections');
-                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFl' 'Math-FastFourierTransform');
-			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy');
+                  group: 'Core' with: #( 'Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser');
+			group: 'Tests' with: #('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'ArbitraryPrecisionFloatTests');
                   group: 'Extensions' with: #('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-FunctionFit' 'Math-AutomaticDifferenciation');
 			group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 			group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core')].
