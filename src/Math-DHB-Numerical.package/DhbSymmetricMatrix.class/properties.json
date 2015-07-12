@@ -1,7 +1,7 @@
 {
-	"commentStamp" : "StephaneDucasse 7/5/2015 21:07",
+	"commentStamp" : "wernerkassens 5/1/2015 12:19",
 	"super" : "DhbMatrix",
-	"category" : "Math-DHB-Numerical-Math-Matrix",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

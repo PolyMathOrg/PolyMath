@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbIterativeProcess",
-	"category" : "Math-DHB-Numerical-Math-Eigenvalues",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

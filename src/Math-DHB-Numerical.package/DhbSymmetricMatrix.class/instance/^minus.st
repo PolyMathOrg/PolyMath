@@ -1,4 +1,4 @@
 operation
 - aMatrix
-	"Answers the difference between the receiver and aMatrix"
-	^ aMatrix subtractWithSymmetricMatrix: self
+		"Answers the difference between the receiver and aMatrix"
+	^aMatrix subtractWithSymmetricMatrix: self

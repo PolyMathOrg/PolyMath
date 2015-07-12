@@ -1,4 +1,4 @@
 initialization
 basicInitialize: anInteger
-	"private"
+"private"
 	rows := DhbVector new: anInteger.
