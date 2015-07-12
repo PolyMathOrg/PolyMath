@@ -18,7 +18,7 @@ version026: spec
 			package: 'Math-ODE' with: 'Math-ODE-nice.30';
 			package: 'Math-Complex' with: 'Math-Complex-wernerkassens.9';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-wernerkassens.10';
-			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.37';
+			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.36';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-WernerKassens.4';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-StephaneDucasse.6';
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';

@@ -10,6 +10,7 @@ version020: spec
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9';
+			project: 'ArbitraryPrecisionFl' with:'1.1.1';
 			project: 'StatPseudoCollections' with: '23.6'.
 		spec 
 			package: 'Math-Random' with: 'Math-Random-HwaJong.11';
