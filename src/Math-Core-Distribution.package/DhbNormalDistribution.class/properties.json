@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProbabilityDensity",
+	"category" : "Math-Core-Distribution",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"NextRandom"
+	],
+	"instvars" : [
+		"mu",
+		"sigma"
+	],
+	"name" : "DhbNormalDistribution",
+	"type" : "normal"
+}

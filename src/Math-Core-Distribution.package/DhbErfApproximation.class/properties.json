@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Math-Core-Distribution",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"UniqueInstance"
+	],
+	"instvars" : [
+		"constant",
+		"series",
+		"norm"
+	],
+	"name" : "DhbErfApproximation",
+	"type" : "normal"
+}
