@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-DistributionBeta",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha1",
+		"alpha2",
+		"fraction",
+		"inverseFraction",
+		"logNorm"
+	],
+	"name" : "DhbIncompleteBetaFunction",
+	"type" : "normal"
+}
