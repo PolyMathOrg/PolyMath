@@ -10,6 +10,6 @@ stable: spec
 
 	spec for: #'pharo4.x' version: '0.29'.
 
-	spec for: #'pharo5.x' version: '0.29'.
+	spec for: #'pharo5.x' version: '0.32'.
 
 	spec for: #'squeak' version: '0.12'.
