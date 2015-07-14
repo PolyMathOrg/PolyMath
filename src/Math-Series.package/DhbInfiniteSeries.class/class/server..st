@@ -1,4 +1,3 @@
 creation
 server: aTermServer
-
-	^ self basicNew initialize: aTermServer
+	^ self new initialize: aTermServer
