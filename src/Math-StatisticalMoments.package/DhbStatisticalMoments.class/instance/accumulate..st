@@ -1,7 +1,5 @@
 transformation
-accumulate: aNumber 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
+accumulate: aNumber
 
 	| correction n n1 oldSums pascal nTerm cTerm term |
 	n := moments at: 1.
@@ -20,18 +18,13 @@ accumulate: aNumber
 	cTerm := correction.
 	n1 := n / n1.
 	n := n negated.
-	3 to: moments size
-		do: 
-			[:k | 
-			cTerm := cTerm * correction.
-			nTerm := n * nTerm.
-			term := cTerm * (1 + nTerm).
-			k to: 3
-				by: -1
-				do: 
-					[:l | 
-					pascal at: l put: (pascal at: l - 1) + (pascal at: l).
-					term := (pascal at: l) * (oldSums at: l) + term.
-					oldSums at: l put: (oldSums at: l) * correction].
-			pascal at: 2 put: (pascal at: 1) + (pascal at: 2).
-			moments at: k put: term * n1]
+	3 to: moments size do: [ :k | 
+		cTerm := cTerm * correction.
+		nTerm := n * nTerm.
+		term := cTerm * (1 + nTerm).
+		k to: 3 by: -1 do: [ :l | 
+			pascal at: l put: (pascal at: l - 1) + (pascal at: l).
+			term := (pascal at: l) * (oldSums at: l) + term.
+			oldSums at: l put: (oldSums at: l) * correction ].
+		pascal at: 2 put: (pascal at: 1) + (pascal at: 2).
+		moments at: k put: term * n1 ]

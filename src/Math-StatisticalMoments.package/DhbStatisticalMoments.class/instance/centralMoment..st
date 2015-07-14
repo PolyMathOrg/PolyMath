@@ -1,6 +1,4 @@
 information
-centralMoment: anInteger 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/6/99 "
+centralMoment: anInteger
 
-	^moments at: anInteger + 1
+	^ moments at: anInteger + 1
