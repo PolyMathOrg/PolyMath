@@ -1,12 +1,12 @@
 versions
-version030: spec
-	<version: '0.30' imports: #('0.21-baseline' )>
+version031: spec
+	<version: '0.31' imports: #('0.22-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
-		spec description: 'version 0.29'.
+		spec description: 'version 0.31: adding Math-Core as dependency of DHB numerical'.
 		spec author: 'StephaneDucasse'.
-		spec timestamp: '7/12/2015 14:54'.
+		spec timestamp: '7/14/2015 14:54'.
 		spec 
 			project: 'StatPseudoCollections' with: '23.8';
 			project: 'SMark' with: '1.0.1';
