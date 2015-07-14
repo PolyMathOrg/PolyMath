@@ -29,10 +29,10 @@ baseline024: spec
 			spec
 				package: 'Math-Core';
 				package: 'Math-Core-Process';
-				package: 'Math-Core-Distribution';
+				package: 'Math-Core-Distribution'  with: [ spec requires:  'Math-Core'];
 				package: 'Math-Series';
 				package: 'Math-DistributionGamma' with: [ spec requires: #('Math-Core-Distribution') ];
-				package: 'Math-DistributionBeta' with: [ spec requires: #('Math-Core-Distribution') ];
+				package: 'Math-DistributionBeta' with: [ spec requires: #('Math-DistributionGamma') ];
 				package: 'Math-DistributionForHistogram' with: [ spec requires: #('Math-Core-Distribution') ];
 				package: 'Math-Random';
 				package: 'Math-KDTree';
