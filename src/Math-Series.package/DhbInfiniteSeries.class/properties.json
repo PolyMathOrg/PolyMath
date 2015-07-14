@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbIterativeProcess",
+	"category" : "Math-Series",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"termServer"
+	],
+	"name" : "DhbInfiniteSeries",
+	"type" : "normal"
+}

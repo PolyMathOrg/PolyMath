@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbInfiniteSeries",
+	"category" : "Math-Series",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"numerator",
+		"denominator"
+	],
+	"name" : "DhbContinuedFraction",
+	"type" : "normal"
+}
