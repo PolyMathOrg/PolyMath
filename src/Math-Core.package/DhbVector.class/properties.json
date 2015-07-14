@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 7/5/2015 19:31",
+	"super" : "Array",
+	"category" : "Math-Core",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbVector",
+	"type" : "variable"
+}
