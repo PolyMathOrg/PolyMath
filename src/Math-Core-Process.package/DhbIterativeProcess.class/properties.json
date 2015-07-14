@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "Object",
+	"category" : "Math-Core-Process",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"precision",
+		"desiredPrecision",
+		"maximumIterations",
+		"result",
+		"iterations"
+	],
+	"name" : "DhbIterativeProcess",
+	"type" : "normal"
+}
