@@ -17,14 +17,14 @@ version033: spec
 				package: 'Math-DistributionForHistogram' with: 'Math-DistributionForHistogram-StephaneDucasse.1';
 				package: 'Math-DistributionBeta' with: 'Math-DistributionBeta-StephaneDucasse.1';
 				package: 'Math-DistributionGamma' with: 'Math-DistributionGamma-StephaneDucasse.1';
-				package: 'Math-Series' with: 'Math-Series-StephaneDucasse.1';
+				package: 'Math-Series' with: 'Math-Series-StephaneDucasse.2';
 				package: 'Math-Core-Process' with: 'Math-Core-Process-StephaneDucasse.1';
 				package: 'Math-Core-Distribution' with: 'Math-Core-Distribution-StephaneDucasse.1';
 				package: 'Math-Random' with: 'Math-Random-SergeStinckwich.14';
 				package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.34';
 				package: 'Math-Complex' with: 'Math-Complex-wernerkassens.9';
 				package: 'Math-Quaternion' with: 'Math-Quaternion-wernerkassens.10';
-				package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.41';
+				package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.43';
 				package: 'Math-FastFourierTransform' with: 'Math-FastFourierTransform-wernerkassens.1';
 				package: 'ExtendedNumberParser' with: 'ExtendedNumberParser-nice.1';
 				package: 'ArbitraryPrecisionFloat' with: 'ArbitraryPrecisionFloat-SergeStinckwich.52';
