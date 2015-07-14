@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProbabilityDensity",
+	"category" : "Math-DistributionGamma",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"beta",
+		"norm",
+		"randomCoefficients",
+		"incompleteGammaFunction"
+	],
+	"name" : "DhbGammaDistribution",
+	"type" : "normal"
+}

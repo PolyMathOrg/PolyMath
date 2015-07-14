@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbProbabilityDensity",
+	"category" : "Math-DistributionGamma",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"degreeOfFreedom",
+		"reducedDOF",
+		"normalDistribution"
+	],
+	"name" : "DhbAsymptoticChiSquareDistribution",
+	"type" : "normal"
+}
