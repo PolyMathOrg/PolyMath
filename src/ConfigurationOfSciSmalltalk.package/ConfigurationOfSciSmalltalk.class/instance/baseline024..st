@@ -71,7 +71,7 @@ baseline024: spec
 				package: 'Math-Accuracy-ODE' with: [ spec requires: #('Math-ODE' 'XMLWriter') ];
 				package: 'Math-Benchmarks-ODE' with: [ spec requires: #('Math-ODE' 'SMark' 'XMLWriter') ];
 				package: 'Math-Number-Extensions';
-				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Core' 'DistributionForHistogram') ].
+				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Core' 'Math-DistributionForHistogram') ].
 			spec
 				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' 'StatPseudoCollections');
 				group: 'Core'
