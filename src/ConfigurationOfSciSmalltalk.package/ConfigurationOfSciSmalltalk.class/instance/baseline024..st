@@ -29,7 +29,7 @@ baseline024: spec
 			spec
 				package: 'Math-Core';
 				package: 'Math-Core-Process';
-				package: 'Math-Core-Distribution'  with: [ spec requires:  'Math-Core'];
+				package: 'Math-Core-Distribution' with: [ spec requires: 'Math-Core' ];
 				package: 'Math-Series';
 				package: 'Math-DistributionGamma' with: [ spec requires: #('Math-Core-Distribution') ];
 				package: 'Math-DistributionBeta' with: [ spec requires: #('Math-DistributionGamma') ];
@@ -42,7 +42,7 @@ baseline024: spec
 					with: [ 
 							spec
 								requires:
-									#('Math-Core' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments') ];
+									#('Math-Core' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-FastFourierTransform' with: [ spec requires: #('Math-Complex') ];
 				package: 'ExtendedNumberParser';
 				package: 'ArbitraryPrecisionFloat' with: [ spec requires: #('ExtendedNumberParser') ];
