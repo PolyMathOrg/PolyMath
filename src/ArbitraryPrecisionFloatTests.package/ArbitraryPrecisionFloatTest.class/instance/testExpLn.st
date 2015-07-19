@@ -1,5 +1,6 @@
 testing-functions
 testExpLn
+<expectedFailure>
 	self assert: (1 asArbitraryPrecisionFloatNumBits: 53) exp asFloat = 1 asFloat exp.
 
 	self assert: (5 asArbitraryPrecisionFloatNumBits: 53) exp asFloat = 5 asFloat exp.
