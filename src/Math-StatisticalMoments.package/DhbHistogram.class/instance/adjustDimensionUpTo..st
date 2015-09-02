@@ -6,6 +6,6 @@ adjustDimensionUpTo: aNumber
 	| maximum |
 	binWidth := self roundToScale: (aNumber - minimum) / desiredNumberOfBins.
 	minimum := (minimum / binWidth) floor * binWidth.
-	maximum := (aNumber / binWidth) ceiling * binWidth.
+	maximum := (aNumber / binWidth) asFloat successor ceiling * binWidth.	
 	contents := Array new: ((maximum - minimum) / binWidth) ceiling.
 	contents atAllPut: 0
