@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testDhbProbabilityDensityWithUnknownDistribution
 |d|
 d:=DhbLogNormalDistribution new.

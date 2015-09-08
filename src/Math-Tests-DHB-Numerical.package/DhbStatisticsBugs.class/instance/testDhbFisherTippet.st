@@ -1,4 +1,4 @@
-as yet unclassified
+tests
 testDhbFisherTippet
 |d|
 d:=DhbFisherTippettDistribution new.
