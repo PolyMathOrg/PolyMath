@@ -1,0 +1,1 @@
+QuantileTest tests mainly '#quantile: method:' by calculating quartiles with every method on SortedCollections of size 4, 5, 6 and 11.
