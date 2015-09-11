@@ -1,0 +1,3 @@
+information
+distributionName
+	^'KernelSmoothedDistribution'

@@ -1,0 +1,3 @@
+information
+average
+^data average
