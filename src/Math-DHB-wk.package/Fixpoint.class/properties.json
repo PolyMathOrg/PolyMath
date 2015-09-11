@@ -11,7 +11,8 @@
 		"result1",
 		"results",
 		"block",
-		"verbose"
+		"verbose",
+		"equalityTest"
 	],
 	"name" : "Fixpoint",
 	"type" : "normal"
