@@ -2,7 +2,6 @@ tests
 testSampleAverageConvergesToLambda
 	"law of large numbers"
 	| poisson samples |
-	1000 atRandom .
 	samples := OrderedCollection new.
 	poisson := PoissonGenerator lambda: (1000 atRandom -1).
 	1000 timesRepeat: [samples add: poisson next].
