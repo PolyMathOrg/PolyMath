@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "WernerKassens 11/6/2015 23:33",
+	"super" : "Object",
+	"category" : "Math-KolmogorovSmirnov",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"data",
+		"compareWith"
+	],
+	"name" : "KolmogorovSmirnov",
+	"type" : "normal"
+}

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "WernerKassens 10/19/2015 10:03",
+	"super" : "KolmogorovSmirnov",
+	"category" : "Math-KolmogorovSmirnov",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"distribution",
+		"popDistribution"
+	],
+	"name" : "KolmogorovSmirnov1Sample",
+	"type" : "normal"
+}

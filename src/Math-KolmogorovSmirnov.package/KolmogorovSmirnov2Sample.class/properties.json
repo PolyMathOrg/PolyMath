@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "WernerKassens 11/7/2015 16:22",
+	"super" : "KolmogorovSmirnov",
+	"category" : "Math-KolmogorovSmirnov",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"uCalcBlock",
+		"smallSize",
+		"bigSize",
+		"ksStatistic"
+	],
+	"name" : "KolmogorovSmirnov2Sample",
+	"type" : "normal"
+}
