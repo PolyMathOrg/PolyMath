@@ -32,7 +32,7 @@ version038: spec
 				package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-StephaneDucasse.6';
 				package: 'Math-ODE' with: 'Math-ODE-nice.30';
 				package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
-				package: 'Math-DHB-wk' with: 'Math-DHB-wk-StephaneDucasse.9';
+				package: 'Math-DHB-wk' with: 'Math-DHB-wk-WernerKassens.10';
 				package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-wernerkassens.1';
 				package: 'Math-Tests-Random' with: 'Math-Tests-Random-WernerKassens.8';
 				package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-HwaJong.5';
@@ -40,7 +40,7 @@ version038: spec
 				package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.21';
 				package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-nice.16';
 				package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-nice.3';
-				package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-wernerkassens.5';
+				package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-WernerKassens.6';
 				package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-WernerKassens.2';
 				package: 'Math-Tests-FastFourierTransform' with: 'Math-Tests-FastFourierTransform-wernerkassens.1';
 				package: 'ArbitraryPrecisionFloatTests' with: 'ArbitraryPrecisionFloatTests-SergeStinckwich.21';
