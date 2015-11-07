@@ -15,7 +15,7 @@ version038: spec
 			spec
 				package: 'Math-Core' with: 'Math-Core-StephaneDucasse.4';
 				package: 'Math-DistributionForHistogram' with: 'Math-DistributionForHistogram-StephaneDucasse.1';
-				package: 'Math-DistributionBeta' with: 'Math-DistributionBeta-StephaneDucasse.1';
+				package: 'Math-DistributionBeta' with: 'Math-DistributionBeta-WernerKassens.2';
 				package: 'Math-DistributionGamma' with: 'Math-DistributionGamma-StephaneDucasse.1';
 				package: 'Math-Series' with: 'Math-Series-StephaneDucasse.2';
 				package: 'Math-Core-Process' with: 'Math-Core-Process-StephaneDucasse.1';
@@ -52,6 +52,6 @@ version038: spec
 				package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-YuriyTymchuk.3';
 				package: 'Math-Benchmarks-ODE' with: 'Math-Benchmarks-ODE-YuriyTymchuk.7';
 				package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
-				package: 'Math-StatisticalMoments' with: 'Math-StatisticalMoments-StephaneDucasse.4';
+				package: 'Math-StatisticalMoments' with: 'Math-StatisticalMoments-WernerKassens.5';
 				package: 'Math-Quantile' with: 'Math-Quantile-wernerkassens.1';
 				package: 'Math-KernelSmoothing' with: 'Math-KernelSmoothing-WernerKassens.2']
