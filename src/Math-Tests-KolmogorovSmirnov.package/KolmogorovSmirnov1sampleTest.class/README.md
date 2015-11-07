@@ -1,0 +1,1 @@
+tests KolmogorowSmirnov (test). tests ksStatistic and pValue indirectly.

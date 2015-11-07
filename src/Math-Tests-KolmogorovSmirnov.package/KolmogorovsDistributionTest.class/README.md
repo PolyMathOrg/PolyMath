@@ -1,0 +1,1 @@
+data are taken from: http://www.ism.ac.jp/editsec/aism/pdf/054_3_0577.pdf  

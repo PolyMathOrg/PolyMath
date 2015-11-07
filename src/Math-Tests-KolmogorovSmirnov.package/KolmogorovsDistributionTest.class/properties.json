@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "WernerKassens 11/5/2015 13:40",
+	"super" : "TestCase",
+	"category" : "Math-Tests-KolmogorovSmirnov",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "KolmogorovsDistributionTest",
+	"type" : "normal"
+}
