@@ -73,7 +73,7 @@ baseline027: spec
 				package: 'Math-Number-Extensions';
 				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Core' 'Math-DistributionForHistogram') ].
 			spec
-				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' 'StatPseudoCollections');
+				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy');
 				group: 'Core'
 					with:
 						#('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' );
