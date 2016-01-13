@@ -38,7 +38,7 @@ version039: spec
 				package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-WernerKassens.26';
 				package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.21';
 				package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-nice.16';
-				package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-nice.3';
+				package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-WernerKassens.4';
 				package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-WernerKassens.6';
 				package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-WernerKassens.2';
 				package: 'Math-Tests-FastFourierTransform' with: 'Math-Tests-FastFourierTransform-wernerkassens.1';
