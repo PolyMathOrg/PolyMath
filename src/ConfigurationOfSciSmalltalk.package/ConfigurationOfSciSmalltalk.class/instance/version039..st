@@ -33,7 +33,7 @@ version039: spec
 				package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
 				package: 'Math-DHB-wk' with: 'Math-DHB-wk-WernerKassens.10';
 				package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-wernerkassens.1';
-				package: 'Math-Tests-Random' with: 'Math-Tests-Random-WernerKassens.8';
+				package: 'Math-Tests-Random' with: 'Math-Tests-Random-SergeStinckwich.9';
 				package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-HwaJong.5';
 				package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-WernerKassens.26';
 				package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-WernerKassens.21';
