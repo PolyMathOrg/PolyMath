@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "TorstenBergmann 2/5/2014 13:52",
+	"super" : "SharedPool",
+	"category" : "Monticello-Mocks",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCMockAPoolDictionary",
+	"type" : "normal"
+}

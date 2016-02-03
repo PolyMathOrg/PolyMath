@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "MCWriter",
+	"category" : "Monticello-Storing",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"written"
+	],
+	"name" : "MCVersionInfoWriter",
+	"type" : "normal"
+}

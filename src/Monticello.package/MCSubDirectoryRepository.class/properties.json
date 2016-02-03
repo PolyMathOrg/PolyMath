@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "nk 6/11/2004 18:56",
+	"super" : "MCDirectoryRepository",
+	"category" : "Monticello-Repositories",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCSubDirectoryRepository",
+	"type" : "normal"
+}

@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "MCPackageLoader",
+	"category" : "Monticello-Loading",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "MCMultiPackageLoader",
+	"type" : "normal"
+}

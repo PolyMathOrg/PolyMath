@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "LaurentLaffont 3/31/2011 21:07",
+	"super" : "MCWriter",
+	"category" : "Monticello-Storing",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"initializers"
+	],
+	"name" : "MCStWriter",
+	"type" : "normal"
+}
