@@ -1,7 +1,6 @@
 display
 showParameters
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/6/99 "
+
 		"added 'Transcript flush' to make sure that the transcript window gets updated"
 	Transcript cr; cr;
 			nextPutAll: 'Floating-point machine parameters'; cr;

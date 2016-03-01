@@ -1,8 +1,6 @@
 information
 computeRadix
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 21/4/99 "
+	
 	| one zero a b tmp1 tmp2|
 	one := 1.0.
 	zero := 0.0.
