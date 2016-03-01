@@ -1,3 +1,3 @@
 testing
 < aDualNumber
-^value <aDualNumber value
+	^ value < aDualNumber value

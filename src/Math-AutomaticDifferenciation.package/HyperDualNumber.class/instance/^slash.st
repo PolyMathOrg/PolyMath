@@ -1,3 +1,3 @@
 arithmetic
 / aHyperDualNumber
-^self * aHyperDualNumber reciprocal 
+	^self * aHyperDualNumber reciprocal 

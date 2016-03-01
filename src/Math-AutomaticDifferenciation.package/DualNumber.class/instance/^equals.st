@@ -1,3 +1,3 @@
 testing
-= aMagnitude 
-^aMagnitude=value 
+= aMagnitude
+	^ aMagnitude = value

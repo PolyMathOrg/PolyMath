@@ -1,3 +1,3 @@
 testing
 isDualNumber
-^true
+	^ true

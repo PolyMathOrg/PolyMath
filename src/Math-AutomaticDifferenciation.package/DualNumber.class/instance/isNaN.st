@@ -1,3 +1,3 @@
 testing
 isNaN
-^ value isNaN 
+	^ value isNaN

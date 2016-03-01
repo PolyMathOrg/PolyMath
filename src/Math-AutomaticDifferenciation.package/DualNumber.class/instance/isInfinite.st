@@ -1,3 +1,3 @@
 testing
 isInfinite
-^value isInfinite 
+	^ value isInfinite
