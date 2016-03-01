@@ -1,3 +1,3 @@
 accessing
-collType: aSequencableCollectionClass 
-^collType :=aSequencableCollectionClass
+collType: aSequencableCollectionClass
+	^ collType := aSequencableCollectionClass

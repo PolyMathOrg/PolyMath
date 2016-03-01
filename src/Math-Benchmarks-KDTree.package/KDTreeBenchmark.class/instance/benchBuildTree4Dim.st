@@ -1,3 +1,3 @@
 benchmarking
 benchBuildTree4Dim
-aTree :=IndexedKDTree withAll: m.
+	aTree :=IndexedKDTree withAll: m.
