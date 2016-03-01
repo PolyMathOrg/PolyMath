@@ -1,8 +1,6 @@
-display
+printing
 printOn: aStream 
-	"Append to aStream a written representation of the receiver. 
-	(c) Copyrights Didier BESSET, 1999, all rights reserved. 
-	Initial code: 4/1/99"
+	"Append to aStream a written representation of the receiver."
 
 	| n firstNonZeroCoefficientPrinted |
 	n := 0.
