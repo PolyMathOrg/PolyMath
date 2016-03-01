@@ -1,7 +1,6 @@
 operation
 crossover: aChromosome1 and: aChromosome2
-		"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 23-Feb-00 "
+		
 	| index new1 new2|
 	index := ( aChromosome1 size - 1) random + 2.
 	new1 := self clone: aChromosome1.
