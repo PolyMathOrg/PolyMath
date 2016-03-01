@@ -1,3 +1,3 @@
 initialization
 initializeDamavandi
-self result: 0.
+	self result: 0.

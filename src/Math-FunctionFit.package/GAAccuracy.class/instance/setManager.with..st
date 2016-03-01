@@ -1,7 +1,7 @@
 running
 setManager:aManager with: rates
-"set everything to zero first, so that you dont get warnings"
-aManager 
+	"set everything to zero first, so that you dont get warnings"
+	aManager 
 		rateOfMutation: 0; 
 		rateOfCrossover: 0; 
 		rateOfLC: 0;

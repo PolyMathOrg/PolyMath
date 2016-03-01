@@ -1,3 +1,3 @@
 initialization
 initializeGriewank
-self result: 0.
+	self result: 0

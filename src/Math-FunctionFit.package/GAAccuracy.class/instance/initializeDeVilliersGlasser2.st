@@ -1,3 +1,3 @@
 initialization
 initializeDeVilliersGlasser2
-self result: 0.
+	self result: 0.
