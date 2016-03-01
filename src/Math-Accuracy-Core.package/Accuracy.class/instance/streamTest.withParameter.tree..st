@@ -6,4 +6,4 @@ streamTest: aName withParameter: parameterNo tree: d
 	aParameter := aParameter at: parameterNo.
 	d at: aParameter put: (tree := KeyedTree new).
 	(self format: aParameter type: 'parameter' postfix: nil) cr.
-^tree
+	^ tree

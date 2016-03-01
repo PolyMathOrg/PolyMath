@@ -1,8 +1,8 @@
 running
 run: anArrayOfNames
-|a|
-a:=self asArray: anArrayOfNames .
-(names includesAll: a) ifFalse: [ NotFound signalFor: a in: names ].
+	|a|
+	a := self asArray: anArrayOfNames.
+	(names includesAll: a) ifFalse: [ NotFound signalFor: a in: names ].
 	aStream reset;
 		<< 'Report for: ';
 		<< self class name;
