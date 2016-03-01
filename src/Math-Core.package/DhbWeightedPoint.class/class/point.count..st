@@ -1,7 +1,6 @@
 creation
 point: aNumber count: anInteger
 	
-
 	^ self
 		point: aNumber @ anInteger
 		weight:
