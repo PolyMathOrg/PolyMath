@@ -1,7 +1,6 @@
 operation
 scalarProduct: aVector
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/5/99 "
+	
 	| product n |
 	n := 0.
 	product := self collect: [ :each | n := n + 1. (aVector at: n) * each].

@@ -1,8 +1,6 @@
 operation
 productWithVector: aVector
-		"Answers the scalar product of aVector with the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Answers the scalar product of aVector with the receiver."
 	| n |
 	n := 0.
 	^self inject: 0

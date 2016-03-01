@@ -1,8 +1,6 @@
 operation
 - aVector
-		"Answers the difference of the receiver with aVector.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Answers the difference of the receiver with aVector."
 	| answer n |
 	answer := self class new: self size.
 	n := 0.
