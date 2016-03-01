@@ -1,11 +1,7 @@
 information
 approximatedValueAndGradient: aNumber
-		"Private - gradients an Array containing the value of the receiver at aNumber
-		 and the gradient of the receiver's respective to the receiver's
-		 parameters evaluated at aNumber.
-		 The gradient is computed by approximation.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/3/99 "
+	"Private - gradients an Array containing the value of the receiver at aNumber and the gradient of the receiver's respective to the receiver's parameters evaluated at aNumber.
+	 The gradient is computed by approximation."
 	| delta parameters dp gradient n |
 	parameters := self parameters.
 	n := parameters size.
