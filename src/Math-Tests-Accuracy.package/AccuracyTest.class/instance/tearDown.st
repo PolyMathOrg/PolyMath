@@ -1,3 +1,3 @@
 running
 tearDown 
-AccuracyTestExample decimalPlaces:dp .
+	AccuracyTestExample decimalPlaces: dp.

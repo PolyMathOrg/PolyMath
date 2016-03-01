@@ -1,3 +1,3 @@
 tests
 testArgumentError
-self should: [a testArgumentError ]raise: Error
+	self should: [ a testArgumentError ] raise: Error

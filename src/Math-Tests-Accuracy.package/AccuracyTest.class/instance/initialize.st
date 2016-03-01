@@ -1,4 +1,4 @@
 initialize-release
 initialize 
-super initialize .
-dp:=AccuracyTestExample decimalPlaces .
+	super initialize.
+	dp := AccuracyTestExample decimalPlaces
