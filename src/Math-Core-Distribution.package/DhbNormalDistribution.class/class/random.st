@@ -1,8 +1,6 @@
 information
 random
-		"Answer a random number distributed according to a (0,1) normal distribution.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/2/99 "
+	"Answer a random number distributed according to a (0,1) normal distribution."
 	| v1 v2 w y |
 	NextRandom isNil
 		ifTrue: [ [ v1 := Number random * 2 - 1.
