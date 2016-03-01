@@ -1,4 +1,4 @@
-as yet unclassified
+initialization
 checkTrapezoidAM2
 	| solver stepper system |
 	system := ImplicitSystem block: function.
