@@ -23,3 +23,6 @@ The error function is the Cumulative Distribution of the standard normal distrib
 
 Additional resources available from NIST Digital Library of Mathematics at:
 http://dlmf.nist.gov/7
+
+
+(c) Copyrights Didier BESSET, 1999.
