@@ -1,3 +1,3 @@
 accessing
 imaginaryData
-^data collect:[:i|i imaginary]
+	^ data collect: [ :i | i imaginary ] 

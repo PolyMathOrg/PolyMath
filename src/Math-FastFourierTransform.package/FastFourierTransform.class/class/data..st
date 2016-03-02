@@ -1,3 +1,5 @@
 instance creation
 data: anArrayOfNumbersOrComplex
-^self new data:anArrayOfNumbersOrComplex;yourself
+	^ self new
+		data: anArrayOfNumbersOrComplex;
+		yourself 

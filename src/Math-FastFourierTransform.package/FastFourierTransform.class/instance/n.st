@@ -1,3 +1,3 @@
 accessing
 n
-^n
+	^ n 
