@@ -1,8 +1,6 @@
 creation
 degreeOfFreedom: anInteger 
-	"Create a new instance of the receiver with anInteger degrees of freedom.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+	"Create a new instance of the receiver with anInteger degrees of freedom."
 
 	^anInteger > self asymptoticLimit 
 		ifTrue: [DhbNormalDistribution new]

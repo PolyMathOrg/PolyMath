@@ -1,8 +1,6 @@
 information
 random
-		"Answer a random number distributed according to the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/3/99 "
+	"Answer a random number distributed according to the receiver."
 	chiSquareDistribution1 isNil
 		ifTrue: [ chiSquareDistribution1 := DhbChiSquareDistribution degreeOfFreedom: dof1.
 				  chiSquareDistribution2 := DhbChiSquareDistribution degreeOfFreedom: dof2.
