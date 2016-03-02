@@ -1,4 +1,4 @@
 accessing
 p: aProbability
-	BernoulliGenerator validProbability: aProbability.
+	self class validProbability: aProbability.
 	p := aProbability

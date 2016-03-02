@@ -1,5 +1,6 @@
 instance creation
 new
- 	" Answer a new instance of the receiver "
+	"Answer a new instance of the receiver"
 
-	^ ( self seed: Time millisecondClockValue ) initialize
+	^ (self seed: Time millisecondClockValue)
+		initialize

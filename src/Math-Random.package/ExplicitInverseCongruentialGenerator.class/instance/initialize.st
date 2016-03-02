@@ -1,6 +1,6 @@
 initialization
 initialize
-	"Initialize No using Random and define the modulo (p)"
+	"Initialize using Random and define the modulo (p)"
 
 	| random |
 	super initialize.
