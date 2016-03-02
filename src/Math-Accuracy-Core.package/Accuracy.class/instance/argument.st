@@ -1,6 +1,6 @@
 accessing
 argument
-|r|
-r:=self argumentAt: self findKey.
-numberOfResults ifNotNilDo: [ :rn|r:=r at:rn ].
-^r.
+	| r |
+	r := self argumentAt: self findKey.
+	numberOfResults ifNotNil: [ :rn | r := r at: rn ].
+	^ r

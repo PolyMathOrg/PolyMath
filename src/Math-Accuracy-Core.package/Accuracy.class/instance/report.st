@@ -1,3 +1,3 @@
 printing
 report
-^aStream contents  
+	^ aStream contents  
