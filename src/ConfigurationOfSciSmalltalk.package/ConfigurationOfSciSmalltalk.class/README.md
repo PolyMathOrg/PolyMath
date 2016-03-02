@@ -2,6 +2,6 @@ A ConfigurationOfSciSmalltalk is a Metacello Configuration to load the packages 
 
 More information is available at https://github.com/SergeStinckwich/SciSmalltalk
 
-(ConfigurationOfSciSmalltalk project version: '0.33') load
+(ConfigurationOfSciSmalltalk project version: '0.40') load
 
 (ConfigurationOfSciSmalltalk project version: #bleedingEdge) load
