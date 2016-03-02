@@ -1,8 +1,5 @@
-information
+private
 evaluateFraction: aNumber 
-	"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/3/99 "
 
 	fraction isNil 
 		ifTrue: 
