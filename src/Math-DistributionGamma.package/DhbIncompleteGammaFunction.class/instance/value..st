@@ -1,8 +1,6 @@
 information
 value: aNumber
-		"Compute the value of the receiver for argument aNumber.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/3/99 "
+
 	| x norm |
 	aNumber = 0
 		ifTrue: [ ^0].
