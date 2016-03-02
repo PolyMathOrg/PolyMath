@@ -1,0 +1,1 @@
+(c) Copyrights Didier BESSET, 1999, all rights reserved.

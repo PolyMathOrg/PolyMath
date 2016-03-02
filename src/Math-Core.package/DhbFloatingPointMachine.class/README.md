@@ -23,4 +23,6 @@ numerical precision that can be expected for a general numerical computation. On
 largestExponentArgument
 	- xxxxx
 
-This class is detailed in Object Oriented Implementation of Numerical Methods, Section 1.4.1 and 1.4.2
+This class is detailed in Object Oriented Implementation of Numerical Methods, Section 1.4.1 and 1.4.2.
+
+(c) Copyrights Didier BESSET, 1999.
