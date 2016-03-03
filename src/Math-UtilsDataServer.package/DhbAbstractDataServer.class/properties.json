@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 3/2/2016 15:07",
+	"super" : "Object",
+	"category" : "Math-UtilsDataServer",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "DhbAbstractDataServer",
+	"type" : "normal"
+}
