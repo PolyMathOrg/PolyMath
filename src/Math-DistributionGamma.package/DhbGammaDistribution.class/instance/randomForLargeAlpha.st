@@ -6,8 +6,8 @@ randomForLargeAlpha
 		 Initial code: 4/3/99 "
 	[ true] whileTrue: [
 	| u1 u2 c v y z w|
-	u1 := DhbMitchellMooreGenerator new floatValue.
-	u2 := DhbMitchellMooreGenerator new floatValue.
+	u1 := flatGenerator floatValue.
+	u2 := flatGenerator floatValue.
 	c := self randomCoefficientsForLargeAlpha.
 	v := ( u1 / ( 1 - u1)) ln * (c at: 1).
 	y := v exp * alpha.

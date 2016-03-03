@@ -5,15 +5,15 @@ randomForSmallAlpha
 	[ true ]
 		whileTrue: [ 
 			| p |
-			p := DhbMitchellMooreGenerator new floatValue * self randomCoefficientsForSmallAlpha.
+			p := flatGenerator floatValue * self randomCoefficientsForSmallAlpha.
 			p > 1
 				ifTrue: [ 
 					| y |
 					y := ((self randomCoefficientsForSmallAlpha - p) / alpha) ln negated.
-					DhbMitchellMooreGenerator new floatValue <= (y raisedTo: alpha - 1)
+					flatGenerator floatValue <= (y raisedTo: alpha - 1)
 						ifTrue: [ ^ y ] ]
 				ifFalse: [ 
 					| y |
 					y := p raisedTo: 1 / alpha.
-					DhbMitchellMooreGenerator new floatValue <= y negated exp
+					flatGenerator  floatValue <= y negated exp
 						ifTrue: [ ^ y ] ] ]
