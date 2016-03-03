@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbChromosomeManager",
+	"category" : "Math-Chromosome",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"origin",
+		"range"
+	],
+	"name" : "DhbVectorChromosomeManager",
+	"type" : "normal"
+}

@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-Chromosome",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"population",
+		"populationSize",
+		"rateOfMutation",
+		"rateOfCrossover"
+	],
+	"name" : "DhbChromosomeManager",
+	"type" : "normal"
+}
