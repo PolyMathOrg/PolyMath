@@ -1,3 +1,3 @@
-accessing
+cell accessing
 rows
 	^rows

@@ -1,9 +1,6 @@
 information
 valueAndError: aNumber
-		"Compute and return the interpolated value of the interpolation Lagranage polynomial
-		 and its estimated error.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 7/4/99 "
+	"Compute and return the interpolated value of the interpolation Lagranage polynomial and its estimated error."
 	| size nearestIndex answer error |
 	nearestIndex := self initializeDifferences: aNumber.
 	nearestIndex < 0

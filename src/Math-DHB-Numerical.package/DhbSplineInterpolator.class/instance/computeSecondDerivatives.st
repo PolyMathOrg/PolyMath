@@ -1,8 +1,5 @@
 transformation
 computeSecondDerivatives
-	"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 7/4/99 "
 
 	| size u w s dx inv2dx |
 	size := pointCollection size.

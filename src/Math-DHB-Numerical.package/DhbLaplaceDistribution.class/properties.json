@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbProbabilityDensity",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-Distribution",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,8 +1,6 @@
-information
+initialization
 initializeDifferences: aNumber
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 28/5/99 "
+
 	| size nearestIndex dist minDist |
 	size := pointCollection size.
 	leftErrors size = size
