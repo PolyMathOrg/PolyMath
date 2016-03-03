@@ -1,0 +1,1 @@
+I'm a random number generator whose values are distributed according to  Laplace distribution
