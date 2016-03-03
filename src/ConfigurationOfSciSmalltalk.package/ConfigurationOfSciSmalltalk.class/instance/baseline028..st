@@ -74,7 +74,7 @@ baseline028: spec
 				package: 'ArbitraryPrecisionFloatTests' with: [ spec requires: #('ArbitraryPrecisionFloat') ];
 				package: 'Math-Accuracy-Core';
 				package: 'Math-Tests-Accuracy' with: [ spec requires: #('Math-Accuracy-Core') ];
-				package: 'Math-FunctionFit' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Accuracy-Core' 'Math-Core') ];
+				package: 'Math-FunctionFit' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'Math-Core') ];
 				package: 'Math-Tests-FunctionFit' with: [ spec requires: #('Math-FunctionFit' 'Math-DHB-wk') ];
 				package: 'Math-Benchmarks-KDTree' with: [ spec requires: #('Math-KDTree' 'SMark') ];
 				package: 'Math-Accuracy-ODE' with: [ spec requires: #('Math-ODE' 'XMLWriter') ];
