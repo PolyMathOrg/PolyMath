@@ -1,3 +1,1 @@
-I'm a simple point (two values with a weight and an error).
-
-(c) Copyrights Didier BESSET, 1999.
+(c) Copyrights Didier BESSET, 1999, all rights reserved.
