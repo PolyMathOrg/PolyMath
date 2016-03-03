@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-PrincipleComponentAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"accumulator",
+		"accumulatorForCovarianceMatrix",
+		"jacobiTransform"
+	],
+	"name" : "SciPrincipleComponentAnalyser",
+	"type" : "normal"
+}
