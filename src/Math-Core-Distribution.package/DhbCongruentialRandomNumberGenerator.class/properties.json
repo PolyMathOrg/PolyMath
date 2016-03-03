@@ -4,10 +4,15 @@
 	"category" : "Math-Core-Distribution",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [ ],
-	"instvars" : [
-		"flatGenerator"
+	"classvars" : [
+		"UniqueInstance"
 	],
-	"name" : "DhbProbabilityDensity",
+	"instvars" : [
+		"constant",
+		"modulus",
+		"multiplicator",
+		"seed"
+	],
+	"name" : "DhbCongruentialRandomNumberGenerator",
 	"type" : "normal"
 }
