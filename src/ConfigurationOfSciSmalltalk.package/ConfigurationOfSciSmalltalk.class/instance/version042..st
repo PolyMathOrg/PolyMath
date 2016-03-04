@@ -1,6 +1,6 @@
 versions
 version042: spec
-	<version: '0.41' imports: #('0.28-baseline')>
+	<version: '0.42' imports: #('0.28-baseline')>
 	spec
 		for: #common
 		do: [ 
