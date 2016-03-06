@@ -1,12 +1,13 @@
 {
-	"commentStamp" : "StephaneDucasse 3/2/2016 13:24",
-	"super" : "NumberGenerator",
+	"commentStamp" : "StephaneDucasse 3/6/2016 22:29",
+	"super" : "Object",
 	"category" : "Math-RandomDistributionBased",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"laplaceDistribution"
+		"laplaceDistribution",
+		"next"
 	],
 	"name" : "LaplaceGenerator",
 	"type" : "normal"

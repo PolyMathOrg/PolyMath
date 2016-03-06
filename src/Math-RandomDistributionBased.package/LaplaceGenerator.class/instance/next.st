@@ -1,4 +1,5 @@
 accessing
 next 
 
-	^ laplaceDistribution random
+	next := laplaceDistribution random.
+	^ next
