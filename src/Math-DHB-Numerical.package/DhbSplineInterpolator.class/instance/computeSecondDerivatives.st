@@ -11,7 +11,7 @@ computeSecondDerivatives
 			u at: 1 put: 0]
 		ifFalse: 
 			[coefficients at: 1 put: -1 / 2.
-			s := 1 / (( self xPointAt: 2) x - ( self xPointAt: 1) x).
+			s := 1 / (( self xPointAt: 2) - ( self xPointAt: 1)).
 			u at: 1
 				put: 3 * s 
 						* (s * (( self yPointAt: size) - ( self yPointAt: size - 1)) 
