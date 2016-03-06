@@ -28,7 +28,7 @@ baseline028: spec
 				package: 'Math-Core-Distribution' with: [ spec requires: 'Math-Core' ];
 				
 				package: 'Math-Chromosome' with: [ spec requires: #('Math-Core') ];
-				package: 'Math-PrincipleComponentAnalysis' with: [ spec requires: #('Math-UtilsAccumulator') ];
+				package: 'Math-PrincipleComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-RandomDistributionBased' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-UtilsDataServer';
 				
