@@ -21,7 +21,7 @@ version042: spec
 				package: 'Math-Core-Distribution' with: 'Math-Core-Distribution-StephaneDucasse.9';
 				
 				package: 'Math-Chromosome' with: 'Math-Chromosome-StephaneDucasse.1';
-				package: 'Math-PrincipleComponentAnalysis' with: 'Math-PrincipleComponentAnalysis-StephaneDucasse.1';
+				package: 'Math-PrincipleComponentAnalysis' with: 'Math-PrincipleComponentAnalysis-StephaneDucasse.2';
 				package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.1';
 				package: 'Math-UtilsDataServer-StephaneDucasse.1' with: 'Math-UtilsDataServer-StephaneDucasse.1';
 				
