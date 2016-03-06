@@ -1,12 +1,11 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "StephaneDucasse 3/6/2016 22:07",
 	"super" : "Object",
 	"category" : "Math-PrincipleComponentAnalysis",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"accumulator",
 		"accumulatorForCovarianceMatrix",
 		"jacobiTransform"
 	],

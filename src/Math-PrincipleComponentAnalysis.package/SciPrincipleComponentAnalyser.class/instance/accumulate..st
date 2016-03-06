@@ -1,4 +1,4 @@
 transformation
 accumulate: aDhbVectorOrArray
 	
-	accumulator accumulate: aDhbVectorOrArray
+	accumulatorForCovarianceMatrix accumulate: aDhbVectorOrArray

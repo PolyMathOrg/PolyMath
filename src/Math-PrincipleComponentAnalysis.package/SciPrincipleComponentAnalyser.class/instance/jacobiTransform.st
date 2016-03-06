@@ -1,4 +1,4 @@
 accessing
 jacobiTransform 
 
-	^  jacobiTransform ifNil: [ jacobiTransform := DhbJacobiTransformation matrix: accumulatorForCovarianceMatrix]
+	^  jacobiTransform ifNil: [ jacobiTransform := DhbJacobiTransformation matrix: accumulatorForCovarianceMatrix covarianceMatrix ]
