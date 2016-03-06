@@ -22,7 +22,7 @@ version042: spec
 				
 				package: 'Math-Chromosome' with: 'Math-Chromosome-StephaneDucasse.1';
 				package: 'Math-PrincipleComponentAnalysis' with: 'Math-PrincipleComponentAnalysis-StephaneDucasse.2';
-				package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.1';
+				package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.2';
 				package: 'Math-UtilsDataServer-StephaneDucasse.1' with: 'Math-UtilsDataServer-StephaneDucasse.1';
 				
 				package: 'Math-Random' with: 'Math-Random-StephaneDucasse.15';
