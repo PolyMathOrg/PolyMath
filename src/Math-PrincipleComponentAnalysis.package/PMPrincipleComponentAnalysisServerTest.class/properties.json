@@ -6,11 +6,9 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"average",
-		"covarianceMatrix",
-		"accumulator",
-		"server"
+		"x",
+		"y"
 	],
-	"name" : "SciPrincipleComponentAnalyserTest",
+	"name" : "PMPrincipleComponentAnalysisServerTest",
 	"type" : "normal"
 }

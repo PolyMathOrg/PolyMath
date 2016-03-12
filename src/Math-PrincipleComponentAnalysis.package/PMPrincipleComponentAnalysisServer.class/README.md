@@ -1,0 +1,1 @@
+Just a simple server data class for the tests

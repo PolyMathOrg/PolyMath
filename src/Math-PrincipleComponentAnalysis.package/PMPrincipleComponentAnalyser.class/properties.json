@@ -1,14 +1,14 @@
 {
-	"commentStamp" : "",
+	"commentStamp" : "StephaneDucasse 3/6/2016 22:07",
 	"super" : "Object",
 	"category" : "Math-PrincipleComponentAnalysis",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"x",
-		"y"
+		"accumulatorForCovarianceMatrix",
+		"jacobiTransform"
 	],
-	"name" : "SciPrincipleComponentAnalysisServer",
+	"name" : "PMPrincipleComponentAnalyser",
 	"type" : "normal"
 }
