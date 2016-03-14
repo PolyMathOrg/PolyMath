@@ -1,6 +1,8 @@
 information
 value: aNumber 
-	"Computes the value of a cubic spline interpolation over the points of the receiver."
+	"Computes the value of a cubic spline interpolation over the points of the receiver.
+		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
+		 Initial code: 7/4/99 "
 
 	| n1 n2 n step a b |
 	coefficients isNil ifTrue: [self computeSecondDerivatives].

@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "Object",
-	"category" : "Math-DHB-Numerical-Math-Polynomials",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

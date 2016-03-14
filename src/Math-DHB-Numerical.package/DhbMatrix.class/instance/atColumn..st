@@ -1,4 +1,4 @@
-cell accessing
+accessing
 atColumn: anInteger
 
 	^ self columnAt: anInteger

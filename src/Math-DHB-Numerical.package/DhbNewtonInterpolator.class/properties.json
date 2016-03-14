@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "<historical>",
 	"super" : "DhbLagrangeInterpolator",
-	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

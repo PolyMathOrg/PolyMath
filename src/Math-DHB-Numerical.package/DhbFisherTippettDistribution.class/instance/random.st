@@ -4,6 +4,6 @@ random
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 12/4/99 "
 	| t |
-	[ t := flatGenerator floatValue ln negated.
+	[ t := DhbMitchellMooreGenerator new floatValue ln negated.
 	  t > 0] whileFalse: [].
 	^t ln negated * beta + alpha

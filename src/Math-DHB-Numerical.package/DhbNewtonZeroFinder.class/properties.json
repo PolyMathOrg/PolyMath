@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbFunctionalIterator",
-	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

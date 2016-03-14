@@ -1,7 +1,7 @@
 {
-	"commentStamp" : "StephaneDucasse 3/2/2016 19:50",
+	"commentStamp" : "<historical>",
 	"super" : "Object",
-	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

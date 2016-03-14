@@ -1,4 +1,4 @@
 information
 random
-	"Answer a random number distributed according to the receiver."
-	^ flatGenerator floatValue ln * beta negated
+		"Answer a random number distributed according to the receiver."
+	^DhbMitchellMooreGenerator new floatValue ln * beta negated
