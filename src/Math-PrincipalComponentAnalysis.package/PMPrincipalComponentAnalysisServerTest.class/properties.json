@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-PrincipalComponentAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x",
+		"y"
+	],
+	"name" : "PMPrincipalComponentAnalysisServerTest",
+	"type" : "normal"
+}

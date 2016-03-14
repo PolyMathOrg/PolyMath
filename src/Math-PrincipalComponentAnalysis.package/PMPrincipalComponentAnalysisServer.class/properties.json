@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "StephaneDucasse 3/12/2016 13:33",
+	"super" : "Object",
+	"category" : "Math-PrincipalComponentAnalysis",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x",
+		"y"
+	],
+	"name" : "PMPrincipalComponentAnalysisServer",
+	"type" : "normal"
+}
