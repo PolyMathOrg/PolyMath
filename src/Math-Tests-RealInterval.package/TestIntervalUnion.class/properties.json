@@ -1,0 +1,24 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-RealInterval-Basic",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"a",
+		"b",
+		"c",
+		"d",
+		"e",
+		"z",
+		"o",
+		"g",
+		"h",
+		"empty",
+		"i",
+		"x"
+	],
+	"name" : "TestIntervalUnion",
+	"type" : "normal"
+}

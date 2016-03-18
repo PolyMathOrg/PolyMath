@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-RealInterval-Algos",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"f",
+		"c1",
+		"box"
+	],
+	"name" : "TestConstraintsMinimizer",
+	"type" : "normal"
+}
