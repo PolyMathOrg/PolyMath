@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "wernerkassens 3/2/2015 16:36",
+	"super" : "SMarkSuite",
+	"category" : "Math-Benchmarks-RealInterval",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"c"
+	],
+	"name" : "ConstraintBenchmark",
+	"type" : "normal"
+}
