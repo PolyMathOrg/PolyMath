@@ -1,0 +1,3 @@
+*Math-RealIntervalCompatibility
+isRealInterval
+^false
