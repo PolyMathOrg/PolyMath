@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "WernerKassens 3/18/2016 11:41",
+	"super" : "Object",
+	"category" : "ConfigurationOfRealInterval",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"LastVersionLoad"
+	],
+	"instvars" : [
+		"project"
+	],
+	"name" : "ConfigurationOfRealInterval",
+	"type" : "normal"
+}
