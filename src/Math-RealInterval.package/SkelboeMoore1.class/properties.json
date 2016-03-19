@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "wernerkassens 1/18/2015 13:12",
+	"super" : "DhbIterativeProcess",
+	"category" : "Math-RealInterval-Algos",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"box",
+		"function",
+		"min",
+		"severalBoxes",
+		"useSloppySimplification"
+	],
+	"name" : "SkelboeMoore1",
+	"type" : "normal"
+}

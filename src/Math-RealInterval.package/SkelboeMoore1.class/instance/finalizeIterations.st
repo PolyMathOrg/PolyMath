@@ -1,0 +1,3 @@
+operation
+finalizeIterations
+^self cleanUp 

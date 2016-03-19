@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "WernerKassens 2/22/2016 09:12",
+	"super" : "OrderedCollection",
+	"category" : "Math-RealInterval-utils",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ConstraintsCollection",
+	"type" : "normal"
+}

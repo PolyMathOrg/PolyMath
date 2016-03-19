@@ -1,0 +1,3 @@
+information
+defaultMaximumIterations
+	^1300

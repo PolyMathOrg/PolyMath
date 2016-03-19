@@ -1,0 +1,3 @@
+information
+defaultMaximumIterations
+	^5000

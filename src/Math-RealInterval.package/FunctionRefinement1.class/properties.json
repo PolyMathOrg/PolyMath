@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "wernerkassens 1/19/2015 17:29",
+	"super" : "Object",
+	"category" : "Math-RealInterval-Algos",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"Version"
+	],
+	"instvars" : [
+		"function",
+		"box",
+		"maximumIterations"
+	],
+	"name" : "FunctionRefinement1",
+	"type" : "normal"
+}

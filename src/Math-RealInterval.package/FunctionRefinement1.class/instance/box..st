@@ -1,0 +1,3 @@
+accessing
+box: anIntervalBoxOrRealIntervalOrIntervalUnion
+^box := anIntervalBoxOrRealIntervalOrIntervalUnion

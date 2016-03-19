@@ -1,0 +1,22 @@
+{
+	"commentStamp" : "WernerKassens 2/2/2016 18:07",
+	"super" : "Object",
+	"category" : "Math-RealInterval-Algos",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"aView",
+		"dimensions",
+		"result",
+		"usedResult",
+		"zoomFactor",
+		"decimals",
+		"color",
+		"withBorder",
+		"backgroundColor",
+		"window"
+	],
+	"name" : "BoxVisualizer",
+	"type" : "normal"
+}

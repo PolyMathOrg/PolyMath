@@ -1,0 +1,3 @@
+testing
+isIntervalUnion
+^true

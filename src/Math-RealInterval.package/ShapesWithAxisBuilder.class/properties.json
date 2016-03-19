@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "wernerkassens 3/7/2015 15:36",
+	"super" : "RTAxisAdaptedBuilder",
+	"category" : "Math-RealInterval-utils",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ShapesWithAxisBuilder",
+	"type" : "normal"
+}
