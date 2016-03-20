@@ -1,13 +1,14 @@
 baselines
+"protocol: baselines"
 baseline029: spec
 	<version: '0.29-baseline'>
 	spec
 		for: #common
 		do: [ 
 			spec blessing: #baseline.
-			spec description: 'added ConfigurationOfRealInterval & TestOldMethods (so that jenkins shows incompatibilities).only for testing!!!!!!'.
-		   spec author: 'werner kassens'.
-		   spec timestamp: '18 March 2016'.
+			spec description: 'Renamed Math-Principle -> Math-Principal'.
+		   spec author: 'Stephane Ducasse'.
+		   spec timestamp: '14 March 2016'.
 			spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
 			spec
 				project: 'SMark'
@@ -28,7 +29,7 @@ baseline029: spec
 				package: 'Math-Core-Distribution' with: [ spec requires: 'Math-Core' ];
 				
 				package: 'Math-Chromosome' with: [ spec requires: #('Math-Core') ];
-				package: 'Math-PrincipleComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical') ];
+				package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-RandomDistributionBased' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-UtilsDataServer';
 				
@@ -56,8 +57,6 @@ baseline029: spec
 				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion') ];
 				package: 'Math-DHB-wk' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-AutomaticDifferenciation' with: [ spec requires: #('Math-DHB-Numerical') ];
-				package:'Math-Tests-RealInterval-Compatibility' with:[spec repository: 'dictionary://home/werner/PharoFiles/package-cache' ];
-				package:'ConfigurationOfRealInterval' with:[spec repository: 'dictionary://home/werner/PharoFiles/package-cache' ];
 				package: 'Math-Quantile';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-DHB-Numerical') ];
 				package: 'Math-KolmogorovSmirnov' with: [ spec requires: #('Math-DHB-Numerical') ];
@@ -90,9 +89,9 @@ baseline029: spec
 						#('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' );
 				group: 'Tests'
 					with:
-						#('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'ArbitraryPrecisionFloatTests' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-RealInterval-Compatibility');
+						#('Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'ArbitraryPrecisionFloatTests' 'Math-Tests-KolmogorovSmirnov');
 				group: 'Extensions'
 					with:
-						#('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-Chromosome' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-PrincipleComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov' 'ConfigurationOfRealInterval');
+						#('Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-Chromosome' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov');
 				group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 				group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core') ]
