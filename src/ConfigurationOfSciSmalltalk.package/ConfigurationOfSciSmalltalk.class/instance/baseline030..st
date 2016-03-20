@@ -1,13 +1,13 @@
 baselines
-baseline029: spec
-	<version: '0.29-baseline'>
+baseline030: spec
+	<version: '0.30-baseline'>
 	spec
 		for: #common
 		do: [ 
 			spec blessing: #baseline.
-			spec description: 'added ConfigurationOfRealInterval & TestOldMethods (so that jenkins shows incompatibilities).only for testing!!!!!!'.
+			spec description: 'added ConfigurationOfRealInterval & Math-Tests-RealInterval-Compatibility (so that jenkins shows incompatibilities). Attention: based on v0.28, not 0.29 since 0.28 was development version and 0.29 seemed to be only for experimentation as far as i understand!'.
 		   spec author: 'werner kassens'.
-		   spec timestamp: '18 March 2016'.
+		   spec timestamp: '20 March 2016'.
 			spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
 			spec
 				project: 'SMark'
@@ -26,7 +26,6 @@ baseline029: spec
 				package: 'Math-Core';
 				package: 'Math-Core-Process';
 				package: 'Math-Core-Distribution' with: [ spec requires: 'Math-Core' ];
-				
 				package: 'Math-Chromosome' with: [ spec requires: #('Math-Core') ];
 				package: 'Math-PrincipleComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-RandomDistributionBased' with: [ spec requires: #('Math-DHB-Numerical') ];
@@ -56,8 +55,8 @@ baseline029: spec
 				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion') ];
 				package: 'Math-DHB-wk' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-AutomaticDifferenciation' with: [ spec requires: #('Math-DHB-Numerical') ];
-				package:'Math-Tests-RealInterval-Compatibility' with:[spec repository: 'dictionary://home/werner/PharoFiles/package-cache' ];
-				package:'ConfigurationOfRealInterval' with:[spec repository: 'dictionary://home/werner/PharoFiles/package-cache' ];
+				package: 'Math-Tests-RealInterval-Compatibility';
+				package: 'ConfigurationOfRealInterval';
 				package: 'Math-Quantile';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-DHB-Numerical') ];
 				package: 'Math-KolmogorovSmirnov' with: [ spec requires: #('Math-DHB-Numerical') ];
