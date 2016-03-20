@@ -5,7 +5,7 @@ baseline030: spec
 		for: #common
 		do: [ 
 			spec blessing: #baseline.
-			spec description: 'added ConfigurationOfRealInterval & Math-Tests-RealInterval-Compatibility (so that jenkins shows incompatibilities). Attention: based on v0.28, not 0.29 since 0.28 was development version and 0.29 seemed to be only for experimentation as far as i understand!'.
+			spec description: 'delete Math-Tests-RealInterval-Compatibility( it was fetched and then not loaded'.
 		   spec author: 'werner kassens'.
 		   spec timestamp: '20 March 2016'.
 			spec repository: 'http://www.smalltalkhub.com/mc/SergeStinckwich/SciSmalltalk/main'.
@@ -55,7 +55,6 @@ baseline030: spec
 				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion') ];
 				package: 'Math-DHB-wk' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-AutomaticDifferenciation' with: [ spec requires: #('Math-DHB-Numerical') ];
-				package: 'Math-Tests-RealInterval-Compatibility';
 				package: 'ConfigurationOfRealInterval';
 				package: 'Math-Quantile';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-DHB-Numerical') ];
