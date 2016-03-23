@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbIterativeProcess",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-Clustering",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

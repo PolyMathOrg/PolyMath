@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbVectorAccumulator",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-UtilsAccumulator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

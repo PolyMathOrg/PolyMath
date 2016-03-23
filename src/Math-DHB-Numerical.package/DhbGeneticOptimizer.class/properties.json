@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbFunctionOptimizer",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

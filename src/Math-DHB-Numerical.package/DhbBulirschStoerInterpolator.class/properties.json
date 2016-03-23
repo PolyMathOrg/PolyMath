@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "",
 	"super" : "DhbNevilleInterpolator",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-Interpolator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

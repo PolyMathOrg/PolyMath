@@ -1,7 +1,7 @@
 {
 	"commentStamp" : "WernerKassens 9/16/2015 17:19",
 	"super" : "DhbNewtonZeroFinder",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

@@ -1,7 +1,7 @@
 {
-	"commentStamp" : "StephaneDucasse 7/5/2015 19:46",
+	"commentStamp" : "StephaneDucasse 3/2/2016 15:12",
 	"super" : "Object",
-	"category" : "Math-DHB-Numerical",
+	"category" : "Math-DHB-Numerical-Math-UtilsAccumulator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],

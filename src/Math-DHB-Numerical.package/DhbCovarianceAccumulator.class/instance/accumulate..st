@@ -1,8 +1,6 @@
 transformation
 accumulate: anArray
-		"Accumulate anArray into the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 8/3/99 "
+	"Accumulate anArray into the receiver."
 	| delta count1 r|
 	count1 := count.
 	delta := super accumulate: anArray.

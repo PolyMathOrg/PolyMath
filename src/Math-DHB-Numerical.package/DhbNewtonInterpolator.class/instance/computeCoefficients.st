@@ -1,8 +1,6 @@
 information
 computeCoefficients
-		"Private - Computes the coefficients for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Private - Computes the coefficients for the receiver."
 	| size k1 kn|
 	size := pointCollection size.
 	coefficients := ( 1 to: size) collect: [ :n | self yPointAt: n].

@@ -1,3 +1,0 @@
-creation
-randomChromosome
-	self subclassResponsibility
