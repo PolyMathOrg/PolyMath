@@ -1,5 +1,4 @@
 baselines
-"protocol: baselines"
 baseline029: spec
 	<version: '0.29-baseline'>
 	spec
