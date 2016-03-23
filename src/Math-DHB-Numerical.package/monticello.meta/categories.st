@@ -1,5 +1,4 @@
 SystemOrganization addCategory: #'Math-DHB-Numerical'!
-SystemOrganization addCategory: 'Math-DHB-Numerical-Math-Clustering'!
 SystemOrganization addCategory: 'Math-DHB-Numerical-Math-Distribution'!
 SystemOrganization addCategory: 'Math-DHB-Numerical-Math-Eigenvalues'!
 SystemOrganization addCategory: 'Math-DHB-Numerical-Math-FunctionIterator'!

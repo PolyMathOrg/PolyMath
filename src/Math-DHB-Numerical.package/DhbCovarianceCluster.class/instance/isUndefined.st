@@ -1,4 +1,0 @@
-information
-isUndefined
-		
-	^accumulator isNil

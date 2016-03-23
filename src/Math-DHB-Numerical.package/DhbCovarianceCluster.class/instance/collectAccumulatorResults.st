@@ -1,4 +1,0 @@
-transformation
-collectAccumulatorResults
-	
-	accumulator computeParameters.

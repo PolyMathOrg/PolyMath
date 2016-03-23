@@ -1,4 +1,0 @@
-information
-sampleSize
-
-	^accumulator count
