@@ -23,7 +23,7 @@ I cleaned also the hierarchy.
 			package: 'Math-Quaternion' with: 'Math-Quaternion-wernerkassens.10';
 			package: 'Math-DHB-Numerical' with: [
 				spec file: 'Math-DHB-Numerical-HwaJong.31'.
-				spec postLoadDoIt: #'aliasToTypoClassNameDhbMaximumLikekihoodHistogramFit'];
+				];
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-WernerKassens.4';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-WernerKassens.5';
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';

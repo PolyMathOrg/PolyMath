@@ -19,8 +19,7 @@ version019: spec
 			package: 'Math-Complex' with: 'Math-Complex-wernerkassens.9';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-wernerkassens.10';
 			package: 'Math-DHB-Numerical' with: [
-				spec file: 'Math-DHB-Numerical-HwaJong.31'.
-				spec postLoadDoIt: #'aliasToTypoClassNameDhbMaximumLikekihoodHistogramFit'];
+				spec file: 'Math-DHB-Numerical-HwaJong.31' ];
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-WernerKassens.4';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-WernerKassens.5';
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
