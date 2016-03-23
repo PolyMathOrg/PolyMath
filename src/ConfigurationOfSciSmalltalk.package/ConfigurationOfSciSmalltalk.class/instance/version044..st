@@ -1,10 +1,12 @@
 versions
 version044: spec
-	<version: '0.44' imports: #('0.28-baseline' )>
+	<version: '0.44' imports: #('0.29-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
-		spec description: 'version 0.44: added the right version of DHB-Numerical to include dimension'.
+		spec description: 'version 0.44: added the right version of DHB-Numerical to include dimension
+					used right baseline 29
+					merge back all the changes between 52 and 50 of Math-DHB'.
 		spec author: 'StephaneDucasse'.
 		spec timestamp: '23/03/2016 12:20'.
 		spec 
@@ -15,7 +17,7 @@ version044: spec
 			package: 'Math-Core-Process' with: 'Math-Core-Process-StephaneDucasse.4';
 			package: 'Math-Core-Distribution' with: 'Math-Core-Distribution-StephaneDucasse.9';
 			package: 'Math-Chromosome' with: 'Math-Chromosome-StephaneDucasse.1';
-			package: 'Math-PrincipleComponentAnalysis' with: 'Math-PrincipleComponentAnalysis-StephaneDucasse.3';
+			package: 'Math-PrincipalComponentAnalysis' with: 'Math-PrincipalComponentAnalysis-StephaneDucasse.1';
 			package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.2';
 			package: 'Math-UtilsDataServer' with: 'Math-UtilsDataServer-StephaneDucasse.1';
 			package: 'Math-Series' with: 'Math-Series-StephaneDucasse.2';
