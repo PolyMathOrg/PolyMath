@@ -1,0 +1,4 @@
+loading
+aliasToTypoClassNameDhbMaximumLikekihoodHistogramFit
+
+	Smalltalk at: #DhbMaximumLikekihoodHistogramFit put: DhbMaximumLikelihoodHistogramFit
