@@ -1,0 +1,4 @@
+transformation
+collectAccumulatorResults
+	
+	accumulator computeParameters.

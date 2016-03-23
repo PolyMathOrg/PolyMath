@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "StephaneDucasse 3/23/2016 19:58",
+	"super" : "PackageManifest",
+	"category" : "Math-Clustering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "ManifestMathClustering",
+	"type" : "normal"
+}

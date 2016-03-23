@@ -1,0 +1,4 @@
+testing
+isUndefined
+	
+	^ self subclassResponsibility

@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "DhbIterativeProcess",
+	"category" : "Math-Clustering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dataServer",
+		"dataSetSize",
+		"minimumRelativeClusterSize"
+	],
+	"name" : "PMClusterFinder",
+	"type" : "normal"
+}

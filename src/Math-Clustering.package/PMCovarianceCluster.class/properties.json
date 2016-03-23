@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PMCluster",
+	"category" : "Math-Clustering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMCovarianceCluster",
+	"type" : "normal"
+}

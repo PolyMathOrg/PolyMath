@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-Clustering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"accumulator",
+		"previousSampleSize"
+	],
+	"name" : "PMCluster",
+	"type" : "normal"
+}
