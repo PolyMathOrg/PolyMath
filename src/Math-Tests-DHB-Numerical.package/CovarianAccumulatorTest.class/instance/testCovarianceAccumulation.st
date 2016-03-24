@@ -1,4 +1,4 @@
-data mining
+tests
 testCovarianceAccumulation
 	"Code example 12.2"
 	| accumulator average covarianceMatrix |
