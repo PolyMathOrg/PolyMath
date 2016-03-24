@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "Math-Clustering",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"center",
+		"inverseCovariance",
+		"accumulator"
+	],
+	"name" : "PMMahalanobisCenter",
+	"type" : "normal"
+}

@@ -1,0 +1,3 @@
+information
+count
+	^accumulator count

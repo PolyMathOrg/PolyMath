@@ -1,0 +1,4 @@
+transformation
+reset
+	
+	accumulator reset
