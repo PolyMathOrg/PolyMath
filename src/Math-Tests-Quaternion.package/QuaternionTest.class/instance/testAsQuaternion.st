@@ -1,5 +1,4 @@
 running
 testAsQuaternion
-	self should: [1 asQuaternion = q1 asQuaternion].
-	self should: [q1234 asQuaternion = q1234].
-	
+	self assert: 1 asQuaternion equals: q1 asQuaternion.
+	self assert: q1234 asQuaternion equals: q1234

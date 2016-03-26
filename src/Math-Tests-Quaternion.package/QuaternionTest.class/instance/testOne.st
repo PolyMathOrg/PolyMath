@@ -1,4 +1,4 @@
 running
 testOne
 	self assert: Quaternion one unreal isZero.
-	self assert: Quaternion one real = 1.
+	self assert: Quaternion one real equals: 1

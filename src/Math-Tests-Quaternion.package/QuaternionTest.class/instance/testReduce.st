@@ -1,8 +1,8 @@
 running
 testReduce
-	self should: [q1234 reduce = q1234].
-	self should: [q1 reduce = 1].
-	self should: [q1 reduce isInteger].
-	self should: [q12 reduce isComplexNumber ].
-	self should: [q12 reduce = (1 + 2 i) asComplex ].
-	self shouldnt: [q123 reduce isComplexNumber ].
+	self assert: q1234 reduce equals: q1234.
+	self assert: q1 reduce equals: 1.
+	self assert: q1 reduce isInteger.
+	self assert: q12 reduce isComplexNumber.
+	self assert: q12 reduce equals: (1 + 2 i) asComplex.
+	self shouldnt: [ q123 reduce isComplexNumber ]
