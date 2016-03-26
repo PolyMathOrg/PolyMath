@@ -7,8 +7,8 @@ testBinomialGeneratorWithSuccessProbabilityOfZeroAlwaysReturnZero
 		n: numberOfTrials;
 		p: 0.0.
 	g generator: LCRandom new.
-	self assert: g next = 0.
+	self assert: g next equals: 0.
 	g generator: LehmerRandom new.
-	self assert: g next = 0.
+	self assert: g next equals: 0.
 	g generator: MersenneTwisterRandom new.
-	self assert: g next = 0
+	self assert: g next equals: 0

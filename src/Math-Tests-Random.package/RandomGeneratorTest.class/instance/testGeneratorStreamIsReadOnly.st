@@ -1,7 +1,8 @@
-as yet unclassified
+accessing
 testGeneratorStreamIsReadOnly
-	RandomGenerator subclasses do:
-		[:cls | |gen|
-		gen := cls new.
-		self shouldnt: [gen isWriteable].
-		self should: [gen isReadable]]
+	RandomGenerator subclasses
+		do: [ :cls | 
+			| gen |
+			gen := cls new.
+			self shouldnt: [ gen isWriteable ].
+			self assert: gen isReadable ]

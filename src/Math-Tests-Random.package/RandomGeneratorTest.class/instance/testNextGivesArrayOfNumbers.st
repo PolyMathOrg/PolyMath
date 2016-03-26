@@ -1,9 +1,10 @@
-as yet unclassified
+accessing
 testNextGivesArrayOfNumbers
-	RandomGenerator subclasses do:
-		[:cls | | gen samples| 
-		gen := cls new.
-		samples := gen next: 10.
-		self should: [samples size = 10].
-		self should: [(samples at: 1 ) isFloat].
-		self should: [samples asSet size = 10]]
+	RandomGenerator subclasses
+		do: [ :cls | 
+			| gen samples |
+			gen := cls new.
+			samples := gen next: 10.
+			self assert: samples size equals: 10.
+			self assert: (samples at: 1) isFloat.
+			self assert: samples asSet size equals: 10 ]
