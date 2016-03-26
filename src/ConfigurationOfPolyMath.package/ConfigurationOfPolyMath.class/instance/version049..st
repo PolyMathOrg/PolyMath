@@ -1,12 +1,12 @@
 versions
 version049: spec
-	<version: '0.49' imports: #('0.31-baseline' )>
+	<version: '0.49' imports: #('0.32-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
-		spec description: 'version 0.49'.
+		spec description: 'version 0.49: just making sure that clustering tests are loaded'.
 		spec author: 'StephaneDucasse'.
-		spec timestamp: '3/26/2016 15:46'.
+		spec timestamp: '3/26/2016 15:07'.
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9'.
@@ -34,7 +34,7 @@ version049: spec
 			package: 'ArbitraryPrecisionFloat' with: 'ArbitraryPrecisionFloat-SergeStinckwich.52';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-StephaneDucasse.5';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-StephaneDucasse.8';
-			package: 'Math-ODE' with: 'Math-ODE-StephaneDucasse.32';
+			package: 'Math-ODE' with: 'Math-ODE-StephaneDucasse.31';
 			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
 			package: 'Math-DHB-wk' with: 'Math-DHB-wk-WernerKassens.10';
 			package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-StephaneDucasse.2';
