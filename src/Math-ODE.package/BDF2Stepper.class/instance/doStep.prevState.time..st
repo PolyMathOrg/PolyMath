@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 doStep: aState prevState: prevState time: t
 	|approximateState |
 	self stepSize isNil

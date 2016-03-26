@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 lastStep: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime deltaT: incrementOfTime
 
 	self stepSize isNil

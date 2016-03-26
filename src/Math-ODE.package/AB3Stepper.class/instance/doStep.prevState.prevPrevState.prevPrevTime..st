@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 doStep: thisState prevState:prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime
 
 	self stepSize isNil

@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 lastStep: aState prevState: prevState time: t deltaT: incrementOfTime
 	| approximateState1 approximateState2 |
 	self stepSize isNil

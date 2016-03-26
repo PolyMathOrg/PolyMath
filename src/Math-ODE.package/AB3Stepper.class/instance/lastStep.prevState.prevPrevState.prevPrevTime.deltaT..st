@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 lastStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime deltaT: incrementOfTime
 	self stepSize isNil
 		ifTrue: [ self error: 'step size required by stepper' ].	

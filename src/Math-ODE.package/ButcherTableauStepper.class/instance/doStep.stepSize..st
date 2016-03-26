@@ -1,4 +1,4 @@
-as yet unclassified
+stepping
 doStep: aStateTime stepSize: dt
 	"not complete"
 	| stages stageCount stateDifference|

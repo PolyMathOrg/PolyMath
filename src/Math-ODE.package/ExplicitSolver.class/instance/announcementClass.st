@@ -1,0 +1,3 @@
+announcement hooks
+announcementClass
+	^ ExplicitSolverAnnouncement

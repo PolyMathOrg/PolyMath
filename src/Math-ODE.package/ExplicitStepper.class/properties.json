@@ -5,9 +5,7 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"dt"
-	],
+	"instvars" : [ ],
 	"name" : "ExplicitStepper",
 	"type" : "normal"
 }

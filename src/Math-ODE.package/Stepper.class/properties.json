@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"system"
+		"system",
+		"dt"
 	],
 	"name" : "Stepper",
 	"type" : "normal"

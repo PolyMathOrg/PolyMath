@@ -1,4 +1,4 @@
-as yet unclassified
+assertion
 isInitialized
 	self assert: [stageCoefficients notNil].
 	self assert: [stageIncrements notNil].
