@@ -12,8 +12,8 @@ doStep: aStateTime stepSize: dt
 			[:j | sum := sum + ((stages at: j ) * stageCoefficients at: i at: j)].
 	stages at: i put:  
 		(system 
-			x: aStateTime state +  (dt * sum)  
-			t: aStateTime time + (dt * stageIncrements at: i) )].
+			state: aStateTime state +  (dt * sum)  
+			time: aStateTime time + (dt * stageIncrements at: i) )].
 	stateDifference := (dt * ((1 to: stageCount) do: [:i | | sum | 
 			sum ifNil: [sum := 0].
 			sum := sum + (( stageWeights at: i) * (stages at: i)) ])).

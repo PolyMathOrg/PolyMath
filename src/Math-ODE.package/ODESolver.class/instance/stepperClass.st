@@ -1,3 +1,3 @@
 private
 stepperClass
-	^ self class stepperClass.
+	^ self class stepperClass

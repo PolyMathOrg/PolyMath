@@ -10,7 +10,6 @@ solve: aSystem startState: initialState startTime: initialTime endTime: endTime
 	"announce initial conditions"
 	self announceState: state time: initialTime.
 	
-	
 	(lastTime+dt > endTime and: lastTime < endTime)
 	ifTrue:[
 		state :=self lastStepState: state endTime: endTime].

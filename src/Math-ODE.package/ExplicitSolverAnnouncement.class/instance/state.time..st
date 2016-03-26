@@ -1,4 +1,4 @@
 accessing
-x: aState t: aTime
+state: aState time: aTime
 	state:= aState.
 	t := aTime.

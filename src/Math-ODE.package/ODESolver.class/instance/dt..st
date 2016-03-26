@@ -1,3 +1,3 @@
 accessing
 dt: aFloat 
-	dt := aFloat .
+	dt := aFloat

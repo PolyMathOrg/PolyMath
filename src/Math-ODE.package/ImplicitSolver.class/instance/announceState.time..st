@@ -1,3 +1,3 @@
 as yet unclassified
 announceState: aState time: aTime
-	self announcer announce: (ImplicitSolverAnnouncement x: aState t: aTime).
+	self announcer announce: (ImplicitSolverAnnouncement state: aState time: aTime).

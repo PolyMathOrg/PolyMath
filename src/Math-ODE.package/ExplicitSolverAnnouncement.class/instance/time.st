@@ -1,3 +1,3 @@
 accessing
-t
+time
 	^ t

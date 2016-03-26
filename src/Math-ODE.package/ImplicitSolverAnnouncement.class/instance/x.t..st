@@ -1,4 +1,0 @@
-as yet unclassified
-x: aState t: aTime
-	state:= aState.
-	t := aTime.

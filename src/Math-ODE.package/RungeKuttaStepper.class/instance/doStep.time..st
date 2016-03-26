@@ -7,8 +7,8 @@ doStep: aState time: t
 		ifTrue: [ self error: 'step size required by stepper' ].
 	midPoint := self stepSize / 2 + t.
 	endPoint := self stepSize + t.
-	k1 := system x: aState t: t.
-	k2 := system x: aState + (k1 * self stepSize / 2) t: midPoint.
-	k3 := system x: aState + (k2 * self stepSize / 2) t: midPoint.
-	k4 := system x: aState + (k3 * self stepSize) t: endPoint.
+	k1 := system state: aState time: t.
+	k2 := system state: aState + (k1 * self stepSize / 2) time: midPoint.
+	k3 := system state: aState + (k2 * self stepSize / 2) time: midPoint.
+	k4 := system state: aState + (k3 * self stepSize) time: endPoint.
 	^ aState + ((k1 + k2 + k2 + k3 + k3 + k4) / 6 * self stepSize)

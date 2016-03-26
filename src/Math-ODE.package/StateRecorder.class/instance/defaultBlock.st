@@ -1,3 +1,3 @@
 accessing
 defaultBlock
-	^ [:ann | self add: ann x at: ann t].
+	^ [:ann | self add: ann state at: ann time].
