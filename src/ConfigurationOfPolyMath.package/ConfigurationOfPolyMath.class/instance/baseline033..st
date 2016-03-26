@@ -57,7 +57,7 @@ baseline033: spec
 				package: 'Math-KDTree';
 				
 				package: 'Math-Complex';
-				package: 'Math-ComplexExtensions' with: [ spec requires: #('Math-Complex' 'Math-Core' 'Math-DHB-Numerical') ];
+				package: 'Math-ComplexExtensions' with: [ spec requires: #('Math-Complex' 'Math-DHB-Numerical') ];
 	
 				package: 'Math-Quaternion' with: [ spec requires: #('Math-Complex') ];
 				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion') ];
@@ -67,7 +67,15 @@ baseline033: spec
 					with: [ 
 							spec
 								requires:
-									#('Math-Core' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series' 'Math-Matrix') ];
+									#('Math-Core'
+									'Math-Core-Process' 
+									'Math-Core-Distribution' 
+									'Math-DistributionGamma' 
+									'Math-DistributionBeta' 
+									'Math-DistributionForHistogram' 
+									'Math-StatisticalMoments' 
+									'Math-Series' 
+									'Math-Matrix') ];
 								
 				package: 'Math-FastFourierTransform' with: [ spec requires: #('Math-Complex') ];
 				package: 'ExtendedNumberParser';
