@@ -1,3 +1,3 @@
 tests-stepping
 testOrderIsTwo
-	self should: [BDF2Stepper order = 2]
+	self assert: BDF2Stepper order equals: 2

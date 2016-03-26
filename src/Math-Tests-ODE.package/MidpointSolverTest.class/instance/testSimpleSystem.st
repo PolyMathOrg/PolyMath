@@ -2,7 +2,16 @@ tests-solving
 testSimpleSystem
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem block: [:x :t | t sin].
+	system := ExplicitSystem block: [ :x :t | t sin ].
 	stepper := MidpointStepper onSystem: system.
-	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
-	self should: [(solver solve: system startState: -1 startTime: 0 endTime: Float pi) closeTo: 1].
+	solver := ExplicitSolver new
+		stepper: stepper;
+		system: system;
+		dt: dt.
+	self
+		assert:
+			((solver
+				solve: system
+				startState: -1
+				startTime: 0
+				endTime: Float pi) closeTo: 1)

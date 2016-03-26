@@ -1,3 +1,3 @@
 tests-stepping
 testOrderIsTwo
-	self should: [MidpointStepper order = 2]
+	self assert: MidpointStepper order equals: 2

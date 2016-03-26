@@ -1,3 +1,3 @@
 tests-stepping
 testOrderIsThree
-	self should: [AB3Stepper order = 3]
+	self assert: AB3Stepper order equals: 3

@@ -1,3 +1,3 @@
 tests-stepping
 testOrderIsFour
-	self should: [RungeKuttaStepper order = 4].
+	self assert: RungeKuttaStepper order equals: 4

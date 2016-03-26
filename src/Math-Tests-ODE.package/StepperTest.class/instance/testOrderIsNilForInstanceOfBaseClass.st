@@ -1,3 +1,3 @@
 tests
 testOrderIsNilForInstanceOfBaseClass
-	self should: [Stepper new order isNil].
+	self assert: Stepper new order isNil

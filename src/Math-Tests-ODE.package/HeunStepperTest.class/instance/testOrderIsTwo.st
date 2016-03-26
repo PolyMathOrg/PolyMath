@@ -1,3 +1,3 @@
 tests-stepping
 testOrderIsTwo
-	self should: [HeunStepper order = 2]
+	self assert: HeunStepper order equals: 2

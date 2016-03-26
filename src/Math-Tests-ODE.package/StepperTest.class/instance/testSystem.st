@@ -2,9 +2,8 @@ tests
 testSystem
 	| stepper sys |
 	sys := ExplicitSystem new.
-	sys block: [: x :t | t].
+	sys block: [ :x :t | t ].
 	stepper := Stepper onSystem: sys.
-	self should: [stepper system = sys].
+	self assert: stepper system equals: sys.
 	sys := ExplicitSystem new.
-	self shouldnt: [stepper system = sys].
-	
+	self shouldnt: [ stepper system = sys ]
