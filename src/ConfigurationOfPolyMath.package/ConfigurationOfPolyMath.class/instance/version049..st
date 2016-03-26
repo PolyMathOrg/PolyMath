@@ -19,7 +19,7 @@ version049: spec
 			package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.2';
 			package: 'Math-UtilsDataServer' with: 'Math-UtilsDataServer-StephaneDucasse.1';
 			package: 'Math-Clustering' with: 'Math-Clustering-StephaneDucasse.2';
-			package: 'Math-Tests-Clustering' with: 'Math-Tests-Clustering-4';
+			package: 'Math-Tests-Clustering' with: 'Math-Tests-Clustering-StephaneDucasse.4';
 			package: 'Math-Series' with: 'Math-Series-StephaneDucasse.2';
 			package: 'Math-DistributionGamma' with: 'Math-DistributionGamma-StephaneDucasse.3';
 			package: 'Math-DistributionBeta' with: 'Math-DistributionBeta-StephaneDucasse.3';
