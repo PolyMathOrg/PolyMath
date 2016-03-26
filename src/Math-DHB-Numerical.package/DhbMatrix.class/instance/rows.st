@@ -1,3 +1,0 @@
-cell accessing
-rows
-	^rows
