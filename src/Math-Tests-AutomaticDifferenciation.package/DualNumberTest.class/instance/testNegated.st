@@ -1,4 +1,4 @@
 tests-arithmetic
 testNegated
-self assert: three negated = -3.
-self assert: three negated eps= -1.  
+	self assert: three negated equals: -3.
+	self assert: three negated eps equals: -1
