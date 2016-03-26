@@ -1,3 +1,3 @@
 tests
 testArgumentsString
-self assert: (f parameterNames = #('a' 'b') asOrderedCollection ).
+	self assert: f parameterNames equals: #('a' 'b') asOrderedCollection

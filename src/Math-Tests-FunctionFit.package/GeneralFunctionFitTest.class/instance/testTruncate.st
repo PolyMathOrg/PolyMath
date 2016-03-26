@@ -15,9 +15,11 @@ testTruncate
 	self deny: fit dataTruncated.
 	fit truncateData.
 	self assert: fit dataTruncated.
-	self assert: fit optimizer functionBlock data size = (fit quartile * col size).
+	self
+		assert: fit optimizer functionBlock data size
+		equals: fit quartile * col size.
 	fit errorType: #abs.
-	self assert: fit errorType = #abs.
+	self assert: fit errorType equals: #abs.
 	self assert: (fit evaluate equalsTo: #(0.1 0.4)).
 	fit resetData.
-	self assert: fit optimizer functionBlock data size = col size
+	self assert: fit optimizer functionBlock data size equals: col size

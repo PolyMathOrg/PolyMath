@@ -1,4 +1,6 @@
 tests
 testChromosomeManager
-self assert: (go chromosomeManager class =AnotherChromosomeManager ).
-self assert: (go chromosomeManager populationSize=20).
+	self
+		assert: go chromosomeManager class
+		equals: AnotherChromosomeManager.
+	self assert: go chromosomeManager populationSize equals: 20
