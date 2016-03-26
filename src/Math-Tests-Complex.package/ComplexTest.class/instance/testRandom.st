@@ -3,5 +3,5 @@ testRandom
 	| c r |
 	c := Float random + Float random i.
 	r := c random.
-	self should: [r isComplexNumber ].
-	self should: [ r abs  < c abs].
+	self assert: r isComplexNumber.
+	self assert: r abs < c abs
