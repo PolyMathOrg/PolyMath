@@ -1,3 +1,3 @@
 tests
 testBinWidth
-self assert: (h binWidth = (1/25) ). 
+	self assert: h binWidth equals: 1 / 25

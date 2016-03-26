@@ -1,3 +1,3 @@
 tests
 testVariance
-self assert: (h variance =1).
+	self assert: h variance equals: 1

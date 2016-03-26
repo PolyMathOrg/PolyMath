@@ -1,3 +1,3 @@
 tests
 testAverage
-	self assert: (h average= 2).
+	self assert: h average equals: 2

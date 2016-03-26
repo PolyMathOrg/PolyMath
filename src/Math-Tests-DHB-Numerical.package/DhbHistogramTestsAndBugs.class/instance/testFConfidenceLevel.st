@@ -1,3 +1,3 @@
 tests
 testFConfidenceLevel
-self assert: ((h fConfidenceLevel:h) = 100.0).
+	self assert: (h fConfidenceLevel: h) equals: 100.0

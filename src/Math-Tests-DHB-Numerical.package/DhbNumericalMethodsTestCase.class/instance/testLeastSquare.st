@@ -1,7 +1,9 @@
 estimation
 testLeastSquare
 	"Code example 10.9"
+
 	"Note: the seemingly large error on the fit results is due to the binning of the histogram."
+
 	| count shape scale genDistr hist fit fittedDistr parameters |
 	count := 10000.
 	shape := 0.
@@ -9,10 +11,12 @@ testLeastSquare
 	hist := DhbHistogram new.
 	hist freeExtent: true.
 	genDistr := DhbFisherTippettDistribution shape: shape scale: scale.
-	count timesRepeat: [ hist accumulate: genDistr random].
-	fit := DhbLeastSquareFit histogram: hist distributionClass: DhbFisherTippettDistribution.
+	count timesRepeat: [ hist accumulate: genDistr random ].
+	fit := DhbLeastSquareFit
+		histogram: hist
+		distributionClass: DhbFisherTippettDistribution.
 	fittedDistr := fit evaluate.
 	parameters := fittedDistr parameters.
-	self should: [ ((parameters at: 1) - shape) abs < 0.1].
-	self should: [ ((parameters at: 2) - scale) abs < 0.1].
-	self should: [ ((parameters at: 3) - count) abs < 100].
+	self assert: ((parameters at: 1) - shape) abs < 0.1.
+	self assert: ((parameters at: 2) - scale) abs < 0.1.
+	self assert: ((parameters at: 3) - count) abs < 100

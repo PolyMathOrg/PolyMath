@@ -1,8 +1,9 @@
 arithmetic
 testVectorNegate
 	"negate modifies the vector. negated makes a new vector with inverse coefficients. "
+
 	| v |
-	v := #(1 2 3) asDhbVector .
-	self should: [(v negate at: 1)= -1].
-	self should: [2 = (v negate at: 2)].
-	self should: [-2 = (v negated at: 2)].
+	v := #(1 2 3) asDhbVector.
+	self assert: (v negate at: 1) equals: -1.
+	self assert: 2 equals: (v negate at: 2).
+	self assert: -2 equals: (v negated at: 2)

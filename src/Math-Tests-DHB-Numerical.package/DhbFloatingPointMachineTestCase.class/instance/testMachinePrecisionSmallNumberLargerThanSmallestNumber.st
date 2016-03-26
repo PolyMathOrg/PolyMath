@@ -1,5 +1,5 @@
 precision
 testMachinePrecisionSmallNumberLargerThanSmallestNumber
-| mach |
-mach := DhbFloatingPointMachine new.
-self should: [mach smallestNumber < mach smallNumber].
+	| mach |
+	mach := DhbFloatingPointMachine new.
+	self assert: mach smallestNumber < mach smallNumber

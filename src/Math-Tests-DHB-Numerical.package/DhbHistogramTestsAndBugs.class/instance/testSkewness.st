@@ -1,3 +1,3 @@
 tests
 testSkewness
-self assert: ( h skewness =0  ).
+	self assert: h skewness equals: 0

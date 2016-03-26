@@ -1,5 +1,5 @@
 precision
 testMachinePrecisionSmallNumberNotZero
-| mach |
-mach := DhbFloatingPointMachine new.
-self should: [mach smallNumber > 0.0].
+	| mach |
+	mach := DhbFloatingPointMachine new.
+	self assert: mach smallNumber > 0.0

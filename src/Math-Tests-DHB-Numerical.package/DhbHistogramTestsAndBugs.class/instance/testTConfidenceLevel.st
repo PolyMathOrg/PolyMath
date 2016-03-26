@@ -1,3 +1,3 @@
 tests
 testTConfidenceLevel
-self assert: ((h tConfidenceLevel:h) = 0).
+	self assert: (h tConfidenceLevel: h) equals: 0

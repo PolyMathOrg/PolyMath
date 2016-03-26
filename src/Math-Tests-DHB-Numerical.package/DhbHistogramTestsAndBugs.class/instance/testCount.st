@@ -1,3 +1,3 @@
 tests
 testCount
-self assert: (h count= 3).
+	self assert: h count equals: 3

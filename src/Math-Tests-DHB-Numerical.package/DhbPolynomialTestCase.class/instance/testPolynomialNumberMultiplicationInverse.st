@@ -1,9 +1,8 @@
 function evaluation
 testPolynomialNumberMultiplicationInverse
-
 	| polynomial |
-	polynomial := ( DhbPolynomial coefficients: #(2 -3 1)) * 2.
-	self should: [ (polynomial at: 0) = 4].
-	self should: [ (polynomial at: 1) = -6].
-	self should: [ (polynomial at: 2) = 2].
-	self should: [ (polynomial at: 3) = 0].
+	polynomial := (DhbPolynomial coefficients: #(2 -3 1)) * 2.
+	self assert: (polynomial at: 0) equals: 4.
+	self assert: (polynomial at: 1) equals: -6.
+	self assert: (polynomial at: 2) equals: 2.
+	self assert: (polynomial at: 3) equals: 0

@@ -1,6 +1,7 @@
 estimation
 testLeastSquarePolynomial
 	"Code example 10.5"
+
 	| fit estimation |
 	fit := DhbPolynomialLeastSquareFit new: 3.
 	fit
@@ -15,6 +16,9 @@ testLeastSquarePolynomial
 		add: (DhbWeightedPoint point: 9 @ 2058.0);
 		add: (DhbWeightedPoint point: 10 @ 2837.0).
 	estimation := fit evaluate.
-	self should: [ ((estimation value: 4.5)- 247.875) abs < 0.000000001].
-	self should: [ ((estimation error: 4.5) -  5.215298e-1) abs < 0.00001].
-	self should: [ ((estimation value: 7.15)- 1019.932625) abs < (estimation error: 7.15)].
+	self assert: ((estimation value: 4.5) - 247.875) abs < 0.000000001.
+	self assert: ((estimation error: 4.5) - 5.215298e-1) abs < 0.00001.
+	self
+		assert:
+			((estimation value: 7.15) - 1019.932625) abs
+				< (estimation error: 7.15)

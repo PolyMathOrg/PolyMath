@@ -1,3 +1,3 @@
 tests
 testStandardDeviation
-self assert: ( h standardDeviation =1 ).
+	self assert: h standardDeviation equals: 1

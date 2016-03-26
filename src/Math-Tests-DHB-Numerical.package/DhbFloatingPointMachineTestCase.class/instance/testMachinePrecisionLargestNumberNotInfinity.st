@@ -1,5 +1,5 @@
 precision
 testMachinePrecisionLargestNumberNotInfinity
-| mach |
-mach := DhbFloatingPointMachine new.
-self should: [mach largestNumber < Float infinity].
+	| mach |
+	mach := DhbFloatingPointMachine new.
+	self assert: mach largestNumber < Float infinity
