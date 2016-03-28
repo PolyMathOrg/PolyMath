@@ -9,6 +9,6 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #categories : [ 'PolyMath-Tests-*' ]
+    #categories : [ 'Math-Test*' ]
   }
 }
