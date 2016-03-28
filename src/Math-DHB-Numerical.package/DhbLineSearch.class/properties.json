@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "MobiusEng 3/28/2016 15:21",
+	"super" : "DhbFunctionalIterator",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"failingMin",
+		"boundaryValues",
+		"useCubicApproximation",
+		"extendedResult"
+	],
+	"name" : "DhbLineSearch",
+	"type" : "normal"
+}

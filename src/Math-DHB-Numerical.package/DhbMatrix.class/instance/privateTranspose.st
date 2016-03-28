@@ -1,0 +1,3 @@
+private
+privateTranspose
+	^ self transpose 
