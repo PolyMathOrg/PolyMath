@@ -47,8 +47,8 @@ version051: spec
 			package: 'Math-Tests-KolmogorovSmirnov' with: 'Math-Tests-KolmogorovSmirnov-StephaneDucasse.2';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-StephaneDucasse.13';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-StephaneDucasse.6';
-			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-StephaneDucasse.28';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-StephaneDucasse.25';
+			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-StephaneDucasse.27';
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-StephaneDucasse.28';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-StephaneDucasse.17';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-StephaneDucasse.5';
 			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-StephaneDucasse.9';
