@@ -1,20 +1,17 @@
 versions
-version050: spec
-	<version: '0.50' imports: #('0.33-baseline-broken' )>
+version051: spec
+	<version: '0.51' imports: #('0.34-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
-		spec description: 'version 0.50: 
-			- recovered lost PCA
-			- Extracted Matrix
-			- Grouped Matrix Tests but does not work'.
+		spec description: 'version 0.51: extracting matrix tests into Math-Tests-Matrix'.
 		spec author: 'StephaneDucasse'.
-		spec timestamp: '3/26/2016 21:07'.
+		spec timestamp: '3/28/2016 15:07'.
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9'.
 		spec 
-			package: 'Math-Core' with: 'Math-Core-StephaneDucasse.12';
+			package: 'Math-Core' with: 'Math-Core-StephaneDucasse.11';
 			package: 'Math-Core-Process' with: 'Math-Core-Process-StephaneDucasse.4';
 			package: 'Math-Core-Distribution' with: 'Math-Core-Distribution-StephaneDucasse.9';
 			package: 'Math-Chromosome' with: 'Math-Chromosome-StephaneDucasse.1';
@@ -22,7 +19,7 @@ version050: spec
 			package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.2';
 			package: 'Math-UtilsDataServer' with: 'Math-UtilsDataServer-StephaneDucasse.1';
 			package: 'Math-Clustering' with: 'Math-Clustering-StephaneDucasse.2';
-			package: 'Math-Tests-Clustering' with: 'Math-Tests-Clustering-StephaneDucasse.3';
+			package: 'Math-Tests-Clustering' with: 'Math-Tests-Clustering-StephaneDucasse.4';
 			package: 'Math-Series' with: 'Math-Series-StephaneDucasse.2';
 			package: 'Math-DistributionGamma' with: 'Math-DistributionGamma-StephaneDucasse.3';
 			package: 'Math-DistributionBeta' with: 'Math-DistributionBeta-StephaneDucasse.3';
@@ -30,10 +27,8 @@ version050: spec
 			package: 'Math-Random' with: 'Math-Random-StephaneDucasse.15';
 			package: 'Math-KDTree' with: 'Math-KDTree-wernerkassens.34';
 			package: 'Math-Complex' with: 'Math-Complex-wernerkassens.9';
-			package: 'Math-Matrix' with: 'Math-Matrix-StephaneDucasse.1';
-			package: 'Math-Tests-Matrix' with: 'Math-Tests-Matrix-StephaneDucasse.1';
 			package: 'Math-Quaternion' with: 'Math-Quaternion-wernerkassens.10';
-			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.56';
+			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-StephaneDucasse.55';
 			package: 'Math-FastFourierTransform' with: 'Math-FastFourierTransform-StephaneDucasse.2';
 			package: 'ExtendedNumberParser' with: 'ExtendedNumberParser-nice.1';
 			package: 'ArbitraryPrecisionFloat' with: 'ArbitraryPrecisionFloat-SergeStinckwich.52';
@@ -46,14 +41,17 @@ version050: spec
 			package: 'Math-Quantile' with: 'Math-Quantile-wernerkassens.1';
 			package: 'Math-KernelSmoothing' with: 'Math-KernelSmoothing-WernerKassens.2';
 			package: 'Math-KolmogorovSmirnov' with: 'Math-KolmogorovSmirnov-WernerKassens.1';
+			
+			package: 'Math-Tests-Matrix' with: 'Math-Tests-Matrix-StephaneDucasse.1';
+			
 			package: 'Math-Tests-KolmogorovSmirnov' with: 'Math-Tests-KolmogorovSmirnov-StephaneDucasse.2';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-StephaneDucasse.13';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-StephaneDucasse.6';
-			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-StephaneDucasse.27';
-			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-StephaneDucasse.27';
+			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-StephaneDucasse.28';
+			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-StephaneDucasse.25';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-StephaneDucasse.17';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-StephaneDucasse.5';
-			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-StephaneDucasse.8';
+			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-StephaneDucasse.9';
 			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-StephaneDucasse.3';
 			package: 'Math-Tests-FastFourierTransform' with: 'Math-Tests-FastFourierTransform-StephaneDucasse.2';
 			package: 'ArbitraryPrecisionFloatTests' with: 'ArbitraryPrecisionFloatTests-SergeStinckwich.21';
