@@ -1,0 +1,14 @@
+SmalltalkCISpec {
+  #loading : [
+    SCIMetacelloLoadSpec {
+      #configuration : 'PolyMath',
+      #repository : 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main',
+      #load : [ 'default' ],
+      #platforms : [
+        #pharo ]
+    }
+  ],
+  #testing : {
+    #categories : [ 'PolyMath-Tests-*' ]
+  }
+}
