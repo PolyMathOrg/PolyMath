@@ -1,4 +1,4 @@
-as yet unclassified
+operation
 computeInitialValues
 	extendedResult at: 1 put: 1.0.
 	extendedResult at: 2 put: (boundaryValues at: 3).

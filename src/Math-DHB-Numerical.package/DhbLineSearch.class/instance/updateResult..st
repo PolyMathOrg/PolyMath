@@ -1,4 +1,4 @@
-as yet unclassified
+operation
 updateResult: nextX
 	" Move x1 -> x2; g(x1) -> g(x2) and assign x1 = nextX; g(x1) = g(nextX) "
 	extendedResult at: 3 put: (extendedResult at: 1).

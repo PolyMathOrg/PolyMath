@@ -1,4 +1,4 @@
-initialization
+operation
 evaluateIteration
 	| a b tmp1 tmp2 gamma nextX g0 g1 dg0 deltaX x1 x2 |
 	g0 := boundaryValues at: 1.
