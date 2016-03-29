@@ -6,4 +6,4 @@
 Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
-    loadVersion: '0.52'
+    loadVersion: '0.53'
