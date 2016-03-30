@@ -1,4 +1,4 @@
-checks
+utils
 checkSolverClass: solverClass systemClass: systemClass stepperClass: stepperClass
 	| solver stepper system |
 	system := systemClass block: function.
