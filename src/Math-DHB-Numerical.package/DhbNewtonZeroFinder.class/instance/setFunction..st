@@ -1,6 +1,5 @@
 initialization
 setFunction: aBlock
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 26/4/99 "
+	"Sets the function block (delegates to superclass). Resets the derivative"
 	super setFunction: aBlock.
 	derivativeBlock := nil.

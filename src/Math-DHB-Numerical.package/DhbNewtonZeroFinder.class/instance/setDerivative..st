@@ -1,9 +1,7 @@
 initialization
 setDerivative: aBlock 
-	"Defines the derivative of the function for which zeroes will be found. 
-	(c) Copyrights Didier BESSET, 1999, all rights reserved. 
-	Initial code: 7/1/99"
-
+	"Defines the derivative of the function for which zeroes will be found.
+	Tests if provided block indeed implements the derivative of the function"
 	| x |
 	(aBlock respondsTo: #value:)
 		ifFalse: [self error: 'Derivative block must implement the method value:'].
