@@ -1,8 +1,6 @@
 operation
 evaluateIteration
-	"Iterate the product of the matrix of the eigen vector and the transpose.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
+	"Iterate the product of the matrix of the eigen vector and the transpose."
 
 	| oldEigenvalue |
 	oldEigenvalue := result.

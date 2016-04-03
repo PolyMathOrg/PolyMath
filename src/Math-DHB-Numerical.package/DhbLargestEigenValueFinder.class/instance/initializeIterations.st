@@ -1,8 +1,6 @@
 operation
 initializeIterations
-	"Initialize the iterations (subclasses must write their own method and call this one last).
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
+	"Initialize the iterations (subclasses must write their own method and call this one last)."
 
 	eigenvector := DhbVector new: matrix numberOfRows.
 	eigenvector atAllPut: 1.0.
