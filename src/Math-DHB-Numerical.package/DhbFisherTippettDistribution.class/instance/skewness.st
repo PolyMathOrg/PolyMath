@@ -1,6 +1,4 @@
 information
 skewness
-		"Answer the skewness of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 4/3/99 "
+		"Answer the skewness of the receiver."
 	^1.3
