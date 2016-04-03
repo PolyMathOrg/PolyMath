@@ -1,8 +1,7 @@
 information
 digits
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 9/6/99 "
+	"Private"
+
 	Digits isNil
-		ifTrue: [ Digits := self defaultDigits].
-	^Digits
+		ifTrue: [ Digits := self defaultDigits ].
+	^ Digits
