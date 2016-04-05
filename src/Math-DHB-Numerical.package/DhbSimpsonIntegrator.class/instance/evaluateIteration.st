@@ -1,7 +1,5 @@
 operation
 evaluateIteration
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 27/4/99 "
 	| oldResult oldSum |
 	iterations < 2
 		ifTrue: [ self higherOrderSum.
