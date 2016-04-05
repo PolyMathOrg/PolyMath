@@ -1,1 +1,0 @@
-some calculations dont work with singular matrices and result eg with errors like 'receiver of last is nil', deep down in the calculation, which is quite ununderstandable. otoh these errors can occasionally be treated by using another calculation, hence i introduced this error.

@@ -1,3 +1,0 @@
-information
-lupCRLCriticalDimension
-	^36
