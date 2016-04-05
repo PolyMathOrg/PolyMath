@@ -1,8 +1,6 @@
 information
 randomScale
-		"Private -
-		 (c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 23-Feb-00 "
+		"Private"
 		"changes take care of divide by zero error"
 	| norm fBest fWorst answer|
 	fBest := bestPoints first value.

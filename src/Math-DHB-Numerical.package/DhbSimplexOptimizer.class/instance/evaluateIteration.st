@@ -1,8 +1,5 @@
 operation
 evaluateIteration
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
-
 	| centerOfGravity newPoint nextPoint |
 	centerOfGravity := (bestPoints inject: ((worstVector copy)
 						atAllPut: 0;

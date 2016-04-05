@@ -1,7 +1,5 @@
 operation
 evaluateIteration
-		"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 2/22/00 "
 	| x1 x2 |
 	x1 := ( bestPoints at: 1) position.
 	x2 := ( bestPoints at: 2) position.

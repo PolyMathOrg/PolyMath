@@ -1,8 +1,6 @@
 operation
 contract
-	"Private - Contract the Simplex around the best Vector.
-		 (c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/16/00 "
+	"Private"
 
 	| bestVector oldVectors |
 	bestVector := bestPoints first position.

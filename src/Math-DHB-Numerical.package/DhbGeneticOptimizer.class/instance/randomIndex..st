@@ -1,8 +1,6 @@
 information
 randomIndex: aNumberArray
-		"Private -
-		 (c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 23-Feb-00 "
+		"Private"
 	| x n |
 	x := Number random.
 	n := 1.

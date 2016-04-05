@@ -1,8 +1,6 @@
 information
 nextXValue
-	"Private -
-		 (c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 2/22/00 "
+	"Private"
 	| d3 d2 x1 |
 	x1 := ( bestPoints at: 1) position.
 	d2 := ( bestPoints at: 2) position - x1.

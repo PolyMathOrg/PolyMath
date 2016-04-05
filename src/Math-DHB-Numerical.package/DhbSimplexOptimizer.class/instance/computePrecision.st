@@ -1,8 +1,6 @@
 operation
 computePrecision
-		"Private -
-		 (c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/16/00 "
+		"Private"
 	| functionValues bestFunctionValue |
 	functionValues := bestPoints collect: [ :each | each value].
 	bestFunctionValue := functionValues removeFirst.

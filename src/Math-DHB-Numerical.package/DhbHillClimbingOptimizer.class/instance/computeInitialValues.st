@@ -1,7 +1,5 @@
 initialization
 computeInitialValues
-		"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 05-Jan-00 "
 	unidimensionalFinder := DhbOneVariableFunctionOptimizer forOptimizer: self.
 	unidimensionalFinder desiredPrecision: desiredPrecision.
 	bestPoints := ( 1 to: result size)

@@ -1,7 +1,5 @@
 operation
 evaluateIteration
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
 	| oldResult |
 	precision := 1.0.
 	bestPoints inject: result
