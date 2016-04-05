@@ -1,8 +1,6 @@
 operation
 evaluateIteration
-	"Compute and add the next term of the fraction.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/3/99 "
+	"Compute and add the next term of the fraction."
 
 	| m m2 temp |
 	m := iterations + 1.
