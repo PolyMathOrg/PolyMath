@@ -1,6 +1,4 @@
 transformation
 changeParametersBy: aVector
-		"Modify the parameters of the receiver by aVector.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/3/99 "
+		"Modify the parameters of the receiver by aVector."
 	normalDistribution changeParametersBy: aVector.

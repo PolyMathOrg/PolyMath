@@ -1,8 +1,6 @@
 operation
 accumulate: aWeightedPoint
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/3/99 "
+		"Private"
 	| f g |
 	f := result valueAndGradient: aWeightedPoint xValue.
 	g := f last.
@@ -11,4 +9,4 @@ accumulate: aWeightedPoint
 	1 to: g size do:
 		[ :k |
 		  ( equations at: k) accumulate: g * ( ( g at: k) * aWeightedPoint weight).
-		].
+		]

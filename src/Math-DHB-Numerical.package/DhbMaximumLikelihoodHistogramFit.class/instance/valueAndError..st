@@ -1,7 +1,5 @@
 information
 valueAndError: aNumber 
-	"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 2/8/00 "
 
 	| valueGradient gradient gVar |
 	valueGradient := result valueAndGradient: aNumber.

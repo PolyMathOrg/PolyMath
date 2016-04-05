@@ -1,8 +1,6 @@
 transformation
 remove: aPoint 
-	"Remove aPoint which was accumulated into of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/2/99 "
+	"Remove aPoint which was accumulated into of the receiver."
 
 	sum1 := sum1 - 1.
 	sumX := sumX - aPoint x.

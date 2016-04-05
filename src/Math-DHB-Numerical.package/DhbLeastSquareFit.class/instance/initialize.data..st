@@ -1,8 +1,5 @@
 initialization
 initialize: aDataHolder data: aParametricFunction
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/3/99 "
+		"Private"
 	dataHolder := aDataHolder.
-	result := aParametricFunction.
-	^self
+	result := aParametricFunction

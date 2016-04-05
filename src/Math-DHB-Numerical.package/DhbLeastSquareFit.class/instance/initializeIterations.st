@@ -1,7 +1,5 @@
 operation
 initializeIterations
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
 
 	| n |
 	n := self numberOfParameters.

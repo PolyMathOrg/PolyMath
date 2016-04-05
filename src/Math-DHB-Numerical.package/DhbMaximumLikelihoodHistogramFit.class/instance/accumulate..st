@@ -1,8 +1,6 @@
 operation
 accumulate: aWeightedPoint
-		"Private - 
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/3/99 "
+		"Private"
 	| f g temp inverseProbability|
 	f := result valueAndGradient: aWeightedPoint xValue.
 	g := f last copyFrom: 1 to: ( f last size - 1).
@@ -15,4 +13,4 @@ accumulate: aWeightedPoint
 	1 to: g size do:
 		[ :k |
 		  ( equations at: k) accumulate: g * ( ( g at: k) * temp).
-		].
+		]

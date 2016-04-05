@@ -1,9 +1,7 @@
 information
 errorMatrix
 	"Answer the resulting linear dependence found by the receiver in the form of a polynomial
-		 with embedded error matrix.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 18/3/99 "
+		 with embedded error matrix."
 
 	| c1 cx cxx |
 	c1 := 1.0 / (sumXX * sum1 - sumX squared).

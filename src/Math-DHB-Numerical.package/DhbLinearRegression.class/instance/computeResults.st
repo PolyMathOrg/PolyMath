@@ -1,8 +1,6 @@
 transformation
 computeResults
-	"Private - Compute the results of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/2/99 "
+	"Private - Compute the results of the receiver."
 
 	| xNorm xyNorm |
 	xNorm := sumXX * sum1 - (sumX * sumX).

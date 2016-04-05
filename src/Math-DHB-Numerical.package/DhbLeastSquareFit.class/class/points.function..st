@@ -1,8 +1,5 @@
 creation
-points: aDataHolder function: aParametricFunction 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved. 
-	Initial code: 11/3/99"
-
+points: aDataHolder function: aParametricFunction
 	^aParametricFunction isNil
 		ifTrue: [nil]
 		ifFalse: [self new initialize: aDataHolder data: aParametricFunction]

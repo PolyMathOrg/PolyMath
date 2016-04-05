@@ -1,8 +1,6 @@
 information
 evaluate
-		"Perform the least square fit and answers the fitted polynomial.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 18/3/99 "
+		"Perform the least square fit and answers the fitted polynomial."
 	| system errorMatrix |
 	system := self computeEquations.
 	errorMatrix := ( system at: 1) inverse.

@@ -1,8 +1,6 @@
 operation
 evaluateIteration
-		"Dummy method (must be implemented by subclass).
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
+		"Dummy method (must be implemented by subclass)."
 	| changes maxChange|
 	self computeEquationSystem.
 	changes := self computeChanges.

@@ -1,9 +1,7 @@
 transformation
 computeEquations
 		"Private - Answer a pair Matrix/Vector defining the system of equations
-		 to solve the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 18/3/99 "
+		 to solve the receiver."
 	| rows vector |
 	vector := ( DhbVector new: degreePlusOne) atAllPut: 0 ; yourself.
 	rows := ( 1 to: degreePlusOne) collect: [ :k | ( DhbVector new: degreePlusOne) atAllPut: 0 ; yourself].
