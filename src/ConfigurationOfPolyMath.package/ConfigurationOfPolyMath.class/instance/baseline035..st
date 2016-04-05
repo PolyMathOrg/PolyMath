@@ -58,7 +58,7 @@ baseline035: spec
 				package: 'Math-DHB-NumericalExtensions' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-ODE' with: [ spec requires: #('Math-DHB-Numerical' 'Math-DHB-NumericalExtensions') ];
 				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion') ];
-				package: 'Math-DHB-wk' with: [ spec requires: #('Math-DHB-Numerical') ];
+				package: 'Math-DHB-wk' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Matrix') ];
 				package: 'Math-AutomaticDifferenciation' with: [ spec requires: #('Math-DHB-Numerical') ];
 				package: 'Math-Quantile';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-DHB-Numerical') ];
@@ -89,7 +89,7 @@ baseline035: spec
 				package: 'Math-Benchmarks-ODE' with: [ spec requires: #('Math-ODE' 'SMark' 'XMLWriter') ];
 				package: 'Math-Number-Extensions';
 				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Core' 'Math-DistributionForHistogram') ];
-				package: 'Math-Matrix' with: [ spec requires: #('Math-DHB-wk') ].
+				package: 'Math-Matrix'.
 				
 				
 				
