@@ -1,6 +1,4 @@
 privateMethods
 sortBlock
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 27/5/99 "
+		"Private"
 	^[ :a :b | a x < b x]

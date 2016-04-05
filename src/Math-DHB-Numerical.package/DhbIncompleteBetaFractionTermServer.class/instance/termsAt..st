@@ -1,7 +1,5 @@
 information
 termsAt: anInteger 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/3/99 "
 
 	| n n2 |
 	n := anInteger // 2.
