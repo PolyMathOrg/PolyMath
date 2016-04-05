@@ -89,7 +89,7 @@ baseline035: spec
 				package: 'Math-Benchmarks-ODE' with: [ spec requires: #('Math-ODE' 'SMark' 'XMLWriter') ];
 				package: 'Math-Number-Extensions';
 				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Core' 'Math-DistributionForHistogram') ];
-				package: 'Math-Matrix'.
+				package: 'Math-Matrix' with: [ spec requires: #('Math-DHB-wk') ].
 				
 				
 				
