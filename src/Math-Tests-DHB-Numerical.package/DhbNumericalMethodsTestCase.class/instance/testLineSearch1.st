@@ -13,7 +13,7 @@ testLineSearch1
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
-	xAnswer := (DhbLineSearch
+	xAnswer := (PMLineSearch
 					function: functionBlock
 					valueAtZero: g0
 					derivativeAtZero: dg0

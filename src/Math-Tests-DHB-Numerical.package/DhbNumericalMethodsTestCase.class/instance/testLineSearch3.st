@@ -16,7 +16,7 @@ testLineSearch3
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
-	lineSearch := DhbLineSearch function: functionBlock valueAtZero: g0 derivativeAtZero: dg0 valueAtOne: g1.
+	lineSearch := PMLineSearch function: functionBlock valueAtZero: g0 derivativeAtZero: dg0 valueAtOne: g1.
 	lineSearch desiredPrecision: eps.
 	xAnswer := lineSearch evaluate.
 	self assert: xAnswer equals: 1.0.
