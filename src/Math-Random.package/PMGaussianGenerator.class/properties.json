@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "StephaneDucasse 4/23/2016 12:13",
+	"super" : "PMNumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mean",
+		"standardDeviation",
+		"nextGaussian"
+	],
+	"name" : "PMGaussianGenerator",
+	"type" : "normal"
+}

@@ -1,0 +1,23 @@
+{
+	"commentStamp" : "hfm 3/24/2009 08:27",
+	"super" : "PMRandomGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"DefaultLengthVector",
+		"Mt19937LowerMask",
+		"Mt19937Mask",
+		"Mt19937MatrixA",
+		"Mt19937UpperMask",
+		"PeriodParameter",
+		"TemperingMaskB",
+		"TemperingMaskC"
+	],
+	"instvars" : [
+		"states",
+		"mti"
+	],
+	"name" : "PMMersenneTwisterRandomGenerator",
+	"type" : "normal"
+}

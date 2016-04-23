@@ -1,0 +1,3 @@
+testing
+hasNextGaussian
+	^nextGaussian notNil

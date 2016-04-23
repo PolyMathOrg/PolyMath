@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PMNumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"mean"
+	],
+	"name" : "PMExponentialGenerator",
+	"type" : "normal"
+}

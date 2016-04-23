@@ -1,1 +1,0 @@
-A NumberGenerator is a stream of numbers. All NumberGenerators respond to #next.

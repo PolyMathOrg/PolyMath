@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "StephaneDucasse 4/23/2016 10:58",
+	"super" : "PMNumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"probability"
+	],
+	"name" : "PMBernoulliGenerator",
+	"type" : "normal"
+}

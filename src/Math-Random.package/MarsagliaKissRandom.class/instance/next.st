@@ -1,4 +1,4 @@
-accessing
+stream access
 next
 	"Answer a Float in interval [0.0,1.0) with uniform distribution.
 	Note that constant 16rFFFFF800 is computed so as to truncate the 64 bits to Float precision.

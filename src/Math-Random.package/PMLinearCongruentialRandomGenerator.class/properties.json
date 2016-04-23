@@ -1,14 +1,11 @@
 {
-	"commentStamp" : "nice 4/21/2014 21:44",
+	"commentStamp" : "StephaneDucasse 4/23/2016 10:47",
 	"super" : "PMRandomGenerator",
 	"category" : "Math-Random",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"kernelRand1",
-		"kernelRand2"
-	],
-	"name" : "MarsagliaKissRandom",
+	"instvars" : [ ],
+	"name" : "PMLinearCongruentialRandomGenerator",
 	"type" : "normal"
 }

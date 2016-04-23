@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "StephaneDucasse 4/23/2016 11:11",
+	"super" : "PMNumberGenerator",
+	"category" : "Math-Random",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"constant"
+	],
+	"name" : "PMConstantGenerator",
+	"type" : "normal"
+}
