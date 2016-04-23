@@ -1,5 +1,5 @@
-tests-accessing
+tests
 testOneProbabilityGivesOneNext
 	| g |
-	g := BernoulliGenerator withProbability: 1.
+	g := PMBernoulliGenerator withProbability: 1.
 	self assert: g next equals: 1

@@ -4,7 +4,7 @@ testBinomialGeneratorConvergesToMean
 
 	| gen nums mean |
 	mean := Random new next sqrt.
-	gen := BinomialGenerator n: 3000 p: mean.
+	gen := PMBinomialGenerator numberOfTrials: 3000 probabilityOfSuccess: mean.
 	mean := mean * 3000.
 	nums := OrderedCollection new.
 	(1 to: 3000) do: [ :ea | nums add: gen next ].

@@ -1,14 +1,14 @@
 tests
 testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysReturnNumberOfTrials
 	| g numberOfTrials |
-	g := BinomialGenerator new.
+	g := PMBinomialGenerator new.
 	numberOfTrials := 10.
 	g
-		n: numberOfTrials;
-		p: 1.0.
-	g generator: LCRandom new.
+		numberOfTrials: numberOfTrials;
+		probability: 1.0.
+	g generator: PMLinearCongruentialRandomGenerator new.
 	self assert: g next equals: numberOfTrials.
-	g generator: LehmerRandom new.
+	g generator: PMLehmerRandomGenerator new.
 	self assert: g next equals: numberOfTrials.
-	g generator: MersenneTwisterRandom new.
+	g generator: PMMersenneTwisterRandomGenerator new.
 	self assert: g next equals: numberOfTrials

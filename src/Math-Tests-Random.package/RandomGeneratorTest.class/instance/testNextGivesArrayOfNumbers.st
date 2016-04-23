@@ -1,6 +1,6 @@
-accessing
+tests
 testNextGivesArrayOfNumbers
-	RandomGenerator subclasses
+	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen samples |
 			gen := cls new.

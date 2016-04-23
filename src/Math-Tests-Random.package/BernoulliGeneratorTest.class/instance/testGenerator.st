@@ -1,9 +1,9 @@
-tests-accessing
+tests
 testGenerator
 	| g bern |
-	g := LCRandom new.
-	bern := BernoulliGenerator new.
+	g := PMLinearCongruentialRandomGenerator new.
+	bern := PMBernoulliGenerator new.
 	self
-		assert: (bern generator isKindOf: BernoulliGenerator defaultGenerator).
+		assert: (bern generator isKindOf: PMBernoulliGenerator defaultGeneratorClass).
 	bern generator: g.
-	self assert: (bern generator isKindOf: LCRandom)
+	self assert: (bern generator isKindOf: PMLinearCongruentialRandomGenerator)

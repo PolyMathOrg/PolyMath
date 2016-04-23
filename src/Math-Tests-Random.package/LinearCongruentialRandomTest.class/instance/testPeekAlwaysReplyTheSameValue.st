@@ -1,5 +1,5 @@
 tests
 testPeekAlwaysReplyTheSameValue
 	| g |
-	g := LCRandom new.
+	g := PMLinearCongruentialRandomGenerator new.
 	self assert: g peek equals: g peek

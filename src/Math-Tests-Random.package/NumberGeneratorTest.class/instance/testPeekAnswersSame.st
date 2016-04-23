@@ -2,7 +2,7 @@ tests
 testPeekAnswersSame
 	"every subclass should implement some basic behavior."
 
-	NumberGenerator subclasses
+	PMNumberGenerator subclasses
 		do: [ :ea | 
 			| random numberGenerator |
 			numberGenerator := ea new.

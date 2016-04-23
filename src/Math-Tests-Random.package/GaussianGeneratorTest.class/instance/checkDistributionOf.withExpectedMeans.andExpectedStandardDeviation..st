@@ -1,4 +1,4 @@
-as yet unclassified
+utils
 checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd
 	"fixme: this test ignores the standard deviation and occasionally fails"
 	| data m |

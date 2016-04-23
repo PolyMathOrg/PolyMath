@@ -1,6 +1,6 @@
-accessing
+tests
 testGeneratorStreamProducesNumbers
-	RandomGenerator subclasses
+	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen |
 			gen := cls new.

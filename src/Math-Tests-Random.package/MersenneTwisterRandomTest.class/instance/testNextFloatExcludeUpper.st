@@ -3,7 +3,7 @@ testNextFloatExcludeUpper
 	"this revealed a bug in early versions, excludeUpper was producing between 0 and 2"
 
 	| g sample1 sample2 |
-	g := MersenneTwisterRandom new.
+	g := PMMersenneTwisterRandomGenerator new.
 	sample1 := Array new: 10000.
 	sample2 := Array new: 10000.
 	1 to: 10000 do: [ :i | 

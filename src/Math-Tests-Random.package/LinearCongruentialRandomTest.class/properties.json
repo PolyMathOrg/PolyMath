@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "LCRandomTest",
+	"name" : "LinearCongruentialRandomTest",
 	"type" : "normal"
 }

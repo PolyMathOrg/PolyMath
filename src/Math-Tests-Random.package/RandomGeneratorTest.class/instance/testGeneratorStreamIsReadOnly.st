@@ -1,6 +1,6 @@
-accessing
+tests
 testGeneratorStreamIsReadOnly
-	RandomGenerator subclasses
+	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen |
 			gen := cls new.

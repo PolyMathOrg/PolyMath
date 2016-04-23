@@ -1,5 +1,5 @@
 tests
 testPeekAlwaysReplyTheSameValue
 	| g |
-	g := LehmerRandom new.
+	g := PMLehmerRandomGenerator new.
 	self assert: g peek equals: g peek

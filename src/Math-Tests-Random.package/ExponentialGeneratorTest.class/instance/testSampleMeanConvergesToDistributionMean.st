@@ -1,9 +1,9 @@
-tests-as yet unclassified
+tests
 testSampleMeanConvergesToDistributionMean
 	"testing a random sample seems suspect. We use a 5% interval here"
 
 	| eg arr |
-	eg := ExponentialGenerator mean: 10.
+	eg := PMExponentialGenerator mean: 10.
 	arr := Array new: 10000.
 	(1 to: 10000) do: [ :index | arr at: index put: eg next ].
 	self

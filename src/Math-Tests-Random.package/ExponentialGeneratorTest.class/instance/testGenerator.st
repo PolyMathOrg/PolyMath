@@ -1,10 +1,10 @@
-tests-as yet unclassified
+tests
 testGenerator
 	| eg |
-	eg := ExponentialGenerator new.
+	eg := PMExponentialGenerator new.
 	self
-		assert: (eg generator isKindOf: ExponentialGenerator defaultGenerator).
-	self assert: (eg generator isKindOf: RandomGenerator).
-	eg generator: MersenneTwisterRandom new.
-	self assert: (eg generator isKindOf: MersenneTwisterRandom).
+		assert: (eg generator isKindOf: PMExponentialGenerator defaultGeneratorClass).
+	self assert: (eg generator isKindOf: PMRandomGenerator).
+	eg generator: PMMersenneTwisterRandomGenerator new.
+	self assert: (eg generator isKindOf: PMMersenneTwisterRandomGenerator).
 	self assert: (eg next isKindOf: Number)

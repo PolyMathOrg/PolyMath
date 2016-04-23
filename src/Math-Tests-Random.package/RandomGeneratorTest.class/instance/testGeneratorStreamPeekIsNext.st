@@ -1,6 +1,6 @@
-accessing
+tests
 testGeneratorStreamPeekIsNext
-	RandomGenerator subclasses
+	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen value |
 			gen := cls new.

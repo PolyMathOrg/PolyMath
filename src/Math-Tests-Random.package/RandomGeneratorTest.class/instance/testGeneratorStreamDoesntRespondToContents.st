@@ -1,6 +1,6 @@
-as yet unclassified
+tests
 testGeneratorStreamDoesntRespondToContents
-	RandomGenerator subclasses do: 
+	PMRandomGenerator subclasses do: 
 	[:cls | | gen value |
 		gen := cls new.
 		self should: [gen contents] raise: Error].

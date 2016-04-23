@@ -1,6 +1,6 @@
-as yet unclassified
+tests
 testGeneratorStreamProducesRandomNumbers
-	RandomGenerator subclasses do: 
+	PMRandomGenerator subclasses do: 
 	[:cls | | gen value |
 		gen := cls new.
 		value := gen next.
