@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbIterativeProcess",
+	"super" : "PMIterativeProcess",
 	"category" : "Math-Clustering",
 	"classinstvars" : [ ],
 	"pools" : [ ],
