@@ -12,6 +12,6 @@
 		"result",
 		"iterations"
 	],
-	"name" : "DhbIterativeProcess",
+	"name" : "PMIterativeProcess",
 	"type" : "normal"
 }
