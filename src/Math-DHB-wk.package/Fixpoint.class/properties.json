@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "wernerkassens 4/28/2015 14:11",
-	"super" : "DhbIterativeProcess",
+	"super" : "PMIterativeProcess",
 	"category" : "Math-DHB-wk",
 	"classinstvars" : [ ],
 	"pools" : [ ],
