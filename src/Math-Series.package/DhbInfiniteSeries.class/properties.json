@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbIterativeProcess",
+	"super" : "PMIterativeProcess",
 	"category" : "Math-Series",
 	"classinstvars" : [ ],
 	"pools" : [ ],
