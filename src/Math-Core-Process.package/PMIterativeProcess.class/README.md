@@ -1,4 +1,4 @@
-A DhbIterativeProcess class is an abstract base class for processes which follow an iterative pattern. 
+A PMIterativeProcess class is an abstract base class for processes which follow an iterative pattern. 
 
 Subclasses of IterativeProcess will redefine
 	initializeIterations
