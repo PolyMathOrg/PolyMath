@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "wk 4/24/2012 16:38",
-	"super" : "DhbGeneticOptimizer",
+	"super" : "PMGeneticOptimizer",
 	"category" : "Math-FunctionFit",
 	"classinstvars" : [ ],
 	"pools" : [ ],
