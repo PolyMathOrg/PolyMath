@@ -8,7 +8,7 @@ testNewtonZeroFinder2
 	
 	This case requires line search to decrease the initial step."
 	| zeroFinder result |
-	zeroFinder := DhbNewtonZeroFinder
+	zeroFinder := PMNewtonZeroFinder
 		function: [ :x | x arcTan ]
 		derivative: [ :x | 1 / (1 + x squared) ].
 	zeroFinder initialValue: 5.0.

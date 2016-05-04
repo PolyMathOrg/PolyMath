@@ -4,7 +4,7 @@ testOptimizeOneDimension
 
 	| distr finder maximum |
 	distr := DhbGammaDistribution shape: 2 scale: 5.
-	finder := DhbOneVariableFunctionOptimizer maximizingFunction: distr.
+	finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.
 	finder desiredPrecision: 1.0e-6.
 	maximum := finder evaluate.
 	self assert: (maximum - 5) abs < 1.0e-6.

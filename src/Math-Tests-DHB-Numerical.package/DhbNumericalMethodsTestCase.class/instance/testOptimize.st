@@ -9,7 +9,7 @@ testOptimize
 	r = 0
 		ifTrue: [ 1 ]
 		ifFalse: [ r sqrt sin / r ] ].
-	finder := DhbMultiVariableGeneralOptimizer maximizingFunction: fBlock.
+	finder := PMMultiVariableGeneralOptimizer maximizingFunction: fBlock.
 	finder desiredPrecision: 1.0e-6.
 	finder
 		origin: #(0.5 1.0 0.5) asDhbVector;

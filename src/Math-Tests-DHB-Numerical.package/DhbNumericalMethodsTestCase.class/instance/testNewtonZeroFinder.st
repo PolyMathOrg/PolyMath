@@ -3,7 +3,7 @@ testNewtonZeroFinder
 	"Code Example 5.3"
 
 	| zeroFinder result |
-	zeroFinder := DhbNewtonZeroFinder
+	zeroFinder := PMNewtonZeroFinder
 		function: [ :x | x errorFunction - 0.9 ].
 	zeroFinder initialValue: 1.0.
 	result := zeroFinder evaluate.

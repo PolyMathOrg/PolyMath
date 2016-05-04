@@ -9,7 +9,7 @@ testNewtonZeroFinder3
 	This should converge in two iterations: the first iteration produces large step,
 	but the second iteration step is zero => convergence"
 	| zeroFinder result |
-	zeroFinder := DhbNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1  ].
+	zeroFinder := PMNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1  ].
 	zeroFinder initialValue: 5.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.

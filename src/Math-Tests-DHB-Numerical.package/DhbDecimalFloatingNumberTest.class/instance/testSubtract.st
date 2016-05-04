@@ -1,10 +1,10 @@
 tests
 testSubtract
 	| a b difference |
-	a := DhbDecimalFloatingNumber new: 0.1.
-	b := DhbDecimalFloatingNumber new: 0.2.
+	a := PMDecimalFloatingNumber new: 0.1.
+	b := PMDecimalFloatingNumber new: 0.2.
 	difference := b - a.
-	self assert: (difference isKindOf: DhbDecimalFloatingNumber).
+	self assert: (difference isKindOf: PMDecimalFloatingNumber).
 
 	" this errors raised by ln (domain is x > 0)"
 	self should: [ difference value ~= (a - b) value ] raise: Error.

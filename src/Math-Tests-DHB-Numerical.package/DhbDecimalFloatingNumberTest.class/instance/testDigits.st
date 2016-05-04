@@ -1,12 +1,12 @@
 tests
 testDigits
 	self
-		assert: DhbDecimalFloatingNumber digits
-		equals: DhbDecimalFloatingNumber defaultDigits.
-	DhbDecimalFloatingNumber resetDigits.
-	self shouldnt: [ DhbDecimalFloatingNumber digits isNil ].
-	DhbDecimalFloatingNumber defaultDigits: 24.
-	self shouldnt: [ DhbDecimalFloatingNumber digits isNil ].
-	self assert: DhbDecimalFloatingNumber digits equals: 24.
-	self assert: DhbDecimalFloatingNumber defaultDigits equals: 15.
-	DhbDecimalFloatingNumber resetDigits
+		assert: PMDecimalFloatingNumber digits
+		equals: PMDecimalFloatingNumber defaultDigits.
+	PMDecimalFloatingNumber resetDigits.
+	self shouldnt: [ PMDecimalFloatingNumber digits isNil ].
+	PMDecimalFloatingNumber defaultDigits: 24.
+	self shouldnt: [ PMDecimalFloatingNumber digits isNil ].
+	self assert: PMDecimalFloatingNumber digits equals: 24.
+	self assert: PMDecimalFloatingNumber defaultDigits equals: 15.
+	PMDecimalFloatingNumber resetDigits
