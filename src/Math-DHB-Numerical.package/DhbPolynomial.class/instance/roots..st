@@ -2,7 +2,7 @@ information
 roots: aNumber
 
 	| pol roots x rootFinder |
-	rootFinder := DhbNewtonZeroFinder new.
+	rootFinder := PMNewtonZeroFinder new.
 	rootFinder desiredPrecision: aNumber.
 	pol := self class coefficients: ( coefficients reverse collect: [ :each | each asFloat]).
 	roots := OrderedCollection new: self degree.

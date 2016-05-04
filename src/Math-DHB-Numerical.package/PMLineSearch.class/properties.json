@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "MobiusEng 5/4/2016 13:24",
+	"super" : "PMFunctionalIterator",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"failingMin",
+		"boundaryValues",
+		"useCubicApproximation",
+		"extendedResult"
+	],
+	"name" : "PMLineSearch",
+	"type" : "normal"
+}

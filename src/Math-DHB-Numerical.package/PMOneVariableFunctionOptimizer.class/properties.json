@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PMFunctionOptimizer",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"GoldenSection"
+	],
+	"instvars" : [ ],
+	"name" : "PMOneVariableFunctionOptimizer",
+	"type" : "normal"
+}

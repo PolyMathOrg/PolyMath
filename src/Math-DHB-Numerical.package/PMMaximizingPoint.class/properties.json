@@ -1,13 +1,11 @@
 {
-	"commentStamp" : "MobiusEng 5/4/2016 13:43",
-	"super" : "PMNewtonZeroFinder",
+	"commentStamp" : "",
+	"super" : "PMMinimizingPoint",
 	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"old"
-	],
-	"name" : "CdfNewtonZeroFinder",
+	"instvars" : [ ],
+	"name" : "PMMaximizingPoint",
 	"type" : "normal"
 }

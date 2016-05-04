@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbOneVariableFunctionOptimizer",
+	"super" : "PMOneVariableFunctionOptimizer",
 	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],
