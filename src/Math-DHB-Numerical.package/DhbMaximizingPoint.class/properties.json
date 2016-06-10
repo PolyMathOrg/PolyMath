@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbOneVariableFunctionOptimizer",
-	"category" : "Math-DHB-Numerical",
+	"super" : "DhbMinimizingPoint",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "DhbOptimizingBracketFinder",
+	"name" : "DhbMaximizingPoint",
 	"type" : "normal"
 }

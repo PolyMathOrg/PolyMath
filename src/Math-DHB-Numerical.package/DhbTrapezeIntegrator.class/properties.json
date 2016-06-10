@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "PMFunctionalIterator",
+	"super" : "DhbFunctionalIterator",
 	"category" : "Math-DHB-Numerical",
 	"classinstvars" : [ ],
 	"pools" : [ ],

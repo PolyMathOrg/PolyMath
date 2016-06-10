@@ -1,13 +1,13 @@
 {
-	"commentStamp" : "WernerKassens 9/16/2015 17:19",
-	"super" : "DhbNewtonZeroFinder",
+	"commentStamp" : "",
+	"super" : "DhbFunctionOptimizer",
 	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"old"
+		"unidimensionalFinder"
 	],
-	"name" : "CdfNewtonZeroFinder",
+	"name" : "DhbHillClimbingOptimizer",
 	"type" : "normal"
 }
