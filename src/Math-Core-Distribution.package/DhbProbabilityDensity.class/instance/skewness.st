@@ -1,5 +1,6 @@
 information
 skewness
 	"Answer the skewness of the receiver.
-	 Undefined. Must be implemented by subclass."
-	^nil
+	 Must be implemented by subclass."
+
+	self subclassResponsibility
