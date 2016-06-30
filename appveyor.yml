@@ -1,0 +1,22 @@
+environment:
+  CYG_ROOT: C:\cygwin
+  CYG_BASH: C:\cygwin\bin\bash
+  CYG_CACHE: C:\cygwin\var\cache\setup
+  CYG_EXE: C:\cygwin\setup-x86.exe
+  CYG_MIRROR: http://cygwin.mirror.constant.com
+  SCI_RUN: /cygdrive/c/smalltalkCI-master/run.sh
+  matrix:
+    - SMALLTALK: Pharo-5.0
+
+platform:
+  - x86
+
+install:
+  - '%CYG_EXE% -qnNdO -R "%CYG_ROOT%" -s "%CYG_MIRROR%" -l "%CYG_CACHE%" -P unzip'
+  - ps: Start-FileDownload "https://github.com/hpi-swa/smalltalkCI/archive/master.zip" "C:\smalltalkCI.zip"
+  - 7z x C:\smalltalkCI.zip -oC:\ -y > NULL
+
+build: false
+
+test_script:
+  - '%CYG_BASH% -lc "cd $APPVEYOR_BUILD_FOLDER; exec 0</dev/null; $SCI_RUN"'
