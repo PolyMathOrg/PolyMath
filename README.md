@@ -1,4 +1,4 @@
-# PolyMath
+# PolyMath  [![Follow](https://img.shields.io/twitter/follow/the_poly_math.svg?style=social)](https://twitter.com/intent/follow?screen_name=the_poly_math)
 
 [![Build Status](https://travis-ci.org/PolyMathOrg/PolyMath.svg?branch=master)](https://travis-ci.org/PolyMathOrg/PolyMath)
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
