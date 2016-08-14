@@ -15,7 +15,7 @@ Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
     loadVersion: '0.64'
-    
+```
 
 We have also a continuous integration job running here: https://ci.inria.fr/pharo-contribution/job/SciSmalltalk/
 
