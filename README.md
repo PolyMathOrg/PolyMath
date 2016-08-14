@@ -5,10 +5,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
 
-
 PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/SciSmalltalk). All the code and documentation will be moved here soon. 
-
-Twitter: https://twitter.com/the_poly_math
 
 ```Smalltalk
 Gofer new
@@ -21,7 +18,7 @@ We have also a continuous integration job running here: https://ci.inria.fr/phar
 
 We have **671** green tests !
 
-  - Pharo **5**: [![Build Status](https://ci.inria.fr/pharo-contribution/job/SciSmalltalk/PHARO=50,VERSION=stable,VM=vm/badge/icon)](https://ci.inria.fr/pharo-contribution/job/SciSmalltalk/PHARO=50,VERSION=stable,VM=vm/)
+[![Build Status](https://ci.inria.fr/pharo-contribution/job/SciSmalltalk/PHARO=50,VERSION=stable,VM=vm/badge/icon)](https://ci.inria.fr/pharo-contribution/job/SciSmalltalk/PHARO=50,VERSION=stable,VM=vm/)
  
 PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
