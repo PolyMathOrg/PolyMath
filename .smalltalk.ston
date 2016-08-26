@@ -9,6 +9,11 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
+   #coverage : {
+      #categories : [ 'Math-*' ]
+    },
     #categories : [ 'Math-Test*' ]
   }
 }
+
+
