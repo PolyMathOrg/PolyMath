@@ -4,7 +4,7 @@ testEigenvalues
 
 	| m charPol roots eigenvalues finder |
 	m := DhbMatrix rows: #(#(3 -2 0) #(-2 7 1) #(0 1 5)).
-	charPol := DhbPolynomial coefficients: #(82 -66 15 -1).
+	charPol := PMPolynomial coefficients: #(82 -66 15 -1).
 	roots := charPol roots asSortedCollection asArray reverse.
 	finder := DhbJacobiTransformation matrix: m.
 	finder desiredPrecision: 1.0e-09.
