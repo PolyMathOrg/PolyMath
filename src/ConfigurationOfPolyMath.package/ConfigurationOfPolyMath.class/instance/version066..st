@@ -46,13 +46,13 @@ version066: spec
 			package: 'Math-KernelSmoothing' with: 'Math-KernelSmoothing-WernerKassens.2';
 			package: 'Math-AutomaticDifferenciation' with: 'Math-AutomaticDifferenciation-StephaneDucasse.2';
 			package: 'Math-Tests-AutomaticDifferenciation' with: 'Math-Tests-AutomaticDifferenciation-StephaneDucasse.3';
-			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-WernerKassens.3';
+			package: 'Math-QuaternionExtensions' with: 'Math-QuaternionExtensions-SergeStinckwich.4';
 			package: 'Math-DHB-NumericalExtensions' with: 'Math-DHB-NumericalExtensions-StephaneDucasse.8';
 			package: 'Math-ODE' with: 'Math-ODE-StephaneDucasse.32';
 			package: 'Math-Benchmarks-ODE' with: 'Math-Benchmarks-ODE-YuriyTymchuk.7';
 			package: 'Math-Accuracy-ODE' with: 'Math-Accuracy-ODE-StephaneDucasse.6';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-StephaneDucasse.17';
-			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-StephaneDucasse.5';
+			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-SergeStinckwich.6';
 			package: 'Math-Tests-Complex' with: 'Math-Tests-Complex-SergeStinckwich.7';
 			package: 'Math-PrincipalComponentAnalysis' with: 'Math-PrincipalComponentAnalysis-StephaneDucasse.2';
 			package: 'Math-RandomDistributionBased' with: 'Math-RandomDistributionBased-StephaneDucasse.2';
