@@ -11,7 +11,7 @@ PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/Sc
 Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
-    loadVersion: '0.64'
+    loadVersion: '0.65'
 ```
 
 We have also a continuous integration job running here: https://ci.inria.fr/pharo-contribution/job/PolyMath/
