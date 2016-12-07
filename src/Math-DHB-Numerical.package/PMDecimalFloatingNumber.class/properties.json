@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "MobiusEng 5/4/2016 13:36",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [
+		"Digits"
+	],
+	"instvars" : [
+		"mantissa",
+		"exponent"
+	],
+	"name" : "PMDecimalFloatingNumber",
+	"type" : "normal"
+}

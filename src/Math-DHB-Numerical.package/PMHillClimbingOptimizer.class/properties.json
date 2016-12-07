@@ -1,13 +1,13 @@
 {
-	"commentStamp" : "MobiusEng 5/4/2016 13:43",
-	"super" : "PMNewtonZeroFinder",
+	"commentStamp" : "",
+	"super" : "PMFunctionOptimizer",
 	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"old"
+		"unidimensionalFinder"
 	],
-	"name" : "CdfNewtonZeroFinder",
+	"name" : "PMHillClimbingOptimizer",
 	"type" : "normal"
 }

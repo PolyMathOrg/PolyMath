@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PMPolynomial",
+	"category" : "Math-DHB-Numerical-Math-Polynomials",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"errorMatrix"
+	],
+	"name" : "PMEstimatedPolynomial",
+	"type" : "normal"
+}

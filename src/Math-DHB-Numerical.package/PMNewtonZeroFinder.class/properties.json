@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "MobiusEng 5/4/2016 13:34",
+	"super" : "PMFunctionalIterator",
+	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"derivativeBlock",
+		"searchStep",
+		"lastFunctionValue",
+		"newFunctionValue",
+		"lineSearch",
+		"lineSearchFunctionBlock"
+	],
+	"name" : "PMNewtonZeroFinder",
+	"type" : "normal"
+}

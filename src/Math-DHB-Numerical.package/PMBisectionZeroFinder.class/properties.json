@@ -1,13 +1,14 @@
 {
-	"commentStamp" : "MobiusEng 5/4/2016 13:43",
-	"super" : "PMNewtonZeroFinder",
+	"commentStamp" : "MobiusEng 5/4/2016 13:33",
+	"super" : "PMFunctionalIterator",
 	"category" : "Math-DHB-Numerical-Math-FunctionIterator",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"old"
+		"positiveX",
+		"negativeX"
 	],
-	"name" : "CdfNewtonZeroFinder",
+	"name" : "PMBisectionZeroFinder",
 	"type" : "normal"
 }
