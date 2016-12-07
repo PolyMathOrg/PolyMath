@@ -3,8 +3,8 @@ testPolynomialMultiplication
 	"Code example 2.3"
 
 	| pol1 pol2 polynomial |
-	pol1 := DhbPolynomial coefficients: #(2 -3 1).
-	pol2 := DhbPolynomial coefficients: #(-3 7 2 1).
+	pol1 := PMPolynomial coefficients: #(2 -3 1).
+	pol2 := PMPolynomial coefficients: #(-3 7 2 1).
 	polynomial := pol1 * pol2.
 	self assert: (polynomial at: 0) equals: -6.
 	self assert: (polynomial at: 1) equals: 23.

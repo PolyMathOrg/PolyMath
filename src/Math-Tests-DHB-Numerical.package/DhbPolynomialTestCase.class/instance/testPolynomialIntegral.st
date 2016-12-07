@@ -3,7 +3,7 @@ testPolynomialIntegral
 	"Code example 2.3"
 
 	| polynomial |
-	polynomial := (DhbPolynomial coefficients: #(-3 7 2 1)) integral.
+	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral.
 	self assert: (polynomial at: 0) equals: 0.
 	self assert: (polynomial at: 1) equals: -3.
 	self assert: (polynomial at: 2) equals: 7 / 2.

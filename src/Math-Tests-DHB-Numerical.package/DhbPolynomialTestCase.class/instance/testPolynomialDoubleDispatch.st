@@ -2,7 +2,7 @@ arithmetic
 testPolynomialDoubleDispatch
 	| n p |
 	n := 3.2.
-	p := DhbPolynomial coefficients: #(1 0 1).
+	p := PMPolynomial coefficients: #(1 0 1).
 	self assert: p + n equals: n + p.
 	self assert: p * n equals: n * p.
 	n := 3.

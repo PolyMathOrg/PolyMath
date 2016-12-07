@@ -3,7 +3,7 @@ testLeastSquarePolynomial
 	"Code example 10.5"
 
 	| fit estimation |
-	fit := DhbPolynomialLeastSquareFit new: 3.
+	fit := PMPolynomialLeastSquareFit new: 3.
 	fit
 		add: (DhbWeightedPoint point: 1 @ 2.0);
 		add: (DhbWeightedPoint point: 2 @ 21.0);

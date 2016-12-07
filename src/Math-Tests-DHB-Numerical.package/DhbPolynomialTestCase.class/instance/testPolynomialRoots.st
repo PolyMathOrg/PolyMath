@@ -3,7 +3,7 @@ testPolynomialRoots
 	"Code Example 5.5"
 
 	| polynomial roots |
-	polynomial := DhbPolynomial coefficients: #(-10 -13 -2 1).
+	polynomial := PMPolynomial coefficients: #(-10 -13 -2 1).
 	roots := polynomial roots asSortedCollection asArray.
 	self assert: roots size equals: 3.
 	self

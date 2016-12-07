@@ -1,8 +1,8 @@
 function evaluation
 testPolynomialAddition
 	| polynomial |
-	polynomial := (DhbPolynomial coefficients: #(2 -3 1))
-		+ (DhbPolynomial coefficients: #(-3 7 2 1)).
+	polynomial := (PMPolynomial coefficients: #(2 -3 1))
+		+ (PMPolynomial coefficients: #(-3 7 2 1)).
 	self assert: (polynomial at: 0) equals: -1.
 	self assert: (polynomial at: 1) equals: 4.
 	self assert: (polynomial at: 2) equals: 3.
