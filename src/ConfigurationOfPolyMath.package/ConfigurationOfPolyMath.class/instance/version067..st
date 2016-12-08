@@ -27,7 +27,8 @@ version067: spec
 			package: 'Math-FastFourierTransform' with: 'Math-FastFourierTransform-StephaneDucasse.2';
 			package: 'ExtendedNumberParser' with: 'ExtendedNumberParser-nice.1';
 			package: 'Math-ArbitraryPrecisionFloat' with: 'Math-ArbitraryPrecisionFloat-SergeStinckwich.1';
-			package: 'Math-Quantile' with: 'Math-Quantile-wernerkassens.1';
+			package: 'Math-Quantile' with: 'Math-Quantile-SergeStinckwich.2';
+			package: 'Math-Tests-Quantile' with: 'Math-Tests-Quantile-SergeStinckwich.2';
 			package: 'Math-Tests-Random' with: 'Math-Tests-Random-StephaneDucasse.14';
 			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-StephaneDucasse.27';
 			package: 'Math-Tests-Quaternion' with: 'Math-Tests-Quaternion-SergeStinckwich.6';

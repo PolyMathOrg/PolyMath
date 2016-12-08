@@ -107,12 +107,14 @@ baseline037: spec
 				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
 			package: 'Math-Tests-FunctionFit' with: [
 				spec requires: #('Math-FunctionFit' 'Math-DHB-wk' ). ];
+			package:'Math-Tests-Quantile' with:
+			[ spec requires:#('Math-Quantile'). ];
 			package: 'Math-Tests-DHB-wk' with: [
 				spec requires: #('Math-DHB-wk' ). ].
 		spec 
 			group: 'Extensions' with: #('Math-Clustering' 'Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-Chromosome' 'Math-DHB-NumericalExtensions' 'Math-DHB-wk' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov' );
 			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' );
 			group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' );
-			group: 'Tests' with: #('Math-Test-Matrix' 'Math-Tests-Clustering' 'Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' );
+			group: 'Tests' with: #('Math-Test-Matrix' 'Math-Tests-Clustering' 'Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' );
 			group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core' );
 			group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree' ). ].
