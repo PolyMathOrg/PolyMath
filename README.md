@@ -14,11 +14,7 @@ Gofer new
     loadVersion: '0.66'
 ```
 
-We have also a continuous integration job running here: https://ci.inria.fr/pharo-contribution/job/PolyMath/
-
-We have **671** green tests !
-
-[![Build Status](https://ci.inria.fr/pharo-contribution/job/PolyMath/PHARO=50,VERSION=stable,VM=vm/badge/icon)](https://ci.inria.fr/pharo-contribution/job/PolyMath/PHARO=50,VERSION=stable,VM=vm/)
+We have **703** green tests !
  
 PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
