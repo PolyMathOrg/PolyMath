@@ -1,0 +1,3 @@
+*Math-ArbitraryPrecisionFloat
+asArbitraryPrecisionFloatNumBits: n 
+	self subclassResponsibility

@@ -1,0 +1,3 @@
+testing
+isZero
+	^mantissa isZero

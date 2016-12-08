@@ -1,0 +1,3 @@
+testing
+positive
+	^mantissa positive

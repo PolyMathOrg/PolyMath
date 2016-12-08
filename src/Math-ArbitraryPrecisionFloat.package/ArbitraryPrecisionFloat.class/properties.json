@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "nice 2/7/2007 23:08",
+	"super" : "Number",
+	"category" : "Math-ArbitraryPrecisionFloat",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"nBits",
+		"mantissa",
+		"biasedExponent"
+	],
+	"name" : "ArbitraryPrecisionFloat",
+	"type" : "normal"
+}
