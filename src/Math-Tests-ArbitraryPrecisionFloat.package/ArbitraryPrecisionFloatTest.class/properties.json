@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "nice 4/29/2006 01:28",
+	"super" : "TestCase",
+	"category" : "Math-Tests-ArbitraryPrecisionFloat",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"zero",
+		"one",
+		"two",
+		"half",
+		"minusOne",
+		"minusTwo",
+		"huge"
+	],
+	"name" : "ArbitraryPrecisionFloatTest",
+	"type" : "normal"
+}
