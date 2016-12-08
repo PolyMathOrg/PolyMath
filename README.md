@@ -1,5 +1,5 @@
 # PolyMath  [![Follow](https://img.shields.io/twitter/follow/poly_math_org.svg?style=social)](https://twitter.com/intent/follow?screen_name=poly_math_org)
- 
+
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/PolyMathOrg/PolyMath.svg?branch=master)](https://travis-ci.org/PolyMathOrg/PolyMath)
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
