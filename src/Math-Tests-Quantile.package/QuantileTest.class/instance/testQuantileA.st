@@ -11,7 +11,7 @@ testQuantileA
 					4}.
 	self assert: (self resultCollect: a method: #inverseCDF) = #(1 1 2 3 4).
 	self assert: (self resultCollect: a method: #closestObservation) = #(1 1 2 3 4).
-	self assert: (self resultCollect: a method: #California) = #(1 1 2 3 4).
+	self assert: (self resultCollect: a method: #california) = #(1 1 2 3 4).
 	self
 		assert:
 			(self resultCollect: a method: #hydrologist)
@@ -23,7 +23,7 @@ testQuantileA
 					4}.
 	self
 		assert:
-			(self resultCollect: a method: #Weibull)
+			(self resultCollect: a method: #weibull)
 				=
 					{1.
 					(5 / 4).

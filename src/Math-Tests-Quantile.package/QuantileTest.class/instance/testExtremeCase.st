@@ -9,7 +9,7 @@ testExtremeCase
 		assert:
 			(a
 				quantile: 0
-				method:
+				withProbs:
 					{0.5.
 					0.5.
 					(1 / 2).

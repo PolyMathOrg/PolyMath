@@ -1,3 +1,7 @@
 tests
 testError
-self should: [a quantile: 0.5 method:#(1 -1 0)] raise: Error whoseDescriptionIncludes: 'method: ',#(1 -1 0)asString description: 'wrong error message'
+	self
+		should: [ a quantile: 0.5 withProbs: #(1 -1 0) ]
+		raise: Error
+		whoseDescriptionIncludes: 'SubscriptOutOfBounds'
+		description: 'Wrong error message'
