@@ -1,3 +1,3 @@
 accessing
-parameterSize 
-^varArray size -1
+parameterSize
+	^ varArray size - 1
