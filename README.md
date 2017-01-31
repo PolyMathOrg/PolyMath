@@ -11,7 +11,7 @@ PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/Sc
 Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
-    loadVersion: '0.68'
+    loadVersion: '0.69'
 ```
 
 We have **703** green tests !
