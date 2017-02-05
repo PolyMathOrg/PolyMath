@@ -1,3 +1,3 @@
 constants
 elementaryCharge
-	^elementaryCharge
+	^ elementaryCharge

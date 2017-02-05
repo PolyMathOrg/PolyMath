@@ -1,3 +1,3 @@
 constants
 RydbergConstant
-	^RydbergConstant
+	^ RydbergConstant

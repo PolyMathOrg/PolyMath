@@ -1,3 +1,3 @@
 constants
 magneticConstant
-	^magneticConstant 
+	^ magneticConstant

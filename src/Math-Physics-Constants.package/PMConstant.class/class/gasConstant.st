@@ -1,3 +1,3 @@
 constants
 gasConstant
-	^gasConstant
+	^ gasConstant

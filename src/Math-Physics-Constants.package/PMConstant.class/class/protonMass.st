@@ -1,3 +1,3 @@
 constants
 protonMass
-	^protonMass
+	^ protonMass

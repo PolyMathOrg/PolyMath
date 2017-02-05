@@ -1,3 +1,3 @@
 constants
-StefanBoltzmannConstant 
-	^StefanBoltzmannConstant 
+StefanBoltzmannConstant
+	^ StefanBoltzmannConstant

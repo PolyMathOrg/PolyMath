@@ -1,3 +1,3 @@
 constants
 electronMass
-	^electronMass
+	^ electronMass

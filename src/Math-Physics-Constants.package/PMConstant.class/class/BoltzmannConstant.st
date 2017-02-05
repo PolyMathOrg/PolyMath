@@ -1,3 +1,3 @@
 constants
 BoltzmannConstant
-	^BoltzmannConstant
+	^ BoltzmannConstant

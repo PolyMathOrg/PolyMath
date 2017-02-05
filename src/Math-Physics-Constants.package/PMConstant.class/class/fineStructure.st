@@ -1,3 +1,3 @@
 constants
 fineStructure
-	^fineStructure 
+	^ fineStructure

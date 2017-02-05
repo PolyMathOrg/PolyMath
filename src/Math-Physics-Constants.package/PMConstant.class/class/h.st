@@ -1,3 +1,3 @@
 constants
-PlanckConstant
+h
 	^ PlanckConstant

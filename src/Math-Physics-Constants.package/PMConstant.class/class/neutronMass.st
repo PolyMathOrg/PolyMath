@@ -1,3 +1,3 @@
 constants
 neutronMass
-	^neutronMass
+	^ neutronMass

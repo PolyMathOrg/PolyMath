@@ -4,7 +4,7 @@ initialize
 	AvogadroConstant := 6.022140857e23.
 	BoltzmannConstant := 1.38064852e-23.
 	StefanBoltzmannConstant := 5.670367e-8.
-	electricConstan := 8.854187817620389e-12.
+	electricConstant := 8.854187817620389e-12.
 	elementaryCharge := 1.6021766208e-19.
 	electronMass := 9.10938356e-31.
 	fineStructure := 0.0072973525664.

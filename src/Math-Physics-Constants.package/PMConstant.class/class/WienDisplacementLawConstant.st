@@ -1,3 +1,3 @@
 constants
 WienDisplacementLawConstant
-	^WienDisplacementLawConstant
+	^ WienDisplacementLawConstant

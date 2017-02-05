@@ -1,3 +1,3 @@
 constants
-speedOfLight
+c
 	^ speedOfLight
