@@ -1,0 +1,3 @@
+constants
+elementaryCharge
+	^elementaryCharge

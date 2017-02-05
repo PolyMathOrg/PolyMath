@@ -1,0 +1,3 @@
+constants
+standardAccelerationOfGravity
+	^standardAccelerationOfGravity 

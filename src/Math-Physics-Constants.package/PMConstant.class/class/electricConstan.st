@@ -1,0 +1,3 @@
+constants
+electricConstan 
+	^electricConstan
