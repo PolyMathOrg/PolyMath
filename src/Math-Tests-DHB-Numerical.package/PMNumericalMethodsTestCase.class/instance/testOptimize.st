@@ -12,8 +12,8 @@ testOptimize
 	finder := PMMultiVariableGeneralOptimizer maximizingFunction: fBlock.
 	finder desiredPrecision: 1.0e-6.
 	finder
-		origin: #(0.5 1.0 0.5) asDhbVector;
-		range: #(2 2 2) asDhbVector.
+		origin: #(0.5 1.0 0.5) asPMVector;
+		range: #(2 2 2) asPMVector.
 	result := finder evaluate.
 	self assert: finder precision < 1.0e-6.
 	self assert: (result at: 1) abs < 1.0e-6.

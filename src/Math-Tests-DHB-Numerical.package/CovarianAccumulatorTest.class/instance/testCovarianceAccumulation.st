@@ -5,7 +5,7 @@ testCovarianceAccumulation
 	| accumulator average covarianceMatrix |
 	accumulator := PMCovarianceAccumulator new: 3.
 	#(#(1 2 3) #(2 3 4) #(1 3 2) #(4 3 1) #(1 3 1) #(1 4 2) #(3 1 2) #(3 4 2))
-		do: [ :x | accumulator accumulate: x asDhbVector ].
+		do: [ :x | accumulator accumulate: x asPMVector ].
 	average := accumulator average.
 	self assert: ((average at: 1) equalsTo: 2.0).
 	self assert: ((average at: 2) equalsTo: 2.875).

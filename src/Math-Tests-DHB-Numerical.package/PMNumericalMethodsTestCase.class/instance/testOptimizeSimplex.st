@@ -4,7 +4,7 @@ testOptimizeSimplex
 
 	| fBlock simplex educatedGuess result |
 	fBlock := [ :x | (x * x) negated exp ].
-	educatedGuess := #(0.5 1.0 0.5) asDhbVector.
+	educatedGuess := #(0.5 1.0 0.5) asPMVector.
 	simplex := PMSimplexOptimizer maximizingFunction: fBlock.
 	simplex initialValue: educatedGuess.
 	simplex desiredPrecision: 1.0e-6.
