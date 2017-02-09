@@ -12,6 +12,6 @@
 		"inverseFraction",
 		"logNorm"
 	],
-	"name" : "DhbIncompleteBetaFunction",
+	"name" : "PMIncompleteBetaFunction",
 	"type" : "normal"
 }

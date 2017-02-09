@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-DistributionBeta",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -13,6 +13,6 @@
 		"logNorm",
 		"incompleteBetaFunction"
 	],
-	"name" : "DhbBetaDistribution",
+	"name" : "PMBetaDistribution",
 	"type" : "normal"
 }
