@@ -20,5 +20,5 @@ test
 	self assert: (g value: #(-4 6)) equals: r.
 	self
 		assert: (h value: #(0 -2))
-		equals: (DhbMatrix rows: #(#(-4 0) #(0 -2))).
+		equals: (PMMatrix rows: #(#(-4 0) #(0 -2))).
 	self assert: h gradient equals: r
