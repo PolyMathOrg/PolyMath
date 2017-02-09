@@ -5,7 +5,7 @@ testVectorSystem
 	system := ExplicitSystem
 		block: [ :x :t | 
 			| c |
-			c := DhbVector new: 2.
+			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
