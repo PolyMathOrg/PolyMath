@@ -3,7 +3,7 @@ value: anArray
 	| hDualValueTemplate hDualValue |
 	gradient := Array new: anArray size.
 	hDualValueTemplate := anArray collect: [ :i | HyperDualNumber value: i ].
-	^ result := DhbSymmetricMatrix
+	^ result := PMSymmetricMatrix
 		new: anArray size
 		function: [ :x :y | 
 			| r |
