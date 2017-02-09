@@ -4,7 +4,7 @@ testVectorTransposeMatrixOperation
 
 	| c v w |
 	c := PMMatrix rows: #(#(6 8 10) #(18 14 4)).
-	v := #(4 4) asDhbVector.
+	v := #(4 4) asPMVector.
 	w := c transpose * v.
 	self assert: w size equals: 3.
 	self assert: (w at: 1) equals: 96.

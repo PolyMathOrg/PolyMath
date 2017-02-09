@@ -1,7 +1,7 @@
 tests
 testSymmetric
 |a m|
-a:=#(1 2 3)asDhbVector.
+a:=#(1 2 3)asPMVector.
 m:=PMMatrix rows: #((1 2)(3 3)).
 self deny: (m isSymmetric ).
 "but a DhbMatrix can of course also be symmetric, 
