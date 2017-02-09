@@ -4,10 +4,10 @@ accumulateAround: aVector size: aNumber into: aCollection
 	aNumber is the sigma for the distance to the center"
 	
 	| r phi psi localVector |
-	r := (DhbNormalDistribution new: 0 sigma: aNumber) random.
+	r := (PMNormalDistribution new: 0 sigma: aNumber) random.
 	phi := Float pi random.
 	psi := Float pi random.
-	localVector := DhbVector new: 3.
+	localVector := PMVector new: 3.
 	localVector at: 1 put: ( phi sin * psi sin * r );
 					   at: 2 put: ( phi cos * psi sin * r );
 					   at: 3 put: ( psi cos * r ).
