@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "WernerKassens 11/7/2015 16:25",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-KolmogorovSmirnov",
 	"classinstvars" : [ ],
 	"pools" : [ ],
