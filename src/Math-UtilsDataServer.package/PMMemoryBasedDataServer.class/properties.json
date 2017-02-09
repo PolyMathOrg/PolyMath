@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "StephaneDucasse 3/2/2016 15:08",
-	"super" : "DhbAbstractDataServer",
+	"super" : "PMAbstractDataServer",
 	"category" : "Math-UtilsDataServer",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -9,6 +9,6 @@
 		"data",
 		"position"
 	],
-	"name" : "DhbMemoryBasedDataServer",
+	"name" : "PMMemoryBasedDataServer",
 	"type" : "normal"
 }
