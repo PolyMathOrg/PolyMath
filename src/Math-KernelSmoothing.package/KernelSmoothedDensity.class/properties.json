@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "wernerkassens 9/1/2015 23:08",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-KernelSmoothing",
 	"classinstvars" : [ ],
 	"pools" : [ ],
