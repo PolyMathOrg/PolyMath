@@ -1,5 +1,5 @@
 *Math-DHB-Numerical
-asDhbVector
+asPMVector
 	"Convert the receiver to a vector. 
 	(c) Copyrights Didier BESSET, 1999, all rights reserved. 
 	Initial code: 11/2/99"
