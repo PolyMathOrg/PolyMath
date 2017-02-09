@@ -1,11 +1,13 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbStatisticalMoments",
+	"super" : "Object",
 	"category" : "Math-StatisticalMoments",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "DhbFixedStatisticalMoments",
+	"instvars" : [
+		"moments"
+	],
+	"name" : "PMStatisticalMoments",
 	"type" : "normal"
 }

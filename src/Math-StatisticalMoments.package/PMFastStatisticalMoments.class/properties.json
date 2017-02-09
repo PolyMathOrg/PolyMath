@@ -1,13 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "Object",
+	"super" : "PMStatisticalMoments",
 	"category" : "Math-StatisticalMoments",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"moments"
-	],
-	"name" : "DhbStatisticalMoments",
+	"instvars" : [ ],
+	"name" : "PMFastStatisticalMoments",
 	"type" : "normal"
 }

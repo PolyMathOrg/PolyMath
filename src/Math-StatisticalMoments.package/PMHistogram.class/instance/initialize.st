@@ -6,7 +6,7 @@ initialize
 	cacheSize := self class defaultCacheSize.
 	desiredNumberOfBins := self class defaultNumberOfBins.
 	contents := OrderedCollection new: cacheSize.
-	moments := DhbFixedStatisticalMoments new.
+	moments := PMFixedStatisticalMoments new.
 	overflow := 0.
 	underflow := 0.
 	^ self

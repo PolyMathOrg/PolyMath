@@ -5,6 +5,6 @@ tConfidenceLevel: aStatisticalMomentsOrHistogram
 	| sbar dof |
 	dof := self count + aStatisticalMomentsOrHistogram count - 2.
 	sbar := ( ( self unnormalizedVariance + aStatisticalMomentsOrHistogram unnormalizedVariance) / dof) sqrt.
-	^( DhbStudentDistribution degreeOfFreedom: dof)
+	^( PMStudentDistribution degreeOfFreedom: dof)
 		confidenceLevel: ( self average - (aStatisticalMomentsOrHistogram average))
 							/ ( ( 1 / self count + ( 1 / aStatisticalMomentsOrHistogram count)) sqrt * sbar)

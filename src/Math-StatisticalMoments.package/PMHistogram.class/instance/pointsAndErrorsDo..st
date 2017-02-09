@@ -6,4 +6,4 @@ pointsAndErrorsDo: aBlock
 	contents
 		do: [ :each | 
 			x := x + binWidth.
-			aBlock value: (DhbWeightedPoint point: x count: each) ]
+			aBlock value: (PMWeightedPoint point: x count: each) ]

@@ -5,9 +5,9 @@ fConfidenceLevel: aStatisticalMomentsOrHistogram
 	| fValue |
 	fValue := self variance/ aStatisticalMomentsOrHistogram variance.
 	^fValue < 1
-		ifTrue: [ (DhbFisherSnedecorDistribution degreeOfFreedom: aStatisticalMomentsOrHistogram count
+		ifTrue: [ (PMFisherSnedecorDistribution degreeOfFreedom: aStatisticalMomentsOrHistogram count
 						degreeOfFreedom: self count) 
 										confidenceLevel: fValue reciprocal]
-		ifFalse:[ (DhbFisherSnedecorDistribution degreeOfFreedom: self count
+		ifFalse:[ (PMFisherSnedecorDistribution degreeOfFreedom: self count
 						degreeOfFreedom: aStatisticalMomentsOrHistogram count) 
 										confidenceLevel: fValue]

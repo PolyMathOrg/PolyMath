@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "StephaneDucasse 7/12/2015 09:49",
+	"commentStamp" : "OlehShyshkin 2/9/2017 14:41",
 	"super" : "Object",
 	"category" : "Math-StatisticalMoments",
 	"classinstvars" : [ ],
@@ -16,6 +16,6 @@
 		"cacheSize",
 		"desiredNumberOfBins"
 	],
-	"name" : "DhbHistogram",
+	"name" : "PMHistogram",
 	"type" : "normal"
 }
