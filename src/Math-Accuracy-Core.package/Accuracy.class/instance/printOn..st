@@ -3,9 +3,10 @@ printOn: aStream1
 	super printOn: aStream1.
 	self report
 		ifEmpty: [ aStream1 nextPutAll: ' ()' ]
-		ifNotEmptyDo: [ :c | 
+		ifNotEmpty: [ :c | 
 			aStream1
-				nextPutAll: ' (
+				nextPutAll:
+					' (
 ';
 				nextPutAll: c;
 				nextPutAll: ' )' ]
