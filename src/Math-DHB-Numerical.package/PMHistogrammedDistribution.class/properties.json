@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PMProbabilityDensity",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"histogram"
+	],
+	"name" : "PMHistogrammedDistribution",
+	"type" : "normal"
+}

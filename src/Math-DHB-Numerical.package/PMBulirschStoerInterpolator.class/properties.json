@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PMNevilleInterpolator",
+	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMBulirschStoerInterpolator",
+	"type" : "normal"
+}

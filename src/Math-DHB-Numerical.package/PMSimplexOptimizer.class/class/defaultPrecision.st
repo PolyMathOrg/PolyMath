@@ -1,4 +1,4 @@
 information
 defaultPrecision
 		"Private"
-	^DhbFloatingPointMachine new defaultNumericalPrecision * 1000
+	^PMFloatingPointMachine new defaultNumericalPrecision * 1000

@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMLagrangeInterpolator",
+	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"leftErrors",
+		"rightErrors"
+	],
+	"name" : "PMNevilleInterpolator",
+	"type" : "normal"
+}

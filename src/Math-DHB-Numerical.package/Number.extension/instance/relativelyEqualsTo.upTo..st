@@ -6,5 +6,5 @@ relativelyEqualsTo: aNumber upTo: aSmallNumber
 		 Initial code: 21/4/99 "
 	| norm |
 	norm := self abs max: aNumber abs.
-	^norm <= DhbFloatingPointMachine new defaultNumericalPrecision
+	^norm <= PMFloatingPointMachine new defaultNumericalPrecision
 		or: [ (self - aNumber) abs < ( aSmallNumber * norm)]

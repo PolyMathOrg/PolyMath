@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMProbabilityDensity",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lowLimit",
+		"highLimit"
+	],
+	"name" : "PMUniformDistribution",
+	"type" : "normal"
+}

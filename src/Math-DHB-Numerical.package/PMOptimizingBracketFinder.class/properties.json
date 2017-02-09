@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PMOneVariableFunctionOptimizer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMOptimizingBracketFinder",
+	"type" : "normal"
+}

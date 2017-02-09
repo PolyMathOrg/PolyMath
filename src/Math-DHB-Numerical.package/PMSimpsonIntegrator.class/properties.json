@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "PMTrapezeIntegrator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMSimpsonIntegrator",
+	"type" : "normal"
+}

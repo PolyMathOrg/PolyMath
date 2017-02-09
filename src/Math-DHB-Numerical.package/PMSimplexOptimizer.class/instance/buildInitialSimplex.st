@@ -3,7 +3,7 @@ buildInitialSimplex
 	"Private"
 
 	| projectedFunction finder partialResult |
-	projectedFunction := DhbProjectedOneVariableFunction 
+	projectedFunction := PMProjectedOneVariableFunction 
 				function: functionBlock.
 	finder := PMOneVariableFunctionOptimizer forOptimizer: self.
 	finder setFunction: projectedFunction.

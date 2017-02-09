@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PMProbabilityDensity",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"beta",
+		"norm"
+	],
+	"name" : "PMWeibullDistribution",
+	"type" : "normal"
+}

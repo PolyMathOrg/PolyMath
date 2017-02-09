@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMLeastSquareFit",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"count",
+		"countVariance"
+	],
+	"name" : "PMMaximumLikelihoodHistogramFit",
+	"type" : "normal"
+}

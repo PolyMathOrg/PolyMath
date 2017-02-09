@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PMSeriesTermServer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha"
+	],
+	"name" : "PMIncompleteGammaFractionTermServer",
+	"type" : "normal"
+}

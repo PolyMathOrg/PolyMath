@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "OlehShyshkin 2/9/2017 14:53",
+	"super" : "PMLagrangeInterpolator",
+	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"coefficients"
+	],
+	"name" : "PMNewtonInterpolator",
+	"type" : "normal"
+}

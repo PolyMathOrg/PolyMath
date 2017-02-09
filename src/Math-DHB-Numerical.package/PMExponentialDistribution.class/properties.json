@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PMProbabilityDensity",
+	"category" : "Math-DHB-Numerical-Math-Distribution",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"beta"
+	],
+	"name" : "PMExponentialDistribution",
+	"type" : "normal"
+}

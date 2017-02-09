@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "StephaneDucasse 3/2/2016 15:12",
+	"super" : "Object",
+	"category" : "Math-DHB-Numerical-Math-UtilsAccumulator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"count",
+		"average"
+	],
+	"name" : "PMVectorAccumulator",
+	"type" : "normal"
+}

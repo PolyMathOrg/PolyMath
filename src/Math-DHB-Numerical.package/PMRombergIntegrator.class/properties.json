@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "<historical>",
+	"super" : "PMTrapezeIntegrator",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"order",
+		"points",
+		"interpolator"
+	],
+	"name" : "PMRombergIntegrator",
+	"type" : "normal"
+}

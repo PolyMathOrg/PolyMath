@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMSeriesTermServer",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"sum"
+	],
+	"name" : "PMIncompleteGammaSeriesTermServer",
+	"type" : "normal"
+}

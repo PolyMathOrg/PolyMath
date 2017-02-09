@@ -1,4 +1,4 @@
 information
 roots
 	
-	^self roots: DhbFloatingPointMachine new defaultNumericalPrecision
+	^self roots: PMFloatingPointMachine new defaultNumericalPrecision

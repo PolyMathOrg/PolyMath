@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMProbabilityDensity",
+	"category" : "Math-DHB-Numerical-Math-Distribution",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"alpha",
+		"beta"
+	],
+	"name" : "PMFisherTippettDistribution",
+	"type" : "normal"
+}

@@ -1,0 +1,18 @@
+{
+	"commentStamp" : "",
+	"super" : "PMIterativeProcess",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"dataHolder",
+		"errorMatrix",
+		"chiSquare",
+		"equations",
+		"constants",
+		"degreeOfFreedom"
+	],
+	"name" : "PMLeastSquareFit",
+	"type" : "normal"
+}

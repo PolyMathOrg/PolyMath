@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "",
+	"super" : "PMNewtonInterpolator",
+	"category" : "Math-DHB-Numerical-Math-Interpolator",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"startPointDerivative",
+		"endPointDerivative"
+	],
+	"name" : "PMSplineInterpolator",
+	"type" : "normal"
+}

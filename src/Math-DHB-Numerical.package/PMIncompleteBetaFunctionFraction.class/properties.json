@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "",
+	"super" : "PMIterativeProcess",
+	"category" : "Math-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"x",
+		"q1",
+		"q2",
+		"q3",
+		"numerator",
+		"denominator",
+		"alpha1",
+		"alpha2"
+	],
+	"name" : "PMIncompleteBetaFunctionFraction",
+	"type" : "normal"
+}

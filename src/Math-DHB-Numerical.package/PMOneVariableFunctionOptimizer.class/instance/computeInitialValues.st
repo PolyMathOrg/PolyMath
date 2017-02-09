@@ -7,4 +7,4 @@ computeInitialValues
 					ifFalse:[ bestPoints removeLast].
 				].
 	bestPoints size < 3
-		ifTrue: [ ( DhbOptimizingBracketFinder forOptimizer: self) evaluate]
+		ifTrue: [ ( PMOptimizingBracketFinder forOptimizer: self) evaluate]
