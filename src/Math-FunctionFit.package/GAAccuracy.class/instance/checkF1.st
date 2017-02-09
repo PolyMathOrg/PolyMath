@@ -3,7 +3,7 @@ checkF1
 	| f origin optimizer |
 	f := [ :x | 
 	| v |
-	v := x asDhbVector.
+	v := x asPMVector.
 	v * v ].
 	origin := Array new: self argument first withAll: -5.
 	optimizer := AnotherGeneticOptimizer function: f minimumValues: origin maximumValues: origin negated.
