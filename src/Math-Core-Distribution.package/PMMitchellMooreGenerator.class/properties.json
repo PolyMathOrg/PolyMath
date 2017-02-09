@@ -8,11 +8,10 @@
 		"UniqueInstance"
 	],
 	"instvars" : [
-		"constant",
-		"modulus",
-		"multiplicator",
-		"seed"
+		"randoms",
+		"lowIndex",
+		"highIndex"
 	],
-	"name" : "DhbCongruentialRandomNumberGenerator",
+	"name" : "PMMitchellMooreGenerator",
 	"type" : "normal"
 }

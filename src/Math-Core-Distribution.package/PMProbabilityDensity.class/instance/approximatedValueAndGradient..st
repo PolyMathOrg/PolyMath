@@ -8,7 +8,7 @@ approximatedValueAndGradient: aNumber
 	dp := self value: aNumber.
 	delta := Array new: n.
 	delta atAllPut: 0.
-	gradient := DhbVector new: n.
+	gradient := PMVector new: n.
 	1 to: n do:
 		[ :k |
 		  delta at: k put: ( parameters at: k) * 0.0001.

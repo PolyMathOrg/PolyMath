@@ -1,4 +1,0 @@
-creation
-distributionFunction
-
-	^DhbProbabilityDistributionFunction density: self

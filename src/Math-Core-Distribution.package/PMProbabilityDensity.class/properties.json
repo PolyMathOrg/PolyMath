@@ -4,14 +4,10 @@
 	"category" : "Math-Core-Distribution",
 	"classinstvars" : [ ],
 	"pools" : [ ],
-	"classvars" : [
-		"UniqueInstance"
-	],
+	"classvars" : [ ],
 	"instvars" : [
-		"randoms",
-		"lowIndex",
-		"highIndex"
+		"flatGenerator"
 	],
-	"name" : "DhbMitchellMooreGenerator",
+	"name" : "PMProbabilityDensity",
 	"type" : "normal"
 }

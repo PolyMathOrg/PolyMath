@@ -2,5 +2,5 @@ creation
 seed: anInteger
 
 	| congruentialGenerator |
-	congruentialGenerator := DhbCongruentialRandomNumberGenerator seed: anInteger.
+	congruentialGenerator := PMCongruentialRandomNumberGenerator seed: anInteger.
 	^self generateSeeds: congruentialGenerator

@@ -2,5 +2,5 @@ creation
 default
 
 	| congruentialGenerator |
-	congruentialGenerator := DhbCongruentialRandomNumberGenerator new.
+	congruentialGenerator := PMCongruentialRandomNumberGenerator new.
 	^self generateSeeds: congruentialGenerator

@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-Core-Distribution",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -11,6 +11,6 @@
 		"mu",
 		"sigma"
 	],
-	"name" : "DhbNormalDistribution",
+	"name" : "PMNormalDistribution",
 	"type" : "normal"
 }
