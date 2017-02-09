@@ -4,6 +4,6 @@ incompleteBetaFunction
 
 	incompleteBetaFunction isNil 
 		ifTrue: 
-			[incompleteBetaFunction := DhbIncompleteBetaFunction shape: dof2 / 2
+			[incompleteBetaFunction := PMIncompleteBetaFunction shape: dof2 / 2
 						shape: dof1 / 2].
 	^incompleteBetaFunction

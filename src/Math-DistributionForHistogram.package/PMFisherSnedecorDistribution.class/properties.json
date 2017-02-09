@@ -1,16 +1,18 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-DistributionForHistogram",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"degreeOfFreedom",
+		"dof1",
+		"dof2",
 		"norm",
-		"chiSquareDistribution",
+		"chiSquareDistribution1",
+		"chiSquareDistribution2",
 		"incompleteBetaFunction"
 	],
-	"name" : "DhbStudentDistribution",
+	"name" : "PMFisherSnedecorDistribution",
 	"type" : "normal"
 }

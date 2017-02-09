@@ -4,7 +4,7 @@ incompleteBetaFunction
 
 	incompleteBetaFunction isNil 
 		ifTrue: 
-			[incompleteBetaFunction := DhbIncompleteBetaFunction 
+			[incompleteBetaFunction := PMIncompleteBetaFunction 
 						shape: degreeOfFreedom / 2
 						shape: 0.5].
 	^incompleteBetaFunction
