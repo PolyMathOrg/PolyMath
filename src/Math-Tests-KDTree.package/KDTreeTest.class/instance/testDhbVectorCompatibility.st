@@ -1,13 +1,13 @@
 tests
 testDhbVectorCompatibility
 	| aVector bVector r |
-	(Array lookupSelector: #asDhbVector)
+	(Array lookupSelector: #asPMVector)
 		ifNil: [ ^ self skip: 'necessary dhb package not loaded' ].
-	aVector := #(0) asDhbVector.
-	bVector := #(-2.0) asDhbVector.
+	aVector := #(0) asPMVector.
+	bVector := #(-2.0) asPMVector.
 	r := {aVector.
-	#(-5.0) asDhbVector.
-	bVector} asDhbVector.
+	#(-5.0) asPMVector.
+	bVector} asPMVector.
 	self initializeTreeWith: r as: true.
 	self
 		assert: (tree nnSearch: bVector i: 2)
