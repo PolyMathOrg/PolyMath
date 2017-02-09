@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "wk 4/24/2012 16:36",
-	"super" : "DhbLeastSquareFit",
+	"super" : "PMLeastSquareFit",
 	"category" : "Math-FunctionFit",
 	"classinstvars" : [ ],
 	"pools" : [ ],

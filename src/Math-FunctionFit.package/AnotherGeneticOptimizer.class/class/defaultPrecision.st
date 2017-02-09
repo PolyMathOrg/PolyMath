@@ -1,3 +1,3 @@
 information
 defaultPrecision
-	^DhbFloatingPointMachine new machinePrecision
+	^PMFloatingPointMachine new machinePrecision

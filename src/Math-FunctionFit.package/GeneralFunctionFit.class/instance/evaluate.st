@@ -9,7 +9,7 @@ firstResult := go evaluate .
 self errorType =#squared 
 	ifTrue: [ff :=FunctionFit function: errorFunction function data: errorFunction data ].
 ff parameters: firstResult.
-ff desiredPrecision: DhbFloatingPointMachine new machinePrecision.
+ff desiredPrecision: PMFloatingPointMachine new machinePrecision.
 ff maximumIterations: 1000 .
 result:=[ff evaluate .ff parameters] 
 			ifError: [:err :rcvr | 

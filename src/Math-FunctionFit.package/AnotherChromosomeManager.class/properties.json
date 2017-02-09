@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "WernerKassens 9/9/2014 09:18",
-	"super" : "DhbVectorChromosomeManager",
+	"super" : "PMVectorChromosomeManager",
 	"category" : "Math-FunctionFit",
 	"classinstvars" : [ ],
 	"pools" : [ ],

@@ -1,3 +1,3 @@
 accessing
 function
-	^ function
+^function

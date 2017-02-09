@@ -1,3 +1,3 @@
 accessing
 quartile
-	^ quartile
+^quartile
