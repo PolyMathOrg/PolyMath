@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbInfiniteSeries",
+	"super" : "PMInfiniteSeries",
 	"category" : "Math-Series",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -9,6 +9,6 @@
 		"numerator",
 		"denominator"
 	],
-	"name" : "DhbContinuedFraction",
+	"name" : "PMContinuedFraction",
 	"type" : "normal"
 }

@@ -8,6 +8,6 @@
 	"instvars" : [
 		"termServer"
 	],
-	"name" : "DhbInfiniteSeries",
+	"name" : "PMInfiniteSeries",
 	"type" : "normal"
 }
