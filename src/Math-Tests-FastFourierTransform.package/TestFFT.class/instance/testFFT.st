@@ -10,7 +10,7 @@ testFFT
 	self assert: s equals: 256.
 	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 256.
-	DhbMitchellMooreGenerator reset: 1.
+	PMMitchellMooreGenerator reset: 1.
 	data1 := data collect: [ :i | i + 0.001 random - 0.0005 ].
 	f := FastFourierTransform data: data1.
 	f transform.
