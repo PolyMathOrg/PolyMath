@@ -1,8 +1,8 @@
 tests
-testDhbVectorCompatibility
+testPMVectorCompatibility
 	| aVector bVector r |
 	(Array lookupSelector: #asPMVector)
-		ifNil: [ ^ self skip: 'necessary dhb package not loaded' ].
+		ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
 	aVector := #(0) asPMVector.
 	bVector := #(-2.0) asPMVector.
 	r := {aVector.
