@@ -11,7 +11,7 @@ PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/Sc
 Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
-    loadVersion: '0.71'
+    loadVersion: '0.73'
 ```
 
 We have **703** green tests !
@@ -38,5 +38,3 @@ Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Ente
 ## How to contribute to PolyMath
 
 We welcome submissions! A google group exists for this project at http://groups.google.com/group/scismalltalk
-    
-    
