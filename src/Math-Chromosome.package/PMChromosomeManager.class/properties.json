@@ -11,6 +11,6 @@
 		"rateOfMutation",
 		"rateOfCrossover"
 	],
-	"name" : "DhbChromosomeManager",
+	"name" : "PMChromosomeManager",
 	"type" : "normal"
 }
