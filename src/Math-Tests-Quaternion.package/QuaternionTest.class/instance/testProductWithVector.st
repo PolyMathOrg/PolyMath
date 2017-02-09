@@ -1,7 +1,7 @@
 running
 testProductWithVector
 	| vec |
-	vec := DhbVector new: 2.
+	vec := PMVector new: 2.
 	vec at: 1 put: 1.
 	vec at: 2 put: 2.
 	"This uses productWithVector"
