@@ -1,5 +1,5 @@
 initialization
 initialize: anInteger
 
-	accumulator := DhbCovarianceAccumulator new: anInteger
+	accumulator := PMCovarianceAccumulator new: anInteger
 	

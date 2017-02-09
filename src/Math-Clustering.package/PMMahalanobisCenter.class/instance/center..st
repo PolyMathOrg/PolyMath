@@ -1,6 +1,6 @@
 initialization
 center: aVector
 
-	accumulator := DhbCovarianceAccumulator new: aVector size.
+	accumulator := PMCovarianceAccumulator new: aVector size.
 	center := aVector.
-	inverseCovariance := DhbSymmetricMatrix identity: aVector size
+	inverseCovariance := PMSymmetricMatrix identity: aVector size
