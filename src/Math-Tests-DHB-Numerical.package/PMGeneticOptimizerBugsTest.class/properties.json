@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "TestCase",
+	"category" : "Math-Tests-DHB-Numerical",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"manager",
+		"function",
+		"optimizer"
+	],
+	"name" : "PMGeneticOptimizerBugsTest",
+	"type" : "normal"
+}

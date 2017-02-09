@@ -3,7 +3,7 @@ testCovarianceAccumulation
 	"Code example 12.2"
 
 	| accumulator average covarianceMatrix |
-	accumulator := DhbCovarianceAccumulator new: 3.
+	accumulator := PMCovarianceAccumulator new: 3.
 	#(#(1 2 3) #(2 3 4) #(1 3 2) #(4 3 1) #(1 3 1) #(1 4 2) #(3 1 2) #(3 4 2))
 		do: [ :x | accumulator accumulate: x asDhbVector ].
 	average := accumulator average.
