@@ -7,9 +7,9 @@ qrFactorizationWithPivoting
 	mx := lengthArray indexOf: lengthArray max.
 	pivot := Array new: lengthArray size.
 	rank := 0.
-	r := DhbMatrix rows: rows deepCopy.
+	r := PMMatrix rows: rows deepCopy.
 	colSize := self numberOfRows.
-	q := DhbSymmetricMatrix identity: colSize.
+	q := PMSymmetricMatrix identity: colSize.
 	identMat := q deepCopy.
 	[ 
 	rank := rank + 1.
@@ -17,9 +17,9 @@ qrFactorizationWithPivoting
 	r swapColumn: rank withColumn: mx.
 	lengthArray swap: rank with: mx.
 	hh := ((r columnAt: rank) copyFrom: rank to: colSize) householder.
-	i := (DhbVector new: rank - 1 withAll: 0) , (hh at: 2).
+	i := (PMVector new: rank - 1 withAll: 0) , (hh at: 2).
 	q := q * (identMat - ((hh at: 1) * i tensorProduct: i)).
-	i := DhbMatrix rows: ((r rows allButFirst: rank - 1) collect: [ :aRow | aRow allButFirst: rank - 1 ]).
+	i := PMMatrix rows: ((r rows allButFirst: rank - 1) collect: [ :aRow | aRow allButFirst: rank - 1 ]).
 	i := i - ((hh at: 2) tensorProduct: (hh at: 1) * (hh at: 2) * i).
 	i rows
 		withIndexDo: [ :aRow :index | 
@@ -50,10 +50,10 @@ qrFactorizationWithPivoting
 			colSize := colSize - 1 ].
 	i > 0
 		ifTrue: [ 
-			r := DhbMatrix rows: (r rows copyFrom: 1 to: colSize).
+			r := PMMatrix rows: (r rows copyFrom: 1 to: colSize).
 			i := q numberOfColumns - i.
 			pivot := pivot copyFrom: 1 to: i.
-			q := DhbMatrix rows: (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
+			q := PMMatrix rows: (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ {q.
 	r.
 	pivot}
