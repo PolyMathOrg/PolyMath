@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "PMIterativeProcess",
+	"category" : "Math-Matrix",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"matrix",
+		"eigenvector",
+		"transposeEigenvector"
+	],
+	"name" : "PMLargestEigenValueFinder",
+	"type" : "normal"
+}

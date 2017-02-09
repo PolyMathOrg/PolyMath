@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "OlehShyshkin 2/5/2017 19:11",
+	"super" : "PMIterativeProcess",
+	"category" : "Math-Matrix",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"lowerRows",
+		"transform"
+	],
+	"name" : "PMJacobiTransformation",
+	"type" : "normal"
+}
