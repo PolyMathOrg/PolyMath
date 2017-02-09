@@ -4,5 +4,5 @@ incompleteGammaFunction
 
 	incompleteGammaFunction isNil 
 		ifTrue: 
-			[incompleteGammaFunction := DhbIncompleteGammaFunction shape: alpha].
+			[incompleteGammaFunction := PMIncompleteGammaFunction shape: alpha].
 	^incompleteGammaFunction

@@ -1,15 +1,17 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbProbabilityDensity",
+	"super" : "PMProbabilityDensity",
 	"category" : "Math-DistributionGamma",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"degreeOfFreedom",
-		"reducedDOF",
-		"normalDistribution"
+		"alpha",
+		"beta",
+		"norm",
+		"randomCoefficients",
+		"incompleteGammaFunction"
 	],
-	"name" : "DhbAsymptoticChiSquareDistribution",
+	"name" : "PMGammaDistribution",
 	"type" : "normal"
 }

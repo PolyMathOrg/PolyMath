@@ -1,11 +1,16 @@
 {
 	"commentStamp" : "",
-	"super" : "DhbGammaDistribution",
+	"super" : "Object",
 	"category" : "Math-DistributionGamma",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "DhbChiSquareDistribution",
+	"instvars" : [
+		"alpha",
+		"alphaLogGamma",
+		"series",
+		"fraction"
+	],
+	"name" : "PMIncompleteGammaFunction",
 	"type" : "normal"
 }

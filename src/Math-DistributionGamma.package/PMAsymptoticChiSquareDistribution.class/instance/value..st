@@ -7,5 +7,5 @@ value: aNumber
 	^ aNumber > 0
 		ifTrue: [ 
 			x := (aNumber * 2) sqrt.
-			(DhbErfApproximation new normal: x - reducedDOF) / x ]
+			(PMErfApproximation new normal: x - reducedDOF) / x ]
 		ifFalse: [ 0 ]

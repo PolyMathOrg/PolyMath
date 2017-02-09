@@ -7,5 +7,5 @@ distributionValue: aNumber
 	^ aNumber > 0
 		ifTrue: [ 
 			x := (aNumber * 2) sqrt.
-			DhbErfApproximation new value: x - reducedDOF ]
+			PMErfApproximation new value: x - reducedDOF ]
 		ifFalse: [ 0 ]
