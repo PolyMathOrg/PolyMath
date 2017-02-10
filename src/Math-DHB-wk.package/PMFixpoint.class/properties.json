@@ -14,6 +14,6 @@
 		"verbose",
 		"equalityTest"
 	],
-	"name" : "Fixpoint",
+	"name" : "PMFixpoint",
 	"type" : "normal"
 }
