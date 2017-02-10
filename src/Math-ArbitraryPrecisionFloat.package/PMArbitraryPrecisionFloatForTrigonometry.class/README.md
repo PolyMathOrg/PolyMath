@@ -1,4 +1,4 @@
-ArbitraryPrecisionFloatForTrigonometry is a private helper class involved in trigonometry computations.
+PMArbitraryPrecisionFloatForTrigonometry is a private helper class involved in trigonometry computations.
 
 Instance Variables
 	pi	<ArbitraryPrecisionFloat>	
