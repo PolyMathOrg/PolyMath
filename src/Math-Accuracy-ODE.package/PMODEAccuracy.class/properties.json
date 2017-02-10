@@ -13,6 +13,6 @@
 		"endTime",
 		"standard"
 	],
-	"name" : "ODEAccuracy",
+	"name" : "PMODEAccuracy",
 	"type" : "normal"
 }
