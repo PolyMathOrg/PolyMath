@@ -1,6 +1,6 @@
 *Math-ArbitraryPrecisionFloat
 asArbitraryPrecisionFloatNumBits: n
-	^ArbitraryPrecisionFloat 
+	^PMArbitraryPrecisionFloat 
 		mantissa: self
 		exponent: 0
 		nBits: n

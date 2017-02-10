@@ -1,6 +1,6 @@
 mathematical functions
 sincos
-	^(ArbitraryPrecisionFloatForTrigonometry
+	^(PMArbitraryPrecisionFloatForTrigonometry
 		mantissa: mantissa
 		exponent: biasedExponent
 		nBits: nBits) sincos

@@ -1,7 +1,7 @@
 mathematical functions
-cos
-	^(ArbitraryPrecisionFloatForTrigonometry
+sin
+	^(PMArbitraryPrecisionFloatForTrigonometry
 		mantissa: mantissa
 		exponent: biasedExponent
-		nBits: nBits) cos
+		nBits: nBits) sin
 		

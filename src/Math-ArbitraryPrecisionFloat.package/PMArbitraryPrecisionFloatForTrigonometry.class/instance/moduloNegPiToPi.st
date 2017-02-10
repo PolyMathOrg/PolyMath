@@ -3,7 +3,7 @@ moduloNegPiToPi
 	"answer a copy of the receiver modulo 2*pi, with doubled precision"
 
 	| x quo twoPi |
-	x := (ArbitraryPrecisionFloat
+	x := (PMArbitraryPrecisionFloat
 		mantissa: mantissa abs
 		exponent: biasedExponent
 		nBits: nBits * 2 + 16).
@@ -12,7 +12,7 @@ moduloNegPiToPi
 	x > pi ifTrue:
 		[quo := x + pi quo: twoPi.
 		quo highBit * 2 > nBits ifTrue:
-			[x := (ArbitraryPrecisionFloat
+			[x := (PMArbitraryPrecisionFloat
 				mantissa: mantissa abs
 				exponent: biasedExponent
 				nBits: nBits * 3 // 2 + quo highBit + 16).
