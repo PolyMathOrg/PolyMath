@@ -1,4 +1,4 @@
-*Math-Quaternion-converting
+*Math-Quaternion
 i: qi j: qj k: qk 
 	^Quaternion 
 		qr: self

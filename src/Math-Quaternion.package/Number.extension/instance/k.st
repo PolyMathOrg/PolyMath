@@ -1,4 +1,4 @@
-*Math-Quaternion-converting
+*Math-Quaternion
 k
 	^Quaternion 
 		qr: 0

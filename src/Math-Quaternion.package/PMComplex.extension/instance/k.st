@@ -1,4 +1,4 @@
-*Math-Quaternion-converting
+*Math-Quaternion
 k
 	"same as self * 1 k"
 

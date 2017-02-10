@@ -1,4 +1,4 @@
-*Math-Quaternion-converting
+*Math-Quaternion
 asQuaternion
 	^Quaternion 
 		qr: self
