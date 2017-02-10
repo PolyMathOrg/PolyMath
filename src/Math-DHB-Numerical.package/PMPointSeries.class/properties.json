@@ -8,6 +8,6 @@
 	"instvars" : [
 		"points"
 	],
-	"name" : "PointSeries",
+	"name" : "PMPointSeries",
 	"type" : "normal"
 }
