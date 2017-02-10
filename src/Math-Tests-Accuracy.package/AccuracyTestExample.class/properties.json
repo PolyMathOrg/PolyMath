@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "WernerKassens 9/11/2014 09:38",
-	"super" : "Accuracy",
+	"super" : "PMAccuracy",
 	"category" : "Math-Tests-Accuracy",
 	"classinstvars" : [ ],
 	"pools" : [ ],
