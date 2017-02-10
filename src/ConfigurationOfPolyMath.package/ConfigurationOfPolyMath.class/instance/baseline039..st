@@ -62,7 +62,7 @@ baseline039: spec
 			package: 'Math-Matrix';
 			package: 'Math-Number-Extensions';
 			package: 'Math-ODE' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-DHB-NumericalExtensions' 'Math-Matrix' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
 			package: 'Math-Physics-Constants';
 			package: 'Math-PrincipalComponentAnalysis' with: [
 				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
