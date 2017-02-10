@@ -9,5 +9,5 @@ arithmetic
 		d := anObject imaginary.
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
-		^ Complex real: newReal imaginary: newImaginary].
+		^ PMComplex real: newReal imaginary: newImaginary].
 	^ anObject adaptToComplex: self andSend: #/.

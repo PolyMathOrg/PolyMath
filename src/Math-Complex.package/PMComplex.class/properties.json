@@ -9,6 +9,6 @@
 		"real",
 		"imaginary"
 	],
-	"name" : "Complex",
+	"name" : "PMComplex",
 	"type" : "normal"
 }

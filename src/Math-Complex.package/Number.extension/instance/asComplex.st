@@ -2,4 +2,4 @@
 asComplex
 	"Answer a Complex number that represents value of the the receiver."
 
-	^ Complex real: self imaginary: 0
+	^ PMComplex real: self imaginary: 0

@@ -10,6 +10,6 @@ arithmetic
 			d := anObject imaginary.
 			newReal := (a * c) - (b * d).
 			newImaginary := (a * d) + (b * c).
-			^ Complex real: newReal imaginary: newImaginary]
+			^ PMComplex real: newReal imaginary: newImaginary]
 		ifFalse:
 			[^ anObject adaptToComplex: self andSend: #*]
