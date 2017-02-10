@@ -1,4 +1,4 @@
 running
 setUp
-fp:=Fixpoint new.
+fp:=PMFixpoint new.
 fp verbose: false.

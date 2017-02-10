@@ -1,6 +1,6 @@
 tests
 testCheckForLongerCycles
-	fp := Fixpoint
+	fp := PMFixpoint
 		block: [ :x | 
 			| d |
 			d := x - 1.

@@ -1,6 +1,6 @@
 tests
 testRest
-	fp := Fixpoint block: [ :x | 1 / (1 + x) ] value: 20.0.
+	fp := PMFixpoint block: [ :x | 1 / (1 + x) ] value: 20.0.
 	self assert: fp cycle equals: #().
 	self assert: (fp evaluate equalsTo: 0.6180339887).
 	fp verbose: false.
