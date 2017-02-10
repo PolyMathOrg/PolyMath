@@ -13,6 +13,6 @@
 		"collType",
 		"m"
 	],
-	"name" : "KDTreeBenchmark",
+	"name" : "PMKDTreeBenchmark",
 	"type" : "normal"
 }
