@@ -1,7 +1,7 @@
 tests
 testZero
 	| z |
-	z := Complex zero.
+	z := PMComplex zero.
 	self assert: z isZero.
 	self assert: z isComplexNumber.
 	self assert: z real isZero.

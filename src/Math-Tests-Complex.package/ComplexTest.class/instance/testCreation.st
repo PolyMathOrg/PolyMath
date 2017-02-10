@@ -12,9 +12,9 @@ testCreation
 	c := 5.6 - 8 i.
 	self assert: c real equals: 5.6.
 	self assert: c imaginary equals: -8.
-	c := Complex real: 10 imaginary: 5.
+	c := PMComplex real: 10 imaginary: 5.
 	self assert: c real equals: 10.
 	self assert: c imaginary equals: 5.
-	c := Complex abs: 5 arg: Float pi / 2.
+	c := PMComplex abs: 5 arg: Float pi / 2.
 	self assert: c real rounded equals: 0.
 	self assert: c imaginary equals: 5
