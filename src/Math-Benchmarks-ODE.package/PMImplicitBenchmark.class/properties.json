@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "",
-	"super" : "ODEBenchmark",
+	"super" : "PMODEBenchmark",
 	"category" : "Math-Benchmarks-ODE",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -8,6 +8,6 @@
 	"instvars" : [
 		"system"
 	],
-	"name" : "ExplicitMultiBenchmark",
+	"name" : "PMImplicitBenchmark",
 	"type" : "normal"
 }

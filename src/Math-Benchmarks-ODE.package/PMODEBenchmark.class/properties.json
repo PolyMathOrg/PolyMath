@@ -12,6 +12,6 @@
 		"startTime",
 		"endTime"
 	],
-	"name" : "ODEBenchmark",
+	"name" : "PMODEBenchmark",
 	"type" : "normal"
 }
