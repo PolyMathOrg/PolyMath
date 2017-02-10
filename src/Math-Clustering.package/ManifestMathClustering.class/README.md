@@ -1,1 +1,0 @@
-This package has been originally developed by Didier H. Besset. 
