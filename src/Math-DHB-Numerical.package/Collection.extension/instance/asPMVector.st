@@ -1,9 +1,6 @@
 *Math-DHB-Numerical
-asDhbVector
-	"Convert the receiver to a vector. 
-	(c) Copyrights Didier BESSET, 1999, all rights reserved. 
-	Initial code: 11/2/99"
-
+asPMVector
+	
 	| aVector index |
 	aVector := PMVector new: self size.
 	index := 0.
