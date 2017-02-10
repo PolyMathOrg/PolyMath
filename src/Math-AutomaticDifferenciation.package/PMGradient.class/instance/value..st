@@ -1,7 +1,7 @@
 accessing
 value: anArray
 	| dualValueTemplate dualValue |
-	dualValueTemplate := anArray collect: [ :i | DualNumber value: i ].
+	dualValueTemplate := anArray collect: [ :i | PMDualNumber value: i ].
 	^ (1 to: anArray size)
 		collect: [ :i | 
 			dualValue := dualValueTemplate deepCopy.

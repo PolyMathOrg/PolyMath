@@ -1,14 +1,13 @@
 {
-	"commentStamp" : "StephaneDucasse 3/1/2016 21:10",
-	"super" : "DualNumber",
+	"commentStamp" : "wernerkassens 4/25/2015 12:06",
+	"super" : "Object",
 	"category" : "Math-AutomaticDifferenciation",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"eps2",
-		"eps1eps2"
+		"function"
 	],
-	"name" : "HyperDualNumber",
+	"name" : "PMGradient",
 	"type" : "normal"
 }

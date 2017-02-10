@@ -11,6 +11,6 @@
 		"value",
 		"eps"
 	],
-	"name" : "DualNumber",
+	"name" : "PMDualNumber",
 	"type" : "normal"
 }

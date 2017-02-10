@@ -2,7 +2,7 @@ mathematical functions
 raisedTo: aDualNumber
 	| v |
 	value = 0
-		ifTrue: [ ^ DualNumber value: 0 ].
+		ifTrue: [ ^ PMDualNumber value: 0 ].
 	v := value raisedTo: aDualNumber value.
 	aDualNumber isDualNumber
 		ifFalse: [ ^ self class value: v eps: v / value * eps * aDualNumber ].

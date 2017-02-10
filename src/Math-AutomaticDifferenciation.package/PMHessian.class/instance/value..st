@@ -2,7 +2,7 @@ accessing
 value: anArray
 	| hDualValueTemplate hDualValue |
 	gradient := Array new: anArray size.
-	hDualValueTemplate := anArray collect: [ :i | HyperDualNumber value: i ].
+	hDualValueTemplate := anArray collect: [ :i | PMHyperDualNumber value: i ].
 	^ result := PMSymmetricMatrix
 		new: anArray size
 		function: [ :x :y | 

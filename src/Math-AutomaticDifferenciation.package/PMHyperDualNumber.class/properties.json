@@ -1,15 +1,14 @@
 {
-	"commentStamp" : "StephaneDucasse 3/1/2016 21:15",
-	"super" : "Object",
+	"commentStamp" : "StephaneDucasse 3/1/2016 21:10",
+	"super" : "PMDualNumber",
 	"category" : "Math-AutomaticDifferenciation",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"function",
-		"result",
-		"gradient"
+		"eps2",
+		"eps1eps2"
 	],
-	"name" : "Hessian",
+	"name" : "PMHyperDualNumber",
 	"type" : "normal"
 }
