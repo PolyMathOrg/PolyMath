@@ -6,8 +6,8 @@ test
 	x := i first.
 	y := i second.
 	(x raisedToInteger: 3) + (x squared * y) - y squared - (4 * y) ].
-	g := Gradient of: f.
-	h := Hessian of: f.
+	g := PMGradient of: f.
+	h := PMHessian of: f.
 	r := #(0 0).
 	self assert: (g value: #(0 -2)) equals: r.
 	self

@@ -4,7 +4,7 @@ testArcTan
 	self
 		assertEquality: one negated arcTan
 		and:
-			(HyperDualNumber
+			(PMHyperDualNumber
 				value: -1 arcTan
 				eps: -1 / 2
 				eps2: -1 / 2

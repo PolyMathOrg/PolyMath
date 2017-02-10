@@ -3,13 +3,13 @@ testSqrt
 	| a |
 	self
 		assertEquality:
-			(HyperDualNumber
+			(PMHyperDualNumber
 				value: 16
 				eps: 5
 				eps2: 1
 				eps1eps2: 0) sqrt
 		and:
-			(HyperDualNumber
+			(PMHyperDualNumber
 				value: 4
 				eps: 5 / 8
 				eps2: 1 / 8

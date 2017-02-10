@@ -2,7 +2,7 @@ tests-mathematical functions
 testArcSin
 	| a |
 	self assert: zero arcSin equals: zero.
-	a := (HyperDualNumber
+	a := (PMHyperDualNumber
 		value: 1.0 predecessor
 		eps: 1
 		eps2: 1
