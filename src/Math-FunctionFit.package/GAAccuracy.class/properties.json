@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "WernerKassens 9/5/2014 13:21",
-	"super" : "Accuracy",
+	"super" : "PMAccuracy",
 	"category" : "Math-FunctionFit",
 	"classinstvars" : [ ],
 	"pools" : [ ],
