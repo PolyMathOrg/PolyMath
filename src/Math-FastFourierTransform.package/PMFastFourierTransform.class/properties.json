@@ -12,6 +12,6 @@
 		"permTable",
 		"data"
 	],
-	"name" : "FastFourierTransform",
+	"name" : "PMFastFourierTransform",
 	"type" : "normal"
 }
