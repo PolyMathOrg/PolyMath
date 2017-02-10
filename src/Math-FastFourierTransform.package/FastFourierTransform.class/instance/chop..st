@@ -12,4 +12,4 @@ chop: tolerance
 				ifTrue: [ r := 0 ].
 			i abs < tolerance
 				ifTrue: [ i := 0 ].
-			Complex real: r imaginary: i ]
+			PMComplex real: r imaginary: i ]
