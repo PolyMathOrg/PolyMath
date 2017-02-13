@@ -1,7 +1,7 @@
 tests
 testNewFrom
 	| n |
-	n := NNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
+	n := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
 	self assert: n data equals: #('2' $a 1.0).
 	self assert: n isFull.
 	self assert: n maxDistance equals: 3.

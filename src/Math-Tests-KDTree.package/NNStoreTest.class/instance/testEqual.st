@@ -2,9 +2,9 @@ tests
 testEqual
 	| a b |
 	b := #(#(1 $a) #(3 1.0) #(0 '2')).
-	a := NNStore newFrom: b.
+	a := PMNNStore newFrom: b.
 	self deny: a = b.
-	b := NNStore newFrom: #(#(1 $a) #(3 1.0) #(0 2)).
+	b := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 2)).
 	self deny: a = b.
 	b := a copyEmpty.
 	self deny: a = b.
@@ -12,8 +12,8 @@ testEqual
 	self assert: a equals: b.
 	b add: #(2 nil).
 	self deny: a = b.
-	b := NNStore new: 3.
-	a := NNStore new: 2.
+	b := PMNNStore new: 3.
+	a := PMNNStore new: 2.
 	a add: #(2 nil).
 	b add: #(2 nil).
 	self deny: a = b.

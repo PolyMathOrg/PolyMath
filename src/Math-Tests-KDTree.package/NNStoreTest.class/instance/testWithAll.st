@@ -1,7 +1,7 @@
 tests
 testWithAll
 	| n |
-	n := NNStore withAll: #(2 5 4).
+	n := PMNNStore withAll: #(2 5 4).
 	self assert: n completeData equals: #(#(nil 2) #(nil 5) #(nil 4)).
 	n sortFor: nil.	"calling sortFor: is necessary with withAll:"
 	self assert: n data equals: #(2 4 5).

@@ -1,7 +1,7 @@
 tests
 testCopyEmpty
 	| n m |
-	n := NNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
+	n := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
 	n := n copyEmpty.
 	self assert: n isEmpty.
 	n

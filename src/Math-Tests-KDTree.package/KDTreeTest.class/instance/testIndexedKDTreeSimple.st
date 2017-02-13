@@ -2,9 +2,9 @@ tests
 testIndexedKDTreeSimple
 	| r n aTree bTree |
 	r := rand next: 200.
-	aTree := IndexedKDTree
+	aTree := PMIndexedKDTree
 		withAll: (r collect: [ :i | FloatArray with: i with: i ]).	"2-dimensional data"
-	bTree := IndexedKDTree
+	bTree := PMIndexedKDTree
 		withAll: (r collect: [ :i | FloatArray with: i ]).	"1-dimensional data"
 	1 to: 20 do: [ :v | 
 		n := 1 / v.

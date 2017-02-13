@@ -3,8 +3,8 @@ testInitialize2
 	"a separate = method is necessary because of this scenario with resetting"
 
 	| a b c |
-	a := (NNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2'))) initialize.	"initialize = resetting"
-	b := (NNStore newFrom: #(#(1 $a) #(3 false) #(0 '2'))) initialize.
+	a := (PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2'))) initialize.	"initialize = resetting"
+	b := (PMNNStore newFrom: #(#(1 $a) #(3 false) #(0 '2'))) initialize.
 	self assert: a equals: b.	"first  problematic part"
 	c := #(#(3 true) #(2 1)).
 	a addAll: c.

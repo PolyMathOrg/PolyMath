@@ -1,7 +1,7 @@
 tests
 testNew
 	| n |
-	n := NNStore new: 1.
+	n := PMNNStore new: 1.
 	self assert: n isEmpty.
 	self assert: n data equals: #().
 	self assert: n completeData equals: #().

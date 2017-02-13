@@ -1,7 +1,7 @@
 tests
 testExtremeCase
 	| n |
-	n := NNStore new.
+	n := PMNNStore new.
 	n sortFor: nil.	"this should indeed always be possible and shouldnt raise an error!"
 	self assert: n isFull.
 	n add: #(1 1).	"adding should also always be possible, although it will not be added in this case"
