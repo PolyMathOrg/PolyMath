@@ -1,4 +1,4 @@
 initialization
 initialize
 nd:= PMNormalDistribution new.
-ks:=KolmogorovSmirnov1Sample new.
+ks:=PMKolmogorovSmirnov1Sample new.

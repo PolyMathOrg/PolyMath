@@ -1,4 +1,4 @@
 initialization
 initialize
 
-k:=KolmogorovSmirnov2Sample new.
+k:=PMKolmogorovSmirnov2Sample new.

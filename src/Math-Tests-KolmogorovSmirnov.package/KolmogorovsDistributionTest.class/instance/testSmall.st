@@ -1,7 +1,7 @@
 tests
 testSmall
 	| kd |
-	kd := KolmogorovsDistribution exampleSize: 10.
+	kd := PMKolmogorovsDistribution exampleSize: 10.
 	self assert: (kd average round: 2) equals: (0.25916 round: 2).
 	self
 		assert: (kd standardDeviation round: 3)
