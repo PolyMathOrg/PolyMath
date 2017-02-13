@@ -1,3 +1,3 @@
 benchmarking
 benchBuildTree1Dim
-	bTree :=IndexedKDTree withAll: r.
+	bTree :=PMIndexedKDTree withAll: r.
