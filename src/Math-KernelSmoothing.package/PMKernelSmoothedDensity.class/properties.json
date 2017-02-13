@@ -12,6 +12,6 @@
 		"kernelName",
 		"ikernel"
 	],
-	"name" : "KernelSmoothedDensity",
+	"name" : "PMKernelSmoothedDensity",
 	"type" : "normal"
 }

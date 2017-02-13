@@ -8,6 +8,6 @@
 	"instvars" : [
 		"density"
 	],
-	"name" : "SmoothedDensityTest",
+	"name" : "PMSmoothedDensityTest",
 	"type" : "normal"
 }

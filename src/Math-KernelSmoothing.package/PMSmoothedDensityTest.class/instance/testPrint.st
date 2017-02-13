@@ -2,7 +2,7 @@ tests
 testPrint
 |aStream  s|
 aStream :=ReadWriteStream with:''.
-KernelSmoothedDensity new printOn: aStream .
+PMKernelSmoothedDensity new printOn: aStream .
 self assert: ((aStream contents findString: 'nil')>1).
 aStream reset.
 density printOn: aStream .
