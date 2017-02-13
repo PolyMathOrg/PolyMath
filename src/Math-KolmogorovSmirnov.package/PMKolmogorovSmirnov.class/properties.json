@@ -9,6 +9,6 @@
 		"data",
 		"compareWith"
 	],
-	"name" : "KolmogorovSmirnov",
+	"name" : "PMKolmogorovSmirnov",
 	"type" : "normal"
 }

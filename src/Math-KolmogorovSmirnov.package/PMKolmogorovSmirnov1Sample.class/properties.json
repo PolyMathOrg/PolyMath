@@ -1,16 +1,14 @@
 {
-	"commentStamp" : "WernerKassens 11/7/2015 16:25",
-	"super" : "PMProbabilityDensity",
+	"commentStamp" : "WernerKassens 10/19/2015 10:03",
+	"super" : "PMKolmogorovSmirnov",
 	"category" : "Math-KolmogorovSmirnov",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"a",
-		"b",
 		"distribution",
-		"n"
+		"popDistribution"
 	],
-	"name" : "KolmogorovsDistribution",
+	"name" : "PMKolmogorovSmirnov1Sample",
 	"type" : "normal"
 }

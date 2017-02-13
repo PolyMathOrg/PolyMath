@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "WernerKassens 11/7/2015 16:22",
-	"super" : "KolmogorovSmirnov",
+	"super" : "PMKolmogorovSmirnov",
 	"category" : "Math-KolmogorovSmirnov",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -11,6 +11,6 @@
 		"bigSize",
 		"ksStatistic"
 	],
-	"name" : "KolmogorovSmirnov2Sample",
+	"name" : "PMKolmogorovSmirnov2Sample",
 	"type" : "normal"
 }
