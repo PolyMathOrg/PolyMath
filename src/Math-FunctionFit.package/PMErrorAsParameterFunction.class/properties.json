@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "wk 4/23/2012 12:53",
+	"super" : "PMSimpleParameterFunction",
+	"category" : "Math-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMErrorAsParameterFunction",
+	"type" : "normal"
+}

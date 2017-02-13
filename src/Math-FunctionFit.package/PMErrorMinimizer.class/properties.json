@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "wk 4/24/2012 16:40",
+	"super" : "PMFunctionFit",
+	"category" : "Math-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMErrorMinimizer",
+	"type" : "normal"
+}

@@ -1,0 +1,20 @@
+{
+	"commentStamp" : "wk 4/24/2012 16:38",
+	"super" : "PMGeneticOptimizer",
+	"category" : "Math-FunctionFit",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rangeScale",
+		"steadyState",
+		"removeLast",
+		"bestValueHistory",
+		"worstValueHistory",
+		"statistics",
+		"whateverHistory",
+		"originalFunction"
+	],
+	"name" : "PMAnotherGeneticOptimizer",
+	"type" : "normal"
+}
