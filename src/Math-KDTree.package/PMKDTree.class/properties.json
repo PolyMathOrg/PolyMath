@@ -11,6 +11,6 @@
 		"dim",
 		"value"
 	],
-	"name" : "KDTree",
+	"name" : "PMKDTree",
 	"type" : "normal"
 }

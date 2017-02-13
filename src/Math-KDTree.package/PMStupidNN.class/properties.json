@@ -1,11 +1,11 @@
 {
 	"commentStamp" : "wk 2/23/2014 13:32",
-	"super" : "NNStore",
+	"super" : "PMNNStore",
 	"category" : "Math-KDTree",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "StupidNN",
+	"name" : "PMStupidNN",
 	"type" : "variable"
 }

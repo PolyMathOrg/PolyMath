@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "<historical>",
-	"super" : "KDTree",
+	"super" : "PMKDTree",
 	"category" : "Math-KDTree",
 	"classinstvars" : [ ],
 	"pools" : [ ],
@@ -8,6 +8,6 @@
 	"instvars" : [
 		"index"
 	],
-	"name" : "IndexedKDTree",
+	"name" : "PMIndexedKDTree",
 	"type" : "normal"
 }

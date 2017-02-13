@@ -9,6 +9,6 @@
 		"maxDistance",
 		"lastUsedIndex"
 	],
-	"name" : "NNStore",
+	"name" : "PMNNStore",
 	"type" : "variable"
 }
