@@ -1,11 +1,16 @@
 {
 	"commentStamp" : "StephaneDucasse 3/2/2016 09:04",
-	"super" : "Array",
+	"super" : "Object",
 	"category" : "Math-Core",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
-	"name" : "PMVector",
-	"type" : "variable"
+	"instvars" : [
+		"xValue",
+		"yValue",
+		"weight",
+		"error"
+	],
+	"name" : "DhbWeightedPoint",
+	"type" : "normal"
 }

@@ -1,4 +1,4 @@
-converting
+as yet unclassified
 asArray
 	
 	| array i|
