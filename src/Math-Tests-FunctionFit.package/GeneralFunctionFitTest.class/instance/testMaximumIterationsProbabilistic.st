@@ -1,7 +1,7 @@
 tests
 testMaximumIterationsProbabilistic
 	| r correct |
-	fit := GeneralFunctionFit
+	fit := PMGeneralFunctionFit
 		function: f
 		data: col
 		minimumValues: 0

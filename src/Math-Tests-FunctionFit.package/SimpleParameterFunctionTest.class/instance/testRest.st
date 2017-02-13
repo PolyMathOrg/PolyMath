@@ -1,7 +1,7 @@
 tests
 testRest
 	| s vg |
-	s := SimpleParameterFunction function: f.
+	s := PMSimpleParameterFunction function: f.
 	self assert: s parameters size equals: 3.
 	vg := s valueAndGradient: 2.
 	self assert: s parameters first equals: vg first.

@@ -1,6 +1,6 @@
 tests
 testPopulationSize
-	fit := GeneralFunctionFit
+	fit := PMGeneralFunctionFit
 		function: f
 		data: col
 		minimumValues: 0

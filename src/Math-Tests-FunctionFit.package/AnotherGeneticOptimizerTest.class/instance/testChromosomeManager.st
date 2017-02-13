@@ -2,5 +2,5 @@ tests
 testChromosomeManager
 	self
 		assert: go chromosomeManager class
-		equals: AnotherChromosomeManager.
+		equals: PMAnotherChromosomeManager.
 	self assert: go chromosomeManager populationSize equals: 20

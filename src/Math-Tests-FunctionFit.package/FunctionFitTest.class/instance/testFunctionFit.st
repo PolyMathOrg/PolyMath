@@ -1,7 +1,7 @@
 tests
 testFunctionFit
 	| ff ar p |
-	ff := FunctionFit function: f data: d.
+	ff := PMFunctionFit function: f data: d.
 	ar := ff parameters.
 	ar
 		do: [ :i | 

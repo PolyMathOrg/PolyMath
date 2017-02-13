@@ -3,7 +3,7 @@ testTruncate
 	col at: 1 put: -4 @ -0.2.
 	col at: 81 put: 4.000000000000004 @ 0.2.
 	col at: 10 put: -3.099999999999999 @ 2.
-	fit := GeneralFunctionFit
+	fit := PMGeneralFunctionFit
 		function: f
 		data: col
 		minimumValues: 0

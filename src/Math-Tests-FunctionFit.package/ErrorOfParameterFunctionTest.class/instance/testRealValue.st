@@ -1,6 +1,6 @@
 tests
 testRealValue
-	f := ErrorOfParameterFunction
+	f := PMErrorOfParameterFunction
 		function: [ :i :a | i + a ]
 		data:
 			{(1 @ 1).

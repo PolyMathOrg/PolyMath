@@ -1,3 +1,3 @@
 running
 setUp 
-cm:=(AnotherChromosomeManager origin: #(0 1) range: #( 2 3)).
+cm:=(PMAnotherChromosomeManager origin: #(0 1) range: #( 2 3)).

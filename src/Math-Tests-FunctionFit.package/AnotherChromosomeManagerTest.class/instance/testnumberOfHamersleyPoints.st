@@ -3,14 +3,14 @@ testnumberOfHamersleyPoints
 	| rand |
 	self
 		assert:
-			(AnotherChromosomeManager
+			(PMAnotherChromosomeManager
 				numberOfHamersleyPoints: 9
 				dimension: 1
 				randomized: false)
 		equals: ((1 to: 9) collect: [ :i | {(i * (1 / 9))} ]).
 	self
 		assert:
-			(AnotherChromosomeManager
+			(PMAnotherChromosomeManager
 				numberOfHamersleyPoints: 9
 				dimension: 4
 				randomized: false)
@@ -51,12 +51,12 @@ testnumberOfHamersleyPoints
 			(9 / 16).
 			(1 / 27).
 			(21 / 25)}}.
-	rand := (AnotherChromosomeManager
+	rand := (PMAnotherChromosomeManager
 		numberOfHamersleyPoints: 3
 		dimension: 4
 		randomized: false)
 		-
-			(AnotherChromosomeManager
+			(PMAnotherChromosomeManager
 				numberOfHamersleyPoints: 3
 				dimension: 4
 				randomized: true).

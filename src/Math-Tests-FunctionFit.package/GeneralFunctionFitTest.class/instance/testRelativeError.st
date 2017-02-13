@@ -3,7 +3,7 @@ testRelativeError
 |r|
 f:=[ :x :a| a].
 col:={1@2. 2@6}.
-fit:=GeneralFunctionFit function: f data: col minimumValues: -6 maximumValues: 6 .
+fit:=PMGeneralFunctionFit function: f data: col minimumValues: -6 maximumValues: 6 .
 fit populationSize: 10.
 r :=fit evaluate first .
 self assert: (r equalsTo: 4 ).
