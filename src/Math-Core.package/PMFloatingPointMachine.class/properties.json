@@ -17,6 +17,6 @@
 		"smallNumber",
 		"largestExponentArgument"
 	],
-	"name" : "DhbFloatingPointMachine",
+	"name" : "PMFloatingPointMachine",
 	"type" : "normal"
 }
