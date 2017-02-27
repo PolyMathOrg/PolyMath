@@ -2,13 +2,13 @@ language: smalltalk
 sudo: false
 
 install:
- - pip install benchupload
+ - pip install --user benchupload
 
 after_success:
- - benchupload --dir=$SMALLTALK_CI_BUILD
+ - python -mbenchupload --dir=$SMALLTALK_CI_BUILD
 
 after_failure:
- - benchupload --dir=$SMALLTALK_CI_BUILD
+ - python -mbenchupload --dir=$SMALLTALK_CI_BUILD
  
 os:
   - linux
