@@ -1,8 +1,6 @@
-creation
+instance creation
 join: anArrayOfMatrices
-		"Inverse of the split operation.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 8/5/99 "
+		"Inverse of the split operation."
 	| rows n row rowSize n1 n2 |
 	rows := OrderedCollection new.
 	n1 := ( anArrayOfMatrices at: 1) numberOfColumns.
