@@ -43,5 +43,5 @@ a sum.
 
 "Matrix trace (sum of a diagonal elements for a square matrix)"
 a := PMMatrix rows: #((1 2 3)(4 5 6)(7 8 9)).
-a trace.
+a tr.
 "15"
