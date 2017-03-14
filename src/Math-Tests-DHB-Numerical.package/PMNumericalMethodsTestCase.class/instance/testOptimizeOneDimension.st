@@ -1,7 +1,5 @@
 optimization
 testOptimizeOneDimension
-	"Code example 11.1"
-
 	| distr finder maximum |
 	distr := PMGammaDistribution shape: 2 scale: 5.
 	finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.

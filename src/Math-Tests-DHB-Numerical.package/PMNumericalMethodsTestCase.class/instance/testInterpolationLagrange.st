@@ -1,6 +1,5 @@
 function evaluation
 testInterpolationLagrange
-	"Code example 3.2"
 
 	| interpolator |
 	interpolator := PMLagrangeInterpolator new.

@@ -1,7 +1,5 @@
 linear algebra
 testVectorTransposeMatrixOperation
-	"Code Example 8.1"
-
 	| c v w |
 	c := PMMatrix rows: #(#(6 8 10) #(18 14 4)).
 	v := #(4 4) asPMVector.

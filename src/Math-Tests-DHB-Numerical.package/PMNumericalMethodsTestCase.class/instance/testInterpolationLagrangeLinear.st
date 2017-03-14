@@ -1,6 +1,5 @@
 function evaluation
 testInterpolationLagrangeLinear
-	"Code example 3.1"
 
 	| interpolator |
 	interpolator := PMLagrangeInterpolator

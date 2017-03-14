@@ -1,7 +1,5 @@
 linear algebra
 testVectorMatrixOperation
-	"Code Example 8.1"
-
 	| a u v |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
 	u := #(1 2 3) asPMVector.
