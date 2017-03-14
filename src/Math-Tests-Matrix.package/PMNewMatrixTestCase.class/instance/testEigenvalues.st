@@ -1,6 +1,5 @@
 linear algebra
 testEigenvalues
-	"Code Example 8.15"
 
 	| m charPol roots eigenvalues finder |
 	m := PMMatrix rows: #(#(3 -2 0) #(-2 7 1) #(0 1 5)).

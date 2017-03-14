@@ -1,7 +1,5 @@
 linear algebra
 testMatrixCumulativeSum
-	"Code Example 8.1"
-
 	| a b |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
 	b := a cumsum.
