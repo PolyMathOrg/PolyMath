@@ -1,6 +1,7 @@
 tests
 testMaximumIterationsProbabilistic
 	| r correct |
+	self skip.
 	fit := PMGeneralFunctionFit
 		function: f
 		data: col
