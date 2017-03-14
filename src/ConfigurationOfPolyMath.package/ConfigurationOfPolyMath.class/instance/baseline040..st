@@ -60,7 +60,7 @@ baseline040: spec
 			package: 'Math-KolmogorovSmirnov' with: [
 				spec requires: #('Math-DHB-Numerical' ). ];
 			package: 'Math-Matrix';
-			package: 'Math-Number-Extensions';
+			package: 'Math-Numbers-Extensions';
 			package: 'Math-ODE' with: [
 				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
 			package: 'Math-Physics-Constants';

@@ -36,7 +36,7 @@ version084: spec
 			package: 'Math-KernelSmoothing' with: 'Math-KernelSmoothing-SergeStinckwich.6';
 			package: 'Math-KolmogorovSmirnov' with: 'Math-KolmogorovSmirnov-SergeStinckwich.3';
 			package: 'Math-Matrix' with: 'Math-Matrix-SergeStinckwich.13';
-			package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
+			package: 'Math-Numbers-Extensions' with: 'Math-Numbers-Extensions-SergeStinckwich.1';
 			package: 'Math-ODE' with: 'Math-ODE-OlehShyshkin.33';
 			package: 'Math-Physics-Constants' with: 'Math-Physics-Constants-SergeStinckwich.4';
 			package: 'Math-PrincipalComponentAnalysis' with: 'Math-PrincipalComponentAnalysis-SergeStinckwich.4';
