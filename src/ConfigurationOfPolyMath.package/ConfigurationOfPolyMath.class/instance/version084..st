@@ -56,7 +56,7 @@ version084: spec
 			package: 'Math-Tests-DHB-Numerical' with: 'Math-Tests-DHB-Numerical-SergeStinckwich.41';
 			package: 'Math-Tests-DHB-wk' with: 'Math-Tests-DHB-wk-SergeStinckwich.10';
 			package: 'Math-Tests-FastFourierTransform' with: 'Math-Tests-FastFourierTransform-SergeStinckwich.4';
-			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-SergeStinckwich.12';
+			package: 'Math-Tests-FunctionFit' with: 'Math-Tests-FunctionFit-SergeStinckwich.13';
 			package: 'Math-Tests-KDTree' with: 'Math-Tests-KDTree-SergeStinckwich.31';
 			package: 'Math-Tests-KolmogorovSmirnov' with: 'Math-Tests-KolmogorovSmirnov-SergeStinckwich.4';
 			package: 'Math-Tests-ODE' with: 'Math-Tests-ODE-OlehShyshkin.18';
