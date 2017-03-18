@@ -1,12 +1,12 @@
 versions
-version084: spec
-	<version: '0.84' imports: #('0.40-baseline' )>
+version085: spec
+	<version: '0.85' imports: #('0.40-baseline' )>
 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
-		spec description: 'version 0.84'.
+		spec description: 'version 0.85'.
 		spec author: 'SergeStinckwich'.
-		spec timestamp: '3/14/2017 15:11'.
+		spec timestamp: '3/18/2017 18:56'.
 		spec 
 			project: 'SMark' with: '1.0.1';
 			project: 'XMLWriter' with: '2.3.9'.
@@ -22,7 +22,7 @@ version084: spec
 			package: 'Math-Clustering' with: 'Math-Clustering-SergeStinckwich.5';
 			package: 'Math-Complex' with: 'Math-Complex-SergeStinckwich.10';
 			package: 'Math-ComplexExtensions' with: 'Math-ComplexExtensions-SergeStinckwich.8';
-			package: 'Math-Core' with: 'Math-Core-SergeStinckwich.16';
+			package: 'Math-Core' with: 'Math-Core-SergeStinckwich.21';
 			package: 'Math-Core-Distribution' with: 'Math-Core-Distribution-OlehShyshkin.13';
 			package: 'Math-Core-Process' with: 'Math-Core-Process-SergeStinckwich.8';
 			package: 'Math-DHB-Numerical' with: 'Math-DHB-Numerical-SergeStinckwich.5';
@@ -35,7 +35,7 @@ version084: spec
 			package: 'Math-KDTree' with: 'Math-KDTree-SergeStinckwich.36';
 			package: 'Math-KernelSmoothing' with: 'Math-KernelSmoothing-SergeStinckwich.6';
 			package: 'Math-KolmogorovSmirnov' with: 'Math-KolmogorovSmirnov-SergeStinckwich.3';
-			package: 'Math-Matrix' with: 'Math-Matrix-SergeStinckwich.13';
+			package: 'Math-Matrix' with: 'Math-Matrix-SergeStinckwich.16';
 			package: 'Math-Number-Extensions' with: 'Math-Number-Extensions.Pharo-DanielUber.8';
 			package: 'Math-ODE' with: 'Math-ODE-OlehShyshkin.33';
 			package: 'Math-Physics-Constants' with: 'Math-Physics-Constants-SergeStinckwich.4';
