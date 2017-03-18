@@ -11,10 +11,10 @@ PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/Sc
 Gofer new
     url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
     configurationOf:'PolyMath';
-    loadVersion: '0.84'
+    loadVersion: '0.85'
 ```
 
-We have **703** green tests !
+We have **712** green tests !
  
 PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
