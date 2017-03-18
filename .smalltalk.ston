@@ -9,7 +9,7 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
-    #categories : [ 'Math-Test*' ]
+    #categories : [ 'Math-*' ]
   }
 }
 
