@@ -1,7 +1,7 @@
 versions
 version085: spec
 	<version: '0.85' imports: #('0.40-baseline' )>
-
+ 
 	spec for: #'common' do: [
 		spec blessing: #'stable'.
 		spec description: 'version 0.85'.
