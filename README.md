@@ -8,10 +8,11 @@
 PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/SciSmalltalk). All the code and documentation will be moved here soon. 
 
 ```Smalltalk
-Gofer new
-    url: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
-    configurationOf:'PolyMath';
-    loadVersion: '0.86'
+Metacello new 
+  repository: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
+  configuration: 'PolyMath';
+  version: '0.86';
+  load
 ```
 
 We have **712** green tests !
