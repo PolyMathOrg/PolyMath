@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "SergeStinckwich 3/13/2017 14:53",
+	"super" : "Object",
+	"category" : "Math-Matrix",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"rows",
+		"lupDecomposition"
+	],
+	"name" : "PMMatrix",
+	"type" : "normal"
+}
