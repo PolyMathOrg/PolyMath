@@ -1,0 +1,3 @@
+information
+lupCRLCriticalDimension
+	^ 40
