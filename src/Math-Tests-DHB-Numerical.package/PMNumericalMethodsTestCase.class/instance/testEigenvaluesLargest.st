@@ -1,5 +1,7 @@
 linear algebra
 testEigenvaluesLargest
+	"Code Example 8.13"
+
 	| m charPol roots eigenvalue finder |
 	m := PMMatrix rows: #(#(3 -2 0) #(-2 7 1) #(0 1 5)).
 	charPol := PMPolynomial coefficients: #(82 -66 15 -1).

@@ -1,5 +1,7 @@
 optimization
 testOptimizePowell
+	"Code example 11.3"
+
 	| fBlock hillClimber educatedGuess result |
 	fBlock := [ :x | (x * x) negated exp ].
 	educatedGuess := #(0.5 1.0 0.5) asPMVector.

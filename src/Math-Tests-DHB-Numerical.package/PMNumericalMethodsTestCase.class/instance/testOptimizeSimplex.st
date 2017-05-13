@@ -1,5 +1,7 @@
 optimization
 testOptimizeSimplex
+	"Code example 11.5"
+
 	| fBlock simplex educatedGuess result |
 	fBlock := [ :x | (x * x) negated exp ].
 	educatedGuess := #(0.5 1.0 0.5) asPMVector.

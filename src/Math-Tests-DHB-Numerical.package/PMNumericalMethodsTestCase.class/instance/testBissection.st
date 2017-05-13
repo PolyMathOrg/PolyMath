@@ -1,7 +1,10 @@
 iterative algorithms
 testBissection
+	"Code Example 5.1"
+
 	| zeroFinder result |
-	zeroFinder := PMBisectionZeroFinder function: [ :x | x errorFunction - 0.9 ].
+	zeroFinder := PMBisectionZeroFinder
+		function: [ :x | x errorFunction - 0.9 ].
 	zeroFinder
 		setPositiveX: 10.0;
 		setNegativeX: 0.0.

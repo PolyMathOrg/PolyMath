@@ -1,5 +1,6 @@
 function evaluation
 testPolynomialIntegral
+	"Code example 2.3"
 
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral.
