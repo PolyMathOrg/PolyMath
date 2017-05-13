@@ -1,4 +1,4 @@
 operation
 cosh
 	"Apply cosh function to every element of a vector"
-	^ self collect: [:each | each cosh]
+	1 to: self size do: [ :n | self at: n put: (self at: n) cosh].
