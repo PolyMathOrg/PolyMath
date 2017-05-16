@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "OlehShyshkin 3/19/2017 20:03",
+	"super" : "Object",
+	"category" : "Math-Matrix",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PMSingularValueDecomposition",
+	"type" : "normal"
+}
