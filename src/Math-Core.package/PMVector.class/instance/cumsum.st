@@ -1,4 +1,9 @@
 transformation
 cumsum
-	"Compute cumulative sum of the vector"
-	2 to: self size do: [ :n | self at: n put: (self at: n) + (self at: n - 1)].
+	"Cumulative sum
+	#(1 2 3 4 5) cumsum = #(1 3 6 10 15)
+	"
+   | sum |
+	sum := 0.
+	^ self collect: [ :v | sum := sum + v. sum ]
+ 
