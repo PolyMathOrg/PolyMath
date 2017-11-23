@@ -1,5 +1,5 @@
 printing
-print2On: aStream 
+print2On: aStream
 	aStream nextPutAll: ' otherDataSize: '.
-	compareWith ifNil:[aStream nextPut: $-]ifNotNil:[compareWith size printOn: aStream].
-	aStream nextPut: $).
+	compareWith ifNil: [ aStream nextPut: $- ] ifNotNil: [ compareWith size printOn: aStream ].
+	aStream nextPut: $)

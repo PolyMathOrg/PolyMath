@@ -1,4 +1,4 @@
 accessing
 otherData: aCollection
-ksStatistic:=nil.
-^self makeCDFOf: aCollection intoFirst: false .
+	ksStatistic := nil.
+	^ self makeCDFOf: aCollection intoFirst: false

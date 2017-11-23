@@ -1,3 +1,3 @@
 information
 average
-^distribution average *a +b
+	^ distribution average * a + b
