@@ -1,3 +1,3 @@
 information
 parameters
-	^ {n}
+	^ Array with: n

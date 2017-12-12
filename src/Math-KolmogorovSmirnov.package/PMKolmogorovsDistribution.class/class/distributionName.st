@@ -1,3 +1,3 @@
 information
 distributionName
-^'Kolmogorovs Distribution'
+	^ 'Kolmogorovs Distribution'

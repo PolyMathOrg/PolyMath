@@ -1,3 +1,5 @@
 instance creation
 exampleSize: anInteger
-^self new exampleSize: anInteger;yourself
+	^ self new
+		exampleSize: anInteger;
+		yourself
