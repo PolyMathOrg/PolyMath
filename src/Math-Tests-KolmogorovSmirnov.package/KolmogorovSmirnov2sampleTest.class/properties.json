@@ -1,5 +1,5 @@
 {
-	"commentStamp" : "WernerKassens 11/5/2015 13:39",
+	"commentStamp" : "SergeStinckwich 12/12/2017 11:40",
 	"super" : "TestCase",
 	"category" : "Math-Tests-KolmogorovSmirnov",
 	"classinstvars" : [ ],

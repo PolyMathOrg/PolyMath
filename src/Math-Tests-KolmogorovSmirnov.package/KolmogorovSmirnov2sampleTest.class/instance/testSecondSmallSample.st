@@ -15,5 +15,7 @@ in Selected Tables in Mathematical Statistics Volume I (1973)"
 	k data: d1 + 1.282.
 	self assert: (k rejectEqualityHypothesisWithAlpha: 0.05).
 	self assert: k ksStatistic equals: 56 / 91.
-	self assert: (1 - k pValue asFloat roundTo: 0.000001) equals: 0.045820.
+	self
+		assert: (1 - k pValue asFloat roundTo: 0.000001)
+		equals: 0.045820.
 	self deny: (k rejectEqualityHypothesisWithAlpha: 0.01)
