@@ -1,4 +1,4 @@
-setup
+initialization
 setUp
 
 	accumulator := PMCovarianceAccumulator new: 5.

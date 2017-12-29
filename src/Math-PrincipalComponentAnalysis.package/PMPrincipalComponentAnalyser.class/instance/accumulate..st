@@ -1,4 +1,4 @@
 transformation
-accumulate: aDhbVectorOrArray
+accumulate: aPMVectorOrArray
 	
-	accumulatorForCovarianceMatrix accumulate: aDhbVectorOrArray
+	accumulatorForCovarianceMatrix accumulate: aPMVectorOrArray
