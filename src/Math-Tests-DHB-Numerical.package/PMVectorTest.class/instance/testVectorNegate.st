@@ -1,4 +1,4 @@
-arithmetic
+tests
 testVectorNegate
 	"negate modifies the vector. negated makes a new vector with inverse coefficients. "
 

@@ -1,4 +1,4 @@
-boolean
+tests
 testVectorCloseToPrecision
 	| u v |
 	u := #(1.2 2.4) asPMVector.

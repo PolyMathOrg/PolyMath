@@ -1,4 +1,4 @@
-linear algebra
+tests
 testScalarProductIsCommutative
 	| u v |
 	u := PMVector new: 3.

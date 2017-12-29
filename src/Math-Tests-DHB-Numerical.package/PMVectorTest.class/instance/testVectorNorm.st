@@ -1,4 +1,4 @@
-information
+tests
 testVectorNorm
 	| v1 v2 |
 	v1 := #(1 0) asPMVector.

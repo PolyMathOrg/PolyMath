@@ -1,4 +1,4 @@
-information
+tests
 testVectorOnes
 	| v |
 	v := PMVector ones: 3.

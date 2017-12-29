@@ -1,4 +1,4 @@
-linear algebra
+tests
 testVectorProduct
 	"Code Example 8.1"
 

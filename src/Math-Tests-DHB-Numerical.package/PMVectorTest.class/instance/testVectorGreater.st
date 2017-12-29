@@ -1,4 +1,4 @@
-boolean
+tests
 testVectorGreater
 
 | u w |

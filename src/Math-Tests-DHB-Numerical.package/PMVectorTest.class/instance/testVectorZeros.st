@@ -1,4 +1,4 @@
-information
+tests
 testVectorZeros
 	| v |
 	v := PMVector zeros: 3.

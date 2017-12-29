@@ -1,4 +1,4 @@
-linear algebra
+tests
 testScalarProduct
 	| u v |
 	u := PMVector new: 3.

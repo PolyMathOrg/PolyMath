@@ -1,4 +1,4 @@
-boolean
+tests
 testVectorLess
 
 | u w |

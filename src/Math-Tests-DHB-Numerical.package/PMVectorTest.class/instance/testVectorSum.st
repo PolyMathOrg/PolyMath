@@ -1,4 +1,4 @@
-linear algebra
+tests
 testVectorSum
 	"Code Example 8.1"
 

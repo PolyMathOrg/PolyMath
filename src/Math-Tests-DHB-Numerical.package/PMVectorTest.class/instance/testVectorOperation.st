@@ -1,4 +1,4 @@
-linear algebra
+tests
 testVectorOperation
 	"Code Example 8.1"
 

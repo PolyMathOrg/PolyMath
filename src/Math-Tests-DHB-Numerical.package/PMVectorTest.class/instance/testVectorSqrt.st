@@ -1,4 +1,4 @@
-linear algebra
+tests
 testVectorSqrt
 	"Code Example 8.1"
 

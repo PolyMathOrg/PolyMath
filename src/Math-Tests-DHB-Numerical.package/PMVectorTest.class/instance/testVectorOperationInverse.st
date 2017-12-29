@@ -1,4 +1,4 @@
-linear algebra
+tests
 testVectorOperationInverse
 	| u v w |
 	u := #(1 2 3) asPMVector.
