@@ -8,5 +8,5 @@ testTensorProduct
 	self deny: c isSymmetric.
 	"furthermore this is completely permissible:"
 	b := #(1 2 3 4) asPMVector.
-	self shouldnt: [ c := a tensorProduct: b ] raise: Error.
+	c := a tensorProduct: b.
 	self assert: (b tensorProduct: a) equals: c transpose

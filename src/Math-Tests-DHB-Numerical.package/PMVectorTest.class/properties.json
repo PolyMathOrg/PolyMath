@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PMVectorBug",
+	"name" : "PMVectorTest",
 	"type" : "normal"
 }
