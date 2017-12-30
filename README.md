@@ -12,7 +12,7 @@ All the code and documentation will be moved here soon.
 Metacello new 
   repository: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
   configuration: 'PolyMath';
-  version: '0.90';
+  version: '0.92';
   load
 ```
 
