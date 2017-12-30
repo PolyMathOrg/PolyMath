@@ -1,0 +1,16 @@
+{
+	"commentStamp" : "SergeStinckwich 12/30/2017 16:19",
+	"super" : "Object",
+	"category" : "Math-TNSE",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"ndims",
+		"perplexity",
+		"x",
+		"y"
+	],
+	"name" : "TSNE",
+	"type" : "normal"
+}
