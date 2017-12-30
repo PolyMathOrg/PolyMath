@@ -1,3 +1,3 @@
 information
 initialTerm
-	^1
+	^ 1
