@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "CovarianAccumulatorTest",
+	"name" : "PMCovarianceAccumulatorTest",
 	"type" : "normal"
 }
