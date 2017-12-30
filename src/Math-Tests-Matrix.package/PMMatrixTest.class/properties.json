@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PMRestTests",
+	"name" : "PMMatrixTest",
 	"type" : "normal"
 }

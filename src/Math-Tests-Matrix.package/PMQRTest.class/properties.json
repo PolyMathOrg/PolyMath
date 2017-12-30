@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PMQRTests",
+	"name" : "PMQRTest",
 	"type" : "normal"
 }
