@@ -9,6 +9,6 @@
 		"laplaceDistribution",
 		"next"
 	],
-	"name" : "LaplaceGenerator",
+	"name" : "PMLaplaceGenerator",
 	"type" : "normal"
 }

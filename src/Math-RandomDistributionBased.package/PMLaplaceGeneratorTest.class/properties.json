@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "LaplaceGeneratorTest",
+	"name" : "PMLaplaceGeneratorTest",
 	"type" : "normal"
 }
