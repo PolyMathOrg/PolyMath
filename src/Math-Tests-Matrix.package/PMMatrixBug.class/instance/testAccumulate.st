@@ -1,8 +1,8 @@
 tests
 testAccumulate
 "|m s|
-m :=DhbMatrix rows: #((1 2 3)(-1 -2 7)(5 6 7)).
-s :=DhbSymmetricMatrix rows: #((1 2 3)(2 1 4)(3 4 0)).
+m :=PMMatrix rows: #((1 2 3)(-1 -2 7)(5 6 7)).
+s :=PMSymmetricMatrix rows: #((1 2 3)(2 1 4)(3 4 0)).
 s accumulate: m."
 "now s is not symmetric anymore, hence this should work, but it does not:"
 "self deny: s isSymmetric ."

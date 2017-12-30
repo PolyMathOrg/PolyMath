@@ -1,6 +1,6 @@
 tests
 testEqual
-	"= should work like in a SequenceableCollection  eg a DhbVector and a Array can be equal"
+	"= should work like in a SequenceableCollection  eg a PMVector and a Array can be equal"
 
 	| a b |
 	a := PMMatrix rows: #(#(2 2 3) #(2 4 5) #(3 5 6)).
