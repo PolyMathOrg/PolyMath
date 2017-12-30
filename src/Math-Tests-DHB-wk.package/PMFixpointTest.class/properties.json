@@ -8,6 +8,6 @@
 	"instvars" : [
 		"fp"
 	],
-	"name" : "TestFixpoint",
+	"name" : "PMFixpointTest",
 	"type" : "normal"
 }
