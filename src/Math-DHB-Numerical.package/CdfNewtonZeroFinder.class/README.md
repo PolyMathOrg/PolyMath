@@ -1,1 +1,0 @@
-A CdfNewtonZeroFinder is a specialised version of PMNewtonZeroFinder for DhbProbabilityDensity >>privateInverseDistributionValue:, that can deal with problems that can arise there (it doesnt diverge on a cdf)
