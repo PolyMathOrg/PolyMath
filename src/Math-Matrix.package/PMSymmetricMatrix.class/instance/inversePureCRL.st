@@ -3,7 +3,7 @@ inversePureCRL
 	"Answer the inverse of the receiver."
 	| matrices b1 cb1 cb1ct |
 	[rows size = 1
-		ifTrue: [ ^self inverse1By1]]on: ZeroDivide do: [:e| SingularMatrixError new signal].
+		ifTrue: [ ^self inverse1By1]]on: ZeroDivide do: [:e| PMSingularMatrixError new signal].
 	rows size = 2
 		ifTrue: [ ^ self inverse2By2].
 	matrices := self split.

@@ -7,7 +7,7 @@ split
 	n1 := self largestPowerOf2SmallerThan: n.
 	m1 := self largestPowerOf2SmallerThan: m.
 	^ Array
-		with: ( self class rows: ( ( 1 to: n1) asPMVector collect: [ :k | ( rows at: k) copyFrom: 1 to: m1]))
-		with:( self class rows: ( ( 1 to: n1) asPMVector collect: [ :k | ( rows at: k) copyFrom: (m1 + 1) to: m]))
-		with: ( self class rows: ( ( (n1 + 1) to: n) asPMVector collect: [ :k | ( rows at: k) copyFrom: 1 to: m1]))
-		with:( self class rows: ( ( (n1 + 1) to: n) asPMVector collect: [ :k | ( rows at: k) copyFrom: (m1 + 1) to: m]))
+		with: ( self class rows: ( ( 1 to: n1) asDhbVector collect: [ :k | ( rows at: k) copyFrom: 1 to: m1]))
+		with:( self class rows: ( ( 1 to: n1) asDhbVector collect: [ :k | ( rows at: k) copyFrom: (m1 + 1) to: m]))
+		with: ( self class rows: ( ( (n1 + 1) to: n) asDhbVector collect: [ :k | ( rows at: k) copyFrom: 1 to: m1]))
+		with:( self class rows: ( ( (n1 + 1) to: n) asDhbVector collect: [ :k | ( rows at: k) copyFrom: (m1 + 1) to: m]))

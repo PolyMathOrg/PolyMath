@@ -4,5 +4,5 @@ inversePureLUP
 
 	lupDecomposition := nil.
 	self lupDecomposition inverseMatrixComponents
-		ifNil: [ SingularMatrixError new signal ]
+		ifNil: [ PMSingularMatrixError new signal ]
 		ifNotNil: [ :i | ^ self class rows: i ]

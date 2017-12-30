@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "SingularMatrixError",
+	"name" : "PMSingularMatrixError",
 	"type" : "normal"
 }
