@@ -1,3 +1,3 @@
 operation
 computeChanges
-	^[super computeChanges]on: SingularMatrixError  do:[:signal|signal messageText: 'singular error matrix, set better parameters'.signal pass]
+	^[super computeChanges]on: PMSingularMatrixError  do:[:signal|signal messageText: 'singular error matrix, set better parameters'.signal pass]
