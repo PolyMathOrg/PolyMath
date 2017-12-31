@@ -1,4 +1,4 @@
-running
+initialization
 setUp
 	"create a dummy system"
-	sys := ODESystem new.
+	sys := ODESystem new

@@ -1,4 +1,4 @@
-tests-stepping
+tests
 testSimpleSystem2
 	| solver stepper system dt |
 	dt := 0.5.

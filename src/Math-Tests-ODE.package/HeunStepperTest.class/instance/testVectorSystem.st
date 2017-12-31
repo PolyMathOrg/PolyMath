@@ -1,4 +1,4 @@
-tests-stepping
+tests
 testVectorSystem
 	| solver stepper system dt |
 	dt := 0.01.
