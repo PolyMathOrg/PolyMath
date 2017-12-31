@@ -6,6 +6,6 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [ ],
-	"name" : "PMSVDTest",
+	"name" : "PMSingularValueDecompositionTest",
 	"type" : "normal"
 }
