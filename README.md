@@ -16,7 +16,7 @@ Metacello new
   load
 ```
 
-We have **712** green tests !
+We have **720** green tests !
  
 PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
