@@ -1,0 +1,19 @@
+{
+	"commentStamp" : "wernerkassens 4/28/2015 14:11",
+	"super" : "PMIterativeProcess",
+	"category" : "Math-Core-Process",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"cycleFlag",
+		"result2",
+		"result1",
+		"results",
+		"block",
+		"verbose",
+		"equalityTest"
+	],
+	"name" : "PMFixpoint",
+	"type" : "normal"
+}
