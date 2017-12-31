@@ -6,7 +6,7 @@ environment:
   CYG_MIRROR: http://cygwin.mirror.constant.com
   SCI_RUN: /cygdrive/c/smalltalkCI-master/run.sh
   matrix:
-    - SMALLTALK: Pharo-6.0    
+    - SMALLTALK: Pharo-6.1    
 
 platform:
   - x86
