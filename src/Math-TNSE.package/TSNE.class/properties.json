@@ -9,7 +9,8 @@
 		"ndims",
 		"perplexity",
 		"x",
-		"y"
+		"y",
+		"maxIter"
 	],
 	"name" : "TSNE",
 	"type" : "normal"
