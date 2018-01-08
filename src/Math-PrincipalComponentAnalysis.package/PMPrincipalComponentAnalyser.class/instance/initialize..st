@@ -1,5 +1,3 @@
 initialization
 initialize: anInteger
-
-	accumulatorForCovarianceMatrix := PMCovarianceAccumulator new: anInteger.
-	
+	accumulatorForCovarianceMatrix := PMCovarianceAccumulator new: anInteger

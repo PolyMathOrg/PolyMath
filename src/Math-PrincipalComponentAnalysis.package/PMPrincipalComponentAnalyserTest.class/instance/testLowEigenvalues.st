@@ -1,6 +1,7 @@
 tests
 testLowEigenvalues
 	"this is a test without using the class API."
+
 	| jacobi actual expected |
 	jacobi := PMJacobiTransformation matrix: covarianceMatrix.
 	actual := jacobi evaluate.
