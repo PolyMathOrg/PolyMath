@@ -7,6 +7,7 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"ndims",
+		"initialdims",
 		"perplexity",
 		"x",
 		"y",
