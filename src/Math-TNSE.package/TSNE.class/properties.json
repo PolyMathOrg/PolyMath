@@ -10,7 +10,8 @@
 		"perplexity",
 		"x",
 		"y",
-		"maxIter"
+		"maxIter",
+		"epsilon"
 	],
 	"name" : "TSNE",
 	"type" : "normal"

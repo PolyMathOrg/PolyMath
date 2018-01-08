@@ -1,7 +1,10 @@
 examples
 example1
-
-"Demos from https://github.com/distillpub/post--misread-tsne/blob/master/public/assets/demo-configs.js"
-"A square grid with equal spacing between points. Try convergence at different sizes."
-
-self gridDataGeneratorOf: 10.
+	| points |
+	points := self gridDataGeneratorOf: 10.
+	^ (self new)
+		perplexity: 10;
+		x: points;
+		epsilon: 5;
+		run;
+		y

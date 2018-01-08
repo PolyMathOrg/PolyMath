@@ -1,0 +1,4 @@
+running
+run
+	self initializeUninitializedParameters.
+	self initializeYWithRandomValues
