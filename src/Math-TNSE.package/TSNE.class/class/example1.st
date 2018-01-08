@@ -5,6 +5,7 @@ example1
 	^ (self new)
 		perplexity: 10;
 		x: points;
+		initialDims: 2;
 		epsilon: 5;
 		run;
 		y
