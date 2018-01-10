@@ -1,7 +1,6 @@
 running
 runPcaOnX
-
-"Runs PCA on the NxD array X in order to reduce its dimensionality to no_dims dimensions.
+	"Runs PCA on X in order to reduce its dimensionality to initialdims dimensions.
 
 	print ""Preprocessing the data using PCA...""
 	(n, d) = X.shape;
@@ -10,3 +9,11 @@ runPcaOnX
 	Y = Math.dot(X, M[:,0:no_dims]);
 	return Y;
 "
+
+	"| analyzer i |
+	analyzer := PMPrincipalComponentAnalyser new: initialdims.
+	i := 1.
+	x dimension x
+		timesRepeat: [ analyzer accumulate: (x rowAt: i).
+			i := i + 1 ].
+	^ analyzer components"
