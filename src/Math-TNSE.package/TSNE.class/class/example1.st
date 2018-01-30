@@ -7,5 +7,5 @@ example1
 		x: points;
 		initialDims: 2;
 		epsilon: 5;
-		run;
+		start;
 		y

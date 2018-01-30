@@ -4,5 +4,5 @@ testInitialDimsSetByDefaultWithFifty
 	t := TSNE
 		new
 		x: (TSNE gridDataGeneratorOf: 5);
-		run.
+		start.
 	self assert: t initialDims equals: 50
