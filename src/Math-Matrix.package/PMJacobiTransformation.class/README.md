@@ -1,6 +1,6 @@
 [[[ 
 | m jacobi eigenvalues eigenvectors |
-m := DhbSymmetricMatrix rows: #((84 -79 58 55)
+m := PMSymmetricMatrix rows: #((84 -79 58 55)
                                  (-79 84 -55 -58)
                                  (58 -55 84 79)
                                  (55 -58 79 84)).
