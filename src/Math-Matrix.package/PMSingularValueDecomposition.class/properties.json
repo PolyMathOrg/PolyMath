@@ -5,7 +5,15 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"m",
+		"n",
+		"u",
+		"s",
+		"v",
+		"signU",
+		"signV"
+	],
 	"name" : "PMSingularValueDecomposition",
 	"type" : "normal"
 }
