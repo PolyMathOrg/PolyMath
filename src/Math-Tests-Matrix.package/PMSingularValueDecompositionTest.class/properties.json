@@ -5,7 +5,12 @@
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [ ],
+	"instvars" : [
+		"matrix",
+		"actualU",
+		"actualV",
+		"actualS"
+	],
 	"name" : "PMSingularValueDecompositionTest",
 	"type" : "normal"
 }
