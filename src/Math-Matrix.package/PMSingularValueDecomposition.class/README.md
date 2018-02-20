@@ -1,26 +1,27 @@
-Not Final version, still in progress.
-
 Singular Value Decomposition method.
 https://en.wikipedia.org/wiki/Singular_value_decomposition
 
-M = U*S*V
+A = U * S * V transpose
 
 Input: 
- -  M - m x n matrix of real numbers.
+ -  A - m x n matrix 
+
 Output: 
- -  U m x m unitary matrix.
- -  V n x n unitary matrix.
- -  s - diagonal of the diagonal matrix S.
- -  s_matrix - matrix S 
+ -  U - m x m unitary matrix.
+ -  V - n x n unitary matrix.
+ -  S - diagonal matrix with singular components on the main diagonal
+
 Example:
 [ [ [ 
 matrix := PMMatrix rows: #(
-			(1 2 3 4)
-			(5 6 7 8)
-		     ).			
-u := PMSingularValueDecomposition getLeftMatrix: matrix.
-v := PMSingularValueDecomposition getRightMatrix: matrix.
-s := PMSingularValueDecomposition  getDiagonal: matrix.
-s_matrix := PMSingularValueDecomposition  getSMatrix: matrix.
+	(0 1 0 0)
+	(0 0 2 0)
+	(0 0 0 3)
+	(0 0 0 0)).
+	
+svd := matrix decompose.
+u := svd leftSingularForm.
+v := svd rightSingularForm.
+s := svd sForm.
  ] ] ]
 
