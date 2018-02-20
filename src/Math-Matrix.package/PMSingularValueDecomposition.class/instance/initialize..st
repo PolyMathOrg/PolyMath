@@ -1,24 +1,23 @@
 initialization
 initialize: aMatrix
 
-	| leftSymmetric rightSymmetric |
+	| symU symV eigenU eigenV diag |
 	m := aMatrix numberOfRows.
 	n := aMatrix numberOfColumns.
 	
-	leftSymmetric := (aMatrix * aMatrix transpose) asSymmetricMatrix.
-	rightSymmetric := (aMatrix transpose * aMatrix) asSymmetricMatrix.
+	symU := aMatrix * aMatrix transpose.
+	symV := aMatrix transpose * aMatrix.
 	
-	u := self getLeftMatrix: leftSymmetric.
-	v := self getRightMatrix: rightSymmetric.
-	s := self getSMatrix: leftSymmetric.
+	"Expensive computation"
+	eigenU := symU eigen.
+	eigenV := symV eigen.
 	
-	"self determineSigns: aMatrix.
+	u := (PMMatrix rows: eigenU vectors) transpose.
+	v := (PMMatrix rows: eigenV vectors) transpose.
 	
-	u := (1 to: m) collect: [ :i |
-		(signU at: i) * (u columnAt: i) ].
-	
-	v := (1 to: n) collect: [ :i |
-		(signV at: i) * (v columnAt: i) ].
-	
-	u := (PMMatrix rows: u) transpose.
-	v := (PMMatrix rows: v) transpose."
+	m < n
+		ifTrue: [ diag := eigenU values ]
+		ifFalse: [ diag := eigenV values ].
+		
+	s := PMMatrix rows: m columns: n random: 0.
+	s setDiagonal: diag sqrt.

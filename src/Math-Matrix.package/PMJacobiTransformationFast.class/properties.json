@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "OleksandrZaytsev 2/20/2018 01:32",
+	"super" : "Object",
+	"category" : "Math-Matrix",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"eigenvalues",
+		"eigenvectors"
+	],
+	"name" : "PMJacobiTransformationFast",
+	"type" : "normal"
+}
