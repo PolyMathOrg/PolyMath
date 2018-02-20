@@ -9,6 +9,6 @@
 		"eigenvalues",
 		"eigenvectors"
 	],
-	"name" : "PMJacobiTransformationHelper",
+	"name" : "PMJacobiTransformationFast",
 	"type" : "normal"
 }
