@@ -5,4 +5,4 @@ eigen
 	matrix eigen values.
 	matrix eigen vectors."
 
-	^ PMJacobiTransformationFast matrix: self.
+	^ PMJacobiTransformationHelper matrix: self.
