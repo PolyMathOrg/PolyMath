@@ -1,4 +1,4 @@
 operation
-+ aMatrix
++ aMatrixOrNumber
 	"Answers the sum of the receiver with aMatrix."
-	^ aMatrix addWithRegularMatrix: self
+	^ aMatrixOrNumber addWithRegularMatrix: self
