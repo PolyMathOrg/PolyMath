@@ -4,7 +4,7 @@ testSymmetric
 a:=#(1 2 3)asPMVector.
 m:=PMMatrix rows: #((1 2)(3 3)).
 self deny: (m isSymmetric ).
-"but a DhbMatrix can of course also be symmetric, 
+"but a PMMatrix can of course also be symmetric, 
 and it is occasionally interesting to know, 
 hence the result should be correct"
 m:=PMMatrix rows: (a tensorProduct: a)rows.
