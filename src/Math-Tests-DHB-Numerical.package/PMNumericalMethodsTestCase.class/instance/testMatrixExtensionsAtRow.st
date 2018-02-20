@@ -3,7 +3,9 @@ testMatrixExtensionsAtRow
 	"testing at:at: and at:at:put:"
 
 	| a c |
-
+	(RPackage organizer
+		includesPackageNamed: 'Math-DHB-NumericalExtensions')
+		ifFalse: [ ^ self skip ].
 	a := PMMatrix rows: #(#(11 12 13) #(21 22 23)).
 	c := a deepCopy.
 	self assert: (c at: 1 at: 1) equals: (a at: 1 at: 1).

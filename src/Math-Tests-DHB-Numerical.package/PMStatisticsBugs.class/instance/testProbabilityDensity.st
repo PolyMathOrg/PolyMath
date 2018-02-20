@@ -1,6 +1,6 @@
 tests
 testProbabilityDensity
-	"tests PMProbabilityDensity>>inverseDistributionValue:."
+	"tests DhbProbabilityDensity>>inverseDistributionValue:."
 
 	"testing this method usually produces (not always and not always the same) three different errors: 'zerodivide', ' 'Function''s derivative seems to be zero everywhere' and 'Supplied derivative is not correct', the latter happens in other cases than the documented one too, i just dont remember which ones they are and i was too lazy to construct them, one example is enough"
 
