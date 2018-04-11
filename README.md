@@ -39,4 +39,4 @@ Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Ente
 
 ## How to contribute to PolyMath
 
-We welcome submissions! A google group exists for this project at http://groups.google.com/group/scismalltalk
+We welcome submissions! A google group exists for this project at http://groups.google.com/group/polymath-project
