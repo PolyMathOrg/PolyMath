@@ -12,11 +12,11 @@ All the code and documentation will be moved here soon.
 Metacello new 
   repository: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
   configuration: 'PolyMath';
-  version: '0.98';
+  version: '0.99';
   load
 ```
 
-We have **742** green tests !
+We have **744** green tests !
  
 PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
