@@ -35,7 +35,7 @@ baseline045: spec
 				spec requires: #('Math-DHB-Numerical' 'Math-Core-Process' 'Math-Matrix' ). ];
 			package: 'Math-Complex';
 			package: 'Math-ComplexExtensions' with: [
-				spec requires: #('Math-Complex' 'Math-DHB-Numerical' ). ];
+				spec requires: #('Math-Complex' 'Math-DHB-Numerical' 'Math-Polynomials' ). ];
 			package: 'Math-Core';
 			package: 'Math-Core-Distribution' with: [
 				spec requires: #('Math-Core' ). ];
@@ -53,27 +53,27 @@ baseline045: spec
 			package: 'Math-FastFourierTransform' with: [
 				spec requires: #('Math-Complex' ). ];
 			package: 'Math-FunctionFit' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'Math-Core' 'Math-Matrix' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'Math-Core' 'Math-Matrix' 'Math-Polynomials' ). ];
 			package: 'Math-KDTree';
 			package: 'Math-KernelSmoothing' with: [
-				spec requires: #('Math-Quantile' 'Math-DHB-Numerical' ). ];
+				spec requires: #('Math-Quantile' 'Math-DHB-Numerical'  'Math-Polynomials'). ];
 			package: 'Math-KolmogorovSmirnov' with: [
-				spec requires: #('Math-DHB-Numerical' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Polynomials'). ];
 			package: 'Math-Matrix';
 			package: 'Math-Number-Extensions';
 			package: 'Math-ODE' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' 'Math-Polynomials'). ];
 			package: 'Math-Physics-Constants';
 			package: 'Math-PrincipalComponentAnalysis' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Matrix' 'Math-Polynomials'). ];
 			package: 'Math-Quantile';
 			package: 'Math-Quaternion' with: [
 				spec requires: #('Math-Complex' ). ];
 			package: 'Math-QuaternionExtensions' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-Quaternion' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Quaternion' 'Math-Polynomials'). ];
 			package: 'Math-Random';
 			package: 'Math-RandomDistributionBased' with: [
-				spec requires: #('Math-DHB-Numerical' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Polynomials'). ];
 			package: 'Math-Series';
 			package: 'Math-StatisticalMoments' with: [
 				spec requires: #('Math-Core' 'Math-DistributionForHistogram' ). ];
@@ -92,14 +92,14 @@ baseline045: spec
 				spec requires: #('Math-DHB-Numerical' 'Math-UtilsDataServer' ). ];
 			package: 'Math-Tests-DHB-wk';
 			package: 'Math-Tests-FastFourierTransform' with: [
-				spec requires: #('Math-FastFourierTransform' 'Math-DHB-Numerical' ). ];
+				spec requires: #('Math-FastFourierTransform' 'Math-DHB-Numerical' 'Math-Polynomials' ). ];
 			package: 'Math-Tests-FunctionFit';
 			package: 'Math-Tests-KDTree' with: [
 				spec requires: #('Math-KDTree' ). ];
 			package: 'Math-Tests-KolmogorovSmirnov' with: [
-				spec requires: #('Math-DHB-Numerical' 'Math-KolmogorovSmirnov' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-KolmogorovSmirnov' 'Math-Polynomials' ). ];
 			package: 'Math-Tests-Matrix' with: [
-				spec requires: #('Math-Core' 'Math-DHB-Numerical' 'Math-StatisticalMoments' 'Math-Matrix' ). ];
+				spec requires: #('Math-Core' 'Math-DHB-Numerical' 'Math-StatisticalMoments' 'Math-Matrix' 'Math-Polynomials'). ];
 			package: 'Math-Tests-ODE' with: [
 				spec requires: #('Math-ODE' ). ];
 			package: 'Math-Tests-Quantile' with: [
@@ -113,7 +113,7 @@ baseline045: spec
 		spec 
 			group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core' );
 			group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree' );
-			group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' );
+			group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials');
 			group: 'Extensions' with: #('Math-Clustering' 'Math-ComplexExtensions' 'Math-Number-Extensions' 'Math-QuaternionExtensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov' );
-			group: 'Tests' with: #('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' );
+			group: 'Tests' with: #('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials');
 			group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' ). ].
