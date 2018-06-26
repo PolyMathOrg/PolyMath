@@ -34,7 +34,7 @@ baseline046: spec
 			package: 'Math-Clustering' with: [
 				spec requires: #('Math-DHB-Numerical' 'Math-Core-Process' 'Math-Matrix' ). ];
 			package: 'Math-Complex' with: [
-				spec requires: #('Math-Complex' 'Math-DHB-Numerical' 'Math-Polynomials' ). ];
+				spec requires: #('Math-DHB-Numerical' 'Math-Polynomials' ). ];
 			package: 'Math-Core';
 			package: 'Math-Core-Distribution' with: [
 				spec requires: #('Math-Core' ). ];
