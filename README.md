@@ -5,9 +5,6 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
 
-PolyMath is the new name of [SciSmalltalk](https://github.com/SergeStinckwich/SciSmalltalk).
-All the code and documentation will be moved here soon. 
-
 ```Smalltalk
 Metacello new 
   repository: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
@@ -18,7 +15,7 @@ Metacello new
 
 We have **744** green tests !
  
-PolyMath is a new Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
+PolyMath is a Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
 - random number generators,
 - fuzzy algorithms,
