@@ -1,4 +1,3 @@
 *Math-ComplexExtensions
 addPolynomial: aPolynomial
-
-	^aPolynomial addNumber: self
+	^ aPolynomial addNumber: self
