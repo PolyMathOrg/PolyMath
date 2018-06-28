@@ -1,3 +1,0 @@
-printing
-report
-^aStream contents  

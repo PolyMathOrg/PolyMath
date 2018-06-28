@@ -1,1 +1,0 @@
-ConstraintsMinimizer1  is a SkelboeMoore1 algo where you can add  Constraints.

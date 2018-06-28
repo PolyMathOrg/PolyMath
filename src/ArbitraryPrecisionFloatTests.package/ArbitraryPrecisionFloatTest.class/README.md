@@ -1,1 +1,0 @@
-Test to check FloatingPoint numbers with arbitrary precision

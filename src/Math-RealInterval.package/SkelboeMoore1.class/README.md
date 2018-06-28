@@ -1,1 +1,0 @@
-A SkelboeMoore1  algo is run with #evaluate and returns an array of the domain and the range of the minimum of a function . you have to set the function and the box

@@ -1,3 +1,0 @@
-operation
-finalizeIterations
-^self cleanUp 

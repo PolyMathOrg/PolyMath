@@ -1,2 +1,0 @@
-SkelboeMoore2 should be faster than SkelboeMoore1 - ehhm, i think - but the speed gain is questionable. and SkelboeMoore1 gives almost always a sensible result, whereas SkelboeMoore2 needs to have a sufficiently high maximumIterations number for that.
-perhaps some thinking is necessary here.

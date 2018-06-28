@@ -1,1 +1,0 @@
-AccuracyTest uses AccuracyTestExample

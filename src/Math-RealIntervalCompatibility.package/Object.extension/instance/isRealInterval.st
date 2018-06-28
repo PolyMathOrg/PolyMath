@@ -1,3 +1,0 @@
-*Math-RealIntervalCompatibility
-isRealInterval
-^false

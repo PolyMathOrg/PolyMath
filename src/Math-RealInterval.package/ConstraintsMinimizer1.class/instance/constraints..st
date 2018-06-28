@@ -1,3 +1,0 @@
-accessing
-constraints: aCollectionOfConstraints
-^constraints:= ConstraintsCollection newFrom:aCollectionOfConstraints

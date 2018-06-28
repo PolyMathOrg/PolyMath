@@ -1,3 +1,0 @@
-accessing
-sign
-	^mantissa sign

@@ -1,3 +1,0 @@
-testing
-negative
-	^mantissa negative

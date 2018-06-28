@@ -1,1 +1,0 @@
-An OpenIntervalUnion is an IntervalUnion that does not reduce intervals with adjacent bounderies . (experimental)

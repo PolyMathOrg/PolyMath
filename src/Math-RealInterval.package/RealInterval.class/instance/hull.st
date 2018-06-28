@@ -1,3 +1,0 @@
-set operations
-hull
-^self
