@@ -1,18 +1,18 @@
 Class {
-	#name : #NumbersExtensionsTest,
+	#name : #NumberExtensionsTest,
 	#superclass : #TestCase,
-	#category : 'Math-Numbers-Extensions'
+	#category : #'Math-Number-Extensions'
 }
 
 { #category : #tests }
-NumbersExtensionsTest >> testArTanh [
-	self assert: 0 arTanh equals: 0.0 arTanh.
+NumberExtensionsTest >> testArTanh [
+	self assert: 0 arTanh = 0.0 arTanh.
 	self assert: 1 arTanh isFloat.
-	self assert: 1 arTanh = 1.0 arTanh
+	self assert: 1 arTanh equals: 1.0 arTanh
 ]
 
 { #category : #tests }
-NumbersExtensionsTest >> testSinc [
+NumberExtensionsTest >> testSinc [
 	"test cardinal sine"
 
 	self assert: 0 sinc equals: 1.

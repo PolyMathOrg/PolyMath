@@ -1,6 +1,6 @@
 Extension { #name : #Float }
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh."
@@ -13,7 +13,7 @@ Float >> arCosh [
 		ifFalse: [((self squared - 1) sqrt + self) ln]
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> arSinh [
 	"Answer receiver's area hyperbolic sine.
 	That is the inverse function of sinh."
@@ -24,7 +24,7 @@ Float >> arSinh [
 		ifFalse: [((self squared + 1) sqrt + self) ln]
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> arTanh [
 	"Answer receiver's area hyperbolic tangent.
 	That is the inverse function of tanh."
@@ -37,7 +37,7 @@ Float >> arTanh [
 	^((1 + self) / (1 - self)) ln / 2
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> cosh [
 	"Answer receivers hyperbolic cosine."
 	
@@ -46,7 +46,7 @@ Float >> cosh [
 	^(ex + ex reciprocal) / 2
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> sinh [
 	"Answer receivers hyperbolic sine"
 	
@@ -55,7 +55,7 @@ Float >> sinh [
 	^(ex - ex reciprocal) / 2
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> tanh [
 	"Answer hyperbolic tangent of receiver.
 	Trivial implementation is:

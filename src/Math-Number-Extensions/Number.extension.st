@@ -1,6 +1,6 @@
 Extension { #name : #Number }
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh."
@@ -8,7 +8,7 @@ Number >> arCosh [
 	^self asFloat arCosh
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> arSinh [
 	"Answer receiver's area hyperbolic sine.
 	That is the inverse function of sinh."
@@ -16,7 +16,7 @@ Number >> arSinh [
 	^self asFloat arSinh
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> arTanh [
 	"Answer receiver's area hyperbolic tangent.
 	That is the inverse function of tanh."
@@ -24,14 +24,14 @@ Number >> arTanh [
 	^self asFloat arTanh
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> cosh [
 	"Answer receivers hyperbolic cosine."
 	
 	^self asFloat cosh
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> sinc [
 	"Answer receivers cardinal sine."
 	
@@ -40,14 +40,14 @@ Number >> sinc [
 		ifFalse: [self sin / self]
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> sinh [
 	"Answer receivers hyperbolic sine"
 	
 	^self asFloat sinh
 ]
 
-{ #category : #'*Math-Numbers-Extensions-mathematical functions' }
+{ #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> tanh [
 	"Answer receivers hyperbolic tangent"
 	
