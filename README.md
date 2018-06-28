@@ -5,13 +5,7 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
 
-```Smalltalk
-Metacello new 
-  repository: 'http://smalltalkhub.com/mc/PolyMath/PolyMath/main';
-  configuration: 'PolyMath';
-  version: '0.101';
-  load
-```
+The code is now completely on github.
 
 We have **744** green tests !
  
@@ -24,8 +18,6 @@ PolyMath is a Smalltalk project, similar to existing scientific libraries like N
 - Ordinary Differential Equation (ODE) solvers.
 
 [![Lorentz attractor with PolyMath and GraphET](https://pbs.twimg.com/media/Ble65B3CYAEkMoR.jpg)](https://twitter.com/SergeStinckwich/status/457039376111788032)
-
-:bangbang: Current active development repository is located at **[SmalltalkHub](http://smalltalkhub.com/#!/~PolyMath/PolyMath)**
 
 A book about PolyMath called "Numerical Methods" is available online: https://github.com/SquareBracketAssociates/NumericalMethods/releases/tag/snapshot-2016-01-17
 
