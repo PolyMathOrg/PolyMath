@@ -1,0 +1,239 @@
+Class {
+	#name : #PMVectorTest,
+	#superclass : #TestCase,
+	#category : 'Math-Tests-DHB-Numerical'
+}
+
+{ #category : #tests }
+PMVectorTest >> testAddScalar [
+	| u |
+	u := #(1 2 3) asPMVector.
+	self assert: u + 2 equals: #(3 4 5) asPMVector.
+	self assert: 2 + u equals: #(3 4 5) asPMVector.
+]
+
+{ #category : #tests }
+PMVectorTest >> testAsArray [
+	self assert: #(1 2 3 4) asPMVector asArray equals: #(1 2 3 4)
+]
+
+{ #category : #tests }
+PMVectorTest >> testScalarProduct [
+	| u v |
+	u := PMVector new: 3.
+	v := PMVector new: 3.
+	u
+		at: 1 put: 1;
+		at: 2 put: 1;
+		at: 3 put: 1.
+	v
+		at: 1 put: 0;
+		at: 2 put: 2;
+		at: 3 put: 0.
+	self assert: (u scalarProduct: v) equals: 2.
+	v at: 1 put: 2.
+	self assert: (u scalarProduct: v) equals: 4
+]
+
+{ #category : #tests }
+PMVectorTest >> testScalarProductIsCommutative [
+	| u v |
+	u := PMVector new: 3.
+	v := PMVector new: 3.
+	u
+		at: 1 put: 1;
+		at: 2 put: 1;
+		at: 3 put: 1.
+	v
+		at: 1 put: 0;
+		at: 2 put: 2;
+		at: 3 put: 0.
+	self assert: (u scalarProduct: v) equals: (v scalarProduct: u)
+]
+
+{ #category : #tests }
+PMVectorTest >> testTensorProduct [
+	| a b c |
+	a := #(1 2 3) asPMVector.
+	b := #(2 2 3) asPMVector.
+	c := a tensorProduct: b.
+	self deny: c transpose = c.	"hence c is not symmetric, but this does not work:"
+	self deny: c isSymmetric.
+	"furthermore this is completely permissible:"
+	b := #(1 2 3 4) asPMVector.
+	c := a tensorProduct: b.
+	self assert: (b tensorProduct: a) equals: c transpose
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorCloseTo [
+	self assert: (#(1.00001 2.00005) asPMVector closeTo: #(1.00005 2.00001) asPMVector).
+	self assert: #(1.00001 2.00005) asPMVector closeTo: #(1.00005 2.00001) asPMVector.	"Double check that the TestAsserter >> #assert:closeTo: functions properly here."
+	self deny: (#(1.00001 2.00007) asPMVector closeTo: #(1.00007 2.00001) asPMVector)
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorCloseToPrecision [
+	| u v |
+	u := #(1.2 2.4) asPMVector.
+	v := #(1.4 2.2) asPMVector.
+	self assert: (u closeTo: v precision: 0.5).
+	self deny: (u closeTo: v precision: 0.3).
+	self deny: (u closeTo: v precision: 0.1).
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorCumulativeSum [
+	"Code Example 8.1"
+
+	| u w |
+	u := #(1 2 3) asPMVector.
+	w := u cumsum.
+	self assert: (w size) equals: 3.
+	self assert: (w at: 1) equals: 1.
+	self assert: (w at: 2) equals: 3.
+	self assert: (w at: 3) equals: 6
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorDotProduct [
+	"Code Example 8.1"
+
+	| u v w |
+	u := #(1 2 3) asPMVector.
+	v := #(3 4 5) asPMVector.
+	w := u dot: v.
+	self assert: (w size) equals: 3.
+	self assert: (w at: 1) equals: 3.
+	self assert: (w at: 2) equals: 8.
+	self assert: (w at: 3) equals: 15
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorGreater [
+
+| u w |
+	u := #(-1 0 1) asPMVector.
+	w := u > 0.
+	self assert: (w size) equals: 3.
+	self assert: (w at: 1) equals: false.
+	self assert: (w at: 2) equals: false.
+	self assert: (w at: 3) equals: true
+
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorLess [
+
+| u w |
+	u := #(-1 0 1) asPMVector.
+	w := u < 0.
+	self assert: (w size) equals: 3.
+	self assert: (w at: 1) equals: true.
+	self assert: (w at: 2) equals: false.
+	self assert: (w at: 3) equals: false
+
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorNegate [
+	"negate modifies the vector. negated makes a new vector with inverse coefficients. "
+
+	| v |
+	v := #(1 2 3) asPMVector.
+	self assert: (v negate at: 1) equals: -1.
+	self assert: 2 equals: (v negate at: 2).
+	self assert: -2 equals: (v negated at: 2)
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorNorm [
+	| v1 v2 |
+	v1 := #(1 0) asPMVector.
+	self assert: v1 norm equals: 1.
+	v2 := #(0 1) asPMVector.
+	self assert: v2 norm equals: 1.
+	self shouldnt: [ (v1 + v2) norm = 1 ].
+	"normalized norm may differ from exactly one due to floating point operations"
+	self assert: ((v1 + v2) normalized norm equalsTo: 1)
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorOnes [
+	| v |
+	v := PMVector ones: 3.
+	self assert: (v size) equals: 3.
+	self assert: (v at: 1) equals: 1.
+	self assert: (v at: 2) equals: 1.
+	self assert: (v at: 3) equals: 1
+	
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorOperation [
+	"Code Example 8.1"
+
+	| u v w |
+	u := #(1 2 3) asPMVector.
+	v := #(3 4 5) asPMVector.
+	w := 4 * u + (3 * v).
+	self assert: w size equals: 3.
+	self assert: (w at: 1) equals: 13.
+	self assert: (w at: 2) equals: 20.
+	self assert: (w at: 3) equals: 27
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorOperationInverse [
+	| u v w |
+	u := #(1 2 3) asPMVector.
+	v := #(3 4 5) asPMVector.
+	w := v * 4 - (3 * u).
+	self assert: w size equals: 3.
+	self assert: (w at: 1) equals: 9.
+	self assert: (w at: 2) equals: 10.
+	self assert: (w at: 3) equals: 11
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorProduct [
+	"Code Example 8.1"
+
+	| u v |
+	u := #(1 2 3) asPMVector.
+	v := #(3 4 5) asPMVector.
+	self assert: u * v equals: 26
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorSqrt [
+	"Code Example 8.1"
+
+	| u w |
+	u := #(1 4 9) asPMVector.
+	w := u sqrt.
+	self assert: (w size) equals: 3.
+	self assert: (w at: 1) equals: 1.
+	self assert: (w at: 2) equals: 2.
+	self assert: (w at: 3) equals: 3
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorSum [
+	"Code Example 8.1"
+
+	| u |
+	u := #(1 2 3) asPMVector.
+	self assert: (u sum) equals: 6.
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorZeros [
+	| v |
+	v := PMVector zeros: 3.
+	self assert: (v size) equals: 3.
+	self assert: (v at: 1) equals: 0.
+	self assert: (v at: 2) equals: 0.
+	self assert: (v at: 3) equals: 0
+	
+]
