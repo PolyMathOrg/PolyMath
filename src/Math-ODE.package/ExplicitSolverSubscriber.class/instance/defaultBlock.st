@@ -1,3 +1,0 @@
-accessing
-defaultBlock
-	^ self subclassResponsibility 

@@ -1,9 +1,0 @@
-tests
-testInitialize3
-	| a |
-	a := (PMNNStore newFrom: #(#(7 $a) #(5 1.0) #(6 '2'))) initialize.
-	a
-		add: #(5 1.0);
-		add: #(4 $a).
-	self assert: a data equals: #($a 1.0).
-	self assert: a completeData equals: #(#(4 $a) #(5 1.0))

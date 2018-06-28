@@ -1,4 +1,0 @@
-accessing
-zeroApproximation
-"so far only used experimentally where i think it should produce no real problems, but i guess it should be used in #/, #arcSin, #arcCos, #raisedTo: and perhaps in #tan. additionally i used it wrongly as it should in general cover the range of -1.0e-100 to 1.0e-100 and not only zero (but i have always these speed-problems <g> ). perhaps i should thow it out completely, i noticed that several other implementations simply ignore those special cases. anyway, one can also set it to 0 with self class zeroApproximation:0, so that one gets a divideByZero error. another alternative would be to return infinity in some cases and a specialized singularity error in other ones. dont know."
-	^ ZeroApproximation ifNil: [ZeroApproximation :=1.0e-100]

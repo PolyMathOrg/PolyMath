@@ -1,3 +1,0 @@
-initialization
-range
-	^self bestPoints

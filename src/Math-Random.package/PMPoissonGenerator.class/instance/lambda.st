@@ -1,3 +1,0 @@
-accessing
-lambda
-	^ lambda

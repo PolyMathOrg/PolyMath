@@ -1,3 +1,0 @@
-accessing
-quartile
-^errorFunction quartile.

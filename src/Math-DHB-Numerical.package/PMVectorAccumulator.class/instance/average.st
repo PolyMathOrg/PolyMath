@@ -1,4 +1,0 @@
-operations
-average
-	
-	^average

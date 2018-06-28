@@ -1,1 +1,0 @@
-A ConstantGenerator is still a number generator but a simple one :)

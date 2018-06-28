@@ -1,1 +1,0 @@
-SimpleParameterFunction is used internally by FunctionFit . it is essentially a wrapper around a block, which is used as a function with parameters. the independent variable has to be declared first in the block, then the parameters.

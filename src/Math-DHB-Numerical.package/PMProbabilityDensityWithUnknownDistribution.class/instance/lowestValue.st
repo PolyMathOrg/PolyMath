@@ -1,3 +1,0 @@
-information
-lowestValue
-	^0

@@ -1,4 +1,0 @@
-information
-average
-
-	^0

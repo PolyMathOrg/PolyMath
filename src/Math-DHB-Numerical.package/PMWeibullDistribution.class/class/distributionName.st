@@ -1,3 +1,0 @@
-information
-distributionName
-	^'Weibull distribution'

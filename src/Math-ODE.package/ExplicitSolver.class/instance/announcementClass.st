@@ -1,3 +1,0 @@
-announcement hooks
-announcementClass
-	^ ExplicitSolverAnnouncement

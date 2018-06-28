@@ -1,5 +1,0 @@
-information
-bestPoints
-	"Private"
-
-	^ bestPoints

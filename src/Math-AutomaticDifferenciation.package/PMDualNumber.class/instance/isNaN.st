@@ -1,3 +1,0 @@
-testing
-isNaN
-	^ value isNaN

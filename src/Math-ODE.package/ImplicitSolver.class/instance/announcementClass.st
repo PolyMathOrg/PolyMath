@@ -1,4 +1,0 @@
-announcement hooks
-announcementClass
-
-	^ ImplicitSolverAnnouncement 

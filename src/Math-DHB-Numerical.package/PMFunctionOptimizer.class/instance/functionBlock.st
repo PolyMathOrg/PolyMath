@@ -1,4 +1,0 @@
-information
-functionBlock
-		"Private"
-	^functionBlock

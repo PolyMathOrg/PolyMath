@@ -1,2 +1,0 @@
-ErrorOfParameterFunction wants a function with parameters as a block and a Collection of x@f(x) points. The independent variable has to be declared first in the block, then the parameters.
-ErrorOfParameterFunction>>value: anArrayOfParameters returns a sum of squared errors or similar error measures. it can be used in MultiVariableOptimizers to calculate parameters.

@@ -1,3 +1,0 @@
-testing
-isZero
-	^mantissa isZero

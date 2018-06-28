@@ -1,4 +1,0 @@
-creation
-distributionFunction
-
-	^PMProbabilityDistributionFunction density: self

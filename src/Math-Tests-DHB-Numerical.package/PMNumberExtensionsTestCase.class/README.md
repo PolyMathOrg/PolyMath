@@ -1,1 +1,0 @@
-A DhbNumberExtensionsTestCase is a suite of tests for extension methods to Number, Integer, and Float defined in Didier Besset's book Object Oriented Numerical Methods

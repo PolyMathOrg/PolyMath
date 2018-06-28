@@ -1,4 +1,0 @@
-information
-coefficients
-
-	^coefficients reverse

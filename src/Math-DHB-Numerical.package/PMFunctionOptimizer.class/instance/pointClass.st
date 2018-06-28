@@ -1,4 +1,0 @@
-information
-pointClass
-		"Private"
-	^optimizingPointClass

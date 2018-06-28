@@ -1,4 +1,0 @@
-testing
-isUndefined
-	
-	^ center isNil

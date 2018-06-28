@@ -1,3 +1,0 @@
-constants
-electronMass
-	^ electronMass

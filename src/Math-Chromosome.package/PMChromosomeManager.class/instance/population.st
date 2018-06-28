@@ -1,4 +1,0 @@
-information
-population
-		
-	^population

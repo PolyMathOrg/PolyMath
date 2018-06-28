@@ -1,1 +1,0 @@
-ErrorAsParameterFunction is used internally by ErrorMinimizer. it is essentially a wrapper around an ErrorOfParameterFunction .

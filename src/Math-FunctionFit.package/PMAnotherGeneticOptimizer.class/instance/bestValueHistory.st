@@ -1,3 +1,0 @@
-information
-bestValueHistory 
-^bestValueHistory 

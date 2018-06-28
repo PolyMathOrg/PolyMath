@@ -1,4 +1,0 @@
-information
-defaultSamplePoints
-
-	^OrderedCollection new

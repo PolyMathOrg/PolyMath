@@ -1,4 +1,0 @@
-operations
-count
-	
-	^count

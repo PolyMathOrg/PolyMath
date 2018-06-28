@@ -1,3 +1,0 @@
-testing
-hasNextGaussian
-	^nextGaussian notNil

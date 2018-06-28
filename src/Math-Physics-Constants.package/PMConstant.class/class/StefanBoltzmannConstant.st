@@ -1,3 +1,0 @@
-constants
-StefanBoltzmannConstant
-	^ StefanBoltzmannConstant

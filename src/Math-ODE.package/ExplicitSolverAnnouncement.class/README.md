@@ -1,1 +1,0 @@
-An ExplicitSolverAnnouncement is a record of a step in an explicit system. It contains a time and a state.

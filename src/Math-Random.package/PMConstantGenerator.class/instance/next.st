@@ -1,3 +1,0 @@
-stream access
-next
-	^ constant

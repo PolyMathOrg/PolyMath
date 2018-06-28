@@ -1,1 +1,0 @@
-Define usual physics constants

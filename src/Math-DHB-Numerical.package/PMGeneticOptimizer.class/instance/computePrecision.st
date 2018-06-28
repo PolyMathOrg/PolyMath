@@ -1,3 +1,0 @@
-information
-computePrecision
-	^ 1

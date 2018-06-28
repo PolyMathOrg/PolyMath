@@ -1,1 +1,0 @@
-ErrorMinimizerTest tests indirectly also ErrorAsParameterFunction.

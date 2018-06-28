@@ -1,3 +1,0 @@
-converting
-asFloat
-	^ value asFloat

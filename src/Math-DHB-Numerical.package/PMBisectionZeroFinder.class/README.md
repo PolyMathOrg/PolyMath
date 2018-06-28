@@ -1,1 +1,0 @@
-I implement Bisection zero finder for the scalar problem f(x)=0 when it is known the single root exists on the interval (a, b)

@@ -1,3 +1,0 @@
-transformation
-changeParametersBy: aVector 
-	self subclassResponsibility

@@ -1,3 +1,0 @@
-operation
-computeInitialValues
-	self subclassResponsibility

@@ -1,4 +1,0 @@
-information
-skewness
-		
-	^0

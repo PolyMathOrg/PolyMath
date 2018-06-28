@@ -1,3 +1,0 @@
-testing
-isInfinite
-	^ value isInfinite

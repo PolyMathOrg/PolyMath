@@ -1,4 +1,0 @@
-operation
-initializeIterations
-	chromosomeManager randomizePopulation.
-	self collectPoints

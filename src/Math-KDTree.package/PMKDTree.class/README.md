@@ -1,1 +1,0 @@
-KDTree is a space partitioning data structure to store points of that space with "KDTree withAll: aCollectionOfVectors", where a vector can be any collection of numbers that understands "at:". you can then find nearest neighbours of aVector with "nnSearch: aVector i: numberOfNearestNeighbours".   

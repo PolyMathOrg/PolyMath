@@ -1,1 +1,0 @@
-A StepperTest is a test class for testing the behavior of Stepper

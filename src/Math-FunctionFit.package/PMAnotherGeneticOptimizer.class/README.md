@@ -1,1 +1,0 @@
-AnotherGeneticOptimizer is a more efficient GeneticOptimizer, that is necessary for the correct use of AnotherChromosomeManager.

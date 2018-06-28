@@ -1,4 +1,0 @@
-information
-hasConverged
-
-	^precision <= desiredPrecision

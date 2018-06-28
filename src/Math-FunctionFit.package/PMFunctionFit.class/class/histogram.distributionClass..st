@@ -1,3 +1,0 @@
-creation
-histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass 
-^self shouldNotImplement

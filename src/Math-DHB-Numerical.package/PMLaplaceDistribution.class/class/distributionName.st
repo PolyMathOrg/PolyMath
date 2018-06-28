@@ -1,3 +1,0 @@
-information
-distributionName
-	^'Laplace distribution'

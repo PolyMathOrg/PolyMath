@@ -1,4 +1,0 @@
-transformation
-reset
-	
-	accumulator reset

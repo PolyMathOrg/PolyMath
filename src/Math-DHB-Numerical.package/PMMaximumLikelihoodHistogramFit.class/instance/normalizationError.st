@@ -1,3 +1,0 @@
-information
-normalizationError
-	^countVariance sqrt

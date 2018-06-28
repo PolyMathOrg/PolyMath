@@ -1,3 +1,0 @@
-transformation
-accumulate: aPMVectorOrArray
-	accumulatorForCovarianceMatrix accumulate: aPMVectorOrArray

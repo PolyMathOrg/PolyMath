@@ -1,3 +1,0 @@
-*Math-AutomaticDifferenciation
-isDualNumber
-	^ false

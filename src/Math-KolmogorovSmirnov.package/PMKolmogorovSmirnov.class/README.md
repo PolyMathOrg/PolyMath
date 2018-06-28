@@ -1,1 +1,0 @@
-abstract class, use KolmogorovSmirnov1Sample or KolmogorovSmirnov2Sample

@@ -1,3 +1,0 @@
-information
-initialTerm
-	^1

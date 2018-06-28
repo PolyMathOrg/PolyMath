@@ -1,4 +1,0 @@
-announcement hooks
-announcerClass
-
-	^ ImplicitAnnouncer

@@ -1,4 +1,0 @@
-creation
-asymptoticLimit
-	
-	^30

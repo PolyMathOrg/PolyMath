@@ -1,4 +1,0 @@
-factory
-defaultGeneratorClass
-
-	^ PMParkMillerMinimumRandomGenerator
