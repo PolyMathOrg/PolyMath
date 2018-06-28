@@ -5,7 +5,14 @@
 [![Build status](https://ci.appveyor.com/api/projects/status/t4o6by4psutfpmp7?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
 
-The code is now completely on github.
+You can load the code in a fresh Pharo 6.1 image with:
+
+```Smalltalk
+Metacello new
+        repository: 'github://PolyMathOrg/PolyMath:master/src';
+        baseline: 'PolyMath';
+        load
+
 
 We have **744** green tests !
  
