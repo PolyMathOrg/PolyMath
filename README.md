@@ -37,7 +37,7 @@ To install PolyMath on your Pharo image you can just execute the following scrip
         load
 ```
 
-To add MaterialDesignLite Seaside to your baseline just add this:
+To add PolyMath to your baseline just add this:
 
 ```Smalltalk
     spec
