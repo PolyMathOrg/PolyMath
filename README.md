@@ -33,6 +33,28 @@ https://github.com/SergeStinckwich/SciSmalltalk/wiki
 
 Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Enterprise Book: https://github.com/SquareBracketAssociates/PharoForTheEnterprise-english/blob/ae40e7ab6f7651f6e7c271869eb1efc4e531e774/ComparingSolutions/ComparingSolutions.pier
 
+## Install PolyMath
+
+To install PolyMath on your Pharo image you can just execute the following script:
+
+```Smalltalk
+    Metacello new
+        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'master' path: 'src';
+        baseline: 'PolyMath';
+        load
+```
+
+To add PolyMath to your baseline just add this:
+
+```Smalltalk
+    spec
+    	baseline: 'PolyMath'
+    	with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ]
+```
+
+Note that you can replace the #master by another branch as #development or a tag as #v1.0.0, #v1.? or #v1.2.? .
+
+
 ## How to contribute to PolyMath
 
 We welcome submissions! A google group exists for this project at http://groups.google.com/group/polymath-project
