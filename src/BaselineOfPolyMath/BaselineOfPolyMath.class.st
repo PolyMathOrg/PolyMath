@@ -105,7 +105,7 @@ BaselineOfPolyMath >> sMark: spec [
 		project: 'SMark'
 		with: [ spec
 				className: #ConfigurationOfSMark;
-				versionString: '1.0.1';
+				versionString: '1.0.2';
 				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ]
 ]
 
