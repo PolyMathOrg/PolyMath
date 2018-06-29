@@ -14,6 +14,28 @@ fp verbose: false.
 ]
 
 { #category : #tests }
+PMFixpointTest >> testBug [
+	fp
+		block: [ :x | 
+			x < 64
+				ifTrue: [ x bitShift: 2 ]
+				ifFalse: [ 1 ] ];
+		value: 70.
+	fp evaluate.
+	self assert: fp cycleLength equals: 4.
+	self assert: fp cycle equals: #(1 4 16 64).
+	self assert: fp iterations equals: 5.
+	self assert: fp hasConverged.
+	fp value: 3.
+	fp evaluate.
+	"results begin this way: 3 12 48 192 1 4 16 64 1 4 ...."
+	self assert: fp cycleLength equals: 4.
+	self assert: fp cycle equals: #(1 4 16 64).
+	self assert: fp iterations equals: 8.
+	self assert: fp hasConverged
+]
+
+{ #category : #tests }
 PMFixpointTest >> testCheckForLongerCycles [
 	fp := PMFixpoint
 		block: [ :x | 
@@ -28,7 +50,7 @@ PMFixpointTest >> testCheckForLongerCycles [
 	self assert: fp iterations equals: 23.
 	self assert: fp hasConverged.
 	self assert: fp cycleLength equals: 3.
-	self assert: fp cycle equals: #(-1 -2 0).
+	self assert: fp cycle equals: #(0 -1 -2).
 	fp maximumIterations: 10.
 	fp value: 11.0.
 	fp evaluate.

@@ -38,13 +38,11 @@ PMFixpoint class >> defaultVerbose [
 
 { #category : #private }
 PMFixpoint >> adjustIteratorFor: aCycleLength [
-"adjusts also result & result1"
 1 to: results size do:[:i| |last| last:=i + aCycleLength. 
 	(equalityTest 
 		ifNil: [(results at:i)literalEqual:(results at:last)]
 		ifNotNil:[:t|(t value: (results at:i) value: (results at:last))])
-			ifTrue: [	result := results at:i.
-						result1 :=result.
+			ifTrue: [	result1 :=result.
 						^iterations :=last - 1]]
 ]
 
@@ -55,10 +53,9 @@ PMFixpoint >> block: aBlock [
 
 { #category : #accessing }
 PMFixpoint >> cycle [
-|length|
-length:=self cycleLength ifNil:[^#()].
-^(results copyFrom: results size +1 - length to: results size)asArray 
-
+	| length |
+	length := self cycleLength ifNil: [ ^ #() ].
+	^ (results copyFrom: iterations + 1 - length to: iterations) asArray
 ]
 
 { #category : #printing }
@@ -131,12 +128,12 @@ verbose := self class defaultVerbose .
 
 { #category : #operation }
 PMFixpoint >> initializeIterations [
-"cycleFlag & result1 & result2 are used, so that 2-cycles are immediately found (with correct iteration number!)"
-cycleFlag :=true.
-result1:=result.
-result2:=result.
-(results:=OrderedCollection new: maximumIterations) add: result.
+	"cycleFlag & result1 & result2 are used, so that 2-cycles are immediately found (with correct iteration number!)"
 
+	cycleFlag := true.
+	result1 := result.
+	result2 := result.
+	(results := OrderedCollection new: maximumIterations + 1) add: result
 ]
 
 { #category : #printing }
