@@ -24,7 +24,7 @@ This project contains two main branches:
 
 ## New feature 
 
-When a new feature will take some time to implement, this feature should be developed in a specific branch. Once done, it will be merged in development before the next release of Material Design Lite for Seaside.
+When a new feature will take some time to implement, this feature should be developed in a specific branch. Once done, it will be merged in development before the next release of PolyMath.
 
 ## Hot fix
 
