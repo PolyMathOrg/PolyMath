@@ -1,6 +1,6 @@
 Extension { #name : #PMVector }
 
-{ #category : #'*Math-QuaternionExtensions' }
+{ #category : #'*Math-Quaternion' }
 PMVector >> adaptToQuaternion: aQuaternion andSend: aByteSymbol [
 	^ self collect: [ :ea | aQuaternion perform: aByteSymbol with: ea ]
 ]
