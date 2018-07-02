@@ -55,6 +55,16 @@ Quaternion class >> qr: qr qi: qi qj: qj qk: qk [
 		qk: qk
 ]
 
+{ #category : #'*Math-Quaternion' }
+Quaternion class >> random [
+		"Answers a random quaternion with abs at most one."
+
+	^ (0.5 - Float random) 
+		i: (0.5 - Float random)
+		j: (0.5 - Float random)
+		k: (0.5 - Float random).
+]
+
 { #category : #'constants access' }
 Quaternion class >> zero [
 	^self 

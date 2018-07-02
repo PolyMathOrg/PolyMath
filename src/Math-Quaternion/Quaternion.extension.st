@@ -32,6 +32,16 @@ Quaternion >> random [
 ]
 
 { #category : #'*Math-Quaternion' }
+Quaternion class >> random [
+		"Answers a random quaternion with abs at most one."
+
+	^ (0.5 - Float random) 
+		i: (0.5 - Float random)
+		j: (0.5 - Float random)
+		k: (0.5 - Float random).
+]
+
+{ #category : #'*Math-Quaternion' }
 Quaternion >> subtractToPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 19/4/99 "
