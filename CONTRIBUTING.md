@@ -3,6 +3,7 @@
 This file is currently not complete but will be improve step by step.
 
 # Contributing code
+Use last version of Pharo 7.0 in order to use Iceberg.
 ## Fork the Pharo repository
 
 All changes you'll do will be versionned in your own fork of the [PolyMath repository](https://github.com/PolyMathOrg/PolyMath). Then, from your fork you'll be able to issue pull requests to PolyMath, where they will be reviewed, and luckily, integrated.
