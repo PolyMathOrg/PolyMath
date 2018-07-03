@@ -13,6 +13,10 @@ Go to PolyMath github's repository and click on the fork button on the top right
 In a fresh Pharo, load last development version of Polymath : 
 
 ```Smalltalk
+Metacello new
+        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'master' path: 'src';
+        baseline: 'PolyMath';
+        load
 ```
 
 ## Setup Iceberg
