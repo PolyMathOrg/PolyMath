@@ -14,10 +14,11 @@ In a fresh Pharo, load last development version of Polymath :
 
 ```Smalltalk
 Metacello new
-        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'development' path: 'src';
+        githubUser: 'XXX' project: 'PolyMath' commitish: 'development' path: 'src';
         baseline: 'PolyMath';
         load
 ```
+where you replace XXX with your github user name.
 
 ## Setup Iceberg
 Open Iceberg tool
