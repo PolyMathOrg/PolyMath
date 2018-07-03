@@ -5,7 +5,7 @@ This file is currently not complete but will be improve step by step.
 # Contributing code
 ## Fork the Pharo repository
 
-All changes you'll do will be versionned in your own fork of the (https://github.com/PolyMathOrg/PolyMath)[PolyMath repository]. Then, from your fork you'll be able to issue pull requests to PolyMath, where they will be reviewed, and luckily, integrated.
+All changes you'll do will be versionned in your own fork of the [PolyMath repository](https://github.com/PolyMathOrg/PolyMath). Then, from your fork you'll be able to issue pull requests to PolyMath, where they will be reviewed, and luckily, integrated.
 
 Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath, yes.
 
