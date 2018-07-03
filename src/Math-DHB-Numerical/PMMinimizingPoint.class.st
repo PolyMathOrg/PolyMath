@@ -19,9 +19,10 @@ PMMinimizingPoint class >> vector: aVector function: aFunction [
 ]
 
 { #category : #comparing }
-PMMinimizingPoint >> =aMPoint [
-"only for testing purposes"
-^(value = aMPoint value)& (position = aMPoint position)
+PMMinimizingPoint >> = aMPoint [
+	"only for testing purposes"
+
+	^ value = aMPoint value & (position = aMPoint position)
 ]
 
 { #category : #information }
