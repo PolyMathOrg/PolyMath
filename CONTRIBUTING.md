@@ -4,7 +4,18 @@ This file is currently not complete but will be improve step by step.
 
 
 # Contributing code
-Code contribution that implement new features or fix bugs, should be done as [Pull Requests](https://help.github.com/articles/about-pull-requests/) on the development branch.
+## Fork the Pharo repository
+
+All changes you'll do will be versionned in your own fork of the [https://github.com/PolyMathOrg/PolyMath](PolyMath repository). Then, from your fork you'll be able to issue pull requests to PolyMath, where they will be reviewed, and luckily, integrated.
+
+Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath, yes.
+
+## Setup Iceberg
+
+## Cleanup
+Ounce your pull request is integrated, some cleanups are required:
+- remove your branch from your fork
+- close the issue (tips: you can automatically close the issue n, by inserting the sentence: **close #n** when you merge your pull request).
 
 # Release management
 
