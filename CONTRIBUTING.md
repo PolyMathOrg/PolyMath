@@ -11,7 +11,7 @@ All changes you'll do will be versionned in your own fork of the [PolyMath repos
 Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath, yes.
 
 ## Load last dev version of PolyMath
-In a fresh Pharo, load last development version of Polymath : 
+In a fresh Pharo 7.0 image, load last development version of Polymath : 
 
 ```Smalltalk
 Metacello new
