@@ -2,7 +2,6 @@
 
 This file is currently not complete but will be improve step by step.
 
-
 # Contributing code
 ## Fork the Pharo repository
 
@@ -10,9 +9,16 @@ All changes you'll do will be versionned in your own fork of the [https://github
 
 Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath, yes.
 
-## Setup Iceberg
+## Load last dev version of PolyMath
+In a fresh Pharo, load last development version of Polymath : 
 
-## Cleanup
+```Smalltalk
+```
+
+## Setup Iceberg
+Open Iceberg tool
+
+## Cleanups
 Ounce your pull request is integrated, some cleanups are required:
 - remove your branch from your fork
 - close the issue (tips: you can automatically close the issue n, by inserting the sentence: **close #n** when you merge your pull request).
