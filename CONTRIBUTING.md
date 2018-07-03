@@ -21,7 +21,11 @@ Metacello new
 where you replace XXX with your github user name.
 
 ## Setup Iceberg
-Open Iceberg tool
+You need an ssh key in order to commit on github. Open Iceberg tool, and then click on the settings. Check the box : "Use custom SSH keys".
+
+# Send the PR to github
+After doing the modification in your image, open Iceberg tool, commit the changes in the PolyMath repository. Cherry-pick the modifications that you want to include in your pull-request and commit.
+
 
 ## Cleanups
 Ounce your pull request is integrated, some cleanups are required:
