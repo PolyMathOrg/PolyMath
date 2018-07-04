@@ -56,8 +56,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Physics-Constants';
 				package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Matrix' 'Math-Polynomials') ];
 				package: 'Math-Quantile';
-				package: 'Math-Quaternion' with: [ spec requires: #('Math-Complex') ];
-				package: 'Math-QuaternionExtensions' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Quaternion' 'Math-Polynomials') ];
+				package: 'Math-Quaternion' with: [ spec requires: #('Math-Complex' 'Math-DHB-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Random';
 				package: 'Math-RandomDistributionBased' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Series';
