@@ -6,10 +6,32 @@ Class {
 
 { #category : #tests }
 PMVectorTest >> testAddScalar [
-	| u |
-	u := #(1 2 3) asPMVector.
-	self assert: u + 2 equals: #(3 4 5) asPMVector.
-	self assert: 2 + u equals: #(3 4 5) asPMVector.
+	"Can we add Number to PMVector?"
+	
+	| vec num actual expected |
+	
+	vec := #(1 2 3) asPMVector.
+	num := 4.
+	
+	actual := vec + num.
+	expected := #(5 6 7) asPMVector.
+	
+	self assert: actual equals: expected.
+]
+
+{ #category : #tests }
+PMVectorTest >> testAddToScalar [
+	"Can we add PMVector to Number?"
+	
+	| num vec actual expected |
+	
+	num := 4.
+	vec := #(1 2 3) asPMVector.
+	
+	actual := num + vec.
+	expected := #(5 6 7) asPMVector.
+	
+	self assert: actual equals: expected.
 ]
 
 { #category : #tests }
