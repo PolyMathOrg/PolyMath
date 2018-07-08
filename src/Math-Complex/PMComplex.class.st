@@ -650,6 +650,11 @@ PMComplex >> sign [
 	^ real sign
 ]
 
+{ #category : #testing }
+PMComplex >> signBit [
+^self real signBit
+]
+
 { #category : #'mathematical functions' }
 PMComplex >> sin [
 	"Answer receiver's sine."
