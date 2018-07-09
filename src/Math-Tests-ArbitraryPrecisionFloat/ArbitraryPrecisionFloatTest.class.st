@@ -16,6 +16,11 @@ Class {
 	#category : 'Math-Tests-ArbitraryPrecisionFloat'
 }
 
+{ #category : #accessing }
+ArbitraryPrecisionFloatTest class >> defaultTimeLimit [
+	^60 seconds
+]
+
 { #category : #private }
 ArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits: n [
 	"Check that doubling the precision, then rounding would lead to the same result"
@@ -645,27 +650,37 @@ ArbitraryPrecisionFloatTest >> testPositive [
 
 { #category : #'testing-converting' }
 ArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
-	<timeout: 50 "seconds">
+	"seconds"
+
+	<timeout: 50>
 	| emax emin leadingOne significands |
-	significands := 0 to: 1<<10-1.
-	leadingOne := 1<<10.
+	significands := 0 to: (1 << 10) - 1.
+	leadingOne := 1 << 10.
 	emin := -14.
 	emax := 15.
-	
+
 	"Test all normal finite half precision float"
-	emin to: emax do: [:e | 
-		significands do: [:s |
-			| f |
-			f := (leadingOne + s asArbitraryPrecisionFloatNumBits: 11) timesTwoPower: e - 10.
-			self assert: (Compiler evaluate: f storeString) = f.
-			self assert: (Compiler evaluate: f printString) = f.]].
-	
+	emin to: emax do: [ :e | 
+		significands
+			do: [ :s | 
+				| f |
+				f := (leadingOne + s asArbitraryPrecisionFloatNumBits: 11)
+					timesTwoPower: e - 10.
+				self
+					assert: (Smalltalk compiler evaluate: f storeString)
+					equals: f.
+				self
+					assert: (Smalltalk compiler evaluate: f printString)
+					equals: f ] ].
+
 	"Test all subnormal finite half precision float"
-	significands do: [:s |
-		| f |
-		f := (s asArbitraryPrecisionFloatNumBits: s highBit) timesTwoPower: emin - 10.
-		self assert: (Compiler evaluate: f storeString) = f.
-		self assert: (Compiler evaluate: f printString) = f].
+	significands
+		do: [ :s | 
+			| f |
+			f := (s asArbitraryPrecisionFloatNumBits: s highBit)
+				timesTwoPower: emin - 10.
+			self assert: (Smalltalk compiler evaluate: f storeString) equals: f.
+			self assert: (Smalltalk compiler evaluate: f printString) equals: f ]
 ]
 
 { #category : #'testing-arithmetic' }
