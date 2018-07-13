@@ -18,7 +18,7 @@ Class {
 
 { #category : #accessing }
 ArbitraryPrecisionFloatTest class >> defaultTimeLimit [
-	^60 seconds
+^ 120 seconds
 ]
 
 { #category : #private }
