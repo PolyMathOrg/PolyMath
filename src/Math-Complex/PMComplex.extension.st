@@ -18,17 +18,17 @@ PMComplex >> productWithVector: aVector [
 ]
 
 { #category : #'*Math-Complex' }
+PMComplex class >> random [
+		"Answers a random number with abs between 0 and 1." 
+
+	^ self abs: 1.0 random arg: 2 * Float pi random
+]
+
+{ #category : #'*Math-Complex' }
 PMComplex >> random [
 	"analog to Number>>random. However, the only bound is that the abs of the produced complex is less than the length of the receive. The receiver effectively defines a disc within which the random element can be produced."
 	^ self class random * self
 	
-]
-
-{ #category : #'*Math-Complex' }
-PMComplex classSide >> random [
-		"Answers a random number with abs between 0 and 1." 
-
-	^ self abs: 1.0 random arg: 2 * Float pi random
 ]
 
 { #category : #'*Math-Complex' }
