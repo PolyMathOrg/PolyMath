@@ -53,6 +53,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Matrix';
 				package: 'Math-Number-Extensions';
 				package: 'Math-ODE' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Matrix' 'Math-Polynomials') ];
+				package: 'Math-Permutation' with:[ spec requires: #('Math-Core' 'Math-Matrix' 'Math-Core-Process') ];
 				package: 'Math-Physics-Constants';
 				package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #('Math-DHB-Numerical' 'Math-Matrix' 'Math-Polynomials') ];
 				package: 'Math-Quantile';
@@ -86,7 +87,7 @@ BaselineOfPolyMath >> baseline: spec [
 				group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core');
 				group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 				group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-DHB-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE');
-				group: 'Extensions' with: #('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov');
+				group: 'Extensions' with: #('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov');
 				group: 'Tests' with: #('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-DHB-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-DHB-wk' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials');
 				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ]
 ]

@@ -216,7 +216,7 @@ DualNumberTest >> testRaisedTo [
 self assertEquality: (three raisedTo: 2) and: three squared.
 self assertEquality: (three raisedTo: 0) and: onec.
 self assertEquality: ((three + one) raisedTo: 1/2) and: (PMDualNumber value: 2 eps: (1/2)).
-self assertEquality: ((three + one) raisedTo: 3/2) and: (PMDualNumber value: 8 eps: 6).
+self assert: (((three + one) raisedTo: 3/2) equalsTo: (PMDualNumber value: 8 eps: 6)).
 self assertEquality: (zero raisedTo: 1.4)and:zeroc.
 a:=2 raisedTo: three.
 self assert: ((a value)equalsTo: 8) .
