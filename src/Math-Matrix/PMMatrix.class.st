@@ -124,6 +124,22 @@ PMMatrix class >> rows: anArrayOrVector [
 	^ self new initializeRows: anArrayOrVector
 ]
 
+{ #category : #'instance creation' }
+PMMatrix class >> rows: rowsInteger columns: columnsInteger [
+
+	^ self new initializeRows: rowsInteger columns: columnsInteger
+]
+
+{ #category : #'instance creation' }
+PMMatrix class >> rows: nRows columns: nCols  element: fillElement [
+	" Answer a new matrix of nRows x nCols initialized with fillElement in all cells "
+
+	^ (self new initializeRows: nRows columns: nCols)
+		atAllPut: fillElement;
+		yourself
+
+]
+
 { #category : #'as yet unclassified' }
 PMMatrix class >> rows: rows columns: columns random: aMaxNumber [
 	"Answer a new Matrix of the given dimensions filled with random numbers"
@@ -232,6 +248,13 @@ PMMatrix >> at: rowIndex at: columnIndex put: value [
 ]
 
 { #category : #'cell accessing' }
+PMMatrix >> atAllPut: element [ 
+	"Put element at every one of the receiver's cells."
+
+	self rowsDo: [ : row | row atAllPut: element ]
+]
+
+{ #category : #'cell accessing' }
 PMMatrix >> atColumn: anInteger [
 
 	^ self columnAt: anInteger
@@ -244,6 +267,19 @@ PMMatrix >> atColumn: aColumnIndex put: aCollection [
 		self rowAt: rowIndex columnAt: aColumnIndex put: value ]
 	
 
+]
+
+{ #category : #'cell accessing' }
+PMMatrix >> atColumn: columnIndex put: aValue repeat: repNumber [
+	"	Example: self atColumn: 1 fillWith: 'BM1818' repeat: 3
+	produces
+	[ 'BM1818' nil nil nil 
+	'BM1818' nil nil nil 	
+	'BM1818' nil nil nil 	
+	nil nil nil nil 			
+	nil nil nil nil ]
+"
+	1 to: repNumber do: [ : index | self rowAt: index columnAt: columnIndex put: aValue ].
 ]
 
 { #category : #'cell accessing' }
@@ -413,6 +449,13 @@ PMMatrix >> initialize: anInteger [
 PMMatrix >> initializeRows: anArrayOrVector [
 	"Defines the components of the recevier. No check is made: components are assumed to be orgainized in rows."
 	rows := anArrayOrVector asPMVector collect: [ :each | each asPMVector].
+]
+
+{ #category : #initialization }
+PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
+	"Build empty components for a matrix."
+		
+	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
 ]
 
 { #category : #operation }

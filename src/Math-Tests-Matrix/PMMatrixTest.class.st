@@ -4,6 +4,32 @@ Class {
 	#category : 'Math-Tests-Matrix'
 }
 
+{ #category : #tests }
+PMMatrixTest >> testAtAllPut [
+
+	| a |
+	a := PMMatrix new: 3.
+	a atAllPut: 4.
+	self assert: a equals: (PMMatrix rows: #(#(4 4 4) #(4 4 4) #(4 4 4))).
+
+]
+
+{ #category : #tests }
+PMMatrixTest >> testAtColumnPutRepeat [
+
+	| a |
+	a := PMMatrix new: 3.
+	a 
+		atColumn: 1 put: 1 repeat: 3;
+		atColumn: 2 put: 2 repeat: 3;
+		atColumn: 3 put: 3 repeat: 3.
+	self assert: a equals: (PMMatrix rows: #(#(1 2 3) #(1 2 3) #(1 2 3))).
+	a := PMMatrix new: 3.
+	a 
+		atColumn: 1 put: 1 repeat: 2.
+	self assert: a equals: (PMMatrix rows: #(#(1 nil nil) #(1 nil nil) #(nil nil nil))).
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testAtRowPutAtColumnPut [
 	| a |
@@ -430,6 +456,25 @@ PMMatrixTest >> testPrintOn [
 	m := PMMatrix new.
 	"this raised an error:"
 	self shouldnt: [m printOn: stream] raise: Error 
+]
+
+{ #category : #comparing }
+PMMatrixTest >> testRowsColumns [
+	| a |
+	
+	a := PMMatrix rows: 3 columns: 4.
+	self assert: a dimension equals: 3 @ 4.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testRowsColumnsElement [
+
+	| a |
+	
+	a := PMMatrix rows: 3 columns: 4 element: 1.
+	self assert: a dimension equals: 3 @ 4.
+	self assert: a equals: (PMMatrix rows: #(#(1 1 1 1) #(1 1 1 1) #(1 1 1 1)))
+
 ]
 
 { #category : #tests }
