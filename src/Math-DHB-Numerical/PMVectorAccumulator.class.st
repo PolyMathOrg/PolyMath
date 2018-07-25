@@ -1,5 +1,9 @@
 "
-I'm a simple object summing vectors. THe idea that I does not keep the data but information that are representative of the accumulated data. 
+I'm a simple object summing vectors. The idea that I does not keep the data but information that are representative of the accumulated data. 
+
+The class VectorAccumulator has two instance variables:
+- count counts the number of vectors accumulated in the object so far; 
+- average keeps the average of the accumulated vector.
 
 "
 Class {
@@ -9,7 +13,7 @@ Class {
 		'count',
 		'average'
 	],
-	#category : 'Math-DHB-Numerical-Math-UtilsAccumulator'
+	#category : #'Math-DHB-Numerical-Math-UtilsAccumulator'
 }
 
 { #category : #'instance creation' }

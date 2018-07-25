@@ -1,10 +1,15 @@
+"
+It has one additional instance variable compared to its superclass:
+
+- covariance accumulates the components of the covariance matrix; for efficiency reason, only the lower half of the matrix is computed since it is symmetric.
+"
 Class {
 	#name : #PMCovarianceAccumulator,
 	#superclass : #PMVectorAccumulator,
 	#instVars : [
 		'covariance'
 	],
-	#category : 'Math-DHB-Numerical-Math-UtilsAccumulator'
+	#category : #'Math-DHB-Numerical-Math-UtilsAccumulator'
 }
 
 { #category : #transformation }
