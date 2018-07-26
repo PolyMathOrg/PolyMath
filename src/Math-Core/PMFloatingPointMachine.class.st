@@ -69,7 +69,7 @@ PMFloatingPointMachine >> computeLargestNumber [
 	    fullMantissaNumber isInfinite ifTrue: [^nil].
 	    largestNumber := fullMantissaNumber.
 		true] whileTrue: [ ].
-		] on: Error do: [ :signal | signal return: nil].
+		] on: Error do: [ :signal | signal return: nil]
 ]
 
 { #category : #information }
@@ -82,7 +82,7 @@ PMFloatingPointMachine >> computeMachinePrecision [
 	machinePrecision := one.
 	[ tmp := one + machinePrecision.
 	  tmp - one = zero]
-		whileFalse:[  machinePrecision := machinePrecision * inverseRadix].
+		whileFalse:[  machinePrecision := machinePrecision * inverseRadix]
 ]
 
 { #category : #information }
@@ -96,7 +96,7 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 	negativeMachinePrecision := one.
 	[ tmp := one - negativeMachinePrecision.
 	  tmp - one = zero]
-		whileFalse:[ negativeMachinePrecision := negativeMachinePrecision * inverseRadix].
+		whileFalse:[ negativeMachinePrecision := negativeMachinePrecision * inverseRadix]
 ]
 
 { #category : #information }
@@ -114,7 +114,7 @@ PMFloatingPointMachine >> computeRadix [
 	[ b := b + b.
 	  tmp1 := a + b.
 	  radix := ( tmp1 - a) truncated.
-	  radix = 0 ] whileTrue: [].
+	  radix = 0 ] whileTrue: []
 ]
 
 { #category : #information }
