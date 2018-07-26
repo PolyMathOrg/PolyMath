@@ -9,10 +9,9 @@ Number >> addPolynomial: aPolynomial [
 
 { #category : #'*Math-DHB-Numerical' }
 Number >> beta: aNumber [
-		"Computes the beta function of the receiver and aNumber
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/3/99 "
-	^( self logBeta: aNumber) exp
+	"Computes the beta function of the receiver and aNumber"
+
+	^ (self logBeta: aNumber) exp
 ]
 
 { #category : #'*Math-DHB-Numerical' }
@@ -51,17 +50,14 @@ Number >> gamma [
 
 { #category : #'*Math-DHB-Numerical' }
 Number >> logBeta: aNumber [
-		"Computes the logarithm of the beta function of the receiver and aNumber
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/3/99 "
-	^self logGamma + aNumber logGamma - ( self + aNumber) logGamma
+	"Computes the logarithm of the beta function of the receiver and aNumber"
+
+	^ self logGamma + aNumber logGamma - (self + aNumber) logGamma
 ]
 
 { #category : #'*Math-DHB-Numerical' }
 Number >> logGamma [
-		"Computes the log of the Gamma function (for positive numbers only)
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/3/99 "
+		"Computes the log of the Gamma function (for positive numbers only)"
 	^self > 1
 		ifTrue: [ PMLanczosFormula new logGamma: self]
 		ifFalse:[ self > 0
@@ -102,9 +98,7 @@ Number class >> random [
 { #category : #'*Math-DHB-Numerical' }
 Number >> relativelyEqualsTo: aNumber upTo: aSmallNumber [
 		"compare to Float>>closeTo:
-		generally called from Number>>equalsTo:
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 21/4/99 "
+		generally called from Number>>equalsTo:"
 	| norm |
 	norm := self abs max: aNumber abs.
 	^norm <= PMFloatingPointMachine new defaultNumericalPrecision
