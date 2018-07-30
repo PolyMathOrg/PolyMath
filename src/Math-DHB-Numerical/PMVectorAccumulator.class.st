@@ -23,7 +23,6 @@ PMVectorAccumulator class >> new: anInteger [
 
 { #category : #transformation }
 PMVectorAccumulator >> accumulate: aVectorOrArray [
-
 	| delta |
 	count := count + 1.
 	delta := average - aVectorOrArray asPMVector scaleBy: 1 / count.
@@ -33,36 +32,31 @@ PMVectorAccumulator >> accumulate: aVectorOrArray [
 
 { #category : #operations }
 PMVectorAccumulator >> average [
-	
-	^average
+	^ average
 ]
 
 { #category : #operations }
 PMVectorAccumulator >> count [
-	
-	^count
+	^ count
 ]
 
 { #category : #initialization }
 PMVectorAccumulator >> initialize: anInteger [
-
 	average := PMVector new: anInteger.
-	self reset.
-	^ self
+	self reset
 ]
 
 { #category : #printing }
 PMVectorAccumulator >> printOn: aStream [
-
 	super printOn: aStream.
 	aStream space.
 	count printOn: aStream.
 	aStream space.
-	average printOn: aStream.
+	average printOn: aStream
 ]
 
 { #category : #initialization }
 PMVectorAccumulator >> reset [
 	count := 0.
-	average atAllPut: 0.
+	average atAllPut: 0
 ]

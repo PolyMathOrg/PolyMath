@@ -45,9 +45,10 @@ PMCovarianceAccumulator >> initialize: anInteger [
 	^super initialize: anInteger
 ]
 
-{ #category : #transformation }
+{ #category : #initialization }
 PMCovarianceAccumulator >> reset [
 	"Set all accumulators to zero."
+
 	super reset.
-	covariance do: [ :each | each atAllPut: 0].
+	covariance do: [ :each | each atAllPut: 0 ]
 ]
