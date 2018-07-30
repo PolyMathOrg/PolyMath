@@ -9,16 +9,16 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PMDataTransformer >> fit: aCollection [
+PMDataTransformer >> fit: aPMMatrix [
 	^ self subclassResponsibility
 ]
 
 { #category : #'as yet unclassified' }
-PMDataTransformer >> fitAndTransform: aCollection [
-	^ (self fit: aCollection) transform: aCollection
+PMDataTransformer >> fitAndTransform: aPMMatrix [
+	^ (self fit: aPMMatrix) transform: aPMMatrix
 ]
 
 { #category : #transforming }
-PMDataTransformer >> transform: aCollection [
+PMDataTransformer >> transform: aPMMatrix [
 	^ self subclassResponsibility
 ]

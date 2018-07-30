@@ -8,11 +8,11 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PMStandardizationScaler >> fit: aCollection [
-	"Compute the mean and the scale of a Collection (in order to have a std of 1)"
+PMStandardizationScaler >> fit: aPMMatrix [
+	"Compute the mean and the scale of a PMMatrix (in order to have a std of 1)"
 
-	accumulator := PMCovarianceAccumulator new: aCollection first size.
-	aCollection do: [ :each | accumulator accumulate: each ]
+	accumulator := PMCovarianceAccumulator new: aPMMatrix numberOfColumns.
+	aPMMatrix rowsDo: [ :each | accumulator accumulate: each ]
 ]
 
 { #category : #accessing }
@@ -20,7 +20,7 @@ PMStandardizationScaler >> mean [
 	^ accumulator average
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMStandardizationScaler >> scale [
 	^ self variance sqrt
 ]
@@ -31,7 +31,7 @@ PMStandardizationScaler >> transform: aCollection [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #information }
 PMStandardizationScaler >> variance [
 	"Return the diagonal of the covarianceMatrix"
 
