@@ -20,6 +20,11 @@ PMStandardizationScaler >> mean [
 	^ accumulator average
 ]
 
+{ #category : #'as yet unclassified' }
+PMStandardizationScaler >> scale [
+	^ self variance sqrt
+]
+
 { #category : #transforming }
 PMStandardizationScaler >> transform: aCollection [
 	"Perform standardization by centering and scaling"
@@ -30,8 +35,7 @@ PMStandardizationScaler >> transform: aCollection [
 PMStandardizationScaler >> variance [
 	"Return the diagonal of the covarianceMatrix"
 
-	|c|
+	| c |
 	c := accumulator covarianceMatrix.
-	^(1 to: c numberOfRows ) collect:[:each| c at: each at: each]
-	
+	^ (1 to: c numberOfRows) collect: [ :each | c at: each at: each ]
 ]
