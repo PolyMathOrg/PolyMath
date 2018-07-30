@@ -12,6 +12,7 @@ Class {
 
 { #category : #initialization }
 PMPrincipalComponentAnalyserTest >> setUp [
+	super setUp.
 	accumulator := PMCovarianceAccumulator new: 5.
 	server := PMPrincipalComponentAnalysisServer new.
 	100 timesRepeat: [ accumulator accumulate: server next ].
