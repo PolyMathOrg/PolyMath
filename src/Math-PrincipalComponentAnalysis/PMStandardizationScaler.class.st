@@ -26,9 +26,10 @@ PMStandardizationScaler >> scale [
 ]
 
 { #category : #transforming }
-PMStandardizationScaler >> transform: aCollection [
+PMStandardizationScaler >> transform: aPMMatrix [
 	"Perform standardization by centering and scaling"
 
+	^ (aPMMatrix rowsCollect: [ :each | each - self mean ]) rowsCollect: [ :each | each / self scale ]
 ]
 
 { #category : #information }
