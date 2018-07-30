@@ -10,5 +10,5 @@ Class {
 
 { #category : #initialization }
 PMSeriesTermServer >> setArgument: aNumber [
-	x := aNumber asFloat.
+	x := aNumber asFloat
 ]
