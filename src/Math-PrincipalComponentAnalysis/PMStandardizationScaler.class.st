@@ -29,7 +29,10 @@ PMStandardizationScaler >> scale [
 PMStandardizationScaler >> transform: aPMMatrix [
 	"Perform standardization by centering and scaling"
 	
-	^ PMMatrix rows: ((PMMatrix rows: (aPMMatrix rowsCollect: [ :each | each - self mean ]))  rowsCollect: [ :each| each / (self scale) ])
+	|mean scale|
+	mean := self mean.
+	scale := self scale.
+	^ PMMatrix rows: ((PMMatrix rows: (aPMMatrix rowsCollect: [ :each | each - mean ]))  rowsCollect: [ :each| each / scale])
 ]
 
 { #category : #information }
