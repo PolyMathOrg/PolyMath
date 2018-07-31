@@ -12,9 +12,10 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'accumulatorForCovarianceMatrix',
-		'jacobiTransform'
+		'jacobiTransform',
+		'componentsNumber'
 	],
-	#category : 'Math-PrincipalComponentAnalysis'
+	#category : #'Math-PrincipalComponentAnalysis'
 }
 
 { #category : #'instance creation' }
@@ -32,7 +33,23 @@ PMPrincipalComponentAnalyser >> accumulate: aPMVectorOrArray [
 PMPrincipalComponentAnalyser >> components [
 	"Precondition: accumulate: should have been used."
 
-	^ self jacobiTransform evaluate
+	^ self jacobiTransform evaluate copyFrom: 1 to: componentsNumber
+]
+
+{ #category : #accessing }
+PMPrincipalComponentAnalyser >> componentsNumber [
+	^ componentsNumber
+]
+
+{ #category : #accessing }
+PMPrincipalComponentAnalyser >> componentsNumber: anInteger [
+	componentsNumber := anInteger
+]
+
+{ #category : #accessing }
+PMPrincipalComponentAnalyser >> fit: aPMMatrix [
+	self initialize: aPMMatrix numberOfColumns.
+	aPMMatrix rowsDo: [ :eachRow | self accumulate: eachRow ]
 ]
 
 { #category : #initialization }
@@ -46,8 +63,15 @@ PMPrincipalComponentAnalyser >> jacobiTransform [
 ]
 
 { #category : #accessing }
+PMPrincipalComponentAnalyser >> transform: aPMMatrix [
+	"Apply dimensionality reduction to aPMMatrix"
+
+	^ aPMMatrix * self transformMatrix transpose
+]
+
+{ #category : #accessing }
 PMPrincipalComponentAnalyser >> transformMatrix [
 	"Return a matrix that can be applied to any data vector to extract the relevant component of the data vector"
 
-	^ self jacobiTransform transform
+	^ PMMatrix rows: (self jacobiTransform transform rows copyFrom:1 to: componentsNumber )
 ]

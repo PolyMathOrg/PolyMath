@@ -48,3 +48,15 @@ PMPrincipalComponentAnalyserTest >> testLowEigenvalues [
 	expected := #(3.623277676214216e7 766.1878578405343 -8.608930577556605e-13 2.1213150252733508e-13 -1.9556315119125588e-13) asPMVector.
 	actual - expected do: [ :each | self assert: each < 10e-8 ]
 ]
+
+{ #category : #tests }
+PMPrincipalComponentAnalyserTest >> testTransformMatrix [
+	| m pca |
+	m := PMMatrix rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).
+	pca := PMPrincipalComponentAnalyser new initialize: 2.
+	pca componentsNumber: 2.
+	m rowsDo: [ :eachRow | pca accumulate: eachRow ].
+	pca components.
+	self assert: pca transformMatrix closeTo: (PMMatrix rows: #(#(-0.83849224 -0.54491354)
+       #(0.54491354 -0.83849224)))
+]
