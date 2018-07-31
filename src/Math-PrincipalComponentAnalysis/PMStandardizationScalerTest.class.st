@@ -5,12 +5,12 @@ Class {
 }
 
 { #category : #tests }
-PMStandardizationScalerTest >> testMean [
+PMStandardizationScalerTest >> testMean [	
 	| aMatrix t |
-	aMatrix := PMMatrix rows: #(#(1.0 -1.0 2.0) #(2.0 0.0 0.0) #(0.0 1.0 -1.0)).
+	aMatrix := PMMatrix rows: #((0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
 	t fit: aMatrix.
-	self assert: t mean asArray closeTo: #(1.0 0.0 0.3333333)
+	self assert: t mean asArray closeTo: #(0.5 0.5)
 ]
 
 { #category : #tests }
@@ -27,7 +27,17 @@ PMStandardizationScalerTest >> testTransform [
 	| aMatrix t |
 	aMatrix := PMMatrix rows: #(#(0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
-	self assert: (t fitAndTransform: aMatrix) asArray equals: #(#(-1.0 -1.0) #(-1.0 -1.0) #(1.0 1.0) #(1.0 1.0))
+	self assert: (t fitAndTransform: aMatrix) equals: (PMMatrix rows: #(#(-1.0 -1.0) #(-1.0 -1.0) #(1.0 1.0) #(1.0 1.0)))
+]
+
+{ #category : #tests }
+PMStandardizationScalerTest >> testTransformAnotherMatrix [
+	| aMatrix t anotherMatrix |
+	aMatrix := PMMatrix rows: #(#(0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
+	anotherMatrix := PMMatrix rows: #(#(2 2)).
+	t := PMStandardizationScaler new.
+	t fit: aMatrix.
+	self assert: (t transform: anotherMatrix) equals: (PMMatrix rows: #(#(3 3)))
 ]
 
 { #category : #tests }
