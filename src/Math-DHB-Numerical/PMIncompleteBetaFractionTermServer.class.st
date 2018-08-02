@@ -20,15 +20,15 @@ PMIncompleteBetaFractionTermServer >> setParameter: aNumber1 second: aNumber2 [
 ]
 
 { #category : #information }
-PMIncompleteBetaFractionTermServer >> termsAt: anInteger [ 
-
+PMIncompleteBetaFractionTermServer >> termsAt: anInteger [
 	| n n2 |
 	n := anInteger // 2.
 	n2 := 2 * n.
-	^Array with: ( n2 < anInteger 
-		ifTrue: 
-			[x negated * (alpha1 + n) * (alpha1 + alpha2 + n) 
-				/ ((alpha1 + n2) * (alpha1 + 1 + n2))]
-		ifFalse: [x * n * (alpha2 - n) / ((alpha1 + n2) * (alpha1 - 1 + n2))])
-			with: 1
+	^ Array
+		with:
+			(n2 < anInteger
+				ifTrue:
+					[ x negated * (alpha1 + n) * (alpha1 + alpha2 + n) / ((alpha1 + n2) * (alpha1 + 1 + n2)) ]
+				ifFalse: [ x * n * (alpha2 - n) / ((alpha1 + n2) * (alpha1 - 1 + n2)) ])
+		with: 1
 ]
