@@ -37,14 +37,9 @@ PMPrincipalComponentAnalyserJacobiTransformation >> components [
 
 { #category : #accessing }
 PMPrincipalComponentAnalyserJacobiTransformation >> fit: aPMMatrix [
-	self initialize: aPMMatrix numberOfColumns.
+	accumulatorForCovarianceMatrix := PMCovarianceAccumulator new: aPMMatrix numberOfColumns.
 	aPMMatrix rowsDo: [ :eachRow | self accumulate: eachRow ].
 	self components
-]
-
-{ #category : #initialization }
-PMPrincipalComponentAnalyserJacobiTransformation >> initialize: anInteger [
-	accumulatorForCovarianceMatrix := PMCovarianceAccumulator new: anInteger
 ]
 
 { #category : #accessing }
