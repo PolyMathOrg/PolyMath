@@ -235,6 +235,13 @@ PMMatrixTest >> testMatrixCloseToPrecision [
 	self deny: (a closeTo: b precision: 0.2)
 ]
 
+{ #category : #comparing }
+PMMatrixTest >> testMatrixCos [
+	| a |
+	a := PMMatrix rows: {{Float pi. Float pi.}. {0. 0.}}.
+	self assert: a cos equals: (PMMatrix rows:#((-1 -1) (1 1)))
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testMatrixCumulativeSum [
 	| a b |

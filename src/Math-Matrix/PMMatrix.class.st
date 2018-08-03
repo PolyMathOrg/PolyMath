@@ -372,17 +372,15 @@ PMMatrix >> columnsDo: aBlock [
 { #category : #operation }
 PMMatrix >> cos [
 	"Apply cos to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each cos])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each cos ])
 ]
 
 { #category : #operation }
 PMMatrix >> cosh [
 	"Apply cosh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each cosh])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each cosh ])
 ]
 
 { #category : #transformation }
@@ -532,9 +530,7 @@ PMMatrix >> largestPowerOf2SmallerThan: anInteger [
 { #category : #operation }
 PMMatrix >> log [
 	"Apply log to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each log])
+	^ PMMatrix rows: ( self rowsCollect: [ :each | each log])
 	
 ]
 
@@ -790,18 +786,15 @@ PMMatrix >> setDiagonal: aVector [
 { #category : #operation }
 PMMatrix >> sin [
 	"Apply sin to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sin])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sin ])
 ]
 
 { #category : #operation }
 PMMatrix >> sinh [
 	"Apply sinh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sinh])
-	
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sinh ])
 ]
 
 { #category : #private }
@@ -827,9 +820,8 @@ PMMatrix >> split [
 { #category : #operation }
 PMMatrix >> sqrt [
 	"Apply sqrt to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sqrt])
+	
+	^ PMMatrix rows: ( self rowsCollect: [ :each | each sqrt])
 ]
 
 { #category : #operation }
@@ -898,18 +890,15 @@ PMMatrix >> swapColumn: anIndex withColumn:   a2Index [
 { #category : #operation }
 PMMatrix >> tan [
 	"Apply tan to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each tan])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each tan ])
 ]
 
 { #category : #operation }
 PMMatrix >> tanh [
 	"Apply tanh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each tanh])
-	
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each tanh ])
 ]
 
 { #category : #operation }
