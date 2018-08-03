@@ -445,7 +445,7 @@ PMMatrix >> equalsTo: aMatrix [
 ]
 
 { #category : #'as yet unclassified' }
-PMMatrix >> flattenOnColumns [
+PMMatrix >> flattenColumns [
 	| answer |
 	answer := #().
 	self columnsDo: [ :each | answer := answer , each asArray ].
@@ -453,7 +453,7 @@ PMMatrix >> flattenOnColumns [
 ]
 
 { #category : #'as yet unclassified' }
-PMMatrix >> flattenOnRows [
+PMMatrix >> flattenRows [
 	| answer |
 	answer := #().
 	self rowsDo: [ :each | answer := answer , each asArray ].

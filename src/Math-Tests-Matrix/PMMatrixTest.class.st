@@ -6,16 +6,20 @@ Class {
 
 { #category : #tests }
 PMMatrixTest >> testArgMaxOnColumns [
-	| m |
-	m := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
-	self assert: m argMaxOnColumns equals: #(2 2 2) asPMVector
+	| m1 m2 |
+	m1 := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	m2 := PMMatrix rows: #(#(-1 0 -1) #(-2 0 0)).
+	self assert: m1 argMaxOnColumns equals: #(2 2 2) asPMVector.
+	self assert: m2 argMaxOnColumns equals: #(1 1 2) asPMVector
 ]
 
 { #category : #tests }
 PMMatrixTest >> testArgMaxOnRows [
-	| m |
-	m := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
-	self assert: m argMaxOnRows equals: #(3 3) asPMVector
+	| m1 m2 |
+	m1 := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	m2 := PMMatrix rows: #(#(-1 0 -1) #(-2 0 0)).
+	self assert: m1 argMaxOnRows equals: #(3 3) asPMVector.
+	self assert: m2 argMaxOnRows equals: #(2 2) asPMVector.
 ]
 
 { #category : #tests }
@@ -112,17 +116,17 @@ PMMatrixTest >> testEigenvaluesLargest [
 ]
 
 { #category : #tests }
-PMMatrixTest >> testFlattenOnColumns [
+PMMatrixTest >> testFlattenColumns [
 	| m |
 	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
-	self assert: m flattenOnColumns equals: #(1 4 7 2 5 8 3 6 9) asPMVector
+	self assert: m flattenColumns equals: #(1 4 7 2 5 8 3 6 9) asPMVector
 ]
 
 { #category : #tests }
-PMMatrixTest >> testFlattenOnRows [
+PMMatrixTest >> testFlattenRows [
 	| m |
 	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
-	self assert: m flattenOnRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
+	self assert: m flattenRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
 ]
 
 { #category : #tests }
