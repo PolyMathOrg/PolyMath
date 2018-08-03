@@ -97,6 +97,20 @@ PMMatrixTest >> testEigenvaluesLargest [
 	self assert: ((roots at: 2) - eigenvalue) abs < 1.0e-08
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testFlattenOnColumns [
+	| m |
+	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
+	self assert: m flattenOnColumns equals: #(1 4 7 2 5 8 3 6 9) asPMVector
+]
+
+{ #category : #tests }
+PMMatrixTest >> testFlattenOnRows [
+	| m |
+	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
+	self assert: m flattenOnRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testLUPDecomposition [
 	"Code Example 8.10"

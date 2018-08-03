@@ -434,6 +434,22 @@ PMMatrix >> equalsTo: aMatrix [
 	^ true 
 ]
 
+{ #category : #'as yet unclassified' }
+PMMatrix >> flattenOnColumns [
+	| answer |
+	answer := #().
+	self columnsDo: [ :each | answer := answer , each asArray ].
+	^ answer asPMVector
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> flattenOnRows [
+	| answer |
+	answer := #().
+	self rowsDo: [ :each | answer := answer , each asArray ].
+	^ answer asPMVector
+]
+
 { #category : #comparing }
 PMMatrix >> hash [
 	^ rows hash
@@ -495,7 +511,7 @@ PMMatrix >> isSymmetric [
 
 { #category : #private }
 PMMatrix >> largestPowerOf2SmallerThan: anInteger [
-	"Private - "
+	"Private"
 	| m m2|
 	m := 2.
 	[ m2 := m * 2.
