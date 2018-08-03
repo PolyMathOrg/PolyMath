@@ -227,6 +227,16 @@ PMMatrix >> addWithSymmetricMatrix: aMatrix [
 	^ aMatrix addWithRegularMatrix: self 
 ]
 
+{ #category : #'as yet unclassified' }
+PMMatrix >> argMaxOnColumns [
+	^ self columnsCollect: [ :each | each argMax ]
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> argMaxOnRows [
+	^ self rowsCollect: [ :each | each argMax ]
+]
+
 { #category : #transformation }
 PMMatrix >> asSymmetricMatrix [
 	"Convert the receiver to a symmetric matrix (no check is made)."

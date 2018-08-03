@@ -5,6 +5,20 @@ Class {
 }
 
 { #category : #tests }
+PMMatrixTest >> testArgMaxOnColumns [
+	| m |
+	m := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	self assert: m argMaxOnColumns equals: #(2 2 2) asPMVector
+]
+
+{ #category : #tests }
+PMMatrixTest >> testArgMaxOnRows [
+	| m |
+	m := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	self assert: m argMaxOnRows equals: #(3 3) asPMVector
+]
+
+{ #category : #tests }
 PMMatrixTest >> testAtAllPut [
 
 	| a |
@@ -111,7 +125,7 @@ PMMatrixTest >> testFlattenOnRows [
 	self assert: m flattenOnRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
 ]
 
-{ #category : #'linear algebra' }
+{ #category : #tests }
 PMMatrixTest >> testLUPDecomposition [
 	"Code Example 8.10"
 
@@ -149,7 +163,7 @@ PMMatrixTest >> testLinearEquations [
 	self assert: (sol2 at: 3) equals: 2
 ]
 
-{ #category : #'linear algebra' }
+{ #category : #tests }
 PMMatrixTest >> testLinearEquationsSingle [
 	| s sol |
 	s := PMLinearEquationSystem
@@ -468,8 +482,7 @@ PMMatrixTest >> testPrintOn [
 	| m stream |
 	stream := String new writeStream.
 	m := PMMatrix new.
-	"this raised an error:"
-	self shouldnt: [m printOn: stream] raise: Error 
+	m printOn: stream
 ]
 
 { #category : #comparing }
