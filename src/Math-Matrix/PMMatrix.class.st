@@ -784,6 +784,13 @@ PMMatrix >> setDiagonal: aVector [
 ]
 
 { #category : #operation }
+PMMatrix >> sign [
+	"Apply sign to each element of a matrix"
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sign ])
+]
+
+{ #category : #operation }
 PMMatrix >> sin [
 	"Apply sin to each element of a matrix"
 
