@@ -15,9 +15,9 @@ In a fresh Pharo 7.0 image, load last development version of Polymath :
 
 ```Smalltalk
 Metacello new
-        githubUser: 'XXX' project: 'PolyMath' commitish: 'development' path: 'src';
-        baseline: 'PolyMath';
-        load
+    githubUser: 'XXX' project: 'PolyMath' commitish: 'development' path: 'src';
+    baseline: 'PolyMath';
+    load.
 ```
 where you replace XXX with your github user name.
 
