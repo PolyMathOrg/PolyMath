@@ -1,7 +1,7 @@
 Class {
 	#name : #NumberExtensionsTest,
 	#superclass : #TestCase,
-	#category : #'Math-Number-Extensions'
+	#category : #'Math-Tests-Number-Extensions'
 }
 
 { #category : #tests }
