@@ -7,7 +7,7 @@ Class {
 		'accumulator',
 		'server'
 	],
-	#category : 'Math-PrincipalComponentAnalysis'
+	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
 { #category : #tests }
