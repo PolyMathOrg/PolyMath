@@ -443,7 +443,7 @@ PMMatrixTest >> testMatrixMultiplyElementwise [
 PMMatrixTest >> testMatrixSign [
 	| a |
 	a := PMMatrix rows: #(#(-2 2 0) #(2 0 -2)).
-	a assert: a sign equals: (PMMatrix rows: #((-1 1 0) (1 0 -1)))
+	self assert: a sign equals: (PMMatrix rows: #((-1 1 0) (1 0 -1)))
 ]
 
 { #category : #'linear algebra' }
