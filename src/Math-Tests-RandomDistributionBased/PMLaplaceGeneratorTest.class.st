@@ -1,7 +1,7 @@
 Class {
 	#name : #PMLaplaceGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-RandomDistributionBased'
+	#category : #'Math-Tests-RandomDistributionBased'
 }
 
 { #category : #'as yet unclassified' }
