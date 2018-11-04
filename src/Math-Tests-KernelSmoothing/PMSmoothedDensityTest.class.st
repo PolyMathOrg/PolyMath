@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'density'
 	],
-	#category : 'Math-KernelSmoothing'
+	#category : #'Math-Tests-KernelSmoothing'
 }
 
 { #category : #running }
