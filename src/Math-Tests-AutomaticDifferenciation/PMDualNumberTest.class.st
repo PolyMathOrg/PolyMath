@@ -1,5 +1,5 @@
 Class {
-	#name : #DualNumberTest,
+	#name : #PMDualNumberTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'zero',
@@ -8,17 +8,17 @@ Class {
 		'zeroc',
 		'onec'
 	],
-	#category : 'Math-Tests-AutomaticDifferenciation'
+	#category : #'Math-Tests-AutomaticDifferenciation'
 }
 
 { #category : #running }
-DualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
+PMDualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
 	self assert: aDualNumber equals: anotherDualNumber.
 	self assert: aDualNumber eps equals: anotherDualNumber eps
 ]
 
 { #category : #running }
-DualNumberTest >> setUp [
+PMDualNumberTest >> setUp [
 zero:=PMDualNumber value: 0 eps: 1.
 zeroc:=PMDualNumber value: 0 eps: 0.
 one:=PMDualNumber value: 1 eps: 1.
@@ -28,13 +28,13 @@ three :=PMDualNumber value: 3.0 eps: 1.
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testAbs [
+PMDualNumberTest >> testAbs [
 self assertEquality: three negated abs and:three .
 
 ]
 
 { #category : #tests }
-DualNumberTest >> testAccessing [
+PMDualNumberTest >> testAccessing [
 	self assert: three eps equals: 1.
 	self assert: three value equals: 3.
 	three value: 2.
@@ -44,14 +44,14 @@ DualNumberTest >> testAccessing [
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testAdd [
+PMDualNumberTest >> testAdd [
 self assertEquality: 0+onec+0 and: onec .
 self assertEquality: 1+one+onec+0 and: three .
 self assertEquality: 1+one+one+three+1 and: (PMDualNumber value: 7 eps: 3). 
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testArcCos [
+PMDualNumberTest >> testArcCos [
 |a|
 self assert: (zero arcCos equalsTo:( PMDualNumber value: Float halfPi eps: -1)).
 a:=(PMDualNumber value: -1.0 successor eps: 1)arcCos.
@@ -60,7 +60,7 @@ self assert:(a eps< -1e6).
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testArcSin [
+PMDualNumberTest >> testArcSin [
 	| a |
 	self assert: zero arcSin equals: zero.
 	a := (PMDualNumber value: 1.0 predecessor eps: 1) arcSin.
@@ -72,14 +72,14 @@ DualNumberTest >> testArcSin [
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testArcTan [
+PMDualNumberTest >> testArcTan [
 self assertEquality: zero arcTan and: zero.
 self assertEquality: one negated arcTan and:(PMDualNumber value: -1 arcTan eps: (-1/2)).
 self assert: (three arcTan eps equalsTo:0.1).
 ]
 
 { #category : #tests }
-DualNumberTest >> testConverting [
+PMDualNumberTest >> testConverting [
 	| a |
 	self assert: zeroc asInteger == 0.
 	self assert: three asInteger == 3.
@@ -93,14 +93,14 @@ DualNumberTest >> testConverting [
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testCos [
+PMDualNumberTest >> testCos [
 self assert: ((PMDualNumber value: Float halfPi negated eps: 1)cos equalsTo: (PMDualNumber value: 0 eps: 1) ).
 self assert: ((PMDualNumber value: Float halfPi eps: 1)cos equalsTo: (PMDualNumber value: 0 eps: -1) ).
 self assert: ((PMDualNumber value: Float halfPi eps: 0)cos equalsTo: zeroc).
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testDivide [
+PMDualNumberTest >> testDivide [
 self should: [ 4.0/(one-1) ] raise:ZeroDivide. 
 self should: [ three/(onec-1) ] raise:ZeroDivide.
 self assertEquality: three/onec and:  three.
@@ -112,7 +112,7 @@ self assertEquality: 1/three and: (PMDualNumber value: (1/3)asFloat eps: (-1/9)a
 ]
 
 { #category : #'tests-testing' }
-DualNumberTest >> testEqual [
+PMDualNumberTest >> testEqual [
 	self assert: one equals: onec.
 	self assert: zero equals: zeroc.
 	self assert: one equals: 1.0.
@@ -124,7 +124,7 @@ DualNumberTest >> testEqual [
 ]
 
 { #category : #tests }
-DualNumberTest >> testEqualsTo [
+PMDualNumberTest >> testEqualsTo [
 self assert: (zeroc equalsTo: zeroc).
 self deny: (zeroc equalsTo: zero).
 self assert: (zero equalsTo: zero).
@@ -136,7 +136,7 @@ self deny: (one equalsTo: (PMDualNumber value: 1.0000001 eps:1.0000001) ).
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testExp [
+PMDualNumberTest >> testExp [
 	| a b |
 	b := 3 exp.
 	a := three exp.
@@ -146,7 +146,7 @@ DualNumberTest >> testExp [
 ]
 
 { #category : #tests }
-DualNumberTest >> testHash [
+PMDualNumberTest >> testHash [
 	self assert: one hash equals: onec hash.
 	self assert: zero hash equals: zeroc hash.
 	self assert: one hash equals: 1 hash.
@@ -160,7 +160,7 @@ DualNumberTest >> testHash [
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testLn [
+PMDualNumberTest >> testLn [
 	| a |
 	a := three ln.
 	self assert: (a eps equalsTo: 1 / 3).
@@ -169,7 +169,7 @@ DualNumberTest >> testLn [
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testMultiply [
+PMDualNumberTest >> testMultiply [
 self assertEquality: 0*onec and: zeroc .
 self assertEquality: three*0 and: zeroc.
 self assertEquality: onec*three and: three .
@@ -178,13 +178,13 @@ self assertEquality: (three+2.0)*(1+one) and: (PMDualNumber value: 10.0 eps: 7.0
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testNegated [
+PMDualNumberTest >> testNegated [
 	self assert: three negated equals: -3.
 	self assert: three negated eps equals: -1
 ]
 
 { #category : #'tests-testing' }
-DualNumberTest >> testOpposites [
+PMDualNumberTest >> testOpposites [
 self assert: zeroc even.
 self deny: one even.
 self deny: zero odd.
@@ -202,7 +202,7 @@ self assert: onec negated negative.
 ]
 
 { #category : #tests }
-DualNumberTest >> testPrintOn [
+PMDualNumberTest >> testPrintOn [
 |stream|
 stream := ReadWriteStream on: ''.
 three printOn: stream.
@@ -211,7 +211,7 @@ self assert: (stream contents includesSubstring:' 1') .
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testRaisedTo [
+PMDualNumberTest >> testRaisedTo [
 |a |
 self assertEquality: (three raisedTo: 2) and: three squared.
 self assertEquality: (three raisedTo: 0) and: onec.
@@ -232,7 +232,7 @@ self assert: (a eps equalsTo: (3 raisedTo: 3)*(3 ln +1)).
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testRaisedToInteger [
+PMDualNumberTest >> testRaisedToInteger [
 self assertEquality: (three raisedToInteger: 2) and: three squared.
 self assertEquality: (three raisedToInteger: 1)and: three.
 self assertEquality: (three raisedToInteger: 0)and: onec.
@@ -241,7 +241,7 @@ self assertEquality: (zero raisedToInteger: 4)and:zeroc.
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testReciprocal [
+PMDualNumberTest >> testReciprocal [
 self should: [ zero reciprocal ] raise:ZeroDivide. 
 self should: [ zeroc reciprocal ] raise:ZeroDivide.
 self assertEquality: one reciprocal and:  (PMDualNumber value: 1 eps: -1).
@@ -250,14 +250,14 @@ self assertEquality: three reciprocal and:  (PMDualNumber value: (1/3.0) eps: -1
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testSin [
+PMDualNumberTest >> testSin [
 self assert: ((PMDualNumber value: Float halfPi negated eps: 1)sin equalsTo: (PMDualNumber value: -1.0 eps: 0.0) ).
 self assert: ((PMDualNumber value: Float halfPi eps: 1)sin equalsTo: (PMDualNumber value: 1.0 eps: 0.0) ).
 self assertEquality: zero sin and:zero.
 ]
 
 { #category : #'tests-testing' }
-DualNumberTest >> testSmaller [
+PMDualNumberTest >> testSmaller [
 self assert: one<1.1.
 self deny: one<0.
 self assert: 1>zeroc.
@@ -279,7 +279,7 @@ self deny: three<three.
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testSqrt [
+PMDualNumberTest >> testSqrt [
 	| a |
 	self
 		assertEquality: (PMDualNumber value: 16 eps: 5) sqrt
@@ -290,20 +290,20 @@ DualNumberTest >> testSqrt [
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testSquared [
+PMDualNumberTest >> testSquared [
 self assertEquality: (PMDualNumber value: -3 eps: 5) squared and: (PMDualNumber value: 9 eps: -30).
 self assertEquality: zero squared and: zeroc. 
 ]
 
 { #category : #'tests-arithmetic' }
-DualNumberTest >> testSubtract [
+PMDualNumberTest >> testSubtract [
 self assertEquality: 2-onec-1 and: zeroc .
 self assertEquality: three-one-1 and: onec .
 self assertEquality: 1-one-1 and: one negated. 
 ]
 
 { #category : #'tests-mathematical functions' }
-DualNumberTest >> testTan [
+PMDualNumberTest >> testTan [
 	| a b |
 	a := three tan.
 	self assert: a value equals: 3 tan.
@@ -315,7 +315,7 @@ DualNumberTest >> testTan [
 ]
 
 { #category : #'tests-testing' }
-DualNumberTest >> testTesting [
+PMDualNumberTest >> testTesting [
 self deny: 3 isDualNumber .
 self assert: one isDualNumber.
 self assert: zeroc isDualNumber.

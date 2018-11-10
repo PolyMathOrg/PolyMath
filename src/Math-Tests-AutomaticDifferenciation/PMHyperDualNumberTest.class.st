@@ -1,5 +1,5 @@
 Class {
-	#name : #HyperDualNumberTest,
+	#name : #PMHyperDualNumberTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'zero',
@@ -8,11 +8,11 @@ Class {
 		'zeroc',
 		'onec'
 	],
-	#category : 'Math-Tests-AutomaticDifferenciation'
+	#category : #'Math-Tests-AutomaticDifferenciation'
 }
 
 { #category : #running }
-HyperDualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
+PMHyperDualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
 	self assert: aDualNumber equals: anotherDualNumber.
 	self assert: aDualNumber exp equals: anotherDualNumber exp.
 	self assert: aDualNumber eps2 equals: anotherDualNumber eps2.
@@ -20,7 +20,7 @@ HyperDualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
 ]
 
 { #category : #running }
-HyperDualNumberTest >> setUp [
+PMHyperDualNumberTest >> setUp [
 zero:=PMHyperDualNumber value: 0 eps: 1 eps2: 1 eps1eps2: 0.
 zeroc:=PMHyperDualNumber value: 0 .
 one:=PMHyperDualNumber value: 1 eps: 1 eps2: 1 eps1eps2: 0.
@@ -30,13 +30,13 @@ three :=PMHyperDualNumber value: 3 eps: 1 eps2: 1 eps1eps2: 0.
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testAbs [
+PMHyperDualNumberTest >> testAbs [
 self assertEquality: three negated abs and:three .
 
 ]
 
 { #category : #tests }
-HyperDualNumberTest >> testAccessing [
+PMHyperDualNumberTest >> testAccessing [
 	self assert: three eps equals: 1.
 	self assert: three value equals: 3.
 	self assert: three eps2 equals: 1.
@@ -48,7 +48,7 @@ HyperDualNumberTest >> testAccessing [
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testAdd [
+PMHyperDualNumberTest >> testAdd [
 self assertEquality: 0+onec+0 and: onec .
 self assertEquality: 1+one+onec+0 and: three .
 three eps1eps2: 2.
@@ -56,7 +56,7 @@ self assertEquality: 1+one+one+three+1 and: (PMHyperDualNumber value: 7 eps: 3 e
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testArcCos [
+PMHyperDualNumberTest >> testArcCos [
 |a|
 self assert: (zero arcCos equalsTo:(  PMHyperDualNumber value: Float halfPi eps: -1 eps2: -1 eps1eps2: 0)).
 a:=(PMHyperDualNumber value: 1.0 predecessor eps: 1 eps2: 1eps1eps2:0)arcCos.
@@ -68,7 +68,7 @@ self assert:(a eps1eps2< -1e6).
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testArcSin [
+PMHyperDualNumberTest >> testArcSin [
 	| a |
 	self assert: zero arcSin equals: zero.
 	a := (PMHyperDualNumber
@@ -83,7 +83,7 @@ HyperDualNumberTest >> testArcSin [
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testArcTan [
+PMHyperDualNumberTest >> testArcTan [
 	self assert: zero arcTan equals: zero.
 	self
 		assertEquality: one negated arcTan
@@ -98,7 +98,7 @@ HyperDualNumberTest >> testArcTan [
 ]
 
 { #category : #tests }
-HyperDualNumberTest >> testConverting [
+PMHyperDualNumberTest >> testConverting [
 	| a |
 	self assert: zeroc asInteger == 0.
 	self assert: three asInteger == 3.
@@ -112,14 +112,14 @@ HyperDualNumberTest >> testConverting [
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testCos [
+PMHyperDualNumberTest >> testCos [
 self assert: ((PMHyperDualNumber value: Float halfPi negated eps: 1 eps2:1 eps1eps2:0)cos equalsTo: zero). 
 self assert: ((PMHyperDualNumber value: Float halfPi eps: 1 eps2:1 eps1eps2:0)cos equalsTo: zero negated ).
 self assert: ((PMHyperDualNumber value: Float halfPi)cos equalsTo: zeroc).
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testDivide [
+PMHyperDualNumberTest >> testDivide [
 self should: [ 4.0/(one-1) ] raise:ZeroDivide. 
 self should: [ three/(onec-1) ] raise:ZeroDivide.
 self assertEquality: three/onec and:  three.
@@ -131,7 +131,7 @@ self assertEquality: 1/three and: (PMHyperDualNumber value: 1/3 eps: -1/9 eps2: 
 ]
 
 { #category : #'tests-testing' }
-HyperDualNumberTest >> testEqual [
+PMHyperDualNumberTest >> testEqual [
 	self assert: one equals: onec.
 	self assert: zero equals: zeroc.
 	self assert: one equals: 1.0.
@@ -150,7 +150,7 @@ HyperDualNumberTest >> testEqual [
 ]
 
 { #category : #tests }
-HyperDualNumberTest >> testEqualsTo [
+PMHyperDualNumberTest >> testEqualsTo [
 self assert: (zeroc equalsTo: zeroc).
 self deny: (zeroc equalsTo: zero).
 self assert: (zero equalsTo: zero).
@@ -161,7 +161,7 @@ self deny: (one equalsTo: (PMHyperDualNumber value: 1.0000000001 eps: 1.00000000
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testExp [
+PMHyperDualNumberTest >> testExp [
 	| a b |
 	b := 3 exp.
 	a := three exp.
@@ -173,7 +173,7 @@ HyperDualNumberTest >> testExp [
 ]
 
 { #category : #tests }
-HyperDualNumberTest >> testHash [
+PMHyperDualNumberTest >> testHash [
 	self assert: one hash equals: onec hash.
 	self assert: zero hash equals: zeroc hash.
 	self assert: one hash equals: 1 hash.
@@ -199,7 +199,7 @@ HyperDualNumberTest >> testHash [
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testLn [
+PMHyperDualNumberTest >> testLn [
 	| a |
 	a := three ln.
 	self assert: (a eps equalsTo: 1 / 3).
@@ -210,7 +210,7 @@ HyperDualNumberTest >> testLn [
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testMultiply [
+PMHyperDualNumberTest >> testMultiply [
 self assertEquality: 0*onec and: zeroc .
 self assertEquality: three*0 and: zeroc.
 self assertEquality: onec*three and: three .
@@ -219,7 +219,7 @@ self assertEquality: (three+2.0)*(1+one) and: ( PMHyperDualNumber value: 10.0 ep
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testNegated [
+PMHyperDualNumberTest >> testNegated [
 	three eps1eps2: -4.
 	self assert: three negated equals: -3.
 	self assert: three negated eps equals: -1.
@@ -228,7 +228,7 @@ HyperDualNumberTest >> testNegated [
 ]
 
 { #category : #'tests-testing' }
-HyperDualNumberTest >> testOpposites [
+PMHyperDualNumberTest >> testOpposites [
 self assert: zeroc even.
 self deny: one even.
 self deny: zero odd.
@@ -246,7 +246,7 @@ self assert: onec negated negative.
 ]
 
 { #category : #tests }
-HyperDualNumberTest >> testPrintOn [
+PMHyperDualNumberTest >> testPrintOn [
 |stream|
 stream := ReadWriteStream on: ''.
 three printOn: stream.
@@ -256,7 +256,7 @@ self assert: (stream contents includesSubstring:' 0') .
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testRaisedTo [
+PMHyperDualNumberTest >> testRaisedTo [
 |a b|
 self assert: ((three raisedTo: 2) equalsTo: three squared).
 self assertEquality: (three raisedTo: 0) and: onec.
@@ -282,7 +282,7 @@ self assert: (a eps1eps2 equalsTo: b*(3 ln+1)+9).
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testRaisedToInteger [
+PMHyperDualNumberTest >> testRaisedToInteger [
 self assertEquality: (three raisedToInteger: 2) and: three squared.
 self assertEquality: (three raisedToInteger: 1) and: three.
 self assertEquality: (three raisedToInteger: 0) and: onec.
@@ -291,7 +291,7 @@ self assertEquality: (zero raisedToInteger: 4) and: zeroc.
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testReciprocal [
+PMHyperDualNumberTest >> testReciprocal [
 self should: [ zero reciprocal ] raise:ZeroDivide. 
 self should: [ zeroc reciprocal ] raise:ZeroDivide.
 self assertEquality: one reciprocal and:  ( PMHyperDualNumber value: 1 eps: -1 eps2: -1 eps1eps2: 2).
@@ -300,14 +300,14 @@ self assertEquality: three reciprocal and:  ( PMHyperDualNumber value: (1/3) eps
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testSin [
+PMHyperDualNumberTest >> testSin [
 self assert: ((PMHyperDualNumber value: Float halfPi negated eps: 1 eps2: 1 eps1eps2: 0)sin equalsTo: ( PMHyperDualNumber value: -1 eps: 0 eps2: 0 eps1eps2: 1)) .
 self assert: ((PMHyperDualNumber value: Float halfPi eps: 1 eps2: 1 eps1eps2: 0)sin equalsTo: (PMHyperDualNumber value: 1 eps: 0 eps2: 0 eps1eps2: -1) ).
 self assertEquality: zero sin and: zero.
 ]
 
 { #category : #'tests-testing' }
-HyperDualNumberTest >> testSmaller [
+PMHyperDualNumberTest >> testSmaller [
 self assert: one<1.1.
 self deny: one<0.
 self assert: 1>zeroc.
@@ -329,7 +329,7 @@ self deny: three<three.
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testSqrt [
+PMHyperDualNumberTest >> testSqrt [
 	| a |
 	self
 		assertEquality:
@@ -352,21 +352,21 @@ HyperDualNumberTest >> testSqrt [
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testSquared [
+PMHyperDualNumberTest >> testSquared [
 self assert: ((PMHyperDualNumber value: -3 eps: 5eps2: 1 eps1eps2: 0) squared equalsTo: (PMHyperDualNumber value: 9 eps: -30 eps2: -6 eps1eps2: 10)).
 zeroc eps1eps2: 2.
 self assertEquality: zero squared and: zeroc. 
 ]
 
 { #category : #'tests-arithmetic' }
-HyperDualNumberTest >> testSubtract [
+PMHyperDualNumberTest >> testSubtract [
 self assertEquality: 2-onec-1 and: zeroc .
 self assertEquality: three-one-1 and: onec .
 self assertEquality: 1-one-1 and: one negated. 
 ]
 
 { #category : #'tests-mathematical functions' }
-HyperDualNumberTest >> testTan [
+PMHyperDualNumberTest >> testTan [
 	| a |
 	a := three tan.
 	self assert: a value equals: 3 tan.
@@ -376,7 +376,7 @@ HyperDualNumberTest >> testTan [
 ]
 
 { #category : #'tests-testing' }
-HyperDualNumberTest >> testTesting [
+PMHyperDualNumberTest >> testTesting [
 self deny: 3 isDualNumber .
 self assert: one isDualNumber.
 self assert: zeroc isDualNumber.

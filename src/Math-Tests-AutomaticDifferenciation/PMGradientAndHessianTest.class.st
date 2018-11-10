@@ -1,11 +1,11 @@
 Class {
-	#name : #GradientAndHessianTest,
+	#name : #PMGradientAndHessianTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-AutomaticDifferenciation'
+	#category : #'Math-Tests-AutomaticDifferenciation'
 }
 
 { #category : #tests }
-GradientAndHessianTest >> test [
+PMGradientAndHessianTest >> test [
 	| f g h r |
 	f := [ :i | 
 	| x y |
@@ -31,7 +31,7 @@ GradientAndHessianTest >> test [
 ]
 
 { #category : #tests }
-GradientAndHessianTest >> test2 [
+PMGradientAndHessianTest >> test2 [
 |f g h r|
 f := [:i||x y|x:=i first.y:=i second.
 	 (x exp + y exp )ln].
