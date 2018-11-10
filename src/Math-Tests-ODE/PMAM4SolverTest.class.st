@@ -1,28 +1,28 @@
 Class {
-	#name : #AM3SolverTest,
+	#name : #PMAM4SolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-AM3SolverTest >> testSimpleSystem2 [
+PMAM4SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := AM3Stepper onSystem: system.
-	solver := (AM3Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := AM4Stepper onSystem: system.
+	solver := (AM4Solver new) stepper: stepper; system: system; dt: dt.
 	
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.8978).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: 0.8577).
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.6231).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8577).
 ]
 
 { #category : #'tests-solving' }
-AM3SolverTest >> testSimpleSystem3 [
+PMAM4SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AM3Stepper onSystem: system.
-	solver := AM3Solver new
+	stepper := AM4Stepper onSystem: system.
+	solver := AM4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,32 +32,32 @@ AM3SolverTest >> testSimpleSystem3 [
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1.5) closeTo: 9.7551).
+				endTime: 1.5) closeTo: 15.2741).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1.25
 				startTime: 0.5
-				endTime: 1.5) closeTo: 9.7298).
+				endTime: 2.2) closeTo: 191.3011).
 	self
 		assert:
 			((solver
 				solve: system
-				startState: 0
+				startState: 0.5
 				startTime: 1
-				endTime: 2.5) closeTo: 0).
+				endTime: 2.5) closeTo: 112.8325).
 	self
 		assert:
 			((solver
 				solve: system
-				startState: 1.25
-				startTime: 0.5
-				endTime: 2.5) closeTo: 415.6194)
+				startState: 0.5
+				startTime: 1
+				endTime: 2.8) closeTo: 535.8236)
 ]
 
 { #category : #'tests-solving' }
-AM3SolverTest >> testVectorSystem [
+PMAM4SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem
@@ -67,8 +67,8 @@ AM3SolverTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AM3Stepper onSystem: system.
-	solver := AM3Solver new
+	stepper := AM4Stepper onSystem: system.
+	solver := AM4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

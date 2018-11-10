@@ -1,11 +1,11 @@
 Class {
-	#name : #ImplicitMidpointSolverTest,
+	#name : #PMImplicitMidpointSolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-ImplicitMidpointSolverTest >> testSimpleSystem2 [
+PMImplicitMidpointSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].

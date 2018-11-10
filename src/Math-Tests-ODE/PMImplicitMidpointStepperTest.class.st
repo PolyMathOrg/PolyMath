@@ -1,16 +1,16 @@
 Class {
-	#name : #ImplicitMidpointStepperTest,
+	#name : #PMImplicitMidpointStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-ImplicitMidpointStepperTest >> testOrderIsTwo [
+PMImplicitMidpointStepperTest >> testOrderIsTwo [
 	self assert: ImplicitMidpointStepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
-ImplicitMidpointStepperTest >> testSimpleSystem [
+PMImplicitMidpointStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem block: [ :x :t | t sin ].
@@ -29,7 +29,7 @@ ImplicitMidpointStepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-ImplicitMidpointStepperTest >> testSimpleSystem2 [
+PMImplicitMidpointStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -40,7 +40,7 @@ ImplicitMidpointStepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-ImplicitMidpointStepperTest >> testSimpleSystem3 [
+PMImplicitMidpointStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
@@ -59,7 +59,7 @@ ImplicitMidpointStepperTest >> testSimpleSystem3 [
 ]
 
 { #category : #'tests-stepping' }
-ImplicitMidpointStepperTest >> testVectorSystem [
+PMImplicitMidpointStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem

@@ -1,21 +1,21 @@
 Class {
-	#name : #AB4StepperTest,
+	#name : #PMAB2StepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-AB4StepperTest >> testOrderIsFour [
-	self assert: AB4Stepper order equals: 4
+PMAB2StepperTest >> testOrderIsTwo [
+	self assert: AB2Stepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
-AB4StepperTest >> testSimpleSystem [
+PMAB2StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	stepper := AB2Stepper onSystem: system.
+	solver := AB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -29,13 +29,13 @@ AB4StepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-AB4StepperTest >> testSimpleSystem2 [
+PMAB2StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	stepper := AB2Stepper onSystem: system.
+	solver := AB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -45,7 +45,7 @@ AB4StepperTest >> testSimpleSystem2 [
 				solve: system
 				startState: 5
 				startTime: 0
-				endTime: 1.5) closeTo: 3.67565).
+				endTime: 1.5) closeTo: 3.6756).
 	self
 		should:
 			((solver
@@ -56,15 +56,22 @@ AB4StepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-AB4StepperTest >> testSimpleSystem3 [
+PMAB2StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	stepper := AB2Stepper onSystem: system.
+	solver := AB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
+	self
+		assert:
+			((solver
+				solve: system
+				startState: 1
+				startTime: 0
+				endTime: 0.2) closeTo: 1.04).
 	self
 		assert:
 			((solver

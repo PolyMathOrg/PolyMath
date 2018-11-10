@@ -1,17 +1,41 @@
 Class {
-	#name : #AB3SolverTest,
+	#name : #PMHeunStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
-AB3SolverTest >> testSimpleSystem2 [
+{ #category : #tests }
+PMHeunStepperTest >> testOrderIsTwo [
+	self assert: HeunStepper order equals: 2
+]
+
+{ #category : #tests }
+PMHeunStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
-	dt := 1.5.
+	dt := 0.01.
+	system := ExplicitSystem block: [ :x :t | t sin ].
+	stepper := HeunStepper onSystem: system.
+	solver := ExplicitSolver new
+		stepper: stepper;
+		system: system;
+		dt: dt.
+	self
+		assert:
+			((solver
+				solve: system
+				startState: -1
+				startTime: 0
+				endTime: Float pi) closeTo: 1)
+]
+
+{ #category : #tests }
+PMHeunStepperTest >> testSimpleSystem2 [
+	| solver stepper system dt |
+	dt := 0.5.
 	system := ExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := HeunStepper onSystem: system.
+	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -21,23 +45,23 @@ AB3SolverTest >> testSimpleSystem2 [
 				solve: system
 				startState: 5
 				startTime: 0
-				endTime: 3) closeTo: 1.1237).
+				endTime: 0.5) closeTo: 5.15489).
 	self
 		should:
 			((solver
 				solve: system
 				startState: 0
 				startTime: 1
-				endTime: 4) closeTo: -0.2451)
+				endTime: 1.5) closeTo: 0.3881)
 ]
 
-{ #category : #'tests-solving' }
-AB3SolverTest >> testSimpleSystem3 [
+{ #category : #tests }
+PMHeunStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := HeunStepper onSystem: system.
+	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -47,41 +71,20 @@ AB3SolverTest >> testSimpleSystem3 [
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1) closeTo: 2.1875).
+				endTime: 0.5) closeTo: 1.25).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1.25
 				startTime: 0.5
-				endTime: 2) closeTo: 19.2822)
+				endTime: 1) closeTo: 2.5)
 ]
 
-{ #category : #'tests-solving' }
-AB3SolverTest >> testSimpleSystem4 [
+{ #category : #tests }
+PMHeunStepperTest >> testVectorSystem [
 	| solver stepper system dt |
-	dt := 0.5.
-	system := ExplicitSystem
-		block:
-			[ :x :t | (2 negated * (t ** 4) * (x ** 2) + 1 - (x * (t ** 2))) / (t ** 3) ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
-	self
-		assert:
-			((solver
-				solve: system
-				startState: 2
-				startTime: 1
-				endTime: 4.5) closeTo: -1.6539239077654698e49)
-]
-
-{ #category : #'tests-solving' }
-AB3SolverTest >> testVectorSystem [
-	| solver stepper system dt |
-	dt := 0.001.
+	dt := 0.01.
 	system := ExplicitSystem
 		block: [ :x :t | 
 			| c |
@@ -89,8 +92,8 @@ AB3SolverTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := HeunStepper onSystem: system.
+	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

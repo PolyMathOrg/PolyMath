@@ -1,11 +1,11 @@
 Class {
-	#name : #RungeKuttaStepperTest,
+	#name : #PMRungeKuttaStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testDoStepTimeStepSize1 [
+PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 	| stepper sys dt |
 	sys := ExplicitSystem block: [ :x :t | x * t ].
 	stepper := RungeKuttaStepper onSystem: sys.
@@ -20,7 +20,7 @@ RungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 ]
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testDoStepTimeStepSize2 [
+PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 	| stepper sys dt |
 	sys := ExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
@@ -33,12 +33,12 @@ RungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 ]
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testOrderIsFour [
+PMRungeKuttaStepperTest >> testOrderIsFour [
 	self assert: RungeKuttaStepper order equals: 4
 ]
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testSimpleSystem [
+PMRungeKuttaStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [ :x :t | t sin ].
@@ -57,7 +57,7 @@ RungeKuttaStepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testSimpleSystem2 [
+PMRungeKuttaStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ExplicitSystem
@@ -84,7 +84,7 @@ RungeKuttaStepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-RungeKuttaStepperTest >> testVectorSystem [
+PMRungeKuttaStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem

@@ -1,15 +1,15 @@
 Class {
-	#name : #RungeKuttaSolverTest,
+	#name : #PMMidpointSolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-RungeKuttaSolverTest >> testSimpleSystem [
+PMMidpointSolverTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := RungeKuttaStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -24,11 +24,11 @@ RungeKuttaSolverTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-solving' }
-RungeKuttaSolverTest >> testSimpleSystem1 [
+PMMidpointSolverTest >> testSimpleSystem1 [
 	| solver stepper system dt |
 	dt := 0.025.
 	system := ExplicitSystem block: [ :x :t | t tan + 1 ].
-	stepper := RungeKuttaStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -39,7 +39,7 @@ RungeKuttaSolverTest >> testSimpleSystem1 [
 				solve: system
 				startState: 0
 				startTime: 1
-				endTime: 1.05) closeTo: 0.1324).
+				endTime: 1.05) closeTo: 0.13237).
 	self
 		assert:
 			((solver
@@ -57,12 +57,12 @@ RungeKuttaSolverTest >> testSimpleSystem1 [
 ]
 
 { #category : #'tests-solving' }
-RungeKuttaSolverTest >> testSimpleSystem2 [
+PMMidpointSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := RungeKuttaStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -73,29 +73,29 @@ RungeKuttaSolverTest >> testSimpleSystem2 [
 				solve: system
 				startState: 5
 				startTime: 0
-				endTime: 1.5) closeTo: 4.3724).
+				endTime: 1.5) closeTo: 4.32246).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 5
 				startTime: 0
-				endTime: 3) closeTo: 2.7629).
+				endTime: 3) closeTo: 2.7326).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1.1) closeTo: 2.1997)
+				endTime: 1.1) closeTo: 2.14437)
 ]
 
 { #category : #'tests-solving' }
-RungeKuttaSolverTest >> testSimpleSystem3 [
+PMMidpointSolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := RungeKuttaStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -106,32 +106,32 @@ RungeKuttaSolverTest >> testSimpleSystem3 [
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 0.2) closeTo: 1.0408).
+				endTime: 0.2) closeTo: 1.04).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 0.5) closeTo: 1.2838).
+				endTime: 0.5) closeTo: 1.25).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1.1) closeTo: 3.3471).
+				endTime: 1.1) closeTo: 2.9813).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1.5) closeTo: 9.3723)
+				endTime: 1.5) closeTo: 6.9629)
 ]
 
 { #category : #'tests-solving' }
-RungeKuttaSolverTest >> testVectorSystem [
+PMMidpointSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem
@@ -141,7 +141,7 @@ RungeKuttaSolverTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := RungeKuttaStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;

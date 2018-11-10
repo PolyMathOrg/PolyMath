@@ -1,16 +1,16 @@
 Class {
-	#name : #AM4StepperTest,
+	#name : #PMAM4StepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-AM4StepperTest >> testOrderIsFour [
+PMAM4StepperTest >> testOrderIsFour [
 	self assert: AM4Stepper order equals: 4
 ]
 
 { #category : #'tests-stepping' }
-AM4StepperTest >> testSimpleSystem [
+PMAM4StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem block: [ :x :t | t sin ].
@@ -29,7 +29,7 @@ AM4StepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-AM4StepperTest >> testSimpleSystem2 [
+PMAM4StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -42,7 +42,7 @@ AM4StepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-AM4StepperTest >> testSimpleSystem3 [
+PMAM4StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].

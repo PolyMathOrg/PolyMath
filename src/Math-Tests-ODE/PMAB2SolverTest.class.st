@@ -1,11 +1,11 @@
 Class {
-	#name : #AB2SolverTest,
+	#name : #PMAB2SolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-AB2SolverTest >> testSimpleSystem2 [
+PMAB2SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ExplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -17,7 +17,7 @@ AB2SolverTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-solving' }
-AB2SolverTest >> testSimpleSystem3 [
+PMAB2SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [:x :t | 2 * t * x].
@@ -29,7 +29,7 @@ AB2SolverTest >> testSimpleSystem3 [
 ]
 
 { #category : #'tests-solving' }
-AB2SolverTest >> testSimpleSystem4 [
+PMAB2SolverTest >> testSimpleSystem4 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [:x :t |  2 * (36 * (( t ln ) ** 2) + (6 * (t ln)) +7 )  /
@@ -42,7 +42,7 @@ AB2SolverTest >> testSimpleSystem4 [
 ]
 
 { #category : #'tests-solving' }
-AB2SolverTest >> testVectorSystem [
+PMAB2SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [:x :t | 

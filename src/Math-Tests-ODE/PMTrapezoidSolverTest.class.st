@@ -1,28 +1,28 @@
 Class {
-	#name : #AM4SolverTest,
+	#name : #PMTrapezoidSolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-AM4SolverTest >> testSimpleSystem2 [
+PMTrapezoidSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := AM4Stepper onSystem: system.
-	solver := (AM4Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := TrapezoidStepper onSystem: system.
+	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.6231).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8577).
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  3.1299).
+   self should: ((solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo:  0.9103)
 ]
 
 { #category : #'tests-solving' }
-AM4SolverTest >> testSimpleSystem3 [
+PMTrapezoidSolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AM4Stepper onSystem: system.
-	solver := AM4Solver new
+	stepper := TrapezoidStepper onSystem: system.
+	solver := ImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,32 +32,32 @@ AM4SolverTest >> testSimpleSystem3 [
 				solve: system
 				startState: 1
 				startTime: 0
-				endTime: 1.5) closeTo: 15.2741).
+				endTime: 0.2) closeTo: 1.11).
+	self
+		assert:
+			((solver
+				solve: system
+				startState: 1
+				startTime: 0
+				endTime: 1.5) closeTo: 11.0742).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 1.25
 				startTime: 0.5
-				endTime: 2.2) closeTo: 191.3011).
+				endTime: 1.5) closeTo: 10.5468).
 	self
 		assert:
 			((solver
 				solve: system
-				startState: 0.5
+				startState: 0.1
 				startTime: 1
-				endTime: 2.5) closeTo: 112.8325).
-	self
-		assert:
-			((solver
-				solve: system
-				startState: 0.5
-				startTime: 1
-				endTime: 2.8) closeTo: 535.8236)
+				endTime: 2.5) closeTo: 20.6718)
 ]
 
 { #category : #'tests-solving' }
-AM4SolverTest >> testVectorSystem [
+PMTrapezoidSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem
@@ -67,8 +67,8 @@ AM4SolverTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AM4Stepper onSystem: system.
-	solver := AM4Solver new
+	stepper := TrapezoidStepper onSystem: system.
+	solver := ImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

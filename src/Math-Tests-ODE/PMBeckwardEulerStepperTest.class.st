@@ -1,11 +1,11 @@
 Class {
-	#name : #BeckwardEulerStepperTest,
+	#name : #PMBeckwardEulerStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-BeckwardEulerStepperTest >> testDoStepTime [
+PMBeckwardEulerStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
 	| stepper sys dt |
@@ -26,7 +26,7 @@ BeckwardEulerStepperTest >> testDoStepTime [
 ]
 
 { #category : #'tests-stepping' }
-BeckwardEulerStepperTest >> testDoStepTimeStepSize [
+PMBeckwardEulerStepperTest >> testDoStepTimeStepSize [
 	| stepper sys dt |
 	sys := ImplicitSystem block: [ :x :t | x * t ].
 	stepper := ImplicitStepper onSystem: sys.
@@ -38,7 +38,7 @@ BeckwardEulerStepperTest >> testDoStepTimeStepSize [
 ]
 
 { #category : #'tests-stepping' }
-BeckwardEulerStepperTest >> testSimpleSystem2 [
+PMBeckwardEulerStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -49,7 +49,7 @@ BeckwardEulerStepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-BeckwardEulerStepperTest >> testSimpleSystem3 [
+PMBeckwardEulerStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].

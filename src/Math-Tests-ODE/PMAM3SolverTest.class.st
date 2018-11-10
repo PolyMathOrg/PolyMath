@@ -1,29 +1,28 @@
 Class {
-	#name : #BDF4SolverTest,
+	#name : #PMAM3SolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-BDF4SolverTest >> testSimpleSystem2 [
+PMAM3SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
-	dt := 0.5.
+	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := BDF4Stepper onSystem: system.
-	solver := (BDF4Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := AM3Stepper onSystem: system.
+	solver := (AM3Solver new) stepper: stepper; system: system; dt: dt.
 	
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.5637).
-      self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.4395).
-	self should: ((solver solve: system startState: 0 startTime: 0 endTime: 3) closeTo:  1.0793).
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.8978).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: 0.8577).
 ]
 
 { #category : #'tests-solving' }
-BDF4SolverTest >> testSimpleSystem3 [
+PMAM3SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := BDF4Stepper onSystem: system.
-	solver := BDF4Solver new
+	stepper := AM3Stepper onSystem: system.
+	solver := AM3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -31,41 +30,34 @@ BDF4SolverTest >> testSimpleSystem3 [
 		assert:
 			((solver
 				solve: system
-				startState: 0.25
-				startTime: 0.5
-				endTime: 2.0) closeTo: 13.4091).
+				startState: 1
+				startTime: 0
+				endTime: 1.5) closeTo: 9.7551).
 	self
 		assert:
 			((solver
 				solve: system
-				startState: 0.25
+				startState: 1.25
 				startTime: 0.5
-				endTime: 2.3) closeTo: 41.21625).
-	self
-		assert:
-			((solver
-				solve: system
-				startState: 0.25
-				startTime: 0.5
-				endTime: 2.5) closeTo: 69.9482).
+				endTime: 1.5) closeTo: 9.7298).
 	self
 		assert:
 			((solver
 				solve: system
 				startState: 0
 				startTime: 1
-				endTime: 2.8) closeTo: 71.9236).
+				endTime: 2.5) closeTo: 0).
 	self
 		assert:
 			((solver
 				solve: system
-				startState: 1
-				startTime: 0
-				endTime: 1.5) closeTo: 11.0227)
+				startState: 1.25
+				startTime: 0.5
+				endTime: 2.5) closeTo: 415.6194)
 ]
 
 { #category : #'tests-solving' }
-BDF4SolverTest >> testVectorSystem [
+PMAM3SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem
@@ -75,8 +67,8 @@ BDF4SolverTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := BDF4Stepper onSystem: system.
-	solver := BDF4Solver new
+	stepper := AM3Stepper onSystem: system.
+	solver := AM3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

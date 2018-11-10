@@ -1,11 +1,11 @@
 Class {
-	#name : #BeckwardEulerSolverTest,
+	#name : #PMBeckwardEulerSolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-BeckwardEulerSolverTest >> testSimpleSystem [
+PMBeckwardEulerSolverTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem block: [ :x :t | t sin ].
@@ -24,7 +24,7 @@ BeckwardEulerSolverTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-solving' }
-BeckwardEulerSolverTest >> testSimpleSystem2 [
+PMBeckwardEulerSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -35,7 +35,7 @@ BeckwardEulerSolverTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-solving' }
-BeckwardEulerSolverTest >> testVectorSystem [
+PMBeckwardEulerSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem

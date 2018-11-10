@@ -1,16 +1,16 @@
 Class {
-	#name : #AB3StepperTest,
+	#name : #PMAB3StepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-AB3StepperTest >> testOrderIsThree [
+PMAB3StepperTest >> testOrderIsThree [
 	self assert: AB3Stepper order equals: 3
 ]
 
 { #category : #'tests-stepping' }
-AB3StepperTest >> testSimpleSystem [
+PMAB3StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [ :x :t | t sin ].
@@ -29,7 +29,7 @@ AB3StepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-AB3StepperTest >> testSimpleSystem2 [
+PMAB3StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ExplicitSystem
@@ -56,7 +56,7 @@ AB3StepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-AB3StepperTest >> testSimpleSystem3 [
+PMAB3StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [ :x :t | 2 * t * x ].

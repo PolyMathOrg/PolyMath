@@ -1,11 +1,11 @@
 Class {
-	#name : #TrapezoidStepperTest,
+	#name : #PMTrapezoidStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-TrapezoidStepperTest >> testDoStepTime [
+PMTrapezoidStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
 	| stepper sys dt |
@@ -25,7 +25,7 @@ TrapezoidStepperTest >> testDoStepTime [
 ]
 
 { #category : #'tests-stepping' }
-TrapezoidStepperTest >> testDoStepTimeStepSize1 [
+PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
 	| stepper sys dt |
 	sys := ImplicitSystem block: [ :x :t | x * t ].
 	stepper := TrapezoidStepper onSystem: sys.
@@ -40,7 +40,7 @@ TrapezoidStepperTest >> testDoStepTimeStepSize1 [
 ]
 
 { #category : #'tests-stepping' }
-TrapezoidStepperTest >> testDoStepTimeStepSize2 [
+PMTrapezoidStepperTest >> testDoStepTimeStepSize2 [
 	| stepper sys dt |
 	sys := ImplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
@@ -53,12 +53,12 @@ TrapezoidStepperTest >> testDoStepTimeStepSize2 [
 ]
 
 { #category : #'tests-stepping' }
-TrapezoidStepperTest >> testOrderIsTwo [
+PMTrapezoidStepperTest >> testOrderIsTwo [
 	self assert: TrapezoidStepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
-TrapezoidStepperTest >> testVectorSystem [
+PMTrapezoidStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem

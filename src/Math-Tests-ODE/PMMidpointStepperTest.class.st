@@ -1,20 +1,20 @@
 Class {
-	#name : #HeunStepperTest,
+	#name : #PMMidpointStepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
-{ #category : #tests }
-HeunStepperTest >> testOrderIsTwo [
-	self assert: HeunStepper order equals: 2
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testOrderIsTwo [
+	self assert: MidpointStepper order equals: 2
 ]
 
-{ #category : #tests }
-HeunStepperTest >> testSimpleSystem [
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := HeunStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -28,13 +28,13 @@ HeunStepperTest >> testSimpleSystem [
 				endTime: Float pi) closeTo: 1)
 ]
 
-{ #category : #tests }
-HeunStepperTest >> testSimpleSystem2 [
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
-	dt := 0.5.
+	dt := 1.5.
 	system := ExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := HeunStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
@@ -45,26 +45,33 @@ HeunStepperTest >> testSimpleSystem2 [
 				solve: system
 				startState: 5
 				startTime: 0
-				endTime: 0.5) closeTo: 5.15489).
+				endTime: 1.5) closeTo: 3.6756).
 	self
-		should:
+		assert:
 			((solver
 				solve: system
-				startState: 0
-				startTime: 1
-				endTime: 1.5) closeTo: 0.3881)
+				startState: 5
+				startTime: 0
+				endTime: 3) closeTo: 2.3049)
 ]
 
-{ #category : #tests }
-HeunStepperTest >> testSimpleSystem3 [
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := HeunStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
+	self
+		assert:
+			((solver
+				solve: system
+				startState: 1
+				startTime: 0
+				endTime: 0.2) closeTo: 1.04).
 	self
 		assert:
 			((solver
@@ -76,13 +83,33 @@ HeunStepperTest >> testSimpleSystem3 [
 		assert:
 			((solver
 				solve: system
-				startState: 1.25
-				startTime: 0.5
-				endTime: 1) closeTo: 2.5)
+				startState: 1
+				startTime: 0
+				endTime: 1) closeTo: 2.4219)
 ]
 
-{ #category : #tests }
-HeunStepperTest >> testVectorSystem [
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testSimpleSystem4 [
+	| solver stepper system dt |
+	dt := 0.0001.
+	system := ExplicitSystem
+		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+	stepper := MidpointStepper onSystem: system.
+	solver := ExplicitSolver new
+		stepper: stepper;
+		system: system;
+		dt: dt.
+	self
+		assert:
+			((solver
+				solve: system
+				startState: 5
+				startTime: 0
+				endTime: 1.5) closeTo: 4.3724)
+]
+
+{ #category : #'tests-stepping' }
+PMMidpointStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ExplicitSystem
@@ -92,7 +119,7 @@ HeunStepperTest >> testVectorSystem [
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := HeunStepper onSystem: system.
+	stepper := MidpointStepper onSystem: system.
 	solver := ExplicitSolver new
 		stepper: stepper;
 		system: system;

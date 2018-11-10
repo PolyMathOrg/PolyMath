@@ -2,22 +2,22 @@
 An ODESystemTest is a test class for testing the behavior of ODESystem
 "
 Class {
-	#name : #ODESystemTest,
+	#name : #PMODESystemTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'sys'
 	],
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #initialization }
-ODESystemTest >> setUp [
+PMODESystemTest >> setUp [
 	"create a dummy system"
 	sys := ODESystem new
 ]
 
 { #category : #tests }
-ODESystemTest >> testBlock [
+PMODESystemTest >> testBlock [
 	| aBlock |
 	aBlock := [ :x :t | t ].
 	sys block: aBlock.
@@ -25,7 +25,7 @@ ODESystemTest >> testBlock [
 ]
 
 { #category : #tests }
-ODESystemTest >> testVectorBlock [
+PMODESystemTest >> testVectorBlock [
 	"this illustrates using a block that operates on a collection"
 
 	| aBlock |
@@ -35,7 +35,7 @@ ODESystemTest >> testVectorBlock [
 ]
 
 { #category : #tests }
-ODESystemTest >> testVectorXT [
+PMODESystemTest >> testVectorXT [
 	"a simple example of using a collection as state"
 
 	| aBlock |
@@ -46,7 +46,7 @@ ODESystemTest >> testVectorXT [
 ]
 
 { #category : #tests }
-ODESystemTest >> testXT [
+PMODESystemTest >> testXT [
 	| aBlock |
 	aBlock := [ :x :t | t ].
 	sys block: aBlock.

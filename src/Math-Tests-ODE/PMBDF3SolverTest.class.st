@@ -1,11 +1,11 @@
 Class {
-	#name : #BDF3SolverTest,
+	#name : #PMBDF3SolverTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-solving' }
-BDF3SolverTest >> testSimpleSystem2 [
+PMBDF3SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -17,7 +17,7 @@ BDF3SolverTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-solving' }
-BDF3SolverTest >> testSimpleSystem3 [
+PMBDF3SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
@@ -57,7 +57,7 @@ BDF3SolverTest >> testSimpleSystem3 [
 ]
 
 { #category : #'tests-solving' }
-BDF3SolverTest >> testVectorSystem [
+PMBDF3SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem

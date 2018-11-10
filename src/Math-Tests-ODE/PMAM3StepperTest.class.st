@@ -1,16 +1,16 @@
 Class {
-	#name : #AM3StepperTest,
+	#name : #PMAM3StepperTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-ODE'
+	#category : #'Math-Tests-ODE'
 }
 
 { #category : #'tests-stepping' }
-AM3StepperTest >> testOrderIsThree [
+PMAM3StepperTest >> testOrderIsThree [
 	self assert: AM3Stepper order equals: 3
 ]
 
 { #category : #'tests-stepping' }
-AM3StepperTest >> testSimpleSystem [
+PMAM3StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem block: [ :x :t | t sin ].
@@ -29,7 +29,7 @@ AM3StepperTest >> testSimpleSystem [
 ]
 
 { #category : #'tests-stepping' }
-AM3StepperTest >> testSimpleSystem2 [
+PMAM3StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
@@ -42,7 +42,7 @@ AM3StepperTest >> testSimpleSystem2 [
 ]
 
 { #category : #'tests-stepping' }
-AM3StepperTest >> testSimpleSystem3 [
+PMAM3StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
 	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
@@ -82,7 +82,7 @@ AM3StepperTest >> testSimpleSystem3 [
 ]
 
 { #category : #'tests-stepping' }
-AM3StepperTest >> testVectorSystem [
+PMAM3StepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := ImplicitSystem
