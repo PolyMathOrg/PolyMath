@@ -1,11 +1,11 @@
 Class {
-	#name : #TestFFT,
+	#name : #PMFFTTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-FastFourierTransform'
+	#category : #'Math-Tests-FastFourierTransform'
 }
 
 { #category : #tests }
-TestFFT >> testBitReverse [
+PMFFTTest >> testBitReverse [
 	self should: [ 1 bitReverse: 0 ] raise: Error.
 	self should: [ 2 bitReverse: 1 ] raise: Error.
 	self assert: (0 bitReverse: 0) equals: 0.
@@ -21,7 +21,7 @@ TestFFT >> testBitReverse [
 ]
 
 { #category : #tests }
-TestFFT >> testFFT [
+PMFFTTest >> testFFT [
 	| data data1 f s |
 	data := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
