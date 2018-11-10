@@ -2,13 +2,13 @@
 An ExponentialGeneratorTest is a test class for testing the behavior of ExponentialGenerator
 "
 Class {
-	#name : #ExponentialGeneratorTest,
+	#name : #PMExponentialGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-ExponentialGeneratorTest >> testGenerator [
+PMExponentialGeneratorTest >> testGenerator [
 	| eg |
 	eg := PMExponentialGenerator new.
 	self
@@ -20,7 +20,7 @@ ExponentialGeneratorTest >> testGenerator [
 ]
 
 { #category : #tests }
-ExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
+PMExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
 	| eg |
 	eg := PMExponentialGenerator new.
 	self assert: eg peek equals: eg peek.
@@ -28,7 +28,7 @@ ExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
 ]
 
 { #category : #tests }
-ExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
+PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
 	"testing a random sample seems suspect. We use a 5% interval here"
 
 	| eg arr |

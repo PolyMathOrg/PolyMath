@@ -1,11 +1,11 @@
 Class {
-	#name : #PoissonGeneratorTest,
+	#name : #PMPoissonGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-PoissonGeneratorTest >> testPeekReturnsSameAsNext [
+PMPoissonGeneratorTest >> testPeekReturnsSameAsNext [
 	| poisson random |
 	poisson := PMPoissonGenerator lambda: 0.1.
 	random := poisson peek.
@@ -13,7 +13,7 @@ PoissonGeneratorTest >> testPeekReturnsSameAsNext [
 ]
 
 { #category : #tests }
-PoissonGeneratorTest >> testPeekReturnsSameTwice [
+PMPoissonGeneratorTest >> testPeekReturnsSameTwice [
 	| poisson random |
 	poisson := PMPoissonGenerator lambda: 0.1.
 	random := poisson peek.
@@ -21,7 +21,7 @@ PoissonGeneratorTest >> testPeekReturnsSameTwice [
 ]
 
 { #category : #tests }
-PoissonGeneratorTest >> testPeekWorksAfterSampling [
+PMPoissonGeneratorTest >> testPeekWorksAfterSampling [
 	| poisson random |
 	poisson := PMPoissonGenerator lambda: 0.1.
 	(1 to: 100) do: [ :ea | poisson next ].
@@ -31,7 +31,7 @@ PoissonGeneratorTest >> testPeekWorksAfterSampling [
 ]
 
 { #category : #tests }
-PoissonGeneratorTest >> testSampleAverageConvergesToLambda [
+PMPoissonGeneratorTest >> testSampleAverageConvergesToLambda [
 	"law of large numbers"
 
 	"made non-random, old random version in comments"

@@ -1,11 +1,11 @@
 Class {
-	#name : #GaussianGeneratorTest,
+	#name : #PMGaussianGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #utils }
-GaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
+PMGaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
 	"fixme: this test ignores the standard deviation and occasionally fails"
 	| data m |
 	data := Set new.
@@ -16,7 +16,7 @@ GaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e an
 ]
 
 { #category : #tests }
-GaussianGeneratorTest >> testDistribution [
+PMGaussianGeneratorTest >> testDistribution [
 	| mean standardDeviation g |
 	mean := 147.
 	standardDeviation := 17.

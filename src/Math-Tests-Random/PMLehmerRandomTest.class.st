@@ -1,11 +1,11 @@
 Class {
-	#name : #LehmerRandomTest,
+	#name : #PMLehmerRandomTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-LehmerRandomTest >> testNextBetweenZeroAndOne [
+PMLehmerRandomTest >> testNextBetweenZeroAndOne [
 	| g |
 	g := PMLehmerRandomGenerator new.
 	1000
@@ -14,14 +14,14 @@ LehmerRandomTest >> testNextBetweenZeroAndOne [
 ]
 
 { #category : #tests }
-LehmerRandomTest >> testPeekAlwaysReplyTheSameValue [
+PMLehmerRandomTest >> testPeekAlwaysReplyTheSameValue [
 	| g |
 	g := PMLehmerRandomGenerator new.
 	self assert: g peek equals: g peek
 ]
 
 { #category : #tests }
-LehmerRandomTest >> testPeekAnswersSameAsNext [
+PMLehmerRandomTest >> testPeekAnswersSameAsNext [
 	| g |
 	g := PMLehmerRandomGenerator new.
 	self assert: g peek equals: g next

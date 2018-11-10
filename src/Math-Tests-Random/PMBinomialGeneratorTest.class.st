@@ -1,11 +1,11 @@
 Class {
-	#name : #BinomialGeneratorTest,
+	#name : #PMBinomialGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-BinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
+PMBinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
 	"this test may fail one or more assertions, but its purpose is to verify correct convergence of the binomial distribution, should be Normal (np, np(1-p))"
 
 	| gen nums mean |
@@ -20,7 +20,7 @@ BinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
 ]
 
 { #category : #tests }
-BinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysReturnNumberOfTrials [
+PMBinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysReturnNumberOfTrials [
 	| g numberOfTrials |
 	g := PMBinomialGenerator new.
 	numberOfTrials := 10.
@@ -36,7 +36,7 @@ BinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysR
 ]
 
 { #category : #tests }
-BinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfZeroAlwaysReturnZero [
+PMBinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfZeroAlwaysReturnZero [
 	| g numberOfTrials |
 	g := PMBinomialGenerator new.
 	numberOfTrials := 10.

@@ -1,11 +1,11 @@
 Class {
-	#name : #LinearCongruentialRandomTest,
+	#name : #PMLinearCongruentialRandomTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-LinearCongruentialRandomTest >> testNextBetweenZeroAndOne [
+PMLinearCongruentialRandomTest >> testNextBetweenZeroAndOne [
 	| g |
 	g := PMLinearCongruentialRandomGenerator new.
 	1000
@@ -14,14 +14,14 @@ LinearCongruentialRandomTest >> testNextBetweenZeroAndOne [
 ]
 
 { #category : #tests }
-LinearCongruentialRandomTest >> testPeekAlwaysReplyTheSameValue [
+PMLinearCongruentialRandomTest >> testPeekAlwaysReplyTheSameValue [
 	| g |
 	g := PMLinearCongruentialRandomGenerator new.
 	self assert: g peek equals: g peek
 ]
 
 { #category : #tests }
-LinearCongruentialRandomTest >> testPeekAnswersSameAsNext [
+PMLinearCongruentialRandomTest >> testPeekAnswersSameAsNext [
 	| g |
 	g := PMLinearCongruentialRandomGenerator new.
 	self assert: g peek equals: g next

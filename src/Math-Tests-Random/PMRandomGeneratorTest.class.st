@@ -1,11 +1,11 @@
 Class {
-	#name : #RandomGeneratorTest,
+	#name : #PMRandomGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
+PMRandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
 	PMRandomGenerator subclasses do: 
 	[:cls | | gen value |
 		gen := cls new.
@@ -13,7 +13,7 @@ RandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamIsReadOnly [
+PMRandomGeneratorTest >> testGeneratorStreamIsReadOnly [
 	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen |
@@ -23,7 +23,7 @@ RandomGeneratorTest >> testGeneratorStreamIsReadOnly [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamNeverEnds [
+PMRandomGeneratorTest >> testGeneratorStreamNeverEnds [
 	PMRandomGenerator subclasses do: 
 	[:cls | | gen |
 		gen := cls new.
@@ -31,7 +31,7 @@ RandomGeneratorTest >> testGeneratorStreamNeverEnds [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamPeekIsNext [
+PMRandomGeneratorTest >> testGeneratorStreamPeekIsNext [
 	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen value |
@@ -42,7 +42,7 @@ RandomGeneratorTest >> testGeneratorStreamPeekIsNext [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamProducesNumbers [
+PMRandomGeneratorTest >> testGeneratorStreamProducesNumbers [
 	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen |
@@ -52,7 +52,7 @@ RandomGeneratorTest >> testGeneratorStreamProducesNumbers [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
+PMRandomGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
 	PMRandomGenerator subclasses do: 
 	[:cls | | gen value |
 		gen := cls new.
@@ -61,7 +61,7 @@ RandomGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
 ]
 
 { #category : #tests }
-RandomGeneratorTest >> testNextGivesArrayOfNumbers [
+PMRandomGeneratorTest >> testNextGivesArrayOfNumbers [
 	PMRandomGenerator subclasses
 		do: [ :cls | 
 			| gen samples |

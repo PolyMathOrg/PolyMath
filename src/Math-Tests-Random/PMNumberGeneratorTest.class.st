@@ -1,11 +1,11 @@
 Class {
-	#name : #NumberGeneratorTest,
+	#name : #PMNumberGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-NumberGeneratorTest >> testPeekAnswersSame [
+PMNumberGeneratorTest >> testPeekAnswersSame [
 	"every subclass should implement some basic behavior."
 
 	PMNumberGenerator subclasses

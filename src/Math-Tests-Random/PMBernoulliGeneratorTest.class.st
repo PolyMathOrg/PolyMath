@@ -2,13 +2,13 @@
 A BernoulliGeneratorTest is a test class for testing the behavior of BernoulliGenerator
 "
 Class {
-	#name : #BernoulliGeneratorTest,
+	#name : #PMBernoulliGeneratorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Random'
+	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-BernoulliGeneratorTest >> testGenerator [
+PMBernoulliGeneratorTest >> testGenerator [
 	| g bern |
 	g := PMLinearCongruentialRandomGenerator new.
 	bern := PMBernoulliGenerator new.
@@ -19,7 +19,7 @@ BernoulliGeneratorTest >> testGenerator [
 ]
 
 { #category : #tests }
-BernoulliGeneratorTest >> testNextYieldsOneOrZero [
+PMBernoulliGeneratorTest >> testNextYieldsOneOrZero [
 	| gen |
 	gen := PMBernoulliGenerator fair.
 	self should: [ | x | x := gen next.
@@ -27,14 +27,14 @@ BernoulliGeneratorTest >> testNextYieldsOneOrZero [
 ]
 
 { #category : #tests }
-BernoulliGeneratorTest >> testOneProbabilityGivesOneNext [
+PMBernoulliGeneratorTest >> testOneProbabilityGivesOneNext [
 	| g |
 	g := PMBernoulliGenerator withProbability: 1.
 	self assert: g next equals: 1
 ]
 
 { #category : #tests }
-BernoulliGeneratorTest >> testProbabilityIsMutable [
+PMBernoulliGeneratorTest >> testProbabilityIsMutable [
 	| g |
 	g := PMBernoulliGenerator withProbability: 0.0.
 	self assert: g next equals: 0.
@@ -45,7 +45,7 @@ BernoulliGeneratorTest >> testProbabilityIsMutable [
 ]
 
 { #category : #tests }
-BernoulliGeneratorTest >> testZeroProbabilityGivesZeroNext [
+PMBernoulliGeneratorTest >> testZeroProbabilityGivesZeroNext [
 	| g |
 	g := PMBernoulliGenerator withProbability: 0.0.
 	self assert: g next equals: 0
