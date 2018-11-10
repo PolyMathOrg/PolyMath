@@ -2,13 +2,13 @@
 data are taken from: http://www.ism.ac.jp/editsec/aism/pdf/054_3_0577.pdf  
 "
 Class {
-	#name : #KolmogorovsDistributionTest,
+	#name : #PMKolmogorovsDistributionTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-KolmogorovSmirnov'
+	#category : #'Math-Tests-KolmogorovSmirnov'
 }
 
 { #category : #tests }
-KolmogorovsDistributionTest >> testBig [
+PMKolmogorovsDistributionTest >> testBig [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 1000.
 	self assert: (kd average round: 4) equals: (0.02730 round: 4).
@@ -22,7 +22,7 @@ KolmogorovsDistributionTest >> testBig [
 ]
 
 { #category : #tests }
-KolmogorovsDistributionTest >> testMedium [
+PMKolmogorovsDistributionTest >> testMedium [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 100.
 	self assert: (kd average round: 3) equals: (0.08519 round: 3).
@@ -38,7 +38,7 @@ KolmogorovsDistributionTest >> testMedium [
 ]
 
 { #category : #tests }
-KolmogorovsDistributionTest >> testSmall [
+PMKolmogorovsDistributionTest >> testSmall [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 10.
 	self assert: (kd average round: 2) equals: (0.25916 round: 2).

@@ -1,21 +1,21 @@
 Class {
-	#name : #KolmogorovSmirnov1sampleTest,
+	#name : #PMKolmogorovSmirnov1sampleTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'nd',
 		'ks'
 	],
-	#category : 'Math-Tests-KolmogorovSmirnov'
+	#category : #'Math-Tests-KolmogorovSmirnov'
 }
 
 { #category : #initialization }
-KolmogorovSmirnov1sampleTest >> initialize [
+PMKolmogorovSmirnov1sampleTest >> initialize [
 	nd := PMNormalDistribution new.
 	ks := PMKolmogorovSmirnov1Sample new
 ]
 
 { #category : #running }
-KolmogorovSmirnov1sampleTest >> numberOfRejectionsFor: aDistribution [
+PMKolmogorovSmirnov1sampleTest >> numberOfRejectionsFor: aDistribution [
 	| n |
 	ks populationDistribution: aDistribution.
 	n := 0.
@@ -27,7 +27,7 @@ KolmogorovSmirnov1sampleTest >> numberOfRejectionsFor: aDistribution [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov1sampleTest >> testCorrectPopulationProbabilistic [
+PMKolmogorovSmirnov1sampleTest >> testCorrectPopulationProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 
 	| d |
@@ -36,7 +36,7 @@ KolmogorovSmirnov1sampleTest >> testCorrectPopulationProbabilistic [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov1sampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
+PMKolmogorovSmirnov1sampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
 	nd := PMNormalDistribution new.	"--> Normal distribution( 0, 1)"
 	ks := PMKolmogorovSmirnov1Sample compareData: ((1 to: 100) collect: [ :i | nd random ]) withDistribution: nd.	"--> 
 	a KolmogorovSmirnov(dataSize: 100 cdf: distributionValue of Normal distribution( 0, 1))"
@@ -44,7 +44,7 @@ KolmogorovSmirnov1sampleTest >> testRejectOfEqualityHypothesesForSampleVersusDis
 ]
 
 { #category : #tests }
-KolmogorovSmirnov1sampleTest >> testWrongAverageProbabilistic [
+PMKolmogorovSmirnov1sampleTest >> testWrongAverageProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen not too often"
 
 	| d |
@@ -53,7 +53,7 @@ KolmogorovSmirnov1sampleTest >> testWrongAverageProbabilistic [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov1sampleTest >> testWrongDistributionProbabilistic [
+PMKolmogorovSmirnov1sampleTest >> testWrongDistributionProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 
 	| d |
@@ -66,7 +66,7 @@ KolmogorovSmirnov1sampleTest >> testWrongDistributionProbabilistic [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov1sampleTest >> testWrongStandardDeviationProbabilistic [
+PMKolmogorovSmirnov1sampleTest >> testWrongStandardDeviationProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 
 	| d |

@@ -1,19 +1,19 @@
 Class {
-	#name : #KolmogorovSmirnov2sampleTest,
+	#name : #PMKolmogorovSmirnov2sampleTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'k'
 	],
-	#category : 'Math-Tests-KolmogorovSmirnov'
+	#category : #'Math-Tests-KolmogorovSmirnov'
 }
 
 { #category : #initialization }
-KolmogorovSmirnov2sampleTest >> initialize [
+PMKolmogorovSmirnov2sampleTest >> initialize [
 	k := PMKolmogorovSmirnov2Sample new
 ]
 
 { #category : #tests }
-KolmogorovSmirnov2sampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
+PMKolmogorovSmirnov2sampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	| nd ks |
 	nd := PMNormalDistribution new.
 	ks := PMKolmogorovSmirnov2Sample compareData: ((1 to: 100) collect: [ :i | nd random ]) withData: ((1 to: 100) collect: [ :i | nd random ]).	"-->
@@ -24,7 +24,7 @@ KolmogorovSmirnov2sampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov2sampleTest >> testSecondSmallSample [
+PMKolmogorovSmirnov2sampleTest >> testSecondSmallSample [
 	"sample from 
 Kim, P. J. & Jennrich, R. I. 
 Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
@@ -47,7 +47,7 @@ in Selected Tables in Mathematical Statistics Volume I (1973)"
 ]
 
 { #category : #tests }
-KolmogorovSmirnov2sampleTest >> testSmallSample [
+PMKolmogorovSmirnov2sampleTest >> testSmallSample [
 	"sample from http://www.math.montana.edu/~jobo/st431/ho2b.pdf"
 
 	| d1 d2 |
@@ -62,7 +62,7 @@ KolmogorovSmirnov2sampleTest >> testSmallSample [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov2sampleTest >> testkdStatistic [
+PMKolmogorovSmirnov2sampleTest >> testkdStatistic [
 	"extreme case"
 
 	| d1 |
