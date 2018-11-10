@@ -2,36 +2,36 @@
 KDTreeTest makes random checks of KDTree, comparing results with results of StupidNN. is not too fast.
 "
 Class {
-	#name : #KDTreeTest,
+	#name : #PMKDTreeTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'rand',
 		'stupid',
 		'tree'
 	],
-	#category : 'Math-Tests-KDTree'
+	#category : #'Math-Tests-KDTree'
 }
 
 { #category : #running }
-KDTreeTest >> equalityTest: aResult and: bResult [
+PMKDTreeTest >> equalityTest: aResult and: bResult [
 "tests whether two collections of collections are equal"
 self assert:  ( (aResult  with: bResult   collect: [:a :b|a hasEqualElements: b])  allSatisfy: [:e|e])
 ]
 
 { #category : #running }
-KDTreeTest >> initializeTreeWith: aCollection as: simpleTree [ 
+PMKDTreeTest >> initializeTreeWith: aCollection as: simpleTree [ 
 "used to initialize all tests"
 stupid :=PMStupidNN withAll: aCollection.
 tree := simpleTree ifTrue: [ PMKDTree withAll: aCollection ] ifFalse: [PMIndexedKDTree  withAll: aCollection ].
 ]
 
 { #category : #running }
-KDTreeTest >> setUp [
+PMKDTreeTest >> setUp [
 	rand := Random new
 ]
 
 { #category : #tests }
-KDTreeTest >> testBenchmark [
+PMKDTreeTest >> testBenchmark [
 	| aStream s |
 	(RPackage organizer includesPackageNamed: 'Math-Benchmarks-KDTree')
 		ifFalse: [ ^ self skip ].
@@ -46,7 +46,7 @@ KDTreeTest >> testBenchmark [
 ]
 
 { #category : #tests }
-KDTreeTest >> testIndexedKDTree1Dimension [
+PMKDTreeTest >> testIndexedKDTree1Dimension [
 |m aVector aResult bResult |
 m :=(rand next:200) collect:   [:n| Array with: n]."1-dimensional data, just some numbers"
 self initializeTreeWith: m as: false .
@@ -57,7 +57,7 @@ self initializeTreeWith: m as: false .
 ]
 
 { #category : #tests }
-KDTreeTest >> testIndexedKDTree4Dimensions [
+PMKDTreeTest >> testIndexedKDTree4Dimensions [
 |m aVector aResult bResult|
 m :=(1 to: 2000) collect:   [:n| (rand next:4)-0.5].		"4-dimensional data"
 self initializeTreeWith: m as: false .
@@ -69,7 +69,7 @@ self initializeTreeWith: m as: false .
 ]
 
 { #category : #tests }
-KDTreeTest >> testIndexedKDTreeExtremeCase [
+PMKDTreeTest >> testIndexedKDTreeExtremeCase [
 	| bResult |
 	tree := PMIndexedKDTree withAll: #(#(1)).	"extreme case"
 	bResult := tree nnSearch: #(-1) i: 3.
@@ -78,7 +78,7 @@ KDTreeTest >> testIndexedKDTreeExtremeCase [
 ]
 
 { #category : #tests }
-KDTreeTest >> testIndexedKDTreeSimple [
+PMKDTreeTest >> testIndexedKDTreeSimple [
 	| r n aTree bTree |
 	r := rand next: 200.
 	aTree := PMIndexedKDTree
@@ -98,7 +98,7 @@ KDTreeTest >> testIndexedKDTreeSimple [
 ]
 
 { #category : #tests }
-KDTreeTest >> testKDTree1Dimension [
+PMKDTreeTest >> testKDTree1Dimension [
 |m aVector aResult bResult|
 m :=(rand next:200) collect:   [:n| Array with: n]."1-dimensional data, just some numbers"
 self initializeTreeWith: m as: true .
@@ -110,7 +110,7 @@ self initializeTreeWith: m as: true .
 ]
 
 { #category : #tests }
-KDTreeTest >> testKDTree1DimensionIntegers [
+PMKDTreeTest >> testKDTree1DimensionIntegers [
 |m aVector aResult bResult|
 m :=(1 to: 20) collect: [:index | Array with: (rand nextInt: 10)].	"only integers, obviously with multiples. test distances because the nearest neighbours are not necessarily the same"
 self initializeTreeWith: m as: true .
@@ -121,7 +121,7 @@ self initializeTreeWith: m as: true .
 ]
 
 { #category : #tests }
-KDTreeTest >> testKDTree2Dimensions [
+PMKDTreeTest >> testKDTree2Dimensions [
 |aVector aResult bResult|
 self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:2)]) as: true .	"2-dimensional data"
 100 timesRepeat: [aVector :=rand next:2.
@@ -131,7 +131,7 @@ self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:2)]) as: true 
 ]
 
 { #category : #tests }
-KDTreeTest >> testKDTree4Dimensions [
+PMKDTreeTest >> testKDTree4Dimensions [
 |aVector|
 self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:4)-0.5]) as: true . 	"4-dimensional data"
 50 timesRepeat: [aVector :=(rand next: 4)- 0.5.								"2 nearest neighbours"
@@ -141,7 +141,7 @@ self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:4)-0.5]) as: t
 ]
 
 { #category : #tests }
-KDTreeTest >> testKDTreeExtremeCase [
+PMKDTreeTest >> testKDTreeExtremeCase [
 	| bResult |
 	tree := PMKDTree withAll: #(#(1)).
 	bResult := tree nnSearch: #(2) i: 3.
@@ -155,7 +155,7 @@ KDTreeTest >> testKDTreeExtremeCase [
 ]
 
 { #category : #tests }
-KDTreeTest >> testPMVectorCompatibility [
+PMKDTreeTest >> testPMVectorCompatibility [
 	| aVector bVector r |
 	(Array lookupSelector: #asPMVector)
 		ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
@@ -183,7 +183,7 @@ KDTreeTest >> testPMVectorCompatibility [
 ]
 
 { #category : #tests }
-KDTreeTest >> testPrintOn [
+PMKDTreeTest >> testPrintOn [
 	| aStream s |
 	aStream := ReadWriteStream with: ''.
 	(PMKDTree withAll: #(#(1) #(4))) printOn: aStream.
@@ -195,7 +195,7 @@ KDTreeTest >> testPrintOn [
 ]
 
 { #category : #tests }
-KDTreeTest >> testPrintOn2 [
+PMKDTreeTest >> testPrintOn2 [
 	| aStream s |
 	aStream := ReadWriteStream with: ''.
 	(PMIndexedKDTree withAll: #(#(1))) printOn: aStream.

@@ -3,13 +3,13 @@ the individual tests also check and show the general way NNStore processes its d
 
 "
 Class {
-	#name : #NNStoreTest,
+	#name : #PMNNStoreTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-KDTree'
+	#category : #'Math-Tests-KDTree'
 }
 
 { #category : #tests }
-NNStoreTest >> testCopy [
+PMNNStoreTest >> testCopy [
 	"a separate copy method is necessary because of this scenario"
 
 	| a b |
@@ -23,7 +23,7 @@ NNStoreTest >> testCopy [
 ]
 
 { #category : #tests }
-NNStoreTest >> testCopyEmpty [
+PMNNStoreTest >> testCopyEmpty [
 	| n m |
 	n := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
 	n := n copyEmpty.
@@ -44,7 +44,7 @@ NNStoreTest >> testCopyEmpty [
 ]
 
 { #category : #tests }
-NNStoreTest >> testEqual [
+PMNNStoreTest >> testEqual [
 	| a b |
 	b := #(#(1 $a) #(3 1.0) #(0 '2')).
 	a := PMNNStore newFrom: b.
@@ -66,7 +66,7 @@ NNStoreTest >> testEqual [
 ]
 
 { #category : #tests }
-NNStoreTest >> testExtremeCase [
+PMNNStoreTest >> testExtremeCase [
 	| n |
 	n := PMNNStore new.
 	n sortFor: nil.	"this should indeed always be possible and shouldnt raise an error!"
@@ -83,7 +83,7 @@ NNStoreTest >> testExtremeCase [
 ]
 
 { #category : #tests }
-NNStoreTest >> testInitialize [
+PMNNStoreTest >> testInitialize [
 	| a b |
 	a := PMNNStore newFrom: #(#(4 $a) #(5 1.0) #(6 '2')).
 	b := (PMNNStore newFrom: #(#(4 $a) #(5 1.0) #(6 '2'))) initialize.
@@ -99,7 +99,7 @@ NNStoreTest >> testInitialize [
 ]
 
 { #category : #tests }
-NNStoreTest >> testInitialize2 [
+PMNNStoreTest >> testInitialize2 [
 	"a separate = method is necessary because of this scenario with resetting"
 
 	| a b c |
@@ -118,7 +118,7 @@ NNStoreTest >> testInitialize2 [
 ]
 
 { #category : #tests }
-NNStoreTest >> testInitialize3 [
+PMNNStoreTest >> testInitialize3 [
 	| a |
 	a := (PMNNStore newFrom: #(#(7 $a) #(5 1.0) #(6 '2'))) initialize.
 	a
@@ -129,7 +129,7 @@ NNStoreTest >> testInitialize3 [
 ]
 
 { #category : #tests }
-NNStoreTest >> testNew [
+PMNNStoreTest >> testNew [
 	| n |
 	n := PMNNStore new: 1.
 	self assert: n isEmpty.
@@ -141,7 +141,7 @@ NNStoreTest >> testNew [
 ]
 
 { #category : #tests }
-NNStoreTest >> testNew2 [
+PMNNStoreTest >> testNew2 [
 	| n |
 	n := PMNNStore new: 3.
 	n add: #(3 1).
@@ -151,7 +151,7 @@ NNStoreTest >> testNew2 [
 ]
 
 { #category : #tests }
-NNStoreTest >> testNew3 [
+PMNNStoreTest >> testNew3 [
 	| n |
 	n := PMNNStore new: 0.
 	self assert: n isEmpty.
@@ -162,7 +162,7 @@ NNStoreTest >> testNew3 [
 ]
 
 { #category : #tests }
-NNStoreTest >> testNewFrom [
+PMNNStoreTest >> testNewFrom [
 	| n |
 	n := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
 	self assert: n data equals: #('2' $a 1.0).
@@ -176,7 +176,7 @@ NNStoreTest >> testNewFrom [
 ]
 
 { #category : #tests }
-NNStoreTest >> testWithAll [
+PMNNStoreTest >> testWithAll [
 	| n |
 	n := PMNNStore withAll: #(2 5 4).
 	self assert: n completeData equals: #(#(nil 2) #(nil 5) #(nil 4)).
