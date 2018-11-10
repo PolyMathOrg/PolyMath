@@ -8,7 +8,7 @@ Number >> adaptToQuaternion: rcvr andSend: selector [
 
 { #category : #'*Math-Quaternion' }
 Number >> asQuaternion [
-	^Quaternion 
+	^PMQuaternion 
 		qr: self
 		qi: 0
 		qj: 0
@@ -17,7 +17,7 @@ Number >> asQuaternion [
 
 { #category : #'*Math-Quaternion' }
 Number >> i: qi j: qj k: qk [ 
-	^Quaternion 
+	^PMQuaternion 
 		qr: self
 		qi: qi
 		qj: qj
@@ -26,7 +26,7 @@ Number >> i: qi j: qj k: qk [
 
 { #category : #'*Math-Quaternion' }
 Number >> j [
-	^Quaternion 
+	^PMQuaternion 
 		qr: 0
 		qi: 0
 		qj: self
@@ -35,7 +35,7 @@ Number >> j [
 
 { #category : #'*Math-Quaternion' }
 Number >> k [
-	^Quaternion 
+	^PMQuaternion 
 		qr: 0
 		qi: 0
 		qj: 0

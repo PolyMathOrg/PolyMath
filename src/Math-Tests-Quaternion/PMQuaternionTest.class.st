@@ -2,7 +2,7 @@
 This class is for unit testing the Quaternion.
 "
 Class {
-	#name : #QuaternionTest,
+	#name : #PMQuaternionTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'q1234',
@@ -10,11 +10,11 @@ Class {
 		'q12',
 		'q123'
 	],
-	#category : 'Math-Tests-Quaternion'
+	#category : #'Math-Tests-Quaternion'
 }
 
 { #category : #running }
-QuaternionTest >> setUp [
+PMQuaternionTest >> setUp [
 	q1234 := 1 i: 2 j: 3 k: 4.
 	q1 := 1 asQuaternion.
 	q12 := (1 + 2 i) asQuaternion .
@@ -22,7 +22,7 @@ QuaternionTest >> setUp [
 ]
 
 { #category : #running }
-QuaternionTest >> testAbs [
+PMQuaternionTest >> testAbs [
 	self assert: (1 i: 1 j: 1 k: 1) abs equals: 2.
 	self
 		should: [ (1.0e200 i: 1.0e200 j: 1.0e200 k: 1.0e200) abs = 2.0e200 ]
@@ -38,7 +38,7 @@ QuaternionTest >> testAbs [
 ]
 
 { #category : #running }
-QuaternionTest >> testAddPolynomial [
+PMQuaternionTest >> testAddPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly + q12 at: 0) equals: (2 + 2 i) asQuaternion.
@@ -46,7 +46,7 @@ QuaternionTest >> testAddPolynomial [
 ]
 
 { #category : #running }
-QuaternionTest >> testAngle [
+PMQuaternionTest >> testAngle [
 	self assert: q1 angle equals: 0.
 	self assert: (q12 - q1) angle equals: Float pi.
 	self assert: (q123 - q12) angle equals: Float pi.
@@ -54,13 +54,13 @@ QuaternionTest >> testAngle [
 ]
 
 { #category : #running }
-QuaternionTest >> testAsQuaternion [
+PMQuaternionTest >> testAsQuaternion [
 	self assert: 1 asQuaternion equals: q1 asQuaternion.
 	self assert: q1234 asQuaternion equals: q1234
 ]
 
 { #category : #running }
-QuaternionTest >> testCos [
+PMQuaternionTest >> testCos [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 cos - ((q1234 real cos * q1234 unreal cos) - (q1234 real sin * q1234 unreal sin))) abs < eps.
@@ -68,14 +68,14 @@ QuaternionTest >> testCos [
 ]
 
 { #category : #running }
-QuaternionTest >> testCosh [
+PMQuaternionTest >> testCosh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) cosh - (1 + 2 j k) cosh) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testDividePolynomial [
+PMQuaternionTest >> testDividePolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly / q12 at: 0) equals: q12 reciprocal.
@@ -85,7 +85,7 @@ QuaternionTest >> testDividePolynomial [
 ]
 
 { #category : #running }
-QuaternionTest >> testEquality [
+PMQuaternionTest >> testEquality [
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
 	self assert: 1 + 2 j k equals: 1 + 2 i.
@@ -97,7 +97,7 @@ QuaternionTest >> testEquality [
 ]
 
 { #category : #running }
-QuaternionTest >> testExp [
+PMQuaternionTest >> testExp [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 exp - (q1234 real exp * q1234 unreal exp)) abs < eps.
@@ -105,7 +105,7 @@ QuaternionTest >> testExp [
 ]
 
 { #category : #running }
-QuaternionTest >> testFloatClass [
+PMQuaternionTest >> testFloatClass [
 	"not much to do here?"
 
 	self assert: (1.5 isKindOf: (1.5 * q1234) floatClass).
@@ -113,7 +113,7 @@ QuaternionTest >> testFloatClass [
 ]
 
 { #category : #running }
-QuaternionTest >> testFractionDoubleDispatch [
+PMQuaternionTest >> testFractionDoubleDispatch [
 	"needed for coverage of adaptToFraction:andSend:"
 
 	| frac |
@@ -124,28 +124,28 @@ QuaternionTest >> testFractionDoubleDispatch [
 ]
 
 { #category : #running }
-QuaternionTest >> testFunctions [
+PMQuaternionTest >> testFunctions [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 ln exp - q1234) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testHash [
+PMQuaternionTest >> testHash [
 	self assert: q1234 hash equals: q1234 copy hash.
 	self assert: (1 + 2 i) hash equals: (1 + 2 j k) hash.
 	self assert: 1 k k hash equals: -1 hash
 ]
 
 { #category : #running }
-QuaternionTest >> testLn [
+PMQuaternionTest >> testLn [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testLog [
+PMQuaternionTest >> testLog [
 	"this ensures that log and ln have the expected relationship"
 
 	| qln qlg10ln |
@@ -160,20 +160,20 @@ QuaternionTest >> testLog [
 ]
 
 { #category : #running }
-QuaternionTest >> testOne [
-	self assert: Quaternion one unreal isZero.
-	self assert: Quaternion one real equals: 1
+PMQuaternionTest >> testOne [
+	self assert: PMQuaternion one unreal isZero.
+	self assert: PMQuaternion one real equals: 1
 ]
 
 { #category : #running }
-QuaternionTest >> testPrintOn [
+PMQuaternionTest >> testPrintOn [
 	| s |
 	s := q1234 printString.
 	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
 ]
 
 { #category : #running }
-QuaternionTest >> testProduct [
+PMQuaternionTest >> testProduct [
 	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
 	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
 	self assert: 1 i * 1 i equals: -1.
@@ -205,7 +205,7 @@ QuaternionTest >> testProduct [
 ]
 
 { #category : #running }
-QuaternionTest >> testProductWithVector [
+PMQuaternionTest >> testProductWithVector [
 	| vec |
 	vec := PMVector new: 2.
 	vec at: 1 put: 1.
@@ -218,16 +218,16 @@ QuaternionTest >> testProductWithVector [
 ]
 
 { #category : #running }
-QuaternionTest >> testRaisedTo [
+PMQuaternionTest >> testRaisedTo [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((q1234 raisedTo: 3) - (q1234 ln * 3) exp) abs < eps.
 ]
 
 { #category : #running }
-QuaternionTest >> testRandomIsLessThanOne [
+PMQuaternionTest >> testRandomIsLessThanOne [
 	| r |
-	r := Quaternion random.
+	r := PMQuaternion random.
 	self assert: r abs >= 0.0.
 	self assert: r abs <= 1.0.
 	self assert: r isQuaternion.
@@ -239,7 +239,7 @@ QuaternionTest >> testRandomIsLessThanOne [
 ]
 
 { #category : #running }
-QuaternionTest >> testReduce [
+PMQuaternionTest >> testReduce [
 	self assert: q1234 reduce equals: q1234.
 	self assert: q1 reduce equals: 1.
 	self assert: q1 reduce isInteger.
@@ -249,7 +249,7 @@ QuaternionTest >> testReduce [
 ]
 
 { #category : #running }
-QuaternionTest >> testSin [
+PMQuaternionTest >> testSin [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 sin - ((q1234 real sin * q1234 unreal cos) + (q1234 real cos * q1234 unreal sin))) abs < eps.
@@ -257,14 +257,14 @@ QuaternionTest >> testSin [
 ]
 
 { #category : #running }
-QuaternionTest >> testSinh [
+PMQuaternionTest >> testSinh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) sinh - (1 + 2 j k) sinh) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testSubtractPolynomial [
+PMQuaternionTest >> testSubtractPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly - q12 at: 0) equals: (0 - 2 i) asQuaternion.
@@ -272,7 +272,7 @@ QuaternionTest >> testSubtractPolynomial [
 ]
 
 { #category : #running }
-QuaternionTest >> testSum [
+PMQuaternionTest >> testSum [
 	self assert: 1 + 2 i + 3 j + 4 k equals: q1234.
 	self assert: 1 + 2 i + (3 + 4 i) j equals: q1234.
 	self assert: q1234 + 5 equals: (6 i: 2 j: 3 k: 4).
@@ -286,21 +286,21 @@ QuaternionTest >> testSum [
 ]
 
 { #category : #running }
-QuaternionTest >> testTan [
+PMQuaternionTest >> testTan [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tan - (1 + 2 j k) tan) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testTanh [
+PMQuaternionTest >> testTanh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tanh - (1 + 2 j k) tanh) abs < eps
 ]
 
 { #category : #running }
-QuaternionTest >> testTimesPolynomial [
+PMQuaternionTest >> testTimesPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly * q12 at: 0) equals: q12.
@@ -308,7 +308,7 @@ QuaternionTest >> testTimesPolynomial [
 ]
 
 { #category : #running }
-QuaternionTest >> testUnreal [
+PMQuaternionTest >> testUnreal [
 	self assert: q1234 unreal real equals: 0.
 	self
 		assert: q1234 unreal squared
@@ -316,7 +316,7 @@ QuaternionTest >> testUnreal [
 ]
 
 { #category : #running }
-QuaternionTest >> testZero [
-	self assert: Quaternion zero isZero.
-	self assert: Quaternion zero abs isZero.
+PMQuaternionTest >> testZero [
+	self assert: PMQuaternion zero isZero.
+	self assert: PMQuaternion zero abs isZero.
 ]

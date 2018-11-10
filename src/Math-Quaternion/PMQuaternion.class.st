@@ -26,7 +26,7 @@ Instance Variables:
 
 "
 Class {
-	#name : #Quaternion,
+	#name : #PMQuaternion,
 	#superclass : #Object,
 	#instVars : [
 		'qr',
@@ -34,11 +34,11 @@ Class {
 		'qj',
 		'qk'
 	],
-	#category : 'Math-Quaternion'
+	#category : #'Math-Quaternion'
 }
 
 { #category : #'constants access' }
-Quaternion class >> one [
+PMQuaternion class >> one [
 	^self 
 		qr: 1
 		qi: 0
@@ -47,7 +47,7 @@ Quaternion class >> one [
 ]
 
 { #category : #'instance creation' }
-Quaternion class >> qr: qr qi: qi qj: qj qk: qk [ 
+PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [ 
 	^self basicNew 
 		qr: qr
 		qi: qi
@@ -56,7 +56,7 @@ Quaternion class >> qr: qr qi: qi qj: qj qk: qk [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion class >> random [
+PMQuaternion class >> random [
 		"Answers a random quaternion with abs at most one."
 
 	^ (0.5 - Float random) 
@@ -66,7 +66,7 @@ Quaternion class >> random [
 ]
 
 { #category : #'constants access' }
-Quaternion class >> zero [
+PMQuaternion class >> zero [
 	^self 
 		qr: 0
 		qi: 0
@@ -75,7 +75,7 @@ Quaternion class >> zero [
 ]
 
 { #category : #arithmetic }
-Quaternion >> * aQuaternion [ 
+PMQuaternion >> * aQuaternion [ 
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
@@ -101,7 +101,7 @@ Quaternion >> * aQuaternion [
 ]
 
 { #category : #arithmetic }
-Quaternion >> + aQuaternion [ 
+PMQuaternion >> + aQuaternion [ 
 	^ aQuaternion isQuaternion
 		ifTrue: [self species
 				qr: qr + aQuaternion qr
@@ -112,7 +112,7 @@ Quaternion >> + aQuaternion [
 ]
 
 { #category : #arithmetic }
-Quaternion >> - aQuaternion [ 
+PMQuaternion >> - aQuaternion [ 
 	^ aQuaternion isQuaternion
 		ifTrue: [self species
 				qr: qr - aQuaternion qr
@@ -123,12 +123,12 @@ Quaternion >> - aQuaternion [
 ]
 
 { #category : #arithmetic }
-Quaternion >> / aQuaternion [
+PMQuaternion >> / aQuaternion [
 	^self * aQuaternion reciprocal
 ]
 
 { #category : #comparing }
-Quaternion >> = aQuaternion [ 
+PMQuaternion >> = aQuaternion [ 
 	"Answer true if both quaternion are equals.
 	A quaternion might also equal a Complex or a Number or other kind of numbers.
 	Implementation note: only work if Complex Octonion or other kind answer true to isNumber."
@@ -143,7 +143,7 @@ Quaternion >> = aQuaternion [
 ]
 
 { #category : #arithmetic }
-Quaternion >> abs [
+PMQuaternion >> abs [
 	"Return the magnitude (or absolute value) of the quaternion.
 	Care for overflow or underflow"
 
@@ -160,31 +160,31 @@ Quaternion >> abs [
 ]
 
 { #category : #converting }
-Quaternion >> adaptToComplex: rcvr andSend: selector [ 
+PMQuaternion >> adaptToComplex: rcvr andSend: selector [ 
 	"If I am involved in arithmetic with a Complex, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-Quaternion >> adaptToFloat: rcvr andSend: selector [ 
+PMQuaternion >> adaptToFloat: rcvr andSend: selector [ 
 	"If I am involved in arithmetic with a Float, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-Quaternion >> adaptToFraction: rcvr andSend: selector [ 
+PMQuaternion >> adaptToFraction: rcvr andSend: selector [ 
 	"If I am involved in arithmetic with a Fraction, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-Quaternion >> adaptToInteger: rcvr andSend: selector [ 
+PMQuaternion >> adaptToInteger: rcvr andSend: selector [ 
 	"If I am involved in arithmetic with an Integer, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> addPolynomial: aPolynomial [
+PMQuaternion >> addPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 19/4/99
 		
@@ -194,7 +194,7 @@ Quaternion >> addPolynomial: aPolynomial [
 ]
 
 { #category : #accessing }
-Quaternion >> angle [
+PMQuaternion >> angle [
 	"answer the rotation angle associated with the receiver"
 
 	| sinThetaSur2 cosThetaSur2 |
@@ -204,14 +204,14 @@ Quaternion >> angle [
 ]
 
 { #category : #accessing }
-Quaternion >> angleInDegrees [
+PMQuaternion >> angleInDegrees [
 	"answer the rotation angle in degrees associated with the receiver"
 
 	^self angle radiansToDegrees
 ]
 
 { #category : #converting }
-Quaternion >> asQuaternion [
+PMQuaternion >> asQuaternion [
 	"Convert the receiver into a quaternion.
 	Do nothing, i am already a quaternion"
 
@@ -219,7 +219,7 @@ Quaternion >> asQuaternion [
 ]
 
 { #category : #arithmetic }
-Quaternion >> conjugated [
+PMQuaternion >> conjugated [
 	"Return the conjugate of this quaternion number."
 
 	^self species 
@@ -230,7 +230,7 @@ Quaternion >> conjugated [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> cos [
+PMQuaternion >> cos [
 	"Answer the receiver cosine"
 
 	| z w |
@@ -246,21 +246,21 @@ Quaternion >> cos [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> cosh [
+PMQuaternion >> cosh [
 	"Answer the receiver hyperbolic cosine"
 
 	^(self exp + self negated exp) / 2
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> dividingPolynomial: aPolynomial [
+PMQuaternion >> dividingPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/4/99 "
 	^aPolynomial timesNumber: (1 / self)
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> exp [
+PMQuaternion >> exp [
 	"Answer the receiver exponential"
 
 	| z w |
@@ -276,7 +276,7 @@ Quaternion >> exp [
 ]
 
 { #category : #private }
-Quaternion >> floatClass [
+PMQuaternion >> floatClass [
 	"Answer the class suitable for doing floating point operations.
 	In default Squeak, this is Float.
 	In an image with single and double IEEE 754 floating point numbers,
@@ -286,12 +286,12 @@ Quaternion >> floatClass [
 ]
 
 { #category : #comparing }
-Quaternion >> hash [
+PMQuaternion >> hash [
 	^(((qi hash bitXor: qj hash) bitXor: qk hash) bitXor: qr hash)
 ]
 
 { #category : #converting }
-Quaternion >> i [
+PMQuaternion >> i [
 	"Answer the product of the receiver with pure imaginary i.
 	This is the same as self * 1 i"
 
@@ -303,7 +303,7 @@ Quaternion >> i [
 ]
 
 { #category : #testing }
-Quaternion >> isNumber [
+PMQuaternion >> isNumber [
 	"Answer true just like Complex, our unreal part is just a bit more complex.
 	Note that this message is needed to make equality tests pass due to Number>>= implementation."
 
@@ -311,21 +311,21 @@ Quaternion >> isNumber [
 ]
 
 { #category : #testing }
-Quaternion >> isQuaternion [
+PMQuaternion >> isQuaternion [
 	"always answer true since the receiver is a quaternion"
 
 	^true
 ]
 
 { #category : #testing }
-Quaternion >> isZero [
+PMQuaternion >> isZero [
 	"answer true if the receiver is null, false otherwise"
 
 	^qr isZero and: [qi isZero and: [qj isZero and: [qk isZero]]]
 ]
 
 { #category : #converting }
-Quaternion >> j [
+PMQuaternion >> j [
 	"Answer the product of the receiver with pure imaginary j.
 	This is the same as self * 1 j"
 
@@ -338,7 +338,7 @@ Quaternion >> j [
 ]
 
 { #category : #converting }
-Quaternion >> k [
+PMQuaternion >> k [
 	"Answer the product of the receiver with pure imaginary k.
 	This is the same as self * 1 k"
 
@@ -351,7 +351,7 @@ Quaternion >> k [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> ln [
+PMQuaternion >> ln [
 	"Answer the receiver natural logarithm"
 
 	| z |
@@ -374,14 +374,14 @@ Quaternion >> ln [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> log [
+PMQuaternion >> log [
 	"Answer receiver base 10 logarithm."
 
 	^self ln / 10 ln
 ]
 
 { #category : #arithmetic }
-Quaternion >> negated [
+PMQuaternion >> negated [
 	^self species 
 		qr: qr negated
 		qi: qi negated
@@ -390,14 +390,14 @@ Quaternion >> negated [
 ]
 
 { #category : #printing }
-Quaternion >> printOn: aStream [ 
+PMQuaternion >> printOn: aStream [ 
 	"Print a representation of the receiver onto aStream"
 
 	self storeOn: aStream
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> productWithVector: aVector [
+PMQuaternion >> productWithVector: aVector [
 		"Answers a new vector product of the receiver with aVector.
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 11/2/99 "
@@ -405,27 +405,27 @@ Quaternion >> productWithVector: aVector [
 ]
 
 { #category : #accessing }
-Quaternion >> qi [
+PMQuaternion >> qi [
 	^qi
 ]
 
 { #category : #accessing }
-Quaternion >> qj [
+PMQuaternion >> qj [
 	^qj
 ]
 
 { #category : #accessing }
-Quaternion >> qk [
+PMQuaternion >> qk [
 	^qk
 ]
 
 { #category : #accessing }
-Quaternion >> qr [
+PMQuaternion >> qr [
 	^qr
 ]
 
 { #category : #private }
-Quaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [ 
+PMQuaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [ 
 	qr := a0.
 	qi := a1.
 	qj := a2.
@@ -433,7 +433,7 @@ Quaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> raisedTo: aNumber [ 
+PMQuaternion >> raisedTo: aNumber [ 
 	"Answer the receiver raised to aNumber."
 
 	aNumber isInteger ifTrue:
@@ -450,7 +450,7 @@ Quaternion >> raisedTo: aNumber [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> raisedToInteger: operand [ 
+PMQuaternion >> raisedToInteger: operand [ 
 	"Answer the receiver raised to the power operand, an Integer."
 
 	"implementation note: this code is copied from Number.
@@ -475,20 +475,20 @@ Quaternion >> raisedToInteger: operand [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> random [
+PMQuaternion >> random [
 	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
 	^ self class random * self.
 ]
 
 { #category : #accessing }
-Quaternion >> real [
+PMQuaternion >> real [
 	"answer the real part of the receiver"
 
 	^qr
 ]
 
 { #category : #arithmetic }
-Quaternion >> reciprocal [
+PMQuaternion >> reciprocal [
 	"Trivial algorithm:
 		^self conjugated / self squaredNorm
 	may overflow"
@@ -507,7 +507,7 @@ Quaternion >> reciprocal [
 ]
 
 { #category : #converting }
-Quaternion >> reduce [
+PMQuaternion >> reduce [
 	"Answer the receiver transformed to a lower generality, if
 	such a transformation is possible without losing information.
 	If not, answer the receiver"
@@ -519,7 +519,7 @@ Quaternion >> reduce [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> sin [
+PMQuaternion >> sin [
 	"Answer the receiver sine"
 
 	| z w |
@@ -535,24 +535,24 @@ Quaternion >> sin [
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> sinh [
+PMQuaternion >> sinh [
 	"Answer the receiver hyperbolic sine"
 
 	^(self exp - self negated exp) / 2
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> squared [
+PMQuaternion >> squared [
 	^self * self
 ]
 
 { #category : #arithmetic }
-Quaternion >> squaredNorm [
+PMQuaternion >> squaredNorm [
 	^qr squared + qi squared + qj squared + qk squared
 ]
 
 { #category : #printing }
-Quaternion >> storeOn: aStream [ 
+PMQuaternion >> storeOn: aStream [ 
 	"Store a representation of the receiver onto aStream that can be interpreted.
 	Two possible forms are:
 	a + b i + c j + d k
@@ -580,21 +580,21 @@ Quaternion >> storeOn: aStream [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> subtractToPolynomial: aPolynomial [
+PMQuaternion >> subtractToPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 19/4/99 "
 	^aPolynomial addNumber: self negated
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> tan [
+PMQuaternion >> tan [
 	"Answer the receiver tangent"
 
 	^self sin / self cos
 ]
 
 { #category : #'mathematical functions' }
-Quaternion >> tanh [
+PMQuaternion >> tanh [
 	"Answer the hyperbolic tangent"
 
 	| ep em |
@@ -604,7 +604,7 @@ Quaternion >> tanh [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> timesPolynomial: aPolynomial [
+PMQuaternion >> timesPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/4/99 
 		added to Complex class 12 May 2012, Daniel Uber
@@ -613,7 +613,7 @@ Quaternion >> timesPolynomial: aPolynomial [
 ]
 
 { #category : #accessing }
-Quaternion >> unreal [
+PMQuaternion >> unreal [
 	"answer the unreal part of the receiver"
 
 	^self species 

@@ -8,7 +8,7 @@ PMComplex >> adaptToQuaternion: rcvr andSend: selector [
 
 { #category : #'*Math-Quaternion' }
 PMComplex >> asQuaternion [
-	^ Quaternion
+	^ PMQuaternion
 		qr: real
 		qi: imaginary
 		qj: 0
@@ -19,7 +19,7 @@ PMComplex >> asQuaternion [
 PMComplex >> j [
 	"same as self * 1 j"
 
-	^Quaternion 
+	^PMQuaternion 
 		qr: 0
 		qi: 0
 		qj: real
@@ -30,7 +30,7 @@ PMComplex >> j [
 PMComplex >> k [
 	"same as self * 1 k"
 
-	^Quaternion 
+	^PMQuaternion 
 		qr: 0
 		qi: 0
 		qj: imaginary negated

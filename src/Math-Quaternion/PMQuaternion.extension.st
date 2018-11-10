@@ -1,7 +1,7 @@
-Extension { #name : #Quaternion }
+Extension { #name : #PMQuaternion }
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> addPolynomial: aPolynomial [
+PMQuaternion >> addPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 19/4/99
 		
@@ -11,14 +11,14 @@ Quaternion >> addPolynomial: aPolynomial [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> dividingPolynomial: aPolynomial [
+PMQuaternion >> dividingPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/4/99 "
 	^aPolynomial timesNumber: (1 / self)
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> productWithVector: aVector [
+PMQuaternion >> productWithVector: aVector [
 		"Answers a new vector product of the receiver with aVector.
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 11/2/99 "
@@ -26,13 +26,7 @@ Quaternion >> productWithVector: aVector [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> random [
-	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
-	^ self class random * self.
-]
-
-{ #category : #'*Math-Quaternion' }
-Quaternion class >> random [
+PMQuaternion class >> random [
 		"Answers a random quaternion with abs at most one."
 
 	^ (0.5 - Float random) 
@@ -42,14 +36,20 @@ Quaternion class >> random [
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> subtractToPolynomial: aPolynomial [
+PMQuaternion >> random [
+	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
+	^ self class random * self.
+]
+
+{ #category : #'*Math-Quaternion' }
+PMQuaternion >> subtractToPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 19/4/99 "
 	^aPolynomial addNumber: self negated
 ]
 
 { #category : #'*Math-Quaternion' }
-Quaternion >> timesPolynomial: aPolynomial [
+PMQuaternion >> timesPolynomial: aPolynomial [
 		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/4/99 
 		added to Complex class 12 May 2012, Daniel Uber
