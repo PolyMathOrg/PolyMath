@@ -1,14 +1,14 @@
 Class {
-	#name : #ErrorAsParameterFunctionTest,
+	#name : #PMErrorAsParameterFunctionTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'f'
 	],
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #running }
-ErrorAsParameterFunctionTest >> setUp [ 
+PMErrorAsParameterFunctionTest >> setUp [ 
 |col|
 f:=PMErrorOfParameterFunction new function: [:x :a :b|a*x / (b+x)].
 col:=(1 to: 3)collect: [:i|i@(f function cull: i cull: 1 cull: 1) ].
@@ -17,13 +17,13 @@ f :=PMErrorAsParameterFunction new function: f.
 ]
 
 { #category : #tests }
-ErrorAsParameterFunctionTest >> testMaxFunction [
+PMErrorAsParameterFunctionTest >> testMaxFunction [
 self assert: (f parameters size < f maxFunction ).
 
 ]
 
 { #category : #tests }
-ErrorAsParameterFunctionTest >> testPrint [
+PMErrorAsParameterFunctionTest >> testPrint [
 |aStream  s|
 aStream :=ReadWriteStream with:''.
 f printOn: aStream .
@@ -36,14 +36,14 @@ self assert: (s includesSubstring: 'maxFunction: ', f maxFunction asString).
 ]
 
 { #category : #tests }
-ErrorAsParameterFunctionTest >> testparameters [
+PMErrorAsParameterFunctionTest >> testparameters [
 	f parameters: #(1 1).
 	f changeParametersBy: #(1 1).
 	self assert: f parameters equals: #(2 2)
 ]
 
 { #category : #tests }
-ErrorAsParameterFunctionTest >> testvalue [
+PMErrorAsParameterFunctionTest >> testvalue [
 	f parameters: #(2 2).
 	self assert: (f value: 2) equals: 1 / 9
 ]

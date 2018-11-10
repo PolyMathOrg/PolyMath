@@ -1,14 +1,14 @@
 Class {
-	#name : #AnotherGeneticOptimizerTest,
+	#name : #PMAnotherGeneticOptimizerTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'go'
 	],
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #running }
-AnotherGeneticOptimizerTest >> setUp [ 
+PMAnotherGeneticOptimizerTest >> setUp [ 
 |origin f|
 f:=[:x| |v| v:=x asPMVector . v*v].
 origin:= #(-5 -5 -5).
@@ -18,7 +18,7 @@ go chromosomeManager populationSize: 20.
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testChromosomeManager [
+PMAnotherGeneticOptimizerTest >> testChromosomeManager [
 	self
 		assert: go chromosomeManager class
 		equals: PMAnotherChromosomeManager.
@@ -26,7 +26,7 @@ AnotherGeneticOptimizerTest >> testChromosomeManager [
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testComputePrecision [
+PMAnotherGeneticOptimizerTest >> testComputePrecision [
 |r|
 go maximumIterations: 2.
 go evaluate .
@@ -38,7 +38,7 @@ self assert: (r>go computePrecision  ).
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testEvaluate [
+PMAnotherGeneticOptimizerTest >> testEvaluate [
 go maximumIterations: 170.
 go chromosomeManager populationSize: 50.
 self assert: (go evaluate equalsTo: #(0 0 0)  ).
@@ -46,7 +46,7 @@ self assert: (go evaluate equalsTo: #(0 0 0)  ).
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testInitializeIterations [
+PMAnotherGeneticOptimizerTest >> testInitializeIterations [
 self assert: (go bestPoints isEmpty ).
 go initializeIterations .
 self deny: (go bestPoints isEmpty ). 
@@ -61,7 +61,7 @@ self assert: (go bestValueHistory isEmpty  ).
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testPrint [
+PMAnotherGeneticOptimizerTest >> testPrint [
 |aStream  s|
 aStream :=ReadWriteStream with:''.
 go printOn: aStream .
@@ -72,7 +72,7 @@ self assert: (s includesSubstring: '20').
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testRangeScale [
+PMAnotherGeneticOptimizerTest >> testRangeScale [
 go initializeIterations.
 self assert: (go rangeScale first equalsTo: 0.1).
 self assert: (go rangeScale second equalsTo: 0.19473684210526315).
@@ -83,7 +83,7 @@ self assert: (go rangeScale second equalsTo: 0.19473684210526315).
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
+PMAnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
 	9
@@ -103,7 +103,7 @@ AnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
+PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
 	3
@@ -123,7 +123,7 @@ AnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testSteadyState [
+PMAnotherGeneticOptimizerTest >> testSteadyState [
 |r1 r2|
 "probabilistic test. not always true"
 go steadyState:  false.
@@ -138,7 +138,7 @@ self assert: (r1>r2  ).
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testaddPointAt [
+PMAnotherGeneticOptimizerTest >> testaddPointAt [
 	| b |
 	go chromosomeManager populationSize: 2.
 	go resetBestPoints.
@@ -173,7 +173,7 @@ AnotherGeneticOptimizerTest >> testaddPointAt [
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testcalcStatistics [
+PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 	| s |
 	go evaluate.
 	self assert: go bestValueHistory isEmpty.
@@ -188,7 +188,7 @@ AnotherGeneticOptimizerTest >> testcalcStatistics [
 ]
 
 { #category : #tests }
-AnotherGeneticOptimizerTest >> testresetBestPoints [
+PMAnotherGeneticOptimizerTest >> testresetBestPoints [
 go evaluate .
 go resetBestPoints .
 self assert: (go bestPoints isEmpty  ).

@@ -1,16 +1,16 @@
 Class {
-	#name : #GeneralFunctionFitTest,
+	#name : #PMGeneralFunctionFitTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'f',
 		'col',
 		'fit'
 	],
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #running }
-GeneralFunctionFitTest >> setUp [
+PMGeneralFunctionFitTest >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 
 	PMMitchellMooreGenerator reset: 0.
@@ -21,7 +21,7 @@ GeneralFunctionFitTest >> setUp [
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testBasic [
+PMGeneralFunctionFitTest >> testBasic [
 |d|
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 self assert: (fit evaluate equalsTo:  #(0.1 0.4)).
@@ -36,7 +36,7 @@ self assert: (fit error<d).
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testFunction [ 
+PMGeneralFunctionFitTest >> testFunction [ 
 |y|
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 y:=fit function  value: 3 value: 0.1 value: 0.4.
@@ -49,7 +49,7 @@ self assert: ((fit function value:3) equalsTo:  y).
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testManager [
+PMGeneralFunctionFitTest >> testManager [
 	fit := PMGeneralFunctionFit
 		function: f
 		data: col
@@ -60,7 +60,7 @@ GeneralFunctionFitTest >> testManager [
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
+PMGeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
 	| r correct |
 	fit := PMGeneralFunctionFit
 		function: f
@@ -84,7 +84,7 @@ GeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testPopulationSize [
+PMGeneralFunctionFitTest >> testPopulationSize [
 	fit := PMGeneralFunctionFit
 		function: f
 		data: col
@@ -96,7 +96,7 @@ GeneralFunctionFitTest >> testPopulationSize [
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testPrecision [
+PMGeneralFunctionFitTest >> testPrecision [
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 self assert:fit precision isNil.
 fit evaluate .
@@ -107,7 +107,7 @@ self assert: (fit precision < 1e-6 ).
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testPrint [
+PMGeneralFunctionFitTest >> testPrint [
 |aStream s|
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 aStream :=ReadWriteStream with:''.
@@ -125,7 +125,7 @@ self assert: (s includesSubstring: '#(0.').
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testRelativeError [
+PMGeneralFunctionFitTest >> testRelativeError [
 |r|
 f:=[ :x :a| a].
 col:={1@2. 2@6}.
@@ -149,7 +149,7 @@ self assert: (r<4 ).
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testResetBestPoints [
+PMGeneralFunctionFitTest >> testResetBestPoints [
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 fit evaluate .
 fit resetBestPoints.
@@ -157,7 +157,7 @@ self assert: (fit optimizer bestPoints isEmpty ).
 ]
 
 { #category : #tests }
-GeneralFunctionFitTest >> testTruncate [
+PMGeneralFunctionFitTest >> testTruncate [
 	col at: 1 put: -4 @ -0.2.
 	col at: 81 put: 4.000000000000004 @ 0.2.
 	col at: 10 put: -3.099999999999999 @ 2.

@@ -2,13 +2,13 @@
 ErrorMinimizerTest tests indirectly also ErrorAsParameterFunction.
 "
 Class {
-	#name : #ErrorMinimizerTest,
+	#name : #PMErrorMinimizerTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #tests }
-ErrorMinimizerTest >> testErrorMinimzer [
+PMErrorMinimizerTest >> testErrorMinimzer [
 |f col er fit|
 f:=[:x :a :b|a*x / (b+x)].
 col:=(0 to: 20)collect: [:i|i@(f cull: i cull: 2 cull: 0.4) ].

@@ -1,27 +1,27 @@
 Class {
-	#name : #ErrorOfParameterFunctionTest,
+	#name : #PMErrorOfParameterFunctionTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'f',
 		'col'
 	],
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #running }
-ErrorOfParameterFunctionTest >> setUp [
+PMErrorOfParameterFunctionTest >> setUp [
 f:=PMErrorOfParameterFunction new function: [:x :a :b|a*x / (b+x)].
 col:=(1 to: 3)collect: [:i|i@(f function cull: i cull: 1 cull: 1) ].
 
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testArgumentsString [
+PMErrorOfParameterFunctionTest >> testArgumentsString [
 	self assert: f parameterNames asOrderedCollection equals: #('a' 'b') asOrderedCollection
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testErrorCollection [
+PMErrorOfParameterFunctionTest >> testErrorCollection [
 	f data: col.
 	f errorType: #squared.
 	self
@@ -42,7 +42,7 @@ ErrorOfParameterFunctionTest >> testErrorCollection [
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testErrorType [
+PMErrorOfParameterFunctionTest >> testErrorType [
 	self assert: f errorType equals: #squared.
 	f errorType: #abs.
 	self assert: f errorType equals: #abs.
@@ -55,13 +55,13 @@ ErrorOfParameterFunctionTest >> testErrorType [
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testFunction [
+PMErrorOfParameterFunctionTest >> testFunction [
 	self assert: (f function cull: 1 cull: 2 cull: 3) equals: 1 / 2.
 	self assert: f parameterSize equals: 2
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testPrint [
+PMErrorOfParameterFunctionTest >> testPrint [
 |aStream  s|
 aStream :=ReadWriteStream with:''.
 f data:{(1@(1/2)). (2@(2/3)). (3@(3/4))} .
@@ -75,7 +75,7 @@ self assert: (s includesSubstring: 'false').
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testQuartile [
+PMErrorOfParameterFunctionTest >> testQuartile [
 	self assert: f quartile equals: 1 / 2.
 	f quartile: 1.
 	self assert: f quartile equals: 1.
@@ -84,7 +84,7 @@ ErrorOfParameterFunctionTest >> testQuartile [
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testRealValue [
+PMErrorOfParameterFunctionTest >> testRealValue [
 	f := PMErrorOfParameterFunction
 		function: [ :i :a | i + a ]
 		data:
@@ -106,14 +106,14 @@ ErrorOfParameterFunctionTest >> testRealValue [
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testdata [
+PMErrorOfParameterFunctionTest >> testdata [
 	self assert: f data isNil.
 	f data: col.
 	self assert: f data equals: col
 ]
 
 { #category : #tests }
-ErrorOfParameterFunctionTest >> testvalue [
+PMErrorOfParameterFunctionTest >> testvalue [
 	f data: col.
 	f errorType: #squared.
 	self assert: (f value: #(0 1)) equals: 181 / 144.

@@ -1,21 +1,21 @@
 Class {
-	#name : #FunctionFitTest,
+	#name : #PMFunctionFitTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'f',
 		'd'
 	],
-	#category : 'Math-Tests-FunctionFit'
+	#category : #'Math-Tests-FunctionFit'
 }
 
 { #category : #running }
-FunctionFitTest >> setUp [ 
+PMFunctionFitTest >> setUp [ 
 f:=[:x :a :b|a*x / (b+x)].
 d:=(1 to: 20)collect: [:i|i@(f cull: i cull: 2 cull: 0.4) ].
 ]
 
 { #category : #tests }
-FunctionFitTest >> testFunctionFit [
+PMFunctionFitTest >> testFunctionFit [
 	| ff ar p |
 	ff := PMFunctionFit function: f data: d.
 	ar := ff parameters.
@@ -33,7 +33,7 @@ FunctionFitTest >> testFunctionFit [
 ]
 
 { #category : #tests }
-FunctionFitTest >> testPrint [
+PMFunctionFitTest >> testPrint [
 |aStream ff s|
 aStream :=ReadWriteStream with:''.
 ff:=  PMFunctionFit function: f data: d .
