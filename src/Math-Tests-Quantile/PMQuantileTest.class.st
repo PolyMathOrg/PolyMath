@@ -2,7 +2,7 @@
 QuantileTest tests mainly '#quantile: method:' by calculating quartiles with every method on SortedCollections of size 4, 5, 6 and 11.
 "
 Class {
-	#name : #QuantileTest,
+	#name : #PMQuantileTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'a',
@@ -11,21 +11,21 @@ Class {
 		'c',
 		'd'
 	],
-	#category : 'Math-Tests-Quantile'
+	#category : #'Math-Tests-Quantile'
 }
 
 { #category : #running }
-QuantileTest >> resultCollect: aSortedColl method: aMethod [
+PMQuantileTest >> resultCollect: aSortedColl method: aMethod [
 	^ q collect: [ :x | aSortedColl quantile: x method: aMethod ]
 ]
 
 { #category : #running }
-QuantileTest >> resultCollect: aSortedColl withProbs: aMethod [
+PMQuantileTest >> resultCollect: aSortedColl withProbs: aMethod [
 	^ q collect: [ :x | aSortedColl quantile: x withProbs: aMethod ]
 ]
 
 { #category : #running }
-QuantileTest >> setUp [
+PMQuantileTest >> setUp [
 	a := #(1 3 2 4) asSortedCollection.
 	c := #(1 3 2 4 5) asSortedCollection.
 	d := #(1 3 2 4 5 6) asSortedCollection.
@@ -38,7 +38,7 @@ QuantileTest >> setUp [
 ]
 
 { #category : #tests }
-QuantileTest >> testError [
+PMQuantileTest >> testError [
 	self
 		should: [ a quantile: 0.5 withProbs: #(1 -1 0) ]
 		raise: Error
@@ -48,7 +48,7 @@ QuantileTest >> testError [
 ]
 
 { #category : #tests }
-QuantileTest >> testExtremeCase [
+PMQuantileTest >> testExtremeCase [
 	self assert: #(2) asSortedCollection interQuartileRange equals: 0.
 	self assert: #(2 2) asSortedCollection interQuartileRange equals: 0.
 	self
@@ -67,7 +67,7 @@ QuantileTest >> testExtremeCase [
 ]
 
 { #category : #tests }
-QuantileTest >> testQuantileA [
+PMQuantileTest >> testQuantileA [
 	self
 		assert: (self resultCollect: a method: #modeBased)
 		equals:
@@ -122,7 +122,7 @@ QuantileTest >> testQuantileA [
 ]
 
 { #category : #tests }
-QuantileTest >> testQuantileB [
+PMQuantileTest >> testQuantileB [
 	"tests #(2 4 5 7 8 9 10 12 15 16 18)"
 
 	self
@@ -179,7 +179,7 @@ QuantileTest >> testQuantileB [
 ]
 
 { #category : #tests }
-QuantileTest >> testQuantileC [
+PMQuantileTest >> testQuantileC [
 	"tests #(1 3 2 4 5)"
 
 	| r |
@@ -246,7 +246,7 @@ QuantileTest >> testQuantileC [
 ]
 
 { #category : #tests }
-QuantileTest >> testQuantileD [
+PMQuantileTest >> testQuantileD [
 	"tests #(1 3 2 4 5 6)"
 
 	self
