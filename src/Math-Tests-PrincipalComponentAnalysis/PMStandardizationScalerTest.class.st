@@ -1,7 +1,7 @@
 Class {
 	#name : #PMStandardizationScalerTest,
 	#superclass : #TestCase,
-	#category : #'Math-PrincipalComponentAnalysis'
+	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
 { #category : #tests }
