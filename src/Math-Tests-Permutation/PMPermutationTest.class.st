@@ -1,7 +1,7 @@
 Class {
 	#name : #PMPermutationTest,
 	#superclass : #TestCase,
-	#category : #'Math-Permutation'
+	#category : #'Math-Tests-Permutation'
 }
 
 { #category : #'class tests' }
