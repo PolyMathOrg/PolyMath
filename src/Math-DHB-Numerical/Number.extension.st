@@ -80,19 +80,19 @@ Number >> productWithVector: aVector [
 ]
 
 { #category : #'*Math-DHB-Numerical' }
-Number class >> random [
-		"Answers a random number between 0 and the receiver
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/2/99 "
-	^ PMMitchellMooreGenerator new floatValue
-]
-
-{ #category : #'*Math-DHB-Numerical' }
 Number >> random [
 		"Answers a random number distributed between 0 and the receiver.
 		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
 		 Initial code: 17/2/99 "
 	^self class random * self
+]
+
+{ #category : #'*Math-DHB-Numerical' }
+Number class >> random [
+		"Answers a random number between 0 and the receiver
+		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
+		 Initial code: 17/2/99 "
+	^ PMMitchellMooreGenerator new floatValue
 ]
 
 { #category : #'*Math-DHB-Numerical' }

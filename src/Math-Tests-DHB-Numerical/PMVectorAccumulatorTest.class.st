@@ -4,5 +4,5 @@ A PMVectorAccumulatorTest is a test class for testing the behavior of PMVectorAc
 Class {
 	#name : #PMVectorAccumulatorTest,
 	#superclass : #TestCase,
-	#category : #'Math-DHB-Numerical-Tests'
+	#category : #'Math-Tests-DHB-Numerical'
 }
