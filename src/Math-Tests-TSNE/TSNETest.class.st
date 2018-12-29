@@ -1,7 +1,7 @@
 Class {
 	#name : #TSNETest,
 	#superclass : #TestCase,
-	#category : 'Math-TSNE'
+	#category : #'Math-Tests-TSNE'
 }
 
 { #category : #tests }
