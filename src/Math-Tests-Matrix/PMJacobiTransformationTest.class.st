@@ -21,14 +21,12 @@ PMJacobiTransformationTest >> testEigenvalueOfIdentityMatrixIsOne [
 PMJacobiTransformationTest >> testEigenvectorsOfIdentityMatrixAreTheUnitVectors [
 	"The eigenvectors of I are (1 0) and (0 1), the unit basis vectors"
 
-	| identityMatrix jacobiTransform eigenvectors xUnitVector yUnitVector |
+	| identityMatrix jacobiTransform matrixOfEigenvectors expected |
 	identityMatrix := PMMatrix rows: #(#(1 0) #(0 1)).
 	jacobiTransform := PMJacobiTransformation matrix: identityMatrix.
 	
-	eigenvectors := jacobiTransform transform.
+	matrixOfEigenvectors := jacobiTransform transform.
 	
-	xUnitVector := #(1 0) asPMVector.
-	self assert: (eigenvectors columnAt: 1) equals: xUnitVector.
-	yUnitVector := #(0 1) asPMVector.
-	self assert: (eigenvectors columnAt: 2) equals: yUnitVector.
+	expected := PMSymmetricMatrix identity: 2.
+	self assert: matrixOfEigenvectors equals: expected.
 ]
