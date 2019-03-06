@@ -21,7 +21,7 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testFlipEigenvectorsSign [
 	v := svd rightSingularForm.
 	flipAlgorithm := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
-	signs := flipAlgorithm computeSigns .
+	signs := flipAlgorithm computeSignsFromU .
 	
 	expected := #(-1 -1 -1 1 1 -1) asPMVector.
 	self assert: signs equals: expected

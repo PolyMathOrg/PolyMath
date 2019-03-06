@@ -24,7 +24,7 @@ SciKitLearnEigenvectorFlipAlgorithm class >> u: u v: v [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> computeSigns [
+SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
 	| maxAbsCols i |
 	maxAbsCols := u abs argMaxOnColumns.
 	i := 0.
@@ -43,7 +43,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 	"does not work at the moment"
 
 	| signs |
-	signs := self computeSigns.
+	signs := self computeSignsFromU.
 	u := u * signs.
 	v := v productWithVector: (signs copyFrom: 1 to: v numberOfColumns)
 ]
