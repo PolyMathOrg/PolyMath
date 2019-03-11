@@ -1,5 +1,9 @@
 "
-I'm a simple object summing vectors. THe idea that I does not keep the data but information that are representative of the accumulated data. 
+I'm a simple object summing vectors. The idea that I does not keep the data but information that are representative of the accumulated data. 
+
+The class VectorAccumulator has two instance variables:
+- count counts the number of vectors accumulated in the object so far; 
+- average keeps the average of the accumulated vector.
 
 "
 Class {
@@ -9,7 +13,7 @@ Class {
 		'count',
 		'average'
 	],
-	#category : 'Math-DHB-Numerical-Math-UtilsAccumulator'
+	#category : #'Math-DHB-Numerical-Math-UtilsAccumulator'
 }
 
 { #category : #'instance creation' }
@@ -19,7 +23,6 @@ PMVectorAccumulator class >> new: anInteger [
 
 { #category : #transformation }
 PMVectorAccumulator >> accumulate: aVectorOrArray [
-
 	| delta |
 	count := count + 1.
 	delta := average - aVectorOrArray asPMVector scaleBy: 1 / count.
@@ -29,36 +32,31 @@ PMVectorAccumulator >> accumulate: aVectorOrArray [
 
 { #category : #operations }
 PMVectorAccumulator >> average [
-	
-	^average
+	^ average
 ]
 
 { #category : #operations }
 PMVectorAccumulator >> count [
-	
-	^count
+	^ count
 ]
 
 { #category : #initialization }
 PMVectorAccumulator >> initialize: anInteger [
-
 	average := PMVector new: anInteger.
-	self reset.
-	^ self
+	self reset
 ]
 
 { #category : #printing }
 PMVectorAccumulator >> printOn: aStream [
-
 	super printOn: aStream.
 	aStream space.
 	count printOn: aStream.
 	aStream space.
-	average printOn: aStream.
+	average printOn: aStream
 ]
 
 { #category : #initialization }
 PMVectorAccumulator >> reset [
 	count := 0.
-	average atAllPut: 0.
+	average atAllPut: 0
 ]

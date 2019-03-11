@@ -4,6 +4,50 @@ Class {
 	#category : 'Math-Tests-Matrix'
 }
 
+{ #category : #tests }
+PMMatrixTest >> testArgMaxOnColumns [
+	| m1 m2 |
+	m1 := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	m2 := PMMatrix rows: #(#(-1 0 -1) #(-2 0 0)).
+	self assert: m1 argMaxOnColumns equals: #(2 2 2) asPMVector.
+	self assert: m2 argMaxOnColumns equals: #(1 1 2) asPMVector
+]
+
+{ #category : #tests }
+PMMatrixTest >> testArgMaxOnRows [
+	| m1 m2 |
+	m1 := PMMatrix rows: #(#(0 1 2) #(3 4 5)).
+	m2 := PMMatrix rows: #(#(-1 0 -1) #(-2 0 0)).
+	self assert: m1 argMaxOnRows equals: #(3 3) asPMVector.
+	self assert: m2 argMaxOnRows equals: #(2 2) asPMVector.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testAtAllPut [
+
+	| a |
+	a := PMMatrix new: 3.
+	a atAllPut: 4.
+	self assert: a equals: (PMMatrix rows: #(#(4 4 4) #(4 4 4) #(4 4 4))).
+
+]
+
+{ #category : #tests }
+PMMatrixTest >> testAtColumnPutRepeat [
+
+	| a |
+	a := PMMatrix new: 3.
+	a 
+		atColumn: 1 put: 1 repeat: 3;
+		atColumn: 2 put: 2 repeat: 3;
+		atColumn: 3 put: 3 repeat: 3.
+	self assert: a equals: (PMMatrix rows: #(#(1 2 3) #(1 2 3) #(1 2 3))).
+	a := PMMatrix new: 3.
+	a 
+		atColumn: 1 put: 1 repeat: 2.
+	self assert: a equals: (PMMatrix rows: #(#(1 nil nil) #(1 nil nil) #(nil nil nil))).
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testAtRowPutAtColumnPut [
 	| a |
@@ -71,7 +115,21 @@ PMMatrixTest >> testEigenvaluesLargest [
 	self assert: ((roots at: 2) - eigenvalue) abs < 1.0e-08
 ]
 
-{ #category : #'linear algebra' }
+{ #category : #tests }
+PMMatrixTest >> testFlattenColumns [
+	| m |
+	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
+	self assert: m flattenColumns equals: #(1 4 7 2 5 8 3 6 9) asPMVector
+]
+
+{ #category : #tests }
+PMMatrixTest >> testFlattenRows [
+	| m |
+	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
+	self assert: m flattenRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
+]
+
+{ #category : #tests }
 PMMatrixTest >> testLUPDecomposition [
 	"Code Example 8.10"
 
@@ -109,7 +167,7 @@ PMMatrixTest >> testLinearEquations [
 	self assert: (sol2 at: 3) equals: 2
 ]
 
-{ #category : #'linear algebra' }
+{ #category : #tests }
 PMMatrixTest >> testLinearEquationsSingle [
 	| s sol |
 	s := PMLinearEquationSystem
@@ -175,6 +233,13 @@ PMMatrixTest >> testMatrixCloseToPrecision [
 	self assert: (a closeTo: b precision: 1.0).
 	self deny: (a closeTo: b precision: 0.6).
 	self deny: (a closeTo: b precision: 0.2)
+]
+
+{ #category : #comparing }
+PMMatrixTest >> testMatrixCos [
+	| a |
+	a := PMMatrix rows: {{Float pi. Float pi.}. {0. 0.}}.
+	self assert: a cos equals: (PMMatrix rows:#((-1 -1) (1 1)))
 ]
 
 { #category : #'linear algebra' }
@@ -374,11 +439,17 @@ PMMatrixTest >> testMatrixMultiplyElementwise [
 	self assert: ((c rowAt: 2) at: 3) equals: 21
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'linear algebra' }
 PMMatrixTest >> testMatrixPrincipalDiagonal [
 	| a |
 	a := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
 	self assert: a principalDiagonal equals: #(1 5 9) asPMVector.
+
+{ #category : #comparing }
+PMMatrixTest >> testMatrixSign [
+	| a |
+	a := PMMatrix rows: #(#(-2 2 0) #(2 0 -2)).
+	self assert: a sign equals: (PMMatrix rows: #((-1 1 0) (1 0 -1)))
 ]
 
 { #category : #'linear algebra' }
@@ -435,8 +506,26 @@ PMMatrixTest >> testPrintOn [
 	| m stream |
 	stream := String new writeStream.
 	m := PMMatrix new.
-	"this raised an error:"
-	self shouldnt: [m printOn: stream] raise: Error 
+	m printOn: stream
+]
+
+{ #category : #comparing }
+PMMatrixTest >> testRowsColumns [
+	| a |
+	
+	a := PMMatrix rows: 3 columns: 4.
+	self assert: a dimension equals: 3 @ 4.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testRowsColumnsElement [
+
+	| a |
+	
+	a := PMMatrix rows: 3 columns: 4 element: 1.
+	self assert: a dimension equals: 3 @ 4.
+	self assert: a equals: (PMMatrix rows: #(#(1 1 1 1) #(1 1 1 1) #(1 1 1 1)))
+
 ]
 
 { #category : #tests }

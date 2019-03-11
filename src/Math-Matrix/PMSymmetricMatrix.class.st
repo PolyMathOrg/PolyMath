@@ -96,8 +96,9 @@ PMSymmetricMatrix >> addWithSymmetricMatrix: aMatrix [
 
 { #category : #transformation }
 PMSymmetricMatrix >> asSymmetricMatrix [
-"simple speed up"
-^self
+	"simple speed up"
+
+	^ self
 ]
 
 { #category : #information }

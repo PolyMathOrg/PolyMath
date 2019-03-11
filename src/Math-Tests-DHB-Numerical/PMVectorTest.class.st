@@ -35,6 +35,15 @@ PMVectorTest >> testAddToScalar [
 ]
 
 { #category : #tests }
+PMVectorTest >> testArgMax [
+	| v1 v2 |
+	v1 := #(1 5 3 2 0) asPMVector.
+	v2 := #(1 5 3 5 0) asPMVector.
+	self assert: v1 argMax equals: 2.
+	self assert: v2 argMax equals: 2
+]
+
+{ #category : #tests }
 PMVectorTest >> testAsArray [
 	self assert: #(1 2 3 4) asPMVector asArray equals: #(1 2 3 4)
 ]

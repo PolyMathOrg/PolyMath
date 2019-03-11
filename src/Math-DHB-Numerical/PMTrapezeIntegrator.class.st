@@ -26,12 +26,6 @@ PMTrapezeIntegrator class >> function: aBlock from: aNumber1 to: aNumber2 [
 	^super new initialize: aBlock from: aNumber1 to: aNumber2
 ]
 
-{ #category : #creation }
-PMTrapezeIntegrator class >> new [
-		"Private"
-	^self error: 'Method new:from:to: must be used'
-]
-
 { #category : #operation }
 PMTrapezeIntegrator >> computeInitialValues [
 		"Private"

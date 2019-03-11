@@ -1,5 +1,5 @@
 "
-A DhbFloatingPointMachine represents the numerical precision of this system.
+A PMFloatingPointMachine represents the numerical precision of this system.
 
 Instance Variables
 
@@ -26,8 +26,6 @@ largestExponentArgument
 
 This class is detailed in Object Oriented Implementation of Numerical Methods, Section 1.4.1 and 1.4.2.
 
-(c) Copyrights Didier BESSET, 1999.
-
 "
 Class {
 	#name : #PMFloatingPointMachine,
@@ -45,20 +43,18 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'Math-Core'
+	#category : #'Math-Core'
 }
 
-{ #category : #creation }
+{ #category : #'instance creation' }
 PMFloatingPointMachine class >> new [
-	
-	UniqueInstance ifNil: [ UniqueInstance := super new].
+	UniqueInstance ifNil: [ UniqueInstance := super new ].
 	^ UniqueInstance
 ]
 
-{ #category : #creation }
+{ #category : #accessing }
 PMFloatingPointMachine class >> reset [
-
-	UniqueInstance := nil.
+	UniqueInstance := nil
 ]
 
 { #category : #information }
@@ -73,7 +69,7 @@ PMFloatingPointMachine >> computeLargestNumber [
 	    fullMantissaNumber isInfinite ifTrue: [^nil].
 	    largestNumber := fullMantissaNumber.
 		true] whileTrue: [ ].
-		] on: Error do: [ :signal | signal return: nil].
+		] on: Error do: [ :signal | signal return: nil]
 ]
 
 { #category : #information }
@@ -86,7 +82,7 @@ PMFloatingPointMachine >> computeMachinePrecision [
 	machinePrecision := one.
 	[ tmp := one + machinePrecision.
 	  tmp - one = zero]
-		whileFalse:[  machinePrecision := machinePrecision * inverseRadix].
+		whileFalse:[  machinePrecision := machinePrecision * inverseRadix]
 ]
 
 { #category : #information }
@@ -100,7 +96,7 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 	negativeMachinePrecision := one.
 	[ tmp := one - negativeMachinePrecision.
 	  tmp - one = zero]
-		whileFalse:[ negativeMachinePrecision := negativeMachinePrecision * inverseRadix].
+		whileFalse:[ negativeMachinePrecision := negativeMachinePrecision * inverseRadix]
 ]
 
 { #category : #information }
@@ -118,7 +114,7 @@ PMFloatingPointMachine >> computeRadix [
 	[ b := b + b.
 	  tmp1 := a + b.
 	  radix := ( tmp1 - a) truncated.
-	  radix = 0 ] whileTrue: [].
+	  radix = 0 ] whileTrue: []
 ]
 
 { #category : #information }
@@ -189,7 +185,6 @@ PMFloatingPointMachine >> radix [
 { #category : #display }
 PMFloatingPointMachine >> showParameters [
 
-		"added 'Transcript flush' to make sure that the transcript window gets updated"
 	Transcript cr; cr;
 			nextPutAll: 'Floating-point machine parameters'; cr;
 			nextPutAll: '---------------------------------';cr;
@@ -203,7 +198,7 @@ PMFloatingPointMachine >> showParameters [
 	self smallestNumber printOn: Transcript.
 	Transcript cr; nextPutAll: 'Largest number: '.
 	self largestNumber printOn: Transcript.
-	Transcript flush.
+	Transcript flush
 ]
 
 { #category : #information }

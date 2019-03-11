@@ -113,6 +113,13 @@ PMVector >> accumulateNegated: aVectorOrAnArray [
 	1 to: self size do: [ :n | self at: n put: ((self at: n) - (aVectorOrAnArray at: n))].
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> argMax [
+	| a |
+	a := self asArray.
+	^ a indexOf: a max
+]
+
 { #category : #converting }
 PMVector >> asArray [
 	
