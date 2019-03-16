@@ -25,13 +25,14 @@ SciKitLearnEigenvectorFlipAlgorithm class >> u: u v: v [
 
 { #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
-	| maxAbsCols i |
+	| maxAbsCols i maxElements |
 	maxAbsCols := u abs argMaxOnColumns.
 	i := 0.
-	^ (u
+	maxElements := u transpose 
 		rowsCollect: [ :each | 
 			i := i + 1.
-			each at: (maxAbsCols at: i) ]) sign
+			each at: (maxAbsCols at: i) ].
+	^ maxElements sign
 ]
 
 { #category : #accessing }
@@ -45,7 +46,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 	| signs |
 	signs := self computeSignsFromU.
 	u := u * signs.
-	v := v productWithVector: (signs copyFrom: 1 to: v numberOfColumns)
+	v := v * (signs copyFrom: 1 to: v numberOfColumns)
 ]
 
 { #category : #accessing }

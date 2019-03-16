@@ -9,7 +9,7 @@ Class {
 }
 
 { #category : #tests }
-SciKitLearnEigenvectorFlipAlgorithmTest >> testFlipEigenvectorsSign [
+SciKitLearnEigenvectorFlipAlgorithmTest >> testComputeSignsFromU [
 	"The purpose is to compare the output from fligEigenVectorsSign in
 	PolyMath with scikit-learn
 	"
@@ -23,6 +23,6 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testFlipEigenvectorsSign [
 	
 	signs := flipAlgorithm computeSignsFromU .
 	
-	expected := #(-1 -1 -1 1 1 -1) asPMVector.
+	expected := #(-1 1 1 1 1 1) asPMVector .
 	self assert: signs equals: expected
 ]
