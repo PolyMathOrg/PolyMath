@@ -32,7 +32,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
 		rowsCollect: [ :each | 
 			i := i + 1.
 			each at: (maxAbsCols at: i) ].
-	^ maxElements sign
+	^ maxElements sign asPMVector 
 ]
 
 { #category : #accessing }
