@@ -49,7 +49,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 { #category : #initialization }
 SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
-	"instanciate the algorithm"
+	"instantiate the algorithm"
 	u := uMatrix.
 	v := vMatrix.
 	signs := self computeSignsFromU .
