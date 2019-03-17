@@ -43,10 +43,24 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 	"does not work at the moment"
 
-	| signs |
+	| signs matrixForV |
 	signs := self computeSignsFromU.
-	u := u * signs.
-	v := v * (signs copyFrom: 1 to: v numberOfColumns)
+	u := u rowsCollect: [ :row | row dot: signs ].
+	matrixForV := self signMatrixForV: signs.
+	v := v dot: matrixForV
+]
+
+{ #category : #accessing }
+SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV: signs [
+	| signsForV |
+	signsForV := signs copyFrom: 1 to: v numberOfColumns.
+	^ PMMatrix
+		rows:
+			((1 to: v numberOfRows)
+				inject: OrderedCollection new
+				into: [ :rows :eachRow | 
+					rows add: signsForV.
+					rows ])
 ]
 
 { #category : #accessing }
