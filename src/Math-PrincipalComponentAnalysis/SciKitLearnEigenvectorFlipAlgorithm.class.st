@@ -43,10 +43,8 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 	"does not work at the moment"
 
-	| matrixForV |
 	u := u rowsCollect: [ :row | row dot: signs ].
-	matrixForV := self signMatrixForV.
-	v := v dot: matrixForV
+	v := v dot: (self signMatrixForV)
 ]
 
 { #category : #initialization }
