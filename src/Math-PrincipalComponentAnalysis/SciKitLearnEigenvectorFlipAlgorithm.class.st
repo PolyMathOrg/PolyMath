@@ -11,9 +11,7 @@ Class {
 	#instVars : [
 		'u',
 		'v',
-		'signs',
-		'uFlipped',
-		'vFlipped'
+		'signs'
 	],
 	#category : #'Math-PrincipalComponentAnalysis'
 }
