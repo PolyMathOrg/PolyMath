@@ -58,6 +58,18 @@ SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 ]
 
 { #category : #accessing }
+SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForU [
+	^ PMMatrix
+		rows:
+			((1 to: u numberOfRows)
+				inject: OrderedCollection new
+				into: [ :rows :eachRow | 
+					rows
+						add: signs;
+						yourself ])
+]
+
+{ #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV [
 	| signsForV |
 	signsForV := self signs copyFrom: 1 to: v numberOfColumns.
