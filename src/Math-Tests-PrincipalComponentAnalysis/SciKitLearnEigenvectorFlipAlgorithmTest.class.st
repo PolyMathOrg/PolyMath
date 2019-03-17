@@ -83,7 +83,7 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testSignMatrixForV [
  		 [ 0.54491354 -0.83849224]]    
 	"
 
-	| u v signAlgo signs expected |
+	| u v signAlgo expected |
 	u := PMMatrix rows: #(
 		#(-0.21956688 0.53396977) 
 		#(-0.35264795 -0.45713538) 
