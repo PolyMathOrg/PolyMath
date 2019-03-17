@@ -29,7 +29,7 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testComputeSignsFromU [
 
 { #category : #tests }
 SciKitLearnEigenvectorFlipAlgorithmTest >> testSignMatrixForU [
-	"We compute a matrix of signs for u with which
+	"We compute a matrix of signs for U with which
 	we perform a 'dot product' with the original
 	matrix V
 	(by 'dot product' we mean send the dot: message)
