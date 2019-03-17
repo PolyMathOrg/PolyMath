@@ -41,8 +41,6 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 	"U-based decision like : https://github.com/scikit-learn/scikit-learn/blob/4c65d8e615c9331d37cbb6225c5b67c445a5c959/sklearn/utils/extmath.py#L609"
 
-	"does not work at the moment"
-
 	u := u rowsCollect: [ :row | row dot: signs ].
 	v := v dot: (self signMatrixForV)
 ]
