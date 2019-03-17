@@ -5,8 +5,26 @@ This is the test class that exercises scikit-learn Eigenvector Flip Algorithm
 Class {
 	#name : #SciKitLearnEigenvectorFlipAlgorithmTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'u',
+		'v'
+	],
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
+
+{ #category : #initialization }
+SciKitLearnEigenvectorFlipAlgorithmTest >> setUpScikitLearnExample [
+	u := PMMatrix rows: #(
+		#(-0.21956688 0.53396977) 
+		#(-0.35264795 -0.45713538) 
+		#(-0.57221483  0.07683439) 
+		#( 0.21956688 -0.53396977) 
+		#( 0.35264795  0.45713538) 
+		#( 0.57221483 -0.07683439)).
+	v := PMMatrix rows: #(
+		#(0.83849224  0.54491354) 
+		#(0.54491354 -0.83849224)).
+]
 
 { #category : #tests }
 SciKitLearnEigenvectorFlipAlgorithmTest >> testComputeSignsFromU [
@@ -46,17 +64,8 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testSignMatrixForU [
  		 [ 0.54491354 -0.83849224]]    
 	"
 
-	| u v signAlgo expected |
-	u := PMMatrix rows: #(
-		#(-0.21956688 0.53396977) 
-		#(-0.35264795 -0.45713538) 
-		#(-0.57221483  0.07683439) 
-		#( 0.21956688 -0.53396977) 
-		#( 0.35264795  0.45713538) 
-		#( 0.57221483 -0.07683439)).
-	v := PMMatrix rows: #(
-		#(0.83849224  0.54491354) 
-		#(0.54491354 -0.83849224)).
+	| signAlgo expected |
+	self setUpScikitLearnExample .
 	signAlgo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
 	expected := PMMatrix rows: #(#(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1)).
@@ -83,17 +92,8 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testSignMatrixForV [
  		 [ 0.54491354 -0.83849224]]    
 	"
 
-	| u v signAlgo expected |
-	u := PMMatrix rows: #(
-		#(-0.21956688 0.53396977) 
-		#(-0.35264795 -0.45713538) 
-		#(-0.57221483  0.07683439) 
-		#( 0.21956688 -0.53396977) 
-		#( 0.35264795  0.45713538) 
-		#( 0.57221483 -0.07683439)).
-	v := PMMatrix rows: #(
-		#(0.83849224  0.54491354) 
-		#(0.54491354 -0.83849224)).
+	| signAlgo expected |
+	self setUpScikitLearnExample .
 	signAlgo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
 	expected := PMMatrix rows: #(#(-1 -1) #(1 1)).
@@ -116,17 +116,8 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testUFlipped [
  		 [ 0.54491354 -0.83849224]]    
 	"
 
-	| u v signAlgo expected |
-	u := PMMatrix rows: #(
-		#(-0.21956688 0.53396977) 
-		#(-0.35264795 -0.45713538) 
-		#(-0.57221483  0.07683439) 
-		#( 0.21956688 -0.53396977) 
-		#( 0.35264795  0.45713538) 
-		#( 0.57221483 -0.07683439)).
-	v := PMMatrix rows: #(
-		#(0.83849224  0.54491354) 
-		#(0.54491354 -0.83849224)).
+	| signAlgo expected |
+	self setUpScikitLearnExample .
 	signAlgo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
 	expected := PMMatrix rows: #(
@@ -158,17 +149,8 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testVFlipped [
  		 [ 0.54491354 -0.83849224]]    
 	"
 
-	| u v signAlgo expected |
-	u := PMMatrix rows: #(
-		#(-0.21956688 0.53396977) 
-		#(-0.35264795 -0.45713538) 
-		#(-0.57221483  0.07683439) 
-		#( 0.21956688 -0.53396977) 
-		#( 0.35264795  0.45713538) 
-		#( 0.57221483 -0.07683439)).
-	v := PMMatrix rows: #(
-		#(0.83849224  0.54491354) 
-		#(0.54491354 -0.83849224)).
+	| signAlgo expected |
+	self setUpScikitLearnExample .
 	signAlgo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
 	expected := PMMatrix rows: #(
