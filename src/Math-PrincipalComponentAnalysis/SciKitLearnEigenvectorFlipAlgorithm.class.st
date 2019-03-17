@@ -90,10 +90,10 @@ SciKitLearnEigenvectorFlipAlgorithm >> signs [
 
 { #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> uFlipped [
-	^ uFlipped .
+	^ PMMatrix rows: (u rowsCollect: [ :row | row dot: signs ]).
 ]
 
 { #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> vFlipped [
-	^ vFlipped .
+	^ v dot: (self signMatrixForV) .
 ]
