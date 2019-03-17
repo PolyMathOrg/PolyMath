@@ -89,18 +89,8 @@ SciKitLearnEigenvectorFlipAlgorithm >> signs [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> u [
-	^u
-]
-
-{ #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> uFlipped [
 	^ uFlipped .
-]
-
-{ #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> v [
-	^v
 ]
 
 { #category : #accessing }
