@@ -57,10 +57,8 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testSignMatrixForV [
 	v := PMMatrix rows: #(
 		#(0.83849224  0.54491354) 
 		#(0.54491354 -0.83849224)).
-	signs := #(-1 1 1 1 1 1) asPMVector .
 	signAlgo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
-	
 	expected := PMMatrix rows: #(#(-1 1) #(-1 1)).
-	self assert: (signAlgo signMatrixForV: signs) equals: expected
+	self assert: (signAlgo signMatrixForV) equals: expected
 ]

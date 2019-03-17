@@ -10,7 +10,8 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'u',
-		'v'
+		'v',
+		'signs'
 	],
 	#category : #'Math-PrincipalComponentAnalysis'
 }
@@ -18,8 +19,7 @@ Class {
 { #category : #'instance creation' }
 SciKitLearnEigenvectorFlipAlgorithm class >> u: u v: v [
 	^ self new
-		u: u;
-		v: v;
+		initializeWithU: u andV: v;
 		yourself
 ]
 
@@ -43,24 +43,39 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 	"does not work at the moment"
 
-	| signs matrixForV |
-	signs := self computeSignsFromU.
+	| matrixForV |
 	u := u rowsCollect: [ :row | row dot: signs ].
-	matrixForV := self signMatrixForV: signs.
+	matrixForV := self signMatrixForV.
 	v := v dot: matrixForV
 ]
 
+{ #category : #initialization }
+SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
+	"instanciate the algorithm"
+	u := uMatrix.
+	v := vMatrix.
+	signs := self computeSignsFromU .
+
+
+]
+
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV: signs [
+SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV [
 	| signsForV |
-	signsForV := signs copyFrom: 1 to: v numberOfColumns.
+	signsForV := self signs copyFrom: 1 to: v numberOfColumns.
 	^ PMMatrix
 		rows:
 			((1 to: v numberOfRows)
 				inject: OrderedCollection new
 				into: [ :rows :eachRow | 
-					rows add: signsForV.
-					rows ])
+					rows
+						add: signsForV;
+						yourself ])
+]
+
+{ #category : #accessing }
+SciKitLearnEigenvectorFlipAlgorithm >> signs [
+	^ signs
 ]
 
 { #category : #accessing }
@@ -69,16 +84,6 @@ SciKitLearnEigenvectorFlipAlgorithm >> u [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> u: leftSingularVectors [
-	u := leftSingularVectors 
-]
-
-{ #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> v [
 	^v
-]
-
-{ #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> v: rightSingularVectors [
-	v := rightSingularVectors.
 ]
