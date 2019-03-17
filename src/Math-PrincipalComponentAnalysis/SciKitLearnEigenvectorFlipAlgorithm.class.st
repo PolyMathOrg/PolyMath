@@ -11,7 +11,9 @@ Class {
 	#instVars : [
 		'u',
 		'v',
-		'signs'
+		'signs',
+		'uFlipped',
+		'vFlipped'
 	],
 	#category : #'Math-PrincipalComponentAnalysis'
 }
@@ -41,8 +43,8 @@ SciKitLearnEigenvectorFlipAlgorithm >> flipSign [
 
 	"U-based decision like : https://github.com/scikit-learn/scikit-learn/blob/4c65d8e615c9331d37cbb6225c5b67c445a5c959/sklearn/utils/extmath.py#L609"
 
-	u := u rowsCollect: [ :row | row dot: signs ].
-	v := v dot: (self signMatrixForV)
+	uFlipped := u rowsCollect: [ :row | row dot: signs ].
+	vFlipped := v dot: (self signMatrixForV)
 ]
 
 { #category : #initialization }
@@ -92,6 +94,16 @@ SciKitLearnEigenvectorFlipAlgorithm >> u [
 ]
 
 { #category : #accessing }
+SciKitLearnEigenvectorFlipAlgorithm >> uFlipped [
+	^ uFlipped .
+]
+
+{ #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> v [
 	^v
+]
+
+{ #category : #accessing }
+SciKitLearnEigenvectorFlipAlgorithm >> vFlipped [
+	^ vFlipped .
 ]
