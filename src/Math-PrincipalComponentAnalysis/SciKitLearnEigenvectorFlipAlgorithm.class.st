@@ -73,14 +73,14 @@ SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForU [
 SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV [
 	| signsForV |
 	signsForV := self signs copyFrom: 1 to: v numberOfColumns.
-	^ PMMatrix
+	^ (PMMatrix
 		rows:
 			((1 to: v numberOfRows)
 				inject: OrderedCollection new
 				into: [ :rows :eachRow | 
 					rows
 						add: signsForV;
-						yourself ])
+						yourself ])) transpose
 ]
 
 { #category : #accessing }
