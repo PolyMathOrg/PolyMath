@@ -38,8 +38,8 @@ SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
 { #category : #initialization }
 SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 	"instantiate the algorithm"
-	u := uMatrix.
-	v := vMatrix.
+	u := uMatrix .
+	v := vMatrix .
 	signs := self computeSignsFromU .
 
 

@@ -32,16 +32,13 @@ SciKitLearnEigenvectorFlipAlgorithmTest >> testComputeSignsFromU [
 	PolyMath with scikit-learn
 	"
 
-	| m u v flipAlgorithm svd expected signs |
-	m := PMMatrix rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).
-	svd := PMSingularValueDecomposition new initialize: m.
-	u := svd leftSingularForm.
-	v := svd rightSingularForm.
+	| flipAlgorithm expected signs |
+	self setUpScikitLearnExample .
 	flipAlgorithm := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
 	
 	signs := flipAlgorithm computeSignsFromU .
 	
-	expected := #(-1 1 1 1 1 1) asPMVector .
+	expected := #(-1 1) asPMVector .
 	self assert: signs equals: expected
 ]
 
