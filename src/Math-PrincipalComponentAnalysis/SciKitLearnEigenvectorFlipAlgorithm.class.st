@@ -78,7 +78,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> signs [
 
 { #category : #accessing }
 SciKitLearnEigenvectorFlipAlgorithm >> uFlipped [
-	^ PMMatrix rows: (u rowsCollect: [ :row | row dot: signs ]).
+	^ u dot: (self signMatrixForU).
 ]
 
 { #category : #accessing }
