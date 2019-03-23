@@ -49,14 +49,11 @@ PMPrincipalComponentAnalyserSVD >> flipEigenvectorsSign [
 	"flip eigenvectors sign to enforce deterministic output"
 	"U-based decision like : https://github.com/scikit-learn/scikit-learn/blob/4c65d8e615c9331d37cbb6225c5b67c445a5c959/sklearn/utils/extmath.py#L609"
 	
-	"does not work at the moment"
-	| signs maxAbsCols i |
-	maxAbsCols := (u abs) argMaxOnColumns.
-	i := 0.
-	signs := (u rowsCollect: [ :each| i := i + 1. each at: (maxAbsCols at: i)
-		]) sign.
-	u := u * signs.
-	v := v productWithVector: (signs copyFrom:1 to: v numberOfColumns)
+	| algo |
+	algo := SciKitLearnEigenvectorFlipAlgorithm u: u v: v.
+	
+	u := algo uFlipped . 
+	v := algo vFlipped . 
 ]
 
 { #category : #accessing }
