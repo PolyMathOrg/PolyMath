@@ -17,7 +17,7 @@ Class {
 }
 
 { #category : #'instance creation' }
-SciKitLearnEigenvectorFlipAlgorithm class >> u: u v: v [
+SciKitLearnEigenvectorFlipAlgorithm class >> flipU: u andV: v [
 	^ self new
 		initializeWithU: u andV: v;
 		yourself
