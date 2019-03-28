@@ -1,14 +1,15 @@
 SmalltalkCISpec {
   #loading : [
     SCIMetacelloLoadSpec {
-      #baseline : 'PolyMath',
+      #baseline : 'Kendrick',
       #directory : 'src',
       #platforms : [ #pharo ]
     }
   ],
   #testing : {
-    #categories : [ 'Math-*' ]
-  }
+    #categories : [ 'Kendrick-Tests-*', 'Kendrick-InternalDSL'],
+     #coverage : {
+      #categories : [ 'Kendrick-*' ]
+      }
+   }
 }
-
-
