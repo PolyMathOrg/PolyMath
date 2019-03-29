@@ -27,7 +27,7 @@ PMKolmogorovSmirnov2sampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 ]
 
 { #category : #tests }
-KolmogorovSmirnov2sampleTest >> testSecondSmallSample [
+PMKolmogorovSmirnov2sampleTest >> testSecondSmallSample [
 	"sample from Kim, P. J. & Jennrich, R. I. 
 	Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
 	in Selected Tables in Mathematical Statistics Volume I (1973)"
