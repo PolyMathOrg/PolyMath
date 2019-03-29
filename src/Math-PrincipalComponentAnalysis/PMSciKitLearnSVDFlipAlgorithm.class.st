@@ -6,7 +6,7 @@ This class uses the SciKit-Learn SVD flip algorithm to ensure the signs of the e
 
 "
 Class {
-	#name : #SciKitLearnEigenvectorFlipAlgorithm,
+	#name : #PMSciKitLearnSVDFlipAlgorithm,
 	#superclass : #Object,
 	#instVars : [
 		'u',
@@ -17,14 +17,14 @@ Class {
 }
 
 { #category : #'instance creation' }
-SciKitLearnEigenvectorFlipAlgorithm class >> flipU: u andV: v [
+PMSciKitLearnSVDFlipAlgorithm class >> flipU: u andV: v [
 	^ self new
 		initializeWithU: u andV: v;
 		yourself
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
+PMSciKitLearnSVDFlipAlgorithm >> computeSignsFromU [
 	| maxAbsCols i maxElements |
 	maxAbsCols := u abs argMaxOnColumns.
 	i := 0.
@@ -36,7 +36,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> computeSignsFromU [
 ]
 
 { #category : #initialization }
-SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
+PMSciKitLearnSVDFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 	"instantiate the algorithm"
 	u := uMatrix .
 	v := vMatrix .
@@ -46,7 +46,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForU [
+PMSciKitLearnSVDFlipAlgorithm >> signMatrixForU [
 	^ PMMatrix
 		rows:
 			((1 to: u numberOfRows)
@@ -58,7 +58,7 @@ SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForU [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV [
+PMSciKitLearnSVDFlipAlgorithm >> signMatrixForV [
 	| signsForV |
 	signsForV := self signs copyFrom: 1 to: v numberOfColumns.
 	^ (PMMatrix
@@ -72,16 +72,16 @@ SciKitLearnEigenvectorFlipAlgorithm >> signMatrixForV [
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> signs [
+PMSciKitLearnSVDFlipAlgorithm >> signs [
 	^ signs
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> uFlipped [
+PMSciKitLearnSVDFlipAlgorithm >> uFlipped [
 	^ u dot: (self signMatrixForU).
 ]
 
 { #category : #accessing }
-SciKitLearnEigenvectorFlipAlgorithm >> vFlipped [
+PMSciKitLearnSVDFlipAlgorithm >> vFlipped [
 	^ v dot: (self signMatrixForV) .
 ]
