@@ -444,6 +444,7 @@ PMMatrixTest >> testMatrixPrincipalDiagonal [
 	| a |
 	a := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
 	self assert: a principalDiagonal equals: #(1 5 9) asPMVector.
+]
 
 { #category : #comparing }
 PMMatrixTest >> testMatrixSign [
@@ -712,8 +713,4 @@ PMMatrixTest >> testZerosMatrix [
 	self assert: ((a rowAt: 2) at: 1) equals: 0.
 	self assert: ((a rowAt: 2) at: 2) equals: 0.
 	self assert: ((a rowAt: 2) at: 3) equals: 0
-
-
-
-
 ]
