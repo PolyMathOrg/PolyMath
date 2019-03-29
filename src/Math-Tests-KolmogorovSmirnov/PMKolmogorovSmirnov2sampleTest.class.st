@@ -16,19 +16,21 @@ PMKolmogorovSmirnov2sampleTest >> initialize [
 PMKolmogorovSmirnov2sampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	| nd ks |
 	nd := PMNormalDistribution new.
-	ks := PMKolmogorovSmirnov2Sample compareData: ((1 to: 100) collect: [ :i | nd random ]) withData: ((1 to: 100) collect: [ :i | nd random ]).	"-->
-	a KolmogorovSmirnov2Sample(dataSize: 100 otherDataSize: 100)"
-	ks ksStatistic.	"-->(9/100)"
-	ks pValue asFloat.	"-->0.18458528753386905"
-	self assert: (ks rejectEqualityHypothesisWithAlpha: 0.05) equals: false
+	ks := PMKolmogorovSmirnov2Sample
+		compareData: ((1 to: 100) collect: [ :i | nd random ])
+		withData: ((1 to: 100) collect: [ :i | nd random ]).
+	ks ksStatistic.
+	ks pValue asFloat.
+	self
+		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
+		equals: false
 ]
 
 { #category : #tests }
-PMKolmogorovSmirnov2sampleTest >> testSecondSmallSample [
-	"sample from 
-Kim, P. J. & Jennrich, R. I. 
-Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
-in Selected Tables in Mathematical Statistics Volume I (1973)"
+KolmogorovSmirnov2sampleTest >> testSecondSmallSample [
+	"sample from Kim, P. J. & Jennrich, R. I. 
+	Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
+	in Selected Tables in Mathematical Statistics Volume I (1973)"
 
 	| d1 d2 |
 	d1 := #(0.723 0.382 -0.854 -1.318 0.847 -0.41 -0.111).
@@ -56,7 +58,7 @@ PMKolmogorovSmirnov2sampleTest >> testSmallSample [
 	k data: d1.
 	k otherData: d2.
 	self assert: (1 - k pValue asFloat roundTo: 0.00001) equals: 0.06063.
-	self assert: k ksStatistic equals: 5 / 9.	"0.55555...6"
+	self assert: k ksStatistic equals: 5 / 9.
 	self deny: (k rejectEqualityHypothesisWithAlpha: 0.05).
 	self assert: (k rejectEqualityHypothesisWithAlpha: 0.07)
 ]
