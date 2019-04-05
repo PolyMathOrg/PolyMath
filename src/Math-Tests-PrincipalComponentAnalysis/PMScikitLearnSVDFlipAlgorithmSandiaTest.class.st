@@ -42,8 +42,7 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> setUp [
 { #category : #'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForU [
 	| expected |
-	self setUp.
-
+	
 	expected := PMMatrix
 		rows:
 			#(#(-1 1 -1 -1) #(-1 1 -1 -1) #(-1 1 -1 -1) #(-1 1 -1 -1)).
@@ -54,8 +53,6 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForU [
 { #category : #'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForV [
 	| expected |
-	self setUp.
-
 	expected := PMMatrix
 		rows:
 			#(#(-1 -1 -1 -1) #(1 1 1 1) #(-1 -1 -1 -1) #(-1 -1 -1 -1)).

@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #initialization }
-PMSciKitLearnSVDFlipAlgorithmTest >> setUpScikitLearnExample [
+PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
 "  We compute a matrix of signs for U with which
 	we perform a 'dot product' with the original
 	matrix V
@@ -54,8 +54,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 	"
 
 	| expected signs |
-	self setUpScikitLearnExample.
-
+	
 	signs := flipAlgorithm computeSignsFromU.
 
 	expected := #(-1 1) asPMVector.
@@ -65,9 +64,8 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 { #category : #'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForU [
 	| expected |
-	self setUpScikitLearnExample .
-	
 	expected := PMMatrix rows: #(#(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1)).
+	
 	self assert: (flipAlgorithm signMatrixForU) equals: expected
 
 ]
@@ -75,17 +73,14 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForU [
 { #category : #'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForV [
 	| expected |
-	self setUpScikitLearnExample .
-	
 	expected := PMMatrix rows: #(#(-1 -1) #(1 1)).
+	
 	self assert: (flipAlgorithm signMatrixForV) equals: expected
 ]
 
 { #category : #'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testUFlipped [
 	| expected |
-	self setUpScikitLearnExample .
-	
 	expected := PMMatrix rows: #(
 						#(0.21956688  0.53396977)
    						#(0.35264795 -0.45713538)
@@ -102,8 +97,6 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testUFlipped [
 { #category : #'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testVFlipped [
 	| expected |
-	self setUpScikitLearnExample.
-
 	expected := PMMatrix rows: #(#(-0.83849224 -0.54491354) #(0.54491354 -0.83849224)).
 
 	self assert: flipAlgorithm vFlipped equals: expected
