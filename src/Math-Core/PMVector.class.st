@@ -115,16 +115,8 @@ PMVector >> accumulateNegated: aVectorOrAnArray [
 
 { #category : #'as yet unclassified' }
 PMVector >> argMax [
-	| precision |
-	precision := 1.0e-10.
-	^ self argMaxTo: precision
-]
-
-{ #category : #'as yet unclassified' }
-PMVector >> argMaxTo: roundingPrecision [
 	| a |
-	a := self asArray
-		collect: [ :element | element truncateTo: roundingPrecision ].
+	a := self asArray.
 	^ a indexOf: a max
 ]
 
