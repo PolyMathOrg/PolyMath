@@ -16,7 +16,7 @@ Class {
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #'pca tutorial' }
+{ #category : #'lindsay-smith-pca-tutorial' }
 PMPrincipalComponentAnalyserTest >> testJacobiBasedTransformWithMeanCentredMeasurements [
 	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
 	| meanCentredData pca transformedData expected |
@@ -51,7 +51,7 @@ PMPrincipalComponentAnalyserTest >> testJacobiBasedTransformWithMeanCentredMeasu
 	self assert: (transformedData abs) closeTo: expected abs.
 ]
 
-{ #category : #tests }
+{ #category : #'scikit-learn-example' }
 PMPrincipalComponentAnalyserTest >> testPCAwithPCAandJacobiTransformationReturnSame [
 	| m pca1 pca2 |
 	m := PMMatrix rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).
@@ -63,7 +63,7 @@ PMPrincipalComponentAnalyserTest >> testPCAwithPCAandJacobiTransformationReturnS
 	self assert: pca1 transformMatrix abs closeTo: pca2 transformMatrix abs
 ]
 
-{ #category : #'pca tutorial' }
+{ #category : #'lindsay-smith-pca-tutorial' }
 PMPrincipalComponentAnalyserTest >> testSVDBasedTransformWithMeanCentredMeasurements [
 	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
 
@@ -99,7 +99,7 @@ PMPrincipalComponentAnalyserTest >> testSVDBasedTransformWithMeanCentredMeasurem
 	self assert: (transformedData abs) closeTo: expected abs.
 ]
 
-{ #category : #tests }
+{ #category : #'scikit-learn-example' }
 PMPrincipalComponentAnalyserTest >> testTransformMatrixWithJacobiTransformation [
 	| m pca expected |
 	m := PMMatrix
@@ -114,7 +114,7 @@ PMPrincipalComponentAnalyserTest >> testTransformMatrixWithJacobiTransformation 
 	self assert: pca transformMatrix abs closeTo: expected
 ]
 
-{ #category : #tests }
+{ #category : #'scikit-learn-example' }
 PMPrincipalComponentAnalyserTest >> testTransformMatrixWithSVD [
 	| m pca expected |
 	m := PMMatrix
