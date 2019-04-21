@@ -1,16 +1,23 @@
 Class {
 	#name : #PMPCAJacobiTransformationTest,
 	#superclass : #TestCase,
+	#instVars : [
+		'pca'
+	],
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
+{ #category : #running }
+PMPCAJacobiTransformationTest >> setUp [
+	pca := PMPrincipalComponentAnalyserJacobiTransformation new componentsNumber: 2.
+	
+]
+
 { #category : #'scikit-learn-example' }
 PMPCAJacobiTransformationTest >> testTransformMatrix [
-	| m pca expected |
+	| m expected |
 	m := PMMatrix
 		rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).
-	pca := PMPrincipalComponentAnalyserJacobiTransformation new
-		componentsNumber: 2.
 	
 	pca fit: m.
 	
@@ -21,7 +28,7 @@ PMPCAJacobiTransformationTest >> testTransformMatrix [
 
 { #category : #'lindsay-smith-pca-tutorial' }
 PMPCAJacobiTransformationTest >> testTransformWithMeanCentredMeasurements [
-	| meanCentredData pca transformedData expected |
+	| meanCentredData transformedData expected |
 	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
 			#(-1.31 -1.21) 
@@ -34,7 +41,6 @@ PMPCAJacobiTransformationTest >> testTransformWithMeanCentredMeasurements [
 			#(-0.31 -0.31) 
 			#(-0.71 -1.01)
 		  ).
-	pca := PMPrincipalComponentAnalyserJacobiTransformation new componentsNumber: 2.
 
 	pca fit: meanCentredData.	
 	transformedData := pca transform: meanCentredData.

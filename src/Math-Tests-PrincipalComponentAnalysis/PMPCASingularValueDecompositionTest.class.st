@@ -11,10 +11,16 @@ Class {
 		'average',
 		'covarianceMatrix',
 		'accumulator',
-		'server'
+		'server',
+		'pca'
 	],
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
+
+{ #category : #running }
+PMPCASingularValueDecompositionTest >> setUp [
+	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2.
+]
 
 { #category : #'scikit-learn-example' }
 PMPCASingularValueDecompositionTest >> testPCAwithPCAandJacobiTransformationReturnSame [
@@ -30,10 +36,9 @@ PMPCASingularValueDecompositionTest >> testPCAwithPCAandJacobiTransformationRetu
 
 { #category : #'scikit-learn-example' }
 PMPCASingularValueDecompositionTest >> testTransformMatrix [
-	| m pca expected |
+	| m expected |
 	m := PMMatrix
 		rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).
-	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2.
 	
 	pca fit: m.
 	
@@ -44,7 +49,7 @@ PMPCASingularValueDecompositionTest >> testTransformMatrix [
 
 { #category : #'lindsay-smith-pca-tutorial' }
 PMPCASingularValueDecompositionTest >> testTransformWithMeanCentredMeasurements [
-	| meanCentredData pca transformedData expected |
+	| meanCentredData transformedData expected |
 	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
 			#(-1.31 -1.21) 
@@ -57,7 +62,6 @@ PMPCASingularValueDecompositionTest >> testTransformWithMeanCentredMeasurements 
 			#(-0.31 -0.31) 
 			#(-0.71 -1.01)
 		  ).
-	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2.
 
 	pca fit: meanCentredData.	
 	transformedData := pca transform: meanCentredData.
