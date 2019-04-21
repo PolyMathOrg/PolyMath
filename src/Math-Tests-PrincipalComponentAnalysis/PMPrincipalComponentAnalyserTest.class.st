@@ -18,7 +18,6 @@ Class {
 
 { #category : #'lindsay-smith-pca-tutorial' }
 PMPrincipalComponentAnalyserTest >> testJacobiBasedTransformWithMeanCentredMeasurements [
-	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
 	| meanCentredData pca transformedData expected |
 	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
@@ -65,8 +64,6 @@ PMPrincipalComponentAnalyserTest >> testPCAwithPCAandJacobiTransformationReturnS
 
 { #category : #'lindsay-smith-pca-tutorial' }
 PMPrincipalComponentAnalyserTest >> testSVDBasedTransformWithMeanCentredMeasurements [
-	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
-
 	| meanCentredData pca transformedData expected |
 	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
