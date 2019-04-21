@@ -19,8 +19,8 @@ Class {
 { #category : #'pca tutorial' }
 PMPrincipalComponentAnalyserTest >> testJacobiBasedTransformWithMeanCentredMeasurements [
 	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
-	| m pca transformedData expected |
-	m := PMMatrix rows: #(
+	| meanCentredData pca transformedData expected |
+	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
 			#(-1.31 -1.21) 
 			#(0.39 0.99) 
@@ -34,8 +34,8 @@ PMPrincipalComponentAnalyserTest >> testJacobiBasedTransformWithMeanCentredMeasu
 		  ).
 	pca := PMPrincipalComponentAnalyserJacobiTransformation new componentsNumber: 2.
 
-	pca fit: m.	
-	transformedData := pca transform: m.
+	pca fit: meanCentredData.	
+	transformedData := pca transform: meanCentredData.
 	
 	expected := PMMatrix rows: #(
 						#(-0.827970186 -0.175115307) 
@@ -67,8 +67,8 @@ PMPrincipalComponentAnalyserTest >> testPCAwithPCAandJacobiTransformationReturnS
 PMPrincipalComponentAnalyserTest >> testSVDBasedTransformWithMeanCentredMeasurements [
 	"As acceptance tests we use the worked example of the PCA tutorial of Lindsay Smith"
 
-	| m pca transformedData expected |
-	m := PMMatrix rows: #(
+	| meanCentredData pca transformedData expected |
+	meanCentredData := PMMatrix rows: #(
 			#(0.69 0.49) 
 			#(-1.31 -1.21) 
 			#(0.39 0.99) 
@@ -82,8 +82,8 @@ PMPrincipalComponentAnalyserTest >> testSVDBasedTransformWithMeanCentredMeasurem
 		  ).
 	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2.
 
-	pca fit: m.	
-	transformedData := pca transform: m.
+	pca fit: meanCentredData.	
+	transformedData := pca transform: meanCentredData.
 	
 	expected := PMMatrix rows: #(
 						#(-0.827970186 -0.175115307) 
