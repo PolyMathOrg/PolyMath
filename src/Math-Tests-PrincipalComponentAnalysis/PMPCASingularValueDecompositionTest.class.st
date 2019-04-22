@@ -8,10 +8,6 @@ Class {
 	#name : #PMPCASingularValueDecompositionTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'average',
-		'covarianceMatrix',
-		'accumulator',
-		'server',
 		'pca'
 	],
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
