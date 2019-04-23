@@ -42,8 +42,7 @@ PMPCAJacobiTransformationTest >> testTransformWithMeanCentredMeasurements [
 			#(-0.71 -1.01)
 		  ).
 
-	pca fit: meanCentredData.	
-	transformedData := pca transform: meanCentredData.
+	transformedData := pca fitAndTransform: meanCentredData.
 	
 	expected := PMMatrix rows: #(
 						#(-0.827970186 -0.175115307) 
