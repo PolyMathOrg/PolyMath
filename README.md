@@ -16,8 +16,8 @@ Metacello new
         load
 ```
 
-We have **797** green tests !
- 
+We have **797** green tests ! At the moment, all the development happens in the development branch.
+
 PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
 - random number generators,
@@ -26,7 +26,7 @@ PolyMath is a Pharo project, similar to existing scientific libraries like NumPy
 - Didier Besset's numerical methods,
 - Ordinary Differential Equation (ODE) solvers.
 
-A book about PolyMath called "Numerical Methods" is available online: https://github.com/SquareBracketAssociates/NumericalMethods/releases/tag/snapshot-2016-01-17
+A book about PolyMath called "PolyMath book" is available online: https://github.com/SquareBracketAssociates/PolyMath-book
 
 Some documentation (to be cleaned and reorganized) about PolyMath is available on the Wiki here: 
 https://github.com/PolyMathOrg/PolyMath/wiki
@@ -35,11 +35,11 @@ Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Ente
 
 ## Install PolyMath
 
-To install PolyMath on your Pharo image you can just execute the following script:
+To install PolyMath in your Pharo image you can just execute the following script:
 
 ```Smalltalk
     Metacello new
-        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'master' path: 'src';
+        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'development' path: 'src';
         baseline: 'PolyMath';
         load
 ```
@@ -49,10 +49,8 @@ To add PolyMath to your baseline just add this:
 ```Smalltalk
     spec
     	baseline: 'PolyMath'
-    	with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ]
+    	with: [ spec repository: 'github://PolyMathOrg/PolyMath:development/src' ]
 ```
-
-Note that you can replace the #master by another branch as #development or a tag as #v1.0.0, #v1.? or #v1.2.? .
 
 
 ## How to contribute to PolyMath
