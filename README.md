@@ -7,25 +7,24 @@
 
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
-You can load the code in a fresh Pharo 6.1 image with:
+You can load the code in a fresh Pharo 7.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:master/src';
+        repository: 'github://PolyMathOrg/PolyMath:development/src';
         baseline: 'PolyMath';
         load
 ```
 
 We have **797** green tests !
  
-PolyMath is a Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
+PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
 - random number generators,
 - fuzzy algorithms,
 - KDE-trees,
 - Didier Besset's numerical methods,
 - Ordinary Differential Equation (ODE) solvers.
-
 
 A book about PolyMath called "Numerical Methods" is available online: https://github.com/SquareBracketAssociates/NumericalMethods/releases/tag/snapshot-2016-01-17
 
