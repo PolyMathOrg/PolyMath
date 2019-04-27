@@ -39,7 +39,7 @@ Class {
 		'useCubicApproximation',
 		'extendedResult'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #'instance creation' }

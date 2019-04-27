@@ -6,7 +6,7 @@ Class {
 		'function',
 		'argument'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

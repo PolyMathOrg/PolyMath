@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'normalDistribution'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PMOptimizingBracketFinder,
 	#superclass : #PMOneVariableFunctionOptimizer,
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

@@ -12,7 +12,7 @@ Class {
 		'intercept',
 		'correlationCoefficient'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

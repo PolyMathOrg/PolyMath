@@ -16,7 +16,7 @@ Class {
 	#instVars : [
 		'functionBlock'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #creation }

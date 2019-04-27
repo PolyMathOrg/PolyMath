@@ -5,7 +5,7 @@ Class {
 		'alpha',
 		'sum'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

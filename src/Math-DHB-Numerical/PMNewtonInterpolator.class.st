@@ -13,7 +13,7 @@ Class {
 	#instVars : [
 		'coefficients'
 	],
-	#category : 'Math-DHB-Numerical-Math-Interpolator'
+	#category : #'Math-DHB-Numerical-Math-Interpolator'
 }
 
 { #category : #transformation }

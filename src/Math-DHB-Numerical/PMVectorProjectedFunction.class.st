@@ -1,7 +1,7 @@
 Class {
 	#name : #PMVectorProjectedFunction,
 	#superclass : #PMProjectedOneVariableFunction,
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

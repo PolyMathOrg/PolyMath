@@ -30,7 +30,7 @@ Class {
 		'lineSearch',
 		'lineSearchFunctionBlock'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #creation }

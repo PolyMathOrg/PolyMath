@@ -1,7 +1,7 @@
 Class {
 	#name : #PMMaximizingPoint,
 	#superclass : #PMMinimizingPoint,
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #information }

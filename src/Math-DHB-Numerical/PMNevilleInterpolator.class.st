@@ -5,7 +5,7 @@ Class {
 		'leftErrors',
 		'rightErrors'
 	],
-	#category : 'Math-DHB-Numerical-Math-Interpolator'
+	#category : #'Math-DHB-Numerical-Math-Interpolator'
 }
 
 { #category : #private }

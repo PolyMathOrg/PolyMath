@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'probabilityDensity'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

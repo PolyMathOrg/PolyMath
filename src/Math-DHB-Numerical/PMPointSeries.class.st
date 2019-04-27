@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'points'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

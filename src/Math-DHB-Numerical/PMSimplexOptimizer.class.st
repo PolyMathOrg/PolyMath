@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'worstVector'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #information }

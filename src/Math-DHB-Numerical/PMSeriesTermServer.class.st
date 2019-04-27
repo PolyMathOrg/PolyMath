@@ -5,7 +5,7 @@ Class {
 		'x',
 		'lastTerm'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #initialization }
