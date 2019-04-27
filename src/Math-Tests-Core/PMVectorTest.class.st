@@ -1,7 +1,7 @@
 Class {
 	#name : #PMVectorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-Core'
 }
 
 { #category : #tests }

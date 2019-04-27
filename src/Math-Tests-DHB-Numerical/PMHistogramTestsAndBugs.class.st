@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'h'
 	],
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #comment }

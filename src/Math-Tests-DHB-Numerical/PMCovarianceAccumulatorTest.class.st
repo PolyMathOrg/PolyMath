@@ -1,7 +1,7 @@
 Class {
 	#name : #PMCovarianceAccumulatorTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #tests }

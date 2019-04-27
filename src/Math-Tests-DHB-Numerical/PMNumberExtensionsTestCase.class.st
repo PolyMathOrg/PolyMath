@@ -4,7 +4,7 @@ A DhbNumberExtensionsTestCase is a suite of tests for extension methods to Numbe
 Class {
 	#name : #PMNumberExtensionsTestCase,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #'function evaluation' }
