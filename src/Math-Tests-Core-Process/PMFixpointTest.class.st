@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'fp'
 	],
-	#category : 'Math-Tests-DHB-wk'
+	#category : #'Math-Tests-Core-Process'
 }
 
 { #category : #running }
