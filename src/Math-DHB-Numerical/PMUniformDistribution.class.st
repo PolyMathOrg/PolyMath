@@ -5,7 +5,7 @@ Class {
 		'lowLimit',
 		'highLimit'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #public }

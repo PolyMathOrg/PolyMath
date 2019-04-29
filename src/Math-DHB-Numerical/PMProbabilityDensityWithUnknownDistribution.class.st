@@ -1,7 +1,7 @@
 Class {
 	#name : #PMProbabilityDensityWithUnknownDistribution,
 	#superclass : #PMProbabilityDensity,
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

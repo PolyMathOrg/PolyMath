@@ -12,7 +12,7 @@ Class {
 		'sum',
 		'step'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

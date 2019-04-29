@@ -6,7 +6,7 @@ Class {
 		'function',
 		'optimizer'
 	],
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #running }

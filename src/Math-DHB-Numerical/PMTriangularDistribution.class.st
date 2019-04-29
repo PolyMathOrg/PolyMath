@@ -6,7 +6,7 @@ Class {
 		'highLimit',
 		'peak'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

@@ -6,7 +6,7 @@ Class {
 		'count',
 		'binWidth'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'old'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #operation }

@@ -4,7 +4,7 @@ A DhbDecimalFloatingNumberTest is a test class for testing the behavior of DhbDe
 Class {
 	#name : #PMDecimalFloatingNumberTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #tests }

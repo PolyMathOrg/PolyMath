@@ -1,7 +1,7 @@
 Class {
 	#name : #PMMultiVariableGeneralOptimizer,
 	#superclass : #PMFunctionOptimizer,
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #operation }

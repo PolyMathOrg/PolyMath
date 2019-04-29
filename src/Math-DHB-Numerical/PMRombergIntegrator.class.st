@@ -21,7 +21,7 @@ Class {
 		'points',
 		'interpolator'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

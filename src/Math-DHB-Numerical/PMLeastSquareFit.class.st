@@ -9,7 +9,7 @@ Class {
 		'constants',
 		'degreeOfFreedom'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

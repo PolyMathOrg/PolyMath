@@ -6,7 +6,7 @@ Class {
 		'beta',
 		'norm'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #information }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PMSimpsonIntegrator,
 	#superclass : #PMTrapezeIntegrator,
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #operation }

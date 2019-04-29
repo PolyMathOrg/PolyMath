@@ -5,7 +5,7 @@ Class {
 		'startPointDerivative',
 		'endPointDerivative'
 	],
-	#category : 'Math-DHB-Numerical-Math-Interpolator'
+	#category : #'Math-DHB-Numerical-Math-Interpolator'
 }
 
 { #category : #transformation }

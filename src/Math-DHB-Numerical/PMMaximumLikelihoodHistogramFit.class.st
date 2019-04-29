@@ -5,7 +5,7 @@ Class {
 		'count',
 		'countVariance'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #operation }

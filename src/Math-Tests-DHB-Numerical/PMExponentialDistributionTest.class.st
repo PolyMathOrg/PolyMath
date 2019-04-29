@@ -4,7 +4,7 @@ A DhbExponentialDistributionTest is a test class for testing the behavior of Dhb
 Class {
 	#name : #PMExponentialDistributionTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #tests }

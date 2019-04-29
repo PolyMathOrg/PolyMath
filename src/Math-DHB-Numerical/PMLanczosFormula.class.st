@@ -20,7 +20,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'Math-DHB-Numerical'
+	#category : #'Math-DHB-Numerical'
 }
 
 { #category : #creation }

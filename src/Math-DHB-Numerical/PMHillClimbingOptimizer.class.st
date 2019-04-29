@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'unidimensionalFinder'
 	],
-	#category : 'Math-DHB-Numerical-Math-FunctionIterator'
+	#category : #'Math-DHB-Numerical-Math-FunctionIterator'
 }
 
 { #category : #initialization }

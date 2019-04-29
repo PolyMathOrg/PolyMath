@@ -1,7 +1,7 @@
 Class {
 	#name : #PMBulirschStoerInterpolator,
 	#superclass : #PMNevilleInterpolator,
-	#category : 'Math-DHB-Numerical-Math-Interpolator'
+	#category : #'Math-DHB-Numerical-Math-Interpolator'
 }
 
 { #category : #private }

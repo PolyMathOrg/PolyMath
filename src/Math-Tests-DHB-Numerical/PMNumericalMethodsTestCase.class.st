@@ -1,7 +1,7 @@
 Class {
 	#name : #PMNumericalMethodsTestCase,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-DHB-Numerical'
+	#category : #'Math-Tests-DHB-Numerical'
 }
 
 { #category : #privateMethods }
