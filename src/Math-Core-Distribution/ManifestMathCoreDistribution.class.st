@@ -9,5 +9,5 @@ Class {
 
 { #category : #'code-critics' }
 ManifestMathCoreDistribution class >> ruleRBCodeCruftLeftInMethodsRuleV1FalsePositive [
-	^ #(#(#(#RGMethodDefinition #(#'DhbProbabilityDensity class' #fromHistogram: #true)) #'2016-03-02T09:06:24.499812+01:00') )
+	^ #(#(#(#RGMethodDefinition #(#'PMProbabilityDensity class' #fromHistogram: #true)) #'2016-03-02T09:06:24.499812+01:00') )
 ]
