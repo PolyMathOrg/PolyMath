@@ -68,6 +68,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Tests-AutomaticDifferenciation' with: [ spec requires: #('Math-AutomaticDifferenciation' 'Math-Matrix') ];
 				package: 'Math-Tests-Clustering' with: [ spec requires: #('Math-Clustering' 'Math-Core' 'Math-Core-Distribution' 'Math-UtilsDataServer') ];
 				package: 'Math-Tests-Complex' with: [ spec requires: #('Math-Complex') ];
+				package: 'Math-Tests-Core-Process' with: [ spec requires: #('Math-Core-Process') ];
 				package: 'Math-Tests-Numerical' with: [ spec requires: #('Math-Numerical' 'Math-UtilsDataServer') ];
 				package: 'Math-Tests-FastFourierTransform' with: [ spec requires: #('Math-FastFourierTransform' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Tests-FunctionFit';
@@ -91,9 +92,9 @@ BaselineOfPolyMath >> baseline: spec [
 			spec
 				group: 'Accuracy' with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core');
 				group: 'Benchmarks' with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
-				group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE');
+				group: 'Core' with: #('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Core' 'Math-Core-Distribution');
 				group: 'Extensions' with: #('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-RandomDistributionBased' 'Math-KolmogorovSmirnov');
-				group: 'Tests' with: #('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-RandomDistributionBased');
+				group: 'Tests' with: #('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-RandomDistributionBased' 'Math-Tests-Core-Process');
 				group: 'default' with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ]
 ]
 
