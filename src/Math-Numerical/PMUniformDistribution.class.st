@@ -10,16 +10,12 @@ Class {
 
 { #category : #public }
 PMUniformDistribution class >> distributionName [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 4/3/99 "
 	^'Uniform distribution'
 ]
 
 { #category : #public }
 PMUniformDistribution class >> from: aNumber1 to: aNumber2 [
-		"Create a new instance of the receiver with given limits.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/2/99 "
+		"Create a new instance of the receiver with given limits."
 	^super new initialize: aNumber1 to: aNumber2
 ]
 
@@ -28,9 +24,7 @@ PMUniformDistribution class >> fromHistogram: aHistogram [
 		"Create an instance of the receiver with parameters estimated from the
 		  given histogram using best guesses. This method can be used to
 		  find the initial values for a fit.
-		 Default returns nil (must be implemented by subclass).
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 12/3/99 "
+		 Default returns nil (must be implemented by subclass)."
 	| b c|
 	b := aHistogram standardDeviation * 1.73205080756888 "12 sqrt / 2".
 	b = 0
@@ -41,9 +35,7 @@ PMUniformDistribution class >> fromHistogram: aHistogram [
 
 { #category : #public }
 PMUniformDistribution class >> new [
-		"Create a new instance of the receiver with limits 0 and 1.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/2/99 "
+		"Create a new instance of the receiver with limits 0 and 1."
 	^self from: 0 to: 1
 ]
 

@@ -85,9 +85,7 @@ PMStatisticalMoments >> errorOnAverage [
 ]
 
 { #category : #testing }
-PMStatisticalMoments >> fConfidenceLevel: aStatisticalMomentsOrHistogram [ 
-	"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/22/00 "
+PMStatisticalMoments >> fConfidenceLevel: aStatisticalMomentsOrHistogram [
 	| fValue |
 	fValue := self variance/ aStatisticalMomentsOrHistogram variance.
 	^fValue < 1
@@ -101,9 +99,7 @@ PMStatisticalMoments >> fConfidenceLevel: aStatisticalMomentsOrHistogram [
 
 { #category : #initialization }
 PMStatisticalMoments >> initialize: anInteger [ 
-	"Private - ( anInteger - 1) is the degree of the highest accumulated central moment.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
+	"Private - ( anInteger - 1) is the degree of the highest accumulated central moment."
 
 	moments := Array new: anInteger.
 	self reset.
@@ -112,8 +108,6 @@ PMStatisticalMoments >> initialize: anInteger [
 
 { #category : #information }
 PMStatisticalMoments >> kurtosis [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
 
 	| n n1 n23 |
 	n := self count.
@@ -126,16 +120,12 @@ PMStatisticalMoments >> kurtosis [
 
 { #category : #transformation }
 PMStatisticalMoments >> reset [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
 
 	moments atAllPut: 0
 ]
 
 { #category : #information }
 PMStatisticalMoments >> skewness [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
 
 	| n v |
 	n := self count.
@@ -146,15 +136,11 @@ PMStatisticalMoments >> skewness [
 
 { #category : #information }
 PMStatisticalMoments >> standardDeviation [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
 	^self variance sqrt
 ]
 
 { #category : #testing }
 PMStatisticalMoments >> tConfidenceLevel: aStatisticalMomentsOrHistogram [
-		"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/22/00 "
 	| sbar dof |
 	dof := self count + aStatisticalMomentsOrHistogram count - 2.
 	sbar := ( ( self unnormalizedVariance + aStatisticalMomentsOrHistogram unnormalizedVariance) / dof) sqrt.
@@ -165,15 +151,11 @@ PMStatisticalMoments >> tConfidenceLevel: aStatisticalMomentsOrHistogram [
 
 { #category : #information }
 PMStatisticalMoments >> unnormalizedVariance [
-		"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/22/00 "
 	^( self centralMoment: 2) * self count
 ]
 
 { #category : #information }
 PMStatisticalMoments >> variance [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 10/5/99 "
 	| n |
 	n := self count.
 	n < 2

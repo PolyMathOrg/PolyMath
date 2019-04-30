@@ -27,9 +27,7 @@ Class {
 
 { #category : #information }
 PMHistogram class >> defaultCacheSize [
-		"Private - Answer the default cache size.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/2/99 "
+		"Private - Answer the default cache size."
 	^100
 ]
 
@@ -47,9 +45,7 @@ PMHistogram class >> integerScales [
 
 { #category : #creation }
 PMHistogram class >> new [
-		"Create a standard new instance of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 15/2/99 "
+		"Create a standard new instance of the receiver."
 	^super new initialize
 ]
 
@@ -194,9 +190,7 @@ PMHistogram >> count [
 
 { #category : #information }
 PMHistogram >> countAt: aNumber [
-		"Answer the count in the bin corresponding to aNumber or 0 if outside the limits.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/2/99 "
+		"Answer the count in the bin corresponding to aNumber or 0 if outside the limits."
 	| n |
 	self isCached 				
 		ifTrue: [ self flushCache].
@@ -391,17 +385,13 @@ PMHistogram >> isEmpty [
 
 { #category : #information }
 PMHistogram >> kurtosis [
-		"Answer the kurtosis of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+		"Answer the kurtosis of the receiver."
 	^self moments kurtosis
 ]
 
 { #category : #information }
 PMHistogram >> lowBinLimitAt: anInteger [
-		"
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 4/3/99 "
+
 	self isCached 				
 		ifTrue: [ self flushCache].
 	^( anInteger - 1) * binWidth + minimum
@@ -409,9 +399,7 @@ PMHistogram >> lowBinLimitAt: anInteger [
 
 { #category : #information }
 PMHistogram >> maximum [
-		"Answer the minimum for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+		"Answer the minimum for the receiver."
 	self isCached
 		ifTrue: [ self flushCache].
 	^contents size * binWidth + minimum
@@ -419,9 +407,7 @@ PMHistogram >> maximum [
 
 { #category : #information }
 PMHistogram >> maximumCount [
-		"Answer the maximum count of the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/2/99 "
+		"Answer the maximum count of the receiver."
 	self isCached
 		ifTrue: [ self flushCache].
 	^contents inject: ( contents isEmpty ifTrue: [ 1] ifFalse:[ contents at: 1])
@@ -430,9 +416,7 @@ PMHistogram >> maximumCount [
 
 { #category : #information }
 PMHistogram >> minimum [
-		"Answer the minimum for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+		"Answer the minimum for the receiver."
 	self isCached
 		ifTrue: [ self flushCache].
 	^minimum
@@ -447,9 +431,7 @@ self isCached
 
 { #category : #information }
 PMHistogram >> overflow [
-		"Answer the overflow of the recevier
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+		"Answer the overflow of the receiver"
 	^overflow
 ]
 
@@ -518,9 +500,7 @@ PMHistogram >> setRangeFrom: aNumber1 to: aNumber2 bins: anInteger [
 { #category : #initialization }
 PMHistogram >> setWidth: aNumber1 from: aNumber2 bins: anInteger [
 		"Defines the range of the receiver by specifying the minimum, bin width and number of bins.
-		 Values are adjusted to correspond to a reasonable value for the bin width and the limits.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 16/2/99 "
+		 Values are adjusted to correspond to a reasonable value for the bin width and the limits."
 	self isCached
 		ifFalse: [ self error: 'Histogram limits cannot be redefined'].
 	minimum := aNumber2.

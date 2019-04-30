@@ -29,9 +29,6 @@ PMFunctionFit class >> points: aDataHolder function: aBlock [
 
 { #category : #operation }
 PMFunctionFit >> accumulate: aWeightedPoint [
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/3/99 "
 	| f g |
 	f := result valueAndGradient: aWeightedPoint xValue.
 	g := f last.

@@ -50,27 +50,21 @@ PMLargestEigenValueFinder class >> matrix: aMatrix precision: aNumber [
 
 { #category : #information }
 PMLargestEigenValueFinder >> eigenvalue [
-	"Answer the eigen value found by the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Answer the eigen value found by the receiver."
 
 	^result
 ]
 
 { #category : #information }
 PMLargestEigenValueFinder >> eigenvector [
-	"Answer the normalized eigen vector found by the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Answer the normalized eigen vector found by the receiver."
 
 	^eigenvector * (1 / eigenvector norm)
 ]
 
 { #category : #operation }
 PMLargestEigenValueFinder >> evaluateIteration [
-	"Iterate the product of the matrix of the eigen vector and the transpose.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
+	"Iterate the product of the matrix of the eigen vector and the transpose."
 
 	| oldEigenvalue |
 	oldEigenvalue := result.
@@ -87,17 +81,13 @@ PMLargestEigenValueFinder >> evaluateIteration [
 
 { #category : #initialization }
 PMLargestEigenValueFinder >> initialize: aMatrix [
-		"Defines the matrix for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+		"Defines the matrix for the receiver."
 	matrix := aMatrix.
 ]
 
 { #category : #operation }
 PMLargestEigenValueFinder >> initializeIterations [
-	"Initialize the iterations (subclasses must write their own method and call this one last).
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 6/1/99 "
+	"Initialize the iterations (subclasses must write their own method and call this one last)."
 
 	eigenvector := PMVector new: matrix numberOfRows.
 	eigenvector atAllPut: 1.0.
@@ -107,9 +97,7 @@ PMLargestEigenValueFinder >> initializeIterations [
 
 { #category : #creation }
 PMLargestEigenValueFinder >> nextLargestEigenValueFinder [
-	"Return an eigen value finder for the same eigen values of the receiver except the one found.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+	"Return an eigen value finder for the same eigen values of the receiver except the one found."
 
 	| norm |
 	norm := 1 / (eigenvector * transposeEigenvector).

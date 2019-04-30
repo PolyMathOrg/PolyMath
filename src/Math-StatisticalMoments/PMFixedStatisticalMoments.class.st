@@ -6,23 +6,16 @@ Class {
 
 { #category : #creation }
 PMFixedStatisticalMoments class >> new [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
 	^super new: 4
 ]
 
 { #category : #creation }
 PMFixedStatisticalMoments class >> new: anInteger [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
 	^self error: 'Illegal creation message for this class'
 ]
 
 { #category : #transformation }
 PMFixedStatisticalMoments >> accumulate: aNumber [ 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
-
 	| correction n n1 c2 c3 |
 	n := moments at: 1.
 	n1 := n + 1.

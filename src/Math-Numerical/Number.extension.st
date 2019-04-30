@@ -2,8 +2,6 @@ Extension { #name : #Number }
 
 { #category : #'*Math-Numerical' }
 Number >> addPolynomial: aPolynomial [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 19/4/99 "
 	^aPolynomial addNumber: self
 ]
 
@@ -16,8 +14,6 @@ Number >> beta: aNumber [
 
 { #category : #'*Math-Numerical' }
 Number >> dividingPolynomial: aPolynomial [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/4/99 "
 	^aPolynomial timesNumber: (1 / self)
 ]
 
@@ -29,17 +25,13 @@ Number >> equalsTo: aNumber [
 
 { #category : #'*Math-Numerical' }
 Number >> errorFunction [
-		"Answer the error function for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+		"Answer the error function for the receiver."
 	^ PMErfApproximation new value: self
 ]
 
 { #category : #'*Math-Numerical' }
 Number >> gamma [
-		"Compute the Gamma function for the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+		"Compute the Gamma function for the receiver."
 	^ self > 1
 		ifTrue: [ ^ PMLanczosFormula new gamma: self]
 		ifFalse:[ self < 0
@@ -73,25 +65,19 @@ Number >> productWithMatrix: aMatrix [
 
 { #category : #'*Math-Numerical' }
 Number >> productWithVector: aVector [
-		"Answers a new vector product of the receiver with aVector.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 11/2/99 "
+		"Answers a new vector product of the receiver with aVector."
 	^aVector collect: [ :each | each * self]
 ]
 
 { #category : #'*Math-Numerical' }
 Number >> random [
-		"Answers a random number distributed between 0 and the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/2/99 "
+		"Answers a random number distributed between 0 and the receiver."
 	^self class random * self
 ]
 
 { #category : #'*Math-Numerical' }
 Number class >> random [
-		"Answers a random number between 0 and the receiver
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/2/99 "
+		"Answers a random number between 0 and the receiver."
 	^ PMMitchellMooreGenerator new floatValue
 ]
 
@@ -107,14 +93,10 @@ Number >> relativelyEqualsTo: aNumber upTo: aSmallNumber [
 
 { #category : #'*Math-Numerical' }
 Number >> subtractToPolynomial: aPolynomial [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 19/4/99 "
 	^aPolynomial addNumber: self negated
 ]
 
 { #category : #'*Math-Numerical' }
 Number >> timesPolynomial: aPolynomial [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/4/99 "
 	^aPolynomial timesNumber: self
 ]

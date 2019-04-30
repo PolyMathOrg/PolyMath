@@ -6,9 +6,6 @@ Class {
 
 { #category : #transformation }
 PMFastStatisticalMoments >> accumulate: aNumber [ 
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
-
 	| var |
 	var := 1.
 	1 to: moments size
@@ -20,17 +17,12 @@ PMFastStatisticalMoments >> accumulate: aNumber [
 
 { #category : #information }
 PMFastStatisticalMoments >> average [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
-
 	self count = 0 ifTrue: [^nil].
 	^(moments at: 2) / self count
 ]
 
 { #category : #information }
 PMFastStatisticalMoments >> kurtosis [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
 
 	| var x1 x2 x3 x4 kFact kConst n m4 xSquared |
 	n := self count.
@@ -50,8 +42,6 @@ PMFastStatisticalMoments >> kurtosis [
 
 { #category : #information }
 PMFastStatisticalMoments >> skewness [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
 
 	| x1 x2 x3 n stdev |
 	n := self count.
@@ -67,16 +57,11 @@ PMFastStatisticalMoments >> skewness [
 
 { #category : #information }
 PMFastStatisticalMoments >> unnormalizedVariance [
-	"(c) Copyrights Didier BESSET, 2000, all rights reserved.
-		 Initial code: 1/22/00 "
-
 	^(moments at: 3) - ((moments at: 2) squared * self count)
 ]
 
 { #category : #information }
 PMFastStatisticalMoments >> variance [
-	"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 17/6/99 "
 
 	| n |
 	n := self count.

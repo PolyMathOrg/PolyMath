@@ -222,8 +222,7 @@ PMPolynomial >> printOn: aStream [
 									n printOn: aStream]]].
 			n := n + 1].
 		
-	"add a quick check, print a zero if the polynomial has all zero coefficients
-	Daniel Uber 11 May 2012"
+	"add a quick check, print a zero if the polynomial has all zero coefficients"
 	firstNonZeroCoefficientPrinted ifFalse: [0 printOn: aStream].
 ]
 
