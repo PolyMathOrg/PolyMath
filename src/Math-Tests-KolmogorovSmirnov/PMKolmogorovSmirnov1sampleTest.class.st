@@ -8,12 +8,6 @@ Class {
 	#category : #'Math-Tests-KolmogorovSmirnov'
 }
 
-{ #category : #initialization }
-PMKolmogorovSmirnov1SampleTest >> initialize [
-	nd := PMNormalDistribution new.
-	ks := PMKolmogorovSmirnov1Sample new
-]
-
 { #category : #running }
 PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 	| n |
@@ -24,6 +18,12 @@ PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 		(ks rejectEqualityHypothesisWithAlpha: 0.05)
 			ifTrue: [ n := n + 1 ] ].
 	^ n
+]
+
+{ #category : #initialization }
+PMKolmogorovSmirnov1SampleTest >> setUp [
+	nd := PMNormalDistribution new.
+	ks := PMKolmogorovSmirnov1Sample new
 ]
 
 { #category : #tests }

@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #initialization }
-PMKolmogorovSmirnov2SampleTest >> initialize [
+PMKolmogorovSmirnov2SampleTest >> setUp [
 	k := PMKolmogorovSmirnov2Sample new
 ]
 
