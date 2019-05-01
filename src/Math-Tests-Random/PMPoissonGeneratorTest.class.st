@@ -24,7 +24,7 @@ PMPoissonGeneratorTest >> testPeekReturnsSameTwice [
 PMPoissonGeneratorTest >> testPeekWorksAfterSampling [
 	| poisson random |
 	poisson := PMPoissonGenerator lambda: 0.1.
-	(1 to: 100) do: [ :ea | poisson next ].
+	1 to: 100 do: [ :ea | poisson next ].
 	random := poisson peek.
 	self assert: random equals: poisson peek.
 	self assert: random equals: poisson next

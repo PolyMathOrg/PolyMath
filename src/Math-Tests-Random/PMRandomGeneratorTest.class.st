@@ -6,10 +6,11 @@ Class {
 
 { #category : #tests }
 PMRandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
-	PMRandomGenerator subclasses do: 
-	[:cls | | gen value |
-		gen := cls new.
-		self should: [gen contents] raise: Error].
+	PMRandomGenerator subclasses
+		do: [ :cls | 
+			| gen |
+			gen := cls new.
+			self should: [ gen contents ] raise: Error ]
 ]
 
 { #category : #tests }
