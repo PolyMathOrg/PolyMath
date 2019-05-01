@@ -6,16 +6,16 @@ Class {
 
 { #category : #'tests-stepping' }
 PMMidpointStepperTest >> testOrderIsTwo [
-	self assert: MidpointStepper order equals: 2
+	self assert: PMMidpointStepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
 PMMidpointStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := MidpointStepper onSystem: system.
-	solver := ExplicitSolver new
+	system := PMExplicitSystem block: [ :x :t | t sin ].
+	stepper := PMMidpointStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,10 +32,10 @@ PMMidpointStepperTest >> testSimpleSystem [
 PMMidpointStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := MidpointStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMMidpointStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -59,9 +59,9 @@ PMMidpointStepperTest >> testSimpleSystem2 [
 PMMidpointStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := MidpointStepper onSystem: system.
-	solver := ExplicitSolver new
+	system := PMExplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMMidpointStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -92,10 +92,10 @@ PMMidpointStepperTest >> testSimpleSystem3 [
 PMMidpointStepperTest >> testSimpleSystem4 [
 	| solver stepper system dt |
 	dt := 0.0001.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := MidpointStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMMidpointStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -112,15 +112,15 @@ PMMidpointStepperTest >> testSimpleSystem4 [
 PMMidpointStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := MidpointStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMMidpointStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

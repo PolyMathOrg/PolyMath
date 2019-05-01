@@ -8,10 +8,10 @@ Class {
 PMAB4SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	stepper := PMAB4Stepper onSystem: system.
+	solver := PMAB4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -35,9 +35,9 @@ PMAB4SolverTest >> testSimpleSystem2 [
 PMAB4SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	system := PMExplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMAB4Stepper onSystem: system.
+	solver := PMAB4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -82,15 +82,15 @@ PMAB4SolverTest >> testSimpleSystem3 [
 PMAB4SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.001.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AB4Stepper onSystem: system.
-	solver := AB4Solver new
+	stepper := PMAB4Stepper onSystem: system.
+	solver := PMAB4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

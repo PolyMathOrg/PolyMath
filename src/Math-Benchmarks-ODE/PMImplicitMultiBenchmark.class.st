@@ -10,8 +10,8 @@ Class {
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchAM3 [
 	| solver stepper |
-	stepper := AM3Stepper onSystem: system.
-	solver := (AM3Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMAM3Stepper onSystem: system.
+	solver := (PMAM3Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -19,8 +19,8 @@ PMImplicitMultiBenchmark >> benchAM3 [
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchAM4 [
 	| solver stepper |
-	stepper := AM4Stepper onSystem: system.
-	solver := (AM4Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMAM4Stepper onSystem: system.
+	solver := (PMAM4Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -28,8 +28,8 @@ PMImplicitMultiBenchmark >> benchAM4 [
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchBDF2 [
 	| solver stepper |
-	stepper := BDF2Stepper onSystem: system.
-	solver := (BDF2Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := (PMBDF2Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -37,8 +37,8 @@ PMImplicitMultiBenchmark >> benchBDF2 [
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchBDF3 [
 	| solver stepper |
-	stepper := BDF3Stepper onSystem: system.
-	solver := (BDF3Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMBDF3Stepper onSystem: system.
+	solver := (PMBDF3Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -46,8 +46,8 @@ PMImplicitMultiBenchmark >> benchBDF3 [
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchBDF4 [
 	| solver stepper |
-	stepper := BDF4Stepper onSystem: system.
-	solver := (BDF4Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMBDF4Stepper onSystem: system.
+	solver := (PMBDF4Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -55,8 +55,8 @@ PMImplicitMultiBenchmark >> benchBDF4 [
 { #category : #benchmarking }
 PMImplicitMultiBenchmark >> benchTrapezoidAM2 [
 	| solver stepper |
-	stepper := TrapezoidStepper onSystem: system.
-	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMTrapezoidStepper onSystem: system.
+	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -64,5 +64,5 @@ PMImplicitMultiBenchmark >> benchTrapezoidAM2 [
 { #category : #'as yet unclassified' }
 PMImplicitMultiBenchmark >> setUp [
 	super setUp.
-	system := ImplicitSystem block: function
+	system := PMImplicitSystem block: function
 ]

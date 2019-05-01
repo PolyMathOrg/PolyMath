@@ -6,16 +6,16 @@ Class {
 
 { #category : #'tests-stepping' }
 PMBDF2StepperTest >> testOrderIsTwo [
-	self assert: BDF2Stepper order equals: 2
+	self assert: PMBDF2Stepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
 PMBDF2StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem block: [ :x :t | t sin ].
-	stepper := BDF2Stepper onSystem: system.
-	solver := BDF2Solver new
+	system := PMImplicitSystem block: [ :x :t | t sin ].
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := PMBDF2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,9 +32,9 @@ PMBDF2StepperTest >> testSimpleSystem [
 PMBDF2StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := BDF2Stepper onSystem: system.
-	solver := (BDF2Solver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := (PMBDF2Solver new) stepper: stepper; system: system; dt: dt.
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo:  1.10147).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  2.10409).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  0.54985).
@@ -46,9 +46,9 @@ PMBDF2StepperTest >> testSimpleSystem2 [
 PMBDF2StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := BDF2Stepper onSystem: system.
-	solver := BDF2Solver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := PMBDF2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -86,15 +86,15 @@ PMBDF2StepperTest >> testSimpleSystem3 [
 PMBDF2StepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.0001.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := BDF2Stepper onSystem: system.
-	solver := BDF2Solver new
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := PMBDF2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

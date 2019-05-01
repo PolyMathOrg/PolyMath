@@ -8,9 +8,9 @@ Class {
 PMBeckwardEulerSolverTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem block: [ :x :t | t sin ].
-	stepper := ImplicitStepper onSystem: system.
-	solver := ImplicitSolver new
+	system := PMImplicitSystem block: [ :x :t | t sin ].
+	stepper := PMImplicitStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -27,9 +27,9 @@ PMBeckwardEulerSolverTest >> testSimpleSystem [
 PMBeckwardEulerSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := ImplicitStepper onSystem: system.
-	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMImplicitStepper onSystem: system.
+	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.16567).
        self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: -0.5306).
 ]
@@ -38,15 +38,15 @@ PMBeckwardEulerSolverTest >> testSimpleSystem2 [
 PMBeckwardEulerSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := ImplicitStepper onSystem: system.
-	solver := ImplicitSolver new
+	stepper := PMImplicitStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

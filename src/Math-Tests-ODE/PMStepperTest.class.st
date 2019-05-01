@@ -9,21 +9,21 @@ Class {
 
 { #category : #tests }
 PMStepperTest >> testOrderIsNilForBaseClass [
-	self assert: Stepper order isNil
+	self assert: PMStepper order isNil
 ]
 
 { #category : #tests }
 PMStepperTest >> testOrderIsNilForInstanceOfBaseClass [
-	self assert: Stepper new order isNil
+	self assert: PMStepper new order isNil
 ]
 
 { #category : #tests }
 PMStepperTest >> testSystem [
 	| stepper sys |
-	sys := ExplicitSystem new.
+	sys := PMExplicitSystem new.
 	sys block: [ :x :t | t ].
-	stepper := Stepper onSystem: sys.
+	stepper := PMStepper onSystem: sys.
 	self assert: stepper system equals: sys.
-	sys := ExplicitSystem new.
+	sys := PMExplicitSystem new.
 	self shouldnt: [ stepper system = sys ]
 ]

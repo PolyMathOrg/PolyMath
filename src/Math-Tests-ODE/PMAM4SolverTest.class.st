@@ -8,9 +8,9 @@ Class {
 PMAM4SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := AM4Stepper onSystem: system.
-	solver := (AM4Solver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMAM4Stepper onSystem: system.
+	solver := (PMAM4Solver new) stepper: stepper; system: system; dt: dt.
 	
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.6231).
        self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8577).
@@ -20,9 +20,9 @@ PMAM4SolverTest >> testSimpleSystem2 [
 PMAM4SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AM4Stepper onSystem: system.
-	solver := AM4Solver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMAM4Stepper onSystem: system.
+	solver := PMAM4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -60,15 +60,15 @@ PMAM4SolverTest >> testSimpleSystem3 [
 PMAM4SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AM4Stepper onSystem: system.
-	solver := AM4Solver new
+	stepper := PMAM4Stepper onSystem: system.
+	solver := PMAM4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

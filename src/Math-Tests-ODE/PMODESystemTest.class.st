@@ -13,7 +13,7 @@ Class {
 { #category : #initialization }
 PMODESystemTest >> setUp [
 	"create a dummy system"
-	sys := ODESystem new
+	sys := PMODESystem new
 ]
 
 { #category : #tests }

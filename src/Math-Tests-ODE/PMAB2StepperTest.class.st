@@ -6,16 +6,16 @@ Class {
 
 { #category : #'tests-stepping' }
 PMAB2StepperTest >> testOrderIsTwo [
-	self assert: AB2Stepper order equals: 2
+	self assert: PMAB2Stepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
 PMAB2StepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := AB2Stepper onSystem: system.
-	solver := AB2Solver new
+	system := PMExplicitSystem block: [ :x :t | t sin ].
+	stepper := PMAB2Stepper onSystem: system.
+	solver := PMAB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,10 +32,10 @@ PMAB2StepperTest >> testSimpleSystem [
 PMAB2StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := AB2Stepper onSystem: system.
-	solver := AB2Solver new
+	stepper := PMAB2Stepper onSystem: system.
+	solver := PMAB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -59,9 +59,9 @@ PMAB2StepperTest >> testSimpleSystem2 [
 PMAB2StepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AB2Stepper onSystem: system.
-	solver := AB2Solver new
+	system := PMExplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMAB2Stepper onSystem: system.
+	solver := PMAB2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

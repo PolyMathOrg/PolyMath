@@ -6,16 +6,16 @@ Class {
 
 { #category : #tests }
 PMHeunStepperTest >> testOrderIsTwo [
-	self assert: HeunStepper order equals: 2
+	self assert: PMHeunStepper order equals: 2
 ]
 
 { #category : #tests }
 PMHeunStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := HeunStepper onSystem: system.
-	solver := ExplicitSolver new
+	system := PMExplicitSystem block: [ :x :t | t sin ].
+	stepper := PMHeunStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -32,10 +32,10 @@ PMHeunStepperTest >> testSimpleSystem [
 PMHeunStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := HeunStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMHeunStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -59,9 +59,9 @@ PMHeunStepperTest >> testSimpleSystem2 [
 PMHeunStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := HeunStepper onSystem: system.
-	solver := ExplicitSolver new
+	system := PMExplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMHeunStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -85,15 +85,15 @@ PMHeunStepperTest >> testSimpleSystem3 [
 PMHeunStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := HeunStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMHeunStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

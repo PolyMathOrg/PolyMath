@@ -8,9 +8,9 @@ Class {
 PMTrapezoidSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := TrapezoidStepper onSystem: system.
-	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMTrapezoidStepper onSystem: system.
+	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  3.1299).
    self should: ((solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo:  0.9103)
@@ -20,9 +20,9 @@ PMTrapezoidSolverTest >> testSimpleSystem2 [
 PMTrapezoidSolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := TrapezoidStepper onSystem: system.
-	solver := ImplicitSolver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMTrapezoidStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -60,15 +60,15 @@ PMTrapezoidSolverTest >> testSimpleSystem3 [
 PMTrapezoidSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := TrapezoidStepper onSystem: system.
-	solver := ImplicitSolver new
+	stepper := PMTrapezoidStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

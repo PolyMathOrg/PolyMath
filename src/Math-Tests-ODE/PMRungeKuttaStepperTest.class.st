@@ -7,8 +7,8 @@ Class {
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 	| stepper sys dt |
-	sys := ExplicitSystem block: [ :x :t | x * t ].
-	stepper := RungeKuttaStepper onSystem: sys.
+	sys := PMExplicitSystem block: [ :x :t | x * t ].
+	stepper := PMRungeKuttaStepper onSystem: sys.
 	dt := 0.1.
 	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0).
 	self
@@ -22,9 +22,9 @@ PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 	| stepper sys dt |
-	sys := ExplicitSystem
+	sys := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := RungeKuttaStepper onSystem: sys.
+	stepper := PMRungeKuttaStepper onSystem: sys.
 	dt := 0.1.
 	self
 		assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.0638).
@@ -34,16 +34,16 @@ PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testOrderIsFour [
-	self assert: RungeKuttaStepper order equals: 4
+	self assert: PMRungeKuttaStepper order equals: 4
 ]
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testSimpleSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem block: [ :x :t | t sin ].
-	stepper := RungeKuttaStepper onSystem: system.
-	solver := ExplicitSolver new
+	system := PMExplicitSystem block: [ :x :t | t sin ].
+	stepper := PMRungeKuttaStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -60,10 +60,10 @@ PMRungeKuttaStepperTest >> testSimpleSystem [
 PMRungeKuttaStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := RungeKuttaStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMRungeKuttaStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -87,15 +87,15 @@ PMRungeKuttaStepperTest >> testSimpleSystem2 [
 PMRungeKuttaStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := RungeKuttaStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMRungeKuttaStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

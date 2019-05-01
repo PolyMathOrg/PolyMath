@@ -8,9 +8,9 @@ Class {
 PMBDF2SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := BDF2Stepper onSystem: system.
-	solver := (BDF2Solver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := (PMBDF2Solver new) stepper: stepper; system: system; dt: dt.
 	
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.54985).
        self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306).
@@ -20,9 +20,9 @@ PMBDF2SolverTest >> testSimpleSystem2 [
 PMBDF2SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := BDF2Stepper onSystem: system.
-	solver := BDF2Solver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMBDF2Stepper onSystem: system.
+	solver := PMBDF2Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -60,10 +60,10 @@ PMBDF2SolverTest >> testSimpleSystem3 [
 PMBDF2SolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	| solver stepper system dt finalState |
 	dt := 0.2.
-	system := ImplicitSystem block: [ :x :t | (t * x) exp ].
-	stepper := ImplicitStepper onSystem: system.
+	system := PMImplicitSystem block: [ :x :t | (t * x) exp ].
+	stepper := PMImplicitStepper onSystem: system.
 	stepper stepSize: dt.
-	solver := BDF2Solver new
+	solver := PMBDF2Solver new
 		system: system;
 		stepper: stepper.
 	finalState := solver
@@ -91,10 +91,10 @@ PMBDF2SolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 PMBDF2SolverTest >> testSolveX0T0T1 [
 	| solver stepper system dt finalState |
 	dt := 0.1.
-	system := ImplicitSystem block: [ :x :t | (t * x) exp ].
-	stepper := ImplicitStepper onSystem: system.
+	system := PMImplicitSystem block: [ :x :t | (t * x) exp ].
+	stepper := PMImplicitStepper onSystem: system.
 	stepper stepSize: dt.
-	solver := BDF2Solver new
+	solver := PMBDF2Solver new
 		system: system;
 		stepper: stepper;
 		dt: dt.

@@ -8,9 +8,9 @@ Class {
 PMBDF4SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := BDF4Stepper onSystem: system.
-	solver := (BDF4Solver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMBDF4Stepper onSystem: system.
+	solver := (PMBDF4Solver new) stepper: stepper; system: system; dt: dt.
 	
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.5637).
       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.4395).
@@ -21,9 +21,9 @@ PMBDF4SolverTest >> testSimpleSystem2 [
 PMBDF4SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := BDF4Stepper onSystem: system.
-	solver := BDF4Solver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMBDF4Stepper onSystem: system.
+	solver := PMBDF4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -68,15 +68,15 @@ PMBDF4SolverTest >> testSimpleSystem3 [
 PMBDF4SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := BDF4Stepper onSystem: system.
-	solver := BDF4Solver new
+	stepper := PMBDF4Stepper onSystem: system.
+	solver := PMBDF4Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

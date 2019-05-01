@@ -10,8 +10,8 @@ Class {
 { #category : #benchmarking }
 PMExplicitBenchmark >> benchEuler [
 	|  solver stepper |
-	stepper := ExplicitStepper onSystem: system.
-	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMExplicitStepper onSystem: system.
+	solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -19,8 +19,8 @@ PMExplicitBenchmark >> benchEuler [
 { #category : #benchmarking }
 PMExplicitBenchmark >> benchHeun [
 	| solver stepper |
-	stepper := HeunStepper onSystem: system.
-	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMHeunStepper onSystem: system.
+	solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -28,8 +28,8 @@ PMExplicitBenchmark >> benchHeun [
 { #category : #benchmarking }
 PMExplicitBenchmark >> benchMidpoint [
 	| solver stepper |
-	stepper := MidpointStepper onSystem: system.
-	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMMidpointStepper onSystem: system.
+	solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -37,8 +37,8 @@ PMExplicitBenchmark >> benchMidpoint [
 { #category : #benchmarking }
 PMExplicitBenchmark >> benchRungeKutta [
 	| solver stepper |
-	stepper := RungeKuttaStepper onSystem: system.
-	solver := (ExplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMRungeKuttaStepper onSystem: system.
+	solver := (PMExplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -46,6 +46,6 @@ PMExplicitBenchmark >> benchRungeKutta [
 { #category : #running }
 PMExplicitBenchmark >> setUp [
 	super setUp.
-	system := ExplicitSystem block: function.
+	system := PMExplicitSystem block: function.
 
 ]

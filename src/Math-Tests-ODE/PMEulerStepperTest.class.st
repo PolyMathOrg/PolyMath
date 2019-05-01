@@ -12,8 +12,8 @@ PMEulerStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
 	| stepper sys dt |
-	sys := ExplicitSystem block: [ :x :t | x * t ].
-	stepper := ExplicitStepper onSystem: sys.
+	sys := PMExplicitSystem block: [ :x :t | x * t ].
+	stepper := PMExplicitStepper onSystem: sys.
 	dt := 0.1.
 	stepper stepSize: dt.
 	self assert: stepper stepSize equals: dt.
@@ -29,8 +29,8 @@ PMEulerStepperTest >> testDoStepTime [
 { #category : #'tests-stepping' }
 PMEulerStepperTest >> testDoStepTimeStepSize [
 	| stepper sys dt |
-	sys := ExplicitSystem block: [ :x :t | x * t ].
-	stepper := ExplicitStepper onSystem: sys.
+	sys := PMExplicitSystem block: [ :x :t | x * t ].
+	stepper := PMExplicitStepper onSystem: sys.
 	dt := 0.1.
 	self assert: (stepper doStep: 0 time: 10 stepSize: dt) equals: 0.
 	self assert: (stepper doStep: 10 time: 0 stepSize: dt) equals: 10.
@@ -41,7 +41,7 @@ PMEulerStepperTest >> testDoStepTimeStepSize [
 { #category : #'tests-stepping' }
 PMEulerStepperTest >> testOrderOfBaseExplicitStepperIsOne [
 	| order |
-	order := ExplicitStepper new order.
+	order := PMExplicitStepper new order.
 	self assert: order notNil.
 	self assert: order equals: 1
 ]
@@ -50,15 +50,15 @@ PMEulerStepperTest >> testOrderOfBaseExplicitStepperIsOne [
 PMEulerStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.001.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := ExplicitStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMExplicitStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

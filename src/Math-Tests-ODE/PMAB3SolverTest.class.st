@@ -8,10 +8,10 @@ Class {
 PMAB3SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := PMAB3Stepper onSystem: system.
+	solver := PMAB3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -35,9 +35,9 @@ PMAB3SolverTest >> testSimpleSystem2 [
 PMAB3SolverTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	system := PMExplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMAB3Stepper onSystem: system.
+	solver := PMAB3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -61,11 +61,11 @@ PMAB3SolverTest >> testSimpleSystem3 [
 PMAB3SolverTest >> testSimpleSystem4 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block:
 			[ :x :t | (2 negated * (t ** 4) * (x ** 2) + 1 - (x * (t ** 2))) / (t ** 3) ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := PMAB3Stepper onSystem: system.
+	solver := PMAB3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -82,15 +82,15 @@ PMAB3SolverTest >> testSimpleSystem4 [
 PMAB3SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.001.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := AB3Stepper onSystem: system.
-	solver := AB3Solver new
+	stepper := PMAB3Stepper onSystem: system.
+	solver := PMAB3Solver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

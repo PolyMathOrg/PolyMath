@@ -9,8 +9,8 @@ PMBeckwardEulerStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
 	| stepper sys dt |
-	sys := ImplicitSystem block: [ :x :t | x * t ].
-	stepper := ImplicitStepper onSystem: sys.
+	sys := PMImplicitSystem block: [ :x :t | x * t ].
+	stepper := PMImplicitStepper onSystem: sys.
 	dt := 0.1.
 	stepper stepSize: dt.
 	self assert: stepper stepSize equals: dt.
@@ -28,8 +28,8 @@ PMBeckwardEulerStepperTest >> testDoStepTime [
 { #category : #'tests-stepping' }
 PMBeckwardEulerStepperTest >> testDoStepTimeStepSize [
 	| stepper sys dt |
-	sys := ImplicitSystem block: [ :x :t | x * t ].
-	stepper := ImplicitStepper onSystem: sys.
+	sys := PMImplicitSystem block: [ :x :t | x * t ].
+	stepper := PMImplicitStepper onSystem: sys.
 	dt := 0.1.
 	self assert: (stepper doStep: 0 time: 10 stepSize: dt) equals: 0.101.
 	self assert: (stepper doStep: 10 time: 0 stepSize: dt) equals: 10.101.
@@ -41,9 +41,9 @@ PMBeckwardEulerStepperTest >> testDoStepTimeStepSize [
 PMBeckwardEulerStepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := ImplicitStepper onSystem: system.
-	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
+	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
+	stepper := PMImplicitStepper onSystem: system.
+	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  2.10408).
       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306).
 ]
@@ -52,9 +52,9 @@ PMBeckwardEulerStepperTest >> testSimpleSystem2 [
 PMBeckwardEulerStepperTest >> testSimpleSystem3 [
 	| solver stepper system dt |
 	dt := 0.5.
-	system := ImplicitSystem block: [ :x :t | 2 * t * x ].
-	stepper := ImplicitStepper onSystem: system.
-	solver := ImplicitSolver new
+	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
+	stepper := PMImplicitStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

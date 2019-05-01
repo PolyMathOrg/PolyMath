@@ -9,8 +9,8 @@ PMTrapezoidStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
 	| stepper sys dt |
-	sys := ImplicitSystem block: [ :x :t | x * t ].
-	stepper := TrapezoidStepper onSystem: sys.
+	sys := PMImplicitSystem block: [ :x :t | x * t ].
+	stepper := PMTrapezoidStepper onSystem: sys.
 	dt := 0.1.
 	stepper stepSize: dt.
 	self assert: stepper stepSize equals: dt.
@@ -27,8 +27,8 @@ PMTrapezoidStepperTest >> testDoStepTime [
 { #category : #'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
 	| stepper sys dt |
-	sys := ImplicitSystem block: [ :x :t | x * t ].
-	stepper := TrapezoidStepper onSystem: sys.
+	sys := PMImplicitSystem block: [ :x :t | x * t ].
+	stepper := PMTrapezoidStepper onSystem: sys.
 	dt := 0.1.
 	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0).
 	self
@@ -42,9 +42,9 @@ PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
 { #category : #'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTimeStepSize2 [
 	| stepper sys dt |
-	sys := ImplicitSystem
+	sys := PMImplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := TrapezoidStepper onSystem: sys.
+	stepper := PMTrapezoidStepper onSystem: sys.
 	dt := 0.1.
 	self
 		assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.0638).
@@ -54,22 +54,22 @@ PMTrapezoidStepperTest >> testDoStepTimeStepSize2 [
 
 { #category : #'tests-stepping' }
 PMTrapezoidStepperTest >> testOrderIsTwo [
-	self assert: TrapezoidStepper order equals: 2
+	self assert: PMTrapezoidStepper order equals: 2
 ]
 
 { #category : #'tests-stepping' }
 PMTrapezoidStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
-	system := ImplicitSystem
+	system := PMImplicitSystem
 		block: [ :x :t | 
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.
 			c at: 2 put: t cos.
 			c ].
-	stepper := TrapezoidStepper onSystem: system.
-	solver := ImplicitSolver new
+	stepper := PMTrapezoidStepper onSystem: system.
+	solver := PMImplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.

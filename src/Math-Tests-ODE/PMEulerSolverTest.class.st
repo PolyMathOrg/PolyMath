@@ -11,10 +11,10 @@ Class {
 PMEulerSolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
-	system := ExplicitSystem
+	system := PMExplicitSystem
 		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := HeunStepper onSystem: system.
-	solver := ExplicitSolver new
+	stepper := PMHeunStepper onSystem: system.
+	solver := PMExplicitSolver new
 		stepper: stepper;
 		system: system;
 		dt: dt.
@@ -38,10 +38,10 @@ PMEulerSolverTest >> testSimpleSystem2 [
 PMEulerSolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	| solver stepper system dt finalState |
 	dt := 0.2.
-	system := ExplicitSystem block: [ :x :t | (t * x) exp ].
-	stepper := ExplicitStepper onSystem: system.
+	system := PMExplicitSystem block: [ :x :t | (t * x) exp ].
+	stepper := PMExplicitStepper onSystem: system.
 	stepper stepSize: dt.
-	solver := ExplicitSolver new
+	solver := PMExplicitSolver new
 		system: system;
 		stepper: stepper.
 	finalState := solver
@@ -69,10 +69,10 @@ PMEulerSolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 PMEulerSolverTest >> testSolveX0T0T1 [
 	| solver stepper system dt finalState |
 	dt := 0.1.
-	system := ExplicitSystem block: [ :x :t | (t * x) exp ].
-	stepper := ExplicitStepper onSystem: system.
+	system := PMExplicitSystem block: [ :x :t | (t * x) exp ].
+	stepper := PMExplicitStepper onSystem: system.
 	stepper stepSize: dt.
-	solver := ExplicitSolver new
+	solver := PMExplicitSolver new
 		system: system;
 		stepper: stepper;
 		dt: dt.
