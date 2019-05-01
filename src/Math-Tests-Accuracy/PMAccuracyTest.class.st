@@ -2,36 +2,36 @@
 AccuracyTest uses AccuracyTestExample
 "
 Class {
-	#name : #AccuracyTest,
+	#name : #PMAccuracyTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'a',
 		'dp'
 	],
-	#category : 'Math-Tests-Accuracy'
+	#category : #'Math-Tests-Accuracy'
 }
 
 { #category : #'initialize-release' }
-AccuracyTest >> initialize [ 
+PMAccuracyTest >> initialize [ 
 	super initialize.
-	dp := AccuracyTestExample decimalPlaces
+	dp := PMAccuracyTestExample decimalPlaces
 
 ]
 
 { #category : #running }
-AccuracyTest >> setUp [ 
-	a := AccuracyTestExample new.
-	AccuracyTestExample decimalPlaces: 3.
+PMAccuracyTest >> setUp [ 
+	a := PMAccuracyTestExample new.
+	PMAccuracyTestExample decimalPlaces: 3.
 ]
 
 { #category : #running }
-AccuracyTest >> tearDown [ 
-	AccuracyTestExample decimalPlaces: dp.
+PMAccuracyTest >> tearDown [ 
+	PMAccuracyTestExample decimalPlaces: dp.
 
 ]
 
 { #category : #tests }
-AccuracyTest >> testArgumentAt [
+PMAccuracyTest >> testArgumentAt [
 	self assert: (a argumentAt: 'Aaa') equals: #(#(false) #(true)).
 	self assert: (a argumentAt: 'Bbb') equals: #(#('a') #('AG')).
 	self assert: (a argumentAt: 'Ddd') isNil.
@@ -39,12 +39,12 @@ AccuracyTest >> testArgumentAt [
 ]
 
 { #category : #tests }
-AccuracyTest >> testArgumentError [
+PMAccuracyTest >> testArgumentError [
 	self should: [ a testArgumentError ] raise: Error
 ]
 
 { #category : #tests }
-AccuracyTest >> testAsArray [
+PMAccuracyTest >> testAsArray [
 	self assert: (a asArray: 'bla') equals: #('bla').
 	self assert: (a asArray: #('bla')) equals: #('bla').
 	self
@@ -53,7 +53,7 @@ AccuracyTest >> testAsArray [
 ]
 
 { #category : #tests }
-AccuracyTest >> testCalcDeviationsInMax [
+PMAccuracyTest >> testCalcDeviationsInMax [
 	| r c |
 	c := #(#(1 2 3) #(2 3 6)).
 	r := {(3 / 2).
@@ -74,7 +74,7 @@ AccuracyTest >> testCalcDeviationsInMax [
 ]
 
 { #category : #tests }
-AccuracyTest >> testCalcErrorOfRealResult [
+PMAccuracyTest >> testCalcErrorOfRealResult [
 	self assert: (a calcErrorOf: 0.7 realResult: 0.7) equals: 0.
 	self assert: (a calcErrorOf: 0.7 realResult: 0.0) equals: -100.
 	self assert: (a calcErrorOf: 1 / 4 realResult: 1 / 2) equals: 100.
@@ -88,7 +88,7 @@ AccuracyTest >> testCalcErrorOfRealResult [
 ]
 
 { #category : #tests }
-AccuracyTest >> testDataTree [
+PMAccuracyTest >> testDataTree [
 	| s |
 	a run.
 	self assert: (a dataTree atPath: #('iterations')) equals: 1.
@@ -126,14 +126,14 @@ AccuracyTest >> testDataTree [
 ]
 
 { #category : #tests }
-AccuracyTest >> testDecimalPlaces [
+PMAccuracyTest >> testDecimalPlaces [
 	self assert: a class decimalPlaces equals: 3.
 	a class decimalPlaces: 2.
 	self assert: a class decimalPlaces equals: 2
 ]
 
 { #category : #tests }
-AccuracyTest >> testExtractFromResultsWhichOnlyOne [
+PMAccuracyTest >> testExtractFromResultsWhichOnlyOne [
 	self
 		assert: (a extractFromResults: #('bla' 'blah') which: 2 onlyOne: false)
 		equals: 'blah'.
@@ -145,7 +145,7 @@ AccuracyTest >> testExtractFromResultsWhichOnlyOne [
 ]
 
 { #category : #tests }
-AccuracyTest >> testExtremeCollectionmax [
+PMAccuracyTest >> testExtremeCollectionmax [
 	| c |
 	c := #(4 4 2).
 	self
@@ -163,7 +163,7 @@ AccuracyTest >> testExtremeCollectionmax [
 ]
 
 { #category : #tests }
-AccuracyTest >> testFormat [
+PMAccuracyTest >> testFormat [
 	self
 		assert: (a format: #(1 'rez' 1.8899))
 		equals: #('1.0' 'rez' '1.89').
@@ -175,7 +175,7 @@ AccuracyTest >> testFormat [
 ]
 
 { #category : #tests }
-AccuracyTest >> testFormatTypePostfix [
+PMAccuracyTest >> testFormatTypePostfix [
 	| r |
 	r := a format: #(1 'rez' 1.8899) type: 'x' postfix: '%%'.
 	self assert: r contents equals: 'x: 1.0%% , rez%% , 1.89%% '.
@@ -186,7 +186,7 @@ AccuracyTest >> testFormatTypePostfix [
 ]
 
 { #category : #tests }
-AccuracyTest >> testFormatTypePostfixTree [
+PMAccuracyTest >> testFormatTypePostfixTree [
 	| t |
 	t := KeyedTree new.
 	self
@@ -206,7 +206,7 @@ AccuracyTest >> testFormatTypePostfixTree [
 ]
 
 { #category : #tests }
-AccuracyTest >> testGetters [
+PMAccuracyTest >> testGetters [
 	| r |
 	r := a testGetterAaa.
 	self
@@ -220,7 +220,7 @@ AccuracyTest >> testGetters [
 ]
 
 { #category : #tests }
-AccuracyTest >> testIfSeveralterations [
+PMAccuracyTest >> testIfSeveralterations [
 	a iterations: 2.
 	self assert: (a ifSeveralterations: [ 1 ]) equals: 1.
 	a iterations: 1.
@@ -228,7 +228,7 @@ AccuracyTest >> testIfSeveralterations [
 ]
 
 { #category : #tests }
-AccuracyTest >> testIterations [
+PMAccuracyTest >> testIterations [
 	| s d |
 	a
 		iterations: 2;
@@ -247,7 +247,7 @@ AccuracyTest >> testIterations [
 ]
 
 { #category : #tests }
-AccuracyTest >> testNumberOfDifferentParametersAt [
+PMAccuracyTest >> testNumberOfDifferentParametersAt [
 	self assert: (a numberOfDifferentParametersAt: 'Aaa') equals: 2.
 	self assert: (a numberOfDifferentParametersAt: 'Ccc') equals: 2.
 	self assert: (a numberOfDifferentParametersAt: 'Ddd') equals: 1.
@@ -255,7 +255,7 @@ AccuracyTest >> testNumberOfDifferentParametersAt [
 ]
 
 { #category : #tests }
-AccuracyTest >> testNumberOfDifferentResultsAt [
+PMAccuracyTest >> testNumberOfDifferentResultsAt [
 	self assert: (a numberOfDifferentResultsAt: 'Aaa') equals: 2.
 	self assert: (a numberOfDifferentResultsAt: 'Bbb') equals: 2.
 	self assert: (a numberOfDifferentResultsAt: 'Ccc') equals: 3.
@@ -264,7 +264,7 @@ AccuracyTest >> testNumberOfDifferentResultsAt [
 ]
 
 { #category : #tests }
-AccuracyTest >> testParameterAt [
+PMAccuracyTest >> testParameterAt [
 	self assert: (a parameterAt: 'Aaa') equals: #(#(1 2) #(3 2.8888)).
 	self assert: (a parameterAt: 'Bbb') equals: #(#(1) #(3)).
 	self assert: (a parameterAt: 'Ddd') isNil.
@@ -272,16 +272,16 @@ AccuracyTest >> testParameterAt [
 ]
 
 { #category : #tests }
-AccuracyTest >> testParameterError [
+PMAccuracyTest >> testParameterError [
 self should: [a testParameterError ]raise: Error
 ]
 
 { #category : #tests }
-AccuracyTest >> testPrintOn [
+PMAccuracyTest >> testPrintOn [
 	| s |
 	s := WriteStream on: String new.
 	a printOn: s.
-	self assert: s contents equals: 'an AccuracyTestExample ()'.
+	self assert: s contents equals: 'a PMAccuracyTestExample ()'.
 	s reset.
 	a run.
 	a printOn: s.
@@ -289,24 +289,24 @@ AccuracyTest >> testPrintOn [
 		assert:
 			(s contents
 				beginsWith:
-					'an AccuracyTestExample (
-Report for: AccuracyTestExample')
+					'a PMAccuracyTestExample (
+Report for: PMAccuracyTestExample')
 ]
 
 { #category : #tests }
-AccuracyTest >> testReport [
+PMAccuracyTest >> testReport [
 	self assert: a report equals: ''.
 	a run.
-	self assert: (a report beginsWith: 'Report for: AccuracyTestExample')
+	self assert: (a report beginsWith: 'Report for: PMAccuracyTestExample')
 ]
 
 { #category : #tests }
-AccuracyTest >> testResultError [
+PMAccuracyTest >> testResultError [
 self should: [a testResultError ]raise: Error
 ]
 
 { #category : #tests }
-AccuracyTest >> testResultsKeyForAtPosition [
+PMAccuracyTest >> testResultsKeyForAtPosition [
 	self assert: (a resultsKeyFor: 'Aaa' AtPosition: 2) equals: #(4 4).
 	self assert: (a resultsKeyFor: 'Bbb' AtPosition: 1) equals: #(2).
 	a run.
@@ -337,7 +337,7 @@ AccuracyTest >> testResultsKeyForAtPosition [
 ]
 
 { #category : #tests }
-AccuracyTest >> testRun [
+PMAccuracyTest >> testRun [
 	a run.
 	a run: 'Bbb'.
 	self assert: (a dataTree atPath: #('names' 'data')) equals: #('Bbb').
@@ -345,7 +345,7 @@ AccuracyTest >> testRun [
 		assert:
 			(a report
 				beginsWith:
-					'Report for: AccuracyTestExample
+					'Report for: PMAccuracyTestExample
 test Bbb').
 	a run: #('Ccc' 'Eee').
 	self
@@ -354,7 +354,7 @@ test Bbb').
 ]
 
 { #category : #tests }
-AccuracyTest >> testSetUp [
+PMAccuracyTest >> testSetUp [
 	self assert: a count equals: 0.
 	a performCheck: 'Fff'.
 	self assert: a count equals: 4 / 5.
@@ -364,7 +364,7 @@ AccuracyTest >> testSetUp [
 ]
 
 { #category : #tests }
-AccuracyTest >> testTreeTypeData [
+PMAccuracyTest >> testTreeTypeData [
 	| aTree |
 	aTree := KeyedTree new.
 	self assert: (a tree: aTree type: 'aa' data: 'bb') equals: aTree.
@@ -378,7 +378,7 @@ AccuracyTest >> testTreeTypeData [
 ]
 
 { #category : #tests }
-AccuracyTest >> testperformCheck [
+PMAccuracyTest >> testperformCheck [
 	| b |
 	a extractFromResults: 'bla' which: 2 onlyOne: false.	"for setting numberOfResults"
 	self assert: (a performCheck: 'Aaa') equals: #(#(1 1)).

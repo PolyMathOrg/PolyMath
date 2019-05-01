@@ -2,7 +2,7 @@
 Test to check FloatingPoint numbers with arbitrary precision
 "
 Class {
-	#name : #ArbitraryPrecisionFloatTest,
+	#name : #PMArbitraryPrecisionFloatTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'zero',
@@ -13,16 +13,16 @@ Class {
 		'minusTwo',
 		'huge'
 	],
-	#category : 'Math-Tests-ArbitraryPrecisionFloat'
+	#category : #'Math-Tests-ArbitraryPrecisionFloat'
 }
 
 { #category : #accessing }
-ArbitraryPrecisionFloatTest class >> defaultTimeLimit [
+PMArbitraryPrecisionFloatTest class >> defaultTimeLimit [
 ^ 120 seconds
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits: n [
+PMArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits: n [
 	"Check that doubling the precision, then rounding would lead to the same result"
 	
 	| anArbitraryPrecisionFloat singlePrecisionResult |
@@ -33,17 +33,17 @@ ArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits: 
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func [ 
+PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func [ 
 	^self checkDoublePrecisionSerie: serie forFunction: func nBits: Float precision
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func nBits: n [
+PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func nBits: n [
 	serie do: [:y | self checkDoublePrecision: y forFunction: func nBits: n]
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFunction: func [ 
+PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFunction: func [ 
 	^serie reject: [:y |
 		| farb |
 		farb := self checkDoublePrecision: y forFunction: func nBits: Float precision.
@@ -51,7 +51,7 @@ ArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFuncti
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toDoublePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
+PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toDoublePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
 	"Check that doubling the precision, then rounding would lead to the same result"
 	
 	| n doublePrecision doublePrecisionResult lowBits |
@@ -78,7 +78,7 @@ ArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toDoublePrecisi
 ]
 
 { #category : #private }
-ArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toQuadruplePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
+PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toQuadruplePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
 	"Check that quadrupling the precision, then rounding would lead to the same result"
 	
 	| n quadruplePrecision quadruplePrecisionResult lowBits |
@@ -97,22 +97,22 @@ ArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toQuadruplePrec
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> hyperbolicSerie [
+PMArbitraryPrecisionFloatTest >> hyperbolicSerie [
 	^#(-3.0e0  -0.1e0  0.0e0  1.0e-20  1.0e-10  0.99e0 1.0e0  2.5e0  3.0e0  10.25e0) , (Array with: (3/10) asFloat with: (22/7) asFloat)
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> inverseTrigonometricSerie [
+PMArbitraryPrecisionFloatTest >> inverseTrigonometricSerie [
 	^((-20 to: 20) collect: [:e | (e / 20) asFloat]) , ((-6 to: 6) collect: [:e | (e / 7) asFloat])
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> largeTrigonometricSerie [
+PMArbitraryPrecisionFloatTest >> largeTrigonometricSerie [
 	^#(1.0e15 1.1e21 1.2e28 1.0e32 1.1e34 -1.23e51 1.345e67 1.777e151 1.211e308)
 ]
 
 { #category : #setup }
-ArbitraryPrecisionFloatTest >> setUp [
+PMArbitraryPrecisionFloatTest >> setUp [
 	zero := 0 asArbitraryPrecisionFloatNumBits: 53.
 	one := 1 asArbitraryPrecisionFloatNumBits: 53.
 	two := 2 asArbitraryPrecisionFloatNumBits: 53.
@@ -123,7 +123,7 @@ ArbitraryPrecisionFloatTest >> setUp [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testArCosh [
+PMArbitraryPrecisionFloatTest >> testArCosh [
 	<timeout: 5 "seconds">
 	| serie |
 	serie := ((1 to: 10) , #(1.0001 100 1000 1.0e20)) collect: [:e | e asFloat].
@@ -131,12 +131,12 @@ ArbitraryPrecisionFloatTest >> testArCosh [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testArCoshDomainError [
+PMArbitraryPrecisionFloatTest >> testArCoshDomainError [
 	self should: [(1/2 asArbitraryPrecisionFloatNumBits: 24) arCosh] raise: DomainError.
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testArSinh [
+PMArbitraryPrecisionFloatTest >> testArSinh [
 	<timeout: 10 "seconds">
 	| serie |
 	serie := ((-5 to: 10) , #(1.0e-20 1.0e-10  0.9999 1.0001 100 1000 1.0e20)) collect: [:e | e asFloat].
@@ -144,7 +144,7 @@ ArbitraryPrecisionFloatTest >> testArSinh [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testArTanh [
+PMArbitraryPrecisionFloatTest >> testArTanh [
 	<timeout: 20 "seconds">
 	| serie |
 	serie := ((-19 to: 19) collect: [:e | (e / 20) asFloat]) , ((-6 to: 6) collect: [:e | (e / 7) asFloat]) , #(1.0e-20 1.0e-10 0.99 0.9999 0.999999).
@@ -152,13 +152,13 @@ ArbitraryPrecisionFloatTest >> testArTanh [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testArTanhDomainError [
+PMArbitraryPrecisionFloatTest >> testArTanhDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arTanh] raise: DomainError.
 	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arTanh] raise: DomainError.
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcCos [
+PMArbitraryPrecisionFloatTest >> testArcCos [
 	<timeout: 10 "seconds">
 	| badArcCos |
 	badArcCos := self checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie forFunction: #arcCos.
@@ -166,13 +166,13 @@ ArbitraryPrecisionFloatTest >> testArcCos [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcCosDomainError [
+PMArbitraryPrecisionFloatTest >> testArcCosDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arcCos] raise: DomainError.
 	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcCos] raise: DomainError.
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcSin [
+PMArbitraryPrecisionFloatTest >> testArcSin [
 	<timeout: 10 "seconds">
 	| badArcSin |
 	badArcSin := self checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie forFunction: #arcSin.
@@ -180,13 +180,13 @@ ArbitraryPrecisionFloatTest >> testArcSin [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcSinDomainError [
+PMArbitraryPrecisionFloatTest >> testArcSinDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arcSin] raise: DomainError.
 	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcSin] raise: DomainError.
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcTan [
+PMArbitraryPrecisionFloatTest >> testArcTan [
 	<timeout: 10 "seconds">
 	| badArcTan serie |
 	serie := ((-50 to: 50) collect: [:e | (e / 10) asFloat]).
@@ -195,7 +195,7 @@ ArbitraryPrecisionFloatTest >> testArcTan [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testArcTan2 [
+PMArbitraryPrecisionFloatTest >> testArcTan2 [
 	<timeout: 30 "seconds">
 	-5 to: 5 by: 4/10 do: [:y |
 		| yf yd |
@@ -209,13 +209,13 @@ ArbitraryPrecisionFloatTest >> testArcTan2 [
 ]
 
 { #category : #'testing-converting' }
-ArbitraryPrecisionFloatTest >> testAsFloat [
+PMArbitraryPrecisionFloatTest >> testAsFloat [
 	self assert: (half asArbitraryPrecisionFloatNumBits: Float precision) asFloat = 0.5e0.
 	self assert: (half asArbitraryPrecisionFloatNumBits: Float precision * 2) asFloat = 0.5e0.
 ]
 
 { #category : #'testing-converting' }
-ArbitraryPrecisionFloatTest >> testAsFloatWithUnderflow [
+PMArbitraryPrecisionFloatTest >> testAsFloatWithUnderflow [
 	| fmin fminA |
 	fmin := Float fmin.
 	fminA := fmin asArbitraryPrecisionFloatNumBits: one numBits.
@@ -224,7 +224,7 @@ ArbitraryPrecisionFloatTest >> testAsFloatWithUnderflow [
 ]
 
 { #category : #'testing-converting' }
-ArbitraryPrecisionFloatTest >> testAsMinimalDecimalFraction [
+PMArbitraryPrecisionFloatTest >> testAsMinimalDecimalFraction [
 	| emax emin leadingOne significands |
 	significands := 0 to: 1<<10-1.
 	leadingOne := 1<<10.
@@ -246,7 +246,7 @@ ArbitraryPrecisionFloatTest >> testAsMinimalDecimalFraction [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingDivide [
+PMArbitraryPrecisionFloatTest >> testCoercingDivide [
 	(Array with: 1/2 with: 0.5e0 with: 0.5s1) do: [:heteroHalf |
 		self assert: one / heteroHalf = two.
 		self assert: (one / heteroHalf) class = one class.
@@ -264,7 +264,7 @@ ArbitraryPrecisionFloatTest >> testCoercingDivide [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingEqual [
+PMArbitraryPrecisionFloatTest >> testCoercingEqual [
 	self assert: half = (1/2).
 	self assert: (1/2) = half.
 	self deny: half = (1/3).
@@ -287,7 +287,7 @@ ArbitraryPrecisionFloatTest >> testCoercingEqual [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingLessThan [
+PMArbitraryPrecisionFloatTest >> testCoercingLessThan [
 	self deny: half < (1/2).
 	self assert: (1/3) < half.
 	self assert: minusOne < (1/2).
@@ -318,7 +318,7 @@ ArbitraryPrecisionFloatTest >> testCoercingLessThan [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingMultiply [
+PMArbitraryPrecisionFloatTest >> testCoercingMultiply [
 	(Array with: 1/2 with: 0.5e0 with: 0.5s1) do: [:heteroHalf |
 		self assert: two * heteroHalf = one.
 		self assert: (two * heteroHalf) class = half class.
@@ -336,7 +336,7 @@ ArbitraryPrecisionFloatTest >> testCoercingMultiply [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingSubtract [
+PMArbitraryPrecisionFloatTest >> testCoercingSubtract [
 	(Array with: 1/2 with: 0.5e0 with: 0.5s1) do: [:heteroHalf |
 		self assert: half - heteroHalf = zero.
 		self assert: (half - heteroHalf) class = half class.
@@ -354,7 +354,7 @@ ArbitraryPrecisionFloatTest >> testCoercingSubtract [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testCoercingSum [
+PMArbitraryPrecisionFloatTest >> testCoercingSum [
 	(Array with: 1/2 with: 0.5e0 with: 0.5s1) do: [:heteroHalf |
 		self assert: half + heteroHalf = one.
 		self assert: (half + heteroHalf) class = half class.
@@ -372,7 +372,7 @@ ArbitraryPrecisionFloatTest >> testCoercingSum [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testCos [
+PMArbitraryPrecisionFloatTest >> testCos [
 	<timeout: 30 "seconds">
 	| badCos |
 	badCos := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #cos.
@@ -380,13 +380,13 @@ ArbitraryPrecisionFloatTest >> testCos [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testCosh [
+PMArbitraryPrecisionFloatTest >> testCosh [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self hyperbolicSerie forFunction: #cosh
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testDivide [
+PMArbitraryPrecisionFloatTest >> testDivide [
 	| serie |
 	serie := {1. 2. 3. 5. 6. 7. 9. 10. 11. 12. 19. 243. 10 raisedTo: Float precision + 1. Float precision factorial. Float pi.}.
 	serie do: [:num |
@@ -403,7 +403,7 @@ ArbitraryPrecisionFloatTest >> testDivide [
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testEqual [
+PMArbitraryPrecisionFloatTest >> testEqual [
 	self assert: zero = zero.
 	self assert: one = one.
 	self assert: one = one copy.
@@ -427,7 +427,7 @@ ArbitraryPrecisionFloatTest >> testEqual [
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testExp [
+PMArbitraryPrecisionFloatTest >> testExp [
 	<timeout: 10 "seconds">
 	| badExp serie |
 	serie := ((-20 to: 20) collect: [:e |e asFloat]).
@@ -436,7 +436,7 @@ ArbitraryPrecisionFloatTest >> testExp [
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testExpLn [
+PMArbitraryPrecisionFloatTest >> testExpLn [
 	|n|
 	self assert: (1 asArbitraryPrecisionFloatNumBits: 53) exp asFloat = 1 asFloat exp.
 	n := 5 exp.
@@ -449,7 +449,7 @@ ArbitraryPrecisionFloatTest >> testExpLn [
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testGreaterThan [
+PMArbitraryPrecisionFloatTest >> testGreaterThan [
 	
 	self assert: zero < one.
 	self deny: one > two.
@@ -466,7 +466,7 @@ ArbitraryPrecisionFloatTest >> testGreaterThan [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusFloat [
+PMArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusFloat [
 	| floats ops ref new |
 	floats := #(1.0 2.0 3.0 5.0 10.0 2r1.0e52 2r1.0e53 2r1.0e54 0.5 0.25 2r1.0e-52 2r1.0e-53 2r1.0e-54 1.0e60 0.1 1.1e-30 1.0e-60) copyWith: Float pi.
 	ops := #(#+ #- #* #/ #= #< #> ).
@@ -482,7 +482,7 @@ ArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusFloat [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusIntegerAndFraction [
+PMArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusIntegerAndFraction [
 	"check that results are the same as IEEE 754 accelerated hardware
 	WARNING: this cannot be the case for denormalized numbers (gradual underflow)
 	because our exponent is unlimited"
@@ -530,7 +530,7 @@ ArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusIntegerAndFraction [
 ]
 
 { #category : #'testing-coercing' }
-ArbitraryPrecisionFloatTest >> testInfinityAndNaN [
+PMArbitraryPrecisionFloatTest >> testInfinityAndNaN [
 	| inf nan |
 	inf := Float infinity.
 	nan := Float nan.
@@ -562,14 +562,14 @@ ArbitraryPrecisionFloatTest >> testInfinityAndNaN [
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testIsZero [
+PMArbitraryPrecisionFloatTest >> testIsZero [
 	self assert: zero isZero.
 	self deny: one isZero.
 	self deny: minusTwo isZero.
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testLessThan [
+PMArbitraryPrecisionFloatTest >> testLessThan [
 	
 	self assert: zero < one.
 	self assert: one < two.
@@ -586,7 +586,7 @@ ArbitraryPrecisionFloatTest >> testLessThan [
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testLn [
+PMArbitraryPrecisionFloatTest >> testLn [
 	<timeout: 10 "seconds">
 	| badLn serie |
 	serie := ((1 to: 100) collect: [:e |e asFloat]).
@@ -595,12 +595,12 @@ ArbitraryPrecisionFloatTest >> testLn [
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testLnDomainError [
+PMArbitraryPrecisionFloatTest >> testLnDomainError [
 	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) ln] raise: DomainError.
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testMultiply [
+PMArbitraryPrecisionFloatTest >> testMultiply [
 	self assert: zero * zero = zero.
 	self assert: zero * minusOne = zero.
 	self assert: huge * zero = zero.
@@ -617,7 +617,7 @@ ArbitraryPrecisionFloatTest >> testMultiply [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testNegated [
+PMArbitraryPrecisionFloatTest >> testNegated [
 	self assert: zero negated = zero.
 	self assert: one negated = minusOne.
 	self assert: minusTwo negated = two.
@@ -626,7 +626,7 @@ ArbitraryPrecisionFloatTest >> testNegated [
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testNegative [
+PMArbitraryPrecisionFloatTest >> testNegative [
 	
 	self deny: zero negative.
 	self deny: two negative.
@@ -634,14 +634,14 @@ ArbitraryPrecisionFloatTest >> testNegative [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testPi [
+PMArbitraryPrecisionFloatTest >> testPi [
 	"check computation of pi"
 
 	self assert: (1 asArbitraryPrecisionFloatNumBits: 53) pi = Float pi.
 ]
 
 { #category : #'testing-compare' }
-ArbitraryPrecisionFloatTest >> testPositive [
+PMArbitraryPrecisionFloatTest >> testPositive [
 	
 	self assert: zero positive.
 	self assert: one positive.
@@ -649,7 +649,7 @@ ArbitraryPrecisionFloatTest >> testPositive [
 ]
 
 { #category : #'testing-converting' }
-ArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
+PMArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
 	"seconds"
 
 	<timeout: 50>
@@ -684,7 +684,7 @@ ArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testRaisedToNegativeInteger [
+PMArbitraryPrecisionFloatTest >> testRaisedToNegativeInteger [
 	| n |
 	n := 11.
 	1 to: 1<<n-1 do: [:i |
@@ -693,7 +693,7 @@ ArbitraryPrecisionFloatTest >> testRaisedToNegativeInteger [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testRaisedToPositiveInteger [
+PMArbitraryPrecisionFloatTest >> testRaisedToPositiveInteger [
 	| n |
 	n := 11.
 	1 to: 1<<n-1 do: [:i |
@@ -702,7 +702,7 @@ ArbitraryPrecisionFloatTest >> testRaisedToPositiveInteger [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testReciprocal [
+PMArbitraryPrecisionFloatTest >> testReciprocal [
 	| b |
 	b := 1 << (Float precision - 1).
 	1 to: 10000 do: [:i |
@@ -714,7 +714,7 @@ ArbitraryPrecisionFloatTest >> testReciprocal [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testRoundToNearestEven [
+PMArbitraryPrecisionFloatTest >> testRoundToNearestEven [
 	"Check that IEEE default rounding mode is honoured,
 	that is rounding to nearest even"
 		
@@ -727,7 +727,7 @@ ArbitraryPrecisionFloatTest >> testRoundToNearestEven [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testRoundToNearestEvenAgainstIEEEDouble [
+PMArbitraryPrecisionFloatTest >> testRoundToNearestEvenAgainstIEEEDouble [
 	"Check that IEEE default rounding mode is honoured"
 
 	#(1 2 3 5 6 7) do: 
@@ -739,7 +739,7 @@ ArbitraryPrecisionFloatTest >> testRoundToNearestEvenAgainstIEEEDouble [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testSin [
+PMArbitraryPrecisionFloatTest >> testSin [
 	<timeout: 30 "seconds">
 	| badSin |
 	badSin := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #sin.
@@ -747,7 +747,7 @@ ArbitraryPrecisionFloatTest >> testSin [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testSincos [
+PMArbitraryPrecisionFloatTest >> testSincos [
 	<timeout: 30 "seconds">
 	self trigonometricSerie do: [:aFloat |
 		| x sc s c |
@@ -762,13 +762,13 @@ ArbitraryPrecisionFloatTest >> testSincos [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testSinh [
+PMArbitraryPrecisionFloatTest >> testSinh [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self hyperbolicSerie forFunction: #sinh
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testSqrt [
+PMArbitraryPrecisionFloatTest >> testSqrt [
 	<timeout: 10 "seconds">
 	| badSqrt serie |
 	"knowing that (10**3) < (2**10), 100 bits are enough for representing 10**30 exactly"
@@ -780,12 +780,12 @@ ArbitraryPrecisionFloatTest >> testSqrt [
 ]
 
 { #category : #'testing-functions' }
-ArbitraryPrecisionFloatTest >> testSqrtDomainError [
+PMArbitraryPrecisionFloatTest >> testSqrtDomainError [
 	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) sqrt] raise: DomainError.
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testSubtract [
+PMArbitraryPrecisionFloatTest >> testSubtract [
 	self assert: zero - zero = zero.
 	self assert: zero - minusOne = one.
 	self assert: huge - zero = huge.
@@ -800,7 +800,7 @@ ArbitraryPrecisionFloatTest >> testSubtract [
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testSum [
+PMArbitraryPrecisionFloatTest >> testSum [
 	self assert: zero + zero = zero.
 	self assert: zero + minusOne = minusOne.
 	self assert: huge + zero = huge.
@@ -815,7 +815,7 @@ ArbitraryPrecisionFloatTest >> testSum [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testTan [
+PMArbitraryPrecisionFloatTest >> testTan [
 	<timeout: 30 "seconds">
 	| badTan |
 	badTan := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #tan.
@@ -823,31 +823,31 @@ ArbitraryPrecisionFloatTest >> testTan [
 ]
 
 { #category : #'testing-hyperbolic' }
-ArbitraryPrecisionFloatTest >> testTanh [
+PMArbitraryPrecisionFloatTest >> testTanh [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self hyperbolicSerie forFunction: #tanh
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testVeryLargeCos [
+PMArbitraryPrecisionFloatTest >> testVeryLargeCos [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #cos.
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testVeryLargeSin [
+PMArbitraryPrecisionFloatTest >> testVeryLargeSin [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #sin.
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> testVeryLargeTan [
+PMArbitraryPrecisionFloatTest >> testVeryLargeTan [
 	<timeout: 10 "seconds">
 	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #tan.
 ]
 
 { #category : #'testing-arithmetic' }
-ArbitraryPrecisionFloatTest >> testZeroOne [
+PMArbitraryPrecisionFloatTest >> testZeroOne [
 
 	self assert: (312 asArbitraryPrecisionFloatNumBits: 53) one = 1.
 	self assert: (312 asArbitraryPrecisionFloatNumBits: 24) zero isZero.
@@ -857,6 +857,6 @@ ArbitraryPrecisionFloatTest >> testZeroOne [
 ]
 
 { #category : #'testing-trigonometry' }
-ArbitraryPrecisionFloatTest >> trigonometricSerie [
+PMArbitraryPrecisionFloatTest >> trigonometricSerie [
 	^(-720 to: 720) collect: [:i | i asFloat degreesToRadians]
 ]

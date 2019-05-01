@@ -1,11 +1,11 @@
 Class {
-	#name : #TSNETest,
+	#name : #PMTSNETest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-TSNE'
 }
 
 { #category : #tests }
-TSNETest >> testComputePairwiseDistances [
+PMTSNETest >> testComputePairwiseDistances [
 	| t |
 	t := (PMTSNE
 		new)
@@ -14,7 +14,7 @@ TSNETest >> testComputePairwiseDistances [
 ]
 
 { #category : #tests }
-TSNETest >> testInitialDimsSetByDefaultWithFifty [
+PMTSNETest >> testInitialDimsSetByDefaultWithFifty [
 	| t |
 	t := PMTSNE
 		new
