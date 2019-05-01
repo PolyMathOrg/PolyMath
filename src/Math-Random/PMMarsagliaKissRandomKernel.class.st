@@ -1,5 +1,5 @@
 "
-A MarsagliaKissRandomKernel is a private class for generating pseudo-Random numbers.
+A PMMarsagliaKissRandomKernel is a private class for generating pseudo-Random numbers.
 
 It generates 32-bits Integer with uniform distribution in Interval [ 0,16rFFFFFFFF].
 
@@ -37,7 +37,7 @@ Class {
 		'w',
 		'z'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'instance creation' }

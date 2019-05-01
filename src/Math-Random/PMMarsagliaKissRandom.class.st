@@ -5,8 +5,8 @@ It generates Float with uniform distribution in Interval [0,1).
 The result divided by 1.0 predecessor will be in [0,1].
 
 Instance Variables
-	kernelRand1:		<MarsagliaKissRandomKernel> a first generator
-	kernelRand2:		<MarsagliaKissRandomKernel> a second generator
+	kernelRand1:		<PMMarsagliaKissRandomKernel> a first generator
+	kernelRand2:		<PMMarsagliaKissRandomKernel> a second generator
 
 "
 Class {
