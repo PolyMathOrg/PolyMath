@@ -22,14 +22,14 @@ no aproximation is at the moment used for bigger datasizes, hence calcs will be 
 "
 Class {
 	#name : #PMKolmogorovSmirnov2Sample,
-	#superclass : #PMKolmogorovSmirnov,
+	#superclass : #PMKolmogorovSmirnovSample,
 	#instVars : [
 		'uCalcBlock',
 		'smallSize',
 		'bigSize',
 		'ksStatistic'
 	],
-	#category : 'Math-KolmogorovSmirnov'
+	#category : #'Math-KolmogorovSmirnov'
 }
 
 { #category : #'instance creation' }
@@ -126,9 +126,11 @@ ksStatistic ifNil: [self ksStatistic ].
 ]
 
 { #category : #printing }
-PMKolmogorovSmirnov2Sample >> print2On: aStream [ 
+PMKolmogorovSmirnov2Sample >> printOn: aStream [
+	super printOn: aStream.
 	aStream nextPutAll: ' otherDataSize: '.
-	compareWith ifNil:[aStream nextPut: $-]ifNotNil:[compareWith size printOn: aStream].
-	aStream nextPut: $).
-
+	compareWith
+		ifNil: [ aStream nextPut: $- ]
+		ifNotNil: [ compareWith size printOn: aStream ].
+	aStream nextPut: $)
 ]

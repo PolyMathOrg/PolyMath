@@ -14,12 +14,12 @@ ks rejectEqualityHypothesisWithAlpha: 0.05.""--> false""
 "
 Class {
 	#name : #PMKolmogorovSmirnov1Sample,
-	#superclass : #PMKolmogorovSmirnov,
+	#superclass : #PMKolmogorovSmirnovSample,
 	#instVars : [
 		'distribution',
 		'popDistribution'
 	],
-	#category : 'Math-KolmogorovSmirnov'
+	#category : #'Math-KolmogorovSmirnov'
 }
 
 { #category : #'instance creation' }
@@ -72,12 +72,14 @@ compareWith :=[:x|popDistribution distributionValue:x ]
 ]
 
 { #category : #printing }
-PMKolmogorovSmirnov1Sample >> print2On: aStream [ 
-	aStream nextPutAll:' cdf: '.
-	compareWith 
-		ifNil: [aStream nextPut: $-] 
-		ifNotNil:[popDistribution 
-			ifNil:[compareWith printOn: aStream]
-			ifNotNil:[aStream nextPutAll: 'distributionValue of '. popDistribution printOn: aStream ]]. 
-	aStream nextPut: $).
+PMKolmogorovSmirnov1Sample >> printOn: aStream [
+	super printOn: aStream.
+	aStream nextPutAll: ' cdf: '.
+	compareWith
+		ifNil: [ aStream nextPut: $- ]
+		ifNotNil: [ popDistribution
+				ifNil: [ compareWith printOn: aStream ]
+				ifNotNil: [ aStream nextPutAll: 'distributionValue of '.
+					popDistribution printOn: aStream ] ].
+	aStream nextPut: $)
 ]

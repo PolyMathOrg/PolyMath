@@ -2,60 +2,49 @@
 abstract class, use KolmogorovSmirnov1Sample or KolmogorovSmirnov2Sample
 "
 Class {
-	#name : #PMKolmogorovSmirnov,
+	#name : #PMKolmogorovSmirnovSample,
 	#superclass : #Object,
 	#instVars : [
 		'data',
 		'compareWith'
 	],
-	#category : 'Math-KolmogorovSmirnov'
+	#category : #'Math-KolmogorovSmirnov'
 }
 
 { #category : #accessing }
-PMKolmogorovSmirnov >> data: aCollection [
+PMKolmogorovSmirnovSample >> data: aCollection [
 ^self subclassResponsibility 
 ]
 
 { #category : #accessing }
-PMKolmogorovSmirnov >> ksStatistic [
+PMKolmogorovSmirnovSample >> ksStatistic [
 "the kolmogorov-smirnov statistic D"
 ^self subclassResponsibility 
 ]
 
 { #category : #accessing }
-PMKolmogorovSmirnov >> pValue [
+PMKolmogorovSmirnovSample >> pValue [
 "the probability of getting a ksStatistic <= the actual one"
 ^self subclassResponsibility 
 ]
 
 { #category : #printing }
-PMKolmogorovSmirnov >> print1On: aStream [ 
-	super printOn: aStream .
+PMKolmogorovSmirnovSample >> printOn: aStream [
+	super printOn: aStream.
 	aStream nextPutAll: '(dataSize: '.
-	data ifNil:[aStream nextPut: $-]ifNotNil:[data size printOn: aStream].
-
-]
-
-{ #category : #printing }
-PMKolmogorovSmirnov >> print2On: aStream [ 
-^self subclassResponsibility 
-]
-
-{ #category : #printing }
-PMKolmogorovSmirnov >> printOn: aStream [ 
-	self print1On: aStream .
-	self print2On: aStream .
-
+	data
+		ifNil: [ aStream nextPut: $- ]
+		ifNotNil: [ data size printOn: aStream ]
 ]
 
 { #category : #accessing }
-PMKolmogorovSmirnov >> rejectEqualityHypothesisWithAlpha: aFloat [
+PMKolmogorovSmirnovSample >> rejectEqualityHypothesisWithAlpha: aFloat [
 ^self pValue > (1-aFloat) 
 
 ]
 
 { #category : #private }
-PMKolmogorovSmirnov >> testDataComplete [
+PMKolmogorovSmirnovSample >> testDataComplete [
 (data isNil or:[compareWith isNil ]) ifTrue: [ self error:'data not completely set' ].
 
 ]
