@@ -6,7 +6,7 @@ https://lvdmaaten.github.io/tsne/
 t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets. 
 "
 Class {
-	#name : #TSNE,
+	#name : #PMTSNE,
 	#superclass : #Object,
 	#instVars : [
 		'ndims',
@@ -22,11 +22,11 @@ Class {
 		'eta',
 		'minGain'
 	],
-	#category : 'Math-TSNE'
+	#category : #'Math-TSNE'
 }
 
 { #category : #examples }
-TSNE class >> example1 [
+PMTSNE class >> example1 [
 	| points |
 	points := self gridDataGeneratorOf: 10.
 	^ (self new)
@@ -39,7 +39,7 @@ TSNE class >> example1 [
 ]
 
 { #category : #'as yet unclassified' }
-TSNE class >> gridDataGeneratorOf: size [
+PMTSNE class >> gridDataGeneratorOf: size [
 	"Demos from https://github.com/distillpub/post--misread-tsne/blob/master/public/assets/demo-configs.js"
 	"A square grid with equal spacing between points."
 	"Returns a PMMatrix"
@@ -53,7 +53,7 @@ TSNE class >> gridDataGeneratorOf: size [
 ]
 
 { #category : #accessing }
-TSNE >> computePValues [
+PMTSNE >> computePValues [
 "
 #Compute P-values
 	P = x2p(X, 1e-5, perplexity);
@@ -72,7 +72,7 @@ p := p max: 1e-12.
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> computePairwiseAffinities [
+PMTSNE >> computePairwiseAffinities [
 "
 	sum_Y = np.sum(np.square(Y), 1);
 		num = 1 / (1 + Math.add(Math.add(-2 * Math.dot(Y, Y.T), sum_Y).T, sum_Y));
@@ -90,7 +90,7 @@ TSNE >> computePairwiseAffinities [
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> computePairwiseDistances [
+PMTSNE >> computePairwiseDistances [
 	| sumX d tmp|
 	sumX := (x dot: x) sum.
 	tmp := (x * (x transpose)) * (-2).
@@ -100,27 +100,27 @@ TSNE >> computePairwiseDistances [
 ]
 
 { #category : #running }
-TSNE >> epsilon: aFloat [
+PMTSNE >> epsilon: aFloat [
 	epsilon := aFloat
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> initialDims [
+PMTSNE >> initialDims [
 	^initialdims 
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> initialDims: aFloat [
+PMTSNE >> initialDims: aFloat [
 	initialdims := aFloat
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> initialDimsDefaultValue [
+PMTSNE >> initialDimsDefaultValue [
 	^ 50
 ]
 
 { #category : #initialization }
-TSNE >> initialize [
+PMTSNE >> initialize [
 	maxIter := 1000.
 	initialMomentum := 0.5.
 	finalMomentum := 0.8.
@@ -130,14 +130,14 @@ TSNE >> initialize [
 ]
 
 { #category : #initialization }
-TSNE >> initializeUninitializedParameters [
+PMTSNE >> initializeUninitializedParameters [
 	perplexity ifNil: [ perplexity := self perplexityDefaultValue ].
 	ndims ifNil: [ ndims := self ndimsDefaultValue ].
 	initialdims ifNil: [ initialdims := self initialDimsDefaultValue ]
 ]
 
 { #category : #initialization }
-TSNE >> initializeYWithRandomValues [
+PMTSNE >> initializeYWithRandomValues [
 	"Answer a new Matrix Y with the number of rows of x and number of columns ndims filled with random numbers following a normal distribution (0,1)"
 	"We should add this to PMMatrix API later"
 
@@ -154,32 +154,32 @@ TSNE >> initializeYWithRandomValues [
 ]
 
 { #category : #accessing }
-TSNE >> ndims [
+PMTSNE >> ndims [
 	^ ndims
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> ndimsDefaultValue [
+PMTSNE >> ndimsDefaultValue [
 	^ 2
 ]
 
 { #category : #accessing }
-TSNE >> perplexity [
+PMTSNE >> perplexity [
 	^ perplexity
 ]
 
 { #category : #accessing }
-TSNE >> perplexity: aFloat [
+PMTSNE >> perplexity: aFloat [
 	perplexity := aFloat
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> perplexityDefaultValue [
+PMTSNE >> perplexityDefaultValue [
 	^ 30.0
 ]
 
 { #category : #running }
-TSNE >> runPcaOnX [
+PMTSNE >> runPcaOnX [
 	"Runs PCA on X in order to reduce its dimensionality to initialdims dimensions.
 
 	print ""Preprocessing the data using PCA...""
@@ -200,7 +200,7 @@ TSNE >> runPcaOnX [
 ]
 
 { #category : #accessing }
-TSNE >> start [
+PMTSNE >> start [
 	self initializeUninitializedParameters.
 	self runPcaOnX.
 	self initializeYWithRandomValues.
@@ -208,12 +208,12 @@ TSNE >> start [
 ]
 
 { #category : #'stepping and presenter' }
-TSNE >> step [
+PMTSNE >> step [
 	self computePairwiseAffinities
 ]
 
 { #category : #'as yet unclassified' }
-TSNE >> x2p [
+PMTSNE >> x2p [
 	| p d beta logU n betaMin betaMax|
 	n := x numberOfRows.
 	d := self computePairwiseDistances.
@@ -228,11 +228,11 @@ TSNE >> x2p [
 ]
 
 { #category : #accessing }
-TSNE >> x: aPMMatrix [
+PMTSNE >> x: aPMMatrix [
 	x := aPMMatrix
 ]
 
 { #category : #accessing }
-TSNE >> y [
+PMTSNE >> y [
 	^ y
 ]
