@@ -33,8 +33,6 @@ PMKDTreeTest >> setUp [
 { #category : #tests }
 PMKDTreeTest >> testBenchmark [
 	| aStream s |
-	(RPackage organizer includesPackageNamed: 'Math-Benchmarks-KDTree')
-		ifFalse: [ ^ self skip ].
 	aStream := ReadWriteStream with: ''.
 	(PMKDTreeBenchmark fastRun: 1 with: Array) printOn: aStream.
 	s := aStream contents.
