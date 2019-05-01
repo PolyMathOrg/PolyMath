@@ -23,7 +23,7 @@ PolyMath is a Pharo project, similar to existing scientific libraries like NumPy
 - random number generators,
 - fuzzy algorithms,
 - KDE-trees,
-- Didier Besset's numerical methods,
+- Numerical methods,
 - Ordinary Differential Equation (ODE) solvers.
 
 A book about PolyMath called "PolyMath book" is available online: https://github.com/SquareBracketAssociates/PolyMath-book
