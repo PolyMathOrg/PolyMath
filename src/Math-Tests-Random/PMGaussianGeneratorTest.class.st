@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Random'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 PMGaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
 	"fixme: this test ignores the standard deviation and occasionally fails"
 	| data m |

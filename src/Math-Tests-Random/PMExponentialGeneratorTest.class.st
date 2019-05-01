@@ -1,5 +1,5 @@
 "
-An ExponentialGeneratorTest is a test class for testing the behavior of ExponentialGenerator
+A PMExponentialGeneratorTest is a test class for testing the behavior of PMExponentialGenerator
 "
 Class {
 	#name : #PMExponentialGeneratorTest,
@@ -34,7 +34,7 @@ PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
 	| eg arr |
 	eg := PMExponentialGenerator mean: 10.
 	arr := Array new: 10000.
-	(1 to: 10000) do: [ :index | arr at: index put: eg next ].
+	arr := arr collect: [ :each | eg next ].
 	self
 		assert: (arr average between: eg mean * 0.95 and: eg mean * 1.05)
 ]
