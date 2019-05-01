@@ -1,5 +1,5 @@
 "
-A NumberGenerator is a stream of numbers. All NumberGenerators respond to #next.
+A PMNumberGenerator is a stream of numbers. All NumberGenerators respond to #next.
 
 As generator I use a PMRandomGenerator instance as defined by the class message defaultGeneratorClass.
 My API is 
@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'randomNumberGenerator'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #factory }

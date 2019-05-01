@@ -1,12 +1,12 @@
 "
 I use a quick and dirty Linear Congruential generator.
 
-LCRandom new next.
+PMLinearCongruentialRandomGenerator new next.
 "
 Class {
 	#name : #PMLinearCongruentialRandomGenerator,
 	#superclass : #PMRandomGenerator,
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #accessing }
