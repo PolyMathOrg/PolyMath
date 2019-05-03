@@ -159,10 +159,17 @@ PMArbitraryPrecisionFloatTest >> testArTanhDomainError [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testArcCos [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badArcCos |
-	badArcCos := self checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie forFunction: #arcCos.
-	badArcCos isEmpty ifFalse: [Transcript cr; show: 'bad arcCos for ' , badArcCos printString]
+	badArcCos := self
+		checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie
+		forFunction: #arcCos.
+	"badArcCos isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show: 'bad arcCos for ' , badArcCos printString ]"
 ]
 
 { #category : #'testing-trigonometry' }
@@ -173,10 +180,17 @@ PMArbitraryPrecisionFloatTest >> testArcCosDomainError [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testArcSin [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badArcSin |
-	badArcSin := self checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie forFunction: #arcSin.
-	badArcSin isEmpty ifFalse: [Transcript cr; show: 'bad arcSin for ' , badArcSin printString]
+	badArcSin := self
+		checkDoublePrecisionSerieVsFloat: self inverseTrigonometricSerie
+		forFunction: #arcSin.
+"	badArcSin isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show: 'bad arcSin for ' , badArcSin printString ]"
 ]
 
 { #category : #'testing-trigonometry' }
@@ -187,11 +201,18 @@ PMArbitraryPrecisionFloatTest >> testArcSinDomainError [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testArcTan [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badArcTan serie |
-	serie := ((-50 to: 50) collect: [:e | (e / 10) asFloat]).
-	badArcTan := self checkDoublePrecisionSerieVsFloat: serie forFunction: #arcTan.
-	badArcTan isEmpty ifFalse: [Transcript cr; show: 'bad arcTan for ' , badArcTan printString]
+	serie := (-50 to: 50) collect: [ :e | (e / 10) asFloat ].
+	badArcTan := self
+		checkDoublePrecisionSerieVsFloat: serie
+		forFunction: #arcTan.
+"	badArcTan isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show: 'bad arcTan for ' , badArcTan printString ]"
 ]
 
 { #category : #'testing-trigonometry' }
@@ -373,10 +394,19 @@ PMArbitraryPrecisionFloatTest >> testCoercingSum [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testCos [
-	<timeout: 30 "seconds">
+	"seconds"
+
+	<timeout: 30>
 	| badCos |
-	badCos := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #cos.
-	badCos isEmpty ifFalse: [Transcript cr; show: 'bad cos for angles (degrees) ' , (badCos collect: [:i | i radiansToDegrees rounded]) printString]
+	badCos := self
+		checkDoublePrecisionSerieVsFloat: self trigonometricSerie
+		forFunction: #cos.
+"	badCos isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show:
+					'bad cos for angles (degrees) '
+						, (badCos collect: [ :i | i radiansToDegrees rounded ]) printString ]"
 ]
 
 { #category : #'testing-hyperbolic' }
@@ -740,10 +770,19 @@ PMArbitraryPrecisionFloatTest >> testRoundToNearestEvenAgainstIEEEDouble [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testSin [
-	<timeout: 30 "seconds">
+	"seconds"
+
+	<timeout: 30>
 	| badSin |
-	badSin := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #sin.
-	badSin isEmpty ifFalse: [Transcript cr; show: 'bad sin for angles (degrees) ' , (badSin collect: [:i | i radiansToDegrees rounded]) printString]
+	badSin := self
+		checkDoublePrecisionSerieVsFloat: self trigonometricSerie
+		forFunction: #sin.
+"	badSin isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show:
+					'bad sin for angles (degrees) '
+						, (badSin collect: [ :i | i radiansToDegrees rounded ]) printString ]"
 ]
 
 { #category : #'testing-trigonometry' }
@@ -816,10 +855,19 @@ PMArbitraryPrecisionFloatTest >> testSum [
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testTan [
-	<timeout: 30 "seconds">
+	"seconds"
+
+	<timeout: 30>
 	| badTan |
-	badTan := self checkDoublePrecisionSerieVsFloat: self trigonometricSerie forFunction: #tan.
-	badTan isEmpty ifFalse: [Transcript cr; show: 'bad tan for angles (degrees) ' , (badTan collect: [:i | i radiansToDegrees rounded]) printString]
+	badTan := self
+		checkDoublePrecisionSerieVsFloat: self trigonometricSerie
+		forFunction: #tan.
+"	badTan isEmpty
+		ifFalse: [ Transcript
+				cr;
+				show:
+					'bad tan for angles (degrees) '
+						, (badTan collect: [ :i | i radiansToDegrees rounded ]) printString ]"
 ]
 
 { #category : #'testing-hyperbolic' }

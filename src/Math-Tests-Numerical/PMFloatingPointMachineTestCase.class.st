@@ -76,16 +76,6 @@ PMFloatingPointMachineTestCase >> testMachinePrecisionSmallestNumberNotZero [
 ]
 
 { #category : #precision }
-PMFloatingPointMachineTestCase >> testShowParameters [
-	"included for coverage, test has no effect"
-
-	self
-		assert:
-			(PMFloatingPointMachine new showParameters
-				isKindOf: PMFloatingPointMachine)
-]
-
-{ #category : #precision }
 PMFloatingPointMachineTestCase >> testUniqueInstance [
 	| mach1 mach2 mach3 |
 	mach1 := PMFloatingPointMachine new.

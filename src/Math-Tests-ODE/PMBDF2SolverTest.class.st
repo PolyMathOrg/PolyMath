@@ -72,19 +72,7 @@ PMBDF2SolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 		startTime: 0
 		endTime: 1
 		stepSize: dt.
-	self assert: finalState isFloat.
-
-	"Debgging information"
-	Transcript
-		show: self class name;
-		cr;
-		show: system block printString;
-		cr;
-		show: 'from x(0) = 0 to x(1) = ';
-		show: finalState;
-		cr;
-		show: 'with stepSize = ' , solver dt printString;
-		cr
+	self assert: finalState isFloat
 ]
 
 { #category : #'tests-solving' }
@@ -103,17 +91,5 @@ PMBDF2SolverTest >> testSolveX0T0T1 [
 		startState: 0
 		startTime: 0
 		endTime: 1.
-	self assert: finalState isFloat.
-
-	"Debgging information"
-	Transcript
-		show: self class name;
-		cr;
-		show: system block printString;
-		cr;
-		show: 'from x(0) = 0 to x(1) = ';
-		show: finalState;
-		cr;
-		show: 'with stepSize = ' , solver dt printString;
-		cr
+	self assert: finalState isFloat
 ]
