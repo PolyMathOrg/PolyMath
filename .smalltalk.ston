@@ -7,6 +7,8 @@ SmalltalkCISpec {
     }
   ],
  #testing : {
-    #categories : [ 'Math-*' ]
-  }
+    #coverage : {
+      #packages : [ 'Math-*' ]
+    }
+ }
 }
