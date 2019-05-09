@@ -38,10 +38,11 @@ PMKolmogorovSmirnov1SampleTest >> testCorrectPopulationProbabilistic [
 
 { #category : #tests }
 PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
+	| sample |
+	sample := (1 to: 100) collect: [ :i | nd random ].
 	ks := PMKolmogorovSmirnov1Sample
-		compareData: ((1 to: 100) collect: [ :i | nd random ])
+		compareData: sample
 		withDistribution: nd.
-	
 	self
 		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
 		equals: false
