@@ -89,12 +89,6 @@ PMVector >> < aNumber [
 	1 to: self size do: [ :n | self at: n put: (self at: n) < aNumber].
 ]
 
-{ #category : #comparing }
-PMVector >> == aNumber [
-	"Apply == operator to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) == aNumber].
-]
-
 { #category : #operation }
 PMVector >> > aNumber [
 	"Apply > function to every element of a vector"
