@@ -34,15 +34,17 @@ PMKolmogorovSmirnov1Sample class >> data: aCollection [
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> cdf: aBlock [
-"the cumulative distribution function to be used. can also be set via #populationDistribution:"
-popDistribution:=nil.
-compareWith := aBlock
+	"the cumulative distribution function to be used. can also be set via #populationDistribution:"
+
+	popDistribution := nil.
+	compareWith := aBlock
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> data: aCollection [
-distribution := PMKolmogorovsDistribution exampleSize: aCollection size.
-^data := aCollection asSortedCollection .
+	distribution := PMKolmogorovsDistribution
+		exampleSize: aCollection size.
+	^ data := aCollection asSortedCollection
 ]
 
 { #category : #accessing }
@@ -68,10 +70,11 @@ PMKolmogorovSmirnov1Sample >> pValue [
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> populationDistribution: aDistribution [
-"utility, a simple alternative method to set cdf."
-popDistribution:=aDistribution.
-popDistribution distributionValue: 0.95."just a test whether it understands #distributionValue:, to raise a dnu early enough because of this block:"
-compareWith :=[:x|popDistribution distributionValue:x ]
+	"utility, a simple alternative method to set cdf."
+
+	popDistribution := aDistribution.
+	popDistribution distributionValue: 0.95.	"just a test whether it understands #distributionValue:, to raise a dnu early enough because of this block:"
+	compareWith := [ :x | popDistribution distributionValue: x ]
 ]
 
 { #category : #printing }
