@@ -61,9 +61,9 @@ PMKolmogorovSmirnov1Sample >> ksStatistic [
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> pValue [
-"the probability of getting a ksStatistic <= the actual one"
-^distribution distributionValue: self ksStatistic .
+	"the probability of getting a ksStatistic <= the actual one"
 
+	^ distribution distributionValue: self ksStatistic
 ]
 
 { #category : #accessing }

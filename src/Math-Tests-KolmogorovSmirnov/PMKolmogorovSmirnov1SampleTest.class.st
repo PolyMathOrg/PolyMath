@@ -39,7 +39,8 @@ PMKolmogorovSmirnov1SampleTest >> testCorrectPopulationProbabilistic [
 { #category : #tests }
 PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
 	| sample |
-	sample := (1 to: 100) collect: [ :i | nd random ].
+	"The data below are taken from http://www.maths.qmul.ac.uk/~bb/CTS_Chapter3_Students.pdf"
+	sample := #(-1.2 0.2 -0.6 0.8 -1.0).
 	ks := PMKolmogorovSmirnov1Sample
 		compareData: sample
 		withDistribution: nd.
