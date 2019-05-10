@@ -44,6 +44,7 @@ PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusD
 	ks := PMKolmogorovSmirnov1Sample
 		compareData: sample
 		withDistribution: nd.
+	
 	self
 		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
 		equals: false
