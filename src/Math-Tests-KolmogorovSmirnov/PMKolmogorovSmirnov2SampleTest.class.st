@@ -9,6 +9,7 @@ Class {
 
 { #category : #initialization }
 PMKolmogorovSmirnov2SampleTest >> setUp [
+	super setUp .
 	k := PMKolmogorovSmirnov2Sample new
 ]
 
