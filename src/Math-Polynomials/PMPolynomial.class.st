@@ -256,6 +256,13 @@ PMPolynomial >> roots: aNumber [
 	^roots
 ]
 
+{ #category : #Roassal2 }
+PMPolynomial >> rtValue: aNumber [
+	"This message makes PMPolynomial compatible with Roassal"
+
+	^ self value: aNumber
+]
+
 { #category : #'double dispatching' }
 PMPolynomial >> subtractToPolynomial: aPolynomial [
 
