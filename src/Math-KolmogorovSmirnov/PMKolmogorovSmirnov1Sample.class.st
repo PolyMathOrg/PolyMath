@@ -33,14 +33,6 @@ PMKolmogorovSmirnov1Sample class >> data: aCollection [
 ]
 
 { #category : #accessing }
-PMKolmogorovSmirnov1Sample >> cdf: aBlock [
-	"the cumulative distribution function to be used. can also be set via #populationDistribution:"
-
-	popDistribution := nil.
-	compareWith := aBlock
-]
-
-{ #category : #accessing }
 PMKolmogorovSmirnov1Sample >> data: aCollection [
 	distribution := PMKolmogorovsDistribution
 		exampleSize: aCollection size.
