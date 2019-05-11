@@ -15,15 +15,18 @@ PMKolmogorovSmirnov2SampleTest >> setUp [
 
 { #category : #tests }
 PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
-	| nd ks |
-	nd := PMNormalDistribution new.
+	"The data below are taken from http://www.maths.qmul.ac.uk/~bb/CTS_Chapter3_Students.pdf
+	According to that paper Dn = 0.6 and Dcrit = 0.645 so the null hypothesis is retained.
+	"
+
+	| ks |
 	ks := PMKolmogorovSmirnov2Sample
-		compareData: ((1 to: 100) collect: [ :i | nd random ])
-		withData: ((1 to: 100) collect: [ :i | nd random ]).
+		compareData: #(1.2 1.4 1.9 3.7 4.4 4.8 9.7 17.3 21.1 28.4)
+		withData: #(5.6 6.5 6.6 6.9 9.2 10.4 10.6 19.3).
 	
 	self
 		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
-		equals: false
+		equals: true
 ]
 
 { #category : #tests }
