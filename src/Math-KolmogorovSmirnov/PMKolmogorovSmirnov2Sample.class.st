@@ -38,91 +38,126 @@ PMKolmogorovSmirnov2Sample class >> compareData: aCollection withData: anotherCo
 ]
 
 { #category : #private }
-PMKolmogorovSmirnov2Sample >> cFrom:i and:j [ 
-"needs ksStatistic!"
-^ (i/smallSize -(j/bigSize))abs < ksStatistic  ifTrue:[1]ifFalse:[0]
+PMKolmogorovSmirnov2Sample >> cFrom: i and: j [
+	"needs ksStatistic!"
 
+	^ (i / smallSize - (j / bigSize)) abs < ksStatistic
+		ifTrue: [ 1 ]
+		ifFalse: [ 0 ]
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov2Sample >> data: aCollection [
-ksStatistic:=nil.
-^self makeCDFOf: aCollection intoFirst: true .
+	ksStatistic := nil.
+	^ self makeCDFOf: aCollection intoFirst: true
 ]
 
 { #category : #initialization }
 PMKolmogorovSmirnov2Sample >> initCachedUCalculation [
-"recursive calc, slow without memoization"
-uCalcBlock:=[:iandj||cij i j|
-i:=iandj first.j:=iandj second.
-cij:=self cFrom: i and: j.
-i*j=0 
-	ifTrue:[ cij]
-	ifFalse:[cij * ((uCalcBlock value:{i.j-1})+(uCalcBlock value:{i-1.j}))]]memoized.
+	"recursive calc, slow without memoization"
+
+	uCalcBlock := [ :iandj | 
+	| cij i j |
+	i := iandj first.
+	j := iandj second.
+	cij := self cFrom: i and: j.
+	i * j = 0
+		ifTrue: [ cij ]
+		ifFalse: [ cij
+				*
+					((uCalcBlock
+						value:
+							{i.
+							(j - 1)})
+						+
+							(uCalcBlock
+								value:
+									{(i - 1).
+									j})) ] ] memoized
 ]
 
 { #category : #initialization }
 PMKolmogorovSmirnov2Sample >> initKSStatistic [
 	| t |
-	ksStatistic :=0. 
-	self initCachedUCalculation. "needs to be set lately, iow here"
+	ksStatistic := 0.
+	self initCachedUCalculation.	"needs to be set lately, iow here"
 	smallSize := data size.
 	bigSize := compareWith size.
-	smallSize > bigSize ifFalse: [ ^ self ].
+	smallSize > bigSize
+		ifFalse: [ ^ self ].
 	t := smallSize.
 	smallSize := bigSize.
-	bigSize := t.
-
+	bigSize := t
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov2Sample >> ksStatistic [
-"the kolmogorov-smirnov statistic D"
-|c1 c2 cdfs s|
-self testDataComplete .
-self initKSStatistic .
-c1:=0. c2:=0.
-s:=smallSize + bigSize.
-cdfs := (SortedCollection new:s) addAll: data; addAll: compareWith; yourself.
-cdfs withIndexDo: [:a :i|
-	(i<s and:[(cdfs at: i+1) key = a key])
-		ifTrue:[a value second 
-			ifTrue: [ c2 := (cdfs at: i+1) value first ] 
-			ifFalse:[ c1 := (cdfs at: i+1) value first ] ].
-	ksStatistic := ksStatistic max: (a value second 
-			ifTrue:[c1:=a value first. c1-c2]
-			ifFalse:[c2:=a value first. c2-c1])].
-^ksStatistic
+	"the kolmogorov-smirnov statistic D"
+
+	| c1 c2 cdfs s |
+	self testDataComplete.
+	self initKSStatistic.
+	c1 := 0.
+	c2 := 0.
+	s := smallSize + bigSize.
+	cdfs := (SortedCollection new: s)
+		addAll: data;
+		addAll: compareWith;
+		yourself.
+	cdfs
+		withIndexDo: [ :a :i | 
+			(i < s and: [ (cdfs at: i + 1) key = a key ])
+				ifTrue: [ a value second
+						ifTrue: [ c2 := (cdfs at: i + 1) value first ]
+						ifFalse: [ c1 := (cdfs at: i + 1) value first ] ].
+			ksStatistic := ksStatistic
+				max:
+					(a value second
+						ifTrue: [ c1 := a value first.
+							c1 - c2 ]
+						ifFalse: [ c2 := a value first.
+							c2 - c1 ]) ].
+	^ ksStatistic
 ]
 
 { #category : #private }
 PMKolmogorovSmirnov2Sample >> makeCDFOf: aCollection intoFirst: aBoolean [
-"if aCollection consists of numbers, 
+	"if aCollection consists of numbers, 
 it returns a sorted array of (number->{cdf.aBoolean})"
-|cd s result|
-cd:=0.
-s:=aCollection size.
-result:=aCollection asBag sortedElements do:[:a| 
-	cd:=a value/s+cd. 
-	a value: {cd. aBoolean}].
-^aBoolean 	ifTrue: [ data:=result ]
- 				ifFalse:[compareWith :=result] 
+
+	| cd s result |
+	cd := 0.
+	s := aCollection size.
+	result := aCollection asBag sortedElements
+		do: [ :a | 
+			cd := a value / s + cd.
+			a
+				value:
+					{cd.
+					aBoolean} ].
+	^ aBoolean
+		ifTrue: [ data := result ]
+		ifFalse: [ compareWith := result ]
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov2Sample >> otherData: aCollection [
-ksStatistic:=nil.
-^self makeCDFOf: aCollection intoFirst: false .
+	ksStatistic := nil.
+	^ self makeCDFOf: aCollection intoFirst: false
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov2Sample >> pValue [
-"uses procedure explained in:
+	"uses procedure explained in:
 Kim, P. J. & Jennrich, R. I. 
 'Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion...'
 in 'Selected Tables in Mathematical Statistics Volume I' (1973)."
-ksStatistic ifNil: [self ksStatistic ].
-^ (uCalcBlock value: {smallSize.bigSize})/ ((smallSize + bigSize) take:smallSize)  
+
+	ksStatistic ifNil: [ self ksStatistic ].
+	^ (uCalcBlock
+		value:
+			{smallSize.
+			bigSize}) / (smallSize + bigSize take: smallSize)
 ]
 
 { #category : #printing }
