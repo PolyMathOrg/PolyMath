@@ -7,7 +7,7 @@ Class {
 	#category : #'Math-Tests-KolmogorovSmirnov'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 PMKolmogorovSmirnov2SampleTest >> setUp [
 	super setUp .
 	k := PMKolmogorovSmirnov2Sample new
