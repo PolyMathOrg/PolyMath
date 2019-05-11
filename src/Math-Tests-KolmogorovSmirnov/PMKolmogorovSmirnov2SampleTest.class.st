@@ -15,7 +15,7 @@ PMKolmogorovSmirnov2SampleTest >> setUp [
 
 { #category : #tests }
 PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
-	"The data below are taken from http://www.maths.qmul.ac.uk/~bb/CTS_Chapter3_Students.pdf
+	"The data below are taken from http://www.stats.ox.ac.uk/~massa/Lecture%2013.pdf
 	According to that paper Dn = 0.6 and Dcrit = 0.645 so the null hypothesis is retained.
 	"
 
