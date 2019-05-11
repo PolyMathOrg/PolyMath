@@ -20,8 +20,7 @@ PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	ks := PMKolmogorovSmirnov2Sample
 		compareData: ((1 to: 100) collect: [ :i | nd random ])
 		withData: ((1 to: 100) collect: [ :i | nd random ]).
-	ks ksStatistic.
-	ks pValue asFloat.
+	
 	self
 		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
 		equals: false
