@@ -33,42 +33,40 @@ PMKolmogorovSmirnov1Sample class >> data: aCollection [
 ]
 
 { #category : #accessing }
-PMKolmogorovSmirnov1Sample >> cdf: aBlock [
-"the cumulative distribution function to be used. can also be set via #populationDistribution:"
-popDistribution:=nil.
-compareWith := aBlock
-]
-
-{ #category : #accessing }
 PMKolmogorovSmirnov1Sample >> data: aCollection [
-distribution := PMKolmogorovsDistribution exampleSize: aCollection size.
-^data := aCollection asSortedCollection .
+	distribution := PMKolmogorovsDistribution
+		exampleSize: aCollection size.
+	^ data := aCollection asSortedCollection
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> ksStatistic [
-"the kolmogorov-smirnov statistic D"
-|s d|
-self testDataComplete .
-s:=data size.
-d:=(1 to:s) collect: [:i||f| f:=compareWith value:(data at:i).(f -((i-1)/s))max: ((i/s)-f)].
-^d max.
+	"the kolmogorov-smirnov statistic D"
 
+	| s d |
+	s := data size.
+	d := (1 to: s)
+		collect: [ :i | 
+			| f |
+			f := compareWith value: (data at: i).
+			f - ((i - 1) / s) max: i / s - f ].
+	^ d max
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> pValue [
-"the probability of getting a ksStatistic <= the actual one"
-^distribution distributionValue: self ksStatistic .
+	"the probability of getting a ksStatistic <= the actual one"
 
+	^ distribution distributionValue: self ksStatistic
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnov1Sample >> populationDistribution: aDistribution [
-"utility, a simple alternative method to set cdf."
-popDistribution:=aDistribution.
-popDistribution distributionValue: 0.95."just a test whether it understands #distributionValue:, to raise a dnu early enough because of this block:"
-compareWith :=[:x|popDistribution distributionValue:x ]
+	"utility, a simple alternative method to set cdf."
+
+	popDistribution := aDistribution.
+	popDistribution distributionValue: 0.95.	"just a test whether it understands #distributionValue:, to raise a dnu early enough because of this block:"
+	compareWith := [ :x | popDistribution distributionValue: x ]
 ]
 
 { #category : #printing }

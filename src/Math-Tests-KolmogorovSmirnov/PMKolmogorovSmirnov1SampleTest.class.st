@@ -20,8 +20,9 @@ PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 	^ n
 ]
 
-{ #category : #initialization }
+{ #category : #running }
 PMKolmogorovSmirnov1SampleTest >> setUp [
+	super setUp .
 	nd := PMNormalDistribution new.
 	ks := PMKolmogorovSmirnov1Sample new
 ]
@@ -37,10 +38,16 @@ PMKolmogorovSmirnov1SampleTest >> testCorrectPopulationProbabilistic [
 
 { #category : #tests }
 PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
-	nd := PMNormalDistribution new.	"--> Normal distribution( 0, 1)"
-	ks := PMKolmogorovSmirnov1Sample compareData: ((1 to: 100) collect: [ :i | nd random ]) withDistribution: nd.	"--> 
-	a KolmogorovSmirnov(dataSize: 100 cdf: distributionValue of Normal distribution( 0, 1))"
-	self assert: (ks rejectEqualityHypothesisWithAlpha: 0.05) equals: false
+	| sample |
+	"The data below are taken from http://www.maths.qmul.ac.uk/~bb/CTS_Chapter3_Students.pdf"
+	sample := #(-1.2 0.2 -0.6 0.8 -1.0).
+	ks := PMKolmogorovSmirnov1Sample
+		compareData: sample
+		withDistribution: nd.
+	
+	self
+		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
+		equals: false
 ]
 
 { #category : #tests }

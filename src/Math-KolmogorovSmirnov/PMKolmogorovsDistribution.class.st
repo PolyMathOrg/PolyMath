@@ -12,7 +12,7 @@ Class {
 		'distribution',
 		'n'
 	],
-	#category : 'Math-KolmogorovSmirnov'
+	#category : #'Math-KolmogorovSmirnov'
 }
 
 { #category : #information }
