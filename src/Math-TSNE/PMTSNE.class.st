@@ -9,8 +9,8 @@ Class {
 	#name : #PMTSNE,
 	#superclass : #Object,
 	#instVars : [
-		'ndims',
-		'initialdims',
+		'outputDims',
+		'initialDims',
 		'perplexity',
 		'x',
 		'y',
@@ -122,17 +122,17 @@ PMTSNE >> epsilon: aFloat [
 	epsilon := aFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMTSNE >> initialDims [
-	^initialdims 
+	^ initialDims 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMTSNE >> initialDims: aFloat [
-	initialdims := aFloat
+	initialDims := aFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMTSNE >> initialDimsDefaultValue [
 	^ 50
 ]
@@ -150,8 +150,8 @@ PMTSNE >> initialize [
 { #category : #initialization }
 PMTSNE >> initializeUninitializedParameters [
 	perplexity ifNil: [ perplexity := self perplexityDefaultValue ].
-	ndims ifNil: [ ndims := self ndimsDefaultValue ].
-	initialdims ifNil: [ initialdims := self initialDimsDefaultValue ]
+	outputDims ifNil: [ outputDims := self outputDimsDefaultValue ].
+	initialDims ifNil: [ initialDims := self initialDimsDefaultValue ]
 ]
 
 { #category : #initialization }
@@ -161,7 +161,7 @@ PMTSNE >> initializeYWithRandomValues [
 
 	| a b rows columns d |
 	rows := x dimension x.
-	columns := ndims.
+	columns := outputDims.
 	d := PMNormalDistribution new:0 sigma: 1.
 	a := (1 to: rows)
 		collect: [ :row | 
@@ -172,12 +172,17 @@ PMTSNE >> initializeYWithRandomValues [
 ]
 
 { #category : #accessing }
-PMTSNE >> ndims [
-	^ ndims
+PMTSNE >> outputDims [
+	^ outputDims
 ]
 
-{ #category : #'as yet unclassified' }
-PMTSNE >> ndimsDefaultValue [
+{ #category : #accessing }
+PMTSNE >> outputDims: anInteger [
+	outputDims := anInteger
+]
+
+{ #category : #accessing }
+PMTSNE >> outputDimsDefaultValue [
 	^ 2
 ]
 
@@ -197,30 +202,27 @@ PMTSNE >> perplexityDefaultValue [
 ]
 
 { #category : #running }
-PMTSNE >> runPcaOnX [
-	"Runs PCA on X in order to reduce its dimensionality to initialdims dimensions.
+PMTSNE >> reduceXToInputDims [
+	"Runs PCA on X in order to reduce its dimensionality to initialDims dimensions."
 
-	print ""Preprocessing the data using PCA...""
-	(n, d) = X.shape;
-	X = X - Math.tile(Math.mean(X, 0), (n, 1));
-	(l, M) = Math.linalg.eig(Math.dot(X.T, X));
-	Y = Math.dot(X, M[:,0:no_dims]);
-	return Y;
-"
+	self reduceXToInputDimsUsing: PMPrincipalComponentAnalyserJacobiTransformation.
+]
 
-	"| analyzer i |
-	analyzer := PMPrincipalComponentAnalyser new: initialdims.
-	i := 1.
-	x dimension x
-		timesRepeat: [ analyzer accumulate: (x rowAt: i).
-			i := i + 1 ].
-	^ analyzer components"
+{ #category : #running }
+PMTSNE >> reduceXToInputDimsUsing: aClass [
+	"Runs aClass PCA on X in order to reduce its dimensionality to initialDims dimensions."
+
+	| scaler pca |
+	scaler := PMStandardizationScaler new.
+	initialDims ifNil: [ initialDims := self initialDimsDefaultValue ].
+	pca := aClass new componentsNumber: (initialDims min: x dimension y).
+	x := pca fitAndTransform: (scaler fitAndTransform: x)
 ]
 
 { #category : #accessing }
 PMTSNE >> start [
 	self initializeUninitializedParameters.
-	self runPcaOnX.
+	self reduceXToInputDims.
 	self initializeYWithRandomValues.
 	self x2p
 ]
@@ -228,6 +230,11 @@ PMTSNE >> start [
 { #category : #'stepping and presenter' }
 PMTSNE >> step [
 	self computePairwiseAffinities
+]
+
+{ #category : #accessing }
+PMTSNE >> x [
+	^ x
 ]
 
 { #category : #'as yet unclassified' }

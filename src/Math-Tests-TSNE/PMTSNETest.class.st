@@ -37,3 +37,12 @@ PMTSNETest >> testInitialDimsSetByDefaultWithFifty [
 		start.
 	self assert: t initialDims equals: 50
 ]
+
+{ #category : #tests }
+PMTSNETest >> testreduceXToInputDimsUsing [
+	| t |
+	t := (PMTSNE new)
+			x: (PMMatrix rows: #(#(0 0) #(2 2) #(2 0))).
+	t reduceXToInputDimsUsing: PMPrincipalComponentAnalyserJacobiTransformation.
+	self assert: (t x) closeTo: (PMMatrix rows: #(#(-0.5 -1.5) #(-0.5 1.5) #(1 0))).
+]
