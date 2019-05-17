@@ -3,7 +3,7 @@ Implementation of t-SNE (t-Distributed Stochastic Neighbor Embedding) algorithm
 
 https://lvdmaaten.github.io/tsne/
 
-t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets. 
+t-SNE is a technique for dimensionality reduction that is particularly well suited for the visualization of high-dimensional datasets.
 "
 Class {
 	#name : #PMTSNE,
@@ -24,6 +24,24 @@ Class {
 	],
 	#category : #'Math-TSNE'
 }
+
+{ #category : #running }
+PMTSNE class >> entropyOf: distanceVector andPRow: pVector withBeta: beta [
+	"Calculates gaussian kernel values for a distanceVector, along with perplexity
+	 Inputs: distanceVector - a PMVector containing distances
+				pRow - calculated p-rows are stored here
+				beta - a Float, precision which is used to compute entropy
+	 Outputs: entropy - log(Shannon's entropy) for calculated pVector
+				 pVector - The conditional probability pji
+	"
+
+	| pVectorTemp sumP entropy |
+	pVectorTemp := (-1 * distanceVector * beta) exp.
+	sumP := pVectorTemp sum max: (Float epsilon).
+	entropy := sumP ln + (beta * (distanceVector * pVectorTemp) / sumP).
+	pVector copyFrom: (pVectorTemp / sumP).
+	^ entropy
+]
 
 { #category : #examples }
 PMTSNE class >> example1 [
