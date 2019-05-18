@@ -8,6 +8,31 @@ Class {
 }
 
 { #category : #tests }
+PMTSNETest >> testComputePairwiseAffinities [
+	| t correctAffinities |
+	
+	t := (PMTSNE new)
+		x: (PMMatrix rows: #(#(0 0) #(2 2) #(2 0)));
+		perplexity: 30.0.
+	correctAffinities := PMMatrix rows: #(
+		#(0 0.5 0.5)
+		#(0.5 0 0.5)
+		#(0.5 0.5 0)
+		).
+	self assert: t computePairwiseAffinities closeTo: correctAffinities.
+	
+	"This test case has large pairwise distances, which makes exp(-D*beta) = 0"
+	t x: (PMMatrix rows: #(#(1 2 3.14) #(0 4 -43) #(-5 -9 -150) #(120 5 1))).
+	correctAffinities := PMMatrix rows: #(
+		#(0 0.333333 0.333333 0.333333)
+		#(0.333333 0 0.333333 0.333333)
+		#(0.333333 0.333333 0 0.333333)
+		#(0.333333 0.333333 0.333333 0)
+		).
+	self assert: t computePairwiseAffinities closeTo: correctAffinities.
+]
+
+{ #category : #tests }
 PMTSNETest >> testComputePairwiseDistances [
 	| t |
 	t := (PMTSNE
