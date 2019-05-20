@@ -167,7 +167,7 @@ PMVector >> cumsum [
  
 ]
 
-{ #category : #operation }
+{ #category : #deprecated }
 PMVector >> dot: aVector [
 "Answers the elementwise product of the receiver with aVector."
 	| answer n |
