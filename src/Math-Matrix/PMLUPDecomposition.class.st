@@ -26,7 +26,7 @@ Class {
 		'permutation',
 		'parity'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #creation }

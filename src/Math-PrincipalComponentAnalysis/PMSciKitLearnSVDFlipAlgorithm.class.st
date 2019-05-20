@@ -78,10 +78,10 @@ PMSciKitLearnSVDFlipAlgorithm >> signs [
 
 { #category : #accessing }
 PMSciKitLearnSVDFlipAlgorithm >> uFlipped [
-	^ u dot: (self signMatrixForU).
+	^ u hadamardProduct: (self signMatrixForU).
 ]
 
 { #category : #accessing }
 PMSciKitLearnSVDFlipAlgorithm >> vFlipped [
-	^ v dot: (self signMatrixForV) .
+	^ v hadamardProduct: (self signMatrixForV) .
 ]

@@ -22,7 +22,7 @@ Class {
 		'rows',
 		'solutions'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #creation }

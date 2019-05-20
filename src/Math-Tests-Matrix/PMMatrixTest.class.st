@@ -1,7 +1,7 @@
 Class {
 	#name : #PMMatrixTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
@@ -428,7 +428,7 @@ PMMatrixTest >> testMatrixMultiplyElementwise [
 	| a b c |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
 	b := PMMatrix rows: #(#(1 2 3) #(-2 1 7)).
-	c := a dot:b.
+	c := a hadamardProduct: b.
 	self assert: c numberOfRows equals: 2.
 	self assert: c numberOfColumns equals: 3.
 	self assert: ((c rowAt: 1) at: 1) equals: 1.

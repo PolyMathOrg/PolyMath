@@ -35,7 +35,7 @@ Class {
 		'actualV',
 		'actualS'
 	],
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #'as yet unclassified' }
