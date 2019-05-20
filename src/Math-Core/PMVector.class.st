@@ -20,7 +20,7 @@ Class {
 	#name : #PMVector,
 	#superclass : #Array,
 	#type : #variable,
-	#category : 'Math-Core'
+	#category : #'Math-Core'
 }
 
 { #category : #'instance creation' }
@@ -180,6 +180,21 @@ PMVector >> dot: aVector [
 		].
 	^answer
 
+]
+
+{ #category : #operation }
+PMVector >> elementwiseTimes: aVector [
+	"Answers the elementwise product of the receiver with aVector."
+
+	| answer n |
+	answer := self class new: self size.
+	n := 0.
+	self
+		with: aVector
+		do: [ :a :b | 
+			n := n + 1.
+			answer at: n put: a * b ].
+	^ answer
 ]
 
 { #category : #'as yet unclassified' }
