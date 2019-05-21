@@ -20,7 +20,8 @@ Class {
 		'initialMomentum',
 		'finalMomentum',
 		'eta',
-		'minGain'
+		'minGain',
+		'job'
 	],
 	#category : #'Math-TSNE'
 }
@@ -122,7 +123,17 @@ PMTSNE >> computePairwiseAffinities [
 	logU := self perplexity ln.
 	distanceVector := PMVector new: n - 1.
 	pVector := PMVector new: n - 1.
+	
+	job title: 'Step 2/3: Computing joint probablity for point 1 of ', n asString.
+	job progress: 0.0.
+	
 	1 to: n do: [ :i |
+		"Job progress gets updated every 10 rows"
+		(i % 10 = 0) ifTrue: [
+			job title: ('' join: {'Step 2/3: Computing joint probablity for point '. i asString. ' of '. n asString}).
+			job progress: (i/n).
+		 ].
+		
 		"Set minimum and maximum value of precision"
 		betaMin := Float infinity negated.
 		betaMax := Float infinity.
@@ -209,7 +220,19 @@ PMTSNE >> initialize [
 	finalMomentum := 0.8.
 	eta := 500.
 	minGain := 0.01.
+	self initializeJob.
 	
+]
+
+{ #category : #initialization }
+PMTSNE >> initializeJob [
+	"This job represents all the steps in t-SNE"
+	job := [ 
+		self initializeUninitializedParameters.
+		self reduceXToInputDims.
+		self initializeYWithRandomValues.
+		self computePairwiseAffinities
+	 ] asJob.
 ]
 
 { #category : #initialization }
@@ -278,18 +301,16 @@ PMTSNE >> reduceXToInputDimsUsing: aClass [
 	"Runs aClass PCA on X in order to reduce its dimensionality to initialDims dimensions."
 
 	| scaler pca |
+	job title: 'Step 1/3: Reducing input dimensions.'.
 	scaler := PMStandardizationScaler new.
 	initialDims ifNil: [ initialDims := self initialDimsDefaultValue ].
 	pca := aClass new componentsNumber: (initialDims min: x dimension y).
 	x := pca fitAndTransform: (scaler fitAndTransform: x)
 ]
 
-{ #category : #accessing }
+{ #category : #running }
 PMTSNE >> start [
-	self initializeUninitializedParameters.
-	self reduceXToInputDims.
-	self initializeYWithRandomValues.
-	self computePairwiseAffinities
+	job run.
 ]
 
 { #category : #'stepping and presenter' }
