@@ -183,7 +183,7 @@ PMVector >> dot: aVector [
 ]
 
 { #category : #operation }
-PMVector >> elementwiseTimes: aVector [
+PMVector >> hadamardProduct: aVector [
 	"Answers the elementwise product of the receiver with aVector."
 
 	| answer n |
