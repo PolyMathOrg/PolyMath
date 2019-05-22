@@ -12,7 +12,7 @@ Class {
 		'weight',
 		'error'
 	],
-	#category : 'Math-Core'
+	#category : #'Math-Core'
 }
 
 { #category : #creation }

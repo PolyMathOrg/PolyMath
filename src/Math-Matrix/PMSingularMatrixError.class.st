@@ -5,7 +5,7 @@ some calculations dont work with singular matrices and result eg with errors lik
 Class {
 	#name : #PMSingularMatrixError,
 	#superclass : #ArithmeticError,
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #accessing }

@@ -15,7 +15,7 @@ Class {
 		'rows',
 		'lupDecomposition'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #example }
@@ -31,7 +31,7 @@ b := PMMatrix rows: #( ( 1 2 3 ) (-2 1 7)).
 c := a * b.
 
 "Elementwise matrix product"
-d := a dot:b.
+d := a hadamardProduct: b.
 
 "This is how we can create a vector"
 a := #(1 4 9 16 25) asPMVector.
@@ -407,7 +407,7 @@ PMMatrix >> dimension [
 	^ self rows size @ (self rows at: 1) size
 ]
 
-{ #category : #operation }
+{ #category : #deprecated }
 PMMatrix >> dot: aMatrix [
 	"Answers the elementwise product of the receiver with aMatrix."
 	^ aMatrix elementwiseProductWithMatrix: self
@@ -456,6 +456,11 @@ PMMatrix >> flattenRows [
 	answer := #().
 	self rowsDo: [ :each | answer := answer , each asArray ].
 	^ answer asPMVector
+]
+
+{ #category : #operation }
+PMMatrix >> hadamardProduct: aMatrix [
+	^ aMatrix  elementwiseProductWithMatrix: self
 ]
 
 { #category : #comparing }
