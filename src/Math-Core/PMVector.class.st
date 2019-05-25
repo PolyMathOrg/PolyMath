@@ -20,7 +20,7 @@ Class {
 	#name : #PMVector,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #'Math-Core'
+	#category : 'Math-Core'
 }
 
 { #category : #'instance creation' }
@@ -70,17 +70,9 @@ PMVector >> + aVectorOrNumber [
 ]
 
 { #category : #operation }
-PMVector >> - aVector [
-	"Answers the difference of the receiver with aVector."
-	| answer n |
-	answer := self class new: self size.
-	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a - b).
-		].
-	^answer
+PMVector >> - aVectorOrNumber [
+	"Answers the difference of the receiver with a vector or number."
+	^ -1*aVectorOrNumber addWithVector: self
 ]
 
 { #category : #operation }
