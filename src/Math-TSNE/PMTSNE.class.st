@@ -15,13 +15,13 @@ Class {
 		'x',
 		'y',
 		'maxIter',
-		'epsilon',
 		'sumY',
 		'initialMomentum',
 		'finalMomentum',
-		'eta',
+		'learningRate',
 		'minGain',
-		'job'
+		'job',
+		'computeErrorEvery'
 	],
 	#category : #'Math-TSNE'
 }
@@ -52,7 +52,6 @@ PMTSNE class >> example1 [
 		perplexity: 10;
 		x: points;
 		initialDims: 2;
-		epsilon: 5;
 		start;
 		y
 ]
@@ -71,41 +70,99 @@ PMTSNE class >> gridDataGeneratorOf: size [
 	^ PMMatrix rows: array
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
+PMTSNE >> computeErrorEvery [
+	^ computeErrorEvery 
+]
+
+{ #category : #accessing }
+PMTSNE >> computeErrorEvery: aNumber [
+	computeErrorEvery := aNumber
+]
+
+{ #category : #accessing }
+PMTSNE >> computeErrorEveryDefaultValue [
+	^ 10
+]
+
+{ #category : #'stepping and presenter' }
+PMTSNE >> computeGradient: p withProgressUpdate: iteration [
+	"Computes gradient of KL divergence"
+
+	| num sumNum q pq dY tmp yiDiff error |
+	"Calculates num and q"
+	num := self computeLowDimensionalStudentT.
+	sumNum := num sum sum max: (Float epsilon).
+	q := num collect: [:element |
+				(element / sumNum) max: (Float epsilon)
+			].
+	pq := p - q.
+	dY := OrderedCollection new. 
+	1 to: (x dimension x) do: [ :i |
+		tmp := (pq rowAt: i) hadamardProduct: (num rowAt: i).
+		"Create a matrix of rows filled with 'tmp'"
+		tmp := (PMMatrix rows: ((1 to: outputDims) collect: [ :j | tmp])).
+		yiDiff := (PMMatrix rows: (y rowsCollect: [ :row | (y rowAt: i) - row ])) transpose.
+		dY add: (tmp hadamardProduct: yiDiff) sum
+		 ].
+	dY := PMMatrix rows: dY.
+	
+	(iteration % computeErrorEvery = 0) ifTrue: [
+		error := PMMatrix rows: (x dimension x) columns: (x dimension x).
+		1 to: (x dimension x) do: [ :i |
+			1 to: (x dimension x) do: [ :j |
+				error rowAt: i columnAt: j put: (
+					(p rowAt: i columnAt: j) * (((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln)
+				).
+				].
+			].
+		error := error sum sum.
+		job title: ('' join: { 'Step 3/3: Performing gradient descent '. iteration. '/'. maxIter.' error = '. error }).
+		job progress: (iteration/maxIter).
+		].
+
+	^ dY
+]
+
+{ #category : #running }
 PMTSNE >> computeLowDimensionalAffinities [
-"
-	sum_Y = np.sum(np.square(Y), 1);
-		num = 1 / (1 + Math.add(Math.add(-2 * Math.dot(Y, Y.T), sum_Y).T, sum_Y));
-		num[range(n), range(n)] = 0;
-		Q = num / Math.sum(num);
-		Q = Math.maximum(Q, 1e-12);"
-		|num tmp|
-	sumY :=  (x dot:x) sum. "PMVector"
-	tmp := ((y* (y transpose)) * (-2)) transpose.
-	num := ((PMMatrix rows: (tmp rowsCollect: [ :each| each + sumY])) ).
-	
-	
-		
-	
+	"Computes affinity of the reduced dimension/output"
+
+	| num sumNum q |
+	num := self computeLowDimensionalStudentT.
+	sumNum := num sum sum max: (Float epsilon).
+	q := num collect: [:element |
+				(element / sumNum) max: (Float epsilon)
+			].
+	^ q
+]
+
+{ #category : #running }
+PMTSNE >> computeLowDimensionalStudentT [
+	"Computes Student's T distribution with 1-degree of freedom for y"
+
+	| num tmp |
+	sumY :=  (y hadamardProduct: y) sum.
+	tmp := ((y* (y transpose)) * (-2)).
+	tmp := PMMatrix rows: (tmp rowsCollect: [ :each| each + sumY]).
+	tmp := PMMatrix rows: ((tmp transpose) rowsCollect: [:each| each + sumY]).
+	num := (1 + tmp) collect: [ :ele | 1.0 / ele ].
+	num := num setDiagonal: (PMVector zeros: (x dimension x)).
+	^ num
 ]
 
 { #category : #accessing }
 PMTSNE >> computePValues [
-"
-#Compute P-values
-	P = x2p(X, 1e-5, perplexity);
-	P = P + Math.transpose(P);
-	P = P / Math.sum(P);
-	P = P * 4;									# early exaggeration
-	P = Math.maximum(P, 1e-12);
-"
-| p n |
-p := self computePairwiseAffinities.
-p := p + p transpose.
-p := p / (p sum).
-p := p *4.
-p := p max: 1e-12.
-^ p
+	"Computes joint probablity matrix P"
+	| p sumP |
+	p := self computePairwiseAffinities.
+	p := p + p transpose.
+	sumP := p sum sum.
+	p := p collect: [ :element |
+		"4 is for early exaggeration, will be removed after 100 iterations"
+		(element / sumP * 4) asFloat max: (Float epsilon).
+		 ].
+	^ p
 ]
 
 { #category : #running }
@@ -183,19 +240,65 @@ PMTSNE >> computePairwiseAffinities [
 	^ p
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMTSNE >> computePairwiseDistances [
 	| sumX d tmp|
-	sumX := (x dot: x) sum.
+	sumX := (x hadamardProduct: x) sum.
 	tmp := (x * (x transpose)) * (-2).
 	tmp := PMMatrix rows: (tmp rowsCollect: [ :each| each + sumX ]).
 	d := PMMatrix rows: ((tmp transpose) rowsCollect: [:each| each + sumX]).
 	^ d
 ]
 
+{ #category : #accessing }
+PMTSNE >> finalMomentum [
+	^ finalMomentum
+]
+
+{ #category : #accessing }
+PMTSNE >> finalMomentum: aFloat [
+	finalMomentum := aFloat
+]
+
+{ #category : #accessing }
+PMTSNE >> finalMomentumDefaultValue [
+	^ 0.8
+]
+
 { #category : #running }
-PMTSNE >> epsilon: aFloat [
-	epsilon := aFloat
+PMTSNE >> gradientDescent [
+	"Tries to minimize the cost, which is KL divergence"
+
+	| p gains iY momentum dY yMeanAccumulator |
+	job title: 'Step 3/3: Performing gradient descent'.
+	p := self computePValues.
+	gains := PMMatrix onesRows: x dimension x cols: outputDims.
+	iY := PMMatrix zerosRows: x dimension x cols: outputDims.
+	momentum := initialMomentum.
+	1 to: maxIter do: [ :iteration | 
+		dY := self computeGradient: p withProgressUpdate: iteration.
+		momentum := iteration < 20
+			ifTrue: [ initialMomentum ]
+			ifFalse: [ finalMomentum ].
+		1 to: (x dimension x) do: [ :i |
+			1 to: outputDims do: [ :j |
+				((dY rowAt: i columnAt: j) > 0) = ((iY rowAt: i columnAt: j) > 0)
+					ifTrue: [ gains rowAt: i columnAt: j put: (((gains rowAt: i columnAt: j) * 0.8) max: minGain) ]
+					ifFalse: [ gains rowAt: i columnAt: j put: (gains rowAt: i columnAt: j) + 0.2 ].
+				]
+			].
+		iY := iY * momentum - ((dY hadamardProduct: gains) * learningRate).
+		y := y + iY.
+		yMeanAccumulator := PMVectorAccumulator new: outputDims.
+		y rowsDo: [ :row |
+			yMeanAccumulator accumulate: row.
+			].
+		y := PMMatrix rows: (y rowsCollect: [ :row |
+			row - (yMeanAccumulator average)
+			]).
+		"Stop exaggeration"
+		(iteration = 100) ifTrue: [ p := p * (1/4) ].
+		].
 ]
 
 { #category : #accessing }
@@ -213,13 +316,30 @@ PMTSNE >> initialDimsDefaultValue [
 	^ 50
 ]
 
+{ #category : #accessing }
+PMTSNE >> initialMomentum [
+	^ initialMomentum
+]
+
+{ #category : #accessing }
+PMTSNE >> initialMomentum: aFloat [
+	initialMomentum := aFloat
+]
+
+{ #category : #accessing }
+PMTSNE >> initialMomentumDefaultValue [
+	^ 0.5
+]
+
 { #category : #initialization }
 PMTSNE >> initialize [
-	maxIter := 1000.
-	initialMomentum := 0.5.
-	finalMomentum := 0.8.
-	eta := 500.
-	minGain := 0.01.
+	"These parameters rarely need to be modified"
+	maxIter := self maxIterDefaultValue.
+	initialMomentum := self initialMomentumDefaultValue.
+	finalMomentum := self finalMomentumDefaultValue.
+	learningRate := self learningRateDefaultValue.
+	minGain := self minGainDefaultValue.
+	computeErrorEvery := self computeErrorEveryDefaultValue.
 	self initializeJob.
 	
 ]
@@ -231,7 +351,7 @@ PMTSNE >> initializeJob [
 		self initializeUninitializedParameters.
 		self reduceXToInputDims.
 		self initializeYWithRandomValues.
-		self computePairwiseAffinities
+		self gradientDescent.
 	 ] asJob.
 ]
 
@@ -260,6 +380,51 @@ PMTSNE >> initializeYWithRandomValues [
 ]
 
 { #category : #accessing }
+PMTSNE >> learningRate [
+	^ learningRate 
+]
+
+{ #category : #accessing }
+PMTSNE >> learningRate: aNumber [
+	learningRate := aNumber
+]
+
+{ #category : #accessing }
+PMTSNE >> learningRateDefaultValue [
+	^ 500
+]
+
+{ #category : #accessing }
+PMTSNE >> maxIter [
+	^ maxIter
+]
+
+{ #category : #accessing }
+PMTSNE >> maxIter: aNumber [
+	maxIter := aNumber
+]
+
+{ #category : #accessing }
+PMTSNE >> maxIterDefaultValue [
+	^ 1000
+]
+
+{ #category : #accessing }
+PMTSNE >> minGain [
+	^ minGain
+]
+
+{ #category : #accessing }
+PMTSNE >> minGain: aFloat [
+	minGain := aFloat
+]
+
+{ #category : #accessing }
+PMTSNE >> minGainDefaultValue [
+	^ 0.01
+]
+
+{ #category : #accessing }
 PMTSNE >> outputDims [
 	^ outputDims
 ]
@@ -284,7 +449,7 @@ PMTSNE >> perplexity: aFloat [
 	perplexity := aFloat
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMTSNE >> perplexityDefaultValue [
 	^ 30.0
 ]
@@ -313,11 +478,6 @@ PMTSNE >> start [
 	job run.
 ]
 
-{ #category : #'stepping and presenter' }
-PMTSNE >> step [
-	self computeLowDimensionalAffinities
-]
-
 { #category : #accessing }
 PMTSNE >> x [
 	^ x
@@ -331,4 +491,9 @@ PMTSNE >> x: aPMMatrix [
 { #category : #accessing }
 PMTSNE >> y [
 	^ y
+]
+
+{ #category : #accessing }
+PMTSNE >> y: aNumber [
+	y:= aNumber
 ]

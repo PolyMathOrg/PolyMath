@@ -8,6 +8,16 @@ Class {
 }
 
 { #category : #tests }
+PMTSNETest >> testComputePValues [
+	| t |
+	
+	t := (PMTSNE new)
+		x: (PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)));
+		perplexity: 30.0.
+	self assert: t computePValues closeTo: (PMMatrix rows: {{0. 2/3. 2/3.}. {2/3. 0. 2/3}. {2/3. 2/3. 0.}})
+]
+
+{ #category : #tests }
 PMTSNETest >> testComputePairwiseAffinities [
 	| t correctAffinities |
 	
