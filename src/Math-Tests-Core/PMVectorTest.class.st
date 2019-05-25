@@ -94,6 +94,21 @@ PMVectorTest >> testScalarProductIsCommutative [
 ]
 
 { #category : #tests }
+PMVectorTest >> testSubFromScalar [
+	"Can we subtract PMVector from a Number?"
+	
+	| num vec actual expected |
+	
+	num := 4.
+	vec := #(1 2 3) asPMVector.
+	
+	actual := num - vec.
+	expected := #(3 2 1) asPMVector.
+	
+	self assert: actual equals: expected.
+]
+
+{ #category : #tests }
 PMVectorTest >> testSubtractScalar [
 	"Can we subtract Number from PMVector?"
 	
