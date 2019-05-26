@@ -20,7 +20,7 @@ Class {
 	#name : #PMVector,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #'Math-Core'
+	#category : 'Math-Core'
 }
 
 { #category : #'instance creation' }
@@ -85,14 +85,14 @@ PMVector >> - aVector [
 
 { #category : #operation }
 PMVector >> < aNumber [
-	"Apply < operator to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) < aNumber].
+	"Apply < operator to every element of a vector and returns a new vector"
+	^ ((1 to: self size) collect: [ :n | (self at: n) < aNumber]) asPMVector.
 ]
 
 { #category : #operation }
 PMVector >> > aNumber [
-	"Apply > function to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) > aNumber].
+	"Apply > function to every element of a vector and return a new vector"
+	^ ((1 to: self size) collect: [ :n | (self at: n) > aNumber]) asPMVector.
 ]
 
 { #category : #transformation }

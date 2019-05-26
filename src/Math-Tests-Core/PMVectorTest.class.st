@@ -60,6 +60,26 @@ PMVectorTest >> testAsArray [
 ]
 
 { #category : #tests }
+PMVectorTest >> testGreaterThan [
+	| vec vecCopy |
+	vec := #(1 2 3) asPMVector.
+	vecCopy := vec deepCopy.
+	self assert: (vec > 1.5) equals: #(false true true) asPMVector.
+	"Ensure that in-place modification does not take place"
+	self assert: vec equals: vecCopy asPMVector.
+]
+
+{ #category : #tests }
+PMVectorTest >> testLessThan [
+	| vec vecCopy |
+	vec := #(1 2 3) asPMVector.
+	vecCopy := vec deepCopy.
+	self assert: (vec < 1.5) equals: #(true false false) asPMVector.
+	"Ensure that in-place modification does not take place"
+	self assert: vec equals: vecCopy asPMVector.
+]
+
+{ #category : #tests }
 PMVectorTest >> testScalarProduct [
 	| u v |
 	u := PMVector new: 3.
