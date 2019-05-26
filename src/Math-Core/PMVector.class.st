@@ -20,7 +20,7 @@ Class {
 	#name : #PMVector,
 	#superclass : #Array,
 	#type : #variable,
-	#category : #'Math-Core'
+	#category : 'Math-Core'
 }
 
 { #category : #'instance creation' }
@@ -306,15 +306,6 @@ PMVector >> sqrt [
 	"Apply sqrt function to every element of a vector"
 
 	1 to: self size do: [ :n | self at: n put: (self at: n) sqrt ]
-]
-
-{ #category : #transformation }
-PMVector >> sum [
-	"Compute the sum of a vector."
-	|a|
-	a := 0.
-	1 to: self size do: [ :n | a := a + self at: n].
-	^a.
 ]
 
 { #category : #operation }
