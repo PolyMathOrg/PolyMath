@@ -407,12 +407,6 @@ PMMatrix >> dimension [
 	^ self rows size @ (self rows at: 1) size
 ]
 
-{ #category : #deprecated }
-PMMatrix >> dot: aMatrix [
-	"Answers the elementwise product of the receiver with aMatrix."
-	^ aMatrix elementwiseProductWithMatrix: self
-]
-
 { #category : #operation }
 PMMatrix >> eigen [
 	"Computes all eigenvalues and eigenvectors of a matrix.
