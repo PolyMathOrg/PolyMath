@@ -250,7 +250,7 @@ PMVector >> resizeWithRows: numOfRows Cols: numOfCols [
 		numOfCols isNil ifTrue: [ colNum := self size / rowNum ] .
 		].
 	
-	self assert: (rowNum * colNum = self size) description: 'Number of Rows not equal to number of Columns'.
+	self assert: (rowNum * colNum = self size) description: 'Number of Rows not compatible with number of Columns'.
 	
 	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
 	

@@ -60,6 +60,39 @@ PMVectorTest >> testAsArray [
 ]
 
 { #category : #tests }
+PMVectorTest >> testMatrixConversionWithBothDims [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect resizeWithRows: 6 Cols: 2.
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
+{ #category : #tests }
+PMVectorTest >> testMatrixConversionWithColDim [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect resizeWithRows: nil Cols: 2.
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
+{ #category : #tests }
+PMVectorTest >> testMatrixConversionWithRowDim [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect resizeWithRows: 6 Cols: nil.
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
+{ #category : #tests }
 PMVectorTest >> testScalarProduct [
 	| u v |
 	u := PMVector new: 3.

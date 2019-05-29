@@ -672,6 +672,13 @@ PMMatrixTest >> testSymmetricMatrixAdd3 [
 	self assert: ((c rowAt: 3) at: 1) equals: 31
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testVectorConversion [
+	| m |
+	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
+	self assert: m asVector equals: #(1 2 3 4 5 6 7 8 9) asPMVector
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testVectorMatrixOperation [
 	"Code Example 8.1"
