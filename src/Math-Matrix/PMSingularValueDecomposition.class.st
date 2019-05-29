@@ -40,7 +40,7 @@ Class {
 		'signU',
 		'signV'
 	],
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #'instance creation' }

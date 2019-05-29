@@ -252,6 +252,26 @@ PMVector >> productWithVector: aVector [
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> resizeWithRows: numOfRows Cols: numOfCols [
+	
+	| computedRows rowNum colNum |
+	
+	numOfRows isNil ifFalse: [rowNum := numOfRows ].
+	numOfCols isNil ifFalse: [colNum := numOfCols ].
+	
+	(rowNum isNil and: colNum isNil) ifFalse: [ 
+		numOfRows isNil ifTrue: [ rowNum := self size / colNum ] .
+		numOfCols isNil ifTrue: [ colNum := self size / rowNum ] .
+		].
+	
+	self assert: (rowNum * colNum = self size) description: 'Number of Rows not equal to number of Columns'.
+	
+	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
+	
+	^PMMatrix rows: computedRows
+]
+
 { #category : #operation }
 PMVector >> scalarProduct: aVector [
 	

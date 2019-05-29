@@ -4,7 +4,7 @@ This class can be instantiated like DhbMatrix via #rows:, but the user has to ma
 Class {
 	#name : #PMSymmetricMatrix,
 	#superclass : #PMMatrix,
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #'instance creation' }
