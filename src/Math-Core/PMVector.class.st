@@ -159,21 +159,6 @@ PMVector >> cumsum [
  
 ]
 
-{ #category : #deprecated }
-PMVector >> dot: aVector [
-"Answers the elementwise product of the receiver with aVector."
-	| answer n |
-	answer := self class new: self size.
-	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a * b).
-		].
-	^answer
-
-]
-
 { #category : #operation }
 PMVector >> hadamardProduct: aVector [
 	"Answers the elementwise product of the receiver with aVector."
@@ -318,15 +303,6 @@ PMVector >> sqrt [
 	"Apply sqrt function to every element of a vector"
 
 	1 to: self size do: [ :n | self at: n put: (self at: n) sqrt ]
-]
-
-{ #category : #transformation }
-PMVector >> sum [
-	"Compute the sum of a vector."
-	|a|
-	a := 0.
-	1 to: self size do: [ :n | a := a + self at: n].
-	^a.
 ]
 
 { #category : #operation }

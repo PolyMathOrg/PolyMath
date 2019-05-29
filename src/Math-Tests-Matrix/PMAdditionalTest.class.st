@@ -5,7 +5,7 @@ here are tests that would be in Math-Tests-DHB-Numerical, if it could construct 
 Class {
 	#name : #PMAdditionalTest,
 	#superclass : #TestCase,
-	#category : #'Math-Tests-Matrix'
+	#category : 'Math-Tests-Matrix'
 }
 
 { #category : #tests }
