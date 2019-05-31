@@ -4,9 +4,14 @@ Class {
 	#category : #'Math-Tests-Random'
 }
 
+{ #category : #private }
+PMPseudoRandomNumberGeneratorTest >> pseudoRandomNumberGenerators [
+	^ PMPseudoRandomNumberGenerator subclasses
+]
+
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
-	PMPseudoRandomNumberGenerator subclasses
+	self pseudoRandomNumberGenerators
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -15,7 +20,7 @@ PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamDoesntRespondToContents 
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamIsReadOnly [
-	PMPseudoRandomNumberGenerator subclasses
+	self pseudoRandomNumberGenerators
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -25,15 +30,16 @@ PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamIsReadOnly [
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamNeverEnds [
-	PMPseudoRandomNumberGenerator subclasses do: 
-	[:cls | | gen |
-		gen := cls new.
-		self shouldnt: [gen atEnd]].
+	self pseudoRandomNumberGenerators
+		do: [ :cls | 
+			| gen |
+			gen := cls new.
+			self shouldnt: [ gen atEnd ] ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamPeekIsNext [
-	PMPseudoRandomNumberGenerator subclasses
+	self pseudoRandomNumberGenerators
 		do: [ :cls | 
 			| gen value |
 			gen := cls new.
@@ -44,7 +50,7 @@ PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamPeekIsNext [
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesNumbers [
-	PMPseudoRandomNumberGenerator subclasses
+	self pseudoRandomNumberGenerators
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -54,16 +60,17 @@ PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesNumbers [
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
-	PMPseudoRandomNumberGenerator subclasses do: 
-	[:cls | | gen value |
-		gen := cls new.
-		value := gen next.
-		self shouldnt: [gen next = value]].
+	self pseudoRandomNumberGenerators
+		do: [ :cls | 
+			| gen value |
+			gen := cls new.
+			value := gen next.
+			self shouldnt: [ gen next = value ] ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testNextGivesArrayOfNumbers [
-	PMPseudoRandomNumberGenerator subclasses
+	self pseudoRandomNumberGenerators
 		do: [ :cls | 
 			| gen samples |
 			gen := cls new.
