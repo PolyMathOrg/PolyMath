@@ -5,44 +5,45 @@ Class {
 }
 
 { #category : #private }
+PMPseudoRandomNumberGeneratorTest >> pseudoRNG: aBlock [
+	"Instanciates a pseudo random number generator 
+	to yield to the block"
+
+	self pseudoRandomNumberGenerators 
+		do: [ :typeOfGenerator | 
+			| generator |
+			generator := typeOfGenerator new.
+			aBlock value: generator ]
+]
+
+{ #category : #private }
 PMPseudoRandomNumberGeneratorTest >> pseudoRandomNumberGenerators [
 	^ PMPseudoRandomNumberGenerator subclasses
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen |
-			gen := cls new.
-			self should: [ gen contents ] raise: Error ]
+	self pseudoRNG: [ :gen | self should: [ gen contents ] raise: Error ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamIsReadOnly [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen |
-			gen := cls new.
+	self
+		pseudoRNG: [ :gen | 
 			self shouldnt: [ gen isWriteable ].
 			self assert: gen isReadable ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamNeverEnds [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen |
-			gen := cls new.
-			self shouldnt: [ gen atEnd ] ]
+	self pseudoRNG: [ :gen | self shouldnt: [ gen atEnd ] ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamPeekIsNext [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen value |
-			gen := cls new.
+	self
+		pseudoRNG: [ :gen | 
+			| value |
 			value := gen peek.
 			self assert: gen peek equals: value.
 			self assert: gen next equals: value ]
@@ -50,30 +51,26 @@ PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamPeekIsNext [
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesNumbers [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen |
-			gen := cls new.
+	self
+		pseudoRNG: [ :gen | 
 			self assert: gen next isNumber.
 			self assert: gen next isFloat ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen value |
-			gen := cls new.
+	self
+		pseudoRNG: [ :gen | 
+			| value |
 			value := gen next.
 			self shouldnt: [ gen next = value ] ]
 ]
 
 { #category : #tests }
 PMPseudoRandomNumberGeneratorTest >> testNextGivesArrayOfNumbers [
-	self pseudoRandomNumberGenerators
-		do: [ :cls | 
-			| gen samples |
-			gen := cls new.
+	self
+		pseudoRNG: [ :gen | 
+			| samples |
 			samples := gen next: 10.
 			self assert: samples size equals: 10.
 			self assert: (samples at: 1) isFloat.
