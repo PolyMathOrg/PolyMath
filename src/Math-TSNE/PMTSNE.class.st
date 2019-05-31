@@ -21,7 +21,8 @@ Class {
 		'learningRate',
 		'minGain',
 		'job',
-		'computeErrorEvery'
+		'computeErrorEvery',
+		'stateVariables'
 	],
 	#category : #'Math-TSNE'
 }
@@ -86,17 +87,21 @@ PMTSNE >> computeErrorEveryDefaultValue [
 ]
 
 { #category : #'stepping and presenter' }
-PMTSNE >> computeGradient: p withProgressUpdate: iteration [
+PMTSNE >> computeGradient [
 	"Computes gradient of KL divergence"
 
-	| num sumNum q pq dY tmp yiDiff error |
+	| num sumNum p q pq dY tmp yiDiff |
 	"Calculates num and q"
 	num := self computeLowDimensionalStudentT.
 	sumNum := num sum sum max: (Float epsilon).
 	q := num collect: [:element |
 				(element / sumNum) max: (Float epsilon)
 			].
+	stateVariables add: 'q'->q.
+	
+	p := stateVariables at: 'p'.
 	pq := p - q.
+	
 	dY := OrderedCollection new. 
 	1 to: (x dimension x) do: [ :i |
 		tmp := (pq rowAt: i) hadamardProduct: (num rowAt: i).
@@ -106,20 +111,6 @@ PMTSNE >> computeGradient: p withProgressUpdate: iteration [
 		dY add: (tmp hadamardProduct: yiDiff) sum
 		 ].
 	dY := PMMatrix rows: dY.
-	
-	(iteration % computeErrorEvery = 0) ifTrue: [
-		error := PMMatrix rows: (x dimension x) columns: (x dimension x).
-		1 to: (x dimension x) do: [ :i |
-			1 to: (x dimension x) do: [ :j |
-				error rowAt: i columnAt: j put: (
-					(p rowAt: i columnAt: j) * (((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln)
-				).
-				].
-			].
-		error := error sum sum.
-		job title: ('' join: { 'Step 3/3: Performing gradient descent '. iteration. '/'. maxIter.' error = '. error }).
-		job progress: (iteration/maxIter).
-		].
 
 	^ dY
 ]
@@ -269,35 +260,15 @@ PMTSNE >> finalMomentumDefaultValue [
 PMTSNE >> gradientDescent [
 	"Tries to minimize the cost, which is KL divergence"
 
-	| p gains iY momentum dY yMeanAccumulator |
 	job title: 'Step 3/3: Performing gradient descent'.
-	p := self computePValues.
-	gains := PMMatrix onesRows: x dimension x cols: outputDims.
-	iY := PMMatrix zerosRows: x dimension x cols: outputDims.
-	momentum := initialMomentum.
+	job progress: 0.0.
+	stateVariables add: 'p'->(self computePValues).
+	stateVariables add: 'gains'->(PMMatrix onesRows: x dimension x cols: outputDims).
+	stateVariables add: 'iY'->(PMMatrix zerosRows: x dimension x cols: outputDims).
 	1 to: maxIter do: [ :iteration | 
-		dY := self computeGradient: p withProgressUpdate: iteration.
-		momentum := iteration < 20
-			ifTrue: [ initialMomentum ]
-			ifFalse: [ finalMomentum ].
-		1 to: (x dimension x) do: [ :i |
-			1 to: outputDims do: [ :j |
-				((dY rowAt: i columnAt: j) > 0) = ((iY rowAt: i columnAt: j) > 0)
-					ifTrue: [ gains rowAt: i columnAt: j put: (((gains rowAt: i columnAt: j) * 0.8) max: minGain) ]
-					ifFalse: [ gains rowAt: i columnAt: j put: (gains rowAt: i columnAt: j) + 0.2 ].
-				]
-			].
-		iY := iY * momentum - ((dY hadamardProduct: gains) * learningRate).
-		y := y + iY.
-		yMeanAccumulator := PMVectorAccumulator new: outputDims.
-		y rowsDo: [ :row |
-			yMeanAccumulator accumulate: row.
-			].
-		y := PMMatrix rows: (y rowsCollect: [ :row |
-			row - (yMeanAccumulator average)
-			]).
-		"Stop exaggeration"
-		(iteration = 100) ifTrue: [ p := p * (1/4) ].
+		stateVariables add: 'iteration'->iteration.
+		self step.
+		self postStep.
 		].
 ]
 
@@ -340,6 +311,7 @@ PMTSNE >> initialize [
 	learningRate := self learningRateDefaultValue.
 	minGain := self minGainDefaultValue.
 	computeErrorEvery := self computeErrorEveryDefaultValue.
+	stateVariables := Dictionary new.
 	self initializeJob.
 	
 ]
@@ -454,6 +426,12 @@ PMTSNE >> perplexityDefaultValue [
 	^ 30.0
 ]
 
+{ #category : #'stepping and presenter' }
+PMTSNE >> postStep [
+	"Here will be all the calls for visualization and debugging methods"
+	self updateProgressWithError
+]
+
 { #category : #running }
 PMTSNE >> reduceXToInputDims [
 	"Runs PCA on X in order to reduce its dimensionality to initialDims dimensions."
@@ -476,6 +454,76 @@ PMTSNE >> reduceXToInputDimsUsing: aClass [
 { #category : #running }
 PMTSNE >> start [
 	job run.
+]
+
+{ #category : #'stepping and presenter' }
+PMTSNE >> step [
+	| iteration gains iY dY momentum yMeanAccumulator p |
+	iteration := stateVariables at: 'iteration'.
+	gains := stateVariables at: 'gains'.
+	iY := stateVariables at: 'iY'.
+	p := stateVariables at: 'p'.
+	
+	dY := self computeGradient.
+	
+	"Momentum accelerates gradient descent by dampening one direction"
+	momentum := iteration < 20
+		ifTrue: [ initialMomentum ]
+		ifFalse: [ finalMomentum ].
+	
+	"Compute gain based on direction of descent"
+	1 to: x dimension x do: [ :i | 
+		1 to: outputDims do: [ :j | 
+			(dY rowAt: i columnAt: j) > 0 = ((iY rowAt: i columnAt: j) > 0)
+				ifTrue: [ gains
+						rowAt: i
+						columnAt: j
+						put: ((gains rowAt: i columnAt: j) * 0.8 max: minGain) ]
+				ifFalse: [ gains rowAt: i columnAt: j put: (gains rowAt: i columnAt: j) + 0.2 ] ] ].
+	
+	"Update y according to gradient, momentum and gain"
+	iY := iY * momentum - ((dY hadamardProduct: gains) * learningRate).
+	y := y + iY.
+	
+	"Center y by subtracting mean"
+	yMeanAccumulator := PMVectorAccumulator new: outputDims.
+	y rowsDo: [ :row | yMeanAccumulator accumulate: row ].
+	y := PMMatrix
+		rows: (y rowsCollect: [ :row | row - yMeanAccumulator average ]).
+		
+	"Update state variables for the next step"
+	stateVariables add: 'gains'->gains.
+	stateVariables add: 'iY'->iY.
+	
+	"Stop early exaggeration on 100th iteration"
+	iteration = 100
+		ifFalse: [ ^ self ].
+	p := p * (1 / 4).
+	stateVariables add: 'p' -> p
+]
+
+{ #category : #'stepping and presenter' }
+PMTSNE >> updateProgressWithError [
+	| error p q iteration |
+	iteration := stateVariables at: 'iteration'.
+	p := stateVariables at: 'p'.
+	q := stateVariables at: 'q'.
+	
+	iteration % computeErrorEvery = 0
+		ifFalse: [ ^ self ].
+		
+	error := PMMatrix rows: x dimension x columns: x dimension x.
+	1 to: x dimension x do: [ :i | 
+		1 to: x dimension x do: [ :j | 
+			error rowAt: i columnAt: j
+				put: (p rowAt: i columnAt: j) * ((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln 
+		] ].
+	error := error sum sum.
+	
+	job title: ('' join:
+		{'Step 3/3: Performing gradient descent '. iteration. '/'. maxIter. ' error = '. error}
+		).
+	job progress: iteration / maxIter.
 ]
 
 { #category : #accessing }
