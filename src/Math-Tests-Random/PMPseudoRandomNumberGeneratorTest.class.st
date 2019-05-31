@@ -9,16 +9,11 @@ PMPseudoRandomNumberGeneratorTest >> pseudoRNG: aBlock [
 	"Instanciates a pseudo random number generator 
 	to yield to the block"
 
-	self pseudoRandomNumberGenerators 
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :typeOfGenerator | 
 			| generator |
 			generator := typeOfGenerator new.
 			aBlock value: generator ]
-]
-
-{ #category : #private }
-PMPseudoRandomNumberGeneratorTest >> pseudoRandomNumberGenerators [
-	^ PMPseudoRandomNumberGenerator subclasses
 ]
 
 { #category : #tests }
