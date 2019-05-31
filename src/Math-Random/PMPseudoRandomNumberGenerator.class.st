@@ -31,16 +31,16 @@ And finally, there's a taxonomy more related with the internal implementation, b
 
 "
 Class {
-	#name : #PMRandomGenerator,
+	#name : #PMPseudoRandomNumberGenerator,
 	#superclass : #Object,
 	#instVars : [
 		'seed'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #testing }
-PMRandomGenerator class >> chiSquare: range repeating: anInteger [
+PMPseudoRandomNumberGenerator class >> chiSquare: range repeating: anInteger [
 	"Run a 'chi-square' test on a random number generator, over a range of integers given by range, repeating anInteger times.  
     Answer an Array containing the result of the chi-square test (which should be the same as the range), and the upper and lower bounds for 'good' randomness (assuming that anInteger is at least 10 * range)."
 
@@ -64,21 +64,21 @@ PMRandomGenerator class >> chiSquare: range repeating: anInteger [
 ]
 
 { #category : #'instance creation' }
-PMRandomGenerator class >> new [
+PMPseudoRandomNumberGenerator class >> new [
 	"Answer a new instance of the receiver"
 
 	^ (self seed: Time millisecondClockValue) initialize
 ]
 
 { #category : #'instance creation' }
-PMRandomGenerator class >> seed: anInteger [
+PMPseudoRandomNumberGenerator class >> seed: anInteger [
 	"Anwer a new Random stream with the initial seed anInteger."
 
 	^ self basicNew seed: anInteger; yourself
 ]
 
 { #category : #testing }
-PMRandomGenerator >> atEnd [
+PMPseudoRandomNumberGenerator >> atEnd [
 	"Answer whether the receiver is at its end - never true for a stream of Random numbers"
 
 	^ false
@@ -86,7 +86,7 @@ PMRandomGenerator >> atEnd [
 ]
 
 { #category : #accessing }
-PMRandomGenerator >> contents [
+PMPseudoRandomNumberGenerator >> contents [
 	"Answer all of the objects in the collection accessed by the receiver.
 	Implementation Notes: Random streams are infinite, so there is no implementation possible."
 
@@ -95,7 +95,7 @@ PMRandomGenerator >> contents [
 ]
 
 { #category : #testing }
-PMRandomGenerator >> isReadable [
+PMPseudoRandomNumberGenerator >> isReadable [
 	"Answer whether the receiver can be read from (i.e. it implements the gettableStream protocol)."
 
 	^ true
@@ -103,7 +103,7 @@ PMRandomGenerator >> isReadable [
 ]
 
 { #category : #testing }
-PMRandomGenerator >> isWriteable [
+PMPseudoRandomNumberGenerator >> isWriteable [
 	"Answer whether the receiver can be written to (i.e. it implements the puttableStream protocol)."
 
 	^ false
@@ -111,14 +111,14 @@ PMRandomGenerator >> isWriteable [
 ]
 
 { #category : #'stream access' }
-PMRandomGenerator >> next [
+PMPseudoRandomNumberGenerator >> next [
  	"Answer a pseudo-Random number"
 	
 	^ self subclassResponsibility
 ]
 
 { #category : #'stream access' }
-PMRandomGenerator >> next: anInteger [
+PMPseudoRandomNumberGenerator >> next: anInteger [
 	"Answer a collection of size anInteger of pseudo-random Floats between 0 and 1. "
 
 	^ ( 1 to: anInteger ) collect: [ :i | self next ]
@@ -126,21 +126,21 @@ PMRandomGenerator >> next: anInteger [
 ]
 
 { #category : #'stream access' }
-PMRandomGenerator >> peek [
+PMPseudoRandomNumberGenerator >> peek [
 	"Answer a pseudo-Random number generated from the next seed,  but do not advance down the stream (i.e. self peek = self peek). "
 
 	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
-PMRandomGenerator >> seed [
+PMPseudoRandomNumberGenerator >> seed [
     "Returns the instance var of the receiver for external manipulation"
 
     ^ seed
 ]
 
 { #category : #accessing }
-PMRandomGenerator >> seed: anObject [
+PMPseudoRandomNumberGenerator >> seed: anObject [
     "Sets the instance var of the receiver with anObject. (No checking is done)"
 
     seed := anObject

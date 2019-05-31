@@ -1,12 +1,12 @@
 Class {
-	#name : #PMRandomGeneratorTest,
+	#name : #PMPseudoRandomNumberGeneratorTest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-Random'
 }
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
-	PMRandomGenerator subclasses
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -14,8 +14,8 @@ PMRandomGeneratorTest >> testGeneratorStreamDoesntRespondToContents [
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamIsReadOnly [
-	PMRandomGenerator subclasses
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamIsReadOnly [
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -24,16 +24,16 @@ PMRandomGeneratorTest >> testGeneratorStreamIsReadOnly [
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamNeverEnds [
-	PMRandomGenerator subclasses do: 
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamNeverEnds [
+	PMPseudoRandomNumberGenerator subclasses do: 
 	[:cls | | gen |
 		gen := cls new.
 		self shouldnt: [gen atEnd]].
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamPeekIsNext [
-	PMRandomGenerator subclasses
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamPeekIsNext [
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :cls | 
 			| gen value |
 			gen := cls new.
@@ -43,8 +43,8 @@ PMRandomGeneratorTest >> testGeneratorStreamPeekIsNext [
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamProducesNumbers [
-	PMRandomGenerator subclasses
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesNumbers [
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :cls | 
 			| gen |
 			gen := cls new.
@@ -53,8 +53,8 @@ PMRandomGeneratorTest >> testGeneratorStreamProducesNumbers [
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
-	PMRandomGenerator subclasses do: 
+PMPseudoRandomNumberGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
+	PMPseudoRandomNumberGenerator subclasses do: 
 	[:cls | | gen value |
 		gen := cls new.
 		value := gen next.
@@ -62,8 +62,8 @@ PMRandomGeneratorTest >> testGeneratorStreamProducesRandomNumbers [
 ]
 
 { #category : #tests }
-PMRandomGeneratorTest >> testNextGivesArrayOfNumbers [
-	PMRandomGenerator subclasses
+PMPseudoRandomNumberGeneratorTest >> testNextGivesArrayOfNumbers [
+	PMPseudoRandomNumberGenerator subclasses
 		do: [ :cls | 
 			| gen samples |
 			gen := cls new.

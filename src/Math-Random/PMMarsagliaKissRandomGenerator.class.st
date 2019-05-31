@@ -11,7 +11,7 @@ Instance Variables
 "
 Class {
 	#name : #PMMarsagliaKissRandomGenerator,
-	#superclass : #PMRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#instVars : [
 		'kernelRand1',
 		'kernelRand2'

@@ -5,7 +5,7 @@ PMLinearCongruentialRandomGenerator new next.
 "
 Class {
 	#name : #PMLinearCongruentialRandomGenerator,
-	#superclass : #PMRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#category : #'Math-Random'
 }
 
