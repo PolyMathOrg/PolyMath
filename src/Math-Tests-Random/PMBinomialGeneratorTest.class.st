@@ -17,7 +17,7 @@ PMBinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
 		probabilityOfSuccess: probabilityOfSuccess.
 	
 	nums := OrderedCollection new.
-	(1 to: numberOfTrials) do: [ :ea | nums add: gen next ].
+	1 to: numberOfTrials do: [ :ea | nums add: gen next ].
 	
 	mean := numberOfTrials * probabilityOfSuccess.
 	self assert: nums min > (mean * (1 - 0.2)).
