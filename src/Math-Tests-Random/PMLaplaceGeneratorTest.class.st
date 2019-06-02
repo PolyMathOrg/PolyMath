@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Random'
 }
 
-{ #category : #accessing }
+{ #category : #tests }
 PMLaplaceGeneratorTest >> testPeekIsIdempotent [
 	| g |
 	g := PMLaplaceGenerator shape: 0.5 scale: 0.3.
