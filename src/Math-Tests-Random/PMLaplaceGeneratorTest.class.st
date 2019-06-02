@@ -4,11 +4,6 @@ Class {
 	#category : #'Math-Tests-Random'
 }
 
-{ #category : #'as yet unclassified' }
-PMLaplaceGeneratorTest >> classToTest [ 
-	^ PMLaplaceGenerator 
-]
-
 { #category : #accessing }
 PMLaplaceGeneratorTest >> testPeekIsIdempotent [
 	| g |
