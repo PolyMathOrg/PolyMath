@@ -33,8 +33,9 @@ PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
 
 	| gen sample |
 	gen := PMExponentialGenerator mean: 10.
-	sample := Array new: 10000.
-	sample := sample collect: [ :each | gen next ].
+	
+	sample := OrderedCollection new.
+	10000 timesRepeat: [ sample add: gen next ].
 	
 	self
 		assert: (sample average between: gen mean * 0.95 and: gen mean * 1.05)
