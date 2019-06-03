@@ -5,11 +5,10 @@ Class {
 }
 
 { #category : #tests }
-PMPoissonGeneratorTest >> testPeekReturnsSameAsNext [
-	| poisson random |
+PMPoissonGeneratorTest >> testPeekIsIdempotent [
+	| poisson |
 	poisson := PMPoissonGenerator lambda: 0.1.
-	random := poisson peek.
-	self assert: random equals: poisson next
+	self assert: poisson peek equals: poisson peek
 ]
 
 { #category : #tests }
