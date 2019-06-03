@@ -12,6 +12,13 @@ PMPoissonGeneratorTest >> testPeekIsIdempotent [
 ]
 
 { #category : #tests }
+PMPoissonGeneratorTest >> testPeekReturnsSameAsNext [
+	| poisson |
+	poisson := PMPoissonGenerator lambda: 0.1.
+	self assert: poisson peek equals: poisson next
+]
+
+{ #category : #tests }
 PMPoissonGeneratorTest >> testPeekWorksAfterSampling [
 	| poisson random |
 	poisson := PMPoissonGenerator lambda: 0.1.
