@@ -4,14 +4,9 @@ Class {
 	#category : #'Math-Tests-Random'
 }
 
-{ #category : #'as yet unclassified' }
-PMLaplaceGeneratorTest >> classToTest [ 
-	^ PMLaplaceGenerator 
-]
-
-{ #category : #accessing }
-PMLaplaceGeneratorTest >> testPeekAlwaysReplyTheSameValue [
+{ #category : #tests }
+PMLaplaceGeneratorTest >> testPeekIsIdempotent [
 	| g |
-	g := self classToTest shape: 0.5 scale: 0.3.
+	g := PMLaplaceGenerator shape: 0.5 scale: 0.3.
 	self assert: g peek equals: g peek
 ]

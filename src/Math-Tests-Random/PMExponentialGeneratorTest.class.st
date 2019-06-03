@@ -13,14 +13,14 @@ PMExponentialGeneratorTest >> testGenerator [
 	eg := PMExponentialGenerator new.
 	self
 		assert: (eg generator isKindOf: PMExponentialGenerator defaultGeneratorClass).
-	self assert: (eg generator isKindOf: PMRandomGenerator).
+	self assert: (eg generator isKindOf: PMPseudoRandomNumberGenerator).
 	eg generator: PMMersenneTwisterRandomGenerator new.
 	self assert: (eg generator isKindOf: PMMersenneTwisterRandomGenerator).
 	self assert: (eg next isKindOf: Number)
 ]
 
 { #category : #tests }
-PMExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
+PMExponentialGeneratorTest >> testPeekIsIdempotent [
 	| eg |
 	eg := PMExponentialGenerator new.
 	self assert: eg peek equals: eg peek.
@@ -31,10 +31,11 @@ PMExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
 PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
 	"testing a random sample seems suspect. We use a 5% interval here"
 
-	| eg arr |
-	eg := PMExponentialGenerator mean: 10.
-	arr := Array new: 10000.
-	arr := arr collect: [ :each | eg next ].
+	| gen sample |
+	gen := PMExponentialGenerator mean: 10.
+	sample := Array new: 10000.
+	sample := sample collect: [ :each | gen next ].
+	
 	self
-		assert: (arr average between: eg mean * 0.95 and: eg mean * 1.05)
+		assert: (sample average between: gen mean * 0.95 and: gen mean * 1.05)
 ]

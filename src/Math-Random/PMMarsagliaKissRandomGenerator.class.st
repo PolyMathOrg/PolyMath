@@ -10,8 +10,8 @@ Instance Variables
 
 "
 Class {
-	#name : #PMMarsagliaKissRandom,
-	#superclass : #PMRandomGenerator,
+	#name : #PMMarsagliaKissRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#instVars : [
 		'kernelRand1',
 		'kernelRand2'
@@ -20,20 +20,20 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMMarsagliaKissRandom class >> default [
+PMMarsagliaKissRandomGenerator class >> default [
 	^self seed: #(
 		123456789 362436069 521288629 316191069
 		987654321 458629013 582859209 438195021)
 ]
 
 { #category : #'instance creation' }
-PMMarsagliaKissRandom class >> new [
+PMMarsagliaKissRandomGenerator class >> new [
 
 	^ self seed: (PMMarsagliaKissRandomKernel new next: 8)
 ]
 
 { #category : #'stream access' }
-PMMarsagliaKissRandom >> next [
+PMMarsagliaKissRandomGenerator >> next [
 	"Answer a Float in interval [0.0,1.0) with uniform distribution.
 	Note that constant 16rFFFFF800 is computed so as to truncate the 64 bits to Float precision.
 	It is thus ((1 << 32 - 1 << (64 - Float precision) bitAnd: 1 << 32 - 1)) hex"
@@ -42,23 +42,23 @@ PMMarsagliaKissRandom >> next [
 ]
 
 { #category : #'stream access' }
-PMMarsagliaKissRandom >> peek [
+PMMarsagliaKissRandomGenerator >> peek [
 	^self copy next
 ]
 
 { #category : #copying }
-PMMarsagliaKissRandom >> postCopy [
+PMMarsagliaKissRandomGenerator >> postCopy [
 	kernelRand1 := kernelRand1 copy.
 	kernelRand2 := kernelRand2 copy
 ]
 
 { #category : #accessing }
-PMMarsagliaKissRandom >> seed [
+PMMarsagliaKissRandomGenerator >> seed [
 	^ kernelRand1 seed , kernelRand2 seed
 ]
 
 { #category : #accessing }
-PMMarsagliaKissRandom >> seed: aWordArray [
+PMMarsagliaKissRandomGenerator >> seed: aWordArray [
 	"Initialize with an Array of eight 32-bits Integer"
 	kernelRand1 := PMMarsagliaKissRandomKernel seed: (aWordArray first: 4).
 	kernelRand2 := PMMarsagliaKissRandomKernel seed: (aWordArray last: 4)

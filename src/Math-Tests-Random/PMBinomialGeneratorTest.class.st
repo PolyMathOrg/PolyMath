@@ -5,27 +5,6 @@ Class {
 }
 
 { #category : #tests }
-PMBinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
-	"Its purpose is to verify correct convergence of the binomial distribution, 
-	should be Normal (np, np(1-p))"
-
-	| gen nums mean probabilityOfSuccess numberOfTrials |
-	probabilityOfSuccess := (Random seed: 0.0) next sqrt.
-	numberOfTrials := 1000.
-	gen := PMBinomialGenerator
-		numberOfTrials: numberOfTrials
-		probabilityOfSuccess: probabilityOfSuccess.
-	
-	nums := OrderedCollection new.
-	(1 to: numberOfTrials) do: [ :ea | nums add: gen next ].
-	
-	mean := numberOfTrials * probabilityOfSuccess.
-	self assert: nums min > (mean * (1 - 0.2)).
-	self assert: nums max < (mean * (1 + 0.2)).
-	self assert: (nums average - mean) abs < 5
-]
-
-{ #category : #tests }
 PMBinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysReturnNumberOfTrials [
 	| g numberOfTrials |
 	g := PMBinomialGenerator new.
@@ -55,4 +34,24 @@ PMBinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfZeroAlwa
 	self assert: g next equals: 0.
 	g generator: PMMersenneTwisterRandomGenerator new.
 	self assert: g next equals: 0
+]
+
+{ #category : #tests }
+PMBinomialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
+	"Its purpose is to verify correct convergence of the binomial distribution, 
+	should be Normal (np, np(1-p))"
+
+	| gen sample probabilityOfSuccess numberOfTrials |
+	probabilityOfSuccess := (Random seed: 0.0) next sqrt.
+	numberOfTrials := 1000.
+	gen := PMBinomialGenerator
+		numberOfTrials: numberOfTrials
+		probabilityOfSuccess: probabilityOfSuccess.
+	
+	sample := OrderedCollection new.
+	numberOfTrials timesRepeat: [ sample add: gen next ].
+	
+	self assert: sample min > (gen expectedValue * (1 - 0.2)).
+	self assert: sample max < (gen expectedValue * (1 + 0.2)).
+	self assert: (sample average - gen expectedValue) abs < 5
 ]
