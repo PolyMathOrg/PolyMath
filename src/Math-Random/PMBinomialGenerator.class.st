@@ -23,7 +23,7 @@ PMBinomialGenerator class >> numberOfTrials: numberOfTrials probabilityOfSuccess
 
 { #category : #accessing }
 PMBinomialGenerator >> expectedValue [
-	^ numberOfTrials * probability .
+	^ numberOfTrials * probability
 ]
 
 { #category : #initialization }
