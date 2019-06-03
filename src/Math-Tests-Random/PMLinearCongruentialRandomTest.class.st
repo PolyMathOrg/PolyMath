@@ -14,15 +14,15 @@ PMLinearCongruentialRandomTest >> testNextBetweenZeroAndOne [
 ]
 
 { #category : #tests }
-PMLinearCongruentialRandomTest >> testPeekAlwaysReplyTheSameValue [
-	| g |
-	g := PMLinearCongruentialRandomGenerator new.
-	self assert: g peek equals: g peek
-]
-
-{ #category : #tests }
 PMLinearCongruentialRandomTest >> testPeekAnswersSameAsNext [
 	| g |
 	g := PMLinearCongruentialRandomGenerator new.
 	self assert: g peek equals: g next
+]
+
+{ #category : #tests }
+PMLinearCongruentialRandomTest >> testPeekIsIdempotent [
+	| g |
+	g := PMLinearCongruentialRandomGenerator new.
+	self assert: g peek equals: g peek
 ]

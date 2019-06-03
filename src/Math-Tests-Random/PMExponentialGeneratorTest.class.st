@@ -20,7 +20,7 @@ PMExponentialGeneratorTest >> testGenerator [
 ]
 
 { #category : #tests }
-PMExponentialGeneratorTest >> testPeekAlwaysAnswersTheSame [
+PMExponentialGeneratorTest >> testPeekIsIdempotent [
 	| eg |
 	eg := PMExponentialGenerator new.
 	self assert: eg peek equals: eg peek.
