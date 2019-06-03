@@ -9,7 +9,7 @@ PMBinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
 	"Its purpose is to verify correct convergence of the binomial distribution, 
 	should be Normal (np, np(1-p))"
 
-	| gen sample mean probabilityOfSuccess numberOfTrials |
+	| gen sample probabilityOfSuccess numberOfTrials |
 	probabilityOfSuccess := (Random seed: 0.0) next sqrt.
 	numberOfTrials := 1000.
 	gen := PMBinomialGenerator
@@ -19,10 +19,9 @@ PMBinomialGeneratorTest >> testBinomialGeneratorConvergesToMean [
 	sample := OrderedCollection new.
 	1 to: numberOfTrials do: [ :ea | sample add: gen next ].
 	
-	mean := numberOfTrials * probabilityOfSuccess.
-	self assert: sample min > (mean * (1 - 0.2)).
-	self assert: sample max < (mean * (1 + 0.2)).
-	self assert: (sample average - mean) abs < 5
+	self assert: sample min > (gen expectedValue * (1 - 0.2)).
+	self assert: sample max < (gen expectedValue * (1 + 0.2)).
+	self assert: (sample average - gen expectedValue) abs < 5
 ]
 
 { #category : #tests }
