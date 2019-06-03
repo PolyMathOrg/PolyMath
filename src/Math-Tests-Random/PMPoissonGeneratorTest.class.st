@@ -5,6 +5,14 @@ Class {
 }
 
 { #category : #tests }
+PMPoissonGeneratorTest >> generateASampleOfSize: sampleSize UsingGenerator: gen [
+	| sample |
+	sample := OrderedCollection new.
+	sampleSize timesRepeat: [ sample add: gen next ].
+	^ sample
+]
+
+{ #category : #tests }
 PMPoissonGeneratorTest >> testPeekIsIdempotent [
 	| poisson |
 	poisson := PMPoissonGenerator lambda: 0.1.
@@ -35,12 +43,12 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToLambda [
 	"made non-random, old random version in comments"
 
 	| gen sample |
-	gen := PMPoissonGenerator lambda: 5.	"((1000 atRandom: Random new) -1)"
-	gen generator seed: 42.	"added for non-randomness"
-	
-	sample := OrderedCollection new.
-	1000 timesRepeat: [ sample add: gen next ].
-	
+	"((1000 atRandom: Random new) -1)"
+	gen := PMPoissonGenerator lambda: 5.
+	"added for non-randomness"
+	gen generator seed: 42.
+
+	sample := self generateASampleOfSize: 1000 UsingGenerator: gen.
 	self assert: sample average >= (gen lambda * 0.8).
 	self assert: sample average <= (gen lambda * 1.2)
 ]
