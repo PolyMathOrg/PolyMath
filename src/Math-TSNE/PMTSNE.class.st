@@ -21,8 +21,13 @@ Class {
 		'learningRate',
 		'minGain',
 		'job',
-		'computeErrorEvery',
-		'stateVariables'
+		'updateProgressEvery',
+		'updateError',
+		'iterations',
+		'p',
+		'q',
+		'gains',
+		'iY'
 	],
 	#category : #'Math-TSNE'
 }
@@ -57,7 +62,89 @@ PMTSNE class >> example1 [
 		y
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #examples }
+PMTSNE class >> exampleGridWithVizualization [
+	| points tsne v rec xscale yscale s elements |
+	points := self gridDataGeneratorOf: 12.
+	
+	tsne := (self new)
+		perplexity: 10;
+		learningRate: 50;
+		x: points.
+	tsne initializeUninitializedParameters.
+	tsne reduceXToInputDims.
+	tsne initializeYWithRandomValues.
+	tsne initializeStateVariables.
+
+	v := RSView new.
+	"We assign a color to the elements"
+	rec := Rectangle encompassing: (tsne y rows 
+		collect: [:row | row first @ row second ]).
+	xscale := TSScale linear domain: { rec origin x. rec corner x }.
+	yscale := TSScale linear domain: { rec origin y. rec corner y }.
+	s := RSShapeBuilder circle
+		size: 5;
+		color: [:vec | Color
+			r: 0.08
+			g: (xscale scale: vec first )
+			b: (yscale scale: vec second) ].
+	elements := s elementsOn: points rows.
+	v camera zoomToFit: 500@500 extent: 800 asPoint.
+	"this is the animation block"
+	(v animation) duration: 5 asDuration;
+	onStepDo: [ :t |
+	    tsne step.
+	    elements do: [ :e | | point |
+	        point := tsne y rowAt: e index.
+	        e position: (point first @ point second) * 20 ].
+	     ].
+	v addAll: elements.
+	v open setLabel: 'tSNE example: Points arranged in a grid'.
+	
+]
+
+{ #category : #examples }
+PMTSNE class >> exampleLinkedRingWithVizualization [
+	| points tsne v counter s elements |
+	points := self linkedRingsDataGeneratorOf: 50.
+	
+	"Perplexity near 10 and learningRate <= 10 gives best results"
+	tsne := (self new)
+		perplexity: 3;
+		learningRate: 10;
+		x: points.
+	tsne initializeUninitializedParameters.
+	tsne reduceXToInputDims.
+	tsne initializeYWithRandomValues.
+	tsne initializeStateVariables.
+
+	v := RSView new.
+	"Assign same color to alternate elements"
+	counter := 0.
+	s := RSShapeBuilder circle
+		size: 2;
+		color: [:vec |
+				counter := counter + 1.
+				counter % 2 = 0
+				ifTrue: [Color blue]
+				ifFalse: [Color red]].
+	elements := s elementsOn: points rows.
+	"this is the animation block"
+	(v animation) repeat
+	onStepDo: [ :t |
+	    tsne step.
+	    elements do: [ :e | | point |
+	        point := tsne y rowAt: e index.
+	        e position: (point first @ point second) * 20 ].
+		 v zoomToFit.
+		 (Delay forMilliseconds: 10) wait.
+	     ].
+	v addAll: elements.
+	v open setLabel: 'tSNE example: Two 3D linked rings'.
+	
+]
+
+{ #category : #'data sets' }
 PMTSNE class >> gridDataGeneratorOf: size [
 	"Demos from https://github.com/distillpub/post--misread-tsne/blob/master/public/assets/demo-configs.js"
 	"A square grid with equal spacing between points."
@@ -71,35 +158,42 @@ PMTSNE class >> gridDataGeneratorOf: size [
 	^ PMMatrix rows: array
 ]
 
-{ #category : #accessing }
-PMTSNE >> computeErrorEvery [
-	^ computeErrorEvery 
-]
+{ #category : #'data sets' }
+PMTSNE class >> linkedRingsDataGeneratorOf: size [
+	"Returns a PMMatrix two linked rings. Alternate elements belong to same ring.x
+	 Source: https://github.com/distillpub/post--misread-tsne/blob/master/public/assets/demo-datas.js"
 
-{ #category : #accessing }
-PMTSNE >> computeErrorEvery: aNumber [
-	computeErrorEvery := aNumber
-]
-
-{ #category : #accessing }
-PMTSNE >> computeErrorEveryDefaultValue [
-	^ 10
+	| rotate ring1 |
+	rotate := [ :x :y :z |
+		| outputVec |
+		outputVec := PMVector new: 3.
+		outputVec at: 1 put: x.
+		outputVec at: 2 put: ((0.4 cos) * y) + ((0.4 sin) * z).
+		outputVec at: 3 put: ((0.4 cos) * z) - ((0.4 sin) * y).
+		outputVec
+		].
+	ring1 := OrderedCollection new.
+	1 to: size do: [ :i |
+		| angle |
+		angle := 2 * Float pi * (i - 1) / size.
+		ring1 add: (rotate value: (angle cos) value: (angle sin) value: 0).
+		ring1 add: (rotate value: 1 + (angle cos) value: 0 value: (angle sin)).
+		].
+	^ PMMatrix rows: ring1
 ]
 
 { #category : #'stepping and presenter' }
 PMTSNE >> computeGradient [
 	"Computes gradient of KL divergence"
 
-	| num sumNum p q pq dY tmp yiDiff |
+	| num sumNum pq dY tmp yiDiff |
 	"Calculates num and q"
 	num := self computeLowDimensionalStudentT.
 	sumNum := num sum sum max: (Float epsilon).
 	q := num collect: [:element |
 				(element / sumNum) max: (Float epsilon)
 			].
-	stateVariables add: 'q'->q.
-	
-	p := stateVariables at: 'p'.
+
 	pq := p - q.
 	
 	dY := OrderedCollection new. 
@@ -262,11 +356,8 @@ PMTSNE >> gradientDescent [
 
 	job title: 'Step 3/3: Performing gradient descent'.
 	job progress: 0.0.
-	stateVariables add: 'p'->(self computePValues).
-	stateVariables add: 'gains'->(PMMatrix onesRows: x dimension x cols: outputDims).
-	stateVariables add: 'iY'->(PMMatrix zerosRows: x dimension x cols: outputDims).
-	1 to: maxIter do: [ :iteration | 
-		stateVariables add: 'iteration'->iteration.
+	self initializeStateVariables.
+	1 to: maxIter do: [ :i |
 		self step.
 		self postStep.
 		].
@@ -310,8 +401,9 @@ PMTSNE >> initialize [
 	finalMomentum := self finalMomentumDefaultValue.
 	learningRate := self learningRateDefaultValue.
 	minGain := self minGainDefaultValue.
-	computeErrorEvery := self computeErrorEveryDefaultValue.
-	stateVariables := Dictionary new.
+	updateProgressEvery := self updateProgressEveryDefaultValue.
+	updateError := self updateErrorDefaultValue.
+	iterations := 0.
 	self initializeJob.
 	
 ]
@@ -325,6 +417,13 @@ PMTSNE >> initializeJob [
 		self initializeYWithRandomValues.
 		self gradientDescent.
 	 ] asJob.
+]
+
+{ #category : #initialization }
+PMTSNE >> initializeStateVariables [
+    p := self computePValues.
+    gains := PMMatrix onesRows: x dimension x cols: outputDims.
+    iY := PMMatrix zerosRows: x dimension x cols: outputDims.
 ]
 
 { #category : #initialization }
@@ -349,6 +448,11 @@ PMTSNE >> initializeYWithRandomValues [
 			1 to: columns do: [ :column | b at: column put: d random ].
 			b ].
 	y := PMMatrix rows: a
+]
+
+{ #category : #accessing }
+PMTSNE >> iterations [
+	^ iterations
 ]
 
 { #category : #accessing }
@@ -458,16 +562,12 @@ PMTSNE >> start [
 
 { #category : #'stepping and presenter' }
 PMTSNE >> step [
-	| iteration gains iY dY momentum yMeanAccumulator p |
-	iteration := stateVariables at: 'iteration'.
-	gains := stateVariables at: 'gains'.
-	iY := stateVariables at: 'iY'.
-	p := stateVariables at: 'p'.
+	| dY momentum yMeanAccumulator |
 	
 	dY := self computeGradient.
 	
 	"Momentum accelerates gradient descent by dampening one direction"
-	momentum := iteration < 20
+	momentum := iterations < 20
 		ifTrue: [ initialMomentum ]
 		ifFalse: [ finalMomentum ].
 	
@@ -490,40 +590,73 @@ PMTSNE >> step [
 	y rowsDo: [ :row | yMeanAccumulator accumulate: row ].
 	y := PMMatrix
 		rows: (y rowsCollect: [ :row | row - yMeanAccumulator average ]).
-		
-	"Update state variables for the next step"
-	stateVariables add: 'gains'->gains.
-	stateVariables add: 'iY'->iY.
 	
+	iterations := iterations + 1.
 	"Stop early exaggeration on 100th iteration"
-	iteration = 100
+	iterations = 100
 		ifFalse: [ ^ self ].
 	p := p * (1 / 4).
-	stateVariables add: 'p' -> p
+]
+
+{ #category : #'stepping and presenter' }
+PMTSNE >> step: aNumber [
+	"Performs aNumber steps"
+	aNumber timesRepeat: [ self step ]
+]
+
+{ #category : #accessing }
+PMTSNE >> updateError [
+	^ updateError 
+]
+
+{ #category : #accessing }
+PMTSNE >> updateError: aBoolean [
+	updateError := aBoolean
+]
+
+{ #category : #accessing }
+PMTSNE >> updateErrorDefaultValue [
+	^ true
+]
+
+{ #category : #accessing }
+PMTSNE >> updateProgressEvery [
+	^ updateProgressEvery 
+]
+
+{ #category : #accessing }
+PMTSNE >> updateProgressEvery: aNumber [
+	updateProgressEvery := aNumber
+]
+
+{ #category : #accessing }
+PMTSNE >> updateProgressEveryDefaultValue [
+	^ 10
 ]
 
 { #category : #'stepping and presenter' }
 PMTSNE >> updateProgressWithError [
-	| error p q iteration |
-	iteration := stateVariables at: 'iteration'.
-	p := stateVariables at: 'p'.
-	q := stateVariables at: 'q'.
+	| error |
 	
-	iteration % computeErrorEvery = 0
+	(iterations % updateProgressEvery = 0)
 		ifFalse: [ ^ self ].
-		
-	error := PMMatrix rows: x dimension x columns: x dimension x.
-	1 to: x dimension x do: [ :i | 
-		1 to: x dimension x do: [ :j | 
-			error rowAt: i columnAt: j
-				put: (p rowAt: i columnAt: j) * ((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln 
-		] ].
-	error := error sum sum.
+	
+	"Computing error can take more than 10% additional time.
+	 Setting this to false will speedup computation."
+	updateError ifFalse: [ error := '' ]
+	ifTrue: [
+		error := PMMatrix rows: x dimension x columns: x dimension x.
+		1 to: x dimension x do: [ :i | 
+			1 to: x dimension x do: [ :j | 
+				error rowAt: i columnAt: j
+					put: (p rowAt: i columnAt: j) * ((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln 
+			] ].
+		error := error sum sum ].
 	
 	job title: ('' join:
-		{'Step 3/3: Performing gradient descent '. iteration. '/'. maxIter. ' error = '. error}
+		{'Step 3/3: Performing gradient descent '. iterations. '/'. maxIter. ' error = '. error}
 		).
-	job progress: iteration / maxIter.
+	job progress: iterations / maxIter.
 ]
 
 { #category : #accessing }
