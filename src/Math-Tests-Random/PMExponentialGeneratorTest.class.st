@@ -8,6 +8,14 @@ Class {
 }
 
 { #category : #tests }
+PMExponentialGeneratorTest >> generateASampleOfSize: sampleSize UsingGenerator: gen [
+	| sample |
+	sample := OrderedCollection new.
+	sampleSize timesRepeat: [ sample add: gen next ].
+	^ sample
+]
+
+{ #category : #tests }
 PMExponentialGeneratorTest >> testGenerator [
 	| eg |
 	eg := PMExponentialGenerator new.
@@ -28,14 +36,13 @@ PMExponentialGeneratorTest >> testPeekIsIdempotent [
 ]
 
 { #category : #tests }
-PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
+PMExponentialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"testing a random sample seems suspect. We use a 5% interval here"
 
 	| gen sample |
 	gen := PMExponentialGenerator mean: 10.
 	
-	sample := OrderedCollection new.
-	10000 timesRepeat: [ sample add: gen next ].
+	sample := self generateASampleOfSize: 10000 UsingGenerator: gen.
 	
 	self
 		assert: (sample average between: gen mean * 0.95 and: gen mean * 1.05)
