@@ -122,6 +122,18 @@ PMVector >> asPMVector [
 	^ self
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> checkDimensionalCompatibility: dimensionArray [
+	|prod|
+	prod := 1.
+	
+	dimensionArray do: [ :each | prod := prod * each ].
+	
+	self assert: (self size = prod) description: 'Imcompatible combination of Dimensions provided'.
+	
+	^true 
+]
+
 { #category : #comparing }
 PMVector >> closeTo: aPMVector [
 	"Compare two vectors using the default precision from Float >> #closeTo:."
@@ -238,20 +250,11 @@ PMVector >> productWithVector: aVector [
 ]
 
 { #category : #'as yet unclassified' }
-PMVector >> resizeWithRows: numOfRows Cols: numOfCols [
-	
+PMVector >> reshapeWithDimensions: dimensionArray [
 	| computedRows rowNum colNum |
-	
-	numOfRows isNil ifFalse: [rowNum := numOfRows ].
-	numOfCols isNil ifFalse: [colNum := numOfCols ].
-	
-	(rowNum isNil and: colNum isNil) ifFalse: [ 
-		numOfRows isNil ifTrue: [ rowNum := self size / colNum ] .
-		numOfCols isNil ifTrue: [ colNum := self size / rowNum ] .
-		].
-	
-	self assert: (rowNum * colNum = self size) description: 'Number of Rows not compatible with number of Columns'.
-	
+	self checkDimensionalCompatibility: dimensionArray.
+	rowNum := dimensionArray at: 1.
+	colNum := dimensionArray at: 2.
 	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
 	
 	^PMMatrix rows: computedRows
