@@ -15,7 +15,7 @@ Class {
 		'rows',
 		'lupDecomposition'
 	],
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #example }
@@ -241,6 +241,11 @@ PMMatrix >> argMaxOnRows [
 PMMatrix >> asSymmetricMatrix [
 	"Convert the receiver to a symmetric matrix (no check is made)."
 	^ PMSymmetricMatrix rows: rows
+]
+
+{ #category : #converting }
+PMMatrix >> asVector [
+	^ self flattenRows.
 ]
 
 { #category : #'cell accessing' }

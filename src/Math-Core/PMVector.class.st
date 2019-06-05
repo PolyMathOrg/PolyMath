@@ -122,6 +122,18 @@ PMVector >> asPMVector [
 	^ self
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> checkDimensionalCompatibility: dimensionArray [
+	|prod|
+	prod := 1.
+	
+	dimensionArray do: [ :each | prod := prod * each ].
+	
+	self assert: (self size = prod) description: 'Imcompatible combination of Dimensions provided'.
+	
+	^true 
+]
+
 { #category : #comparing }
 PMVector >> closeTo: aPMVector [
 	"Compare two vectors using the default precision from Float >> #closeTo:."
@@ -235,6 +247,17 @@ PMVector >> productWithVector: aVector [
 	n := 0.
 	^self inject: 0
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
+]
+
+{ #category : #'as yet unclassified' }
+PMVector >> reshapeWithDimensions: dimensionArray [
+	| computedRows rowNum colNum |
+	self checkDimensionalCompatibility: dimensionArray.
+	rowNum := dimensionArray at: 1.
+	colNum := dimensionArray at: 2.
+	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
+	
+	^PMMatrix rows: computedRows
 ]
 
 { #category : #operation }

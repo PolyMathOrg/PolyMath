@@ -20,7 +20,7 @@ Class {
 		'eigenvector',
 		'transposeEigenvector'
 	],
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #information }

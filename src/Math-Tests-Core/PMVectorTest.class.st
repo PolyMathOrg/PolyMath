@@ -60,6 +60,17 @@ PMVectorTest >> testAsArray [
 ]
 
 { #category : #tests }
+PMVectorTest >> testMatrixConversionWithBothDims [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect reshapeWithDimensions: #(6 2).
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
+{ #category : #tests }
 PMVectorTest >> testScalarProduct [
 	| u v |
 	u := PMVector new: 3.
@@ -297,6 +308,17 @@ PMVectorTest >> testVectorSum [
 	| u |
 	u := #(1 2 3) asPMVector.
 	self assert: (u sum) equals: 6.
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorToVectorConversion [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect reshapeWithDimensions: #(1 12).
+	
+	expected := PMMatrix rows: #(#(1 0.5 0.2 3 1 -1 7 3 2 12 13 3)).
+	
+	self assert: result equals: expected.
 ]
 
 { #category : #tests }
