@@ -45,5 +45,5 @@ PMExponentialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	sample := self generateASampleOfSize: 10000 UsingGenerator: gen.
 	
 	self
-		assert: (sample average between: gen mean * 0.95 and: gen mean * 1.05)
+		assert: (sample average between: gen expectedValue * 0.95 and: gen expectedValue * 1.05)
 ]
