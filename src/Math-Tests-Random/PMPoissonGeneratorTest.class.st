@@ -37,7 +37,7 @@ PMPoissonGeneratorTest >> testPeekWorksAfterSampling [
 ]
 
 { #category : #tests }
-PMPoissonGeneratorTest >> testSampleMeanConvergesToLambda [
+PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"law of large numbers"
 
 	"made non-random, old random version in comments"
@@ -49,6 +49,6 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToLambda [
 	gen generator seed: 42.
 
 	sample := self generateASampleOfSize: 1000 UsingGenerator: gen.
-	self assert: sample average >= (gen lambda * 0.8).
-	self assert: sample average <= (gen lambda * 1.2)
+	self assert: sample average >= (gen expectedValue * 0.8).
+	self assert: sample average <= (gen expectedValue * 1.2)
 ]
