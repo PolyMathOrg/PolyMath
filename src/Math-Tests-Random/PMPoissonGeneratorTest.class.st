@@ -40,6 +40,5 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	gen generator seed: 42.
 
 	sample := SampleNumericalData generateASampleOfSize: 1000 usingGenerator: gen.
-	self assert: sample average >= (gen expectedValue * 0.8).
-	self assert: sample average <= (gen expectedValue * 1.2)
+	self assert: (sample average between: (gen expectedValue * 0.8) and: (gen expectedValue * 1.2))
 ]
