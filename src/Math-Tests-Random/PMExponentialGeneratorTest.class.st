@@ -8,7 +8,7 @@ Class {
 }
 
 { #category : #tests }
-PMExponentialGeneratorTest >> generateASampleOfSize: sampleSize UsingGenerator: gen [
+PMExponentialGeneratorTest >> generateASampleOfSize: sampleSize usingGenerator: gen [
 	| sample |
 	sample := OrderedCollection new.
 	sampleSize timesRepeat: [ sample add: gen next ].
@@ -42,7 +42,7 @@ PMExponentialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	| gen sample |
 	gen := PMExponentialGenerator mean: 10.
 	
-	sample := self generateASampleOfSize: 10000 UsingGenerator: gen.
+	sample := self generateASampleOfSize: 10000 usingGenerator: gen.
 	
 	self
 		assert: (sample average between: gen expectedValue * 0.95 and: gen expectedValue * 1.05)

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-PMBinomialGeneratorTest >> generateASampleOfSize: numberOfTrials UsingGenerator: gen [
+PMBinomialGeneratorTest >> generateASampleOfSize: numberOfTrials usingGenerator: gen [
 	| sample |
 	sample := OrderedCollection new.
 	numberOfTrials timesRepeat: [ sample add: gen next ].
@@ -58,7 +58,7 @@ PMBinomialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	
 	sample := self
 		generateASampleOfSize: numberOfTrials
-		UsingGenerator: gen.
+		usingGenerator: gen.
 	self assert: sample min > (gen expectedValue * (1 - 0.2)).
 	self assert: sample max < (gen expectedValue * (1 + 0.2)).
 	self assert: (sample average - gen expectedValue) abs < 5

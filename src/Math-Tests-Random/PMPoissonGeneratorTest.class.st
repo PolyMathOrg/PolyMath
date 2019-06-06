@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-PMPoissonGeneratorTest >> generateASampleOfSize: sampleSize UsingGenerator: gen [
+PMPoissonGeneratorTest >> generateASampleOfSize: sampleSize usingGenerator: gen [
 	| sample |
 	sample := OrderedCollection new.
 	sampleSize timesRepeat: [ sample add: gen next ].
@@ -48,7 +48,7 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"added for non-randomness"
 	gen generator seed: 42.
 
-	sample := self generateASampleOfSize: 1000 UsingGenerator: gen.
+	sample := self generateASampleOfSize: 1000 usingGenerator: gen.
 	self assert: sample average >= (gen expectedValue * 0.8).
 	self assert: sample average <= (gen expectedValue * 1.2)
 ]
