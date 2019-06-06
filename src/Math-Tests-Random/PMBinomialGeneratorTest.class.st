@@ -5,14 +5,6 @@ Class {
 }
 
 { #category : #tests }
-PMBinomialGeneratorTest >> generateASampleOfSize: numberOfTrials usingGenerator: gen [
-	| sample |
-	sample := OrderedCollection new.
-	numberOfTrials timesRepeat: [ sample add: gen next ].
-	^ sample
-]
-
-{ #category : #tests }
 PMBinomialGeneratorTest >> testBinomialGeneratorWithSuccessProbabilityOfOneAlwaysReturnNumberOfTrials [
 	| g numberOfTrials |
 	g := PMBinomialGenerator new.
@@ -56,7 +48,7 @@ PMBinomialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 		numberOfTrials: numberOfTrials
 		probabilityOfSuccess: probabilityOfSuccess.
 	
-	sample := self
+	sample := SampleNumericalData
 		generateASampleOfSize: numberOfTrials
 		usingGenerator: gen.
 	self assert: sample min > (gen expectedValue * (1 - 0.2)).
