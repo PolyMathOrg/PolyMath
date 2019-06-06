@@ -35,7 +35,6 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"made non-random, old random version in comments"
 
 	| gen sample |
-	"((1000 atRandom: Random new) -1)"
 	gen := PMPoissonGenerator lambda: 5.
 	"added for non-randomness"
 	gen generator seed: 42.
