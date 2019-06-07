@@ -5,13 +5,13 @@ Class {
 }
 
 { #category : #utilities }
-PMGaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
+PMGaussianGeneratorTest >> assertSampleWithDistributionOf: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
 	"fixme: this test ignores the standard deviation and occasionally fails"
 	| sample sampleMean |
 	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
 	sampleMean := sample average.
-	self assert: (e - sampleMean) abs <= 0.2.
-	self assert: (sample stdev - sd) abs <= 1
+	self assert: (expectedValue - sampleMean) abs <= 0.2.
+	self assert: (sample stdev - stdDeviation) abs <= 1
 ]
 
 { #category : #tests }
@@ -27,9 +27,9 @@ PMGaussianGeneratorTest >> testDistribution [
 	g generator seed: 42.
 
 	self
-		checkDistributionOf: g
-		withExpectedMeans: mean
-		andExpectedStandardDeviation: standardDeviation.
+		assertSampleWithDistributionOf: g
+		convergesToExpectedValue: mean
+		andStandardDeviation: standardDeviation.
 	"Replicated test in a different place"
 	mean := 0.
 	standardDeviation := 10.
@@ -37,7 +37,7 @@ PMGaussianGeneratorTest >> testDistribution [
 		mean: mean;
 		standardDeviation: standardDeviation.
 	self
-		checkDistributionOf: g
-		withExpectedMeans: mean
-		andExpectedStandardDeviation: standardDeviation
+		assertSampleWithDistributionOf: g
+		convergesToExpectedValue: mean
+		andStandardDeviation: standardDeviation
 ]
