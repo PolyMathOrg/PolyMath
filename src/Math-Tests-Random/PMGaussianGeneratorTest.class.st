@@ -7,11 +7,11 @@ Class {
 { #category : #utilities }
 PMGaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
 	"fixme: this test ignores the standard deviation and occasionally fails"
-	| data m |
-	data := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
-	m := data average.
-	self assert: (e - m) abs <= 0.2.
-	self assert: (data stdev - sd) abs <= 1
+	| sample sampleMean |
+	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
+	sampleMean := sample average.
+	self assert: (e - sampleMean) abs <= 0.2.
+	self assert: (sample stdev - sd) abs <= 1
 ]
 
 { #category : #tests }
