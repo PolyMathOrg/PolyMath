@@ -34,7 +34,7 @@ PMExponentialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	| gen sample |
 	gen := PMExponentialGenerator mean: 10.
 	
-	sample := SampleNumericalData generateASampleOfSize: 10000 usingGenerator: gen.
+	sample := PMRandomSample ofSize: 10000 usingGenerator: gen.
 	
 	self
 		assert: (sample average between: gen expectedValue * 0.95 and: gen expectedValue * 1.05)

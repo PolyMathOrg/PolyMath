@@ -39,6 +39,6 @@ PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"added for non-randomness"
 	gen generator seed: 42.
 
-	sample := SampleNumericalData generateASampleOfSize: 1000 usingGenerator: gen.
+	sample := PMRandomSample ofSize: 1000 usingGenerator: gen.
 	self assert: (sample average between: (gen expectedValue * 0.8) and: (gen expectedValue * 1.2))
 ]

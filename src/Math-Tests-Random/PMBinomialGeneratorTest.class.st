@@ -48,8 +48,8 @@ PMBinomialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 		numberOfTrials: numberOfTrials
 		probabilityOfSuccess: probabilityOfSuccess.
 	
-	sample := SampleNumericalData
-		generateASampleOfSize: numberOfTrials
+	sample := PMRandomSample
+		ofSize: numberOfTrials
 		usingGenerator: gen.
 	self assert: sample min > (gen expectedValue * (1 - 0.2)).
 	self assert: sample max < (gen expectedValue * (1 + 0.2)).
