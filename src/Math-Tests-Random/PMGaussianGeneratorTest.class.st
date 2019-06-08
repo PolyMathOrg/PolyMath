@@ -6,7 +6,6 @@ Class {
 
 { #category : #utilities }
 PMGaussianGeneratorTest >> assertSampleWithDistributionOf: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
-	"fixme: this test ignores the standard deviation and occasionally fails"
 	| sample sampleMean |
 	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
 	sampleMean := sample average.
