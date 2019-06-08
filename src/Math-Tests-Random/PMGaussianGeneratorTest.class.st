@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #utilities }
-PMGaussianGeneratorTest >> assertSampleWithDistributionOf: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
+PMGaussianGeneratorTest >> assertSampleGeneratedBy: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
 	| sample sampleMean |
 	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
 	sampleMean := sample average.
@@ -26,7 +26,7 @@ PMGaussianGeneratorTest >> testDistribution [
 	g generator seed: 42.
 
 	self
-		assertSampleWithDistributionOf: g
+		assertSampleGeneratedBy: g
 		convergesToExpectedValue: mean
 		andStandardDeviation: standardDeviation.
 	"Replicated test in a different place"
@@ -36,7 +36,7 @@ PMGaussianGeneratorTest >> testDistribution [
 		mean: mean;
 		standardDeviation: standardDeviation.
 	self
-		assertSampleWithDistributionOf: g
+		assertSampleGeneratedBy: g
 		convergesToExpectedValue: mean
 		andStandardDeviation: standardDeviation
 ]
