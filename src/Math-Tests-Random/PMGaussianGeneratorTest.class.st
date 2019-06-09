@@ -6,10 +6,9 @@ Class {
 
 { #category : #utilities }
 PMGaussianGeneratorTest >> assertSampleGeneratedBy: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
-	| sample sampleMean |
+	| sample |
 	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
-	sampleMean := sample average.
-	self assert: (expectedValue - sampleMean) abs <= 0.2.
+	self assert: (expectedValue - sample average) abs <= 0.2.
 	self assert: (sample stdev - stdDeviation) abs <= 1
 ]
 
