@@ -14,7 +14,7 @@ PMGaussianGeneratorTest >> assertSampleGeneratedBy: aGenerator convergesToExpect
 ]
 
 { #category : #tests }
-PMGaussianGeneratorTest >> testDistribution [
+PMGaussianGeneratorTest >> testSampleMeanAndStandardDeviationConvergeToDistributionValues [
 	| mean standardDeviation g |
 	mean := 147.
 	standardDeviation := 17.
