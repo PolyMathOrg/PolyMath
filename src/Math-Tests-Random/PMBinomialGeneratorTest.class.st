@@ -48,9 +48,9 @@ PMBinomialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 		numberOfTrials: numberOfTrials
 		probabilityOfSuccess: probabilityOfSuccess.
 	
-	sample := OrderedCollection new.
-	numberOfTrials timesRepeat: [ sample add: gen next ].
-	
+	sample := PMRandomSample
+		ofSize: numberOfTrials
+		usingGenerator: gen.
 	self assert: sample min > (gen expectedValue * (1 - 0.2)).
 	self assert: sample max < (gen expectedValue * (1 + 0.2)).
 	self assert: (sample average - gen expectedValue) abs < 5

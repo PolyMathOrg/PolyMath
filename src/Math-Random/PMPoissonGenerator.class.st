@@ -26,6 +26,12 @@ PMPoissonGenerator class >> new [
 ]
 
 { #category : #accessing }
+PMPoissonGenerator >> expectedValue [ 
+	"Returns the expected value or mean of the distribution"
+	^ self lambda
+]
+
+{ #category : #accessing }
 PMPoissonGenerator >> lambda [
 	^ lambda
 ]

@@ -28,14 +28,14 @@ PMExponentialGeneratorTest >> testPeekIsIdempotent [
 ]
 
 { #category : #tests }
-PMExponentialGeneratorTest >> testSampleMeanConvergesToDistributionMean [
+PMExponentialGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"testing a random sample seems suspect. We use a 5% interval here"
 
 	| gen sample |
 	gen := PMExponentialGenerator mean: 10.
-	sample := Array new: 10000.
-	sample := sample collect: [ :each | gen next ].
+	
+	sample := PMRandomSample ofSize: 10000 usingGenerator: gen.
 	
 	self
-		assert: (sample average between: gen mean * 0.95 and: gen mean * 1.05)
+		assert: (sample average between: gen expectedValue * 0.95 and: gen expectedValue * 1.05)
 ]

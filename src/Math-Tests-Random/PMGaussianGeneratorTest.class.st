@@ -5,32 +5,37 @@ Class {
 }
 
 { #category : #utilities }
-PMGaussianGeneratorTest >> checkDistributionOf: aGenerator withExpectedMeans: e andExpectedStandardDeviation: sd [
-	"fixme: this test ignores the standard deviation and occasionally fails"
-	| data m |
-	data := Set new.
-	10000 timesRepeat: [ data add: aGenerator next ].
-	m := data average.
-	self assert: (e - m) abs <= 0.2.
-	self assert: (data stdev - sd) abs <= 1
+PMGaussianGeneratorTest >> assertSampleGeneratedBy: aGenerator convergesToExpectedValue: expectedValue andStandardDeviation: stdDeviation [
+	| sample |
+	sample := PMRandomSample ofSize: 10000 usingGenerator: aGenerator.
+	self assert: (expectedValue - sample average) abs <= 0.2.
+	self assert: (sample stdev - stdDeviation) abs <= 1
 ]
 
 { #category : #tests }
-PMGaussianGeneratorTest >> testDistribution [
+PMGaussianGeneratorTest >> testSampleMeanAndStandardDeviationConvergeToDistributionValues [
 	| mean standardDeviation g |
 	mean := 147.
 	standardDeviation := 17.
-	g := (PMGaussianGenerator new).
+	g := PMGaussianGenerator new.
 	g
 		mean: mean;
 		standardDeviation: standardDeviation;
 		generator: PMLinearCongruentialRandomGenerator new.
 	g generator seed: 42.
-	self checkDistributionOf: g withExpectedMeans: mean andExpectedStandardDeviation: standardDeviation.
+
+	self
+		assertSampleGeneratedBy: g
+		convergesToExpectedValue: mean
+		andStandardDeviation: standardDeviation.
 	"Replicated test in a different place"
 	mean := 0.
-	standardDeviation := 10 .
-	g mean: mean;
-	  standardDeviation: standardDeviation.
-	self checkDistributionOf: g withExpectedMeans: mean andExpectedStandardDeviation: standardDeviation.
+	standardDeviation := 10.
+	g
+		mean: mean;
+		standardDeviation: standardDeviation.
+	self
+		assertSampleGeneratedBy: g
+		convergesToExpectedValue: mean
+		andStandardDeviation: standardDeviation
 ]
