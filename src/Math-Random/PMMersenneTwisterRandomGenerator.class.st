@@ -134,11 +134,11 @@ PMMersenneTwisterRandomGenerator >> nextInteger [
 				put: ((states at: PeriodParameter) bitXor: ((y bitShift: 1) bitXor: (tempArray at: (y bitAnd: 16r1) + 1))).
 			mti := 0 ].
 	y := states at: mti + 1.
-	mti := mti + 1.
 	y := y bitXor: (y bitShift: 11 negated).
 	y := y bitXor: ((y bitShift: 7 negated) bitAnd: TemperingMaskB).
 	y := y bitXor: ((y bitShift: 15 negated) bitAnd: TemperingMaskC).
 	y := y bitXor: (y bitShift: 18 negated).
+	mti := mti + 1.
 	^ y
 ]
 
