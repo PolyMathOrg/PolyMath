@@ -60,6 +60,26 @@ PMVectorTest >> testAsArray [
 ]
 
 { #category : #tests }
+PMVectorTest >> testGreaterThan [
+	| vec vecCopy |
+	vec := #(1 2 3) asPMVector.
+	vecCopy := vec deepCopy.
+	self assert: (vec > 1.5) equals: #(false true true) asPMVector.
+	"Ensure that in-place modification does not take place"
+	self assert: vec equals: vecCopy asPMVector.
+]
+
+{ #category : #tests }
+PMVectorTest >> testLessThan [
+	| vec vecCopy |
+	vec := #(1 2 3) asPMVector.
+	vecCopy := vec deepCopy.
+	self assert: (vec < 1.5) equals: #(true false false) asPMVector.
+	"Ensure that in-place modification does not take place"
+	self assert: vec equals: vecCopy asPMVector.
+]
+
+{ #category : #tests } 
 PMVectorTest >> testMatrixConversionWithBothDims [
 	| vect result expected |
 	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
