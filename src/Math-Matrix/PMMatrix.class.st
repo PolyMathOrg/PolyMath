@@ -15,7 +15,7 @@ Class {
 		'rows',
 		'lupDecomposition'
 	],
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #example }
@@ -243,6 +243,11 @@ PMMatrix >> asSymmetricMatrix [
 	^ PMSymmetricMatrix rows: rows
 ]
 
+{ #category : #converting }
+PMMatrix >> asVector [
+	^ self flattenRows.
+]
+
 { #category : #'cell accessing' }
 PMMatrix >> at: aRowIndex at: aColumnIndex [
 	"Answers the aRowIndex-th, aColumnIndex-th entry in the receiver."
@@ -407,12 +412,6 @@ PMMatrix >> dimension [
 	^ self rows size @ (self rows at: 1) size
 ]
 
-{ #category : #deprecated }
-PMMatrix >> dot: aMatrix [
-	"Answers the elementwise product of the receiver with aMatrix."
-	^ aMatrix elementwiseProductWithMatrix: self
-]
-
 { #category : #operation }
 PMMatrix >> eigen [
 	"Computes all eigenvalues and eigenvectors of a matrix.
@@ -430,7 +429,7 @@ PMMatrix >> elementwiseProductWithMatrix: aMatrix [
 	"Answers the elementwise product between aMatrix and the receiver as a Matrix."
 	| n |
 	n := 0.
-	^ PMMatrix rows: ( aMatrix rowsCollect: [ :each | n := n + 1. each dot: ( self rowAt: n)])
+	^ self class rows: ( aMatrix rowsCollect: [ :each | n := n + 1. each hadamardProduct: ( self rowAt: n)])
 
 ]
 

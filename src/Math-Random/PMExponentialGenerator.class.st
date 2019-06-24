@@ -36,6 +36,13 @@ PMExponentialGenerator class >> new [
 ]
 
 { #category : #accessing }
+PMExponentialGenerator >> expectedValue [
+	"Returns the mean/expectation value"
+	^ mean
+
+]
+
+{ #category : #accessing }
 PMExponentialGenerator >> mean [
 	^ mean
 ]

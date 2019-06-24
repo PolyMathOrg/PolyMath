@@ -21,6 +21,11 @@ PMBinomialGenerator class >> numberOfTrials: numberOfTrials probabilityOfSuccess
 		yourself
 ]
 
+{ #category : #accessing }
+PMBinomialGenerator >> expectedValue [
+	^ numberOfTrials * probability
+]
+
 { #category : #initialization }
 PMBinomialGenerator >> initialize [
 	self generator: PMParkMillerMinimumRandomGenerator new.

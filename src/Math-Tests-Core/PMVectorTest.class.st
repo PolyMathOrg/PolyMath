@@ -79,6 +79,17 @@ PMVectorTest >> testLessThan [
 	self assert: vec equals: vecCopy asPMVector.
 ]
 
+{ #category : #tests } 
+PMVectorTest >> testMatrixConversionWithBothDims [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect reshapeWithDimensions: #(6 2).
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
 { #category : #tests }
 PMVectorTest >> testScalarProduct [
 	| u v |
@@ -111,6 +122,36 @@ PMVectorTest >> testScalarProductIsCommutative [
 		at: 2 put: 2;
 		at: 3 put: 0.
 	self assert: (u scalarProduct: v) equals: (v scalarProduct: u)
+]
+
+{ #category : #tests }
+PMVectorTest >> testSubFromScalar [
+	"Can we subtract PMVector from a Number?"
+	
+	| num vec actual expected |
+	
+	num := 4.
+	vec := #(1 2 3) asPMVector.
+	
+	actual := num - vec.
+	expected := #(3 2 1) asPMVector.
+	
+	self assert: actual equals: expected.
+]
+
+{ #category : #tests }
+PMVectorTest >> testSubtractScalar [
+	"Can we subtract Number from PMVector?"
+	
+	| vec num actual expected |
+	
+	vec := #(5 6 7) asPMVector.
+	num := 4.
+	
+	actual := vec - num.
+	expected := #(1 2 3) asPMVector.
+	
+	self assert: actual equals: expected.
 ]
 
 { #category : #tests }
@@ -155,20 +196,6 @@ PMVectorTest >> testVectorCumulativeSum [
 	self assert: (w at: 1) equals: 1.
 	self assert: (w at: 2) equals: 3.
 	self assert: (w at: 3) equals: 6
-]
-
-{ #category : #tests }
-PMVectorTest >> testVectorDotProduct [
-	"Code Example 8.1"
-
-	| u v w |
-	u := #(1 2 3) asPMVector.
-	v := #(3 4 5) asPMVector.
-	w := u dot: v.
-	self assert: (w size) equals: 3.
-	self assert: (w at: 1) equals: 3.
-	self assert: (w at: 2) equals: 8.
-	self assert: (w at: 3) equals: 15
 ]
 
 { #category : #tests }
@@ -301,6 +328,17 @@ PMVectorTest >> testVectorSum [
 	| u |
 	u := #(1 2 3) asPMVector.
 	self assert: (u sum) equals: 6.
+]
+
+{ #category : #tests }
+PMVectorTest >> testVectorToVectorConversion [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect reshapeWithDimensions: #(1 12).
+	
+	expected := PMMatrix rows: #(#(1 0.5 0.2 3 1 -1 7 3 2 12 13 3)).
+	
+	self assert: result equals: expected.
 ]
 
 { #category : #tests }

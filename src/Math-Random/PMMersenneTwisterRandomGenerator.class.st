@@ -11,7 +11,7 @@ MersenneTwisterRandom new nextInteger.
 "
 Class {
 	#name : #PMMersenneTwisterRandomGenerator,
-	#superclass : #PMRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#instVars : [
 		'states',
 		'mti'
@@ -26,7 +26,7 @@ Class {
 		'TemperingMaskB',
 		'TemperingMaskC'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'class initialization' }

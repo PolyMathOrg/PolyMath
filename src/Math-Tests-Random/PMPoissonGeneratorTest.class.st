@@ -5,19 +5,17 @@ Class {
 }
 
 { #category : #tests }
-PMPoissonGeneratorTest >> testPeekReturnsSameAsNext [
-	| poisson random |
+PMPoissonGeneratorTest >> testPeekIsIdempotent [
+	| poisson |
 	poisson := PMPoissonGenerator lambda: 0.1.
-	random := poisson peek.
-	self assert: random equals: poisson next
+	self assert: poisson peek equals: poisson peek
 ]
 
 { #category : #tests }
-PMPoissonGeneratorTest >> testPeekReturnsSameTwice [
-	| poisson random |
+PMPoissonGeneratorTest >> testPeekReturnsSameAsNext [
+	| poisson |
 	poisson := PMPoissonGenerator lambda: 0.1.
-	random := poisson peek.
-	self assert: random equals: poisson peek
+	self assert: poisson peek equals: poisson next
 ]
 
 { #category : #tests }
@@ -31,16 +29,16 @@ PMPoissonGeneratorTest >> testPeekWorksAfterSampling [
 ]
 
 { #category : #tests }
-PMPoissonGeneratorTest >> testSampleAverageConvergesToLambda [
+PMPoissonGeneratorTest >> testSampleMeanConvergesToExpectedValue [
 	"law of large numbers"
 
 	"made non-random, old random version in comments"
 
-	| poisson samples |
-	samples := OrderedCollection new.
-	poisson := PMPoissonGenerator lambda: 5.	"((1000 atRandom: Random new) -1)"
-	poisson generator seed: 42.	"added for non-randomness"
-	1000 timesRepeat: [ samples add: poisson next ].
-	self assert: samples average >= (poisson lambda * 0.8).
-	self assert: samples average <= (poisson lambda * 1.2)
+	| gen sample |
+	gen := PMPoissonGenerator lambda: 5.
+	"added for non-randomness"
+	gen generator seed: 42.
+
+	sample := PMRandomSample ofSize: 1000 usingGenerator: gen.
+	self assert: (sample average between: (gen expectedValue * 0.8) and: (gen expectedValue * 1.2))
 ]

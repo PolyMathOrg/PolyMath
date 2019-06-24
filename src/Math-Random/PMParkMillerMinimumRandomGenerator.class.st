@@ -5,7 +5,7 @@ PMParkMillerMinimumRandomGenerator new next
 "
 Class {
 	#name : #PMParkMillerMinimumRandomGenerator,
-	#superclass : #PMRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#category : #'Math-Random'
 }
 

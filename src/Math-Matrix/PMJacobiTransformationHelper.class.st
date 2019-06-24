@@ -8,7 +8,7 @@ Class {
 		'eigenvalues',
 		'eigenvectors'
 	],
-	#category : #'Math-Matrix'
+	#category : 'Math-Matrix'
 }
 
 { #category : #creation }

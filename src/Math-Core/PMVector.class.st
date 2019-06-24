@@ -70,17 +70,9 @@ PMVector >> + aVectorOrNumber [
 ]
 
 { #category : #operation }
-PMVector >> - aVector [
-	"Answers the difference of the receiver with aVector."
-	| answer n |
-	answer := self class new: self size.
-	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a - b).
-		].
-	^answer
+PMVector >> - aVectorOrNumber [
+	"Answers the difference of the receiver with a vector or number."
+	^ -1*aVectorOrNumber addWithVector: self
 ]
 
 { #category : #operation }
@@ -130,6 +122,18 @@ PMVector >> asPMVector [
 	^ self
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> checkDimensionalCompatibility: dimensionArray [
+	|prod|
+	prod := 1.
+	
+	dimensionArray do: [ :each | prod := prod * each ].
+	
+	self assert: (self size = prod) description: 'Imcompatible combination of Dimensions provided'.
+	
+	^true 
+]
+
 { #category : #comparing }
 PMVector >> closeTo: aPMVector [
 	"Compare two vectors using the default precision from Float >> #closeTo:."
@@ -165,21 +169,6 @@ PMVector >> cumsum [
 	sum := 0.
 	^ self collect: [ :v | sum := sum + v. sum ]
  
-]
-
-{ #category : #deprecated }
-PMVector >> dot: aVector [
-"Answers the elementwise product of the receiver with aVector."
-	| answer n |
-	answer := self class new: self size.
-	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a * b).
-		].
-	^answer
-
 ]
 
 { #category : #operation }
@@ -260,6 +249,17 @@ PMVector >> productWithVector: aVector [
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> reshapeWithDimensions: dimensionArray [
+	| computedRows rowNum colNum |
+	self checkDimensionalCompatibility: dimensionArray.
+	rowNum := dimensionArray at: 1.
+	colNum := dimensionArray at: 2.
+	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
+	
+	^PMMatrix rows: computedRows
+]
+
 { #category : #operation }
 PMVector >> scalarProduct: aVector [
 	
@@ -306,15 +306,6 @@ PMVector >> sqrt [
 	"Apply sqrt function to every element of a vector"
 
 	1 to: self size do: [ :n | self at: n put: (self at: n) sqrt ]
-]
-
-{ #category : #transformation }
-PMVector >> sum [
-	"Compute the sum of a vector."
-	|a|
-	a := 0.
-	1 to: self size do: [ :n | a := a + self at: n].
-	^a.
 ]
 
 { #category : #operation }

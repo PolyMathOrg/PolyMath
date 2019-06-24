@@ -22,7 +22,11 @@ PMStandardizationScaler >> mean [
 
 { #category : #accessing }
 PMStandardizationScaler >> scale [
-	^ self variance sqrt
+	^ self variance collect: [ :element |
+		| root |
+		root := element sqrt.
+		(root ~= 0) ifTrue: [ root ] ifFalse: [ 1.0 ]
+		 ]
 ]
 
 { #category : #transforming }

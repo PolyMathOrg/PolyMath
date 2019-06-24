@@ -14,15 +14,15 @@ PMLehmerRandomTest >> testNextBetweenZeroAndOne [
 ]
 
 { #category : #tests }
-PMLehmerRandomTest >> testPeekAlwaysReplyTheSameValue [
-	| g |
-	g := PMLehmerRandomGenerator new.
-	self assert: g peek equals: g peek
-]
-
-{ #category : #tests }
 PMLehmerRandomTest >> testPeekAnswersSameAsNext [
 	| g |
 	g := PMLehmerRandomGenerator new.
 	self assert: g peek equals: g next
+]
+
+{ #category : #tests }
+PMLehmerRandomTest >> testPeekIsIdempotent [
+	| g |
+	g := PMLehmerRandomGenerator new.
+	self assert: g peek equals: g peek
 ]

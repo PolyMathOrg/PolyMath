@@ -5,7 +5,7 @@ PMLehmerRandomGenerator new next
 "
 Class {
 	#name : #PMLehmerRandomGenerator,
-	#superclass : #PMRandomGenerator,
+	#superclass : #PMPseudoRandomNumberGenerator,
 	#category : #'Math-Random'
 }
 

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-PMNumberGeneratorTest >> testPeekAnswersSame [
+PMNumberGeneratorTest >> testPeekIsIdempotent [
 	"every subclass should implement some basic behavior."
 
 	PMNumberGenerator subclasses
