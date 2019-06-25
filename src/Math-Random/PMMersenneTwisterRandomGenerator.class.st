@@ -108,7 +108,7 @@ PMMersenneTwisterRandomGenerator >> nextInteger [
 	"Answer a random integer on [0,0xffffffff] interval"
 
 	| tempArray y |
-	tempArray := Array withAll: #(0 2567483615).
+	tempArray := Array withAll: #(0 16r9908B0DF).
 	mti >= DefaultLengthVector
 		ifTrue: [ mti = (DefaultLengthVector + 1)
 				ifTrue: [ self seed: 5489.
