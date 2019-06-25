@@ -9,7 +9,7 @@ Class {
 	#category : #'Math-Random'
 }
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMParkMillerMinimumRandomGenerator >> next [
     "Answer a pseudo-Random floating point number between 0 and 1.
     Uses Park and Miller's 'Minimum Standard' congruential generator
@@ -30,7 +30,7 @@ PMParkMillerMinimumRandomGenerator >> nextFloat [
     ^ seed / 16r7FFFFFFF asFloat 
 ]
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMParkMillerMinimumRandomGenerator >> peek [
     "Answer a pseudo-Random floating point number between 0 and 1.
     Uses Park and Miller's 'Minimum Standard' congruential generator."
