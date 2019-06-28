@@ -8,7 +8,7 @@ SmalltalkCISpec {
   ],
   #testing : {
     #coverage : {
-      #packages : [ 'Math-Random' ]
+      #packages : [ 'Math-Accuracy-ODE', 'Math-Random' ]
     }
   }
 }
