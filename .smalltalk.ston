@@ -6,7 +6,9 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ],
- #testing : {
+  #testing : {
+    #coverage : {
       #packages : [ 'Math-Random' ]
     }
+  }
 }
