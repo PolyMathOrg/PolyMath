@@ -19,6 +19,7 @@ SmalltalkCISpec {
 	'Math-M*',
 	'Math-N*',
 	'Math-P*',
+	'Math-Q*',
 	'Math-Random' ]
     }
   }
