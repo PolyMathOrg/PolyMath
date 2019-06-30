@@ -14,6 +14,7 @@ SmalltalkCISpec {
 	'Math-AutomaticDifferenciation',
 	'Math-B*',
 	'Math-C*',
+	'Math-D*',
 	'Math-Random' ]
     }
   }
