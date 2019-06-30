@@ -20,7 +20,8 @@ SmalltalkCISpec {
 	'Math-N*',
 	'Math-P*',
 	'Math-Q*',
-	'Math-R*' ]
+	'Math-R*',
+	'Math-TNSE' ]
     }
   }
 }
