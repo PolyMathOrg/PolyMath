@@ -13,6 +13,7 @@ SmalltalkCISpec {
 	'Math-ArbitraryPrecisionFloat',
 	'Math-AutomaticDifferenciation',
 	'Math-B*',
+	'Math-C*',
 	'Math-Random' ]
     }
   }
