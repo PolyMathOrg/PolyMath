@@ -6,7 +6,22 @@ SmalltalkCISpec {
       #platforms : [ #pharo ]
     }
   ],
- #testing : {
-      #packages : [ 'Math-*' ]
+  #testing : {
+    #coverage : {
+      #packages : [
+        'Math-Accuracy-ODE',
+	'Math-ArbitraryPrecisionFloat',
+	'Math-AutomaticDifferenciation',
+	'Math-B*',
+	'Math-C*',
+	'Math-D*',
+	'Math-K*',
+	'Math-M*',
+	'Math-N*',
+	'Math-P*',
+	'Math-Q*',
+	'Math-R*',
+	'Math-TNSE' ]
     }
+  }
 }
