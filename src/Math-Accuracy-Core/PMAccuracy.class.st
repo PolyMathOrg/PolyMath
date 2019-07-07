@@ -212,7 +212,7 @@ PMAccuracy >> findKey [
 	| s selector |
 	s := thisContext sender.
 	selector := s sender method selector .
-	^(names detect: [:n| selector endsWith: n] ifNone: [nil]) 
+	^(names detect: [:name| selector endsWith: name] ifNone: [nil]) 
 		ifNil: [ selector='initialize' 
 			ifTrue: ['AllTheRest'] 
 			ifFalse: [ selector := s method selector asString. 
@@ -263,8 +263,8 @@ PMAccuracy >> initRest: aName [
 { #category : #'initialize-release' }
 PMAccuracy >> initSubclassSelectorNames [
 	names := (self class allSelectorsBelow: Object)
-		select: [ :s | s beginsWith: #check ]
-		thenCollect: [ :s | s copyFrom: 6 to: s size ].
+		select: [ :selectorName | selectorName beginsWith: #check ]
+		thenCollect: [ :selectorName | selectorName copyFrom: 6 to: selectorName size ].
 	names := names asArray sort
 ]
 
