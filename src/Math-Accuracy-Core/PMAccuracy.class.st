@@ -270,14 +270,15 @@ PMAccuracy >> initSubclassSelectorNames [
 
 { #category : #'initialize-release' }
 PMAccuracy >> initialize [
-	self initSubclassSelectorNames.
 	parameters := Dictionary new.
 	arguments := Dictionary new.
 	results := Dictionary new.
+	self initSubclassSelectorNames.
+	names do: [ :name | self initRest: name ].
 	aStream := WriteStream with: ''.
 	iterations := 1.
-	dataTree := KeyedTree new .
-	names do: [ :name | self initRest: name ]
+	dataTree := KeyedTree new.
+	
 ]
 
 { #category : #accessing }
