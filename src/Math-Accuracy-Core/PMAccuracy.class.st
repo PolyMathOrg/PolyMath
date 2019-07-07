@@ -256,7 +256,8 @@ PMAccuracy >> initRest: aName [
 	| initializationMessage |
 	initializationMessage := ('initialize' , aName) asSymbol.
 	(self respondsTo: initializationMessage)
-		ifTrue: [ self perform: initializationMessage ] 
+		ifFalse: [ ^ self ].
+	self perform: initializationMessage
 ]
 
 { #category : #'initialize-release' }
