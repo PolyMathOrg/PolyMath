@@ -252,7 +252,15 @@ PMAccuracy >> ifSeveralterations: aBlock [
 ]
 
 { #category : #'initialize-release' }
-PMAccuracy >> initNames [
+PMAccuracy >> initRest: aName [
+	| initializationMessage |
+	initializationMessage := ('initialize' , aName) asSymbol.
+	(self respondsTo: initializationMessage)
+		ifTrue: [ self perform: initializationMessage ] 
+]
+
+{ #category : #'initialize-release' }
+PMAccuracy >> initSubclassSelectorNames [
 	names := (self class allSelectorsBelow: Object)
 		select: [ :s | s beginsWith: #check ]
 		thenCollect: [ :s | s copyFrom: 6 to: s size ].
@@ -260,16 +268,8 @@ PMAccuracy >> initNames [
 ]
 
 { #category : #'initialize-release' }
-PMAccuracy >> initRest: aName [
-	| i |
-	i := ('initialize' , aName) asSymbol.
-	(self respondsTo: i)
-		ifTrue: [ self perform: i ] 
-]
-
-{ #category : #'initialize-release' }
 PMAccuracy >> initialize [
-	self initNames.
+	self initSubclassSelectorNames.
 	parameters := Dictionary new.
 	arguments := Dictionary new.
 	results := Dictionary new.
