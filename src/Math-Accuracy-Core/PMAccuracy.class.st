@@ -215,7 +215,7 @@ PMAccuracy >> findKey [
 	^(names detect: [:name| selector endsWith: name] ifNone: [nil]) 
 		ifNil: [ selector='initialize' 
 			ifTrue: ['AllTheRest'] 
-			ifFalse: [ selector := s method selector asString. 
+			ifFalse: [ selector := s method selector. 
 					self error: selector,' called in wrong context'] ]
 ]
 
