@@ -307,9 +307,7 @@ PMAccuracy >> numberOfDifferentResultsAt: aname [
 
 { #category : #accessing }
 PMAccuracy >> occurrencesOf: key In: aResults UpTo: anInteger [
-	| repetitions |
-	repetitions := (aResults copyFrom: 1 to: anInteger) occurrencesOf: key.
-	^ repetitions
+	^ (aResults copyFrom: 1 to: anInteger) occurrencesOf: key
 ]
 
 { #category : #accessing }
