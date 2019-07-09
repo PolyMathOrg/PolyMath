@@ -306,6 +306,19 @@ PMAccuracy >> numberOfDifferentResultsAt: aname [
 ]
 
 { #category : #accessing }
+PMAccuracy >> occurrencesOf: key In: aResults UpTo: anInteger [
+	| repetitions |
+	repetitions := 0.
+	aResults
+		from: 1
+		to: anInteger
+		do: [ :i | 
+			i = key
+				ifTrue: [ repetitions := repetitions + 1 ] ].
+	^ repetitions
+]
+
+{ #category : #accessing }
 PMAccuracy >> parameter [
 	| r |
 	r := self parameterAt: self findKey.
@@ -396,15 +409,9 @@ PMAccuracy >> resultsKeyFor: aName AtPosition: anInteger [
 	key := aResults at: anInteger.
 	key isArray
 		ifFalse: [ ^ aResults ].
-	repetitions := 0.
-	aResults
-		from: 1
-		to: anInteger - 1
-		do: [ :i | 
-			i = key
-				ifTrue: [ repetitions := repetitions + 1 ] ].
+	repetitions := self occurrencesOf: key In: aResults UpTo: anInteger - 1.
 	result := (Array new: key size + repetitions)
-		replaceFrom: 1 
+		replaceFrom: 1
 		to: key size
 		with: key
 		startingAt: 1.
