@@ -212,12 +212,12 @@ PMAccuracy >> findKey [
 	| s selector matchingMessage |
 	s := thisContext sender.
 	selector := s sender method selector.
+	selector = 'initialize' ifTrue: [ ^ 'AllTheRest' ].
 	matchingMessage := names
 		detect: [ :name | selector endsWith: name ]
 		ifNone: [ nil ].
 	^ matchingMessage
 		ifNil: [ selector = 'initialize'
-				ifTrue: [ 'AllTheRest' ]
 				ifFalse: [ self error: s method selector , ' called in wrong context' ] ]
 ]
 
