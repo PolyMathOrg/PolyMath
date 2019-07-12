@@ -218,8 +218,7 @@ PMAccuracy >> findKey [
 		detect: [ :name | selector endsWith: name ]
 		ifNone: [ nil ].
 	^ matchingMessage
-		ifNil: [ selector = 'initialize'
-				ifFalse: [ self error: s method selector , ' called in wrong context' ] ]
+		ifNil: [ self error: s method selector , ' called in wrong context' ]
 ]
 
 { #category : #printing }
