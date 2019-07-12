@@ -209,14 +209,17 @@ PMAccuracy >> extremeCollection: acol max:aBoolean [
 
 { #category : #private }
 PMAccuracy >> findKey [
-	| s selector |
+	| s selector matchingMessage |
 	s := thisContext sender.
-	selector := s sender method selector .
-	^(names detect: [:name| selector endsWith: name] ifNone: [nil]) 
-		ifNil: [ selector='initialize' 
-			ifTrue: ['AllTheRest'] 
-			ifFalse: [ selector := s method selector. 
-					self error: selector,' called in wrong context'] ]
+	selector := s sender method selector.
+	matchingMessage := names
+		detect: [ :name | selector endsWith: name ]
+		ifNone: [ nil ].
+	^ matchingMessage
+		ifNil: [ selector = 'initialize'
+				ifTrue: [ 'AllTheRest' ]
+				ifFalse: [ selector := s method selector.
+					self error: selector , ' called in wrong context' ] ]
 ]
 
 { #category : #printing }
