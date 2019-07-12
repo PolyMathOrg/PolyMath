@@ -218,8 +218,7 @@ PMAccuracy >> findKey [
 	^ matchingMessage
 		ifNil: [ selector = 'initialize'
 				ifTrue: [ 'AllTheRest' ]
-				ifFalse: [ selector := s method selector.
-					self error: selector , ' called in wrong context' ] ]
+				ifFalse: [ self error: s method selector , ' called in wrong context' ] ]
 ]
 
 { #category : #printing }
