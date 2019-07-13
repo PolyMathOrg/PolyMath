@@ -216,9 +216,8 @@ PMAccuracy >> findKey [
 		ifTrue: [ ^ 'AllTheRest' ].
 	matchingMessage := names
 		detect: [ :name | selector endsWith: name ]
-		ifNone: [ nil ].
+		ifNone: [ self error: (s method selector join: ' called in wrong context') ].
 	^ matchingMessage
-		ifNil: [ self error: s method selector , ' called in wrong context' ]
 ]
 
 { #category : #printing }
