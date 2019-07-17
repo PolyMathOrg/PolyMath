@@ -19,7 +19,7 @@ SmalltalkCISpec {
 	'Math-K*',
 	'Math-M*',
 	'Math-N*',
-	'Math-O*',
+	'Math-ODE',
 	'Math-P*',
 	'Math-Q*',
 	'Math-R*',
