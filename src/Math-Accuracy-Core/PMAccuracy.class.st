@@ -209,14 +209,15 @@ PMAccuracy >> extremeCollection: acol max:aBoolean [
 
 { #category : #private }
 PMAccuracy >> findKey [
-	| s m |
+	| s selector matchingMessage |
 	s := thisContext sender.
-	m := s sender method selector .
-	^(names detect: [:n| m asString endsWith: n] ifNone: [nil]) 
-		ifNil: [ m='initialize' 
-			ifTrue: ['AllTheRest'] 
-			ifFalse: [ m := s method selector asString. 
-					self error: m,' called in wrong context'] ]
+	selector := s sender method selector.
+	selector = 'initialize'
+		ifTrue: [ ^ 'AllTheRest' ].
+	matchingMessage := names
+		detect: [ :name | selector endsWith: name ]
+		ifNone: [ '' ].
+	^ matchingMessage
 ]
 
 { #category : #printing }
@@ -252,31 +253,33 @@ PMAccuracy >> ifSeveralterations: aBlock [
 ]
 
 { #category : #'initialize-release' }
-PMAccuracy >> initNames [
+PMAccuracy >> initRest: aName [
+	| initializationMessage |
+	initializationMessage := ('initialize' , aName) asSymbol.
+	(self respondsTo: initializationMessage)
+		ifFalse: [ ^ self ].
+	self perform: initializationMessage
+]
+
+{ #category : #'initialize-release' }
+PMAccuracy >> initSubclassSelectorNames [
 	names := (self class allSelectorsBelow: Object)
-		select: [ :s | s beginsWith: #check ]
-		thenCollect: [ :s | s copyFrom: 6 to: s size ].
+		select: [ :selectorName | selectorName beginsWith: #check ]
+		thenCollect: [ :selectorName | selectorName copyFrom: 6 to: selectorName size ].
 	names := names asArray sort
 ]
 
 { #category : #'initialize-release' }
-PMAccuracy >> initRest: aName [
-	| i |
-	i := ('initialize' , aName) asSymbol.
-	(self respondsTo: i)
-		ifTrue: [ self perform: i ] 
-]
-
-{ #category : #'initialize-release' }
 PMAccuracy >> initialize [
-	self initNames.
 	parameters := Dictionary new.
 	arguments := Dictionary new.
 	results := Dictionary new.
+	self initSubclassSelectorNames.
+	names do: [ :name | self initRest: name ].
 	aStream := WriteStream with: ''.
 	iterations := 1.
-	dataTree := KeyedTree new .
-	names do: [ :n | self initRest: n ]
+	dataTree := KeyedTree new.
+	
 ]
 
 { #category : #accessing }
@@ -301,6 +304,11 @@ PMAccuracy >> numberOfDifferentResultsAt: aname [
 	no := self resultsAt: aname.
 	no isCollection ifFalse:[no:={no}].
 	^ no first isCollection ifTrue: [ no size ] ifFalse: [ 1 ]
+]
+
+{ #category : #accessing }
+PMAccuracy >> occurrencesOf: key In: aResults UpTo: anInteger [
+	^ (aResults copyFrom: 1 to: anInteger) occurrencesOf: key
 ]
 
 { #category : #accessing }
@@ -394,15 +402,9 @@ PMAccuracy >> resultsKeyFor: aName AtPosition: anInteger [
 	key := aResults at: anInteger.
 	key isArray
 		ifFalse: [ ^ aResults ].
-	repetitions := 0.
-	aResults
-		from: 1
-		to: anInteger - 1
-		do: [ :i | 
-			i = key
-				ifTrue: [ repetitions := repetitions + 1 ] ].
+	repetitions := self occurrencesOf: key In: aResults UpTo: anInteger - 1.
 	result := (Array new: key size + repetitions)
-		replaceFrom: 1 
+		replaceFrom: 1
 		to: key size
 		with: key
 		startingAt: 1.

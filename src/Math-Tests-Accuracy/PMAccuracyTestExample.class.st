@@ -111,11 +111,6 @@ count :=count-(1/5).
 ]
 
 { #category : #private }
-PMAccuracyTestExample >> testArgumentError [
-self argument: #(#(1) #(2)).
-]
-
-{ #category : #private }
 PMAccuracyTestExample >> testGetterAaa [
 ^{ self parameter .self argument.self resultsAt: 'Aaa'.self numberOfDifferentParametersAt: 'Aaa'.self numberOfDifferentResultsAt:'Aaa'}
 ]
@@ -123,14 +118,4 @@ PMAccuracyTestExample >> testGetterAaa [
 { #category : #private }
 PMAccuracyTestExample >> testGetterBbb [
 ^{ self parameter .self argument.self resultsAt: 'Bbb'.self numberOfDifferentParametersAt: 'Bbb'.self numberOfDifferentResultsAt:'Bbb'}
-]
-
-{ #category : #private }
-PMAccuracyTestExample >> testParameterError [
-self parameter:  #(#(1) #(2)).
-]
-
-{ #category : #private }
-PMAccuracyTestExample >> testResultError [
-self result:#(1).
 ]

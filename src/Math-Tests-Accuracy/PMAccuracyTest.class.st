@@ -39,11 +39,6 @@ PMAccuracyTest >> testArgumentAt [
 ]
 
 { #category : #tests }
-PMAccuracyTest >> testArgumentError [
-	self should: [ a testArgumentError ] raise: Error
-]
-
-{ #category : #tests }
 PMAccuracyTest >> testAsArray [
 	self assert: (a asArray: 'bla') equals: #('bla').
 	self assert: (a asArray: #('bla')) equals: #('bla').
@@ -272,11 +267,6 @@ PMAccuracyTest >> testParameterAt [
 ]
 
 { #category : #tests }
-PMAccuracyTest >> testParameterError [
-self should: [a testParameterError ]raise: Error
-]
-
-{ #category : #tests }
 PMAccuracyTest >> testPrintOn [
 	| s |
 	s := WriteStream on: String new.
@@ -298,11 +288,6 @@ PMAccuracyTest >> testReport [
 	self assert: a report equals: ''.
 	a run.
 	self assert: (a report beginsWith: 'Report for: PMAccuracyTestExample')
-]
-
-{ #category : #tests }
-PMAccuracyTest >> testResultError [
-self should: [a testResultError ]raise: Error
 ]
 
 { #category : #tests }
