@@ -45,15 +45,13 @@ PMDualNumber class >> zeroApproximation: aSmallNumber [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> * aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value * aDualNumber eps: eps *aDualNumber]
-	ifTrue:[self class value: value * aDualNumber value eps: eps * aDualNumber value + (aDualNumber eps *value)]
+PMDualNumber >> * aNumber [
+	^ aNumber multiplyDualNumber: self
 ]
 
 { #category : #arithmetic }
 PMDualNumber >> + aNumber [
-	^ aNumber addPMDualNumber: self
+	^ aNumber addDualNumber: self
 ]
 
 { #category : #arithmetic }
@@ -92,7 +90,7 @@ PMDualNumber >> adaptToNumber: rcvr andSend: selector [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> addPMDualNumber: aDualNumber [
+PMDualNumber >> addDualNumber: aDualNumber [
 	^ self class
 		value: value + aDualNumber value
 		eps: eps + aDualNumber eps
@@ -199,6 +197,13 @@ PMDualNumber >> ln [
 ]
 
 { #category : #arithmetic }
+PMDualNumber >> multiplyDualNumber: aDualNumber [
+	^self class
+				value: value * aDualNumber value
+				eps: eps * aDualNumber value + (aDualNumber eps * value)
+]
+
+{ #category : #arithmetic }
 PMDualNumber >> negated [
 ^self class value: value negated eps: eps negated
 ]
@@ -235,11 +240,13 @@ PMDualNumber >> printOn: aStream [
 PMDualNumber >> raisedTo: aDualNumber [
 	| v |
 	value = 0
-		ifTrue: [ ^ PMDualNumber value: 0 ].
+		ifTrue: [ ^ self class value: 0 ].
 	v := value raisedTo: aDualNumber value.
 	aDualNumber isDualNumber
 		ifFalse: [ ^ self class value: v eps: v / value * eps * aDualNumber ].
-	^ self class value: v eps: v * (eps * aDualNumber value / value + (aDualNumber eps * value ln))
+	^ self class
+		value: v
+		eps: v * (eps * aDualNumber value / value + (aDualNumber eps * value ln))
 ]
 
 { #category : #'mathematical functions' }
