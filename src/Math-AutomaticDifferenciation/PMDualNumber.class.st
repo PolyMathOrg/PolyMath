@@ -1,4 +1,7 @@
 "
+In linear algebra, dual numbers extend the real numbers by adjoining one new element ε with the property ε^2 = 0 (ε is nilpotent).
+See here: https://en.wikipedia.org/wiki/Dual_number^
+
 PMDualNumbers can be used to calculate the first derivative if one  creates them this way:
 	PMDualNumber value: aNumber eps:  derivativeOfaNumber (1 if the derivative with respect to aNumber is calculated, 0 otherwise)
 
@@ -14,13 +17,14 @@ Class {
 	#classVars : [
 		'ZeroApproximation'
 	],
-	#category : 'Math-AutomaticDifferenciation'
+	#category : #'Math-AutomaticDifferenciation'
 }
 
 { #category : #'instance creation' }
-PMDualNumber class >> value:aValue [
-"for entering a constant"
-^(self new value: aValue) eps: 0 
+PMDualNumber class >> value: aValue [
+	"for a constant"
+
+	^ (self new value: aValue) eps: 0
 ]
 
 { #category : #'instance creation' }
@@ -48,10 +52,8 @@ PMDualNumber >> * aDualNumber [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> + aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value + aDualNumber eps: eps]
-	ifTrue:[self class value: value + aDualNumber value eps: eps + aDualNumber eps]
+PMDualNumber >> + aNumber [
+	^ aNumber addPMDualNumber: self
 ]
 
 { #category : #arithmetic }
@@ -89,6 +91,13 @@ PMDualNumber >> adaptToNumber: rcvr andSend: selector [
 	^ (self class value:rcvr)  perform: selector with: self
 ]
 
+{ #category : #arithmetic }
+PMDualNumber >> addPMDualNumber: aDualNumber [
+	^ self class
+		value: value + aDualNumber value
+		eps: eps + aDualNumber eps
+]
+
 { #category : #'mathematical functions' }
 PMDualNumber >> arcCos [
 	^ self class 
@@ -105,9 +114,7 @@ PMDualNumber >> arcSin [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> arcTan [
-	^ self class 
-		value: value arcTan 
-		eps: eps  /  (1 + value squared)
+	^ self class value: value arcTan eps: eps / (1 + value squared)
 ]
 
 { #category : #converting }
@@ -122,9 +129,7 @@ PMDualNumber >> asInteger [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> cos [
-	^ self class 
-		value: value cos 
-		eps: eps *  value sin negated
+	^ self class value: value cos eps: eps * value sin negated
 ]
 
 { #category : #accessing }
