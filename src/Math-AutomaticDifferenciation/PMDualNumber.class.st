@@ -9,7 +9,7 @@ PMDualNumbers can be mixed with Numbers.
 "
 Class {
 	#name : #PMDualNumber,
-	#superclass : #Magnitude,
+	#superclass : #Number,
 	#instVars : [
 		'value',
 		'eps'
@@ -82,8 +82,13 @@ PMDualNumber >> abs [
 ]
 
 { #category : #converting }
-PMDualNumber >> adaptToNumber: rcvr andSend: selector [
-	^ (self class value:rcvr)  perform: selector with: self
+PMDualNumber >> adaptToFraction: rcvr andSend: selector [
+	^ (self class value: rcvr) perform: selector with: self
+]
+
+{ #category : #converting }
+PMDualNumber >> adaptToInteger: rcvr andSend: selector [
+	^ (self class value: rcvr) perform: selector with: self
 ]
 
 { #category : #arithmetic }
@@ -231,6 +236,11 @@ PMDualNumber >> printOn: aStream [
 		nextPutAll: ' eps: ';
 		print: eps;
 		nextPutAll: ')'
+]
+
+{ #category : #converting }
+PMDualNumber >> printOn: aStream base: base [
+	self printOn: aStream
 ]
 
 { #category : #'mathematical functions' }
