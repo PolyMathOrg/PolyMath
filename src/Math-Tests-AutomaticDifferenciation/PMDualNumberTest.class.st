@@ -110,6 +110,18 @@ PMDualNumberTest >> testCos [
 ]
 
 { #category : #'tests-arithmetic' }
+PMDualNumberTest >> testDerivatives [
+	"f(x) = x^3
+	f'(x) = 3*x^2"
+
+	| x y |
+	x := PMDualNumber value: 2 eps: 1.
+	y := x raisedTo: 3.
+	self assert: y value equals: (2.0 raisedTo: 3).
+	self assert: y eps equals: 3.0 * (x raisedTo: 2)
+]
+
+{ #category : #'tests-arithmetic' }
 PMDualNumberTest >> testDivide [
 	self should: [ 4.0 / (one - 1) ] raise: ZeroDivide.
 	self should: [ three / (onec - 1) ] raise: ZeroDivide.
