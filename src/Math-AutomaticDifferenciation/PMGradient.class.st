@@ -1,5 +1,6 @@
 "
-Computes the gradient of a function of a SequentialCollection of Numbers.
+Computes the gradient of a function of a Collection of Numbers.
+
 Example: f(x,y)=x^2 * y
 g := PMGradient of:[:x|x first squared * x second].
 g value:#(3 2). ""-->#(12 9)"" 

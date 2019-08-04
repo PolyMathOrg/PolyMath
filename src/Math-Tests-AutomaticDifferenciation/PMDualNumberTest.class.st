@@ -81,6 +81,17 @@ PMDualNumberTest >> testArcTan [
 	self assert: (three arcTan eps equalsTo: 0.1)
 ]
 
+{ #category : #test }
+PMDualNumberTest >> testConjugated [
+	| a z |
+	z := PMDualNumber value: 1.0 + 1.0 i eps: 1.0.
+	a := z abs2.
+	self assert: a value equals: z value abs2.
+	self
+		assert: a eps
+		equals: z eps asComplex conjugated * z value + (z value asComplex conjugated * z eps)
+]
+
 { #category : #tests }
 PMDualNumberTest >> testConverting [
 	| a |

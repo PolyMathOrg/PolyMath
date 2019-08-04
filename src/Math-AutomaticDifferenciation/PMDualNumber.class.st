@@ -81,6 +81,11 @@ PMDualNumber >> abs [
 
 ]
 
+{ #category : #arithmetic }
+PMDualNumber >> abs2 [
+	^ (self conjugated * self) real
+]
+
 { #category : #converting }
 PMDualNumber >> adaptToFraction: rcvr andSend: selector [
 	^ (self class value: rcvr) perform: selector with: self
@@ -125,6 +130,13 @@ PMDualNumber >> asFloat [
 { #category : #converting }
 PMDualNumber >> asInteger [
 	^ value asInteger
+]
+
+{ #category : #'mathematical functions' }
+PMDualNumber >> conjugated [
+	^ self class
+		value: self value conjugated
+		eps: self eps asComplex conjugated
 ]
 
 { #category : #'mathematical functions' }
@@ -238,7 +250,7 @@ PMDualNumber >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
-{ #category : #converting }
+{ #category : #printing }
 PMDualNumber >> printOn: aStream base: base [
 	self printOn: aStream
 ]
@@ -261,6 +273,11 @@ PMDualNumber >> raisedToInteger: anInteger [
 	^ anInteger = 0
 		ifTrue: [ self class value: 1 eps: 0 ]
 		ifFalse: [ self class value: (value raisedToInteger: anInteger) eps: anInteger * eps * (value raisedToInteger: anInteger - 1) ]
+]
+
+{ #category : #converting }
+PMDualNumber >> real [
+	^ self class value: self value real eps: self eps asComplex real
 ]
 
 { #category : #arithmetic }

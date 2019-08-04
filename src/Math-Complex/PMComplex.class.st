@@ -80,7 +80,7 @@ Class {
 		'real',
 		'imaginary'
 	],
-	#category : 'Math-Complex'
+	#category : #'Math-Complex'
 }
 
 { #category : #'instance creation' }
@@ -196,6 +196,13 @@ PMComplex >> abs [
 	"Answer the distance of the receiver from zero (0 + 0 i)."
 
 	^ ((real * real) + (imaginary * imaginary)) sqrt
+]
+
+{ #category : #arithmetic }
+PMComplex >> abs2 [
+	"Squared abs"
+
+	^ (self real * self real) + (self imaginary * self imaginary)
 ]
 
 { #category : #arithmetic }
