@@ -1,14 +1,15 @@
 Extension { #name : #Number }
 
 { #category : #'*Math-AutomaticDifferenciation' }
-Number >> addDualNumber: aPMDualNumber [
-
-	^ PMDualNumber
-		value: self + aPMDualNumber value
-		eps: aPMDualNumber eps
+Number >> addDualNumber: aDualNumber [
+	^ aDualNumber class
+		value: self + aDualNumber value
+		eps: aDualNumber eps
 ]
 
 { #category : #'*Math-AutomaticDifferenciation' }
 Number >> multiplyDualNumber: aDualNumber [
-	^PMDualNumber value: aDualNumber value * self eps: aDualNumber eps * self
+	^ aDualNumber class
+		value: aDualNumber value * self
+		eps: aDualNumber eps * self
 ]

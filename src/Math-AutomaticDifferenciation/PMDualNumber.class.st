@@ -55,17 +55,14 @@ PMDualNumber >> + aNumber [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> - aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value - aDualNumber eps: eps]
-	ifTrue:[self class value: value - aDualNumber value eps: eps - aDualNumber eps]
+PMDualNumber >> - aNumber [
+	^ aNumber negated addDualNumber: self
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> / aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value / aDualNumber eps: eps /aDualNumber]
-	ifTrue:[self class value: value / aDualNumber value eps:( eps * aDualNumber value - (aDualNumber eps *value))/aDualNumber value squared]
+PMDualNumber >> / aNumber [
+
+	^ aNumber reciprocal multiplyDualNumber: self
 ]
 
 { #category : #testing }
@@ -136,8 +133,8 @@ PMDualNumber >> eps [
 ]
 
 { #category : #accessing }
-PMDualNumber >> eps: anObject [
-eps := anObject
+PMDualNumber >> eps: aNumber [
+	eps := aNumber
 ]
 
 { #category : #comparing }
@@ -157,7 +154,7 @@ PMDualNumber >> exp [
 	^ self class value: e eps: eps * e
 ]
 
-{ #category : #hash }
+{ #category : #comparing }
 PMDualNumber >> hash [
 	^ value hash
 ]
