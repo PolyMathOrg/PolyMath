@@ -280,7 +280,7 @@ PMDualNumber >> real [
 
 { #category : #arithmetic }
 PMDualNumber >> reciprocal [
-^self class value: 1/value  eps: eps /value squared negated
+	^ self class value: 1 / value eps: eps / value squared negated
 ]
 
 { #category : #'mathematical functions' }
