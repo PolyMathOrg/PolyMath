@@ -85,8 +85,8 @@ PMDualNumberTest >> testArcTan [
 PMDualNumberTest >> testConjugated [
 	| a z |
 	z := PMDualNumber value: 1.0 + 1.0 i eps: 1.0.
-	a := z abs2.
-	self assert: a value equals: z value abs2.
+	a := z absSquared.
+	self assert: a value equals: z value absSquared.
 	self
 		assert: a eps
 		equals: z eps asComplex conjugated * z value + (z value asComplex conjugated * z eps)

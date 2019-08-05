@@ -199,13 +199,6 @@ PMComplex >> abs [
 ]
 
 { #category : #arithmetic }
-PMComplex >> abs2 [
-	"Squared abs"
-
-	^ (self real * self real) + (self imaginary * self imaginary)
-]
-
-{ #category : #arithmetic }
 PMComplex >> absSecure [
 	"Answer the distance of the receiver from zero (0 + 0 i).
 	Try avoiding overflow and/or underflow"
@@ -215,6 +208,12 @@ PMComplex >> absSecure [
 	^scale isZero 
 		ifTrue: [scale]
 		ifFalse: [(self class real: real / scale imaginary: imaginary / scale) squaredNorm sqrt * scale]
+]
+
+{ #category : #arithmetic }
+PMComplex >> absSquared [
+
+	^ self real * self real + (self imaginary * self imaginary)
 ]
 
 { #category : #converting }

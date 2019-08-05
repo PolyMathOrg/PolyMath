@@ -82,7 +82,7 @@ PMDualNumber >> abs [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> abs2 [
+PMDualNumber >> absSquared [
 	^ (self conjugated * self) real
 ]
 
