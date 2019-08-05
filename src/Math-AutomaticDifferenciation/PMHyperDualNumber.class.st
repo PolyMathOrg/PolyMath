@@ -13,9 +13,9 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMHyperDualNumber class >> value:aValue [
-"a constant"
-^(((self new value: aValue) eps: 0) eps2: 0) eps1eps2: 0
+PMHyperDualNumber class >> value: aValue [
+
+	^ (((self new value: aValue) eps: 0) eps2: 0) eps1eps2: 0
 ]
 
 { #category : #'instance creation' }

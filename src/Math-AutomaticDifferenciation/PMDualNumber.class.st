@@ -22,8 +22,6 @@ Class {
 
 { #category : #'instance creation' }
 PMDualNumber class >> value: aValue [
-	"for a constant"
-
 	^ (self new value: aValue) eps: 0
 ]
 
