@@ -23,7 +23,7 @@ You can load the code in a fresh Pharo 7.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:development/src';
+        repository: 'github://PolyMathOrg/PolyMath:master/src';
         baseline: 'PolyMath';
         load
 ```
@@ -51,7 +51,7 @@ To install PolyMath in your Pharo image you can just execute the following scrip
 
 ```Smalltalk
     Metacello new
-        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'development' path: 'src';
+        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'master' path: 'src';
         baseline: 'PolyMath';
         load
 ```
@@ -61,7 +61,7 @@ To add PolyMath to your baseline just add this:
 ```Smalltalk
     spec
     	baseline: 'PolyMath'
-    	with: [ spec repository: 'github://PolyMathOrg/PolyMath:development/src' ]
+    	with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ]
 ```
 
 
