@@ -15,7 +15,7 @@ In a fresh Pharo 7.0 image, load last development version of Polymath :
 
 ```Smalltalk
 Metacello new
-    githubUser: 'XXX' project: 'PolyMath' commitish: 'development' path: 'src';
+    githubUser: 'XXX' project: 'PolyMath' commitish: 'master' path: 'src';
     baseline: 'PolyMath';
     load.
 ```
@@ -51,11 +51,11 @@ Thus, it should be safe to depend on a fixed major version and moving minor vers
 
 # Branch management 
 
-This project uses gitflow management.
+This project uses trunk-based development: https://trunkbaseddevelopment.com/
 
 This project contains two main branches:
 - **master** : This branch is a stable branch. Each version on this branch should be a stable release of PolyMath, and ideally each commit modifying the source code of the project should be tagged with a version number.
-- **development** : This branch contains the current development of this project. 
+- **release** : This branch contains the releases of this project. 
 
 ## Hot fix
 
