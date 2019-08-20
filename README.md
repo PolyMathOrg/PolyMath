@@ -1,4 +1,16 @@
-# PolyMath
+<p align="center"><img src="assets/logos/128x128.png">
+ <h1 align="center">PolyMath</h1>
+  <p align="center">
+    Ready-to-use components for interactive web applications + framework agnostic integration
+    <br>
+    <a href="docs/"><strong>Explore the docs »</strong></a>
+    <br>
+    <br>
+    <a href="https://github.com/ba-st/Willow/issues/new?labels=Type%3A+Defect">Report a defect</a>
+    |
+    <a href="https://github.com/ba-st/Willow/issues/new?labels=Type%3A+Feature">Request feature</a>
+  </p>
+</p>
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/PolyMathOrg/PolyMath.svg?branch=master)](https://travis-ci.org/PolyMathOrg/PolyMath)
