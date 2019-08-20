@@ -1,4 +1,4 @@
-<p align="center"><img src="assets/logos/128x128.png">
+<p align="center"><img src="https://user-images.githubusercontent.com/327334/63360401-439db400-c366-11e9-954a-b45def952e08.png">
  <h1 align="center">PolyMath</h1>
   <p align="center">
     Doing numerical computations in Pharo
