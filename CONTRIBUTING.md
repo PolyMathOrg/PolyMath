@@ -51,10 +51,10 @@ Thus, it should be safe to depend on a fixed major version and moving minor vers
 
 # Branch management 
 
-This project uses trunk-based development: https://trunkbaseddevelopment.com/
+PolyMath is developed using trunk-based development: https://trunkbaseddevelopment.com/
 
 This project contains two main branches:
-- **master** : This branch is a stable branch. Each version on this branch should be a stable release of PolyMath, and ideally each commit modifying the source code of the project should be tagged with a version number.
+- **master** : In short, the development branch is the master branch and it always contains the latest version of the projects.
 - **release** : This branch contains the releases of this project. 
 
 ## Hot fix
