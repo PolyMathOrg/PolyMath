@@ -5,9 +5,9 @@
     <a href="docs/"><strong>Explore the docs »</strong></a>
     <br>
     <br>
-    <a href="https://github.com/PolyMath/PolyMath/issues/new?labels=Type%3A+Defect">Report a defect</a>
+    <a href="https://github.com/PolyMathOrg/PolyMath/issues/new?labels=Type%3A+Defect">Report a defect</a>
     |
-    <a href="https://github.com/PolyMath/PolyMath/issues/new?labels=Type%3A+Feature">Request feature</a>
+    <a href="https://github.com/PolyMathOrg/PolyMath/issues/new?labels=Type%3A+Feature">Request feature</a>
   </p>
 </p>
 
