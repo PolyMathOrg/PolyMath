@@ -19,16 +19,25 @@
 
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
-You can load the code in a fresh Pharo 7.0 image with:
+You can load PolyMath 1.0 in a fresh Pharo 7.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:master/src';
+        repository: 'github://PolyMathOrg/PolyMath:v1.0/src';
         baseline: 'PolyMath';
         load
 ```
 
-We have **806** green tests ! At the moment, all the development happens in the development branch.
+and the last development version of PolyMath:
+
+```Smalltalk
+Metacello new
+        repository: 'github://PolyMathOrg/PolyMath/src';
+        baseline: 'PolyMath';
+        load
+```
+
+We have **806** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
 
 PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
@@ -45,17 +54,6 @@ https://github.com/PolyMathOrg/PolyMath/wiki
 
 Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Enterprise Book: https://github.com/SquareBracketAssociates/PharoForTheEnterprise-english/blob/ae40e7ab6f7651f6e7c271869eb1efc4e531e774/ComparingSolutions/ComparingSolutions.pier
 
-## Install PolyMath
-
-To install PolyMath in your Pharo image you can just execute the following script:
-
-```Smalltalk
-    Metacello new
-        githubUser: 'PolyMathOrg' project: 'PolyMath' commitish: 'master' path: 'src';
-        baseline: 'PolyMath';
-        load
-```
-
 To add PolyMath to your baseline just add this:
 
 ```Smalltalk
@@ -63,7 +61,6 @@ To add PolyMath to your baseline just add this:
     	baseline: 'PolyMath'
     	with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ]
 ```
-
 
 ## How to contribute to PolyMath
 
