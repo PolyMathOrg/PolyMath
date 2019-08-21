@@ -15,9 +15,9 @@ In a fresh Pharo 7.0 image, load last development version of Polymath :
 
 ```Smalltalk
 Metacello new
-        githubUser: 'XXX' project: 'PolyMath' commitish: 'development' path: 'src';
-        baseline: 'PolyMath';
-        load
+    githubUser: 'XXX' project: 'PolyMath' commitish: 'master' path: 'src';
+    baseline: 'PolyMath';
+    load.
 ```
 where you replace XXX with your github user name.
 
@@ -32,6 +32,8 @@ Send the PR to PolyMath main repository.
 Ounce your pull request is integrated, some cleanups are required:
 - remove your branch from your fork
 - close the issue (tips: you can automatically close the issue n, by inserting the sentence: **close #n** when you merge your pull request).
+
+You will need from time to time to sync your fork with the original repo. You can do it on the command line with: https://help.github.com/articles/syncing-a-fork/ or in the browser like : https://github.com/KirstieJane/STEMMRoleModels/wiki/Syncing-your-fork-to-the-original-repository-via-the-browser You can also kill and redo a fork very easily.
 
 # Release management
 
@@ -49,11 +51,11 @@ Thus, it should be safe to depend on a fixed major version and moving minor vers
 
 # Branch management 
 
-This project uses gitflow management.
+This project uses trunk-based development: https://trunkbaseddevelopment.com/
 
 This project contains two main branches:
 - **master** : This branch is a stable branch. Each version on this branch should be a stable release of PolyMath, and ideally each commit modifying the source code of the project should be tagged with a version number.
-- **development** : This branch contains the current development of this project. 
+- **release** : This branch contains the releases of this project. 
 
 ## Hot fix
 

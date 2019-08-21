@@ -1,5 +1,5 @@
 "
-An ExponentialGenerator uses a uniform random variable in [0,1] to sample from an exponential distribution.
+A PMExponentialGenerator uses a uniform random variable in [0,1] to sample from an exponential distribution.
 
 The exponential distribution has a single parameter beta, here denoted as mean. 
 
@@ -19,7 +19,7 @@ Class {
 	#instVars : [
 		'mean'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'instance creation' }
@@ -33,6 +33,13 @@ PMExponentialGenerator class >> mean: aNumber [
 { #category : #'instance creation' }
 PMExponentialGenerator class >> new [
 	^ self mean: 1
+]
+
+{ #category : #accessing }
+PMExponentialGenerator >> expectedValue [
+	"Returns the mean/expectation value"
+	^ mean
+
 ]
 
 { #category : #accessing }

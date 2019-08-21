@@ -1,5 +1,5 @@
 "
-A GaussianGenerator uses a Normal Distribution.
+A PMGaussianGenerator uses a Normal Distribution.
 
 "
 Class {
@@ -10,7 +10,7 @@ Class {
 		'standardDeviation',
 		'nextGaussian'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #testing }

@@ -80,7 +80,7 @@ Class {
 		'real',
 		'imaginary'
 	],
-	#category : 'Math-Complex'
+	#category : #'Math-Complex'
 }
 
 { #category : #'instance creation' }
@@ -208,6 +208,12 @@ PMComplex >> absSecure [
 	^scale isZero 
 		ifTrue: [scale]
 		ifFalse: [(self class real: real / scale imaginary: imaginary / scale) squaredNorm sqrt * scale]
+]
+
+{ #category : #arithmetic }
+PMComplex >> absSquared [
+
+	^ self real * self real + (self imaginary * self imaginary)
 ]
 
 { #category : #converting }

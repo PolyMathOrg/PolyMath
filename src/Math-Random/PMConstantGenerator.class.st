@@ -1,5 +1,5 @@
 "
-A ConstantGenerator is still a number generator but a simple one :)
+A PMConstantGenerator is still a number generator but a simple one :)
 "
 Class {
 	#name : #PMConstantGenerator,
@@ -7,7 +7,7 @@ Class {
 	#instVars : [
 		'constant'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'instance-creation' }

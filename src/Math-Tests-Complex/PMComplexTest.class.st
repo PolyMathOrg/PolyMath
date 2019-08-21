@@ -410,14 +410,6 @@ PMComplexTest >> testOne [
 ]
 
 { #category : #tests }
-PMComplexTest >> testPrintOn [
-	| c |
-	c := (1 + 2 i).
-	Transcript show: 'ComplexTest>>testPrintOn' ; cr; show: c ; cr.
-	
-]
-
-{ #category : #tests }
 PMComplexTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.

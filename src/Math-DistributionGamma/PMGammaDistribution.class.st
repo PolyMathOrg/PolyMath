@@ -147,9 +147,7 @@ PMGammaDistribution >> randomCoefficientsForSmallAlpha [
 { #category : #information }
 PMGammaDistribution >> randomForLargeAlpha [
 		"Private - Generate a random number distributed according to the receiver
-						when alpha > 1.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 4/3/99 "
+						when alpha > 1."
 	[ true] whileTrue: [
 	| u1 u2 c v y z w|
 	u1 := flatGenerator floatValue.

@@ -1,5 +1,5 @@
 "
-A BernoulliGenerator is simulates a Bernoulli Process. This is a discrete process, with probability of p for success, and 1-p for failure. 
+A PMBernoulliGenerator is simulates a Bernoulli Process. This is a discrete process, with probability of p for success, and 1-p for failure. 
 
 next
 	answer 1 if success event, 0 otherwise
@@ -24,7 +24,7 @@ Class {
 	#instVars : [
 		'probability'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'instance creation' }

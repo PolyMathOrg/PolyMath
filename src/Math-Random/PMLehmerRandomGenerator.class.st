@@ -1,12 +1,12 @@
 "
 This generator uses the Lehmer's Linear Congruential method.
 
-LehmerRandom new next
+PMLehmerRandomGenerator new next
 "
 Class {
 	#name : #PMLehmerRandomGenerator,
-	#superclass : #PMRandomGenerator,
-	#category : 'Math-Random'
+	#superclass : #PMPseudoRandomNumberGenerator,
+	#category : #'Math-Random'
 }
 
 { #category : #'stream access' }

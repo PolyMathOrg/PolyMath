@@ -10,8 +10,8 @@ Class {
 { #category : #benchmarking }
 PMImplicitBenchmark >> benchBeckwardEuler [
 	| solver stepper |
-	stepper := ImplicitStepper onSystem: system.
-	solver := (ImplicitSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMImplicitStepper onSystem: system.
+	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -19,8 +19,8 @@ PMImplicitBenchmark >> benchBeckwardEuler [
 { #category : #benchmarking }
 PMImplicitBenchmark >> benchImplicitMidpoint [
 	| solver stepper |
-	stepper := ImplicitMidpointStepper onSystem: system.
-	solver := (ImplicitMidpointSolver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMImplicitMidpointStepper onSystem: system.
+	solver := (PMImplicitMidpointSolver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -28,5 +28,5 @@ PMImplicitBenchmark >> benchImplicitMidpoint [
 { #category : #'as yet unclassified' }
 PMImplicitBenchmark >> setUp [
 	super setUp.
-	system := ImplicitSystem block: function.
+	system := PMImplicitSystem block: function.
 ]

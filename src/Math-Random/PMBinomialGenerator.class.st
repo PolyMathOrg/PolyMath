@@ -1,5 +1,5 @@
 "
-A BinomialGenerator yields results from a binomial distribution with probability p and n trials. The generator is the underlying random source.
+A PMBinomialGenerator yields results from a binomial distribution with probability p and n trials. The generator is the underlying random source.
 
 If each independent event has probability 0<p<1, and n trials are performed, next returns number of successes.
 "
@@ -10,7 +10,7 @@ Class {
 		'numberOfTrials',
 		'probability'
 	],
-	#category : 'Math-Random'
+	#category : #'Math-Random'
 }
 
 { #category : #'instance-creation' }
@@ -19,6 +19,11 @@ PMBinomialGenerator class >> numberOfTrials: numberOfTrials probabilityOfSuccess
 		numberOfTrials: numberOfTrials;
 		probability: probabilityOfSuccess; 
 		yourself
+]
+
+{ #category : #accessing }
+PMBinomialGenerator >> expectedValue [
+	^ numberOfTrials * probability
 ]
 
 { #category : #initialization }

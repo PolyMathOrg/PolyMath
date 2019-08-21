@@ -38,28 +38,28 @@ PMODEAccuracy class >> runToXML [
 
 { #category : #checks }
 PMODEAccuracy >> checkAB2 [
-	^ self checkSolverClass: AB2Solver systemClass: ExplicitSystem stepperClass: AB2Stepper
+	^ self checkSolverClass: PMAB2Solver systemClass: PMExplicitSystem stepperClass: PMAB2Stepper
 
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAB3 [
-	^ self checkSolverClass: AB3Solver systemClass: ExplicitSystem stepperClass: AB3Stepper
+	^ self checkSolverClass: PMAB3Solver systemClass: PMExplicitSystem stepperClass: PMAB3Stepper
 	
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAB4 [
-	^ self checkSolverClass: AB4Solver systemClass: ExplicitSystem stepperClass: AB4Stepper
+	^ self checkSolverClass: PMAB4Solver systemClass: PMExplicitSystem stepperClass: PMAB4Stepper
 	
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAM3 [
 	^ self
-		checkSolverClass: AM3Solver
-		systemClass: ImplicitSystem
-		stepperClass: AM3Stepper
+		checkSolverClass: PMAM3Solver
+		systemClass: PMImplicitSystem
+		stepperClass: PMAM3Stepper
 		
 	
 ]
@@ -67,81 +67,81 @@ PMODEAccuracy >> checkAM3 [
 { #category : #checks }
 PMODEAccuracy >> checkAM4 [
 	^ self
-		checkSolverClass: AM4Solver
-		systemClass: ImplicitSystem
-		stepperClass: AM4Stepper
+		checkSolverClass: PMAM4Solver
+		systemClass: PMImplicitSystem
+		stepperClass: PMAM4Stepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkBDF2 [
 	^ self
-		checkSolverClass: BDF2Solver
-		systemClass: ImplicitSystem
-		stepperClass: BDF2Stepper
+		checkSolverClass: PMBDF2Solver
+		systemClass: PMImplicitSystem
+		stepperClass: PMBDF2Stepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkBDF3 [
 	^ self
-		checkSolverClass: BDF3Solver
-		systemClass: ImplicitSystem
-		stepperClass: BDF3Stepper
+		checkSolverClass: PMBDF3Solver
+		systemClass: PMImplicitSystem
+		stepperClass: PMBDF3Stepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkBDF4 [
 	^ self
-		checkSolverClass: BDF4Solver
-		systemClass: ImplicitSystem
-		stepperClass: BDF4Stepper
+		checkSolverClass: PMBDF4Solver
+		systemClass: PMImplicitSystem
+		stepperClass: PMBDF4Stepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkBeckwardEuler [
 	^ self
-		checkSolverClass: ImplicitSolver
-		systemClass: ImplicitSystem
-		stepperClass: ImplicitStepper
+		checkSolverClass: PMImplicitSolver
+		systemClass: PMImplicitSystem
+		stepperClass: PMImplicitStepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkEuler [
 	^ self
-		checkSolverClass: ExplicitSolver
-		systemClass: ExplicitSystem
-		stepperClass: ExplicitStepper
+		checkSolverClass: PMExplicitSolver
+		systemClass: PMExplicitSystem
+		stepperClass: PMExplicitStepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkHeun [
 	^ self
-		checkSolverClass: ExplicitSolver
-		systemClass: ExplicitSystem
-		stepperClass: HeunStepper
+		checkSolverClass: PMExplicitSolver
+		systemClass: PMExplicitSystem
+		stepperClass: PMHeunStepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkImplicitMidpoint [
 	^ self
-		checkSolverClass: ImplicitMidpointSolver
-		systemClass: ImplicitSystem
-		stepperClass: ImplicitMidpointStepper
+		checkSolverClass: PMImplicitMidpointSolver
+		systemClass: PMImplicitSystem
+		stepperClass: PMImplicitMidpointStepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkMidpoint [
 	^ self
-		checkSolverClass: ExplicitSolver
-		systemClass: ExplicitSystem
-		stepperClass: MidpointStepper
+		checkSolverClass: PMExplicitSolver
+		systemClass: PMExplicitSystem
+		stepperClass: PMMidpointStepper
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkRungeKutta [
 	^ self
-		checkSolverClass: ExplicitSolver
-		systemClass: ExplicitSystem
-		stepperClass: RungeKuttaStepper
+		checkSolverClass: PMExplicitSolver
+		systemClass: PMExplicitSystem
+		stepperClass: PMRungeKuttaStepper
 ]
 
 { #category : #utils }
@@ -156,9 +156,9 @@ PMODEAccuracy >> checkSolverClass: solverClass systemClass: systemClass stepperC
 { #category : #checks }
 PMODEAccuracy >> checkTrapezoidAM2 [
 	^ self
-		checkSolverClass: ImplicitSolver
-		systemClass: ImplicitSystem
-		stepperClass: TrapezoidStepper
+		checkSolverClass: PMImplicitSolver
+		systemClass: PMImplicitSystem
+		stepperClass: PMTrapezoidStepper
 ]
 
 { #category : #initialization }

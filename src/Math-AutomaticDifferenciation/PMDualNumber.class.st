@@ -1,4 +1,7 @@
 "
+In linear algebra, dual numbers extend the real numbers by adjoining one new element ε with the property ε^2 = 0 (ε is nilpotent).
+See here: https://en.wikipedia.org/wiki/Dual_number^
+
 PMDualNumbers can be used to calculate the first derivative if one  creates them this way:
 	PMDualNumber value: aNumber eps:  derivativeOfaNumber (1 if the derivative with respect to aNumber is calculated, 0 otherwise)
 
@@ -6,7 +9,7 @@ PMDualNumbers can be mixed with Numbers.
 "
 Class {
 	#name : #PMDualNumber,
-	#superclass : #Magnitude,
+	#superclass : #Number,
 	#instVars : [
 		'value',
 		'eps'
@@ -14,13 +17,12 @@ Class {
 	#classVars : [
 		'ZeroApproximation'
 	],
-	#category : 'Math-AutomaticDifferenciation'
+	#category : #'Math-AutomaticDifferenciation'
 }
 
 { #category : #'instance creation' }
-PMDualNumber class >> value:aValue [
-"for entering a constant"
-^(self new value: aValue) eps: 0 
+PMDualNumber class >> value: aValue [
+	^ (self new value: aValue) eps: 0
 ]
 
 { #category : #'instance creation' }
@@ -41,31 +43,24 @@ PMDualNumber class >> zeroApproximation: aSmallNumber [
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> * aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value * aDualNumber eps: eps *aDualNumber]
-	ifTrue:[self class value: value * aDualNumber value eps: eps * aDualNumber value + (aDualNumber eps *value)]
+PMDualNumber >> * aNumber [
+	^ aNumber multiplyDualNumber: self
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> + aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value + aDualNumber eps: eps]
-	ifTrue:[self class value: value + aDualNumber value eps: eps + aDualNumber eps]
+PMDualNumber >> + aNumber [
+	^ aNumber addDualNumber: self
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> - aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value - aDualNumber eps: eps]
-	ifTrue:[self class value: value - aDualNumber value eps: eps - aDualNumber eps]
+PMDualNumber >> - aNumber [
+	^ aNumber negated addDualNumber: self
 ]
 
 { #category : #arithmetic }
-PMDualNumber >> / aDualNumber [
-^aDualNumber isDualNumber
-	ifFalse:[self class value: value / aDualNumber eps: eps /aDualNumber]
-	ifTrue:[self class value: value / aDualNumber value eps:( eps * aDualNumber value - (aDualNumber eps *value))/aDualNumber value squared]
+PMDualNumber >> / aNumber [
+
+	^ aNumber reciprocal multiplyDualNumber: self
 ]
 
 { #category : #testing }
@@ -84,9 +79,26 @@ PMDualNumber >> abs [
 
 ]
 
+{ #category : #arithmetic }
+PMDualNumber >> absSquared [
+	^ (self conjugated * self) real
+]
+
 { #category : #converting }
-PMDualNumber >> adaptToNumber: rcvr andSend: selector [
-	^ (self class value:rcvr)  perform: selector with: self
+PMDualNumber >> adaptToFraction: rcvr andSend: selector [
+	^ (self class value: rcvr) perform: selector with: self
+]
+
+{ #category : #converting }
+PMDualNumber >> adaptToInteger: rcvr andSend: selector [
+	^ (self class value: rcvr) perform: selector with: self
+]
+
+{ #category : #arithmetic }
+PMDualNumber >> addDualNumber: aDualNumber [
+	^ self class
+		value: value + aDualNumber value
+		eps: eps + aDualNumber eps
 ]
 
 { #category : #'mathematical functions' }
@@ -105,9 +117,7 @@ PMDualNumber >> arcSin [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> arcTan [
-	^ self class 
-		value: value arcTan 
-		eps: eps  /  (1 + value squared)
+	^ self class value: value arcTan eps: eps / (1 + value squared)
 ]
 
 { #category : #converting }
@@ -121,10 +131,15 @@ PMDualNumber >> asInteger [
 ]
 
 { #category : #'mathematical functions' }
+PMDualNumber >> conjugated [
+	^ self class
+		value: self value conjugated
+		eps: self eps asComplex conjugated
+]
+
+{ #category : #'mathematical functions' }
 PMDualNumber >> cos [
-	^ self class 
-		value: value cos 
-		eps: eps *  value sin negated
+	^ self class value: value cos eps: eps * value sin negated
 ]
 
 { #category : #accessing }
@@ -133,8 +148,8 @@ PMDualNumber >> eps [
 ]
 
 { #category : #accessing }
-PMDualNumber >> eps: anObject [
-eps := anObject
+PMDualNumber >> eps: aNumber [
+	eps := aNumber
 ]
 
 { #category : #comparing }
@@ -154,7 +169,7 @@ PMDualNumber >> exp [
 	^ self class value: e eps: eps * e
 ]
 
-{ #category : #hash }
+{ #category : #comparing }
 PMDualNumber >> hash [
 	^ value hash
 ]
@@ -194,6 +209,13 @@ PMDualNumber >> ln [
 ]
 
 { #category : #arithmetic }
+PMDualNumber >> multiplyDualNumber: aDualNumber [
+	^self class
+				value: value * aDualNumber value
+				eps: eps * aDualNumber value + (aDualNumber eps * value)
+]
+
+{ #category : #arithmetic }
 PMDualNumber >> negated [
 ^self class value: value negated eps: eps negated
 ]
@@ -226,15 +248,22 @@ PMDualNumber >> printOn: aStream [
 		nextPutAll: ')'
 ]
 
+{ #category : #printing }
+PMDualNumber >> printOn: aStream base: base [
+	self printOn: aStream
+]
+
 { #category : #'mathematical functions' }
 PMDualNumber >> raisedTo: aDualNumber [
 	| v |
 	value = 0
-		ifTrue: [ ^ PMDualNumber value: 0 ].
+		ifTrue: [ ^ self class value: 0 ].
 	v := value raisedTo: aDualNumber value.
 	aDualNumber isDualNumber
 		ifFalse: [ ^ self class value: v eps: v / value * eps * aDualNumber ].
-	^ self class value: v eps: v * (eps * aDualNumber value / value + (aDualNumber eps * value ln))
+	^ self class
+		value: v
+		eps: v * (eps * aDualNumber value / value + (aDualNumber eps * value ln))
 ]
 
 { #category : #'mathematical functions' }
@@ -244,9 +273,14 @@ PMDualNumber >> raisedToInteger: anInteger [
 		ifFalse: [ self class value: (value raisedToInteger: anInteger) eps: anInteger * eps * (value raisedToInteger: anInteger - 1) ]
 ]
 
+{ #category : #converting }
+PMDualNumber >> real [
+	^ self class value: self value real eps: self eps asComplex real
+]
+
 { #category : #arithmetic }
 PMDualNumber >> reciprocal [
-^self class value: 1/value  eps: eps /value squared negated
+	^ self class value: 1 / value eps: eps / value squared negated
 ]
 
 { #category : #'mathematical functions' }

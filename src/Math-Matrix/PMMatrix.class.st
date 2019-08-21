@@ -31,7 +31,7 @@ b := PMMatrix rows: #( ( 1 2 3 ) (-2 1 7)).
 c := a * b.
 
 "Elementwise matrix product"
-d := a dot:b.
+d := a hadamardProduct: b.
 
 "This is how we can create a vector"
 a := #(1 4 9 16 25) asPMVector.
@@ -124,6 +124,22 @@ PMMatrix class >> rows: anArrayOrVector [
 	^ self new initializeRows: anArrayOrVector
 ]
 
+{ #category : #'instance creation' }
+PMMatrix class >> rows: rowsInteger columns: columnsInteger [
+
+	^ self new initializeRows: rowsInteger columns: columnsInteger
+]
+
+{ #category : #'instance creation' }
+PMMatrix class >> rows: nRows columns: nCols  element: fillElement [
+	" Answer a new matrix of nRows x nCols initialized with fillElement in all cells "
+
+	^ (self new initializeRows: nRows columns: nCols)
+		atAllPut: fillElement;
+		yourself
+
+]
+
 { #category : #'as yet unclassified' }
 PMMatrix class >> rows: rows columns: columns random: aMaxNumber [
 	"Answer a new Matrix of the given dimensions filled with random numbers"
@@ -211,10 +227,25 @@ PMMatrix >> addWithSymmetricMatrix: aMatrix [
 	^ aMatrix addWithRegularMatrix: self 
 ]
 
+{ #category : #'as yet unclassified' }
+PMMatrix >> argMaxOnColumns [
+	^ self columnsCollect: [ :each | each argMax ]
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> argMaxOnRows [
+	^ self rowsCollect: [ :each | each argMax ]
+]
+
 { #category : #transformation }
 PMMatrix >> asSymmetricMatrix [
 	"Convert the receiver to a symmetric matrix (no check is made)."
 	^ PMSymmetricMatrix rows: rows
+]
+
+{ #category : #converting }
+PMMatrix >> asVector [
+	^ self flattenRows.
 ]
 
 { #category : #'cell accessing' }
@@ -232,6 +263,13 @@ PMMatrix >> at: rowIndex at: columnIndex put: value [
 ]
 
 { #category : #'cell accessing' }
+PMMatrix >> atAllPut: element [ 
+	"Put element at every one of the receiver's cells."
+
+	self rowsDo: [ : row | row atAllPut: element ]
+]
+
+{ #category : #'cell accessing' }
 PMMatrix >> atColumn: anInteger [
 
 	^ self columnAt: anInteger
@@ -244,6 +282,19 @@ PMMatrix >> atColumn: aColumnIndex put: aCollection [
 		self rowAt: rowIndex columnAt: aColumnIndex put: value ]
 	
 
+]
+
+{ #category : #'cell accessing' }
+PMMatrix >> atColumn: columnIndex put: aValue repeat: repNumber [
+	"	Example: self atColumn: 1 fillWith: 'BM1818' repeat: 3
+	produces
+	[ 'BM1818' nil nil nil 
+	'BM1818' nil nil nil 	
+	'BM1818' nil nil nil 	
+	nil nil nil nil 			
+	nil nil nil nil ]
+"
+	1 to: repNumber do: [ : index | self rowAt: index columnAt: columnIndex put: aValue ].
 ]
 
 { #category : #'cell accessing' }
@@ -326,17 +377,15 @@ PMMatrix >> columnsDo: aBlock [
 { #category : #operation }
 PMMatrix >> cos [
 	"Apply cos to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each cos])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each cos ])
 ]
 
 { #category : #operation }
 PMMatrix >> cosh [
 	"Apply cosh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each cosh])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each cosh ])
 ]
 
 { #category : #transformation }
@@ -364,12 +413,6 @@ PMMatrix >> dimension [
 ]
 
 { #category : #operation }
-PMMatrix >> dot: aMatrix [
-	"Answers the elementwise product of the receiver with aMatrix."
-	^ aMatrix elementwiseProductWithMatrix: self
-]
-
-{ #category : #operation }
 PMMatrix >> eigen [
 	"Computes all eigenvalues and eigenvectors of a matrix.
 	Usage:
@@ -386,7 +429,7 @@ PMMatrix >> elementwiseProductWithMatrix: aMatrix [
 	"Answers the elementwise product between aMatrix and the receiver as a Matrix."
 	| n |
 	n := 0.
-	^ PMMatrix rows: ( aMatrix rowsCollect: [ :each | n := n + 1. each dot: ( self rowAt: n)])
+	^ self class rows: ( aMatrix rowsCollect: [ :each | n := n + 1. each hadamardProduct: ( self rowAt: n)])
 
 ]
 
@@ -396,6 +439,27 @@ PMMatrix >> equalsTo: aMatrix [
 			with: aMatrix rows  
 			do: [:a :b| (a equalsTo: b) ifFalse: [ ^false ] ].
 	^ true 
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> flattenColumns [
+	| answer |
+	answer := #().
+	self columnsDo: [ :each | answer := answer , each asArray ].
+	^ answer asPMVector
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> flattenRows [
+	| answer |
+	answer := #().
+	self rowsDo: [ :each | answer := answer , each asArray ].
+	^ answer asPMVector
+]
+
+{ #category : #operation }
+PMMatrix >> hadamardProduct: aMatrix [
+	^ aMatrix  elementwiseProductWithMatrix: self
 ]
 
 { #category : #comparing }
@@ -413,6 +477,13 @@ PMMatrix >> initialize: anInteger [
 PMMatrix >> initializeRows: anArrayOrVector [
 	"Defines the components of the recevier. No check is made: components are assumed to be orgainized in rows."
 	rows := anArrayOrVector asPMVector collect: [ :each | each asPMVector].
+]
+
+{ #category : #initialization }
+PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
+	"Build empty components for a matrix."
+		
+	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
 ]
 
 { #category : #operation }
@@ -452,7 +523,7 @@ PMMatrix >> isSymmetric [
 
 { #category : #private }
 PMMatrix >> largestPowerOf2SmallerThan: anInteger [
-	"Private - "
+	"Private"
 	| m m2|
 	m := 2.
 	[ m2 := m * 2.
@@ -463,9 +534,7 @@ PMMatrix >> largestPowerOf2SmallerThan: anInteger [
 { #category : #operation }
 PMMatrix >> log [
 	"Apply log to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each log])
+	^ PMMatrix rows: ( self rowsCollect: [ :each | each log])
 	
 ]
 
@@ -521,6 +590,17 @@ PMMatrix >> orthogonalize [
 	"returns an orthonormal basis of column (!) vectors for a matrix of column vectors"
 	^ self qrFactorizationWithPivoting first
 
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> principalDiagonal [
+	"https://en.wikipedia.org/wiki/Diagonal#Matrices for definitions"
+	| diag |
+	"Check for square"
+	self isSquare ifFalse: [ self error: 'Diagonal is not defined for a matrix that is not square.' ].
+	diag := PMVector new: self rows size.
+	(1 to: diag size) do: [ :i | diag at: i put: (self at:i at: i) ].
+	^ diag
 ]
 
 { #category : #printing }
@@ -719,20 +799,24 @@ PMMatrix >> setDiagonal: aVector [
 ]
 
 { #category : #operation }
+PMMatrix >> sign [
+	"Apply sign to each element of a matrix"
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sign ])
+]
+
+{ #category : #operation }
 PMMatrix >> sin [
 	"Apply sin to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sin])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sin ])
 ]
 
 { #category : #operation }
 PMMatrix >> sinh [
 	"Apply sinh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sinh])
-	
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each sinh ])
 ]
 
 { #category : #private }
@@ -758,9 +842,8 @@ PMMatrix >> split [
 { #category : #operation }
 PMMatrix >> sqrt [
 	"Apply sqrt to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each sqrt])
+	
+	^ PMMatrix rows: ( self rowsCollect: [ :each | each sqrt])
 ]
 
 { #category : #operation }
@@ -829,18 +912,15 @@ PMMatrix >> swapColumn: anIndex withColumn:   a2Index [
 { #category : #operation }
 PMMatrix >> tan [
 	"Apply tan to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each tan])
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each tan ])
 ]
 
 { #category : #operation }
 PMMatrix >> tanh [
 	"Apply tanh to each element of a matrix"
-	| n |
-	n := 0.
-	^ PMMatrix rows: ( self rowsCollect: [ :each | n := n + 1. each tanh])
-	
+
+	^ PMMatrix rows: (self rowsCollect: [ :each | each tanh ])
 ]
 
 { #category : #operation }

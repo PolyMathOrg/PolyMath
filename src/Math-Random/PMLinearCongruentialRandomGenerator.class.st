@@ -1,15 +1,15 @@
 "
 I use a quick and dirty Linear Congruential generator.
 
-LCRandom new next.
+PMLinearCongruentialRandomGenerator new next.
 "
 Class {
 	#name : #PMLinearCongruentialRandomGenerator,
-	#superclass : #PMRandomGenerator,
-	#category : 'Math-Random'
+	#superclass : #PMPseudoRandomNumberGenerator,
+	#category : #'Math-Random'
 }
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMLinearCongruentialRandomGenerator >> next [
 	"Answer a pseudo-Random floating point number between 0 and 1. Uses a quick and dirty Linear congruential generator"
 
@@ -24,7 +24,7 @@ PMLinearCongruentialRandomGenerator >> nextFloat [
 	^ seed / 120050.0
 ]
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMLinearCongruentialRandomGenerator >> peek [
 	"Answer a pseudo-Random floating point number between 0 and 1.  Uses a simple, but fast, Linear Congruential generator."
 

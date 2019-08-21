@@ -1,11 +1,25 @@
-# PolyMath
+<p align="center"><img alt="PolyMath" src="https://user-images.githubusercontent.com/327334/63360401-439db400-c366-11e9-954a-b45def952e08.png" style="width: 25%; height: 25%">
+  <p align="center">
+    Scientific Computing with Pharo
+    <br>
+    <a href="docs/"><strong>Explore the docs »</strong></a>
+    <br>
+    <br>
+    <a href="https://github.com/PolyMath/PolyMath/issues/new?labels=Type%3A+Defect">Report a defect</a>
+    |
+    <a href="https://github.com/PolyMath/PolyMath/issues/new?labels=Type%3A+Feature">Request feature</a>
+  </p>
+</p>
 
 [![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
 [![Build Status](https://travis-ci.org/PolyMathOrg/PolyMath.svg?branch=master)](https://travis-ci.org/PolyMathOrg/PolyMath)
 [![Build status](https://ci.appveyor.com/api/projects/status/3tvarh2xi22max8h?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath-88bea)
+[![Coverage Status](https://coveralls.io/repos/github/PolyMathOrg/PolyMath/badge.svg?branch=development)](https://coveralls.io/github/PolyMathOrg/PolyMath?branch=development)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
 
-You can load the code in a fresh Pharo 6.1 image with:
+<img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
+
+You can load the code in a fresh Pharo 7.0 image with:
 
 ```Smalltalk
 Metacello new
@@ -14,19 +28,17 @@ Metacello new
         load
 ```
 
-We have **767** green tests !
- 
-PolyMath is a Smalltalk project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
+We have **806** green tests ! At the moment, all the development happens in the development branch.
+
+PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provide the following basic functionalities:
 - complex and quaternions extensions,
 - random number generators,
 - fuzzy algorithms,
 - KDE-trees,
-- Didier Besset's numerical methods,
+- Numerical methods,
 - Ordinary Differential Equation (ODE) solvers.
 
-[![Lorentz attractor with PolyMath and GraphET](https://pbs.twimg.com/media/Ble65B3CYAEkMoR.jpg)](https://twitter.com/SergeStinckwich/status/457039376111788032)
-
-A book about PolyMath called "Numerical Methods" is available online: https://github.com/SquareBracketAssociates/NumericalMethods/releases/tag/snapshot-2016-01-17
+A book about PolyMath called "PolyMath book" is available online: https://github.com/SquareBracketAssociates/PolyMath-book
 
 Some documentation (to be cleaned and reorganized) about PolyMath is available on the Wiki here: 
 https://github.com/PolyMathOrg/PolyMath/wiki
@@ -35,7 +47,7 @@ Natalia wrote some explanation about benchmarking PolyMath in the Pharo For Ente
 
 ## Install PolyMath
 
-To install PolyMath on your Pharo image you can just execute the following script:
+To install PolyMath in your Pharo image you can just execute the following script:
 
 ```Smalltalk
     Metacello new
@@ -51,8 +63,6 @@ To add PolyMath to your baseline just add this:
     	baseline: 'PolyMath'
     	with: [ spec repository: 'github://PolyMathOrg/PolyMath:master/src' ]
 ```
-
-Note that you can replace the #master by another branch as #development or a tag as #v1.0.0, #v1.? or #v1.2.? .
 
 
 ## How to contribute to PolyMath

@@ -34,7 +34,7 @@ PMAdditionalTest >> testMatrixInversionSmall [
 
 { #category : #tests }
 PMAdditionalTest >> testMatrixSquared [
-	"this tests squared and is not in Math-Tests-DHB-Numerical since it uses random matrices"
+	"this tests squared and is not in Math-Tests-Numerical since it uses random matrices"
 
 	| a |
 	10

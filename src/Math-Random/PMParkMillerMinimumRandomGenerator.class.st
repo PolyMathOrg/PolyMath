@@ -1,15 +1,15 @@
 "
 Uses Park and Miller's 'Minimum Standard' Congruential generator. See 'Numerical Recipes in C', 2nd Edition; Press, Flannery, Teukolsky and Vetterling; Cambridge University Press, 1992.
 
-PMRandom new next
+PMParkMillerMinimumRandomGenerator new next
 "
 Class {
 	#name : #PMParkMillerMinimumRandomGenerator,
-	#superclass : #PMRandomGenerator,
-	#category : 'Math-Random'
+	#superclass : #PMPseudoRandomNumberGenerator,
+	#category : #'Math-Random'
 }
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMParkMillerMinimumRandomGenerator >> next [
     "Answer a pseudo-Random floating point number between 0 and 1.
     Uses Park and Miller's 'Minimum Standard' congruential generator
@@ -30,7 +30,7 @@ PMParkMillerMinimumRandomGenerator >> nextFloat [
     ^ seed / 16r7FFFFFFF asFloat 
 ]
 
-{ #category : #accessing }
+{ #category : #'stream access' }
 PMParkMillerMinimumRandomGenerator >> peek [
     "Answer a pseudo-Random floating point number between 0 and 1.
     Uses Park and Miller's 'Minimum Standard' congruential generator."

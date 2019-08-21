@@ -1,5 +1,5 @@
 "
-[[[ 
+[[[
 | m jacobi eigenvalues eigenvectors |
 m := PMSymmetricMatrix rows: #((84 -79 58 55)
                                  (-79 84 -55 -58)
@@ -17,7 +17,7 @@ Class {
 		'lowerRows',
 		'transform'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #creation }
@@ -34,8 +34,6 @@ PMJacobiTransformation class >> new [
 
 { #category : #operation }
 PMJacobiTransformation >> evaluateIteration [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
 	| indices |
 	indices := self largestOffDiagonalIndices.
 	self transformAt: ( indices at: 1) and: ( indices at: 2).
@@ -44,9 +42,7 @@ PMJacobiTransformation >> evaluateIteration [
 
 { #category : #transformation }
 PMJacobiTransformation >> exchangeAt: anInteger [
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Private"
 	| temp n |
 	n := anInteger + 1.
 	temp := result at: n.
@@ -63,9 +59,7 @@ PMJacobiTransformation >> exchangeAt: anInteger [
 { #category : #operation }
 PMJacobiTransformation >> finalizeIterations [
 	"Transfer the eigenValues into a vector and set this as the result.
-		 eigen values and transform matrix are sorted using a bubble sort.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		 eigen values and transform matrix are sorted using a bubble sort."
 
 	| n |
 	n := 0.
@@ -78,9 +72,7 @@ PMJacobiTransformation >> finalizeIterations [
 
 { #category : #initialization }
 PMJacobiTransformation >> initialize: aSymmetricMatrix [
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Private"
 	| n |
 	n := aSymmetricMatrix numberOfRows.
 	lowerRows := Array new: n.
@@ -89,15 +81,12 @@ PMJacobiTransformation >> initialize: aSymmetricMatrix [
 		[ :k |
 		  lowerRows at: k put: ( ( aSymmetricMatrix rowAt: k) copyFrom: 1 to: k).
 		  transform at: k put: ( ( Array new: n) atAllPut: 0; at: k put: 1; yourself).
-		].
-	^self
+		]
 ]
 
 { #category : #information }
 PMJacobiTransformation >> largestOffDiagonalIndices [
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Private"
 	| n m abs |
 	n := 2.
 	m := 1.
@@ -119,9 +108,7 @@ PMJacobiTransformation >> largestOffDiagonalIndices [
 
 { #category : #display }
 PMJacobiTransformation >> printOn: aStream [
-		"Append to the argument aStream, a sequence of characters that describes the receiver.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Append to the argument aStream, a sequence of characters that describes the receiver."
 	| first |
 	first := true.
 	lowerRows do: 
@@ -134,9 +121,7 @@ PMJacobiTransformation >> printOn: aStream [
 
 { #category : #transformation }
 PMJacobiTransformation >> sortEigenValues [
-		"Private - Use a bubble sort.
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Private - Use a bubble sort."
 	| n bound m |
 	n := lowerRows size.
 	bound := n.
@@ -155,16 +140,12 @@ PMJacobiTransformation >> sortEigenValues [
 
 { #category : #information }
 PMJacobiTransformation >> transform [
-		"(c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
 	^PMMatrix rows: transform
 ]
 
 { #category : #transformation }
 PMJacobiTransformation >> transformAt: anInteger1 and: anInteger2 [
-		"Private -
-		 (c) Copyrights Didier BESSET, 1999, all rights reserved.
-		 Initial code: 1/6/99 "
+		"Private"
 	| d t s c tau apq app aqq arp arq |
 	apq := ( lowerRows at: anInteger2) at: anInteger1.
 	apq = 0

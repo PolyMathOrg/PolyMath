@@ -10,8 +10,8 @@ Class {
 { #category : #benchmarking }
 PMExplicitMultiBenchmark >> benchAB2 [
 	| solver stepper |
-	stepper := AB2Stepper onSystem: system.
-	solver := (AB2Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMAB2Stepper onSystem: system.
+	solver := (PMAB2Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -19,8 +19,8 @@ PMExplicitMultiBenchmark >> benchAB2 [
 { #category : #benchmarking }
 PMExplicitMultiBenchmark >> benchAB3 [
 	| solver stepper |
-	stepper := AB3Stepper onSystem: system.
-	solver := (AB3Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMAB3Stepper onSystem: system.
+	solver := (PMAB3Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -28,8 +28,8 @@ PMExplicitMultiBenchmark >> benchAB3 [
 { #category : #benchmarking }
 PMExplicitMultiBenchmark >> benchAB4 [
 	| solver stepper |
-	stepper := AB4Stepper onSystem: system.
-	solver := (AB4Solver new) stepper: stepper; system: system; dt: dt.
+	stepper := PMAB4Stepper onSystem: system.
+	solver := (PMAB4Solver new) stepper: stepper; system: system; dt: dt.
 	 1 to: self problemSize do: [  :i 
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
@@ -37,5 +37,5 @@ PMExplicitMultiBenchmark >> benchAB4 [
 { #category : #'as yet unclassified' }
 PMExplicitMultiBenchmark >> setUp [
 	super setUp.
-	system := ExplicitSystem block: function
+	system := PMExplicitSystem block: function
 ]

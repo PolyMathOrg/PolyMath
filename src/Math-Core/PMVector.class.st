@@ -70,35 +70,21 @@ PMVector >> + aVectorOrNumber [
 ]
 
 { #category : #operation }
-PMVector >> - aVector [
-	"Answers the difference of the receiver with aVector."
-	| answer n |
-	answer := self class new: self size.
-	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a - b).
-		].
-	^answer
+PMVector >> - aVectorOrNumber [
+	"Answers the difference of the receiver with a vector or number."
+	^ -1*aVectorOrNumber addWithVector: self
 ]
 
 { #category : #operation }
 PMVector >> < aNumber [
-	"Apply < operator to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) < aNumber].
-]
-
-{ #category : #comparing }
-PMVector >> == aNumber [
-	"Apply == operator to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) == aNumber].
+	"Apply < operator to every element of a vector and returns a new vector"
+	^ ((1 to: self size) collect: [ :n | (self at: n) < aNumber]) asPMVector.
 ]
 
 { #category : #operation }
 PMVector >> > aNumber [
-	"Apply > function to every element of a vector"
-	1 to: self size do: [ :n | self at: n put: (self at: n) > aNumber].
+	"Apply > function to every element of a vector and return a new vector"
+	^ ((1 to: self size) collect: [ :n | (self at: n) > aNumber]) asPMVector.
 ]
 
 { #category : #transformation }
@@ -111,6 +97,13 @@ PMVector >> accumulate: aVectorOrAnArray [
 PMVector >> accumulateNegated: aVectorOrAnArray [
 	"Modify the receiver adding the negated contents of the argument to the receiver."
 	1 to: self size do: [ :n | self at: n put: ((self at: n) - (aVectorOrAnArray at: n))].
+]
+
+{ #category : #'as yet unclassified' }
+PMVector >> argMax [
+	| a |
+	a := self asArray.
+	^ a indexOf: a max
 ]
 
 { #category : #converting }
@@ -127,6 +120,18 @@ PMVector >> asArray [
 PMVector >> asPMVector [
 	"Answer self since the receiver is a vector."
 	^ self
+]
+
+{ #category : #'as yet unclassified' }
+PMVector >> checkDimensionalCompatibility: dimensionArray [
+	|prod|
+	prod := 1.
+	
+	dimensionArray do: [ :each | prod := prod * each ].
+	
+	self assert: (self size = prod) description: 'Imcompatible combination of Dimensions provided'.
+	
+	^true 
 ]
 
 { #category : #comparing }
@@ -167,18 +172,18 @@ PMVector >> cumsum [
 ]
 
 { #category : #operation }
-PMVector >> dot: aVector [
-"Answers the elementwise product of the receiver with aVector."
+PMVector >> hadamardProduct: aVector [
+	"Answers the elementwise product of the receiver with aVector."
+
 	| answer n |
 	answer := self class new: self size.
 	n := 0.
-	self with: aVector do:
-		[ :a :b | 
-		  n := n + 1. 
-		  answer at: n put: ( a * b).
-		].
-	^answer
-
+	self
+		with: aVector
+		do: [ :a :b | 
+			n := n + 1.
+			answer at: n put: a * b ].
+	^ answer
 ]
 
 { #category : #'as yet unclassified' }
@@ -244,6 +249,17 @@ PMVector >> productWithVector: aVector [
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
 ]
 
+{ #category : #'as yet unclassified' }
+PMVector >> reshapeWithDimensions: dimensionArray [
+	| computedRows rowNum colNum |
+	self checkDimensionalCompatibility: dimensionArray.
+	rowNum := dimensionArray at: 1.
+	colNum := dimensionArray at: 2.
+	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
+	
+	^PMMatrix rows: computedRows
+]
+
 { #category : #operation }
 PMVector >> scalarProduct: aVector [
 	
@@ -290,15 +306,6 @@ PMVector >> sqrt [
 	"Apply sqrt function to every element of a vector"
 
 	1 to: self size do: [ :n | self at: n put: (self at: n) sqrt ]
-]
-
-{ #category : #transformation }
-PMVector >> sum [
-	"Compute the sum of a vector."
-	|a|
-	a := 0.
-	1 to: self size do: [ :n | a := a + self at: n].
-	^a.
 ]
 
 { #category : #operation }
