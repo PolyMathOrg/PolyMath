@@ -1,3 +1,8 @@
+"
+This test case examines the findKey: message which was extracted out 
+and takes a selector as the argument, thereby making it more unit testable.
+
+"
 Class {
 	#name : #PMAccuracyTestFindKey,
 	#superclass : #TestCase,
