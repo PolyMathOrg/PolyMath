@@ -4,7 +4,7 @@ and takes a selector as the argument, thereby making it more unit testable.
 
 "
 Class {
-	#name : #PMAccuracyTestFindKey,
+	#name : #PMAccuracyFindKeyUnitTest,
 	#superclass : #TestCase,
 	#instVars : [
 		'example'
@@ -13,13 +13,13 @@ Class {
 }
 
 { #category : #running }
-PMAccuracyTestFindKey >> setUp [
+PMAccuracyFindKeyUnitTest >> setUp [
 	super setUp .
 	example := PMAccuracyTestExample new.
 ]
 
 { #category : #tests }
-PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
+PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
 	"
 	when the selector is 'initialize' the method returns 'AllTheRest'.
 	At the moment this is a regression test as it's difficult to understand
@@ -33,7 +33,7 @@ PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
 ]
 
 { #category : #tests }
-PMAccuracyTestFindKey >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
+PMAccuracyFindKeyUnitTest >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
 	"comment stating purpose of message"
 
 	| selector |
@@ -43,7 +43,7 @@ PMAccuracyTestFindKey >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExis
 ]
 
 { #category : #tests }
-PMAccuracyTestFindKey >> testThatMatchingMessageIsReturnedWhenSelectorIsSuffixOfExistingMessage [
+PMAccuracyFindKeyUnitTest >> testThatMatchingMessageIsReturnedWhenSelectorIsSuffixOfExistingMessage [
 	"Given the selector exists (Aaa, since initializeAaa is a defined message), 
 	the matching message is returned"
 

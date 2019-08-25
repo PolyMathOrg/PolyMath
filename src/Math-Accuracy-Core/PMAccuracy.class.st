@@ -209,15 +209,10 @@ PMAccuracy >> extremeCollection: acol max:aBoolean [
 
 { #category : #private }
 PMAccuracy >> findKey [
-	| s selector matchingMessage |
+	| s selector |
 	s := thisContext sender.
 	selector := s sender method selector.
-	selector = 'initialize'
-		ifTrue: [ ^ 'AllTheRest' ].
-	matchingMessage := names
-		detect: [ :name | selector endsWith: name ]
-		ifNone: [ '' ].
-	^ matchingMessage
+	^ self findKey: selector.
 ]
 
 { #category : #accessing }
