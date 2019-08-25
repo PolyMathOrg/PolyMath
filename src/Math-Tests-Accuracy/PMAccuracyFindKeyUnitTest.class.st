@@ -38,8 +38,11 @@ PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitializ
 
 { #category : #tests }
 PMAccuracyFindKeyUnitTest >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
-	"comment stating purpose of message"
-
+	"
+	This is a regression test where when a selector does not exist, the message
+	returns a blank string. Before, it used to raise an error, which was causing
+	errors to be raised when smalltalkCI was evaluating coverage.
+	"
 	| selector |
 	selector := 'NON_EXISTENT'.
 	
