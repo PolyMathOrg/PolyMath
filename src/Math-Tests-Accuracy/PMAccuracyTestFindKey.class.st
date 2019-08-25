@@ -5,6 +5,21 @@ Class {
 }
 
 { #category : #tests }
+PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
+	"
+	when the selector is 'initialize' the method returns 'AllTheRest'.
+	At the moment this is a regression test as it's difficult to understand
+	reasoning behind the code
+	"
+
+	| example selector |
+	selector := 'initialize'.
+	example := PMAccuracyTestExample new.
+	
+	self assert: (example findKey: selector) equals: 'AllTheRest'
+]
+
+{ #category : #tests }
 PMAccuracyTestFindKey >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
 	"comment stating purpose of message"
 
