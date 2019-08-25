@@ -295,6 +295,16 @@ anInteger <1 ifTrue:[^iterations].
 ]
 
 { #category : #accessing }
+PMAccuracy >> map: key toArgument: anArgument [
+	arguments
+		at: key
+		put: (anArgument ifNotNil: [ :a | self asArray: a ]).
+	^ anArgument
+
+	
+]
+
+{ #category : #accessing }
 PMAccuracy >> numberOfDifferentParametersAt: aname [
 "parameters have to be in a collection, even a single parameter.
 never returns 0"
