@@ -12,6 +12,11 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
+{ #category : #tests }
+PMAccuracyFindKeyUnitTest >> assertKey: selector equals: expected [
+	self assert: (example findKey: selector) equals: expected
+]
+
 { #category : #running }
 PMAccuracyFindKeyUnitTest >> setUp [
 	super setUp .
@@ -28,8 +33,7 @@ PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitializ
 
 	| selector |
 	selector := 'initialize'.
-	
-	self assert: (example findKey: selector) equals: 'AllTheRest'
+	self assertKey: selector equals: 'AllTheRest'
 ]
 
 { #category : #tests }
@@ -39,7 +43,7 @@ PMAccuracyFindKeyUnitTest >> testThatBlankStringIsReturnedWhenTheSelectorDoesNot
 	| selector |
 	selector := 'NON_EXISTENT'.
 	
-	self assert: (example findKey: selector) equals: ''
+	self assertKey: selector equals: ''
 ]
 
 { #category : #tests }
@@ -50,5 +54,5 @@ PMAccuracyFindKeyUnitTest >> testThatMatchingMessageIsReturnedWhenSelectorIsSuff
 	| selector |
 	selector := 'Aaa'.
 	
-	self assert: (example findKey: selector) equals: 'Aaa'
+	self assertKey: selector equals: 'Aaa'
 ]
