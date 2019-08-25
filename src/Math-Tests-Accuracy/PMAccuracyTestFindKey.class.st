@@ -6,8 +6,17 @@ and takes a selector as the argument, thereby making it more unit testable.
 Class {
 	#name : #PMAccuracyTestFindKey,
 	#superclass : #TestCase,
+	#instVars : [
+		'example'
+	],
 	#category : #'Math-Tests-Accuracy'
 }
+
+{ #category : #running }
+PMAccuracyTestFindKey >> setUp [
+	super setUp .
+	example := PMAccuracyTestExample new.
+]
 
 { #category : #tests }
 PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
@@ -17,9 +26,8 @@ PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
 	reasoning behind the code
 	"
 
-	| example selector |
+	| selector |
 	selector := 'initialize'.
-	example := PMAccuracyTestExample new.
 	
 	self assert: (example findKey: selector) equals: 'AllTheRest'
 ]
@@ -28,9 +36,8 @@ PMAccuracyTestFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
 PMAccuracyTestFindKey >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
 	"comment stating purpose of message"
 
-	| example selector |
+	| selector |
 	selector := 'NON_EXISTENT'.
-	example := PMAccuracyTestExample new.
 	
 	self assert: (example findKey: selector) equals: ''
 ]
@@ -40,9 +47,8 @@ PMAccuracyTestFindKey >> testThatMatchingMessageIsReturnedWhenSelectorIsSuffixOf
 	"Given the selector exists (Aaa, since initializeAaa is a defined message), 
 	the matching message is returned"
 
-	| example selector |
+	| selector |
 	selector := 'Aaa'.
-	example := PMAccuracyTestExample new.
 	
 	self assert: (example findKey: selector) equals: 'Aaa'
 ]
