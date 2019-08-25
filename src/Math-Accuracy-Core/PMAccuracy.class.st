@@ -220,6 +220,17 @@ PMAccuracy >> findKey [
 	^ matchingMessage
 ]
 
+{ #category : #accessing }
+PMAccuracy >> findKey: selector [
+	| matchingMessage |
+	selector = 'initialize'
+		ifTrue: [ ^ 'AllTheRest' ].
+	matchingMessage := names
+		detect: [ :name | selector endsWith: name ]
+		ifNone: [ '' ].
+	^ matchingMessage
+]
+
 { #category : #printing }
 PMAccuracy >> format: aCollection [
 	|col|
