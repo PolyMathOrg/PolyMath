@@ -33,6 +33,7 @@ PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitializ
 
 	| selector |
 	selector := 'initialize'.
+	
 	self assertKey: selector equals: 'AllTheRest'
 ]
 
