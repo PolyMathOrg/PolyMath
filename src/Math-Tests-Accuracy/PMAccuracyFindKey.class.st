@@ -4,7 +4,7 @@ and takes a selector as the argument, thereby making it more unit testable.
 
 "
 Class {
-	#name : #PMAccuracyFindKeyUnitTest,
+	#name : #PMAccuracyFindKey,
 	#superclass : #TestCase,
 	#instVars : [
 		'example'
@@ -13,18 +13,18 @@ Class {
 }
 
 { #category : #tests }
-PMAccuracyFindKeyUnitTest >> assertKey: selector equals: expected [
+PMAccuracyFindKey >> assertKey: selector equals: expected [
 	self assert: (example findKey: selector) equals: expected
 ]
 
 { #category : #running }
-PMAccuracyFindKeyUnitTest >> setUp [
+PMAccuracyFindKey >> setUp [
 	super setUp .
 	example := PMAccuracyTestExample new.
 ]
 
 { #category : #tests }
-PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
+PMAccuracyFindKey >> testThatAllTheRestIsReturnedWhenSelectorIsInitialize [
 	"
 	when the selector is 'initialize' the method returns 'AllTheRest'.
 	At the moment this is a regression test as it's difficult to understand
@@ -38,7 +38,7 @@ PMAccuracyFindKeyUnitTest >> testThatAllTheRestIsReturnedWhenSelectorIsInitializ
 ]
 
 { #category : #tests }
-PMAccuracyFindKeyUnitTest >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
+PMAccuracyFindKey >> testThatBlankStringIsReturnedWhenTheSelectorDoesNotExist [
 	"
 	This is a regression test where when a selector does not exist, the message
 	returns a blank string. Before, it used to raise an error, which was
@@ -51,7 +51,7 @@ PMAccuracyFindKeyUnitTest >> testThatBlankStringIsReturnedWhenTheSelectorDoesNot
 ]
 
 { #category : #tests }
-PMAccuracyFindKeyUnitTest >> testThatMatchingMessageIsReturnedWhenSelectorIsSuffixOfExistingMessage [
+PMAccuracyFindKey >> testThatMatchingMessageIsReturnedWhenSelectorIsSuffixOfExistingMessage [
 	"Given the selector exists (Aaa, since initializeAaa is a defined message), 
 	the matching message is returned"
 
