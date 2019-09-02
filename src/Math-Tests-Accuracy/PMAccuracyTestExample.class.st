@@ -67,7 +67,7 @@ PMAccuracyTestExample >> initializeAaa [
 	"this overrides defaults in #initialize:"
 
 	self result: #(#(5 3) #(4 4)).
-	self argument: #(#(false) #(true)).
+	self map: 'Aaa' to: #(#(false) #(true)).
 	self parameter: #(#(1 2) #(3 2.8888))
 ]
 
@@ -76,7 +76,7 @@ PMAccuracyTestExample >> initializeCcc [
 	"this overrides defaults in initialize"
 
 	self result: #(#(1) #(1) #(1)).
-	self argument: #(#(1) #(1.1) #(0.9))
+	self map: 'Ccc' to: #(#(1) #(1.1) #(0.9))
 ]
 
 { #category : #'initialize-release' }
@@ -84,7 +84,7 @@ PMAccuracyTestExample >> initializeDdd [
 	"this overrides defaults in initialize"
 
 	self result: #(1.1 2.2).
-	self argument: #().	"necessary since otherwise the default values defined in #initialize would be used"
+	self map: 'Ddd' to: #(). 
 	self parameter: #()
 ]
 
@@ -100,8 +100,16 @@ PMAccuracyTestExample >> initializeFff [
 	"this overrides defaults in initialize"
 
 	self result: #(0 1 0 -2 3).
-	self argument: nil.
+	self map: 'Fff' to: nil.
 	self parameter: nil
+]
+
+{ #category : #'initialize-release' }
+PMAccuracyTestExample >> map: key to: anArgument [
+	arguments
+		at: key
+		put: (anArgument ifNotNil: [ :a | self asArray: a ]).
+	^ anArgument
 ]
 
 { #category : #running }
