@@ -112,10 +112,22 @@ count :=count-(1/5).
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterAaa [
-^{ self parameter .self argument.self resultsAt: 'Aaa'.self numberOfDifferentParametersAt: 'Aaa'.self numberOfDifferentResultsAt:'Aaa'}
+^{ 
+	self parameter. 
+	self argument. 
+	self resultsAt: 'Aaa'. 
+	self numberOfDifferentParametersAt: 'Aaa'. 
+	self numberOfDifferentResultsAt: 'Aaa'
+ }
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterBbb [
-^{ self parameter .self argument.self resultsAt: 'Bbb'.self numberOfDifferentParametersAt: 'Bbb'.self numberOfDifferentResultsAt:'Bbb'}
+^{ 
+	self parameter.
+	self argument.
+	self resultsAt: 'Bbb'.
+	self numberOfDifferentParametersAt: 'Bbb'.
+	self numberOfDifferentResultsAt: 'Bbb'
+ }
 ]
