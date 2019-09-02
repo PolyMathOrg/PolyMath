@@ -166,7 +166,7 @@ ExtendedNumberParser >> readNumberWithFractionPartNumberOfTrailingZeroInIntegerP
 			fractionPart := 0.
 			numberOfNonZeroFractionDigits := 0.
 			numberOfTrailingZeroInFractionPart := 0]
-		ifNotNil: [.
+		ifNotNil: [
 			numberOfNonZeroFractionDigits := lastNonZero.
 			numberOfTrailingZeroInFractionPart := nDigits - lastNonZero].
 	self readExponent
