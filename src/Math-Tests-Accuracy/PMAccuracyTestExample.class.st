@@ -15,51 +15,58 @@ Class {
 
 { #category : #tests }
 PMAccuracyTestExample >> checkAaa [
-self argument first ifTrue:[^#(1 1)].
-^{4 +(0.4 * Random new next) . 2}
+	self argument first
+		ifTrue: [ ^ #(1 1) ].
+	^ {(4 + (0.4 * Random new next)).
+	2}
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkBbb [
-^self argument first size +self parameter first 
+	^ self argument first size + self parameter first
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkCcc [
-^self argument first +(0.01*self parameter first).
+	^ self argument first + (0.01 * self parameter first)
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkDdd [
-^{2 .3 }asOrderedCollection 
+	^ {2 . 3} asOrderedCollection
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkEee [
-^{self parameter first .3 }
+	^ {self parameter first.
+	3}
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkFff [
-^{0. 0. 1. 0. Float nan}
+	^ {0.
+	0.
+	1.
+	0.
+	Float nan}
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> count [
-^count
+	^ count
 ]
 
 { #category : #'initialize-release' }
-PMAccuracyTestExample >> initialize [ 
-"this is always necessarily the first thing:"
-super initialize .
-"this is only for testSetup:"
-count:=0.
-"now you can set defaults:"
-self result: #(#(2)#(3)).
-self argument: #(#('a') #('AG')).
-self parameter: #(#(1) #(3))
+PMAccuracyTestExample >> initialize [
+	"this is always necessarily the first thing:"
 
+	super initialize.
+	"this is only for testSetup:"
+	count := 0.
+	"now you can set defaults:"
+	self result: #(#(2) #(3)).
+	self argument: #(#('a') #('AG')).
+	self parameter: #(#(1) #(3))
 ]
 
 { #category : #'initialize-release' }
@@ -113,21 +120,29 @@ PMAccuracyTestExample >> map: key to: anArgument [
 ]
 
 { #category : #running }
-PMAccuracyTestExample >> setUp [ 
-count :=count+1.
+PMAccuracyTestExample >> setUp [
+	count := count + 1
 ]
 
 { #category : #running }
 PMAccuracyTestExample >> tearDown [
-count :=count-(1/5).
+	count := count - (1 / 5)
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterAaa [
-^{ self parameter .self argument.self resultsAt: 'Aaa'.self numberOfDifferentParametersAt: 'Aaa'.self numberOfDifferentResultsAt:'Aaa'}
+	^ {self parameter.
+	self argument.
+	(self resultsAt: 'Aaa').
+	(self numberOfDifferentParametersAt: 'Aaa').
+	(self numberOfDifferentResultsAt: 'Aaa')}
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterBbb [
-^{ self parameter .self argument.self resultsAt: 'Bbb'.self numberOfDifferentParametersAt: 'Bbb'.self numberOfDifferentResultsAt:'Bbb'}
+	^ {self parameter.
+	self argument.
+	(self resultsAt: 'Bbb').
+	(self numberOfDifferentParametersAt: 'Bbb').
+	(self numberOfDifferentResultsAt: 'Bbb')}
 ]
