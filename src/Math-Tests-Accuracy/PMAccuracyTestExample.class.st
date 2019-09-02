@@ -64,40 +64,44 @@ self parameter: #(#(1) #(3))
 
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initializeAaa [
-"this overrides defaults in #initialize:"
-self result: #(#(5 3) #(4 4)).
-self argument: #(#(false) #(true)).
-self parameter: #(#(1 2) #(3 2.8888))
+	"this overrides defaults in #initialize:"
+
+	self result: #(#(5 3) #(4 4)).
+	self argument: #(#(false) #(true)).
+	self parameter: #(#(1 2) #(3 2.8888))
 ]
 
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initializeCcc [
-"this overrides defaults in initialize"
-self result: #((1)(1)(1)).
-self argument: #((1)(1.1)(0.9)).
+	"this overrides defaults in initialize"
+
+	self result: #(#(1) #(1) #(1)).
+	self argument: #(#(1) #(1.1) #(0.9))
 ]
 
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initializeDdd [
-"this overrides defaults in initialize"
-self result: #(1.1 2.2).
-self argument: #()."necessary since otherwise the default values defined in #initialize would be used"
-self parameter: #().
+	"this overrides defaults in initialize"
+
+	self result: #(1.1 2.2).
+	self argument: #().	"necessary since otherwise the default values defined in #initialize would be used"
+	self parameter: #()
 ]
 
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initializeEee [
-"this overrides defaults in initialize"
-self result: #(#(1.1 2.2) #(1 3)).
+	"this overrides defaults in initialize"
 
+	self result: #(#(1.1 2.2) #(1 3))
 ]
 
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initializeFff [
-"this overrides defaults in initialize"
-self result: #(0 1 0 -2 3).
-self argument: nil.
-self parameter:nil.
+	"this overrides defaults in initialize"
+
+	self result: #(0 1 0 -2 3).
+	self argument: nil.
+	self parameter: nil
 ]
 
 { #category : #running }
