@@ -180,7 +180,7 @@ BaselineOfPolyMath >> sMark: spec [
 		project: 'SMark'
 		with: [ spec
 				className: #ConfigurationOfSMark;
-				versionString: '1.0.2';
+				versionString: '1.0.3';
 				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ]
 ]
 
