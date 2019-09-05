@@ -102,7 +102,7 @@ PMKDTreeTest >> testKDTree1Dimension [
 	self initializeTreeWith: m as: true .
 	1 to: 11 do: [:v | aVector := { 1 / v asFloat }.
 		aResult := stupid nnSearch: aVector i: 3.				"3 nearest numbers to aVector "
-		bResult :=t ree nnSearch: aVector i: 3.							
+		bResult := tree nnSearch: aVector i: 3.							
 		self equalityTest: aResult and: bResult].
 	]
 
