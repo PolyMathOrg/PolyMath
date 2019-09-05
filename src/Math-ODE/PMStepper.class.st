@@ -32,7 +32,7 @@ PMStepper class >> order [
 ]
 
 { #category : #stepping }
-PMStepper >> doStep: aState time: t stepSize: dt [
+PMStepper >> doStep: aState time: t stepSize: stepSize [
 	"This method should take one step from inState at time t of size dt, then answer it"
 	self subclassResponsibility 
 ]

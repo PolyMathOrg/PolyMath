@@ -131,18 +131,22 @@ PMAccuracyTestExample >> tearDown [
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterAaa [
-	^ {self parameter.
-	self argument.
-	(self resultsAt: 'Aaa').
-	(self numberOfDifferentParametersAt: 'Aaa').
-	(self numberOfDifferentResultsAt: 'Aaa')}
+^{ 
+	self parameter. 
+	self argument. 
+	self resultsAt: 'Aaa'. 
+	self numberOfDifferentParametersAt: 'Aaa'. 
+	self numberOfDifferentResultsAt: 'Aaa'
+ }
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterBbb [
-	^ {self parameter.
+^{ 
+	self parameter.
 	self argument.
-	(self resultsAt: 'Bbb').
-	(self numberOfDifferentParametersAt: 'Bbb').
-	(self numberOfDifferentResultsAt: 'Bbb')}
+	self resultsAt: 'Bbb'.
+	self numberOfDifferentParametersAt: 'Bbb'.
+	self numberOfDifferentResultsAt: 'Bbb'
+ }
 ]

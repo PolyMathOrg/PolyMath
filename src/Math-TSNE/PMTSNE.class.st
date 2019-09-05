@@ -213,7 +213,7 @@ PMTSNE >> computeGradient [
 PMTSNE >> computeLowDimensionalAffinities [
 	"Computes affinity of the reduced dimension/output"
 
-	| num sumNum q |
+	| num sumNum |
 	num := self computeLowDimensionalStudentT.
 	sumNum := num sum sum max: (Float epsilon).
 	q := num collect: [:element |
@@ -239,7 +239,7 @@ PMTSNE >> computeLowDimensionalStudentT [
 { #category : #accessing }
 PMTSNE >> computePValues [
 	"Computes joint probablity matrix P"
-	| p sumP |
+	| sumP |
 	p := self computePairwiseAffinities.
 	p := p + p transpose.
 	sumP := p sum sum.
@@ -257,7 +257,7 @@ PMTSNE >> computePairwiseAffinities [
 	binary search. The precision is selected based on input perplexity.
 	"
 	
-	| p d beta logU n betaMin betaMax distanceVector pVector entropy tries entropyDiff |
+	| d beta logU n betaMin betaMax distanceVector pVector entropy tries entropyDiff |
 	n := x numberOfRows.
 	d := self computePairwiseDistances.
 	p := PMMatrix zerosRows: n cols: n.

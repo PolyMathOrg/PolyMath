@@ -45,24 +45,24 @@ PMKDTreeTest >> testBenchmark [
 
 { #category : #tests }
 PMKDTreeTest >> testIndexedKDTree1Dimension [
-|m aVector aResult bResult |
-m :=(rand next:200) collect:   [:n| Array with: n]."1-dimensional data, just some numbers"
-self initializeTreeWith: m as: false .
-1 to: 11do:[:v|aVector :={1/ v asFloat }.
-	aResult :=stupid nnSearch: aVector  i:3.						"3 nearest numbers to aVector "
-	bResult :=m atAll: ((tree nnSearch: aVector  i:3)collect: [:a|a first]).	
-	self equalityTest: aResult and: bResult ] .
-]
+	| m aVector aResult bResult |
+	m := (rand next: 200) collect: [:n | Array with: n].  "1-dimensional data, just some numbers"
+	self initializeTreeWith: m as: false.
+	1 to: 11 do: [:v | aVector := { 1 / v asFloat }.
+		aResult := stupid nnSearch: aVector i: 3.			"3 nearest numbers to aVector "
+		bResult := m atAll: ((tree nnSearch: aVector i: 3) collect: [:a | a first]).	
+		self equalityTest: aResult and: bResult].
+	]
 
 { #category : #tests }
 PMKDTreeTest >> testIndexedKDTree4Dimensions [
-|m aVector aResult bResult|
-m :=(1 to: 2000) collect:   [:n| (rand next:4)-0.5].		"4-dimensional data"
-self initializeTreeWith: m as: false .
-50 timesRepeat: [aVector :=(rand next: 4)- 0.5.
-	aResult :=stupid nnSearch: aVector  i:2.						"2 nearest neighbours"
-	bResult :=m atAll: ((tree nnSearch: aVector  i:2)collect: [:a|a first]).
-	self equalityTest: aResult and: bResult  ] . 
+	| m aVector aResult bResult |
+	m := (1 to: 2000) collect: [:n | (rand next: 4) - 0.5].		"4-dimensional data"
+	self initializeTreeWith: m as: false.
+	50 timesRepeat: [aVector := (rand next: 4) - 0.5.
+		aResult := stupid nnSearch: aVector i: 2.			"2 nearest neighbours"
+		bResult := m atAll: ((tree nnSearch: aVector i: 2)collect: [:a | a first]).
+		self equalityTest: aResult and: bResult]. 
 
 ]
 
@@ -97,26 +97,25 @@ PMKDTreeTest >> testIndexedKDTreeSimple [
 
 { #category : #tests }
 PMKDTreeTest >> testKDTree1Dimension [
-|m aVector aResult bResult|
-m :=(rand next:200) collect:   [:n| Array with: n]."1-dimensional data, just some numbers"
-self initializeTreeWith: m as: true .
-1 to: 11do:[:v|aVector :={1/ v asFloat }.
-	aResult :=stupid nnSearch: aVector  i:3.						"3 nearest numbers to aVector "
-	bResult :=tree nnSearch: aVector  i:3.							
-	self equalityTest: aResult and: bResult  ]  .
-
-]
+	| m aVector aResult bResult |
+	m :=(rand next: 200) collect: [:n | Array with: n].	"1-dimensional data, just some numbers"
+	self initializeTreeWith: m as: true .
+	1 to: 11 do: [:v | aVector := { 1 / v asFloat }.
+		aResult := stupid nnSearch: aVector i: 3.				"3 nearest numbers to aVector "
+		bResult := tree nnSearch: aVector i: 3.							
+		self equalityTest: aResult and: bResult].
+	]
 
 { #category : #tests }
 PMKDTreeTest >> testKDTree1DimensionIntegers [
-|m aVector aResult bResult|
-m :=(1 to: 20) collect: [:index | Array with: (rand nextInt: 10)].	"only integers, obviously with multiples. test distances because the nearest neighbours are not necessarily the same"
-self initializeTreeWith: m as: true .
-0 to: 11do:[:v|aVector :={v}.
-	aResult :=(aVector first - (stupid nnSearch: aVector  i:3))abs.		"distances between 3 nearest numbers and aVector "
-	bResult :=(aVector first - (tree nnSearch: aVector  i:3))abs.		"distances using KDTree"
-	self equalityTest: aResult and: bResult ]  .
-]
+	| m aVector aResult bResult |
+	m := (1 to: 20) collect: [:index | Array with: (rand nextInt: 10)].	"only integers, obviously with multiples. test distances because the nearest neighbours are not necessarily the same"
+	self initializeTreeWith: m as: true.
+	0 to: 11 do:[:v | aVector :={v}.
+		aResult :=(aVector first - (stupid nnSearch: aVector i: 3)) abs.		"distances between 3 nearest numbers and aVector "
+		bResult :=(aVector first - (tree nnSearch: aVector i: 3)) abs.		"distances using KDTree"
+		self equalityTest: aResult and: bResult ]  .
+	]
 
 { #category : #tests }
 PMKDTreeTest >> testKDTree2Dimensions [

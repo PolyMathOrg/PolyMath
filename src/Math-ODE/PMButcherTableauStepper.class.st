@@ -58,9 +58,10 @@ PMButcherTableauStepper class >> stageWeights: anArray stageCoefficients: aMatri
 ]
 
 { #category : #stepping }
-PMButcherTableauStepper >> doStep: aStateTime stepSize: dt [
+PMButcherTableauStepper >> doStep: aStateTime stepSize: stepSize [
 	"not complete"
-	| stages stageCount stateDifference|
+	| stages stageCount stateDifference |
+	dt := stepSize.	"???"
 	self isInitialized.
 	stageCount := stageIncrements size.
 	stages := Array new: stageCount.
@@ -80,8 +81,8 @@ PMButcherTableauStepper >> doStep: aStateTime stepSize: dt [
 ]
 
 { #category : #stepping }
-PMButcherTableauStepper >> doStep: aState time: aTime stepSize: dt [
-	^ self doStep: (PMStateTime state: aState time: aTime) stepSize: dt.
+PMButcherTableauStepper >> doStep: aState time: aTime stepSize: stepSize [
+	^ self doStep: (PMStateTime state: aState time: aTime) stepSize: stepSize.
 ]
 
 { #category : #assertion }
