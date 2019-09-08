@@ -56,6 +56,25 @@ PMAccuracyTestExample >> count [
 	^ count
 ]
 
+{ #category : #private }
+PMAccuracyTestExample >> findKey [
+	| s selector |
+	s := thisContext sender.
+	selector := s sender method selector.
+	^ self findKey: selector
+]
+
+{ #category : #private }
+PMAccuracyTestExample >> findKey: selector [
+	| matchingMessage |
+	selector = 'initialize'
+		ifTrue: [ ^ 'AllTheRest' ].
+	matchingMessage := names
+		detect: [ :name | selector endsWith: name ]
+		ifNone: [ 'AllTheRest' ].
+	^ matchingMessage
+]
+
 { #category : #'initialize-release' }
 PMAccuracyTestExample >> initialize [
 	"this is always necessarily the first thing:"
