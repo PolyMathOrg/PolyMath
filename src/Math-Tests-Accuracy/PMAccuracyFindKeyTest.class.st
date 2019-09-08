@@ -10,6 +10,11 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
+{ #category : #tests }
+PMAccuracyFindKeyTest >> assertKeyFor: selector equals: expected [
+	self assert: (accuracy findKey: selector) equals: expected
+]
+
 { #category : #running }
 PMAccuracyFindKeyTest >> setUp [ 
 	super setUp.
@@ -21,7 +26,8 @@ PMAccuracyFindKeyTest >> setUp [
 PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorCorrespondsToNonExistentProperty [
 	| selector |
 	selector := 'NonExistent'.
-	self assert: (accuracy findKey: selector) equals: 'AllTheRest'
+	
+	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
 { #category : #tests }
@@ -29,12 +35,13 @@ PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorIsInitial
 	| selector |
 	selector := 'initialize'.
 	
-	self assert: (accuracy findKey: selector) equals: 'AllTheRest'
+	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
 { #category : #tests }
 PMAccuracyFindKeyTest >> testFindKeyReturnsPropertyWhenSelectorIsSuffixOfInitializePropertyMessage [
 	| selector |
 	selector := 'Aaa'.
-	self assert: (accuracy findKey: selector) equals: selector
+	
+	self assertKeyFor: selector equals: 'Aaa'
 ]
