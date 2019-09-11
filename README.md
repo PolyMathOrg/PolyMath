@@ -2,7 +2,7 @@
   <p align="center">
     Scientific Computing with Pharo
     <br>
-    <a href="docs/"><strong>Explore the docs »</strong></a>
+    <a href="/wiki"><strong>Explore the docs »</strong></a>
     <br>
     <br>
     <a href="https://github.com/PolyMathOrg/PolyMath/issues/new?labels=Type%3A+Defect">Report a defect</a>
