@@ -11,7 +11,7 @@ PMPermutationTest >> testAllOfSize [
 	self assert: (PMPermutation allOfSize: 0) equals: #().
 	self
 		assert: (PMPermutation allOfSize: 1)
-		equals: {(PMPermutation identity: 1)}.
+		equals: (Array with: (PMPermutation identity: 1)).
 	"odd"
 	p := PMPermutation allOfSize: 3.
 	self assert: p size equals: 3 factorial.
@@ -122,19 +122,25 @@ PMPermutationTest >> testFromCycles [
 { #category : #'class tests' }
 PMPermutationTest >> testGenerator [
 |g c|
-g:=PMPermutation generator: {PMPermutation size: 7 shift: 2}.
+g:=PMPermutation generator: (Array with: (PMPermutation size: 7 shift: 2)).
 g do:[:p|self assert: p class equals:PMPermutation].
 self assert: g size equals: 7.
 self assert: (g includes: (PMPermutation identity: 7)) .
-g:=PMPermutation generator: {PMPermutation size: 6 shift: 2. (PMPermutation identity: 6)reverse}.
+g:=PMPermutation generator: (Array
+	with: (PMPermutation size: 6 shift: 2)
+	with: (PMPermutation identity: 6)reverse).
 self assert: g size equals: 6.
 self assert: (g includes: (PMPermutation identity: 6)) .
 
-g:=PMPermutation generator: { PMPermutation fromCycles: #((2 3 4 5)).PMPermutation fromCycles: #((1 2))}.
+g:=PMPermutation generator: (Array
+	with: (PMPermutation fromCycles: #((2 3 4 5)))
+	with: (PMPermutation fromCycles: #((1 2)))).
 c:=(PMPermutation allOfSize: 5).
 self assert: g asSet equals: c asSet.
 self assert: g size equals: c size.
-g:=PMPermutation generator: { PMPermutation fromCycles: #((3 4 5)).PMPermutation fromCycles: #((1 2 3))}.
+g:=PMPermutation generator: (Array
+	with: (PMPermutation fromCycles: #((3 4 5)))
+	with: (PMPermutation fromCycles: #((1 2 3)))).
 c:=c select:[:p|p even].
 self assert: g asSet equals: c asSet.
 self assert: g size equals: c size.

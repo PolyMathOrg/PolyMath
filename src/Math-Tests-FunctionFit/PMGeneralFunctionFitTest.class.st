@@ -128,7 +128,7 @@ self assert: (s includesSubstring: '#(0.').
 PMGeneralFunctionFitTest >> testRelativeError [
 |r|
 f:=[ :x :a| a].
-col:={1@2. 2@6}.
+col:=Array with: 1@2 with: 2@6.
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: -6 maximumValues: 6 .
 fit populationSize: 10.
 r :=fit evaluate first .

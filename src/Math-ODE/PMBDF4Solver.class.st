@@ -62,7 +62,7 @@ PMBDF4Solver >> mainStepsPrevState: prevState prevPrevState: prevPrevState initS
 			self announceState: state time: time + self dt.
 			lastTime := time + self dt].
 			
-	^ { initialState. previousPrevState. previousState}
+	^ Array with: initialState with: previousPrevState with: previousState
 ]
 
 { #category : #'as yet unclassified' }

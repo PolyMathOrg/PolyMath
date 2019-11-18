@@ -203,7 +203,7 @@ PMVector >> householder [
 				put: ((x <=0) ifTrue: [x -u] ifFalse:  [0 - s / (x + u)]).
 			b :=(v at: 1) squared * 2 / (s + (v at: 1) squared).
 			v := v / (v at: 1) ].
-	^{b. v}
+	^Array with: b with: v
 ]
 
 { #category : #operation }

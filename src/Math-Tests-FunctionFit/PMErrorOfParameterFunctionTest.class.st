@@ -26,17 +26,11 @@ PMErrorOfParameterFunctionTest >> testErrorCollection [
 	f errorType: #squared.
 	self
 		assert: (f errorCollection: #(0 1))
-		equals:
-			{(1 / 4).
-			(4 / 9).
-			(9 / 16)}.
+		equals:(Array with: (1 / 4) with: (4 / 9) with: (9 / 16)).
 	f errorType: #abs.
 	self
 		assert: (f errorCollection: #(0 1))
-		equals:
-			{(1 / 2).
-			(2 / 3).
-			(3 / 4)}.
+		equals:(Array with: (1 / 2) with: (2 / 3) with: (3 / 4)).
 	f errorType: #median.
 	self assert: (f errorCollection: #(1 1)) equals: #(0 0 0)
 ]
@@ -64,7 +58,7 @@ PMErrorOfParameterFunctionTest >> testFunction [
 PMErrorOfParameterFunctionTest >> testPrint [
 |aStream  s|
 aStream :=ReadWriteStream with:''.
-f data:{(1@(1/2)). (2@(2/3)). (3@(3/4))} .
+f data:(Array with: (1@(1/2)) with: (2@(2/3)) with: (3@(3/4))).
 f printOn: aStream .
 s :=aStream contents .
 self assert: (s includesSubstring: 'a * x / (b + x)').
@@ -87,9 +81,7 @@ PMErrorOfParameterFunctionTest >> testQuartile [
 PMErrorOfParameterFunctionTest >> testRealValue [
 	f := PMErrorOfParameterFunction
 		function: [ :i :a | i + a ]
-		data:
-			{(1 @ 1).
-			(2 @ 2)}.
+		data: (Array with: 1 @ 1 with: 2 @ 2).
 	f errorType: #squared.
 	self assert: (f realValue: #(-2)) equals: 2.
 	f errorType: #abs.

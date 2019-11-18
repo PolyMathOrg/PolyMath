@@ -56,7 +56,7 @@ PMAB3Solver >> mainStepsPrevState: prevState prevPrevState: prevPrevState startT
 			self announceState: state time: time + self dt.
 			lastTime := time + (3*self dt)].
 			
-	^ { previousPrevState. previousState}
+	^ Array with: previousPrevState with: previousState
 	
 ]
 

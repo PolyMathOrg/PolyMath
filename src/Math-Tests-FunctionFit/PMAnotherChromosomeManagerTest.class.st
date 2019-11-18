@@ -192,7 +192,7 @@ PMAnotherChromosomeManagerTest >> testnumberOfHamersleyPoints [
 				numberOfHamersleyPoints: 9
 				dimension: 1
 				randomized: false)
-		equals: ((1 to: 9) collect: [ :i | {(i * (1 / 9))} ]).
+		equals: ((1 to: 9) collect: [ :i | Array with: i * (1 / 9) ]).
 	self
 		assert:
 			(PMAnotherChromosomeManager
@@ -200,42 +200,17 @@ PMAnotherChromosomeManagerTest >> testnumberOfHamersleyPoints [
 				dimension: 4
 				randomized: false)
 		equals:
-			{{(1 / 9).
-			(1 / 2).
-			(1 / 3).
-			(1 / 5)}.
-			{(2 / 9).
-			(1 / 4).
-			(2 / 3).
-			(2 / 5)}.
-			{(1 / 3).
-			(3 / 4).
-			(1 / 9).
-			(3 / 5)}.
-			{(4 / 9).
-			(1 / 8).
-			(4 / 9).
-			(4 / 5)}.
-			{(5 / 9).
-			(5 / 8).
-			(7 / 9).
-			(1 / 25)}.
-			{(2 / 3).
-			(3 / 8).
-			(2 / 9).
-			(6 / 25)}.
-			{(7 / 9).
-			(7 / 8).
-			(5 / 9).
-			(11 / 25)}.
-			{(8 / 9).
-			(1 / 16).
-			(8 / 9).
-			(16 / 25)}.
-			{1.
-			(9 / 16).
-			(1 / 27).
-			(21 / 25)}}.
+			(OrderedCollection new
+				add: (Array  with: (1 / 9) with: (1 / 2) with: (1 / 3) with: (1 / 5));
+				add: (Array  with: (2 / 9) with: (1 / 4) with: (2 / 3) with: (2 / 5));
+				add: (Array  with: (1 / 3) with: (3 / 4) with: (1 / 9) with: (3 / 5));
+				add: (Array  with: (4 / 9) with: (1 / 8) with: (4 / 9) with: (4 / 5));
+				add: (Array  with: (5 / 9) with: (5 / 8) with: (7 / 9) with: (1 / 25));
+				add: (Array  with: (2 / 3) with: (3 / 8) with: (2 / 9) with: (6 / 25));
+				add: (Array  with: (7 / 9) with: (7 / 8) with: (5 / 9) with: (11 / 25));
+				add: (Array  with: (8 / 9) with: (1 / 16) with: (8 / 9) with: (16 / 25));
+				add: (Array  with: 1 with: (9 / 16) with: (1 / 27) with: (21 / 25));
+				asArray).
 	rand := (PMAnotherChromosomeManager
 		numberOfHamersleyPoints: 3
 		dimension: 4

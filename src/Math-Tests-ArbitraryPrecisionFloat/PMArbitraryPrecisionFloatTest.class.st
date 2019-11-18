@@ -418,7 +418,11 @@ PMArbitraryPrecisionFloatTest >> testCosh [
 { #category : #'testing-arithmetic' }
 PMArbitraryPrecisionFloatTest >> testDivide [
 	| serie |
-	serie := {1. 2. 3. 5. 6. 7. 9. 10. 11. 12. 19. 243. 10 raisedTo: Float precision + 1. Float precision factorial. Float pi.}.
+	serie := #(1 2 3 5 6 7 9 10 11 12 19 243) asOrderedCollection
+			add: (10 raisedTo: Float precision + 1);
+			add: Float precision factorial;
+			add: Float pi;
+			asArray.
 	serie do: [:num |
 		| nf na |
 		nf := num asFloat.

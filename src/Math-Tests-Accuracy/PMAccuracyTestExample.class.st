@@ -17,8 +17,7 @@ Class {
 PMAccuracyTestExample >> checkAaa [
 	self argument first
 		ifTrue: [ ^ #(1 1) ].
-	^ {(4 + (0.4 * Random new next)).
-	2}
+	^ Array with: (4 + (0.4 * Random new next)) with: 2
 ]
 
 { #category : #tests }
@@ -33,22 +32,17 @@ PMAccuracyTestExample >> checkCcc [
 
 { #category : #tests }
 PMAccuracyTestExample >> checkDdd [
-	^ {2 . 3} asOrderedCollection
+	^ OrderedCollection with: 2 with: 3
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkEee [
-	^ {self parameter first.
-	3}
+	^ Array with: self parameter first with: 3
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkFff [
-	^ {0.
-	0.
-	1.
-	0.
-	Float nan}
+	^ Array with: 0 with: 0 with: 1 with: 0 with: Float nan
 ]
 
 { #category : #private }
@@ -150,22 +144,20 @@ PMAccuracyTestExample >> tearDown [
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterAaa [
-^{ 
-	self parameter. 
-	self argument. 
-	self resultsAt: 'Aaa'. 
-	self numberOfDifferentParametersAt: 'Aaa'. 
-	self numberOfDifferentResultsAt: 'Aaa'
- }
+^Array
+	with: self parameter
+	with: self argument
+	with: (self resultsAt: 'Aaa')
+	with: (self numberOfDifferentParametersAt: 'Aaa')
+	with: (self numberOfDifferentResultsAt: 'Aaa')
 ]
 
 { #category : #private }
 PMAccuracyTestExample >> testGetterBbb [
-^{ 
-	self parameter.
-	self argument.
-	self resultsAt: 'Bbb'.
-	self numberOfDifferentParametersAt: 'Bbb'.
-	self numberOfDifferentResultsAt: 'Bbb'
- }
+^Array
+	with: self parameter
+	with: self argument
+	with: (self resultsAt: 'Bbb')
+	with: (self numberOfDifferentParametersAt: 'Bbb')
+	with: (self numberOfDifferentResultsAt: 'Bbb')
 ]

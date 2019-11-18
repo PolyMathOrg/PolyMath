@@ -64,7 +64,7 @@ verbose ifFalse: [ ^self ].
 GrowlMorph 
 			openWithLabel: 'Info'
 			contents: ('{1} iterations used.
-warning: {2}-cycle detected' format: {iterations. cycleLength})
+warning: {2}-cycle detected' format: (Array with: iterations with: cycleLength))
 			color: Color gray muchDarker
 ]
 
@@ -151,7 +151,7 @@ PMFixpoint >> simpleInfo [
 verbose ifFalse: [ ^self ].
 GrowlMorph 
 			openWithLabel: 'Info' 
-			contents: ('{1} iterations needed.' format: {iterations}) 
+			contents: ('{1} iterations needed.' format: (Array with: iterations)) 
 			color: Color green muchDarker
 ]
 
@@ -161,7 +161,7 @@ verbose ifFalse: [ ^self ].
 GrowlMorph 
 			openWithLabel: 'Warning' 
 			contents: ('maximumIterations ({1}) reached.
-you can run evaluate a second time' format: {maximumIterations}) 
+you can run evaluate a second time' format: (Array with: maximumIterations)) 
 			color: Color orange darker
 ]
 
