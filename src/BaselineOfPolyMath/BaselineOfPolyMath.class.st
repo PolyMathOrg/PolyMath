@@ -177,19 +177,13 @@ BaselineOfPolyMath >> projectClass [
 { #category : #dependencies }
 BaselineOfPolyMath >> sMark: spec [
 	spec
-		project: 'SMark'
-		with: [ spec
-				className: #ConfigurationOfSMark;
-				versionString: '1.0.3';
-				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ]
+		baseline: 'SMark'
+		with: [ spec repository: 'github://smarr/SMark:v1.0.4/repository' ]
 ]
 
 { #category : #dependencies }
 BaselineOfPolyMath >> xmlWriter: spec [
 	spec
-		project: 'XMLWriter'
-		with: [ spec
-				className: #ConfigurationOfXMLWriter;
-				versionString: '2.3.10';
-				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ]
+		baseline: 'XMLWriter'
+		with: [ spec repository: 'github://pharo-contributions/XML-XMLWriter:2.9.0/src' ]
 ]
