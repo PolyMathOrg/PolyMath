@@ -132,8 +132,10 @@ n:=0.
 [	self quartile: max.
 	self evaluate.
 	errorCol:= self errorCollection sort.
-	d2:=(errorFunction parameterSize to: (errorCol size -4) ) collect: [:i| {i+2.
-		(2*(errorCol at: i)) - (errorCol at: i+1) - (2*(errorCol at: i+2))- (errorCol at: i+3)+(2*(errorCol at: i+4))} ].
+	d2:=(errorFunction parameterSize to: (errorCol size -4) ) collect: [:i|
+		Array
+			with: (i+2)
+			with: ((2*(errorCol at: i)) - (errorCol at: i+1) - (2*(errorCol at: i+2))- (errorCol at: i+3)+(2*(errorCol at: i+4))) ].
 	[max :=#(5 0).
 	d2 do: [:d|((d at: 2) >= (max at:2)) ifTrue: [max :=d]].
 	(max first = (d2 last first))ifTrue: [
@@ -296,7 +298,7 @@ PMGeneralFunctionFit >> truncateData [
 |ec ei |
 dataTruncated ifTrue: [^Error signal:'data is already truncated'].
 ec:=self errorCollection .
-ei:=(ec withIndexCollect: [:e :i|{e.i}]).
+ei:=(ec withIndexCollect: [:e :i| Array with: e with: i]).
 ei:=(ei sort:[:a :b|a first<b first]) collect: [:e|e second ].
 ei :=ei copyFrom: 1 to: (self quartile * ec size) truncated.
 self resetResult.

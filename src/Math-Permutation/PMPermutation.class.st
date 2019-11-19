@@ -128,9 +128,9 @@ block:=[:nandk||n k|
 	(n=k and:[n isZero])
 		ifTrue:[1]
 		ifFalse:[	(n * k) isZero 
-				ifTrue:[0]
-				ifFalse:[ (block value:{n-1.k-1})+((n-1)*(block value:{n-1.k}))]]]memoized .
-^block value:{anInteger . anotherInteger }
+			ifTrue:[0]
+			ifFalse:[ (block value: (Array with: n-1 with: k-1))+((n-1)*(block value:(Array with: n-1 with: k)))]]]memoized .
+^block value: (Array with: anInteger with: anotherInteger)
 ]
 
 { #category : #converting }

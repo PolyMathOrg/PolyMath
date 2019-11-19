@@ -51,21 +51,13 @@ PMAccuracyTest >> testAsArray [
 PMAccuracyTest >> testCalcDeviationsInMax [
 	| r c |
 	c := #(#(1 2 3) #(2 3 6)).
-	r := {(3 / 2).
-	(9 / 4).
-	4}.
+	r := Array with: (3 / 2) with: (9 / 4) with: 4.
 	self
 		assert: (a calcDeviations: r in: c max: false)
-		equals:
-			{(-100 / 3) asFloat.
-			(-100 / 9) asFloat.
-			-25}.
+		equals: (Array with: (-100 / 3) asFloat with: (-100 / 9) asFloat with: -25).
 	self
 		assert: (a calcDeviations: r in: c max: true)
-		equals:
-			{(100 / 3) asFloat.
-			(100 / 3) asFloat.
-			50}
+		equals: (Array with: (100 / 3) asFloat with: (100 / 3) asFloat with: 50)
 ]
 
 { #category : #tests }
@@ -112,11 +104,7 @@ PMAccuracyTest >> testDataTree [
 	s := a dataTree atPath: #('names' 'Fff' 'error').
 	self
 		assert: (s copyFrom: 1 to: 4)
-		equals:
-			{0.
-			Float infinity.
-			-100.0.
-			Float infinity negated}.
+		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
 	self assert: (s at: 5) isNaN
 ]
 
@@ -145,16 +133,13 @@ PMAccuracyTest >> testExtremeCollectionmax [
 	c := #(4 4 2).
 	self
 		assert: (a extremeCollection: c max: true)
-		equals: {Float infinity negated}.
+		equals: (Array with: Float infinity negated).
 	self
 		assert: (a extremeCollection: c max: false)
-		equals: {Float infinity}.
+		equals: (Array with: Float infinity).
 	self
-		assert: (a extremeCollection: {c} max: false)
-		equals:
-			{Float infinity.
-			Float infinity.
-			Float infinity}
+		assert: (a extremeCollection: (Array with: c) max: false)
+		equals: (Array with: Float infinity with: Float infinity with: Float infinity)
 ]
 
 { #category : #tests }
@@ -298,22 +283,24 @@ PMAccuracyTest >> testResultsKeyForAtPosition [
 	self
 		assert:
 			(a dataTree
-				atPath:
-					{'names'.
-					'Ccc'.
-					#(1).
-					(a resultsKeyFor: 'Ccc' AtPosition: 1).
-					'arguments'})
+				atPath: (
+					Array
+						with: 'names'
+						with: 'Ccc'
+						with: #(1)
+						with: (a resultsKeyFor: 'Ccc' AtPosition: 1)
+						with: 'arguments'))
 		equals: 1.
 	self
 		assert:
 			(a dataTree
-				atPath:
-					{'names'.
-					'Ccc'.
-					#(1).
-					(a resultsKeyFor: 'Ccc' AtPosition: 3).
-					'arguments'})
+				atPath: (
+					Array
+						with: 'names'
+						with: 'Ccc'
+						with: #(1)
+						with: (a resultsKeyFor: 'Ccc' AtPosition: 3)
+						with: 'arguments'))
 		equals: 0.9.
 	self assert: (a resultsKeyFor: 'Eee' AtPosition: 2) equals: #(1 3).
 	self

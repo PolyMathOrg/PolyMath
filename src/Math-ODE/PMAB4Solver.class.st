@@ -63,7 +63,7 @@ PMAB4Solver >> mainStepsPrevState: prevState prevPrevState: prevPrevState initSt
 			self announceState: state time: time + self dt.
 			lastTime := time + (4*self dt)].
 			
-	^ { initialState. previousPrevState. previousState}
+	^ Array with: initialState with: previousPrevState with: previousState
 ]
 
 { #category : #'as yet unclassified' }

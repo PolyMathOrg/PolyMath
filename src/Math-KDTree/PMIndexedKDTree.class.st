@@ -13,14 +13,12 @@ Class {
 { #category : #'instance creation' }
 PMIndexedKDTree class >> withAll: aCollectionOfCollections [
 "make a KDTree from a SequenceableCollection of SequenceableCollections ,which is an ordered Collection of points in a n-dimensional space. the nearest neighbour search then returns the indices of the neighbours"
-|c|
-c :=aCollectionOfCollections withIndexCollect: [:v :i| {i.v.}]  .
-^super withAll: c.  
+^super withAll: (aCollectionOfCollections withIndexCollect: [:v :i| Array with: i with: v ]).  
 ]
 
 { #category : #private }
 PMIndexedKDTree >> add: aDistance to: aNNStore [
-aNNStore add: {aDistance . {index . value}} .
+aNNStore add: (Array with: aDistance with: (Array with: index with: value)) .
 ]
 
 { #category : #private }
@@ -36,7 +34,7 @@ PMIndexedKDTree >> nnSearch: aSequenceableCollection i: anInt [
 |n|
 n :=PMNNStore new: anInt .
 self nnSearch: aSequenceableCollection asFloatArray near: n .
-^anInt =1 ifTrue: [n data first first ] ifFalse:   [n completeData collect: [:i | {(i at:2)first . i first}]  ]  
+^anInt =1 ifTrue: [n data first first ] ifFalse: [n completeData collect: [:i | Array with: (i at:2) first with: i first]  ]  
 ]
 
 { #category : #private }

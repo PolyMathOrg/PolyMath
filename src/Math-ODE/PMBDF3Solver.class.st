@@ -54,7 +54,7 @@ PMBDF3Solver >> mainStepsPrevState: prevState prevPrevState: prevPrevState start
 			"announce step results"
 			self announceState: state time: time + self dt.
 			lastTime := time + self dt].  
-		^ { previousPrevState. previousState }
+		^ Array with: previousPrevState with: previousState
 ]
 
 { #category : #'as yet unclassified' }

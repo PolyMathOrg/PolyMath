@@ -63,17 +63,11 @@ PMKolmogorovSmirnov2Sample >> initCachedUCalculation [
 	cij := self cFrom: i and: j.
 	i * j = 0
 		ifTrue: [ cij ]
-		ifFalse: [ cij
-				*
-					((uCalcBlock
-						value:
-							{i.
-							(j - 1)})
-						+
-							(uCalcBlock
-								value:
-									{(i - 1).
-									j})) ] ] memoized
+		ifFalse: [ cij * (
+			(uCalcBlock value: (Array with: i with: j - 1))
+			+
+			(uCalcBlock value: (Array with: i - 1 with: j))
+		) ] ] memoized
 ]
 
 { #category : #initialization }
@@ -123,7 +117,7 @@ PMKolmogorovSmirnov2Sample >> ksStatistic [
 { #category : #private }
 PMKolmogorovSmirnov2Sample >> makeCDFOf: aCollection intoFirst: aBoolean [
 	"if aCollection consists of numbers, 
-it returns a sorted array of (number->{cdf.aBoolean})"
+it returns a sorted array of (number-> (Array with: cdf with: aBoolean))"
 
 	| cd s result |
 	cd := 0.
@@ -131,10 +125,7 @@ it returns a sorted array of (number->{cdf.aBoolean})"
 	result := aCollection asBag sortedElements
 		do: [ :a | 
 			cd := a value / s + cd.
-			a
-				value:
-					{cd.
-					aBoolean} ].
+			a value: (Array with: cd with: aBoolean) ].
 	^ aBoolean
 		ifTrue: [ data := result ]
 		ifFalse: [ compareWith := result ]
@@ -154,10 +145,8 @@ Kim, P. J. & Jennrich, R. I.
 in 'Selected Tables in Mathematical Statistics Volume I' (1973)."
 
 	ksStatistic ifNil: [ self ksStatistic ].
-	^ (uCalcBlock
-		value:
-			{smallSize.
-			bigSize}) / (smallSize + bigSize take: smallSize)
+	^ (uCalcBlock value: (Array with: smallSize with: bigSize))
+		/ (smallSize + bigSize take: smallSize)
 ]
 
 { #category : #printing }

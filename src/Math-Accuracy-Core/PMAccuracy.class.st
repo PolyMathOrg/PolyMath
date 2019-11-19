@@ -134,7 +134,7 @@ PMAccuracy >> argumentAt: aName [
 PMAccuracy >> asArray: aCol [ 
 	^(aCol isCollection and: [ aCol isSequenceable and: [aCol isString not] ])  
 		ifTrue: [ aCol asArray ] 
-		ifFalse: [ {aCol} ]
+		ifFalse: [ Array with: aCol ]
 ]
 
 { #category : #private }
@@ -302,7 +302,7 @@ no isCollection ifFalse: [^1].
 PMAccuracy >> numberOfDifferentResultsAt: aname [
 	|no|
 	no := self resultsAt: aname.
-	no isCollection ifFalse:[no:={no}].
+	no isCollection ifFalse:[no:= Array with: no].
 	^ no first isCollection ifTrue: [ no size ] ifFalse: [ 1 ]
 ]
 
