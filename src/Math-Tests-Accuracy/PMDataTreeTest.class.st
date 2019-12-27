@@ -40,9 +40,6 @@ PMDataTreeTest >> testDataTree [
 	| s |
 	a run.
 	self
-		assert: (a dataTree atPath: #('names' 'data'))
-		equals: #('Aaa' 'Bbb' 'Ccc' 'Ddd' 'Eee' 'Fff').
-	self
 		assert: (a dataTree atPath: #('names' 'Aaa' #(1 2) #(4 4)))
 		equals:
 			(KeyedTree new
@@ -73,4 +70,12 @@ PMDataTreeTest >> testThatRunIncrementsTheNumberOfIterations [
 	"SMELL - we're really testing run, it seems."
 	a run.
 	self assert: (a dataTree atPath: #('iterations')) equals: 1.
+]
+
+{ #category : #tests }
+PMDataTreeTest >> testThatTheNamesAreInitialisationKeys [
+	a run.
+	self
+		assert: (a dataTree atPath: #('names' 'data'))
+		equals: #('Aaa' 'Bbb' 'Ccc' 'Ddd' 'Eee' 'Fff')
 ]
