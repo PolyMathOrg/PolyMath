@@ -40,17 +40,6 @@ PMDataTreeTest >> testDataTree [
 	| s |
 	a run.
 	self
-		assert: (a dataTree atPath: #('names' 'Aaa' #(1 2) #(4 4)))
-		equals:
-			(KeyedTree new
-				at: 'arguments' put: true;
-				at: 'data' put: #(#(1 1));
-				at: 'error' put: #(300.0 300.0);
-				at: 'expected result' put: #(4 4);
-				at: 'result' put: #(1 1);
-				at: 'type' put: 'result';
-				yourself).
-	self
 		assert: (a dataTree atPath: #('names' 'Aaa' 'data'))
 		equals: #(#(1 2) #(3 2.8888)).
 	self
@@ -63,6 +52,22 @@ PMDataTreeTest >> testDataTree [
 		assert: (s copyFrom: 1 to: 4)
 		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
 	self assert: (s at: 5) isNaN
+]
+
+{ #category : #tests }
+PMDataTreeTest >> testThatKeyedTreeContainsArgsDataErrorResultsAndType [
+	a run.
+	self
+		assert: (a dataTree atPath: #('names' 'Aaa' #(1 2) #(4 4)))
+		equals:
+			(KeyedTree new
+				at: 'arguments' put: true;
+				at: 'data' put: #(#(1 1));
+				at: 'error' put: #(300.0 300.0);
+				at: 'expected result' put: #(4 4);
+				at: 'result' put: #(1 1);
+				at: 'type' put: 'result';
+				yourself)
 ]
 
 { #category : #tests }
