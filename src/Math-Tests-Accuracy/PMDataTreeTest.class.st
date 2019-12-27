@@ -39,7 +39,6 @@ PMDataTreeTest >> tearDown [
 PMDataTreeTest >> testDataTree [
 	| s |
 	a run.
-	self assert: (a dataTree atPath: #('iterations')) equals: 1.
 	self
 		assert: (a dataTree atPath: #('names' 'data'))
 		equals: #('Aaa' 'Bbb' 'Ccc' 'Ddd' 'Eee' 'Fff').
@@ -67,4 +66,11 @@ PMDataTreeTest >> testDataTree [
 		assert: (s copyFrom: 1 to: 4)
 		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
 	self assert: (s at: 5) isNaN
+]
+
+{ #category : #tests }
+PMDataTreeTest >> testThatRunIncrementsTheNumberOfIterations [
+	"SMELL - we're really testing run, it seems."
+	a run.
+	self assert: (a dataTree atPath: #('iterations')) equals: 1.
 ]
