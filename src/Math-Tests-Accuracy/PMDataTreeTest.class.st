@@ -56,6 +56,10 @@ PMDataTreeTest >> testDataTree [
 
 { #category : #tests }
 PMDataTreeTest >> testThatKeyedTreeContainsArgsDataErrorResultsAndType [
+	"SMELL - it's not easy to determine the true purpose of the
+	test and, perhaps with the exception of the 'expected result', 
+	how input leads to the output.
+	"
 	a run.
 	self
 		assert: (a dataTree atPath: #('names' 'Aaa' #(1 2) #(4 4)))
