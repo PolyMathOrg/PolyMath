@@ -40,9 +40,6 @@ PMDataTreeTest >> testDataTree [
 	| s |
 	a run.
 	self
-		assert: (a dataTree atPath: #('names' 'Aaa' 'data'))
-		equals: #(#(1 2) #(3 2.8888)).
-	self
 		assert: (a dataTree atPath: #('names' 'Bbb' #(3) 'data'))
 		equals: #(#(2) #(3)).
 	s := a dataTree atPath: #('names' 'Ccc' #(3)).
@@ -52,6 +49,17 @@ PMDataTreeTest >> testDataTree [
 		assert: (s copyFrom: 1 to: 4)
 		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
 	self assert: (s at: 5) isNaN
+]
+
+{ #category : #tests }
+PMDataTreeTest >> testThatDataForAaaIsTheCorrespondingParameter [
+	| parameterForAaa |
+	a run.
+	
+	parameterForAaa := #(#(1 2) #(3 2.8888)).
+	self
+		assert: (a dataTree atPath: #('names' 'Aaa' 'data'))
+		equals: parameterForAaa.
 ]
 
 { #category : #tests }
