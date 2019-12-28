@@ -37,15 +37,16 @@ PMDataTreeTest >> tearDown [
 
 { #category : #tests }
 PMDataTreeTest >> testDataTree [
-	| keyedTree |
+	| keyedTree error |
 	a run.
 	keyedTree := a dataTree atPath: #('names' 'Ccc' #(3)).
 	self assert: keyedTree keys size equals: 5.
-	keyedTree := a dataTree atPath: #('names' 'Fff' 'error').
+	
+	error := a dataTree atPath: #('names' 'Fff' 'error').
 	self
-		assert: (keyedTree copyFrom: 1 to: 4)
+		assert: (error copyFrom: 1 to: 4)
 		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
-	self assert: (keyedTree at: 5) isNaN
+	self assert: (error at: 5) isNaN.
 ]
 
 { #category : #tests }
