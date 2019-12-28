@@ -31,8 +31,8 @@ PMDataTreeTest >> setUp [
 
 { #category : #running }
 PMDataTreeTest >> tearDown [ 
-	super tearDown.
 	PMAccuracyTestExample decimalPlaces: dp.
+	super tearDown.
 ]
 
 { #category : #tests }
