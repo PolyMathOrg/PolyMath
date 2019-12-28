@@ -37,16 +37,10 @@ PMDataTreeTest >> tearDown [
 
 { #category : #tests }
 PMDataTreeTest >> testDataTree [
-	| keyedTree error |
+	| keyedTree |
 	a run.
 	keyedTree := a dataTree atPath: #('names' 'Ccc' #(3)).
 	self assert: keyedTree keys size equals: 5.
-	
-	error := a dataTree atPath: #('names' 'Fff' 'error').
-	self
-		assert: (error copyFrom: 1 to: 4)
-		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
-	self assert: (error at: 5) isNaN.
 ]
 
 { #category : #tests }
@@ -100,6 +94,17 @@ PMDataTreeTest >> testThatTheDataForBbbIsTheDefaultResult [
 	self
 		assert: (a dataTree atPath: #('names' 'Bbb' #(3) 'data'))
 		equals: defaultResultAtInitialisation
+]
+
+{ #category : #tests }
+PMDataTreeTest >> testThatTheErrorForFffIsCorrect [
+	| error |
+	a run.
+	error := a dataTree atPath: #('names' 'Fff' 'error').
+	self
+		assert: (error copyFrom: 1 to: 4)
+		equals: (Array with: 0 with: Float infinity with: -100.0 with: Float infinity negated).
+	self assert: (error at: 5) isNaN.
 ]
 
 { #category : #tests }
