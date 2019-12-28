@@ -19,15 +19,16 @@ PMAccuracyTest >> initialize [
 ]
 
 { #category : #running }
-PMAccuracyTest >> setUp [ 
+PMAccuracyTest >> setUp [
+	super setUp.
 	a := PMAccuracyTestExample new.
-	PMAccuracyTestExample decimalPlaces: 3.
+	PMAccuracyTestExample decimalPlaces: 3
 ]
 
 { #category : #running }
-PMAccuracyTest >> tearDown [ 
+PMAccuracyTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
-
+	super tearDown.
 ]
 
 { #category : #tests }
