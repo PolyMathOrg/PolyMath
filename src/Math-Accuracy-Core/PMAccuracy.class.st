@@ -19,7 +19,7 @@ Class {
 	#classVars : [
 		'DecimalPlaces'
 	],
-	#category : 'Math-Accuracy-Core'
+	#category : #'Math-Accuracy-Core'
 }
 
 { #category : #accessing }
@@ -426,7 +426,7 @@ PMAccuracy >> run: anArrayOfNames [
 		<< 'Report for: ';
 		<< self class name;
 		cr.
-	self ifSeveralterations: [ aStream << 'iterations: '	<< iterations; cr ].
+	self ifSeveralterations: [ aStream << 'iterations: '	<< iterations asString; cr ].
 	(self tree: dataTree removeAll type: self class name data: 'names')
 		at: 'iterations' put: iterations;
 		at: 'names' put: (self tree: KeyedTree new type: 'names' data: a).
