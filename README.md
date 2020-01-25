@@ -19,6 +19,7 @@
 
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
+
 You can load PolyMath 1.0.1 into a fresh Pharo 7.0 image with:
 
 ```Smalltalk
@@ -36,6 +37,7 @@ Metacello new
         baseline: 'PolyMath';
         load
 ```
+
 
 We have **815** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
 
