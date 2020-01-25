@@ -6,8 +6,11 @@ environment:
   CYG_MIRROR: http://cygwin.mirror.constant.com
   SCI_RUN: /cygdrive/c/smalltalkCI-master/run.sh
   matrix:
-    - SMALLTALK: Pharo-8.0
-    
+    - SMALLTALK: Pharo32-7.0
+    - SMALLTALK: Pharo64-7.0
+    - SMALLTALK: Pharo32-8.0
+    - SMALLTALK: Pharo64-8.0
+
 platform:
   - x86
 
