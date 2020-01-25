@@ -2,12 +2,12 @@ Extension { #name : #SortedCollection }
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> california [
-	^ {0 . 0 . 0 . 1}
+	^ Array with: 0 with: 0 with: 0 with: 1
 ]
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> closestObservation [
-	^ {1/2 . 0 . 0 . 0}
+	^ Array with: 1/2 with: 0 with: 0 with: 0
 ]
 
 { #category : #'*Math-Quantile' }
@@ -26,7 +26,7 @@ SortedCollection class >> example2 [
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> hydrologist [
-	^ {1/2 . 0 . 0 . 1}
+	^ Array with: 1/2 with: 0 with: 0 with: 1
 ]
 
 { #category : #'*Math-Quantile' }
@@ -38,22 +38,22 @@ SortedCollection >> interQuartileRange [
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> inverseCDF [
-	^ {0 . 0 . 1 . 0}
+	^ Array with: 0 with: 0 with: 1 with: 0
 ]
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> medianBased [
-	^ {1/3 . 1/3 . 0 . 1}
+	^ Array with: 1/3 with: 1/3 with: 0 with: 1
 ]
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> modeBased [
-	^ {1 . -1 . 0 . 1}
+	^ Array with: 1 with: -1 with: 0 with: 1
 ]
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> normalDistribution [
-	^ {3/8 . 1/4 . 0 . 1}
+	^ Array with: 3/8 with: 1/4 with: 0 with: 1
 ]
 
 { #category : #'*Math-Quantile' }
@@ -95,5 +95,5 @@ SortedCollection >> quantile: aProbability withProbs: anArray [
 
 { #category : #'*Math-Quantile' }
 SortedCollection >> weibull [
-	^ {0 . 1 . 0 . 1}
+	^ Array with: 0 with: 1 with: 0 with: 1
 ]

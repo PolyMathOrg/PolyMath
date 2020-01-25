@@ -670,7 +670,7 @@ PMMatrix >> qrFactorization [
 	i>0 ifTrue: [ r :=PMMatrix rows: (r rows copyFrom: 1 to:  colSize). 
 					i := q numberOfColumns - i. 
 					q := PMMatrix rows:  ( q rows collect: [:row| row copyFrom: 1 to: i]) ].  
-	^{q. r}
+	^Array with: q with: r
 ]
 
 { #category : #'as yet unclassified' }
@@ -729,9 +729,7 @@ PMMatrix >> qrFactorizationWithPivoting [
 			i := q numberOfColumns - i.
 			pivot := pivot copyFrom: 1 to: i.
 			q := PMMatrix rows: (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
-	^ {q.
-	r.
-	pivot}
+	^ Array with: q with: r with: pivot
 ]
 
 { #category : #'as yet unclassified' }

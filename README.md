@@ -2,7 +2,7 @@
   <p align="center">
     Scientific Computing with Pharo
     <br>
-    <a href="docs/"><strong>Explore the docs »</strong></a>
+    <a href="https://github.com/PolyMathOrg/PolyMath/wiki"><strong>Explore the docs »</strong></a>
     <br>
     <br>
     <a href="https://github.com/PolyMathOrg/PolyMath/issues/new?labels=Type%3A+Defect">Report a defect</a>
@@ -19,11 +19,12 @@
 
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
-You can load PolyMath 1.0 into a fresh Pharo 7.0 image with:
+
+You can load PolyMath 1.0.1 into a fresh Pharo 7.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:v1.0/src';
+        repository: 'github://PolyMathOrg/PolyMath:v1.0.1/src';
         baseline: 'PolyMath';
         load
 ```
@@ -37,7 +38,8 @@ Metacello new
         load
 ```
 
-We have **806** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
+
+We have **815** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
 
 PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provides the following basic functionalities:
 - complex and quaternions extensions,

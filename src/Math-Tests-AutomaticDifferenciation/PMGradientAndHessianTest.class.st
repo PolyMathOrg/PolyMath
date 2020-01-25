@@ -16,13 +16,7 @@ PMGradientAndHessianTest >> test [
 	h := PMHessian of: f.
 	r := #(0 0).
 	self assert: (g value: #(0 -2)) equals: r.
-	self
-		assert:
-			(g
-				value:
-					{1.
-					(-3 / 2)})
-		equals: r.
+	self assert: (g value: (Array with: 1 with: (-3 / 2))) equals: r.
 	self assert: (g value: #(-4 6)) equals: r.
 	self
 		assert: (h value: #(0 -2))

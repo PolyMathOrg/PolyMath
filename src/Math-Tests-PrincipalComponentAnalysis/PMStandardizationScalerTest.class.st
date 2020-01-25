@@ -10,7 +10,7 @@ PMStandardizationScalerTest >> testMean [
 	aMatrix := PMMatrix rows: #((0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
 	t fit: aMatrix.
-	self assert: t mean asArray closeTo: #(0.5 0.5)
+	self assert: t mean  closeTo: #(0.5 0.5)
 ]
 
 { #category : #tests }
@@ -19,7 +19,7 @@ PMStandardizationScalerTest >> testScale [
 	aMatrix := PMMatrix rows: #((0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
 	t fit: aMatrix.
-	self assert: t scale asArray closeTo: #(0.5 0.5)
+	self assert: t scale asPMVector closeTo: #(0.5 0.5)
 ]
 
 { #category : #tests }
@@ -54,7 +54,7 @@ PMStandardizationScalerTest >> testVariance [
 	aMatrix := PMMatrix rows: #((0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
 	t fit: aMatrix.
-	self assert: t variance asArray closeTo: #(0.25 0.25)
+	self assert: t variance  asPMVector closeTo: #(0.25 0.25)
 ]
 
 { #category : #tests }
@@ -66,5 +66,5 @@ PMStandardizationScalerTest >> testZeroScale [
 	aMatrix := PMMatrix rows: #((8.0 0.0) #(8.0 0.0) #(8.0 1.0) #(8.0 1.0)).
 	t := PMStandardizationScaler new.
 	t fit: aMatrix.
-	self assert: t scale asArray closeTo: #(1.0 0.5)
+	self assert: t scale asPMVector  closeTo: #(1.0 0.5)
 ]

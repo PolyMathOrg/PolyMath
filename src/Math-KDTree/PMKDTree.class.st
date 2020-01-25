@@ -24,7 +24,7 @@ aCollectionOfCollections first ifEmpty: [self error: 'KDTree withAll: error'  ].
 
 { #category : #private }
 PMKDTree >> add: aDistance to: aNNStore [
-aNNStore add: {aDistance . value} .
+aNNStore add: (Array with: aDistance with: value) .
 ]
 
 { #category : #initialize }

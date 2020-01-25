@@ -146,17 +146,9 @@ PMAnotherGeneticOptimizerTest >> testaddPointAt [
 	b := go bestPoints.
 	self assert: b first position equals: #(0 1 0).
 	self assert: b first value equals: 1.
-	go
-		addPointAt:
-			{0.
-			Float nan.
-			0}.
+	go addPointAt: (Array with: 0 with: Float nan with: 0).
 	self assert: go bestPoints equals: b.
-	go
-		addPointAt:
-			{(0 - Float infinity).
-			0.
-			0}.
+	go addPointAt: (Array with: (0 - Float infinity) with: 0 with: 0).
 	self assert: go bestPoints equals: b.
 	go addPointAt: #(1 1 0).
 	b := go bestPoints.

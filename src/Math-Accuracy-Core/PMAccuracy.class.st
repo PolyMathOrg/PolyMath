@@ -19,7 +19,7 @@ Class {
 	#classVars : [
 		'DecimalPlaces'
 	],
-	#category : 'Math-Accuracy-Core'
+	#category : #'Math-Accuracy-Core'
 }
 
 { #category : #accessing }
@@ -134,7 +134,7 @@ PMAccuracy >> argumentAt: aName [
 PMAccuracy >> asArray: aCol [ 
 	^(aCol isCollection and: [ aCol isSequenceable and: [aCol isString not] ])  
 		ifTrue: [ aCol asArray ] 
-		ifFalse: [ {aCol} ]
+		ifFalse: [ Array with: aCol ]
 ]
 
 { #category : #private }
@@ -302,7 +302,7 @@ no isCollection ifFalse: [^1].
 PMAccuracy >> numberOfDifferentResultsAt: aname [
 	|no|
 	no := self resultsAt: aname.
-	no isCollection ifFalse:[no:={no}].
+	no isCollection ifFalse:[no:= Array with: no].
 	^ no first isCollection ifTrue: [ no size ] ifFalse: [ 1 ]
 ]
 
@@ -426,7 +426,7 @@ PMAccuracy >> run: anArrayOfNames [
 		<< 'Report for: ';
 		<< self class name;
 		cr.
-	self ifSeveralterations: [ aStream << 'iterations: '	<< iterations; cr ].
+	self ifSeveralterations: [ aStream << 'iterations: '	<< iterations asString; cr ].
 	(self tree: dataTree removeAll type: self class name data: 'names')
 		at: 'iterations' put: iterations;
 		at: 'names' put: (self tree: KeyedTree new type: 'names' data: a).

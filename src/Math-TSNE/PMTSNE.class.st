@@ -80,8 +80,8 @@ PMTSNE class >> exampleGridWithVizualization [
 	"We assign a color to the elements"
 	rec := Rectangle encompassing: (tsne y rows 
 		collect: [:row | row first @ row second ]).
-	xscale := TSScale linear domain: { rec origin x. rec corner x }.
-	yscale := TSScale linear domain: { rec origin y. rec corner y }.
+	xscale := TSScale linear domain: (Array with rec origin x with: rec corner x).
+	yscale := TSScale linear domain: (Array with rec origin y with: rec corner y).
 	s := RSShapeBuilder circle
 		size: 5;
 		color: [:vec | Color
@@ -153,7 +153,7 @@ PMTSNE class >> gridDataGeneratorOf: size [
 	| array i |
 	array := Array new: size*size. 
 	i := 1.
-	1 to: size do: [ :x | 1 to: size do: [ :y | array at: i  put: {x. y.}.
+	1 to: size do: [ :x | 1 to: size do: [ :y | array at: i put: (Array with: x with: y).
 														i:=i+1] ].
 	^ PMMatrix rows: array
 ]
@@ -213,7 +213,7 @@ PMTSNE >> computeGradient [
 PMTSNE >> computeLowDimensionalAffinities [
 	"Computes affinity of the reduced dimension/output"
 
-	| num sumNum q |
+	| num sumNum |
 	num := self computeLowDimensionalStudentT.
 	sumNum := num sum sum max: (Float epsilon).
 	q := num collect: [:element |
@@ -239,7 +239,7 @@ PMTSNE >> computeLowDimensionalStudentT [
 { #category : #accessing }
 PMTSNE >> computePValues [
 	"Computes joint probablity matrix P"
-	| p sumP |
+	| sumP |
 	p := self computePairwiseAffinities.
 	p := p + p transpose.
 	sumP := p sum sum.
@@ -257,7 +257,7 @@ PMTSNE >> computePairwiseAffinities [
 	binary search. The precision is selected based on input perplexity.
 	"
 	
-	| p d beta logU n betaMin betaMax distanceVector pVector entropy tries entropyDiff |
+	| d beta logU n betaMin betaMax distanceVector pVector entropy tries entropyDiff |
 	n := x numberOfRows.
 	d := self computePairwiseDistances.
 	p := PMMatrix zerosRows: n cols: n.
@@ -272,7 +272,7 @@ PMTSNE >> computePairwiseAffinities [
 	1 to: n do: [ :i |
 		"Job progress gets updated every 10 rows"
 		(i % 10 = 0) ifTrue: [
-			job title: ('' join: {'Step 2/3: Computing joint probablity for point '. i asString. ' of '. n asString}).
+			job title: ('Step 2/3: Computing joint probablity for point {1} of {2}' format: (Array with: i with: n)).
 			job progress: (i/n).
 		 ].
 		
@@ -653,8 +653,9 @@ PMTSNE >> updateProgressWithError [
 			] ].
 		error := error sum sum ].
 	
-	job title: ('' join:
-		{'Step 3/3: Performing gradient descent '. iterations. '/'. maxIter. ' error = '. error}
+	job title: (
+		'Step 3/3: Performing gradient descent {1}/{2} error = {3}'
+			format: (Array with: iterations with: maxIter with: error)
 		).
 	job progress: iterations / maxIter.
 ]

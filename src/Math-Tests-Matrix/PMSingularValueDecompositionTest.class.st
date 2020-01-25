@@ -96,18 +96,21 @@ PMSingularValueDecompositionTest >> loadExample3 [
 		(-1 1 0)
 		(0 -1 1)).
 		
-	actualU := PMMatrix rows: { 
-		{ -1 / (2 sqrt) . 1 / (2 sqrt) } .
-		{ 1 / (2 sqrt) . 1 / (2 sqrt) } }.
+	actualU := PMMatrix rows: (
+		Array
+			with: (Array with: -1 / (2 sqrt) with: 1 / (2 sqrt))
+			with: (Array with: 1 / (2 sqrt) with: 1 / (2 sqrt)) ).
 		
-	actualV := PMMatrix rows: { 
-		{ 1 / (6 sqrt) . -1 / (2 sqrt) . 1 / (3 sqrt) } .
-		{ -2 / (6 sqrt) . 0 . 1 / (3 sqrt) } .
-		{ 1 / (6 sqrt) . 1 / (2 sqrt) . 1 / (3 sqrt) } }.
+	actualV := PMMatrix rows: (
+		Array
+			with: (Array with: 1 / (6 sqrt) with: -1 / (2 sqrt) with: 1 / (3 sqrt))
+			with: (Array with: -2 / (6 sqrt) with: 0 with: 1 / (3 sqrt))
+			with: (Array with: 1 / (6 sqrt) with: 1 / (2 sqrt) with: 1 / (3 sqrt)) ).
 		
-	actualS := PMMatrix rows: {
-		{ 3 sqrt . 0 . 0} .
-		{0 . 1 . 0}}.
+	actualS := PMMatrix rows: (
+		Array
+			with: (Array with: 3 sqrt with: 0 with: 0)
+			with: (Array with: 0 with: 1 with: 0) ).
 ]
 
 { #category : #'as yet unclassified' }
@@ -126,18 +129,20 @@ PMSingularValueDecompositionTest >> loadExample4 [
 		(0 0 0 -1)
 		(1 0 0 0)).
 		
-	actualV := PMMatrix rows: { 
-		{ 0 . 0 . 0.2 sqrt . 0 . -1 * (0.8 sqrt) } .
-		{ 1 . 0 . 0 . 0 . 0 } .
-		{ 0 . 1 . 0 . 0 . 0 } .
-		{ 0 . 0 . 0 . 1 . 0 } .
-		{ 0 . 0 . 0.8 sqrt . 0 . 0.2 sqrt } }.
+	actualV := PMMatrix rows: (Array
+		with: ( Array with: 0 with: 0 with: 0.2 sqrt with: 0 with: -1 * (0.8 sqrt))
+		with: ( Array with: 1 with: 0 with: 0 with: 0 with: 0)
+		with: ( Array with: 0 with: 1 with: 0 with: 0 with: 0)
+		with: ( Array with: 0 with: 0 with: 0 with: 1 with: 0)
+		with: ( Array with: 0 with: 0 with: 0.8 sqrt with: 0 with: 0.2 sqrt)
+	).
 		
-	actualS := PMMatrix rows: {
-		{ 2 . 0 . 0 . 0 . 0 } .
-		{ 0 . 3 . 0 . 0 . 0 } .
-		{ 0 . 0 . 5 sqrt . 0 . 0 } .
-		{ 0 . 0 . 0 . 0 . 0 } }.
+	actualS := PMMatrix rows: (Array
+		with: (Array with: 2 with: 0 with: 0 with: 0 with: 0)
+		with: (Array with: 0 with: 3 with: 0 with: 0 with: 0)
+		with: (Array with: 0 with: 0 with: 5 sqrt with: 0 with: 0)
+		with: (Array with: 0 with: 0 with: 0 with: 0 with: 0)
+	)
 ]
 
 { #category : #initialization }

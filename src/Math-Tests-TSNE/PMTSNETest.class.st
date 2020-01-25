@@ -14,7 +14,10 @@ PMTSNETest >> testComputePValues [
 	t := (PMTSNE new)
 		x: (PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)));
 		perplexity: 30.0.
-	self assert: t computePValues closeTo: (PMMatrix rows: {{0. 2/3. 2/3.}. {2/3. 0. 2/3}. {2/3. 2/3. 0.}})
+	self assert: t computePValues closeTo: (PMMatrix rows: (Array
+		with: (Array with: 0 with: 2/3 with: 2/3) 
+		with: (Array with: 2/3 with: 0 with: 2/3) 
+		with: (Array with: 2/3 with: 2/3 with: 0)))
 ]
 
 { #category : #tests }
@@ -59,7 +62,7 @@ PMTSNETest >> testEntropyOfAndPRowWithBeta [
 	pVector := PMVector new: (distanceVector size).	
 	entropy := PMTSNE entropyOf: distanceVector andPRow: pVector withBeta: 2.0.
 	self assert: entropy closeTo: 0.003020119571023052.
-	self assert: pVector closeTo: { 0.99966454 . 0.00000011 . 0.00033535 } asPMVector.
+	self assert: pVector closeTo: (Array with: 0.99966454 with: 0.00000011 with: 0.00033535) asPMVector.
 	
 ]
 

@@ -238,7 +238,7 @@ PMMatrixTest >> testMatrixCloseToPrecision [
 { #category : #comparing }
 PMMatrixTest >> testMatrixCos [
 	| a |
-	a := PMMatrix rows: {{Float pi. Float pi.}. {0. 0.}}.
+	a := PMMatrix rows: (Array with: (Array with: Float pi with: Float pi) with: #(0 0)).
 	self assert: a cos equals: (PMMatrix rows:#((-1 -1) (1 1)))
 ]
 

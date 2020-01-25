@@ -78,9 +78,7 @@ PMFastFourierTransform >> initPermTable [
 		r := (i - 1 bitReverse: nu) + 1.
 		r > i
 			ifTrue: [ permTable
-					add:
-						{i.
-						r} ] ]
+					add: (Array with: i with: r) ] ]
 ]
 
 { #category : #initializing }
