@@ -1,5 +1,5 @@
 <p align="center"><img alt="PolyMath" src="assets/logos/logo.png" style="width: 25%; height: 25%">
-<h1 align="center">[ PolyMath ]</h1>
+<h1 align="center">[PolyMath]</h1>
   <p align="center">
     Scientific Computing with Pharo
     <br>
