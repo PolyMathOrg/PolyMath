@@ -22,7 +22,7 @@ BaselineOfPolyMath >> baseline: spec [
 		for: #common
 		do: [
 			spec blessing: #baseline.
-			spec repository: 'https://github.com/PolyMathOrg/PolyMath'.
+			spec repository: 'github://PolyMathOrg/PolyMath/src'.
 			spec
 				baseline: 'SMark'
 					with: [ spec repository: 'github://smarr/SMark:v1.0.4/repository' ];
