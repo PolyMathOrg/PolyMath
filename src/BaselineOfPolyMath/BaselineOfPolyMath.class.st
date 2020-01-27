@@ -25,7 +25,7 @@ BaselineOfPolyMath >> baseline: spec [
 			spec repository: 'github://PolyMathOrg/PolyMath/src'.
 			spec
 				baseline: 'SMark'
-					with: [ spec repository: 'github://smarr/SMark:v1.0.4/repository' ];
+					with: [ spec repository: 'github://smarr/SMark:v1.0.4' ];
 				baseline: 'XMLWriter'
 					with: [ spec
 						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.0/src' ].
