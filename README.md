@@ -1,4 +1,5 @@
-<p align="center"><img alt="PolyMath" src="https://user-images.githubusercontent.com/327334/63360401-439db400-c366-11e9-954a-b45def952e08.png" style="width: 25%; height: 25%">
+<p align="center"><img alt="PolyMath" src="assets/logos/logo.png" style="width: 25%; height: 25%">
+<h1 align="center">[PolyMath]</h1>
   <p align="center">
     Scientific Computing with Pharo
     <br>
@@ -11,7 +12,8 @@
   </p>
 </p>
 
-[![Project Status: Active – The project has reached a stable, usable state and is being actively developed.](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
+[![Pharo version](https://img.shields.io/badge/Pharo-7.0-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Build Status](https://travis-ci.org/PolyMathOrg/PolyMath.svg?branch=master)](https://travis-ci.org/PolyMathOrg/PolyMath)
 [![Build status](https://ci.appveyor.com/api/projects/status/3tvarh2xi22max8h?svg=true)](https://ci.appveyor.com/project/SergeStinckwich/polymath-88bea)
 [![Coverage Status](https://coveralls.io/repos/github/PolyMathOrg/PolyMath/badge.svg?branch=development)](https://coveralls.io/github/PolyMathOrg/PolyMath?branch=development)
@@ -20,11 +22,11 @@
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
 
-You can load PolyMath 1.0.1 into a fresh Pharo 7.0 image with:
+You can load PolyMath 1.0.2 into a fresh Pharo 8.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:v1.0.1/src';
+        repository: 'github://PolyMathOrg/PolyMath:v1.0.2/src';
         baseline: 'PolyMath';
         load
 ```
