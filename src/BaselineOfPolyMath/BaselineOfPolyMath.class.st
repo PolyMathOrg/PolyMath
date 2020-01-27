@@ -20,12 +20,15 @@ BaselineOfPolyMath >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ "Dependencies"
-			self
-				sMark: spec;
-				xmlWriter: spec.
-
-			"Packages"
+		do: [
+			spec blessing: #baseline.
+			spec repository: 'https://github.com/PolyMathOrg/PolyMath'.
+			spec
+				baseline: 'SMark'
+					with: [ spec repository: 'github://smarr/SMark:v1.0.4/repository' ];
+				baseline: 'XMLWriter'
+					with: [ spec
+						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.0/src' ].
 			spec
 				package: 'ExtendedNumberParser';
 				package: 'Math-Accuracy-Core';
@@ -147,8 +150,6 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Tests-TSNE'
 					with: [ spec requires: #('Math-TSNE') ];
 				package: 'Math-UtilsDataServer'.
-
-			"Groups"
 			spec
 				group: 'Accuracy'
 					with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core');
@@ -172,18 +173,4 @@ BaselineOfPolyMath >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
-]
-
-{ #category : #dependencies }
-BaselineOfPolyMath >> sMark: spec [
-	spec
-		baseline: 'SMark'
-		with: [ spec repository: 'github://smarr/SMark:v1.0.4/repository' ]
-]
-
-{ #category : #dependencies }
-BaselineOfPolyMath >> xmlWriter: spec [
-	spec
-		baseline: 'XMLWriter'
-		with: [ spec repository: 'github://pharo-contributions/XML-XMLWriter:2.9.0/src' ]
 ]
