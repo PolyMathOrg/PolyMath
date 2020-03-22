@@ -15,10 +15,10 @@ Class {
 
 { #category : #private }
 PMAccuracyTestExample >> argumentWith: key [ 
-	| r |
-	r := self argumentAt: key.
-	numberOfResults ifNotNil: [ :rn | r := r at: rn ].
-	^ r
+	| theArgument |
+	theArgument := self argumentAt: key.
+	numberOfResults ifNotNil: [ :rn | theArgument := theArgument at: rn ].
+	^ theArgument
 ]
 
 { #category : #tests }
