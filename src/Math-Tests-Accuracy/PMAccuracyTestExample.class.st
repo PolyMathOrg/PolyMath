@@ -13,6 +13,14 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
+{ #category : #private }
+PMAccuracyTestExample >> argumentWith: key [ 
+	| r |
+	r := self argumentAt: key.
+	numberOfResults ifNotNil: [ :rn | r := r at: rn ].
+	^ r
+]
+
 { #category : #tests }
 PMAccuracyTestExample >> checkAaa [
 	self argument first
@@ -146,7 +154,7 @@ PMAccuracyTestExample >> tearDown [
 PMAccuracyTestExample >> testGetterAaa [
 ^Array
 	with: self parameter
-	with: self argument
+	with: (self argumentWith: 'Aaa')
 	with: (self resultsAt: 'Aaa')
 	with: (self numberOfDifferentParametersAt: 'Aaa')
 	with: (self numberOfDifferentResultsAt: 'Aaa')
@@ -156,7 +164,7 @@ PMAccuracyTestExample >> testGetterAaa [
 PMAccuracyTestExample >> testGetterBbb [
 ^Array
 	with: self parameter
-	with: self argument
+	with: (self argumentWith: 'Bbb')
 	with: (self resultsAt: 'Bbb')
 	with: (self numberOfDifferentParametersAt: 'Bbb')
 	with: (self numberOfDifferentResultsAt: 'Bbb')
