@@ -83,15 +83,29 @@ PMAccuracyTest >> testDecimalPlaces [
 ]
 
 { #category : #tests }
-PMAccuracyTest >> testExtractFromResultsWhichOnlyOne [
-	self
-		assert: (a extractFromResults: #('bla' 'blah') which: 2 onlyOne: false)
-		equals: 'blah'.
-	self assert: a testGetterAaa second equals: #(true).
-	self
-		assert: (a extractFromResults: #('bla' 'blah') which: 1 onlyOne: true)
-		equals: #('bla' 'blah').
-	self assert: a testGetterAaa second equals: #(#(false) #(true))
+PMAccuracyTest >> testExtractFromResultsReturnsAllElementsWhenOnlyOneIsTrue [
+	| argument results |
+	results := a
+		extractFromResults: #('bla' 'blah')
+		which: 1
+		onlyOne: true.
+	
+	self assert: results equals: #('bla' 'blah').
+	argument := a testGetterAaa second.
+	self assert: argument equals: #(#(false) #(true))
+]
+
+{ #category : #tests }
+PMAccuracyTest >> testExtractFromResultsReturnsTheCorrectIndexedElementWhenOnlyOneIsFalse [
+	| argument results |
+	results := a
+		extractFromResults: #('bla' 'blah')
+		which: 2
+		onlyOne: false.
+
+	self assert: results equals: 'blah'.
+	argument := a testGetterAaa second.
+	self assert: argument equals: #(true)
 ]
 
 { #category : #tests }
