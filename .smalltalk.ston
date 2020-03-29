@@ -9,6 +9,7 @@ SmalltalkCISpec {
   #testing : {
     #coverage : {
       #packages : [
+        'Math-Accuracy-Core',
         'Math-Accuracy-ODE',
 	'Math-ArbitraryPrecisionFloat',
 	'Math-AutomaticDifferenciation',
