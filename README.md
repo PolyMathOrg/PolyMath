@@ -41,7 +41,7 @@ Metacello new
 ```
 
 
-We have **815** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
+We have **816** green tests ! At the moment, all the development happens in the master branch (we are using trunk-based development).
 
 PolyMath is a Pharo project, similar to existing scientific libraries like NumPy, SciPy for Python or SciRuby for Ruby. PolyMath already provides the following basic functionalities:
 - complex and quaternions extensions,
