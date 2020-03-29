@@ -23,19 +23,19 @@ PMAccuracyTestExample >> argumentWith: key [
 
 { #category : #tests }
 PMAccuracyTestExample >> checkAaa [
-	self argument first
+	(self argumentWith: 'Aaa') first
 		ifTrue: [ ^ #(1 1) ].
 	^ Array with: (4 + (0.4 * Random new next)) with: 2
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkBbb [
-	^ self argument first size + self parameter first
+	^ (self argumentWith: 'Bbb') first size + self parameter first
 ]
 
 { #category : #tests }
 PMAccuracyTestExample >> checkCcc [
-	^ self argument first + (0.01 * self parameter first)
+	^ (self argumentWith: 'Ccc') first + (0.01 * self parameter first)
 ]
 
 { #category : #tests }
