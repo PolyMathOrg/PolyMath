@@ -1,14 +1,17 @@
 # Contribution Guide for PolyMath
 
-This file is currently not complete but will be improve step by step.
+*This file is currently not complete but will be improve step by step.*
 
-# Contributing code
-Use last version of Pharo 8.0 in order to use Iceberg.
-## Fork the Pharo repository
+You need to download Pharo 8.0 first.
+
+## Setup Iceberg
+You need an ssh key in order to commit on github. Open Iceberg tool, and then click on the settings. Check the box : "Use custom SSH keys".
+
+## Fork the PolyMath repository
 
 All changes you'll do will be versionned in your own fork of the [PolyMath repository](https://github.com/PolyMathOrg/PolyMath). Then, from your fork you'll be able to issue pull requests to PolyMath, where they will be reviewed, and luckily, integrated.
 
-Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath, yes.
+Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath.
 
 ## Load last dev version of PolyMath
 In a fresh Pharo 8.0 image, load last development version of Polymath : 
@@ -21,12 +24,29 @@ Metacello new
 ```
 where you replace XXX with your github user name.
 
-## Setup Iceberg
-You need an ssh key in order to commit on github. Open Iceberg tool, and then click on the settings. Check the box : "Use custom SSH keys".
+## Add main PolyMath repository as remote
 
-## Send the PR to github
-After doing the modification in your image, open Iceberg tool, commit the changes in your PolyMath repository. Cherry-pick the modifications that you want to include in your commit. In the github interface, create a Pull Request from your commit.
-Send the PR to PolyMath main repository.
+Open Iceberg, open PolyMath repository, click on repositories, then + button (add remote).
+
+Remote name: polymath-upstream
+
+Remote URL: https://github.com/PolyMathOrg/PolyMath.git
+
+## Send some changes to the original PolyMath repository
+
+#### From Pharo Iceberg
+After doing modifications in your image, open Iceberg tool, commit the changes in your PolyMath repository. Cherry-pick the modifications that you want to include in your commit. Then push your commit to your fork. It's more convenient to divide your changes in meaninfull and simple commits, which makes it easier to check for those who need to proofread it.
+
+#### From Github UI
+In the GitHub interface, create a Pull Request from your commit.
+You have to give some information about what is the purpose of you pull request. Then submit it to PolyMath main repository. 
+This will notify PolyMath core developers team that an improvement or bug fix is pending.
+
+### Sync your fork ull change from cormas/cormas in your own fork
+After a while, changes from other developers are integrated in the main PolyMath repository and your fork became out of sync.
+In order to do that, you need the fetch the last modifications from the main PolyMath repository, merge them in your image and then push them in your fork repository.
+
+You have also the possibility to delete your fork and fork again the main PolyMath repository.
 
 ## Cleanups
 Ounce your pull request is integrated, some cleanups are required:
