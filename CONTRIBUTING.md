@@ -42,7 +42,7 @@ In the GitHub interface, create a Pull Request from your commit.
 You have to give some information about what is the purpose of you pull request. Then submit it to PolyMath main repository. 
 This will notify PolyMath core developers team that an improvement or bug fix is pending.
 
-### Sync your fork ull change from cormas/cormas in your own fork
+### Sync your fork with main PolyMath repo changes
 After a while, changes from other developers are integrated in the main PolyMath repository and your fork became out of sync.
 In order to do that, you need the fetch the last modifications from the main PolyMath repository, merge them in your image and then push them in your fork repository.
 
