@@ -28,7 +28,7 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec repository: 'github://smarr/SMark:v1.0.4' ];
 				baseline: 'XMLWriter'
 					with: [ spec
-						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.0/src' ].
+						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.x/src' ].
 			spec
 				package: 'ExtendedNumberParser';
 				package: 'Math-Accuracy-Core';
