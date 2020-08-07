@@ -26,7 +26,7 @@ You can load PolyMath 1.0.2 into a fresh Pharo 8.0 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:v1.0.2/src';
+        repository: 'github://PolyMathOrg/PolyMath:v1.0.2';
         baseline: 'PolyMath';
         load
 ```
@@ -35,7 +35,7 @@ and the latest development version of PolyMath:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath/src';
+        repository: 'github://PolyMathOrg/PolyMath';
         baseline: 'PolyMath';
         load
 ```
