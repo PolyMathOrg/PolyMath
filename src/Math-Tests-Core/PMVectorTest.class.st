@@ -75,13 +75,11 @@ PMVectorTest >> testHouseholder [
 	u := #(-1 0 1) asPMVector. "`x <= 0` when x = -1"
 	w := u householder.
 	self
-		assert: w class equals: Array;
 		assert: (w at: 1) equals: 1.7071067811865475;
 		assert: (w at: 2) asArray equals: #(1.0 -0.0 -0.4142135623730951).
 	u := #(1.00001 2.00007) asPMVector. "`x <= 0` when x = 1.00001"
 	w := u householder.
 	self
-		assert: w class equals: Array;
 		assert: (w at: 1) equals: 0.5527953485259909;
 		assert: (w at: 2) asArray equals: #(1.0 -1.6180158992689828).
 ]
