@@ -15,7 +15,7 @@ Class {
 		'rows',
 		'lupDecomposition'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #example }
@@ -396,8 +396,7 @@ PMMatrix >> cumsum [
 ]
 
 { #category : #'as yet unclassified' }
-PMMatrix >> decompose [
-
+PMMatrix >> decomposeSV [
 	^ PMSingularValueDecomposition decompose: self
 ]
 

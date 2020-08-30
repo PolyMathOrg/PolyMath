@@ -35,7 +35,7 @@ Class {
 		'actualV',
 		'actualS'
 	],
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #'as yet unclassified' }
@@ -192,10 +192,8 @@ PMSingularValueDecompositionTest >> testIsOrthonormalU [
 	"Verifying that matrix U is orthonormal. That is, all columns of U are unit vectors and orthogonal to each other."
 
 	| u m identity |
-		
-	u := matrix decompose leftSingularForm.
+	u := matrix decomposeSV leftSingularForm.
 	m := u numberOfRows.
-	
 	identity := PMSymmetricMatrix identity: m.
 	self assert: u transpose * u closeTo: identity
 ]
@@ -205,10 +203,8 @@ PMSingularValueDecompositionTest >> testIsOrthonormalV [
 	"Verifying that matrix U is orthonormal. That is, all columns of U are unit vectors and orthogonal to each other."
 
 	| v n identity |
-		
-	v := matrix decompose rightSingularForm.
+	v := matrix decomposeSV rightSingularForm.
 	n := v numberOfRows.
-	
 	identity := PMSymmetricMatrix identity: n.
 	self assert: v transpose * v closeTo: identity
 ]
@@ -218,11 +214,8 @@ PMSingularValueDecompositionTest >> testIsSquareU [
 	"U should be a square matrix"
 
 	| u |
-		
-	u := matrix decompose leftSingularForm.
-	self
-		assert: u numberOfRows
-		equals: u numberOfColumns.
+	u := matrix decomposeSV leftSingularForm.
+	self assert: u numberOfRows equals: u numberOfColumns
 ]
 
 { #category : #tests }
@@ -230,23 +223,17 @@ PMSingularValueDecompositionTest >> testIsSquareV [
 	"V should be a square matrix"
 
 	| v |
-		
-	v := matrix decompose rightSingularForm.
-	self
-		assert: v numberOfRows
-		equals: v numberOfColumns.
+	v := matrix decomposeSV rightSingularForm.
+	self assert: v numberOfRows equals: v numberOfColumns
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testReconstruction [
-
 	| svd u v s reconstructed |
-		
-	svd := matrix decompose.
+	svd := matrix decomposeSV.
 	u := svd leftSingularForm.
 	v := svd rightSingularForm.
 	s := svd sForm.
-	
 	reconstructed := u * s * v transpose.
 	self assert: reconstructed closeTo: matrix
 ]
@@ -256,13 +243,11 @@ PMSingularValueDecompositionTest >> testShapeS [
 	"If A is an (m x n) matrix, then S should be an (m x n) matrix"
 
 	| s m n |
-		
-	s := matrix decompose sForm.
+	s := matrix decomposeSV sForm.
 	m := matrix numberOfRows.
 	n := matrix numberOfColumns.
-	
 	self assert: s numberOfRows equals: m.
-	self assert: s numberOfColumns equals: n.
+	self assert: s numberOfColumns equals: n
 ]
 
 { #category : #tests }
@@ -270,12 +255,10 @@ PMSingularValueDecompositionTest >> testShapeU [
 	"If A is an (m x n) matrix, then U should be an (m x m) matrix"
 
 	| u m |
-		
-	u := matrix decompose leftSingularForm.
+	u := matrix decomposeSV leftSingularForm.
 	m := matrix numberOfRows.
-	
 	self assert: u numberOfRows equals: m.
-	self assert: u numberOfColumns equals: m.
+	self assert: u numberOfColumns equals: m
 ]
 
 { #category : #tests }
@@ -283,12 +266,10 @@ PMSingularValueDecompositionTest >> testShapeV [
 	"If A is an (m x n) matrix, then V should be an (n x n) matrix"
 
 	| v n |
-		
-	v := matrix decompose rightSingularForm.
+	v := matrix decomposeSV rightSingularForm.
 	n := matrix numberOfColumns.
-	
 	self assert: v numberOfRows equals: n.
-	self assert: v numberOfColumns equals: n.
+	self assert: v numberOfColumns equals: n
 ]
 
 { #category : #tests }
@@ -296,8 +277,8 @@ PMSingularValueDecompositionTest >> testValueS [
 	"Comparing S to its known value"
 
 	| s |
-	s := matrix decompose sForm.
-	self assert: s closeTo: actualS.
+	s := matrix decomposeSV sForm.
+	self assert: s closeTo: actualS
 ]
 
 { #category : #tests }
@@ -305,8 +286,8 @@ PMSingularValueDecompositionTest >> testValueU [
 	"Comparing U to its known value"
 
 	| u |
-	u := matrix decompose leftSingularForm.
-	self assert: u closeTo: actualU.
+	u := matrix decomposeSV leftSingularForm.
+	self assert: u closeTo: actualU
 ]
 
 { #category : #tests }
@@ -314,6 +295,6 @@ PMSingularValueDecompositionTest >> testValueV [
 	"Comparing V to its known value"
 
 	| v |
-	v := matrix decompose rightSingularForm.
-	self assert: v closeTo: actualV.
+	v := matrix decomposeSV rightSingularForm.
+	self assert: v closeTo: actualV
 ]
