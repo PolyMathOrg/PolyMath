@@ -1,7 +1,7 @@
 Class {
 	#name : #PMMatrixTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
@@ -670,6 +670,23 @@ PMMatrixTest >> testSymmetricMatrixAdd3 [
 	self assert: ((c rowAt: 2) at: 2) equals: 23.
 	self assert: ((c rowAt: 2) at: 3) equals: 30.
 	self assert: ((c rowAt: 3) at: 1) equals: 31
+]
+
+{ #category : #test }
+PMMatrixTest >> testTake [
+
+	| m expected |
+	m := PMMatrix rows: #((1 2)(3 3)).
+	expected := PMMatrix rows: #((0 1) (3 3)).
+	self assert: (m take: 2) equals: expected.
+
+	m := PMMatrix rows: #((1 2)).
+	expected := PMMatrix rows: #((0 1)).
+	self assert: (m take: 2) equals: expected.
+	
+	m := PMMatrix rows: #().
+	expected := PMMatrix rows: #().
+	self assert: (m take: 2) equals: expected.
 ]
 
 { #category : #tests }

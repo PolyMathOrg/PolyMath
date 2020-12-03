@@ -906,6 +906,13 @@ PMMatrix >> swapColumn: anIndex withColumn:   a2Index [
 
 ]
 
+{ #category : #arithmetic }
+PMMatrix >> take: anInteger [ 
+	" Answer a <Collection> with the receiver's binomial coefficient at each element for anInteger "
+	
+	^ self collect: [ :each | each take: anInteger ]
+]
+
 { #category : #operation }
 PMMatrix >> tan [
 	"Apply tan to each element of a matrix"
