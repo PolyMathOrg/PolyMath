@@ -8,8 +8,19 @@ env:
 on: [push, pull_request]
 
 jobs:
-  build:
+  linux-build:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        id: smalltalkci
+        with:
+          smalltalk-version: Pharo64-8.0
+      - run: smalltalkci -s ${{ steps.smalltalkci.outputs.smalltalk-version }}
+        shell: bash
+        timeout-minutes: 15
+  windows-build:
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v2
       - uses: hpi-swa/setup-smalltalkCI@v1
