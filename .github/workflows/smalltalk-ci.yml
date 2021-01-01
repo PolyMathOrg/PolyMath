@@ -1,4 +1,4 @@
-name: CI
+name: CI matrix
 
 on:
   push:
@@ -29,4 +29,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         timeout-minutes: 15
-        
