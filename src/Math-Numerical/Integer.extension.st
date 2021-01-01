@@ -6,7 +6,7 @@ Integer >> findNK [
 	See https://math.stackexchange.com/a/103385/205 for details. "
 
 	| k |
-	[ self isInteger and: [ self > 1 ] ] assert.
+	[ self > 1 ] assert.
     k := 0.
 	^ Array streamContents: [ : stream | 
 	    [ true ] whileTrue: [ 
