@@ -16,6 +16,8 @@ PMStatisticsTests >> testGeometricMean [
 { #category : #tests }
 PMStatisticsTests >> testHarmonicMean [
 	self assert: (#(2.5 3 10) harmonicMean round: 1) equals: 3.6.
+	
+	self should: [ #(3 1.1 -1 ) harmonicMean ] raise: Error. 
 ]
 
 { #category : #tests }

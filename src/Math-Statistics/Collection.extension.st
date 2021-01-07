@@ -15,11 +15,11 @@ Collection >> harmonicMean [
 	"Answer with the harmonic mean of the data."
 	"#(2.5, 3, 10) harmonicMean >>> 3.6"
 	| sum |
-	sum := 0.
 	
-	self do: [ :i | i < 0 
-		ifTrue: [Error new signal: 'The harmonic mean cannot be calculated on negative numbers'] 		ifFalse: [ sum := (sum + (1 / i))]
-		].
+	self detect: [ :i | i < 0 ] ifFound: [ Error new signal: 'The harmonic mean cannot be calculated on negative numbers' ] .
+	
+	sum := 0.
+	self do: [ :i |  sum := (sum + (1 / i))].
 	^self size / sum.
 	
 ]
