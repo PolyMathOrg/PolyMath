@@ -6,11 +6,13 @@ Class {
 
 { #category : #tests }
 PMStatisticsTests >> testGeometricMean [
-	self assert: #(1 1 2 3 4 5 5 6 6 7 8 9) geometricMean equals: 3.8583980015011208.
+	self assert: (#(1 1 2 3 4 5 5 6 6 7 8 9) geometricMean round: 4) equals: 3.8584.
 	
-	self assert: { 4. 1.  1 / 32} geometricMean equals: (1/2).
+	self assert: ({ 4. 1.  1 / 32} geometricMean round: 4) equals: 0.5.
 	
-	self assert: #(3.14 1 4.56 0.333) geometricMean equals: 1.4776945822943937.
+	self assert: (#(3.14 1 4.56 0.333) geometricMean round: 4 ) equals: 1.4777.
+	
+	self should: [ #(-1 5 6.78) geometricMean ] raise: Error.
 ]
 
 { #category : #tests }
