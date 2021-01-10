@@ -59,6 +59,15 @@ PMQuantileTest >> testExtremeCase [
 ]
 
 { #category : #tests }
+PMQuantileTest >> testFloatProbability [
+	"tests that input quantile probabilities can be a float"	
+			
+	self assert: (c quantile: 0.25) equals: 2.
+	
+	self assert: (c quantile: 0.27) equals: 2.08
+]
+
+{ #category : #tests }
 PMQuantileTest >> testQuantileA [
 	self
 		assert: (self resultCollect: a method: #modeBased)
