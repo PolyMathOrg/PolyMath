@@ -88,7 +88,7 @@ SortedCollection >> quantile: aProbability withProbs: anArray [
 		ifTrue: [ 1 ]
 		ifFalse: [ p min: self size ].
 	^ p truncated = p
-		ifTrue: [ self at: p ]
+		ifTrue: [ self at: p asInteger ] "we have to convert io integer here for cases where aProbability was a Float"
 		ifFalse: [ (f := self at: p floor)
 				+ (((self at: p ceiling) - f) * (p fractionPart * d + c)) ]
 ]
