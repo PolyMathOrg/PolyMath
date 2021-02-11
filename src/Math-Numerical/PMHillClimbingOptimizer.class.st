@@ -1,5 +1,6 @@
 "
-The class PMHillClimbingOptimizer is a subclass of class PMFunctionOptimizer.
+PMHillClimbingOptimizer is a class implementing the Powell's algorithm. Powell's algorithm is one of many hill climbing algorithms.
+The idea underlying Powell’s algorithm is that once an optimum has been found in one direction, the chance for the biggest improvement lies in the direction perpendicular to that direction.
 
 It has only one additional instance variable, unidimensionalFinder to hold the one-dimensional
 optimizer used to find an optimum of the goal function along a given direction.
