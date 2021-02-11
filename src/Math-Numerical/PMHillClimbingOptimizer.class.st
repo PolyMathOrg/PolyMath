@@ -15,7 +15,7 @@ Class {
 }
 
 { #category : #examples }
-PMHillClimbingOptimizer class >> example1 [
+PMHillClimbingOptimizer class >> exampleFindOptimumOnVectorFunction [
 	| fBlock educatedGuess hillClimber result |
 	fBlock := [ :v | 
 	| x y |
