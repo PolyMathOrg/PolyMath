@@ -408,6 +408,42 @@ PMComplexTest >> testIsComplexConjugateOfSameReal [
 ]
 
 { #category : #tests }
+PMComplexTest >> testIsComplexNumberOnComplex [
+	
+	self assert: (3 + 2i) isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexNumberOnNaN [
+	
+	self deny: Character space isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexNumberOnReal [
+	
+	self deny: 5 isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnComplex [
+	
+	self deny: (3 + 2i) isRealNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnNaN [
+	
+	self deny: Character space isRealNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnReal [
+	
+	self assert: 0.5 isRealNumber
+]
+
+{ #category : #tests }
 PMComplexTest >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
