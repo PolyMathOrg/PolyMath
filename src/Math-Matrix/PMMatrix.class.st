@@ -524,6 +524,34 @@ PMMatrix >> isHermitian [
 ]
 
 { #category : #testing }
+PMMatrix >> isNegativeDefinite [
+	"A Hermitian matrix is negative definite if and only if all its eigenvalues are strictly negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each < 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isNegativeSemiDefinite [
+	"A Hermitian matrix is negative semi-definite if and only if all its eigenvalues are non-positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each <= 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveDefinite [
+	"A Hermitian matrix is positive definite if and only if all its eigenvalues are strictly positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each > 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveSemiDefinite [
+	"A Hermitian matrix is positive semi-definite if and only if all its eigenvalues are non-negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each >= 0 ]
+]
+
+{ #category : #testing }
 PMMatrix >> isReal [
 	"Answer true if all values of the matrix are real numbers"
 	^ rows allSatisfy: [ :vector | vector isReal ].
