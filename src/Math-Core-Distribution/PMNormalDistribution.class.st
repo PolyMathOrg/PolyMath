@@ -95,8 +95,9 @@ PMNormalDistribution >> parameters [
 
 { #category : #information }
 PMNormalDistribution >> random [
-	"Answer a random number distributed accroding to the receiver."
-	^self class random * sigma + mu
+	"Answer a random number distributed according to the receiver."
+
+	^ self class random * sigma + mu
 ]
 
 { #category : #information }
