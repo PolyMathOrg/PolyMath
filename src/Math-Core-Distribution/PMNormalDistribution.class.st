@@ -40,7 +40,8 @@ PMNormalDistribution class >> new: aNumber1 sigma: aNumber2 [
 
 { #category : #information }
 PMNormalDistribution class >> random [
-	"Answer a random number distributed according to a (0,1) normal distribution."
+	"A random value generated from the standard normal distribution N(0,1). Can be used to generate values from any other univariate normal distribution N(mu, sigma): first we generate Z ~ N(0,1) and then, to get X ~ N(mu, sigma), we calculate X = sigma * Z + mu (see #random method)"
+	
 	| v1 v2 w y |
 	NextRandom isNil
 		ifTrue: [ [ v1 := Number random * 2 - 1.
