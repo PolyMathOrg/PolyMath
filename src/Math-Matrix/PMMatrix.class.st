@@ -510,6 +510,12 @@ PMMatrix >> inversePureCRL [
 ]
 
 { #category : #testing }
+PMMatrix >> isReal [
+	"Answer true if all values of the matrix are real numbers"
+	^ rows allSatisfy: [ :vector | vector isReal ].
+]
+
+{ #category : #testing }
 PMMatrix >> isSquare [
 	"Answers true if the number of rows is equal to the number of columns."
 	^ rows size = rows last size
