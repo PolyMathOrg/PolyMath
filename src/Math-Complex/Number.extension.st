@@ -28,3 +28,15 @@ Number >> i: aNumber [
 	aNumber isNumber ifFalse: [self error: 'Badly formed complex number'].
 	^PMComplex real: self imaginary: aNumber
 ]
+
+{ #category : #'*Math-Complex' }
+Number >> isComplexConjugateOf: aNumber [
+	"A complex conjugate of a real number is same real number"
+	^ self = aNumber
+]
+
+{ #category : #'*Math-Complex' }
+Number >> isComplexConjugateOfAComplexNumber: aComplexNumber [
+	"A complex conjugate of a real number is same real number"
+	^ self isComplexConjugateOf: aComplexNumber
+]
