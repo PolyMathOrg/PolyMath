@@ -47,7 +47,7 @@ PMNormalDistribution class >> random [
 		ifNil: [ [ v1 := Number random * 2 - 1.
 			v2 := Number random * 2 - 1.
 			w := v1 squared + v2 squared.
-			w > 1 ] whileTrue: [  ].
+			w > 1 ] whileTrue.
 			y := (w ln * 2 negated / w) sqrt.
 			v1 := y * v1.
 			NextRandom := y * v2 ]
