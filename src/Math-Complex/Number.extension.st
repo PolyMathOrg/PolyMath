@@ -40,3 +40,9 @@ Number >> isComplexConjugateOfAComplexNumber: aComplexNumber [
 	"A complex conjugate of a real number is same real number"
 	^ self isComplexConjugateOf: aComplexNumber
 ]
+
+{ #category : #'*Math-Complex' }
+Number >> isRealNumber [
+	"Answer true if receiver is a real number. All instances of Number are real numbers."
+	^ true
+]
