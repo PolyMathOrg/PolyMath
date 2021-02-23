@@ -337,12 +337,12 @@ PMMatrix >> atRow: rowIndex put: aCollection startingAt: startColumnNumber [
 
 { #category : #'as yet unclassified' }
 PMMatrix >> choleskyDecomposition [
-	| lowerTriangular rowSum partialSum diagonalValue nonDiagonalValue factor |
+	| upperTriangular rowSum partialSum diagonalValue nonDiagonalValue factor |
 	
 	self isPositiveDefinite ifFalse: [ 
 		Error signal: 'Choleski decomposition can only be applied to positive-definite matrices' ].
 	
-	lowerTriangular := self class
+	upperTriangular := self class
 		zerosRows: self numberOfRows
 		cols: self numberOfColumns.
 	
@@ -351,21 +351,21 @@ PMMatrix >> choleskyDecomposition [
 			i = j
 				ifTrue: [
 					rowSum := (1 to: j - 1) sum: [ :k |
-						(lowerTriangular at: k at: j) squared ].
-					
+						(upperTriangular at: k at: j) squared ].
+
 					diagonalValue := ((self at: j at: j) - rowSum) sqrt.
-					
-					lowerTriangular at: j at: j put: diagonalValue ]
+
+					upperTriangular at: j at: j put: diagonalValue ]
 				ifFalse: [
 					partialSum := (1 to: j - 1) sum: [ :k |
-						(lowerTriangular at: k at: i) * (lowerTriangular at: k at: j) ].
-					
-					factor := lowerTriangular at: j at: j.
+						(upperTriangular at: k at: i) * (upperTriangular at: k at: j) ].
+
+					factor := upperTriangular at: j at: j.
 					nonDiagonalValue := ((self at: j at: i) - partialSum) / factor.
-					
-					lowerTriangular at: j at: i put: nonDiagonalValue ] ] ].
+
+					upperTriangular at: j at: i put: nonDiagonalValue ] ] ].
 		
-	^ lowerTriangular
+	^ upperTriangular
 ]
 
 { #category : #comparing }
