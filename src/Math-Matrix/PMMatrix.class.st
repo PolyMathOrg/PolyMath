@@ -510,6 +510,20 @@ PMMatrix >> inversePureCRL [
 ]
 
 { #category : #testing }
+PMMatrix >> isHermitian [
+	"Hermitian matrix (or self-adjoint matrix) is a complex square matrix that is equal to its own conjugate transpose — that is, the element in the i-th row and j-th column is equal to the complex conjugate of the element in the j-th row and i-th column, for all indices i and j"
+	
+	self isSquare ifFalse: [ ^ false ].
+	
+	1 to: self numberOfRows do: [ :i |
+		1 to: (i - 1) do: [ :j |
+			((self at: i at: j) isComplexConjugateOf: (self at: j at: i))
+				ifFalse: [ ^ false ] ] ].
+		
+	^ true
+]
+
+{ #category : #testing }
 PMMatrix >> isReal [
 	"Answer true if all values of the matrix are real numbers"
 	^ rows allSatisfy: [ :vector | vector isReal ].
