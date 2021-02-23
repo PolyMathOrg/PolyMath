@@ -68,12 +68,12 @@ PMFisherTippettDistribution >> distributionValue: aNumber [
 
 { #category : #initialization }
 PMFisherTippettDistribution >> initialize: aNumber1 scale: aNumber2 [
-		"Private - Initialize the parameters of the receiver."
+	"Initialize the parameters of the receiver."
+
 	aNumber2 > 0
-		ifFalse: [ self error: 'Illegal distribution parameters'].
+		ifFalse: [ self error: 'Illegal distribution parameters' ].
 	alpha := aNumber1.
-	beta := aNumber2.
-	^self
+	beta := aNumber2
 ]
 
 { #category : #information }
