@@ -44,7 +44,9 @@ PMNormalDistribution class >> random [
 
 	| v1 v2 w y |
 	NextRandom
-		ifNil: [ [ v1 := Number random * 2 - 1.
+		ifNil: [
+			"Use Box-Muller transform"
+			[ v1 := Number random * 2 - 1.
 			v2 := Number random * 2 - 1.
 			w := v1 squared + v2 squared.
 			w > 1 ] whileTrue.
