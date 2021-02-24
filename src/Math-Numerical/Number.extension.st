@@ -70,15 +70,16 @@ Number >> productWithVector: aVector [
 ]
 
 { #category : #'*Math-Numerical' }
-Number >> random [
-		"Answers a random number distributed between 0 and the receiver."
-	^self class random * self
+Number class >> random [
+	"Answers a floating random number between 0 and 1 excluded"
+
+	^ PMMitchellMooreGenerator new floatValue
 ]
 
 { #category : #'*Math-Numerical' }
-Number class >> random [
-		"Answers a random number between 0 and the receiver."
-	^ PMMitchellMooreGenerator new floatValue
+Number >> random [
+		"Answers a random number distributed between 0 and the receiver."
+	^self class random * self
 ]
 
 { #category : #'*Math-Numerical' }

@@ -59,10 +59,10 @@ PMCauchyDistribution >> distributionValue: aNumber [
 
 { #category : #initialization }
 PMCauchyDistribution >> initialize: aNumber1 scale: aNumber2 [
-	"Private - Initialize the parameters of the receiver. "
+	"Initialize the parameters of the receiver. "
+
 	mu := aNumber1.
-	beta := aNumber2.
-	^self
+	beta := aNumber2
 ]
 
 { #category : #information }
