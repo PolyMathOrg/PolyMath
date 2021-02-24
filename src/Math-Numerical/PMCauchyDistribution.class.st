@@ -66,6 +66,11 @@ PMCauchyDistribution >> initialize: aNumber1 scale: aNumber2 [
 ]
 
 { #category : #information }
+PMCauchyDistribution >> kurtosis [
+self shouldNotImplement 
+]
+
+{ #category : #information }
 PMCauchyDistribution >> parameters [
 		
 	^Array with: mu with: beta
@@ -79,6 +84,12 @@ PMCauchyDistribution >> privateInverseDistributionValue: aNumber [
 		ifFalse: [aNumber =1 
 			ifTrue:[Float infinity ] 
 			ifFalse:[( ( aNumber - (1 / 2)) * Float pi) tan * beta + mu]].
+]
+
+{ #category : #information }
+PMCauchyDistribution >> skewness [ 
+
+self shouldNotImplement 
 ]
 
 { #category : #information }
@@ -107,5 +118,6 @@ PMCauchyDistribution >> valueAndGradient: aNumber [
 { #category : #information }
 PMCauchyDistribution >> variance [
 	"The variance of the receiver is not defined."
-	^nil
+
+	self shouldNotImplement 
 ]
