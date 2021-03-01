@@ -61,6 +61,64 @@ PMMatrixTest >> testAtRowPutAtColumnPut [
 	self should: [ a atColumn: 1 put: (a rowAt: 2) ] raise: Error
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testCholeskyDecomposition [
+	| matrix upperTriangular expected |
+	
+	matrix := PMMatrix rows: #(
+		(4 12 -16)
+		(12 37 -43)
+		(-16 -43 98)).
+		
+	upperTriangular := matrix choleskyDecomposition.
+	
+	expected := PMMatrix rows: #(
+		(2 6 -8)
+		(0 1 5)
+		(0 0 3)).
+		
+	self assert: upperTriangular equals: expected.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testCholeskyDecompositionIsDecomposition [
+	| matrix upperTriangular |
+	
+	matrix := PMMatrix rows: #(
+		(4 12 -16)
+		(12 37 -43)
+		(-16 -43 98)).
+		
+	upperTriangular := matrix choleskyDecomposition.
+		
+	self
+		assert: upperTriangular transpose * upperTriangular
+		closeTo: matrix.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testCholeskyDecompositionNonSquare [
+	| matrix |
+	
+	matrix := PMMatrix rows: #(
+		(4 12 -16)
+		(12 37 -43)).
+		
+	self should: [ matrix choleskyDecomposition ] raise: Error.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testCholeskyDecompositionNonSymmetric [
+	| matrix |
+	
+	matrix := PMMatrix rows: #(
+		(4 12 -16)
+		(10 37 -43)
+		(2 5 98)).
+		
+	self should: [ matrix choleskyDecomposition ] raise: Error.
+]
+
 { #category : #collection }
 PMMatrixTest >> testCollect [
 	self assert: ((PMMatrix rows: #((1 2) (3 4))) collect: [ :x | 2 * x ]) equals: (PMMatrix rows: #((2 4) ( 6 8)))
@@ -127,6 +185,30 @@ PMMatrixTest >> testFlattenRows [
 	| m |
 	m := PMMatrix rows: #(#(1 2 3) #(4 5 6) #(7 8 9)).
 	self assert: m flattenRows equals: #(1 2 3 4 5 6 7 8 9) asPMVector
+]
+
+{ #category : #tests }
+PMMatrixTest >> testIsRealOnComplexMatrix [
+	| matrix |
+	
+	matrix := PMMatrix rows: { 
+		{ 1 . 3 + 4i . 0 } .
+		{ 1 - 2i . 2 . -4 } .
+		{ -8 + 0i . 5 . -1 } }.
+	
+	self deny: matrix isReal.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testIsRealOnRealMatrix [
+	| matrix |
+	
+	matrix := PMMatrix rows: #( 
+		(1 3 0)
+		(1 2 -4)
+		(-8 5 -1)).
+	
+	self assert: matrix isReal.
 ]
 
 { #category : #tests }

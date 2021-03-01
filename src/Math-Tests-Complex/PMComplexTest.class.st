@@ -1,7 +1,7 @@
 Class {
 	#name : #PMComplexTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Complex'
+	#category : #'Math-Tests-Complex'
 }
 
 { #category : #tests }
@@ -351,6 +351,96 @@ PMComplexTest >> testHash [
 	| aComplex |
 	aComplex := 2 - 3 i.
 	self assert: aComplex copy hash equals: aComplex hash
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
+
+	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfConjugateComplexAndReal [
+
+	self assert: ((5 + 0i) isComplexConjugateOf: 5)
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfConjugateRealAndComplex [
+
+	self assert: (5 isComplexConjugateOf: (5 - 0i))
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfDifferentReal [
+
+	self deny: (-5 isComplexConjugateOf: 5)
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
+
+	self deny: ((5 + 3i) isComplexConjugateOf: 5)
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
+
+	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
+
+	self deny: (5 isComplexConjugateOf: (5 - 3i))
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfSameComplex [
+
+	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexConjugateOfSameReal [
+
+	self assert: (5 isComplexConjugateOf: 5)
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexNumberOnComplex [
+	
+	self assert: (3 + 2i) isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexNumberOnNaN [
+	
+	self deny: Character space isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsComplexNumberOnReal [
+	
+	self deny: 5 isComplexNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnComplex [
+	
+	self deny: (3 + 2i) isRealNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnNaN [
+	
+	self deny: Character space isRealNumber
+]
+
+{ #category : #tests }
+PMComplexTest >> testIsRealNumberOnReal [
+	
+	self assert: 0.5 isRealNumber
 ]
 
 { #category : #tests }
