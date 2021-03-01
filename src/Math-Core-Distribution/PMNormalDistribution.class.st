@@ -8,8 +8,21 @@ Class {
 	#classVars : [
 		'NextRandom'
 	],
-	#category : 'Math-Core-Distribution'
+	#category : #'Math-Core-Distribution'
 }
+
+{ #category : #information }
+PMNormalDistribution class >> boxMullerTransform [
+|v1 v2 w y|
+			[ v1 := Number random * 2 - 1.
+			v2 := Number random * 2 - 1.
+			w := v1 squared + v2 squared.
+			w > 1 ] whileTrue.
+			y := (w ln * 2 negated / w) sqrt.
+			v1 := y * v1.
+			NextRandom := y * v2.
+			^v1.
+]
 
 { #category : #information }
 PMNormalDistribution class >> distributionName [
@@ -40,22 +53,16 @@ PMNormalDistribution class >> new: aNumber1 sigma: aNumber2 [
 
 { #category : #information }
 PMNormalDistribution class >> random [
-	"A random value generated from the standard normal distribution N(0,1). Can be used to generate values from any other univariate normal distribution N(mu, sigma): first we generate Z ~ N(0,1) and then, to get X ~ N(mu, sigma), we calculate X = sigma * Z + mu (see #random method)"
-	
-	| v1 v2 w y |
-	NextRandom isNil
-		ifTrue: [ [ v1 := Number random * 2 - 1.
-					v2 := Number random * 2 - 1.
-					w := v1 squared + v2 squared.
-					w > 1 ] whileTrue: [].
-				  y := ( ( w ln * 2 negated) / w) sqrt.
-				v1 := y * v1.
-				NextRandom := y * v2.
-				]
-		ifFalse:[ v1 :=NextRandom.
-				  NextRandom := nil.
-				].
-	^v1
+	"Answer a random number distributed according to a (0,1) normal distribution."
+
+	| v1  |
+	NextRandom
+		ifNil: [
+			
+			v1 := self boxMullerTransform ]
+		ifNotNil: [ v1 := NextRandom.
+			NextRandom := nil ].
+	^ v1
 ]
 
 { #category : #information }
@@ -79,10 +86,8 @@ PMNormalDistribution >> distributionValue: aNumber [
 
 { #category : #initialization }
 PMNormalDistribution >> initialize: aNumber1 sigma: aNumber2 [
-
 	mu := aNumber1.
-	sigma := aNumber2.
-	^self
+	sigma := aNumber2
 ]
 
 { #category : #information }
@@ -99,8 +104,9 @@ PMNormalDistribution >> parameters [
 
 { #category : #information }
 PMNormalDistribution >> random [
-	"Answer a random number distributed accroding to the receiver."
-	^self class random * sigma + mu
+	"Answer a random number distributed according to the receiver."
+
+	^ self class random * sigma + mu
 ]
 
 { #category : #information }
