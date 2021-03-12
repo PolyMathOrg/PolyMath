@@ -34,9 +34,9 @@ IntegerTest >> testFirstOver [
 	self assert: (4 firstOver: 4) equals: 2.
 	self assert: (4 firstOver: 5) equals: 2.
 	
-	self assert: (4 firstOver: SmallInteger maxVal) equals: 32768.
-	self assert: (3 firstOver: SmallInteger maxVal) equals: 1048576.
-	self assert: (2 firstOver: SmallInteger maxVal) equals: 1073741824.	
-	self assert: (1 firstOver: SmallInteger maxVal) equals: 1152921504606846975.			
+	self assert: (4 firstOver: "SmallInteger maxVal"1152921504606846975) equals: 32768.
+	self assert: (3 firstOver: 1152921504606846975) equals: 1048576.
+	self assert: (2 firstOver: 1152921504606846975) equals: 1073741824.	
+	self assert: (1 firstOver: 1152921504606846975) equals: 1152921504606846975.			
 
 ]
