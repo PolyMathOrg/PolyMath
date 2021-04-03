@@ -66,6 +66,12 @@ PMStatisticalSample class >> newFrom: aCollection [
 	^ ss
 ]
 
+{ #category : #information }
+PMStatisticalSample >> average [
+	"An alias for the arithmetic mean of the sample"
+	^ data average
+]
+
 { #category : #accessing }
 PMStatisticalSample >> data [
 	"Get the collection that this StatisticalSample is calculated against"
@@ -84,13 +90,13 @@ PMStatisticalSample >> data: aCollection [
 PMStatisticalSample >> geometricMean [
 	"Answer with the geometric mean of the collection"
 
-	"(StatisticalSample new data: #(1 1 2 3 4 5 5 6 6 7 8 9)) geometricMean  >>> 3.8583980015011217"
+	"(PMStatisticalSample new data: #(1 1 2 3 4 5 5 6 6 7 8 9)) geometricMean  >>> 3.8583980015011217"
 
-	"(StatisticalSample new data: { 4. 1.  1 / 32}) geometricMean >>> 0.49999999999999994"
+	"(PMStatisticalSample new data: { 4. 1.  1 / 32}) geometricMean >>> 0.49999999999999994"
 
-	"(StatisticalSample new data: #(3.14 1 4.56 0.333)) geometricMean >>> 1.4776945822943937"
+	"(PMStatisticalSample new data: #(3.14 1 4.56 0.333)) geometricMean >>> 1.4776945822943937"
 
-	"(StatisticalSample new data: {1/3. 2/3. 8/3. 16/3}) geometricMean >>> 1.3333333333333335"
+	"(PMStatisticalSample new data: {1/3. 2/3. 8/3. 16/3}) geometricMean >>> 1.3333333333333335"
 
 	data
 		detect: [ :i | i <= 0 ]
@@ -108,7 +114,7 @@ PMStatisticalSample >> geometricMean [
 PMStatisticalSample >> harmonicMean [
 	"Answer with the harmonic mean of the data."
 
-	"(StatisticalSample new data: #(2.5 3 10)) harmonicMean >>> 3.6"
+	"(PMStatisticalSample new data: #(2.5 3 10)) harmonicMean >>> 3.6"
 
 	| sum |
 	data
@@ -121,15 +127,44 @@ PMStatisticalSample >> harmonicMean [
 ]
 
 { #category : #information }
+PMStatisticalSample >> mean [
+	"answers with the arithmetic mean of the sample."
+
+	"(PMStatisticalSample new data: #(1 2 2 2 3 4 5)) mean  >>> (19/7)"
+
+	"(PMStatisticalSample new data: #(5 5 1 1 2 3 4)) mean  >>> 3"
+
+	^ self average
+]
+
+{ #category : #information }
+PMStatisticalSample >> median [
+	"The middle value of a statistical sample."
+	^ data median
+]
+
+{ #category : #information }
 PMStatisticalSample >> mode [
 	"answers with the most common value in a collection.
 	
 	If there are values that are equally common then the one that is 
 	smallest is returned."
 
-	"(StatisticalSample new data: #(1 2 2 2 3 4 5)) mode  >>> 2"
+	"(PMStatisticalSample new data: #(1 2 2 2 3 4 5)) mode  >>> 2"
 
-	"(StatisticalSample new data: #(5 5 1 1 2 3 4)) mode  >>> 1"
+	"(PMStatisticalSample new data: #(5 5 1 1 2 3 4)) mode  >>> 1"
 
 	^ (data asBag sortedCounts at: 1) value
+]
+
+{ #category : #information }
+PMStatisticalSample >> stdev [
+	"Answers with the standard deviation of the statistical sample"
+	^ data stdev
+]
+
+{ #category : #information }
+PMStatisticalSample >> variance [
+	"Answers with the variance of the statistical sample."
+	^ self stdev squared
 ]
