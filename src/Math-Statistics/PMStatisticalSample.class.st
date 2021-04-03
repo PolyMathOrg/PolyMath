@@ -18,6 +18,7 @@ Now you can get statistical measures of the data using any of the following mess
 	 sample geometricMean
 	 sample harmonicMean
 
+
 If you only want one statistical measure for a collection you can use my class methods
 
 	 gMean := PMStatisticalSample geometricMean: #(1 2 3 4 5)
@@ -50,6 +51,20 @@ PMStatisticalSample class >> harmonicMean: aCollection [
 ]
 
 { #category : #information }
+PMStatisticalSample class >> mean: aCollection [
+	"Calculate the mean of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
+
+	^ (self newFrom: aCollection) mean
+]
+
+{ #category : #information }
+PMStatisticalSample class >> median: aCollection [
+	"Calculate the median of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
+
+	^ (self newFrom: aCollection) median
+]
+
+{ #category : #information }
 PMStatisticalSample class >> mode: aCollection [
 	"Calculate the mode of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
@@ -64,6 +79,20 @@ PMStatisticalSample class >> newFrom: aCollection [
 	ss := self new.
 	ss data: aCollection.
 	^ ss
+]
+
+{ #category : #information }
+PMStatisticalSample class >> stdev: aCollection [
+	"Calculate the standard deviation of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
+
+	^ (self newFrom: aCollection) stdev
+]
+
+{ #category : #information }
+PMStatisticalSample class >> variance: aCollection [
+	"Calculate the variance of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
+
+	^ (self newFrom: aCollection) variance
 ]
 
 { #category : #information }
