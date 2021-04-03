@@ -66,8 +66,7 @@ PMExponentialDistribution >> initialize: aNumber [
 
 	aNumber > 0
 		ifFalse: [ self error: 'Illegal distribution parameters' ].
-	beta := aNumber.
-	^ self
+	beta := aNumber
 ]
 
 { #category : #information }
