@@ -37,62 +37,62 @@ Class {
 }
 
 { #category : #information }
-PMStatisticalSample class >> geometricMean: aCollection [
+PMStatisticalSample class >> geometricMean: aSample [
 	"Calculate the geometric mean of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) geometricMean
+	^ (self newFrom: aSample) geometricMean
 ]
 
 { #category : #information }
-PMStatisticalSample class >> harmonicMean: aCollection [
+PMStatisticalSample class >> harmonicMean: aSample [
 	"Calculate the harmonic mean of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) harmonicMean
+	^ (self newFrom: aSample) harmonicMean
 ]
 
 { #category : #information }
-PMStatisticalSample class >> mean: aCollection [
+PMStatisticalSample class >> mean: aSample [
 	"Calculate the mean of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) mean
+	^ (self newFrom: aSample) mean
 ]
 
 { #category : #information }
-PMStatisticalSample class >> median: aCollection [
+PMStatisticalSample class >> median: aSample [
 	"Calculate the median of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) median
+	^ (self newFrom: aSample) median
 ]
 
 { #category : #information }
-PMStatisticalSample class >> mode: aCollection [
+PMStatisticalSample class >> mode: aSample [
 	"Calculate the mode of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) mode
+	^ (self newFrom: aSample) mode
 ]
 
 { #category : #'instance creation' }
-PMStatisticalSample class >> newFrom: aCollection [
+PMStatisticalSample class >> newFrom: aSample [
 	"Create a new PMStatisticalSample with aCollection as the data"
 
 	| ss |
 	ss := self new.
-	ss data: aCollection.
+	ss data: aSample.
 	^ ss
 ]
 
 { #category : #information }
-PMStatisticalSample class >> stdev: aCollection [
+PMStatisticalSample class >> stdev: aSample [
 	"Calculate the standard deviation of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) stdev
+	^ (self newFrom: aSample) stdev
 ]
 
 { #category : #information }
-PMStatisticalSample class >> variance: aCollection [
+PMStatisticalSample class >> variance: aSample [
 	"Calculate the variance of a collection. This shortcut method will create a new instance of PMStatisticalSample and return the desired metric."
 
-	^ (self newFrom: aCollection) variance
+	^ (self newFrom: aSample) variance
 ]
 
 { #category : #information }
@@ -109,10 +109,10 @@ PMStatisticalSample >> data [
 ]
 
 { #category : #accessing }
-PMStatisticalSample >> data: aCollection [
+PMStatisticalSample >> data: aSample [
 	"Set the collection of data points that statistical samples will be made against"
 
-	data := aCollection
+	data := aSample
 ]
 
 { #category : #information }
