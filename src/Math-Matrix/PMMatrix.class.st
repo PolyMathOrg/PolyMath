@@ -335,6 +335,39 @@ PMMatrix >> atRow: rowIndex put: aCollection startingAt: startColumnNumber [
 
 ]
 
+{ #category : #'as yet unclassified' }
+PMMatrix >> choleskyDecomposition [
+	| upperTriangular rowSum partialSum diagonalValue nonDiagonalValue factor |
+	
+	self isPositiveDefinite ifFalse: [ 
+		Error signal: 'Choleski decomposition can only be applied to positive-definite matrices' ].
+	
+	upperTriangular := self class
+		zerosRows: self numberOfRows
+		cols: self numberOfColumns.
+	
+	1 to: self numberOfRows do: [ :i | 
+		1 to: i do: [ :j |
+			i = j
+				ifTrue: [
+					rowSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
+						sum + (upperTriangular at: k at: j) squared ].
+
+					diagonalValue := ((self at: j at: j) - rowSum) sqrt.
+
+					upperTriangular at: j at: j put: diagonalValue ]
+				ifFalse: [
+					partialSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
+						sum + (upperTriangular at: k at: i) * (upperTriangular at: k at: j) ].
+
+					factor := upperTriangular at: j at: j.
+					nonDiagonalValue := ((self at: j at: i) - partialSum) / factor.
+
+					upperTriangular at: j at: i put: nonDiagonalValue ] ] ].
+		
+	^ upperTriangular
+]
+
 { #category : #comparing }
 PMMatrix >> closeTo: aPMMatrix [
 	"Tests that we are within the default Float >> #closeTo: precision of aPMMatrix (0.0001)."
@@ -507,6 +540,54 @@ PMMatrix >> inversePivotColumns: anArray [
 PMMatrix >> inversePureCRL [
 	"Answer the inverse of the receiver."
 	^ self squared inversePureCRL * self transpose
+]
+
+{ #category : #testing }
+PMMatrix >> isHermitian [
+	"Hermitian matrix (or self-adjoint matrix) is a complex square matrix that is equal to its own conjugate transpose — that is, the element in the i-th row and j-th column is equal to the complex conjugate of the element in the j-th row and i-th column, for all indices i and j"
+	
+	self isSquare ifFalse: [ ^ false ].
+	
+	1 to: self numberOfRows do: [ :i |
+		1 to: (i - 1) do: [ :j |
+			((self at: i at: j) isComplexConjugateOf: (self at: j at: i))
+				ifFalse: [ ^ false ] ] ].
+		
+	^ true
+]
+
+{ #category : #testing }
+PMMatrix >> isNegativeDefinite [
+	"A Hermitian matrix is negative definite if and only if all its eigenvalues are strictly negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each < 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isNegativeSemiDefinite [
+	"A Hermitian matrix is negative semi-definite if and only if all its eigenvalues are non-positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each <= 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveDefinite [
+	"A Hermitian matrix is positive definite if and only if all its eigenvalues are strictly positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each > 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveSemiDefinite [
+	"A Hermitian matrix is positive semi-definite if and only if all its eigenvalues are non-negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each >= 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isReal [
+	"Answer true if all values of the matrix are real numbers"
+	^ rows allSatisfy: [ :vector | vector isReal ].
 ]
 
 { #category : #testing }

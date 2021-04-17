@@ -18,7 +18,6 @@ Now you can get statistical measures of the data using any of the following mess
 	 sample geometricMean
 	 sample harmonicMean
 
-
 If you only want one statistical measure for a collection you can use my class methods
 
 	 gMean := PMStatisticalSample geometricMean: #(1 2 3 4 5)
