@@ -312,6 +312,12 @@ PMMatrix >> atColumn: aColumnNumber put: aCollection startingAt: rowNumber [
 ]
 
 { #category : #'cell accessing' }
+PMMatrix >> atRow: anInteger [
+
+	^ self rowAt: anInteger
+]
+
+{ #category : #'cell accessing' }
 PMMatrix >> atRow: rowIndex put: aCollection [
 
 	aCollection withIndexDo: [: value : columnIndex |
