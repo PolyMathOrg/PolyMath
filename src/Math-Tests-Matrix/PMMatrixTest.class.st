@@ -48,6 +48,16 @@ PMMatrixTest >> testAtColumnPutRepeat [
 	self assert: a equals: (PMMatrix rows: #(#(1 nil nil) #(1 nil nil) #(nil nil nil))).
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testAtRow [
+
+	| a |
+	a := PMMatrix rows: #(#(1 2 3) #(2 3 4)).
+	
+	self assert: (a atRow: 2) equals: (#(2 3 4) asPMVector).
+	self assert: (a atRow: 1) equals: (#(1 2 3) asPMVector).	
+]
+
 { #category : #'linear algebra' }
 PMMatrixTest >> testAtRowPutAtColumnPut [
 	| a |
