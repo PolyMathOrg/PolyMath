@@ -270,9 +270,9 @@ PMMatrix >> atAllPut: element [
 ]
 
 { #category : #'cell accessing' }
-PMMatrix >> atColumn: acolumnNumber [
+PMMatrix >> atColumn: aColumnNumber [
 
-	^ self columnAt: acolumnNumber
+	^ self columnAt: aColumnNumber
 ]
 
 { #category : #'cell accessing' }
