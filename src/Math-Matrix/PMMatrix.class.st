@@ -270,9 +270,9 @@ PMMatrix >> atAllPut: element [
 ]
 
 { #category : #'cell accessing' }
-PMMatrix >> atColumn: anInteger [
+PMMatrix >> atColumn: aColumnNumber [
 
-	^ self columnAt: anInteger
+	^ self columnAt: aColumnNumber
 ]
 
 { #category : #'cell accessing' }
@@ -309,6 +309,12 @@ PMMatrix >> atColumn: aColumnNumber put: aCollection startingAt: rowNumber [
 			put: value ]]
 	
 
+]
+
+{ #category : #'cell accessing' }
+PMMatrix >> atRow: aRowNumber [
+	"answers the aRowNumber-th row in the receiver"
+	^ self rowAt: aRowNumber
 ]
 
 { #category : #'cell accessing' }
