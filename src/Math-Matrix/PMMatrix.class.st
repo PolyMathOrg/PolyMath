@@ -68,6 +68,11 @@ a tr.
 ]
 
 { #category : #'instance creation' }
+PMMatrix class >> identity: anInteger [ 
+  ^ PMSymmetricMatrix identity: anInteger 
+]
+
+{ #category : #'instance creation' }
 PMMatrix class >> join: anArrayOfMatrices [
 		"Inverse of the split operation."
 	| rows n row rowSize n1 n2 |

@@ -1,7 +1,7 @@
 Class {
 	#name : #PMSymmetricMatrixTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
@@ -36,6 +36,16 @@ PMSymmetricMatrixTest >> testEqual [
 	self assert: b ~= a.
 	a := 's'.
 	self assert: b ~= a
+]
+
+{ #category : #tests }
+PMSymmetricMatrixTest >> testIdentityMatrix [
+	|a a1|
+
+	a := PMSymmetricMatrix identity: 3.
+	a1 := PMSymmetricMatrix rows: #(#(1 0 0) #(0 1 0) #(0 0 1)).
+
+	self assert: a equals: a1.
 ]
 
 { #category : #tests }
