@@ -1,3 +1,6 @@
+"
+PMCauchyDistribution is a continuous probability distribution, depending of 2 parameters: mu and beta.
+"
 Class {
 	#name : #PMCauchyDistribution,
 	#superclass : #PMProbabilityDensity,
@@ -59,10 +62,17 @@ PMCauchyDistribution >> distributionValue: aNumber [
 
 { #category : #initialization }
 PMCauchyDistribution >> initialize: aNumber1 scale: aNumber2 [
-	"Private - Initialize the parameters of the receiver. "
+	"Initialize the parameters of the receiver. "
+
 	mu := aNumber1.
-	beta := aNumber2.
-	^self
+	beta := aNumber2
+]
+
+{ #category : #information }
+PMCauchyDistribution >> kurtosis [
+	"The kurtosis of the receiver is not defined."
+
+	self shouldNotImplement
 ]
 
 { #category : #information }
@@ -73,18 +83,26 @@ PMCauchyDistribution >> parameters [
 
 { #category : #information }
 PMCauchyDistribution >> privateInverseDistributionValue: aNumber [
-	"Private - Answer the number whose acceptance is aNumber."
-	^aNumber =0 
-		ifTrue:[Float infinity negated] 
-		ifFalse: [aNumber =1 
-			ifTrue:[Float infinity ] 
-			ifFalse:[( ( aNumber - (1 / 2)) * Float pi) tan * beta + mu]].
+	"Answer the number whose acceptance is aNumber."
+
+	^ aNumber = 0
+		ifTrue: [ Float infinity negated ]
+		ifFalse: [ aNumber = 1
+				ifTrue: [ Float infinity ]
+				ifFalse: [ ((aNumber - (1 / 2)) * Float pi) tan * beta + mu ] ]
+]
+
+{ #category : #information }
+PMCauchyDistribution >> skewness [
+	"The skewness of the receiver is not defined."
+	self shouldNotImplement
 ]
 
 { #category : #information }
 PMCauchyDistribution >> standardDeviation [
 	"The standard deviation of the receiver is not defined."
-	^nil
+
+self shouldNotImplement 
 ]
 
 { #category : #information }
@@ -107,5 +125,6 @@ PMCauchyDistribution >> valueAndGradient: aNumber [
 { #category : #information }
 PMCauchyDistribution >> variance [
 	"The variance of the receiver is not defined."
-	^nil
+
+	self shouldNotImplement 
 ]

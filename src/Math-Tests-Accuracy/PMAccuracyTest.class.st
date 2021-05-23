@@ -19,15 +19,16 @@ PMAccuracyTest >> initialize [
 ]
 
 { #category : #running }
-PMAccuracyTest >> setUp [ 
+PMAccuracyTest >> setUp [
+	super setUp.
 	a := PMAccuracyTestExample new.
-	PMAccuracyTestExample decimalPlaces: 3.
+	PMAccuracyTestExample decimalPlaces: 3
 ]
 
 { #category : #running }
-PMAccuracyTest >> tearDown [ 
+PMAccuracyTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
-
+	super tearDown.
 ]
 
 { #category : #tests }
@@ -51,21 +52,13 @@ PMAccuracyTest >> testAsArray [
 PMAccuracyTest >> testCalcDeviationsInMax [
 	| r c |
 	c := #(#(1 2 3) #(2 3 6)).
-	r := {(3 / 2).
-	(9 / 4).
-	4}.
+	r := Array with: (3 / 2) with: (9 / 4) with: 4.
 	self
 		assert: (a calcDeviations: r in: c max: false)
-		equals:
-			{(-100 / 3) asFloat.
-			(-100 / 9) asFloat.
-			-25}.
+		equals: (Array with: (-100 / 3) asFloat with: (-100 / 9) asFloat with: -25).
 	self
 		assert: (a calcDeviations: r in: c max: true)
-		equals:
-			{(100 / 3) asFloat.
-			(100 / 3) asFloat.
-			50}
+		equals: (Array with: (100 / 3) asFloat with: (100 / 3) asFloat with: 50)
 ]
 
 { #category : #tests }
@@ -83,44 +76,6 @@ PMAccuracyTest >> testCalcErrorOfRealResult [
 ]
 
 { #category : #tests }
-PMAccuracyTest >> testDataTree [
-	| s |
-	a run.
-	self assert: (a dataTree atPath: #('iterations')) equals: 1.
-	self
-		assert: (a dataTree atPath: #('names' 'data'))
-		equals: #('Aaa' 'Bbb' 'Ccc' 'Ddd' 'Eee' 'Fff').
-	self
-		assert: (a dataTree atPath: #('names' 'Aaa' #(1 2) #(4 4)))
-		equals:
-			(KeyedTree new
-				at: 'arguments' put: true;
-				at: 'data' put: #(#(1 1));
-				at: 'error' put: #(300.0 300.0);
-				at: 'expected result' put: #(4 4);
-				at: 'result' put: #(1 1);
-				at: 'type' put: 'result';
-				yourself).
-	self
-		assert: (a dataTree atPath: #('names' 'Aaa' 'data'))
-		equals: #(#(1 2) #(3 2.8888)).
-	self
-		assert: (a dataTree atPath: #('names' 'Bbb' #(3) 'data'))
-		equals: #(#(2) #(3)).
-	s := a dataTree atPath: #('names' 'Ccc' #(3)).
-	self assert: s keys size equals: 5.
-	s := a dataTree atPath: #('names' 'Fff' 'error').
-	self
-		assert: (s copyFrom: 1 to: 4)
-		equals:
-			{0.
-			Float infinity.
-			-100.0.
-			Float infinity negated}.
-	self assert: (s at: 5) isNaN
-]
-
-{ #category : #tests }
 PMAccuracyTest >> testDecimalPlaces [
 	self assert: a class decimalPlaces equals: 3.
 	a class decimalPlaces: 2.
@@ -128,15 +83,29 @@ PMAccuracyTest >> testDecimalPlaces [
 ]
 
 { #category : #tests }
-PMAccuracyTest >> testExtractFromResultsWhichOnlyOne [
-	self
-		assert: (a extractFromResults: #('bla' 'blah') which: 2 onlyOne: false)
-		equals: 'blah'.
-	self assert: a testGetterAaa second equals: #(true).
-	self
-		assert: (a extractFromResults: #('bla' 'blah') which: 1 onlyOne: true)
-		equals: #('bla' 'blah').
-	self assert: a testGetterAaa second equals: #(#(false) #(true))
+PMAccuracyTest >> testExtractFromResultsReturnsAllElementsWhenOnlyOneIsTrue [
+	| argument results |
+	results := a
+		extractFromResults: #('bla' 'blah')
+		which: 1
+		onlyOne: true.
+	
+	self assert: results equals: #('bla' 'blah').
+	argument := a testGetterAaa second.
+	self assert: argument equals: #(#(false) #(true))
+]
+
+{ #category : #tests }
+PMAccuracyTest >> testExtractFromResultsReturnsTheCorrectIndexedElementWhenOnlyOneIsFalse [
+	| argument results |
+	results := a
+		extractFromResults: #('bla' 'blah')
+		which: 2
+		onlyOne: false.
+
+	self assert: results equals: 'blah'.
+	argument := a testGetterAaa second.
+	self assert: argument equals: #(true)
 ]
 
 { #category : #tests }
@@ -145,16 +114,13 @@ PMAccuracyTest >> testExtremeCollectionmax [
 	c := #(4 4 2).
 	self
 		assert: (a extremeCollection: c max: true)
-		equals: {Float infinity negated}.
+		equals: (Array with: Float infinity negated).
 	self
 		assert: (a extremeCollection: c max: false)
-		equals: {Float infinity}.
+		equals: (Array with: Float infinity).
 	self
-		assert: (a extremeCollection: {c} max: false)
-		equals:
-			{Float infinity.
-			Float infinity.
-			Float infinity}
+		assert: (a extremeCollection: (Array with: c) max: false)
+		equals: (Array with: Float infinity with: Float infinity with: Float infinity)
 ]
 
 { #category : #tests }
@@ -298,22 +264,24 @@ PMAccuracyTest >> testResultsKeyForAtPosition [
 	self
 		assert:
 			(a dataTree
-				atPath:
-					{'names'.
-					'Ccc'.
-					#(1).
-					(a resultsKeyFor: 'Ccc' AtPosition: 1).
-					'arguments'})
+				atPath: (
+					Array
+						with: 'names'
+						with: 'Ccc'
+						with: #(1)
+						with: (a resultsKeyFor: 'Ccc' AtPosition: 1)
+						with: 'arguments'))
 		equals: 1.
 	self
 		assert:
 			(a dataTree
-				atPath:
-					{'names'.
-					'Ccc'.
-					#(1).
-					(a resultsKeyFor: 'Ccc' AtPosition: 3).
-					'arguments'})
+				atPath: (
+					Array
+						with: 'names'
+						with: 'Ccc'
+						with: #(1)
+						with: (a resultsKeyFor: 'Ccc' AtPosition: 3)
+						with: 'arguments'))
 		equals: 0.9.
 	self assert: (a resultsKeyFor: 'Eee' AtPosition: 2) equals: #(1 3).
 	self

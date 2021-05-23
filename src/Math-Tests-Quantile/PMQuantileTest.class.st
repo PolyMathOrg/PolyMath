@@ -30,11 +30,7 @@ PMQuantileTest >> setUp [
 	c := #(1 3 2 4 5) asSortedCollection.
 	d := #(1 3 2 4 5 6) asSortedCollection.
 	b := #(2 4 5 7 8 9 10 12 15 16 18) asSortedCollection.
-	q := {0.
-	(1 / 4).
-	(1 / 2).
-	(3 / 4).
-	1}
+	q := Array with: 0 with: (1 / 4) with: (1 / 2) with: (3 / 4) with: 1
 ]
 
 { #category : #tests }
@@ -58,24 +54,24 @@ PMQuantileTest >> testExtremeCase [
 		assert:
 			(a
 				quantile: 0
-				withProbs:
-					{0.5.
-					0.5.
-					(1 / 2).
-					(1 / 2)})
+				withProbs: (Array with: 0.5 with: 0.5 with: (1 / 2) with: (1 / 2)))
 		equals: 1
+]
+
+{ #category : #tests }
+PMQuantileTest >> testFloatProbability [
+	"tests that input quantile probabilities can be a float"	
+			
+	self assert: (c quantile: 0.25) equals: 2.
+	
+	self assert: (c quantile: 0.27) equals: 2.08
 ]
 
 { #category : #tests }
 PMQuantileTest >> testQuantileA [
 	self
 		assert: (self resultCollect: a method: #modeBased)
-		equals:
-			{1.
-			(7 / 4).
-			(5 / 2).
-			(13 / 4).
-			4}.
+		equals: (Array with: 1 with: (7 / 4) with: (5 / 2) with: (13 / 4) with: 4).
 	self
 		assert: (self resultCollect: a method: #inverseCDF)
 		equals: #(1 1 2 3 4).
@@ -87,36 +83,16 @@ PMQuantileTest >> testQuantileA [
 		equals: #(1 1 2 3 4).
 	self
 		assert: (self resultCollect: a method: #hydrologist)
-		equals:
-			{1.
-			(3 / 2).
-			(5 / 2).
-			(7 / 2).
-			4}.
+		equals: (Array with: 1 with: (3 / 2) with: (5 / 2) with: (7 / 2) with:  4).
 	self
 		assert: (self resultCollect: a method: #weibull)
-		equals:
-			{1.
-			(5 / 4).
-			(5 / 2).
-			(15 / 4).
-			4}.
+		equals: (Array with: 1 with: (5 / 4) with: (5 / 2) with: (15 / 4) with:  4).
 	self
 		assert: (self resultCollect: a method: #medianBased)
-		equals:
-			{1.
-			(17 / 12).
-			(5 / 2).
-			(43 / 12).
-			4}.
+		equals: (Array with: 1 with: (17 / 12) with: (5 / 2) with: (43 / 12) with:  4).
 	self
 		assert: (self resultCollect: a method: #normalDistribution)
-		equals:
-			{1.
-			(23 / 16).
-			(5 / 2).
-			(57 / 16).
-			4}.
+		equals: (Array with: 1 with: (23 / 16) with: (5 / 2) with: (57 / 16) with: 4).
 	self assert: (a quantile: 1 / 4) equals: 7 / 4.
 	self assert: a interQuartileRange equals: 2
 ]
@@ -127,12 +103,7 @@ PMQuantileTest >> testQuantileB [
 
 	self
 		assert: (self resultCollect: b method: #modeBased)
-		equals:
-			{2.
-			6.
-			9.
-			(27 / 2).
-			18}.
+		equals: (Array with: 2 with: 6 with: 9 with: (27 / 2) with: 18).
 	self
 		assert: (self resultCollect: b method: #inverseCDF)
 		equals: #(2 5 9 15 18).
@@ -141,39 +112,19 @@ PMQuantileTest >> testQuantileB [
 		equals: #(2 5 9 12 18).
 	self
 		assert: (self resultCollect: b method: #california)
-		equals:
-			{2.
-			(19 / 4).
-			(17 / 2).
-			(51 / 4).
-			18}.
+		equals: (Array with: 2 with: (19 / 4) with: (17 / 2) with: (51 / 4) with: 18).
 	self
 		assert: (self resultCollect: b method: #hydrologist)
-		equals:
-			{2.
-			(11 / 2).
-			9.
-			(57 / 4).
-			18}.
+		equals: (Array with: 2 with: (11 / 2) with: 9 with: (57 / 4) with: 18).
 	self
 		assert: (self resultCollect: b method: #weibull)
 		equals: #(2 5 9 15 18).
 	self
 		assert: (self resultCollect: b method: #medianBased)
-		equals:
-			{2.
-			(16 / 3).
-			9.
-			(29 / 2).
-			18}.
+		equals: (Array with: 2 with: (16 / 3) with: 9 with: (29 / 2) with: 18).
 	self
 		assert: (self resultCollect: b method: #normalDistribution)
-		equals:
-			{2.
-			(43 / 8).
-			9.
-			(231 / 16).
-			18}.
+		equals: (Array with: 2 with: (43 / 8) with: 9 with: (231 / 16) with: 18).
 	self assert: (b quantile: 1 / 4) equals: 6.
 	self assert: b interQuartileRange equals: 35 / 4
 ]
@@ -194,41 +145,17 @@ PMQuantileTest >> testQuantileC [
 		equals: #(1 1 3 4 5).
 	self
 		assert: (self resultCollect: c method: #california)
-		equals:
-			{1.
-			(5 / 4).
-			(5 / 2).
-			(15 / 4).
-			5}.
+		equals: (Array with: 1 with: (5 / 4) with: (5 / 2) with: (15 / 4) with: 5).
 	self
 		assert: (self resultCollect: c method: #hydrologist)
-		equals:
-			{1.
-			(7 / 4).
-			3.
-			(17 / 4).
-			5}.
+		equals: (Array with: 1 with: (7 / 4) with: 3 with: (17 / 4) with: 5).
 	self
 		assert: (self resultCollect: c method: #weibull)
-		equals:
-			{1.
-			(3 / 2).
-			3.
-			(9 / 2).
-			5}.
+		equals: (Array with: 1 with: (3 / 2) with: 3 with: (9 / 2) with: 5).
 	self
 		assert: (self resultCollect: c method: #medianBased)
-		equals:
-			{1.
-			(5 / 3).
-			3.
-			(13 / 3).
-			5}.
-	r := {1.
-	(27 / 16).
-	3.
-	(69 / 16).
-	5}.
+		equals: (Array with: 1 with: (5 / 3) with: 3 with: (13 / 3) with: 5).
+	r := Array with: 1 with: (27 / 16) with: 3 with: (69 / 16) with: 5.
 	self
 		assert: (self resultCollect: c method: #normalDistribution)
 		equals: r.
@@ -236,11 +163,7 @@ PMQuantileTest >> testQuantileC [
 		assert:
 			(self
 				resultCollect: c
-				withProbs:
-					{(3 / 8).
-					(1 / 4).
-					0.
-					1})
+				withProbs: (Array with: (3 / 8) with: (1 / 4) with: 0 with: 1))
 		equals: r.
 	self assert: c interQuartileRange equals: 5 / 2
 ]
@@ -251,12 +174,7 @@ PMQuantileTest >> testQuantileD [
 
 	self
 		assert: (self resultCollect: d method: #modeBased)
-		equals:
-			{1.
-			(9 / 4).
-			(7 / 2).
-			(19 / 4).
-			6}.
+		equals: (Array with: 1 with: (9 / 4) with: (7 / 2) with: (19 / 4) with: 6).
 	self
 		assert: (self resultCollect: d method: #inverseCDF)
 		equals: #(1 2 3 5 6).
@@ -265,43 +183,18 @@ PMQuantileTest >> testQuantileD [
 		equals: #(1 2 3 5 6).
 	self
 		assert: (self resultCollect: d method: #california)
-		equals:
-			{1.
-			(3 / 2).
-			3.
-			(9 / 2).
-			6}.
+		equals: (Array with: 1 with: (3 / 2) with: 3 with: (9 / 2) with: 6).
 	self
 		assert: (self resultCollect: d method: #hydrologist)
-		equals:
-			{1.
-			2.
-			(7 / 2).
-			5.
-			6}.
+		equals: (Array with: 1 with: 2 with: (7 / 2) with: 5 with: 6).
 	self
 		assert: (self resultCollect: d method: #weibull)
-		equals:
-			{1.
-			(7 / 4).
-			(7 / 2).
-			(21 / 4).
-			6}.
+		equals: (Array with: 1 with: (7 / 4) with: (7 / 2) with: (21 / 4) with: 6).
 	self
 		assert: (self resultCollect: d method: #medianBased)
-		equals:
-			{1.
-			(23 / 12).
-			(7 / 2).
-			(61 / 12).
-			6}.
+		equals: (Array with: 1 with: (23 / 12) with: (7 / 2) with: (61 / 12) with: 6).
 	self
 		assert: (self resultCollect: d method: #normalDistribution)
-		equals:
-			{1.
-			(31 / 16).
-			(7 / 2).
-			(81 / 16).
-			6}.
+		equals: (Array with: 1 with: (31 / 16) with: (7 / 2) with: (81 / 16) with: 6).
 	self assert: d interQuartileRange equals: 3
 ]

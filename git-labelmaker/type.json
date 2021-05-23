@@ -1,6 +1,0 @@
-[
-  { "name": "Type: Bug", "color": "#e11d21" },
-  { "name": "Type: Maintenance", "color": "#fbca04" },
-  { "name": "Type: Enhancement", "color": "#84b6eb" },
-  { "name": "Type: Question", "color": "#cc317c" }
-]

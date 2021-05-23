@@ -523,6 +523,18 @@ PMComplex >> imaginary [
 ]
 
 { #category : #testing }
+PMComplex >> isComplexConjugateOf: aNumber [
+	"Answer true if self and aNumber are complex conjugates of each other. The complex conjugate of a complex number is the number with an equal real part and an imaginary part equal in magnitude but opposite in sign."
+	^ aNumber isComplexConjugateOfAComplexNumber: self
+]
+
+{ #category : #testing }
+PMComplex >> isComplexConjugateOfAComplexNumber: aComplexNumber [
+	"Answer true if self and aComplexNumber are complex conjugates of each other. The complex conjugate of a complex number is the number with an equal real part and an imaginary part equal in magnitude but opposite in sign."
+	^ (aComplexNumber real = real) and: [ aComplexNumber imaginary = (-1 * imaginary) ]
+]
+
+{ #category : #testing }
 PMComplex >> isComplexNumber [
 	^ true
 ]

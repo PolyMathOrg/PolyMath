@@ -20,12 +20,15 @@ BaselineOfPolyMath >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ "Dependencies"
-			self
-				sMark: spec;
-				xmlWriter: spec.
-
-			"Packages"
+		do: [
+			spec blessing: #baseline.
+			spec repository: 'github://PolyMathOrg/PolyMath/src'.
+			spec
+				baseline: 'SMark'
+					with: [ spec repository: 'github://smarr/SMark:v1.0.4' ];
+				baseline: 'XMLWriter'
+					with: [ spec
+						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.x/src' ].
 			spec
 				package: 'ExtendedNumberParser';
 				package: 'Math-Accuracy-Core';
@@ -110,6 +113,8 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec requires: #('Math-Complex') ];
 				package: 'Math-Tests-Core'
 					with: [ spec requires: #('Math-Core') ];
+				package: 'Math-Tests-Core-Distribution'
+					with: [ spec requires: #('Math-Core-Distribution') ];
 				package: 'Math-Tests-Core-Process'
 					with: [ spec requires: #('Math-Core-Process') ];
 				package: 'Math-Tests-Numerical'
@@ -147,8 +152,6 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Tests-TSNE'
 					with: [ spec requires: #('Math-TSNE') ];
 				package: 'Math-UtilsDataServer'.
-
-			"Groups"
 			spec
 				group: 'Accuracy'
 					with: #('Math-Accuracy-ODE' 'Math-Accuracy-Core');
@@ -162,7 +165,7 @@ BaselineOfPolyMath >> baseline: spec [
 					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-KolmogorovSmirnov');
 				group: 'Tests'
 					with:
-					#('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core');
+					#('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution' 'Math-Tests-Core');
 				group: 'default'
 					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ]
 ]
@@ -172,24 +175,4 @@ BaselineOfPolyMath >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
-]
-
-{ #category : #dependencies }
-BaselineOfPolyMath >> sMark: spec [
-	spec
-		project: 'SMark'
-		with: [ spec
-				className: #ConfigurationOfSMark;
-				versionString: '1.0.2';
-				repository: 'http://smalltalkhub.com/mc/StefanMarr/SMark/main' ]
-]
-
-{ #category : #dependencies }
-BaselineOfPolyMath >> xmlWriter: spec [
-	spec
-		project: 'XMLWriter'
-		with: [ spec
-				className: #ConfigurationOfXMLWriter;
-				versionString: '2.3.10';
-				repository: 'http://smalltalkhub.com/mc/PharoExtras/XMLWriter/main' ]
 ]

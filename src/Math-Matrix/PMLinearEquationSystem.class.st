@@ -2,7 +2,7 @@
 This class offers Gaussian elimination.
 
 [[[ 
- (DhbLinearEquationSystem equations: #( (3 2 4)
+ (PMLinearEquationSystem equations: #( (3 2 4)
                                    (2 -5 -1)
                                    (1 -2 2))
                       constant: #(16 6 10)
@@ -22,7 +22,7 @@ Class {
 		'rows',
 		'solutions'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #creation }

@@ -38,7 +38,7 @@ PMODEBenchmark class >> runAllToXML: numOfIterations [
 		xml.
 	writer tag: 'smark' with: [ 
 		(self runAll: numOfIterations) do: [ :runner |
-			writer tag: 'suite' attributes: { #name -> runner suite class name asString } asDictionary with: [  
+			writer tag: 'suite' attributes: (Dictionary with: #name -> runner suite class name asString) with: [  
 				runner results keysAndValuesDo: [ :key :value |
 					writer tag: key with: ((value inject: 0 into: [ :subTotal :result |
 								subTotal + result total ]) / value size) asFloat asString] ] ] ].

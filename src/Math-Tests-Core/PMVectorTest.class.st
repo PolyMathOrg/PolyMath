@@ -70,6 +70,35 @@ PMVectorTest >> testGreaterThan [
 ]
 
 { #category : #tests }
+PMVectorTest >> testHouseholder [
+	| u w |
+	u := #(-1 0 1) asPMVector. "`x <= 0` when x = -1"
+	w := u householder.
+	self
+		assert: (w at: 1) equals: 1.7071067811865475;
+		assert: (w at: 2) asArray equals: #(1.0 -0.0 -0.4142135623730951).
+	u := #(1.00001 2.00007) asPMVector. "`x <= 0` when x = 1.00001"
+	w := u householder.
+	self
+		assert: (w at: 1) equals: 0.5527953485259909;
+		assert: (w at: 2) asArray equals: #(1.0 -1.6180158992689828).
+]
+
+{ #category : #tests }
+PMVectorTest >> testIsRealOnComplexVector [
+	| vector |
+	vector := { 1 . 4 . -2 . 0.5 + 3i } asPMVector.
+	self deny: vector isReal.
+]
+
+{ #category : #tests }
+PMVectorTest >> testIsRealOnRealVector [
+	| vector |
+	vector := #(1 4 -2 0.5) asPMVector.
+	self assert: vector isReal.
+]
+
+{ #category : #tests }
 PMVectorTest >> testLessThan [
 	| vec vecCopy |
 	vec := #(1 2 3) asPMVector.
@@ -79,7 +108,7 @@ PMVectorTest >> testLessThan [
 	self assert: vec equals: vecCopy asPMVector.
 ]
 
-{ #category : #tests } 
+{ #category : #tests }
 PMVectorTest >> testMatrixConversionWithBothDims [
 	| vect result expected |
 	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
@@ -152,6 +181,21 @@ PMVectorTest >> testSubtractScalar [
 	expected := #(1 2 3) asPMVector.
 	
 	self assert: actual equals: expected.
+]
+
+{ #category : #test }
+PMVectorTest >> testTake [
+
+	| m expected |
+	m := PMVector withAll: #(1 2 3).
+	expected := PMVector withAll: #(0 1 3).
+	self assert: (m take: 2) equals: expected.
+	expected := PMVector withAll: #(0 0 1).
+	self assert: (m take: 3) equals: expected.
+	
+	m := PMVector withAll: #().
+	expected := PMVector withAll: #().
+	self assert: (m take: 2) equals: expected.
 ]
 
 { #category : #tests }
