@@ -206,12 +206,6 @@ PMVector >> householder [
 	^Array with: b with: v
 ]
 
-{ #category : #testing }
-PMVector >> isReal [
-	"Answer true if all values of the vector are real numbers"
-	^ self allSatisfy: [ :each | each isRealNumber ].
-]
-
 { #category : #operation }
 PMVector >> log [
 	"Apply log function to every element of a vector"

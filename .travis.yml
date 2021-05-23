@@ -1,0 +1,15 @@
+language: smalltalk
+sudo: false
+
+os:
+  - linux
+  - osx
+
+smalltalk:
+  - Pharo32-7.0
+  - Pharo64-7.0
+  - Pharo32-8.0
+  - Pharo64-8.0
+
+matrix:
+  fast_finish: true
