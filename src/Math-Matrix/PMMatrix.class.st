@@ -508,6 +508,7 @@ PMMatrix >> hash [
 { #category : #initialization }
 PMMatrix >> initialize: anInteger [
 	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
+	[ anInteger isInteger and: [ anInteger  >= 0 ] ] assert.
 	rows := (1 to: anInteger) asPMVector collect: [ :each | PMVector new: anInteger].
 ]
 
@@ -520,7 +521,8 @@ PMMatrix >> initializeRows: anArrayOrVector [
 { #category : #initialization }
 PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
 	"Build empty components for a matrix."
-		
+	[ rowsInteger  isInteger and: [ rowsInteger   >= 0 ] ] assert.
+	[ columnsInteger  isInteger and: [ columnsInteger  >= 0 ] ] assert.
 	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
 ]
 
