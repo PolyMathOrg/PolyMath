@@ -475,7 +475,10 @@ PMMatrixTest >> testMatrixInitialize [
 	| a |
 	a := PMMatrix new initialize: 2.
 	self assert: a numberOfRows equals: 2.
-	self assert: a numberOfColumns equals: 2
+	self assert: a numberOfColumns equals: 2.
+	
+	self should: [ PMMatrix new: -2 ] raise: AssertionFailure .
+	self should: [ PMMatrix rows: -3 columns: 4 ] raise: AssertionFailure.
 ]
 
 { #category : #'linear algebra' }
