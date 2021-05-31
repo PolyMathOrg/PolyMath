@@ -198,6 +198,20 @@ PMMatrixTest >> testFlattenRows [
 ]
 
 { #category : #tests }
+PMMatrixTest >> testIdentityMatrix [
+	|expectedIdentityMatrix identityMatrix|
+
+	expectedIdentityMatrix := PMMatrix zerosRows: 3 cols: 3.
+
+	expectedIdentityMatrix at: 1 at: 1 put: 1.
+	expectedIdentityMatrix at: 2 at: 2 put: 1.
+	expectedIdentityMatrix at: 3 at: 3 put: 1.
+
+	identityMatrix := PMMatrix identity: 3.
+	self assert: identityMatrix equals: expectedIdentityMatrix.
+]
+
+{ #category : #tests }
 PMMatrixTest >> testIsRealOnComplexMatrix [
 	| matrix |
 	
