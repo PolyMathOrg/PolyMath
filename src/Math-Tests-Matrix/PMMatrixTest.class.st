@@ -473,8 +473,9 @@ PMMatrixTest >> testMatrixHash [
 { #category : #'linear algebra' }
 PMMatrixTest >> testMatrixInitializationWithNegativeDimensions [
 	
+	" matrices with negative dimension and zero dimension should not be allowed."
 	self should: [ PMMatrix new: -2 ] raise: AssertionFailure .
-	self should: [ PMMatrix rows: -3 columns: 4 ] raise: AssertionFailure.
+	self should: [ PMMatrix rows: 0 columns: 4 ] raise: AssertionFailure.
 ]
 
 { #category : #'linear algebra' }
