@@ -102,10 +102,10 @@ PMMatrix class >> lupCRLCriticalDimension [
 ]
 
 { #category : #'instance creation' }
-PMMatrix class >> new: anInteger [
+PMMatrix class >> new: dimension [
 	"Create an empty square matrix of dimension anInteger."
 
-	^ self new initializeSquare: anInteger
+	^ self new initializeSquare: dimension
 ]
 
 { #category : #'instance creation' }
@@ -520,9 +520,9 @@ PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
 ]
 
 { #category : #initialization }
-PMMatrix >> initializeSquare: anInteger [
+PMMatrix >> initializeSquare: dimension [
 	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
-	^ self initializeRows: anInteger  columns: anInteger 
+	^ self initializeRows: dimension  columns: dimension 
 ]
 
 { #category : #operation }
