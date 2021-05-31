@@ -521,8 +521,8 @@ PMMatrix >> initializeRows: anArrayOrVector [
 { #category : #initialization }
 PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
 	"Build empty components for a matrix."
-	[ rowsInteger  isInteger and: [ rowsInteger   >= 0 ] ] assert.
-	[ columnsInteger  isInteger and: [ columnsInteger  >= 0 ] ] assert.
+	self assert: [ rowsInteger  isInteger and: [ rowsInteger   >= 0 ] ] description: 'Row size of a matrix must be a positive integer'.
+	self assert: [ columnsInteger  isInteger and: [ columnsInteger  >= 0 ] ]  description: 'Column size of a matrix must be a positive integer'.
 	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
 ]
 
