@@ -1,5 +1,5 @@
 "
-This class can be instantiated like DhbMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons.
+This class can be instantiated like PMMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons.
 "
 Class {
 	#name : #PMSymmetricMatrix,

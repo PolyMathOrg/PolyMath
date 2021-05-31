@@ -1,5 +1,5 @@
 "
-A DhbRombergIntegrator implements the Romberg Method. This uses Richardson extrapolation on the Trapezoid method to generate a higher order estimate.
+A PMRombergIntegrator implements the Romberg Method. This uses Richardson extrapolation on the Trapezoid method to generate a higher order estimate.
 
 Evenly spaced samples are used. 
 
