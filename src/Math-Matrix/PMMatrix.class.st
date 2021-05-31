@@ -105,7 +105,7 @@ PMMatrix class >> lupCRLCriticalDimension [
 PMMatrix class >> new: anInteger [
 	"Create an empty square matrix of dimension anInteger."
 
-	^ self new initialize: anInteger
+	^ self new initializeSquare: anInteger
 ]
 
 { #category : #'instance creation' }
@@ -506,13 +506,6 @@ PMMatrix >> hash [
 ]
 
 { #category : #initialization }
-PMMatrix >> initialize: anInteger [
-	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
-	[ anInteger isInteger and: [ anInteger  >= 0 ] ] assert.
-	rows := (1 to: anInteger) asPMVector collect: [ :each | PMVector new: anInteger].
-]
-
-{ #category : #initialization }
 PMMatrix >> initializeRows: anArrayOrVector [
 	"Defines the components of the recevier. No check is made: components are assumed to be orgainized in rows."
 	rows := anArrayOrVector asPMVector collect: [ :each | each asPMVector].
@@ -524,6 +517,12 @@ PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
 	self assert: [ rowsInteger  isInteger and: [ rowsInteger   >= 0 ] ] description: 'Row size of a matrix must be a positive integer'.
 	self assert: [ columnsInteger  isInteger and: [ columnsInteger  >= 0 ] ]  description: 'Column size of a matrix must be a positive integer'.
 	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
+]
+
+{ #category : #initialization }
+PMMatrix >> initializeSquare: anInteger [
+	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
+	^ self initializeRows: anInteger  columns: anInteger 
 ]
 
 { #category : #operation }
