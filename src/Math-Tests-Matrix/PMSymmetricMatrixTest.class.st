@@ -40,12 +40,12 @@ PMSymmetricMatrixTest >> testEqual [
 
 { #category : #tests }
 PMSymmetricMatrixTest >> testIdentityMatrix [
-	|a a1|
+	|expectedIdentityMatrix identityMatrix|
 
-	a := PMSymmetricMatrix identity: 3.
-	a1 := PMSymmetricMatrix rows: #(#(1 0 0) #(0 1 0) #(0 0 1)).
+	identityMatrix := PMSymmetricMatrix identity: 3.
+	expectedIdentityMatrix := PMSymmetricMatrix rows: #(#(1 0 0) #(0 1 0) #(0 0 1)).
 
-	self assert: a equals: a1.
+	self assert: identityMatrix equals: expectedIdentityMatrix.
 ]
 
 { #category : #tests }

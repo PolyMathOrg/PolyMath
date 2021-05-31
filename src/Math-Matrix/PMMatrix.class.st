@@ -68,8 +68,8 @@ a tr.
 ]
 
 { #category : #'instance creation' }
-PMMatrix class >> identity: anInteger [ 
-  ^ PMSymmetricMatrix identity: anInteger 
+PMMatrix class >> identity: dimension [
+  ^ PMSymmetricMatrix identity: dimension
 ]
 
 { #category : #'instance creation' }
