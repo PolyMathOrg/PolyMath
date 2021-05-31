@@ -208,7 +208,7 @@ PMMatrixTest >> testIdentityMatrix [
 	expectedIdentityMatrix at: 3 at: 3 put: 1.
 
 	identityMatrix := PMMatrix identity: 3.
-	self assert: identityMatrix equals: identityMatrix.
+	self assert: identityMatrix equals: expectedIdentityMatrix.
 ]
 
 { #category : #tests }
