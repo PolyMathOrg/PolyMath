@@ -103,7 +103,7 @@ PMMatrix class >> lupCRLCriticalDimension [
 
 { #category : #'instance creation' }
 PMMatrix class >> new: dimension [
-	"Create an empty square matrix of dimension anInteger."
+	"Create an empty square matrix of size dimension x dimension."
 
 	^ self new initializeSquare: dimension
 ]
