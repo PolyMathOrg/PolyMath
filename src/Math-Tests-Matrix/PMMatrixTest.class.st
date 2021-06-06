@@ -485,11 +485,20 @@ PMMatrixTest >> testMatrixHash [
 ]
 
 { #category : #'linear algebra' }
-PMMatrixTest >> testMatrixInitialize [
-	| a |
-	a := PMMatrix new initialize: 2.
-	self assert: a numberOfRows equals: 2.
-	self assert: a numberOfColumns equals: 2
+PMMatrixTest >> testMatrixInitializationWithNegativeDimensions [
+	
+	" matrices with negative dimension and zero dimension should not be allowed."
+	self should: [ PMMatrix new: -2 ] raise: AssertionFailure .
+	self should: [ PMMatrix rows: 0 columns: 4 ] raise: AssertionFailure.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testMatrixInitializeSquare [
+	| aPMMatrix |
+	aPMMatrix := PMMatrix new initializeSquare: 2.
+	self assert: aPMMatrix numberOfRows equals: 2.
+	self assert: aPMMatrix numberOfColumns equals: 2.
+
 ]
 
 { #category : #'linear algebra' }
@@ -541,6 +550,15 @@ PMMatrixTest >> testMatrixMultiply [
 	self assert: ((c rowAt: 2) at: 1) equals: 18.
 	self assert: ((c rowAt: 2) at: 2) equals: 14.
 	self assert: ((c rowAt: 2) at: 3) equals: 4
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testMatrixNew [
+	| aPMMatrix |
+	aPMMatrix  := PMMatrix new: 3.
+	self assert: aPMMatrix numberOfRows equals: 3.
+	self assert: aPMMatrix numberOfColumns equals: 3.
+
 ]
 
 { #category : #'linear algebra' }
