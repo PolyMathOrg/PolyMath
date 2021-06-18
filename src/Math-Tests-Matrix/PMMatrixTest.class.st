@@ -742,7 +742,7 @@ PMMatrixTest >> testStrassenProductWithMatrix [
 		
 	| aPMMatrix expected strassenProduct |
 	
-   aPMMatrix := PMMatrix rows: #( (1 2 3 4) (1 0 1 2) (2 3 1 4) (4 3 2 2)).
+	aPMMatrix := PMMatrix rows: #( (1 2 3 4) (1 0 1 2) (2 3 1 4) (4 3 2 2)).
 	expected  := PMMatrix rows: #( (30 12 27 24) (12 6 11 10) (27 11 30 27) (24 10 27 33)).
 	strassenProduct := aPMMatrix transpose strassenProductWithMatrix: aPMMatrix.
 	self assert: strassenProduct equals: expected.
@@ -754,7 +754,7 @@ PMMatrixTest >> testStrassenProductWithMatrixWithInvalidShapes [
 	| aPMMatrix |
 	
 	"all the dimension of the matrices should be a power of 2 for strassen multiplication"
-   aPMMatrix := PMMatrix rows: #( (1 2 3) (1 0 1) (2 3 1) (2 0 1)).
+	aPMMatrix := PMMatrix rows: #( (1 2 3) (1 0 1) (2 3 1) (2 0 1)).
 	
 	self should: [ aPMMatrix strassenProductWithMatrix: aPMMatrix transpose ] raise: AssertionFailure.
 
