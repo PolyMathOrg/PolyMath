@@ -950,8 +950,13 @@ PMMatrix >> squared [
 PMMatrix >> strassenProductWithMatrix: aMatrix [
 	"Private"
 	| matrixSplit selfSplit p1 p2 p3 p4 p5 p6 p7 |
+
 	( self numberOfRows > 2 and: [ self numberOfColumns > 2])
 		ifFalse:[ ^self class rows: ( aMatrix rowsCollect: [ :row | self columnsCollect: [ :col | row * col]])].
+	
+	self assert: [ self numberOfRows isPowerOfTwo and: self numberOfColumns isPowerOfTwo  ] description: 'Matrix size should be a power of two'.
+	self assert: [ aMatrix numberOfRows isPowerOfTwo and: aMatrix numberOfColumns isPowerOfTwo  ] description: 'Matrix size should be a power of two'.
+		
 	selfSplit := self split.
 	matrixSplit := aMatrix split.
 	p1 := ( ( selfSplit at: 2) - ( selfSplit at: 4)) strassenProductWithMatrix: ( matrixSplit at: 1).
