@@ -824,6 +824,20 @@ PMMatrix >> qrFactorizationWithPivoting [
 	^ Array with: q with: r with: pivot
 ]
 
+{ #category : #operation }
+PMMatrix >> raisedTo: anInteger [
+
+	" Answers the receiver raised to a power anInteger.
+	 If anInteger is negative, inverse of the receiver is raised to the absolute value of anInteger."
+	self assert: self numberOfRows = self numberOfColumns description: 'Matrix should be square'.
+	
+	 anInteger <= 0 ifTrue: [ 
+		anInteger = 0 ifTrue: [^ PMMatrix identity: self numberOfRows ]
+		ifFalse: [ ^ self inverse raisedTo: anInteger abs ]
+		]
+	ifFalse: [ ^ self * (self raisedTo: anInteger -1) ]
+]
+
 { #category : #'as yet unclassified' }
 PMMatrix >> rank [ 
 	^	((self numberOfRows < self numberOfColumns 

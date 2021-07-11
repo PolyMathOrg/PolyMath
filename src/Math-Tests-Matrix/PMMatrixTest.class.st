@@ -632,6 +632,56 @@ PMMatrixTest >> testPrintOn [
 	m printOn: stream
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testRaisedToNegativeInteger [  
+
+	|aPMMatrix expected|
+	
+	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
+	
+	aPMMatrix := aPMMatrix raisedTo: -2.
+	expected := PMMatrix rows: #(#(0.5 -1) #(-1 2.5)).
+	
+	self assert: aPMMatrix equals: expected.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testRaisedToNonSquareMatrix [
+
+	|aPMMatrix|
+	
+	aPMMatrix := PMMatrix rows: #(#(3 1 4) #(1 1 2)).
+	
+	self should: [ aPMMatrix raisedTo: 3 ] raise: AssertionFailure.
+	
+]
+
+{ #category : #tests }
+PMMatrixTest >> testRaisedToPositiveInteger [ 
+
+	|aPMMatrix expected|
+	
+	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
+	
+	aPMMatrix := aPMMatrix raisedTo: 3.
+	expected := PMMatrix rows: #(#(34 14) #(14 6)).
+	
+	self assert: aPMMatrix equals: expected.
+]
+
+{ #category : #tests }
+PMMatrixTest >> testRaisedToZero [
+
+	|aPMMatrix expected|
+	
+	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
+	
+	aPMMatrix := aPMMatrix raisedTo: 0.
+	expected := aPMMatrix.
+	
+	self assert: aPMMatrix equals: expected.
+]
+
 { #category : #comparing }
 PMMatrixTest >> testRowsColumns [
 	| a |
