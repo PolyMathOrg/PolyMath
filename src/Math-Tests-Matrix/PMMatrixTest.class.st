@@ -640,8 +640,8 @@ PMMatrixTest >> testRaisedToNegativeInteger [
 	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
 	
 	aPMMatrix := aPMMatrix raisedTo: -2.
-	expected := PMMatrix rows: #(#(0.5 -1) #(-1 2.5)).
 	
+	expected := PMMatrix rows: #(#(0.5 -1) #(-1 2.5)).
 	self assert: aPMMatrix equals: expected.
 ]
 
@@ -664,8 +664,8 @@ PMMatrixTest >> testRaisedToPositiveInteger [
 	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
 	
 	aPMMatrix := aPMMatrix raisedTo: 3.
-	expected := PMMatrix rows: #(#(34 14) #(14 6)).
 	
+	expected := PMMatrix rows: #(#(34 14) #(14 6)).
 	self assert: aPMMatrix equals: expected.
 ]
 
@@ -677,8 +677,8 @@ PMMatrixTest >> testRaisedToZero [
 	aPMMatrix := PMMatrix rows: #(#(3 1) #(1 1)).
 	
 	aPMMatrix := aPMMatrix raisedTo: 0.
-	expected := aPMMatrix.
 	
+	expected := PMMatrix rows: #( #(1 0) #(0 1)).
 	self assert: aPMMatrix equals: expected.
 ]
 
