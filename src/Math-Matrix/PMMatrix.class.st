@@ -829,17 +829,20 @@ PMMatrix >> raisedTo: aPower [
 
 	" Answers the receiver raised to a power, aPower .
 	 If aPower is negative, inverse of the receiver is raised to the absolute value of aPower."
+	
+	|aRaisedPMMatrix|
 
 	self assert: self isSquare description: 'Matrix should be square'.
 	
-	 aPower = 0 ifTrue: [ 
-		^ PMMatrix identity: self numberOfRows ].
+	aPower < 0 ifTrue: [
+		^ self inverse raisedTo: aPower abs ].
 	
-	aPower > 0 ifTrue: [
-		^ self * (self raisedTo: aPower -1) ].
+	aRaisedPMMatrix := PMMatrix identity: self numberOfRows.
 	
-	"aPower is less than 0, if it reaches here"
-	^ self inverse raisedTo: aPower abs
+	1 to: aPower do: [ :each |
+		aRaisedPMMatrix := aRaisedPMMatrix * self ].
+	
+	^ aRaisedPMMatrix 
 ]
 
 { #category : #'as yet unclassified' }
