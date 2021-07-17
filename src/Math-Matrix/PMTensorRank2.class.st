@@ -8,6 +8,23 @@ Class {
 	#category : #'Math-Matrix'
 }
 
+{ #category : #'instance creation' }
+PMTensorRank2 class >> rows: anArray [
+
+
+	^ self new array: anArray flattened withShape: { 
+			  anArray size.
+			  (anArray at: 1) size }
+]
+
+{ #category : #'as yet unclassified' }
+PMTensorRank2 class >> zerosWithShape: aShape [
+
+	^ self new
+		  array: (Array new: aShape first * aShape second withAll:0)
+		  withShape: aShape
+]
+
 { #category : #arithmetic }
 PMTensorRank2 >> * aPMTensor [
 
