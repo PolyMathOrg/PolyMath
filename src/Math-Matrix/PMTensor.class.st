@@ -10,6 +10,28 @@ Class {
 	#category : #'Math-Matrix'
 }
 
+{ #category : #'instance creation' }
+PMTensor class >> newWith: anInteger [
+
+	^ self new array: {anInteger} withShape: #(  )
+]
+
+{ #category : #'instance creation' }
+PMTensor class >> rows: anArray [
+
+	^ self new array: anArray flattened withShape: (self shape:anArray)
+]
+
+{ #category : #accessing }
+PMTensor class >> shape: anArray [
+
+anArray isArray ifFalse:[^#()]
+ifTrue:[
+	^ {anArray size}, (self shape: anArray first)
+	]
+
+]
+
 { #category : #comparing }
 PMTensor >> = aTensor [
 
