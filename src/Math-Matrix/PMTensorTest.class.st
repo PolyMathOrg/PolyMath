@@ -8,10 +8,10 @@ Class {
 PMTensorTest >> testArray [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	self assert: t1 array equals: #( 1 2 3 4 5 6 7 8 ).
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self
 		assert: t2 array
@@ -36,20 +36,36 @@ PMTensorTest >> testCreateScalarTensor [
 PMTensorTest >> testFirst [
 
 	| a b |
-	a := PMTensor rows: (1 to: 6) asArray.
+	a := PMTensor fromNestedArray: (1 to: 6) asArray.
 	self assert: a first equals: #( 1).
 	b := a reshape: #( 3 2 ).
 	self assert: b first equals: #( 1 1 )
 ]
 
 { #category : #tests }
+PMTensorTest >> testFromNestedArray [
+
+	| t1 t2 |
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) 
+								#( 5 6 7 8 ) ).
+	self assert: t1 class equals: PMTensor.
+	
+	t2 := PMTensor fromNestedArray: #( #( #( 1 1 ) #( 2 2 ) )
+								#( #( 3 3 ) #( 4 4 ) )
+		         				#( #( 4 4 ) #( 4 4 ) )
+								#( #( 4 4 ) #( 4 4 ) ) ).
+	self assert: t2 class equals: PMTensor.
+	
+]
+
+{ #category : #tests }
 PMTensorTest >> testGet [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	self assert: (t1 get: #( 2 2 )) equals: 6.
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self assert: (t2 get: #( 3 2 1 )) equals: 11.
 	
@@ -60,10 +76,10 @@ PMTensorTest >> testGet [
 PMTensorTest >> testGetPosition [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	self assert: (t1 getPosition: #( 1 2 )) equals: 2.
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self assert: (t2 getPosition: #( 1 2 2 )) equals: 4
 ]
@@ -73,10 +89,10 @@ PMTensorTest >> testRank [
 
 	| t1 t2 |
 	
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	self assert: t1 rank equals: 2.
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self assert: t2 rank equals: 3
 ]
@@ -85,7 +101,7 @@ PMTensorTest >> testRank [
 PMTensorTest >> testReshape [
 
 	| t t1 |
-	t := PMTensor rows: #( #( 0 1 ) #( 2 3 ) #( 4 5 ) ).
+	t := PMTensor fromNestedArray: #( #( 0 1 ) #( 2 3 ) #( 4 5 ) ).
 	t1 := t reshape: #( 2 3 ).
 
 	self assert: t shape equals: #( 3 2 ).
@@ -94,30 +110,14 @@ PMTensorTest >> testReshape [
 ]
 
 { #category : #tests }
-PMTensorTest >> testRows [
-
-	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) 
-								#( 5 6 7 8 ) ).
-	self assert: t1 class equals: PMTensor.
-	
-	t2 := PMTensor rows: #( #( #( 1 1 ) #( 2 2 ) )
-								#( #( 3 3 ) #( 4 4 ) )
-		         				#( #( 4 4 ) #( 4 4 ) )
-								#( #( 4 4 ) #( 4 4 ) ) ).
-	self assert: t2 class equals: PMTensor.
-	
-]
-
-{ #category : #tests }
 PMTensorTest >> testSetValue [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	t1 set: #( 2 2 ) value: 3.
 	self assert: (t1 get: #( 2 2 ) ) equals: 3.
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) )
 							#( #( 5 6 ) #( 7 8 ) )
 		         			#( #( 9 10 ) #( 11 12 ) )
 							#( #( 13 14 ) #( 15 16 ) ) ).
@@ -129,11 +129,11 @@ PMTensorTest >> testSetValue [
 PMTensorTest >> testShape [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) 
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) 
 								#( 5 6 7 8 ) ).
 	self assert: t1 shape equals: #( 2 4 ).
 
-	t2 := PMTensor rows: #( #( #( 1 1 ) #( 2 2 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 1 ) #( 2 2 ) )
 								#( #( 3 3 ) #( 4 4 ) )
 		         				#( #( 4 4 ) #( 4 4 ) )
 								#( #( 4 4 ) #( 4 4 ) ) ).
@@ -144,10 +144,10 @@ PMTensorTest >> testShape [
 PMTensorTest >> testSize [
 
 	| t1 t2 |
-	t1 := PMTensor rows: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
 	self assert: t1 size equals: 8.
 
-	t2 := PMTensor rows: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self assert: t2 size equals: 16
 ]
@@ -156,7 +156,7 @@ PMTensorTest >> testSize [
 PMTensorTest >> testStrides [
 
 	| a b |
-	a := PMTensor rows: (1 to: 24) asArray.
+	a := PMTensor fromNestedArray: (1 to: 24) asArray.
 	self assert: a strides equals: #( 1 ).
 	b := a reshape: #( 4 6 ).
 	self assert: b strides equals: #( 6 1 ).
@@ -175,7 +175,7 @@ PMTensorTest >> testStrides [
 PMTensorTest >> testView [
 
 	| t t1 |
-	t := PMTensor rows:
+	t := PMTensor fromNestedArray:
 		     #( #( 10 11 12 ) #( 13 14 15 ) #( 16 17 18 ) #( #( 20 21 22 )
 		           #( 23 24 25 ) #( 26 27 28 ) )
 		        #( #( 30 31 32 ) #( 33 34 35 ) #( 36 37 38 ) ) ).
