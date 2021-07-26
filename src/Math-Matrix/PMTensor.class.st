@@ -58,8 +58,27 @@ PMTensor >> first [
 ^first
 ]
 
+{ #category : #'primitives - file' }
+PMTensor >> flattenedIndexOf: coords [
+
+	| position |
+	position := 1.
+	coords withIndexDo: [ :elt :i | 
+		position := elt - 1 * (strides at: i) + position ].
+	^ position
+]
+
 { #category : #'as yet unclassified' }
 PMTensor >> flattenedIndexOf: aFlatArray withShape: aShape [
+
+	array := aFlatArray.
+	shape := aShape copy.
+	self updateFirst.
+	shape ifNotEmpty: [ self updateStrides]
+]
+
+{ #category : #'as yet unclassified' }
+PMTensor >> fromNestedArray: aFlatArray withShape: aShape [
 
 	array := aFlatArray.
 	shape := aShape copy.
@@ -71,18 +90,8 @@ PMTensor >> flattenedIndexOf: aFlatArray withShape: aShape [
 PMTensor >> get: coords [
 
 	| position |
-	position := self getPosition: coords.
+	position := self flattenedIndexOf: coords.
 	^ array at: position
-]
-
-{ #category : #'primitives - file' }
-PMTensor >> getPosition: coords [
-
-	| position |
-	position := 1.
-	coords withIndexDo: [ :elt :i | 
-		position := elt - 1 * (strides at: i) + position ].
-	^ position
 ]
 
 { #category : #accessing }
@@ -100,7 +109,7 @@ PMTensor >> reshape: aNewShape [
 { #category : #initialization }
 PMTensor >> set: coords value: aValue [
 
-array at: (self getPosition: coords) put: aValue
+array at: (self flattenedIndexOf: coords) put: aValue
 ]
 
 { #category : #accessing }
@@ -112,10 +121,8 @@ PMTensor >> shape [
 { #category : #accessing }
 PMTensor >> size [
 
-	| product |
-	product := 1.
-	shape do: [ :each | product := each * product ].
-	^ product
+^ shape inject: 1 into:  [  :each :product | each * product].
+	
 ]
 
 { #category : #accessing }
