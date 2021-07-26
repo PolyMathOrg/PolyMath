@@ -43,6 +43,18 @@ PMTensorTest >> testFirst [
 ]
 
 { #category : #tests }
+PMTensorTest >> testFlattenedIndexOf [
+
+	| t1 t2 |
+	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	self assert: (t1 flattenedIndexOf: #( 1 2 )) equals: 2.
+
+	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
+	self assert: (t2 flattenedIndexOf: #( 1 2 2 )) equals: 4
+]
+
+{ #category : #tests }
 PMTensorTest >> testFromNestedArray [
 
 	| t1 t2 |
@@ -70,18 +82,6 @@ PMTensorTest >> testGet [
 	self assert: (t2 get: #( 3 2 1 )) equals: 11.
 	
 	self should:[t1 get: #( 4 4 )] raise:Error
-]
-
-{ #category : #tests }
-PMTensorTest >> testGetPosition [
-
-	| t1 t2 |
-	t1 := PMTensor fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
-	self assert: (t1 getPosition: #( 1 2 )) equals: 2.
-
-	t2 := PMTensor fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
-		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
-	self assert: (t2 getPosition: #( 1 2 2 )) equals: 4
 ]
 
 { #category : #tests }
@@ -162,13 +162,13 @@ PMTensorTest >> testStrides [
 	self assert: b strides equals: #( 6 1 ).
 	b := a reshape: #( 6 4 ).
 	self assert: b strides equals: #( 4 1 ).
-		self assert: (b getPosition: #( 4 2 )) equals: 14.
+		self assert: (b flattenedIndexOf: #( 4 2 )) equals: 14.
 	b := a reshape: #( 3 4 2 ).
 	self assert: b strides equals: #( 8 2 1 ).
-	self assert: (b getPosition: #( 3 2 1)) equals: 19.
+	self assert: (b flattenedIndexOf: #( 3 2 1)) equals: 19.
 	b := a reshape: #( 2 3 4 ).
 	self assert: b strides equals: #( 12 4 1 ).
-	self assert: (b getPosition: #( 2 2 3 )) equals: 19
+	self assert: (b flattenedIndexOf: #( 2 2 3 )) equals: 19
 ]
 
 { #category : #tests }

@@ -69,15 +69,6 @@ PMTensor >> flattenedIndexOf: coords [
 ]
 
 { #category : #'as yet unclassified' }
-PMTensor >> flattenedIndexOf: aFlatArray withShape: aShape [
-
-	array := aFlatArray.
-	shape := aShape copy.
-	self updateFirst.
-	shape ifNotEmpty: [ self updateStrides]
-]
-
-{ #category : #'as yet unclassified' }
 PMTensor >> fromNestedArray: aFlatArray withShape: aShape [
 
 	array := aFlatArray.
