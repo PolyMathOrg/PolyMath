@@ -11,15 +11,15 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMTensor class >> newWith: anInteger [
+PMTensor class >> fromNestedArray: anArray [
 
-	^ self new array: {anInteger} withShape: #(  )
+	^ self new array: anArray flattened withShape: (self shape:anArray)
 ]
 
 { #category : #'instance creation' }
-PMTensor class >> rows: anArray [
+PMTensor class >> newWith: anInteger [
 
-	^ self new array: anArray flattened withShape: (self shape:anArray)
+	^ self new array: {anInteger} withShape: #(  )
 ]
 
 { #category : #accessing }
@@ -56,6 +56,15 @@ PMTensor >> array: aFlatArray withShape: aShape [
 { #category : #accessing }
 PMTensor >> first [ 
 ^first
+]
+
+{ #category : #'as yet unclassified' }
+PMTensor >> flattenedIndexOf: aFlatArray withShape: aShape [
+
+	array := aFlatArray.
+	shape := aShape copy.
+	self updateFirst.
+	shape ifNotEmpty: [ self updateStrides]
 ]
 
 { #category : #public }
