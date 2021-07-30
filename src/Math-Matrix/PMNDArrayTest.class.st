@@ -9,25 +9,55 @@ PMNDArrayTest >> testArray [
 
 	| t1 t2 |
 	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
-	self assert: t1 array equals: #( 1 2 3 4 5 6 7 8 ).
+	self assert: t1 asArray  equals: #( 1 2 3 4 5 6 7 8 ).
 
 	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
 	self
-		assert: t2 array
+		assert: t2 asArray
 		equals: #( 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 )
 ]
 
 { #category : #tests }
-PMNDArrayTest >> testCreateScalarTensor [
+PMNDArrayTest >> testAt [
+
+	| t1 t2 |
+	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	self assert: (t1 at: #( 2 2 )) equals: 6.
+
+	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
+		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
+	self assert: (t2 at: #( 3 2 1 )) equals: 11.
+	
+	self should:[t1 at: #( 4 4 )] raise:Error
+]
+
+{ #category : #tests }
+PMNDArrayTest >> testAtPut [
+
+	| t1 t2 |
+	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
+	t1 at: #( 2 2 ) put: 3.
+	self assert: (t1 at: #( 2 2 ) ) equals: 3.
+
+	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) )
+							#( #( 5 6 ) #( 7 8 ) )
+		         			#( #( 9 10 ) #( 11 12 ) )
+							#( #( 13 14 ) #( 15 16 ) ) ).
+	t2 at: #( 2 2 1) put: 10.
+	self assert: (t2 at: #( 2 2 1 )) equals: 10
+]
+
+{ #category : #tests }
+PMNDArrayTest >> testCreateScalarNDArray [
 
 	| s |
-	s := PMNDArray newWith: 2.
-	self assert: (s get: #(  )) equals: 2.
-	self should: [ s get: #( 1 1 ) ] raise: Error.
+	s := PMNDArray fromScalar: 2.
+	self assert: (s at: #(  )) equals: 2.
+	self should: [ s at: #( 1 1 ) ] raise: Error.
 	self assert: s rank equals: 0.
-	s set: #(  ) value: 1.
-	self assert: (s get: #(  )) equals: 1.
+	s at: #(  ) put: 1.
+	self assert: (s at: #(  )) equals: 1.
 	self assert: s shape equals: #(  ).
 	self assert: s size equals: 1
 ]
@@ -46,8 +76,8 @@ PMNDArrayTest >> testFirst [
 PMNDArrayTest >> testFlattenedIndexOf [
 
 	| t1 t2 |
-	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
-	self assert: (t1 flattenedIndexOf: #( 1 2 )) equals: 2.
+	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4  ) #( 5 6 7 8) #( 9 10 11 12)).
+	self assert: (t1 flattenedIndexOf: #( 3 2 )) equals: 10.
 
 	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
 		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
@@ -68,20 +98,6 @@ PMNDArrayTest >> testFromNestedArray [
 								#( #( 4 4 ) #( 4 4 ) ) ).
 	self assert: t2 class equals: PMNDArray.
 	
-]
-
-{ #category : #tests }
-PMNDArrayTest >> testGet [
-
-	| t1 t2 |
-	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
-	self assert: (t1 get: #( 2 2 )) equals: 6.
-
-	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) ) #( #( 5 6 ) #( 7 8 ) )
-		         #( #( 9 10 ) #( 11 12 ) ) #( #( 13 14 ) #( 15 16 ) ) ).
-	self assert: (t2 get: #( 3 2 1 )) equals: 11.
-	
-	self should:[t1 get: #( 4 4 )] raise:Error
 ]
 
 { #category : #tests }
@@ -106,23 +122,7 @@ PMNDArrayTest >> testReshape [
 
 	self assert: t shape equals: #( 3 2 ).
 	self assert: t1 shape equals: #( 2 3 ).
-	self assert: t1 array == t array equals: true
-]
-
-{ #category : #tests }
-PMNDArrayTest >> testSetValue [
-
-	| t1 t2 |
-	t1 := PMNDArray fromNestedArray: #( #( 1 2 3 4 ) #( 5 6 7 8 ) ).
-	t1 set: #( 2 2 ) value: 3.
-	self assert: (t1 get: #( 2 2 ) ) equals: 3.
-
-	t2 := PMNDArray fromNestedArray: #( #( #( 1 2 ) #( 3 4 ) )
-							#( #( 5 6 ) #( 7 8 ) )
-		         			#( #( 9 10 ) #( 11 12 ) )
-							#( #( 13 14 ) #( 15 16 ) ) ).
-	t2 set: #( 2 2 1) value: 10.
-	self assert: (t2 get: #( 2 2 1 )) equals: 10
+	self assert: t1 asArray  == t asArray equals: true
 ]
 
 { #category : #tests }
@@ -180,7 +180,7 @@ PMNDArrayTest >> testView [
 		           #( 23 24 25 ) #( 26 27 28 ) )
 		        #( #( 30 31 32 ) #( 33 34 35 ) #( 36 37 38 ) ) ).
 	t1 := t view.
-	self assert: t array == t1 array equals: true.
+	self assert: t asArray == t1 asArray equals: true.
 	self assert: t shape equals: t1 shape.
 	self assert: t shape == t1 shape equals: false.
 	self assert: t strides equals: t1 strides.
