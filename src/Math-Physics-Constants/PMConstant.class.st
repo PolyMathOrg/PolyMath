@@ -25,7 +25,7 @@ Class {
 		'speedOfLight',
 		'standardAccelerationOfGravity'
 	],
-	#category : 'Math-Physics-Constants'
+	#category : #'Math-Physics-Constants'
 }
 
 { #category : #constants }
@@ -91,6 +91,11 @@ PMConstant class >> fineStructure [
 { #category : #constants }
 PMConstant class >> gasConstant [
 	^ gasConstant
+]
+
+{ #category : #constants }
+PMConstant class >> gravitationalConstant [
+	^ gravitationalConstant
 ]
 
 { #category : #constants }
