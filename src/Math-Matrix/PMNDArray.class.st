@@ -17,6 +17,12 @@ PMNDArray class >> fromNestedArray: anArray [
 ]
 
 { #category : #'instance creation' }
+PMNDArray class >> fromScalar: anInteger [
+
+	^ self new array: {anInteger} withShape: #(  )
+]
+
+{ #category : #'instance creation' }
 PMNDArray class >> newWith: anInteger [
 
 	^ self new array: {anInteger} withShape: #(  )
@@ -39,11 +45,6 @@ PMNDArray >> = anArray [
 	  & (strides = anArray strides) & (shape = anArray shape)
 ]
 
-{ #category : #accessing }
-PMNDArray >> array [ 
-^array
-]
-
 { #category : #'as yet unclassified' }
 PMNDArray >> array: aFlatArray withShape: aShape [
 
@@ -51,6 +52,25 @@ PMNDArray >> array: aFlatArray withShape: aShape [
 	shape := aShape copy.
 	self updateFirst.
 	shape ifNotEmpty: [ self updateStrides]
+]
+
+{ #category : #private }
+PMNDArray >> asArray [ 
+	^array 
+]
+
+{ #category : #public }
+PMNDArray >> at: coords [
+
+	| position |
+	position := self flattenedIndexOf: coords.
+	^ array at: position
+]
+
+{ #category : #initialization }
+PMNDArray >> at: coords put: aValue [
+
+array at: (self flattenedIndexOf: coords) put: aValue
 ]
 
 { #category : #accessing }
@@ -77,14 +97,6 @@ PMNDArray >> fromNestedArray: aFlatArray withShape: aShape [
 	shape ifNotEmpty: [ self updateStrides]
 ]
 
-{ #category : #public }
-PMNDArray >> get: coords [
-
-	| position |
-	position := self flattenedIndexOf: coords.
-	^ array at: position
-]
-
 { #category : #accessing }
 PMNDArray >> rank [
 	^ shape size
@@ -95,12 +107,6 @@ PMNDArray >> reshape: aNewShape [
 
 	^ self viewWithShape: aNewShape.
 
-]
-
-{ #category : #initialization }
-PMNDArray >> set: coords value: aValue [
-
-array at: (self flattenedIndexOf: coords) put: aValue
 ]
 
 { #category : #accessing }
@@ -147,6 +153,6 @@ PMNDArray >> view [
 { #category : #'as yet unclassified' }
 PMNDArray >> viewWithShape: aNewShape [
 
-	^ PMNDArray new array: self array withShape: aNewShape
+	^ PMNDArray new array: self asArray withShape: aNewShape
 
 ]
