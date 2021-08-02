@@ -39,10 +39,10 @@ ifTrue:[
 ]
 
 { #category : #comparing }
-PMNDArray >> = anArray [
+PMNDArray >> = aPMNDArray [
 
-	^ array = anArray asArray & (first = anArray first)
-	  & (strides = anArray strides) & (shape = anArray shape)
+	^ array = aPMNDArray asArray & (first = aPMNDArray first)
+	  & (strides = aPMNDArray strides) & (shape = aPMNDArray shape)
 ]
 
 { #category : #'as yet unclassified' }
