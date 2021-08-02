@@ -20,7 +20,7 @@ matrix := PMMatrix rows: #(
 	(0 0 0 3)
 	(0 0 0 0)).
 	
-svd := matrix decompose.
+svd := matrix decomposeSV.
 u := svd leftSingularForm.
 v := svd rightSingularForm.
 s := svd sForm.
