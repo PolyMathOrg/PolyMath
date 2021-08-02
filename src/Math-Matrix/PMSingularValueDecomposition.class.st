@@ -32,15 +32,11 @@ Class {
 	#name : #PMSingularValueDecomposition,
 	#superclass : #Object,
 	#instVars : [
-		'm',
-		'n',
 		'u',
 		's',
-		'v',
-		'signU',
-		'signV'
+		'v'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #'instance creation' }
@@ -50,7 +46,7 @@ PMSingularValueDecomposition class >> decompose: aMatrix [
 
 { #category : #initialization }
 PMSingularValueDecomposition >> initialize: aMatrix [
-	| symU symV eigenU eigenV diag |
+	| symU symV eigenU eigenV diag m n |
 	m := aMatrix numberOfRows.
 	n := aMatrix numberOfColumns.
 	symU := aMatrix * aMatrix transpose.
