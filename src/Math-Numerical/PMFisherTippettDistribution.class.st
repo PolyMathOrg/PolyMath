@@ -68,12 +68,12 @@ PMFisherTippettDistribution >> distributionValue: aNumber [
 
 { #category : #initialization }
 PMFisherTippettDistribution >> initialize: aNumber1 scale: aNumber2 [
-		"Private - Initialize the parameters of the receiver."
-	aNumber2 > 0
-		ifFalse: [ self error: 'Illegal distribution parameters'].
+	"Initialize the parameters of the receiver."
+
+	aNumber2 <= 0
+		ifTrue: [ self error: 'Illegal distribution parameters' ].
 	alpha := aNumber1.
-	beta := aNumber2.
-	^self
+	beta := aNumber2
 ]
 
 { #category : #information }
@@ -104,11 +104,12 @@ PMFisherTippettDistribution >> parameters [
 
 { #category : #information }
 PMFisherTippettDistribution >> random [
-		"Answer a random number distributed according to the receiver."
+	"Answer a random number distributed according to the receiver."
+
 	| t |
 	[ t := flatGenerator floatValue ln negated.
-	  t > 0] whileFalse: [].
-	^t ln negated * beta + alpha
+	t > 0 ] whileFalse.
+	^ t ln negated * beta + alpha
 ]
 
 { #category : #information }

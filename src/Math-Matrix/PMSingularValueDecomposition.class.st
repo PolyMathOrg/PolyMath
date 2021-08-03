@@ -20,7 +20,7 @@ matrix := PMMatrix rows: #(
 	(0 0 0 3)
 	(0 0 0 0)).
 	
-svd := matrix decompose.
+svd := matrix decomposeSV.
 u := svd leftSingularForm.
 v := svd rightSingularForm.
 s := svd sForm.
@@ -32,15 +32,11 @@ Class {
 	#name : #PMSingularValueDecomposition,
 	#superclass : #Object,
 	#instVars : [
-		'm',
-		'n',
 		'u',
 		's',
-		'v',
-		'signU',
-		'signV'
+		'v'
 	],
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #'instance creation' }
@@ -50,7 +46,8 @@ PMSingularValueDecomposition class >> decompose: aMatrix [
 
 { #category : #initialization }
 PMSingularValueDecomposition >> initialize: aMatrix [
-	| symU symV eigenU eigenV diag |
+
+	| m n symU symV eigenU eigenV diag |
 	m := aMatrix numberOfRows.
 	n := aMatrix numberOfColumns.
 	symU := aMatrix * aMatrix transpose.
@@ -62,8 +59,8 @@ PMSingularValueDecomposition >> initialize: aMatrix [
 	u := (PMMatrix rows: eigenU vectors) transpose.
 	v := (PMMatrix rows: eigenV vectors) transpose.
 	diag := m < n
-		ifTrue: [ eigenU values ]
-		ifFalse: [ eigenV values ].
+		        ifTrue: [ eigenU values ]
+		        ifFalse: [ eigenV values ].
 	s := PMMatrix rows: m columns: n random: 0.
 	s setDiagonal: diag sqrt
 ]

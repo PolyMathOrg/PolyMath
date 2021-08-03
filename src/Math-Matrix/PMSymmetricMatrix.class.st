@@ -1,10 +1,10 @@
 "
-This class can be instantiated like DhbMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons.
+This class can be instantiated like PMMatrix via #rows:, but the user has to make sure that this matrix is indeed symmetric as this is not internally checked for speed reasons.
 "
 Class {
 	#name : #PMSymmetricMatrix,
 	#superclass : #PMMatrix,
-	#category : 'Math-Matrix'
+	#category : #'Math-Matrix'
 }
 
 { #category : #'instance creation' }
@@ -225,6 +225,12 @@ PMSymmetricMatrix >> inversePureLUP [
 	self lupDecomposition inverseMatrixComponents
 		ifNil: [ PMSingularMatrixError new signal ]
 		ifNotNil: [ :i | ^ self class rows: i ]
+]
+
+{ #category : #testing }
+PMSymmetricMatrix >> isHermitian [
+	"Every real symmetric matrix is Hermitian"
+	^ self isReal
 ]
 
 { #category : #testing }

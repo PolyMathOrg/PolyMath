@@ -20,7 +20,7 @@ Class {
 	#name : #PMVector,
 	#superclass : #Array,
 	#type : #variable,
-	#category : 'Math-Core'
+	#category : #'Math-Core'
 }
 
 { #category : #'instance creation' }
@@ -206,6 +206,12 @@ PMVector >> householder [
 	^Array with: b with: v
 ]
 
+{ #category : #testing }
+PMVector >> isReal [
+	"Answer true if all values of the vector are real numbers"
+	^ self allSatisfy: [ :each | each isRealNumber ].
+]
+
 { #category : #operation }
 PMVector >> log [
 	"Apply log function to every element of a vector"
@@ -306,6 +312,13 @@ PMVector >> sqrt [
 	"Apply sqrt function to every element of a vector"
 
 	1 to: self size do: [ :n | self at: n put: (self at: n) sqrt ]
+]
+
+{ #category : #arithmetic }
+PMVector >> take: anInteger [ 
+	" Answer a <Collection> with the receiver's binomial coefficient at each element for anInteger "
+	
+	^ self collect: [ :each | each take: anInteger ]
 ]
 
 { #category : #operation }

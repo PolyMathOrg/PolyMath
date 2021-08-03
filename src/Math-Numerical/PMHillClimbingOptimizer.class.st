@@ -1,3 +1,10 @@
+"
+PMHillClimbingOptimizer is a class implementing the Powell's algorithm. Powell's algorithm is one of many hill climbing algorithms.
+The idea underlying Powell’s algorithm is that once an optimum has been found in one direction, the chance for the biggest improvement lies in the direction perpendicular to that direction.
+
+It has only one additional instance variable, unidimensionalFinder to hold the one-dimensional
+optimizer used to find an optimum of the goal function along a given direction.
+"
 Class {
 	#name : #PMHillClimbingOptimizer,
 	#superclass : #PMFunctionOptimizer,
@@ -6,6 +13,21 @@ Class {
 	],
 	#category : #'Math-Numerical-Math-FunctionIterator'
 }
+
+{ #category : #examples }
+PMHillClimbingOptimizer class >> exampleFindOptimumOnVectorFunction [
+	| fBlock educatedGuess hillClimber result |
+	fBlock := [ :v | 
+	| x y |
+	x := v at: 1.
+	y := v at: 2.
+	((2 - x) * (2 - x)) negated + ((2 - y) * (2 - y)) negated ].
+	educatedGuess := #(100 100) asPMVector.
+	hillClimber := self maximizingFunction: fBlock.
+	hillClimber initialValue: educatedGuess.
+	result := hillClimber evaluate.
+	^ result inspect
+]
 
 { #category : #initialization }
 PMHillClimbingOptimizer >> computeInitialValues [
@@ -47,7 +69,6 @@ PMHillClimbingOptimizer >> finalizeIterations [
 
 { #category : #operation }
 PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction [ 
-	"Private"
 	^unidimensionalFinder
 		reset;
 		setFunction: aVectorFunction;
@@ -59,7 +80,6 @@ PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction [
 
 { #category : #operation }
 PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction from: aVector [ 
-	"Private"
 
 	^aVectorFunction
 		origin: aVector;
@@ -68,19 +88,18 @@ PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction from: aVector [
 
 { #category : #operation }
 PMHillClimbingOptimizer >> shiftDirections [
-		"Private"
 	| position delta firstDirection |
 	firstDirection := bestPoints first direction.
-	bestPoints inject: nil
-					into: [ :prev :each |
-							position isNil
-								ifTrue: [ position := each origin]
-								ifFalse:[ prev direction: each direction].
-							each
-							].
+	bestPoints
+		inject: nil
+		into: [ :prev :each | 
+			position
+				ifNil: [ position := each origin ]
+				ifNotNil: [ prev direction: each direction ].
+			each ].
 	position := bestPoints last origin - position.
 	delta := position norm.
 	delta > desiredPrecision
-		ifTrue: [ bestPoints last direction: (position scaleBy: (1 / delta))]
-		ifFalse:[ bestPoints last direction: firstDirection]
+		ifTrue: [ bestPoints last direction: (position scaleBy: 1 / delta) ]
+		ifFalse: [ bestPoints last direction: firstDirection ]
 ]

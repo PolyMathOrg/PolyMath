@@ -68,6 +68,11 @@ a tr.
 ]
 
 { #category : #'instance creation' }
+PMMatrix class >> identity: dimension [
+  ^ PMSymmetricMatrix identity: dimension
+]
+
+{ #category : #'instance creation' }
 PMMatrix class >> join: anArrayOfMatrices [
 		"Inverse of the split operation."
 	| rows n row rowSize n1 n2 |
@@ -102,10 +107,10 @@ PMMatrix class >> lupCRLCriticalDimension [
 ]
 
 { #category : #'instance creation' }
-PMMatrix class >> new: anInteger [
-	"Create an empty square matrix of dimension anInteger."
+PMMatrix class >> new: dimension [
+	"Create an empty square matrix of size dimension x dimension."
 
-	^ self new initialize: anInteger
+	^ self new initializeSquare: dimension
 ]
 
 { #category : #'instance creation' }
@@ -270,9 +275,9 @@ PMMatrix >> atAllPut: element [
 ]
 
 { #category : #'cell accessing' }
-PMMatrix >> atColumn: anInteger [
+PMMatrix >> atColumn: aColumnNumber [
 
-	^ self columnAt: anInteger
+	^ self columnAt: aColumnNumber
 ]
 
 { #category : #'cell accessing' }
@@ -312,6 +317,12 @@ PMMatrix >> atColumn: aColumnNumber put: aCollection startingAt: rowNumber [
 ]
 
 { #category : #'cell accessing' }
+PMMatrix >> atRow: aRowNumber [
+	"answers the aRowNumber-th row in the receiver"
+	^ self rowAt: aRowNumber
+]
+
+{ #category : #'cell accessing' }
 PMMatrix >> atRow: rowIndex put: aCollection [
 
 	aCollection withIndexDo: [: value : columnIndex |
@@ -333,6 +344,39 @@ PMMatrix >> atRow: rowIndex put: aCollection startingAt: startColumnNumber [
 			put: value ]]
 	
 
+]
+
+{ #category : #'as yet unclassified' }
+PMMatrix >> choleskyDecomposition [
+	| upperTriangular rowSum partialSum diagonalValue nonDiagonalValue factor |
+	
+	self isPositiveDefinite ifFalse: [ 
+		Error signal: 'Choleski decomposition can only be applied to positive-definite matrices' ].
+	
+	upperTriangular := self class
+		zerosRows: self numberOfRows
+		cols: self numberOfColumns.
+	
+	1 to: self numberOfRows do: [ :i | 
+		1 to: i do: [ :j |
+			i = j
+				ifTrue: [
+					rowSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
+						sum + (upperTriangular at: k at: j) squared ].
+
+					diagonalValue := ((self at: j at: j) - rowSum) sqrt.
+
+					upperTriangular at: j at: j put: diagonalValue ]
+				ifFalse: [
+					partialSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
+						sum + (upperTriangular at: k at: i) * (upperTriangular at: k at: j) ].
+
+					factor := upperTriangular at: j at: j.
+					nonDiagonalValue := ((self at: j at: i) - partialSum) / factor.
+
+					upperTriangular at: j at: i put: nonDiagonalValue ] ] ].
+		
+	^ upperTriangular
 ]
 
 { #category : #comparing }
@@ -467,12 +511,6 @@ PMMatrix >> hash [
 ]
 
 { #category : #initialization }
-PMMatrix >> initialize: anInteger [
-	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
-	rows := (1 to: anInteger) asPMVector collect: [ :each | PMVector new: anInteger].
-]
-
-{ #category : #initialization }
 PMMatrix >> initializeRows: anArrayOrVector [
 	"Defines the components of the recevier. No check is made: components are assumed to be orgainized in rows."
 	rows := anArrayOrVector asPMVector collect: [ :each | each asPMVector].
@@ -481,8 +519,15 @@ PMMatrix >> initializeRows: anArrayOrVector [
 { #category : #initialization }
 PMMatrix >> initializeRows: rowsInteger columns: columnsInteger [
 	"Build empty components for a matrix."
-		
+	self assert: [ rowsInteger  isInteger and: [ rowsInteger   > 0 ] ] description: 'Row size of a matrix must be a positive integer'.
+	self assert: [ columnsInteger  isInteger and: [ columnsInteger  > 0 ] ]  description: 'Column size of a matrix must be a positive integer'.
 	rows := (1 to: rowsInteger) asPMVector collect: [ :each | PMVector new: columnsInteger ].
+]
+
+{ #category : #initialization }
+PMMatrix >> initializeSquare: dimension [
+	"Build empty components for a square matrix. No check is made: components are assumed to be orgainized in rows."
+	^ self initializeRows: dimension  columns: dimension 
 ]
 
 { #category : #operation }
@@ -507,6 +552,54 @@ PMMatrix >> inversePivotColumns: anArray [
 PMMatrix >> inversePureCRL [
 	"Answer the inverse of the receiver."
 	^ self squared inversePureCRL * self transpose
+]
+
+{ #category : #testing }
+PMMatrix >> isHermitian [
+	"Hermitian matrix (or self-adjoint matrix) is a complex square matrix that is equal to its own conjugate transpose — that is, the element in the i-th row and j-th column is equal to the complex conjugate of the element in the j-th row and i-th column, for all indices i and j"
+	
+	self isSquare ifFalse: [ ^ false ].
+	
+	1 to: self numberOfRows do: [ :i |
+		1 to: (i - 1) do: [ :j |
+			((self at: i at: j) isComplexConjugateOf: (self at: j at: i))
+				ifFalse: [ ^ false ] ] ].
+		
+	^ true
+]
+
+{ #category : #testing }
+PMMatrix >> isNegativeDefinite [
+	"A Hermitian matrix is negative definite if and only if all its eigenvalues are strictly negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each < 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isNegativeSemiDefinite [
+	"A Hermitian matrix is negative semi-definite if and only if all its eigenvalues are non-positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each <= 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveDefinite [
+	"A Hermitian matrix is positive definite if and only if all its eigenvalues are strictly positive"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each > 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isPositiveSemiDefinite [
+	"A Hermitian matrix is positive semi-definite if and only if all its eigenvalues are non-negative"
+	self isHermitian ifFalse: [ ^ false ].
+	^ self eigen values allSatisfy: [ :each | each >= 0 ]
+]
+
+{ #category : #testing }
+PMMatrix >> isReal [
+	"Answer true if all values of the matrix are real numbers"
+	^ rows allSatisfy: [ :vector | vector isReal ].
 ]
 
 { #category : #testing }
@@ -731,6 +824,27 @@ PMMatrix >> qrFactorizationWithPivoting [
 	^ Array with: q with: r with: pivot
 ]
 
+{ #category : #operation }
+PMMatrix >> raisedTo: aPower [
+
+	" Answers the receiver raised to a power, aPower .
+	 If aPower is negative, inverse of the receiver is raised to the absolute value of aPower."
+	
+	|aRaisedPMMatrix|
+
+	self assert: self isSquare description: 'Matrix should be square'.
+	
+	aPower < 0 ifTrue: [
+		^ self inverse raisedTo: aPower abs ].
+	
+	aRaisedPMMatrix := PMMatrix identity: self numberOfRows.
+	
+	1 to: aPower do: [ :each |
+		aRaisedPMMatrix := aRaisedPMMatrix * self ].
+	
+	^ aRaisedPMMatrix 
+]
+
 { #category : #'as yet unclassified' }
 PMMatrix >> rank [ 
 	^	((self numberOfRows < self numberOfColumns 
@@ -857,8 +971,13 @@ PMMatrix >> squared [
 PMMatrix >> strassenProductWithMatrix: aMatrix [
 	"Private"
 	| matrixSplit selfSplit p1 p2 p3 p4 p5 p6 p7 |
+
 	( self numberOfRows > 2 and: [ self numberOfColumns > 2])
 		ifFalse:[ ^self class rows: ( aMatrix rowsCollect: [ :row | self columnsCollect: [ :col | row * col]])].
+	
+	self assert: [ self numberOfRows isPowerOfTwo and: self numberOfColumns isPowerOfTwo  ] description: 'Matrix size should be a power of two'.
+	self assert: [ aMatrix numberOfRows isPowerOfTwo and: aMatrix numberOfColumns isPowerOfTwo  ] description: 'Matrix size should be a power of two'.
+		
 	selfSplit := self split.
 	matrixSplit := aMatrix split.
 	p1 := ( ( selfSplit at: 2) - ( selfSplit at: 4)) strassenProductWithMatrix: ( matrixSplit at: 1).
@@ -904,6 +1023,13 @@ PMMatrix >> sum [
 PMMatrix >> swapColumn: anIndex withColumn:   a2Index [
 	self rowsDo: [ :r| r swap: anIndex with: a2Index ]  
 
+]
+
+{ #category : #arithmetic }
+PMMatrix >> take: anInteger [ 
+	" Answer a <Collection> with the receiver's binomial coefficient at each element for anInteger "
+	
+	^ self collect: [ :each | each take: anInteger ]
 ]
 
 { #category : #operation }

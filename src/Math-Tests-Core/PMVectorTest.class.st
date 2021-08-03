@@ -85,6 +85,20 @@ PMVectorTest >> testHouseholder [
 ]
 
 { #category : #tests }
+PMVectorTest >> testIsRealOnComplexVector [
+	| vector |
+	vector := { 1 . 4 . -2 . 0.5 + 3i } asPMVector.
+	self deny: vector isReal.
+]
+
+{ #category : #tests }
+PMVectorTest >> testIsRealOnRealVector [
+	| vector |
+	vector := #(1 4 -2 0.5) asPMVector.
+	self assert: vector isReal.
+]
+
+{ #category : #tests }
 PMVectorTest >> testLessThan [
 	| vec vecCopy |
 	vec := #(1 2 3) asPMVector.
@@ -167,6 +181,21 @@ PMVectorTest >> testSubtractScalar [
 	expected := #(1 2 3) asPMVector.
 	
 	self assert: actual equals: expected.
+]
+
+{ #category : #test }
+PMVectorTest >> testTake [
+
+	| m expected |
+	m := PMVector withAll: #(1 2 3).
+	expected := PMVector withAll: #(0 1 3).
+	self assert: (m take: 2) equals: expected.
+	expected := PMVector withAll: #(0 0 1).
+	self assert: (m take: 3) equals: expected.
+	
+	m := PMVector withAll: #().
+	expected := PMVector withAll: #().
+	self assert: (m take: 2) equals: expected.
 ]
 
 { #category : #tests }

@@ -7,3 +7,10 @@ Object >> isComplexNumber [
 	^ false
 
 ]
+
+{ #category : #'*Math-Complex' }
+Object >> isRealNumber [
+	"Answer true if receiver is a real number. False by default."
+	^ false
+
+]

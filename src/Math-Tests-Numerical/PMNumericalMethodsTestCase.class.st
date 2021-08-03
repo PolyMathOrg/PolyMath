@@ -637,11 +637,11 @@ PMNumericalMethodsTestCase >> testMatrixHash [
 ]
 
 { #category : #'linear algebra' }
-PMNumericalMethodsTestCase >> testMatrixInitialize [
-	| a |
-	a := PMMatrix new initialize: 2.
-	self assert: a numberOfRows equals: 2.
-	self assert: a numberOfColumns equals: 2
+PMNumericalMethodsTestCase >> testMatrixInitializeSquare [
+	| aPMMatrix |
+	aPMMatrix := PMMatrix new initializeSquare:  2.
+	self assert: aPMMatrix numberOfRows equals: 2.
+	self assert: aPMMatrix numberOfColumns equals: 2
 ]
 
 { #category : #'linear algebra' }
