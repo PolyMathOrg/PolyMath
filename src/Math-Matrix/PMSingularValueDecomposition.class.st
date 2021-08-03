@@ -46,7 +46,8 @@ PMSingularValueDecomposition class >> decompose: aMatrix [
 
 { #category : #initialization }
 PMSingularValueDecomposition >> initialize: aMatrix [
-	| symU symV eigenU eigenV diag m n |
+
+	| m n symU symV eigenU eigenV diag |
 	m := aMatrix numberOfRows.
 	n := aMatrix numberOfColumns.
 	symU := aMatrix * aMatrix transpose.
@@ -58,8 +59,8 @@ PMSingularValueDecomposition >> initialize: aMatrix [
 	u := (PMMatrix rows: eigenU vectors) transpose.
 	v := (PMMatrix rows: eigenV vectors) transpose.
 	diag := m < n
-		ifTrue: [ eigenU values ]
-		ifFalse: [ eigenV values ].
+		        ifTrue: [ eigenU values ]
+		        ifFalse: [ eigenV values ].
 	s := PMMatrix rows: m columns: n random: 0.
 	s setDiagonal: diag sqrt
 ]
