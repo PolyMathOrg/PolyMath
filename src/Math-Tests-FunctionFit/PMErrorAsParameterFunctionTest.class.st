@@ -8,12 +8,15 @@ Class {
 }
 
 { #category : #running }
-PMErrorAsParameterFunctionTest >> setUp [ 
-|col|
-f:=PMErrorOfParameterFunction new function: [:x :a :b|a*x / (b+x)].
-col:=(1 to: 3)collect: [:i|i@(f function cull: i cull: 1 cull: 1) ].
-f data: col.
-f :=PMErrorAsParameterFunction new function: f.
+PMErrorAsParameterFunctionTest >> setUp [
+
+	| col |
+	f := PMErrorOfParameterFunction new function: [ :x :a :b | 
+		     a * x / (b + x) ].
+	col := (1 to: 3) collect: [ :i | 
+		       i @ (f function cull: i cull: 1 cull: 1) ].
+	f data: col.
+	f := PMErrorAsParameterFunction new function: f
 ]
 
 { #category : #tests }
@@ -24,15 +27,15 @@ self assert: (f parameters size < f maxFunction ).
 
 { #category : #tests }
 PMErrorAsParameterFunctionTest >> testPrint [
-|aStream  s|
-aStream :=ReadWriteStream with:''.
-f printOn: aStream .
-s :=aStream contents .
-self assert: (s includesSubstring: 'a * x / (b + x)').
-self assert: (s includesSubstring: '#squared').
-self assert: (s includesSubstring: 'maxFunction: ', f maxFunction asString).
 
-
+	| aStream s |
+	aStream := ReadWriteStream with: ''.
+	f printOn: aStream.
+	s := aStream contents.
+	self assert: (s includesSubstring: 'a * x / (b + x)').
+	self assert: (s includesSubstring: '#squared').
+	self assert:
+		(s includesSubstring: 'maxFunction: ' , f maxFunction asString)
 ]
 
 { #category : #tests }

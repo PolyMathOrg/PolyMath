@@ -52,7 +52,7 @@ PMKDTreeTest >> testIndexedKDTree1Dimension [
 		aResult := stupid nnSearch: aVector i: 3.			"3 nearest numbers to aVector "
 		bResult := m atAll: ((tree nnSearch: aVector i: 3) collect: [:a | a first]).	
 		self equalityTest: aResult and: bResult].
-	]
+]
 
 { #category : #tests }
 PMKDTreeTest >> testIndexedKDTree4Dimensions [
@@ -99,7 +99,7 @@ PMKDTreeTest >> testKDTree1Dimension [
 		aResult := stupid nnSearch: aVector i: 3.				"3 nearest numbers to aVector "
 		bResult := tree nnSearch: aVector i: 3.							
 		self equalityTest: aResult and: bResult].
-	]
+]
 
 { #category : #tests }
 PMKDTreeTest >> testKDTree1DimensionIntegers [
@@ -110,7 +110,7 @@ PMKDTreeTest >> testKDTree1DimensionIntegers [
 		aResult :=(aVector first - (stupid nnSearch: aVector i: 3)) abs.		"distances between 3 nearest numbers and aVector "
 		bResult :=(aVector first - (tree nnSearch: aVector i: 3)) abs.		"distances using KDTree"
 		self equalityTest: aResult and: bResult ]  .
-	]
+]
 
 { #category : #tests }
 PMKDTreeTest >> testKDTree2Dimensions [

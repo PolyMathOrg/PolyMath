@@ -62,13 +62,14 @@ self assert: (go bestValueHistory isEmpty  ).
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testPrint [
-|aStream  s|
-aStream :=ReadWriteStream with:''.
-go printOn: aStream .
-s :=aStream contents .
-self assert: (s includesSubstring: 'v * v').
-self assert: (s includesSubstring: '50').
-self assert: (s includesSubstring: '20').
+
+	| aStream s |
+	aStream := ReadWriteStream with: ''.
+	go printOn: aStream.
+	s := aStream contents.
+	self assert: (s includesSubstring: 'v*v').
+	self assert: (s includesSubstring: '50').
+	self assert: (s includesSubstring: '20')
 ]
 
 { #category : #tests }
