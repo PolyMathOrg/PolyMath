@@ -1,11 +1,14 @@
 "
-In linear algebra, dual numbers extend the real numbers by adjoining one new element ε with the property ε^2 = 0 (ε is nilpotent).
-See here: https://en.wikipedia.org/wiki/Dual_number^
+In linear algebra, dual numbers extend the real numbers by adjoining one new element ε with the property ε^2 = 0 (ε is nilpotent). See here: [https://en.wikipedia.org/wiki/Dual_number](https://en.wikipedia.org/wiki/Dual_number)
 
-PMDualNumbers can be used to calculate the first derivative if one  creates them this way:
-	PMDualNumber value: aNumber eps:  derivativeOfaNumber (1 if the derivative with respect to aNumber is calculated, 0 otherwise)
+`PMDualNumber`s can be used to calculate the first derivative if one  creates them this way:
 
-PMDualNumbers can be mixed with Numbers.
+```
+PMDualNumber value: aNumber eps: derivativeOfANumber
+```
+ (1 if the derivative with respect to aNumber is calculated, 0 otherwise)
+
+`PMDualNumber`s can be mixed with Numbers.
 "
 Class {
 	#name : #PMDualNumber,

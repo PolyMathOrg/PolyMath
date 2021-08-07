@@ -1,5 +1,5 @@
 "
-KDTree is a space partitioning data structure to store points of that space with ""KDTree withAll: aCollectionOfVectors"", where a vector can be any collection of numbers that understands ""at:"". you can then find nearest neighbours of aVector with ""nnSearch: aVector i: numberOfNearestNeighbours"".   
+`PMKDTree` is a space partitioning data structure to store points of that space with ""KDTree withAll: aCollectionOfVectors"", where a vector can be any collection of numbers that understands ""at:"". you can then find nearest neighbours of aVector with ""nnSearch: aVector i: numberOfNearestNeighbours"".   
 "
 Class {
 	#name : #PMKDTree,
@@ -10,7 +10,7 @@ Class {
 		'dim',
 		'value'
 	],
-	#category : 'Math-KDTree'
+	#category : #'Math-KDTree'
 }
 
 { #category : #'instance creation' }

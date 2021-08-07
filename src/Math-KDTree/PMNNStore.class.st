@@ -1,7 +1,7 @@
 "
-NNStore stores neighbours together with distances and uses the distances for sorting. 
+`PMNNStore` stores neighbours together with distances and uses the distances for sorting. 
 
-can easily be subclassed if one needs an Array sorted depending on some outside data. see StupidNN for a simple example and comment on ""withAll:"" or just use ""newFrom:"".
+can easily be subclassed if one needs an Array sorted depending on some outside data. see `PMStupidNN` for a simple example and comment on ""withAll:"" or just use ""newFrom:"".
 "
 Class {
 	#name : #PMNNStore,
@@ -11,7 +11,7 @@ Class {
 		'maxDistance',
 		'lastUsedIndex'
 	],
-	#category : 'Math-KDTree'
+	#category : #'Math-KDTree'
 }
 
 { #category : #'instance creation' }

@@ -9,7 +9,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : 'Math-Core-Distribution'
+	#category : #'Math-Core-Distribution'
 }
 
 { #category : #creation }
@@ -70,11 +70,10 @@ PMMitchellMooreGenerator >> floatValue [
 
 { #category : #initialization }
 PMMitchellMooreGenerator >> initialize: anArray lowIndex: anInteger [
-	
+
 	randoms := anArray.
 	lowIndex := anInteger.
-	highIndex := randoms size.
-	^self
+	highIndex := randoms size
 ]
 
 { #category : #information }
