@@ -8,13 +8,20 @@ Class {
 }
 
 { #category : #running }
-PMAnotherGeneticOptimizerTest >> setUp [ 
-|origin f|
-f:=[:x| |v| v:=x asPMVector . v*v].
-origin:= #(-5 -5 -5).
-go:= PMAnotherGeneticOptimizer function: f minimumValues: origin maximumValues: origin negated .
-go maximumIterations: 50.
-go chromosomeManager populationSize: 20.
+PMAnotherGeneticOptimizerTest >> setUp [
+
+	| origin f |
+	f := [ :x | 
+	     | v |
+	     v := x asPMVector.
+	     v * v ].
+	origin := #( -5 -5 -5 ).
+	go := PMAnotherGeneticOptimizer
+		      function: f
+		      minimumValues: origin
+		      maximumValues: origin negated.
+	go maximumIterations: 50.
+	go chromosomeManager populationSize: 20
 ]
 
 { #category : #tests }
@@ -67,7 +74,7 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 	aStream := ReadWriteStream with: ''.
 	go printOn: aStream.
 	s := aStream contents.
-	self assert: (s includesSubstring: 'v*v').
+	self assert: (s includesSubstring: 'v * v').
 	self assert: (s includesSubstring: '50').
 	self assert: (s includesSubstring: '20')
 ]
