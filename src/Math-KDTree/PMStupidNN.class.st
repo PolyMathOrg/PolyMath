@@ -1,11 +1,11 @@
 "
-StupidNN is a naive nearest neighbour search. KDTree is much faster though, if you have to do several searches. StupidNN exists only for the KDTreeTests (and as an example, how simple it is to subclass NNStore) .
+`PMStupidNN` is a naive nearest neighbour search. `PMKDTree` is much faster though, if you have to do several searches. `PMStupidNN` exists only for the `PMKDTreeTest`s (and as an example, how simple it is to subclass `PMNNStore`).
 "
 Class {
 	#name : #PMStupidNN,
 	#superclass : #PMNNStore,
 	#type : #variable,
-	#category : 'Math-KDTree'
+	#category : #'Math-KDTree'
 }
 
 { #category : #evaluating }
