@@ -8,6 +8,37 @@ Integer >> gamma [
 ]
 
 { #category : #'*Math-Numerical' }
+Integer >> inverseBinomialCoefficient [
+
+	" Reverse binomial coefficient. Answer a <Collection> with all n and k such that n take: k = self. Elements in the answered Collection should be read as paired. Each pair represents (n,k) in the binomial coefficient formula. 
+	See https://math.stackexchange.com/a/103385/205 for details. "
+
+	| k |
+	[ self > 1 ] assert.
+	k := 0.
+	^ Array streamContents: [ :stream | 
+		  [ true ] whileTrue: [ 
+			  | nmin nmax choose |
+			  k := k + 1.
+			  2 * k + 1 * self <= (4 ** k) ifTrue: [ ^ stream contents ].
+			  nmin := ((k factorial * self) nthRoot: k) ceiling.
+			  nmax := nmin + k + 1.
+			  nmin := nmin max: 2 * k.
+			  choose := nmin asInteger numberOfCombinationsTaken: k.
+			  nmin to: nmax do: [ :n | 
+				  choose = self ifTrue: [ 
+					  stream nextPutAll: { 
+							  n asInteger.
+							  k asInteger }.
+					  k < (n - k) ifTrue: [ 
+						  stream nextPutAll: { 
+								  n asInteger.
+								  (n - k) asInteger } ] ].
+				  choose := choose * (n + 1).
+				  choose := (choose / (n + 1 - k)) ceiling ] ] ]
+]
+
+{ #category : #'*Math-Numerical' }
 Integer >> random [
 		"Answer a random integer between 0 and the receiver."
 	^ PMMitchellMooreGenerator new integerValue: self
