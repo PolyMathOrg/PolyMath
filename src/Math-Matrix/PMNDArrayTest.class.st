@@ -140,7 +140,7 @@ self assert: (t1 hadamardProduct: t2) equals: (PMNDArray fromNestedArray:
 ]
 
 { #category : #tests }
-PMNDArrayTest >> testHadamardProductWithDifferentShapes [
+PMNDArrayTest >> testHadamardProductWithDifferentShapesFails [
 |t1 t2|
  t1 := PMNDArray fromNestedArray: #( #( 1 2) #(3 4) #(5 6) #(7 8)).
  t2 := PMNDArray fromNestedArray: #( #( 4 3 2 9 ) #( 9 7 6 5 ) ).
