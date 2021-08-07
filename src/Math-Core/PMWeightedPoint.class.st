@@ -1,7 +1,5 @@
 "
 I'm a simple point (two values with a weight and an error).
-
-(c) Copyrights Didier BESSET, 1999.
 "
 Class {
 	#name : #PMWeightedPoint,
@@ -12,7 +10,7 @@ Class {
 		'weight',
 		'error'
 	],
-	#category : 'Math-Core'
+	#category : #'Math-Core'
 }
 
 { #category : #creation }
