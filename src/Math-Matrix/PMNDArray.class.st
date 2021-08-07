@@ -99,12 +99,9 @@ PMNDArray >> fromNestedArray: aFlatArray withShape: aShape [
 
 { #category : #operation }
 PMNDArray >> hadamardProduct: aPMNDArray [
-	(self hasSameShapeAs: aPMNDArray)
-	ifTrue:[
-		^ self class new array: ((self asArray) with: (aPMNDArray asArray) collect:[:a :b| a*b])
-		withShape: self shape.
-		]
-	ifFalse:[ShapeMismatch signal ]
+	^ self with: aPMNDArray collect: [:a :b| a*b]
+	
+	
 ]
 
 { #category : #testing }
@@ -170,4 +167,14 @@ PMNDArray >> viewWithShape: aNewShape [
 
 	^ PMNDArray new array: self asArray withShape: aNewShape
 
+]
+
+{ #category : #operation }
+PMNDArray >> with: aPMNDArray collect: aBlock [
+	(self hasSameShapeAs: aPMNDArray)
+		ifFalse:[ShapeMismatch signal ].
+	^ self class new array: ((self asArray) with: (aPMNDArray asArray) collect: aBlock)
+		withShape: self shape.
+	
+	
 ]
