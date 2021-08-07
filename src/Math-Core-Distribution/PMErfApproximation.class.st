@@ -1,9 +1,11 @@
 "
-A PMErfApproximation is a five term approximation to erf(x). This is a singleton class encapsulating the approximation. 
+A `PMErfApproximation` is a five term approximation to erf(x). This is a singleton class encapsulating the approximation. 
 
 Use with 
 
+```
 PMErfApproximation new value: aNumber
+```
 
 to receive erf(x). The result of the error function lies between zero and one.
 
