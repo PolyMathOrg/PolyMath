@@ -15,5 +15,5 @@ ShapeMismatch >> messageText [
 ShapeMismatch >> standardMessageText [
 	"Generate a standard textual description"
 	
-	^ 'Tensor shapes do not match'
+	^ 'NDArray shapes do not match'
 ]

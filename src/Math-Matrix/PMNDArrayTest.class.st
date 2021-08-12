@@ -101,6 +101,58 @@ PMNDArrayTest >> testFromNestedArray [
 ]
 
 { #category : #tests }
+PMNDArrayTest >> testHadamardProduct [
+|t1 t2 expectedHadamardProduct|
+
+ t1 := PMNDArray fromNestedArray:  #( 
+												#( 1 2 3 4 ) #( 5 6 7 8 ) 
+												).
+ t2 := PMNDArray fromNestedArray: #( 
+												#( 4 3 2 9 ) #( 9 7 6 5 ) 
+												).
+ expectedHadamardProduct :=  PMNDArray fromNestedArray:#( 
+																		#( 4 6 6 36 ) #( 45 42 42 40 )
+																		).
+												
+ self assert: (t1 hadamardProduct: t2) equals: expectedHadamardProduct.
+
+ t1 := PMNDArray fromNestedArray:
+				 #( 
+					#( #( 1 2 ) #( 3 4 )) 
+					#( #( 5 6 ) #( 7 8 ))
+					#( #( 9 10) #( 11 12))
+					).
+					
+ t2 := PMNDArray fromNestedArray:
+				 #( 
+					#( #( 1 3 ) #( 2 1)) 
+					#( #( 0 6 ) #( 3 8))
+					#( #( 3 5) #( 1 10))
+					).
+					
+ expectedHadamardProduct :=  PMNDArray fromNestedArray:#( 
+																			#( #( 1 6 ) #( 6 4 )) 
+																			#( #( 0 36 ) #( 21 64 ))
+																			#( #( 27 50 ) #( 11 120 ))).
+
+
+self assert: (t1 hadamardProduct: t2) equals: expectedHadamardProduct
+					
+				
+			
+		
+	
+]
+
+{ #category : #tests }
+PMNDArrayTest >> testHadamardProductWithDifferentShapesFails [
+|t1 t2|
+ t1 := PMNDArray fromNestedArray: #( #( 1 2) #(3 4) #(5 6) #(7 8)).
+ t2 := PMNDArray fromNestedArray: #( #( 4 3 2 9 ) #( 9 7 6 5 ) ).
+ self should: [t1 hadamardProduct: t2] raise: ShapeMismatch 
+]
+
+{ #category : #tests }
 PMNDArrayTest >> testRank [
 
 	| t1 t2 |

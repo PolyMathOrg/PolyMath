@@ -39,10 +39,10 @@ ifTrue:[
 ]
 
 { #category : #comparing }
-PMNDArray >> = anArray [
+PMNDArray >> = aPMNDArray [
 
-	^ array = anArray array & (first = anArray first)
-	  & (strides = anArray strides) & (shape = anArray shape)
+	^ array = aPMNDArray asArray & (first = aPMNDArray first)
+	  & (strides = aPMNDArray strides) & (shape = aPMNDArray shape)
 ]
 
 { #category : #'as yet unclassified' }
@@ -95,6 +95,18 @@ PMNDArray >> fromNestedArray: aFlatArray withShape: aShape [
 	shape := aShape copy.
 	self updateFirst.
 	shape ifNotEmpty: [ self updateStrides]
+]
+
+{ #category : #operation }
+PMNDArray >> hadamardProduct: aPMNDArray [
+	^ self with: aPMNDArray collect: [:a :b| a*b]
+	
+	
+]
+
+{ #category : #testing }
+PMNDArray >> hasSameShapeAs: aPMNDArray [
+	^ self shape = aPMNDArray shape
 ]
 
 { #category : #accessing }
@@ -155,4 +167,14 @@ PMNDArray >> viewWithShape: aNewShape [
 
 	^ PMNDArray new array: self asArray withShape: aNewShape
 
+]
+
+{ #category : #operation }
+PMNDArray >> with: aPMNDArray collect: aBlock [
+	(self hasSameShapeAs: aPMNDArray)
+		ifFalse:[ShapeMismatch signal ].
+	^ self class new array: ((self asArray) with: (aPMNDArray asArray) collect: aBlock)
+		withShape: self shape.
+	
+	
 ]
