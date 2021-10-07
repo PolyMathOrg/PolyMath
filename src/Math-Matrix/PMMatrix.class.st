@@ -366,15 +366,20 @@ PMMatrix >> choleskyDecomposition [
 
 					diagonalValue := ((self at: j at: j) - rowSum) sqrt.
 
+
 					upperTriangular at: j at: j put: diagonalValue ]
 				ifFalse: [
-					partialSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
-						sum + (upperTriangular at: k at: i) * (upperTriangular at: k at: j) ].
 
+					partialSum := (1 to: j - 1) inject: 0 into: [ :sum :k |
+							sum + ((upperTriangular at: k at: i) * (upperTriangular at: k at: j)).
+						].
+					
 					factor := upperTriangular at: j at: j.
 					nonDiagonalValue := ((self at: j at: i) - partialSum) / factor.
 
-					upperTriangular at: j at: i put: nonDiagonalValue ] ] ].
+					upperTriangular at: j at: i put: nonDiagonalValue.
+					
+				] ] ].
 		
 	^ upperTriangular
 ]
