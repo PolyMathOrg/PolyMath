@@ -76,16 +76,20 @@ PMMatrixTest >> testCholeskyDecomposition [
 	| matrix upperTriangular expected |
 	
 	matrix := PMMatrix rows: #(
-		(4 12 -16)
-		(12 37 -43)
-		(-16 -43 98)).
+		(4 20 8 2 18)
+		(20 116 80 18 126)
+		(8 80 117 32 135)
+		(2 18 32 73 109)
+		(18 126 135 109 272)).
 		
 	upperTriangular := matrix choleskyDecomposition.
 	
 	expected := PMMatrix rows: #(
-		(2 6 -8)
-		(0 1 5)
-		(0 0 3)).
+		(2 10 4 1 9)
+		(0 4 10 2 9)
+		(0 0 1 8 9)
+		(0 0 0 2 5)
+		(0 0 0 0 2)).
 		
 	self assert: upperTriangular equals: expected.
 ]
