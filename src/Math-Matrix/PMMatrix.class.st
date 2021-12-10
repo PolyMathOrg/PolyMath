@@ -1031,10 +1031,11 @@ PMMatrix >> swapColumn: anIndex withColumn:   a2Index [
 ]
 
 { #category : #arithmetic }
-PMMatrix >> take: anInteger [ 
+PMMatrix >> take: anInteger [
+
 	" Answer a <Collection> with the receiver's binomial coefficient at each element for anInteger "
-	
-	^ self collect: [ :each | each take: anInteger ]
+
+	^ self collect: [ :each | each numberOfCombinationsTaken: anInteger ]
 ]
 
 { #category : #operation }
