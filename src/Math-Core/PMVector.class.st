@@ -315,10 +315,11 @@ PMVector >> sqrt [
 ]
 
 { #category : #arithmetic }
-PMVector >> take: anInteger [ 
+PMVector >> take: anInteger [
+
 	" Answer a <Collection> with the receiver's binomial coefficient at each element for anInteger "
-	
-	^ self collect: [ :each | each take: anInteger ]
+
+	^ self collect: [ :each | each numberOfCombinationsTaken: anInteger ]
 ]
 
 { #category : #operation }
