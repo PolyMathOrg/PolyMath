@@ -12,8 +12,8 @@
   </p>
 </p>
 
-[![Pharo version](https://img.shields.io/badge/Pharo-8.0-%23aac9ff.svg)](https://pharo.org/download)
 [![Pharo version](https://img.shields.io/badge/Pharo-9.0-%23aac9ff.svg)](https://pharo.org/download)
+[![Pharo version](https://img.shields.io/badge/Pharo-10-%23aac9ff.svg)](https://pharo.org/download)
 [![CI matrix](https://github.com/PolyMathOrg/PolyMath/actions/workflows/smalltalk-ci.yml/badge.svg)](https://github.com/PolyMathOrg/PolyMath/actions/workflows/smalltalk-ci.yml)
 [![Coverage Status](https://coveralls.io/repos/github/PolyMathOrg/PolyMath/badge.svg?branch=master)](https://coveralls.io/github/PolyMathOrg/PolyMath?branch=master)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/PolyMathOrg/PolyMath/master/LICENSE)
@@ -21,7 +21,7 @@
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
 
-You can load PolyMath 1.0.3 into a fresh Pharo 8.0 or 9.0 image with:
+You can load PolyMath 1.0.3 into a fresh Pharo 9.0 or 10 image with:
 
 ```Smalltalk
 Metacello new
