@@ -44,7 +44,7 @@ PMStepper >> order [
 
 { #category : #accessing }
 PMStepper >> stepSize [
-	^ dt.
+	^ dt
 ]
 
 { #category : #accessing }

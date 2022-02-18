@@ -45,7 +45,7 @@ PMExplicitSolverSubscriber >> defaultBlock [
 
 { #category : #subscription }
 PMExplicitSolverSubscriber >> forAnnouncer: anAnnouncer [
-	anAnnouncer on: PMExplicitSolverAnnouncement do: self block.
+	anAnnouncer when: PMExplicitSolverAnnouncement do: self block.
 	announcers add: anAnnouncer.
 ]
 

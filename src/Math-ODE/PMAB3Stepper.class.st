@@ -15,12 +15,17 @@ PMAB3Stepper class >> order [
 ]
 
 { #category : #stepping }
-PMAB3Stepper >> doStep: thisState prevState:prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime [
+PMAB3Stepper >> doStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime [
 
-	self stepSize isNil
-		ifTrue: [ self error: 'step size required by stepper' ].
-	 ^ self stepSize * (  ( (23/12) * (system state: thisState time:  prevPrevTime+ (2* self stepSize) )) - ((4/3)*(system state: prevState time: prevPrevTime+ self stepSize)) + ((5/12)*(system state: prevPrevState time: prevPrevTime ) )) + thisState.
-
+	self stepSize ifNil: [ self error: 'step size required by stepper' ].
+	^ self stepSize * (23 / 12
+	   *
+	   (system state: thisState time: prevPrevTime + (2 * self stepSize))
+	   -
+	   (4 / 3
+	    * (system state: prevState time: prevPrevTime + self stepSize))
+	   + (5 / 12 * (system state: prevPrevState time: prevPrevTime)))
+	  + thisState
 ]
 
 { #category : #stepping }
@@ -31,11 +36,17 @@ PMAB3Stepper >> doStep: thisState prevState: prevState prevPrevState: prevPrevSt
 
 { #category : #stepping }
 PMAB3Stepper >> lastStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime deltaT: incrementOfTime [
-	self stepSize isNil
-		ifTrue: [ self error: 'step size required by stepper' ].	
-				
-	 ^ self stepSize * (  ( (23/12) * (system state: thisState time:  prevPrevTime+ (2* incrementOfTime) )) - ((4/3)*(system state: prevState time: prevPrevTime+ incrementOfTime)) + ((5/12)*(system state: prevPrevState time: prevPrevTime ) )) + thisState.
 
+	self stepSize ifNil: [ self error: 'step size required by stepper' ].
+
+	^ self stepSize * (23 / 12
+	   *
+	   (system
+		    state: thisState
+		    time: prevPrevTime + (2 * incrementOfTime)) - (4 / 3
+	    * (system state: prevState time: prevPrevTime + incrementOfTime))
+	   + (5 / 12 * (system state: prevPrevState time: prevPrevTime)))
+	  + thisState
 ]
 
 { #category : #stepping }
