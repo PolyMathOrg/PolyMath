@@ -195,11 +195,11 @@ PMComplexTest >> testComplexCollection [
 
 { #category : #tests }
 PMComplexTest >> testConjugated [
-	| c cc |
+	| c cc expected |
 	c := 5 - 6 i.
 	cc := c conjugated.
-	self assert: cc real equals: c real.
-	self assert: cc imaginary equals: c imaginary negated
+	expected := 5 + 6 i.
+	self assert: cc equals: expected.
 ]
 
 { #category : #tests }

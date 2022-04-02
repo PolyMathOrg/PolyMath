@@ -404,10 +404,17 @@ PMComplex >> asComplex [
 ]
 
 { #category : #arithmetic }
+PMComplex >> complexConjugate [
+
+	^ self class real: real imaginary: imaginary negated
+]
+
+{ #category : #arithmetic }
 PMComplex >> conjugated [
+
 	"Return the complex conjugate of this complex number."
 
-	^self class real: real imaginary: imaginary negated
+	^ self complexConjugate
 ]
 
 { #category : #'mathematical functions' }
