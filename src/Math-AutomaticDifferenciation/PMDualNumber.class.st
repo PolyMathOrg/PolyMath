@@ -137,7 +137,7 @@ PMDualNumber >> asInteger [
 PMDualNumber >> conjugated [
 	^ self class
 		value: self value conjugated
-		eps: self eps asComplex conjugated
+		eps: self eps asComplex complexConjugate
 ]
 
 { #category : #'mathematical functions' }
