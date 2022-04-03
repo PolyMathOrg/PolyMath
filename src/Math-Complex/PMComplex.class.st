@@ -414,6 +414,12 @@ PMComplex >> conjugated [
 
 	"Return the complex conjugate of this complex number."
 
+	self
+		deprecated: 'Use #complexConjugate instead'
+		on: '3 April 2022'
+		in:
+		'Pharo-9.0.0+build.1575.sha.9bb5f998e8a6d016ec7abde3ed09c4a60c0b4551 (64 Bit)'.
+
 	^ self complexConjugate
 ]
 
