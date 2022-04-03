@@ -194,7 +194,7 @@ PMComplexTest >> testComplexCollection [
 ]
 
 { #category : #tests }
-PMComplexTest >> testConjugated [
+PMComplexTest >> testComplexConjugate [
 	| z complexConjugateOfZ expected |
 	z := 5 - 6 i.
 	
