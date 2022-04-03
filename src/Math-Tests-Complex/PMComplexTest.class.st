@@ -197,7 +197,9 @@ PMComplexTest >> testComplexCollection [
 PMComplexTest >> testConjugated [
 	| z complexConjugateOfZ expected |
 	z := 5 - 6 i.
-	complexConjugateOfZ := z conjugated.
+	
+	complexConjugateOfZ := z complexConjugate .
+	
 	expected := 5 + 6 i.
 	self assert: complexConjugateOfZ equals: expected.
 ]
