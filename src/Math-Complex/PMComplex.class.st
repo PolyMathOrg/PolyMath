@@ -169,18 +169,18 @@ PMComplex >> - anObject [
 ]
 
 { #category : #arithmetic }
-PMComplex >> / anObject [
+PMComplex >> / aNumber [
 	"Answer the result of dividing receiver by aNumber"
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber ifTrue:
+	aNumber isComplexNumber ifTrue:
 		[a := self real.
 		b := self imaginary.
-		c := anObject real.
-		d := anObject imaginary.
+		c := aNumber real.
+		d := aNumber imaginary.
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
 		^ self class real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+	^ aNumber adaptToComplex: self andSend: #/.
 ]
 
 { #category : #comparing }
