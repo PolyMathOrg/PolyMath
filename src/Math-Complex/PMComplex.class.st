@@ -179,7 +179,7 @@ PMComplex >> / anObject [
 		d := anObject imaginary.
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
-		^ PMComplex real: newReal imaginary: newImaginary].
+		^ self class real: newReal imaginary: newImaginary].
 	^ anObject adaptToComplex: self andSend: #/.
 ]
 
