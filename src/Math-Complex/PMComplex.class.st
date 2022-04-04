@@ -557,7 +557,7 @@ PMComplex >> isNumber [
 	^ true
 ]
 
-{ #category : #'mathematical functions' }
+{ #category : #testing }
 PMComplex >> isReal [
 
 	^ imaginary = 0 and: [ real >= 0 ]
