@@ -557,6 +557,12 @@ PMComplex >> isNumber [
 	^ true
 ]
 
+{ #category : #'mathematical functions' }
+PMComplex >> isReal [
+
+	^ imaginary = 0 and: [ real >= 0 ]
+]
+
 { #category : #testing }
 PMComplex >> isZero [
 	^ real isZero and: [imaginary isZero]
@@ -707,14 +713,14 @@ PMComplex >> sinh [
 
 { #category : #'mathematical functions' }
 PMComplex >> sqrt [
+
 	"Return the square root of the receiver with a positive imaginary part."
 
 	| u v |
-	(imaginary = 0 and: [real >= 0])
-		ifTrue:	[^self class real: real sqrt imaginary: 0].
+	self isReal ifTrue: [ ^ self class real: real sqrt imaginary: 0 ].
 	v := (self abs - real / 2) sqrt.
 	u := imaginary / 2 / v.
-	^self class real: u imaginary: v
+	^ self class real: u imaginary: v
 ]
 
 { #category : #'mathematical functions' }
