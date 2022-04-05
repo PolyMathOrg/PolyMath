@@ -644,7 +644,7 @@ PMComplexTest >> testSquareRootOfZeroIsZero [
 	"scope: class-variables  &  instance-variables"	
 			
 	| squareRoot expected |
-	squareRoot := (0 + 0 i) sqrt .
+	squareRoot := PMComplex zero sqrt .
 	
 	expected := PMComplex zero.
 	self assert: squareRoot equals: expected.
