@@ -89,7 +89,7 @@ PMDualNumberTest >> testConjugated [
 	self assert: a value equals: z value absSquared.
 	self
 		assert: a eps
-		equals: z eps asComplex conjugated * z value + (z value asComplex conjugated * z eps)
+		equals: z eps asComplex complexConjugate * z value + (z value asComplex conjugated * z eps)
 ]
 
 { #category : #tests }

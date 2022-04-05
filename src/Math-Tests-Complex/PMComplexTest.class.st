@@ -194,12 +194,14 @@ PMComplexTest >> testComplexCollection [
 ]
 
 { #category : #tests }
-PMComplexTest >> testConjugated [
-	| c cc |
-	c := 5 - 6 i.
-	cc := c conjugated.
-	self assert: cc real equals: c real.
-	self assert: cc imaginary equals: c imaginary negated
+PMComplexTest >> testComplexConjugate [
+	| z complexConjugateOfZ expected |
+	z := 5 - 6 i.
+	
+	complexConjugateOfZ := z complexConjugate .
+	
+	expected := 5 + 6 i.
+	self assert: complexConjugateOfZ equals: expected.
 ]
 
 { #category : #tests }
@@ -486,7 +488,7 @@ PMComplexTest >> testNumberAsComplex [
 	minusOne := -1 asComplex.
 	self assert: minusOne real equals: -1.
 	self assert: minusOne imaginary equals: 0.
-	self assert: minusOne conjugated equals: minusOne.
+	self assert: minusOne complexConjugate equals: minusOne.
 	self assert: minusOne sqrt equals: 1 i
 ]
 

@@ -169,18 +169,18 @@ PMComplex >> - anObject [
 ]
 
 { #category : #arithmetic }
-PMComplex >> / anObject [
+PMComplex >> / aNumber [
 	"Answer the result of dividing receiver by aNumber"
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber ifTrue:
+	aNumber isComplexNumber ifTrue:
 		[a := self real.
 		b := self imaginary.
-		c := anObject real.
-		d := anObject imaginary.
+		c := aNumber real.
+		d := aNumber imaginary.
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
-		^ PMComplex real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+		^ self class real: newReal imaginary: newImaginary].
+	^ aNumber adaptToComplex: self andSend: #/.
 ]
 
 { #category : #comparing }
@@ -404,10 +404,23 @@ PMComplex >> asComplex [
 ]
 
 { #category : #arithmetic }
+PMComplex >> complexConjugate [
+
+	^ self class real: real imaginary: imaginary negated
+]
+
+{ #category : #arithmetic }
 PMComplex >> conjugated [
+
 	"Return the complex conjugate of this complex number."
 
-	^self class real: real imaginary: imaginary negated
+	self
+		deprecated: 'Use #complexConjugate instead'
+		on: '3 April 2022'
+		in:
+		'Pharo-9.0.0+build.1575.sha.9bb5f998e8a6d016ec7abde3ed09c4a60c0b4551 (64 Bit)'.
+
+	^ self complexConjugate
 ]
 
 { #category : #'mathematical functions' }
@@ -694,14 +707,15 @@ PMComplex >> sinh [
 
 { #category : #'mathematical functions' }
 PMComplex >> sqrt [
+
 	"Return the square root of the receiver with a positive imaginary part."
 
 	| u v |
-	(imaginary = 0 and: [real >= 0])
-		ifTrue:	[^self class real: real sqrt imaginary: 0].
+	(imaginary = 0 and: [ real >= 0 ]) ifTrue: [ 
+		^ self class real: real sqrt imaginary: 0 ].
 	v := (self abs - real / 2) sqrt.
 	u := imaginary / 2 / v.
-	^self class real: u imaginary: v
+	^ self class real: u imaginary: v
 ]
 
 { #category : #'mathematical functions' }
