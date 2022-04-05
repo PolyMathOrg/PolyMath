@@ -618,6 +618,15 @@ PMComplexTest >> testSinh [
 ]
 
 { #category : #tests }
+PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+	"Given z = -4 + 0 i, the square root is 2 i"
+			
+	| squareRoot |
+	squareRoot := (PMComplex real: -4 imaginary: 0) sqrt .
+	self assert: squareRoot equals: 2 i. 
+]
+
+{ #category : #tests }
 PMComplexTest >> testSquared [
 	"self run: #testSquared"
 
