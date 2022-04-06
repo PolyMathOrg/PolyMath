@@ -639,6 +639,21 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 ]
 
 { #category : #tests }
+PMComplexTest >> testSquareRootOfPureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+
+	"e.g. square root of 4 i = root(2) + i root(2)"
+
+	| squareRoot expected pureImaginaryNumber |
+	pureImaginaryNumber := PMComplex real: 0 imaginary: 4.
+	
+	squareRoot := pureImaginaryNumber sqrt.
+
+	expected := 2 sqrt + 2 sqrt i.
+	self assert: squareRoot real closeTo: expected real.
+	self assert: squareRoot imaginary closeTo: expected imaginary
+]
+
+{ #category : #tests }
 PMComplexTest >> testSquareRootOfZeroIsZero [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
