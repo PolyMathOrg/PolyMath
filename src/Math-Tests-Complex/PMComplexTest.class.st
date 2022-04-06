@@ -619,11 +619,15 @@ PMComplexTest >> testSinh [
 
 { #category : #tests }
 PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+
 	"Given z = -4 + 0 i, the square root is 2 i"
-			
-	| squareRoot |
-	squareRoot := (PMComplex real: -4 imaginary: 0) sqrt .
-	self assert: squareRoot equals: 2 i. 
+
+	| squareRoot z |
+	z := PMComplex real: -4 imaginary: 0.
+	
+	squareRoot := z sqrt.
+	
+	self assert: squareRoot equals: 2 i
 ]
 
 { #category : #tests }
@@ -670,10 +674,12 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 
 	"Given z = 6 + 0 i, then root z = root 6"
 
-	| squareRoot expected |
-	squareRoot := (PMComplex real: 6 imaginary: 0) sqrt.
+	| squareRoot expected positiveRealNumber |
+	positiveRealNumber := PMComplex real: 6 imaginary: 0.
 	
-	expected := PMComplex real: (6 sqrt) imaginary: 0.
+	squareRoot := positiveRealNumber sqrt.
+
+	expected := PMComplex real: 6 sqrt imaginary: 0.
 	self assert: squareRoot equals: expected
 ]
 
