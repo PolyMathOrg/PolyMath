@@ -627,19 +627,7 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 ]
 
 { #category : #tests }
-PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
-
-	"Given z = 6 + 0 i, then root z = root 6"
-
-	| squareRoot expected |
-	squareRoot := (PMComplex real: 6 imaginary: 0) sqrt.
-	
-	expected := PMComplex real: (6 sqrt) imaginary: 0.
-	self assert: squareRoot equals: expected
-]
-
-{ #category : #tests }
-PMComplexTest >> testSquareRootOfPureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
 
@@ -651,6 +639,18 @@ PMComplexTest >> testSquareRootOfPureImaginaryNumberIsAComplexNumberWithRealAndI
 	expected := 2 sqrt + 2 sqrt i.
 	self assert: squareRoot real closeTo: expected real.
 	self assert: squareRoot imaginary closeTo: expected imaginary
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
+
+	"Given z = 6 + 0 i, then root z = root 6"
+
+	| squareRoot expected |
+	squareRoot := (PMComplex real: 6 imaginary: 0) sqrt.
+	
+	expected := PMComplex real: (6 sqrt) imaginary: 0.
+	self assert: squareRoot equals: expected
 ]
 
 { #category : #tests }
