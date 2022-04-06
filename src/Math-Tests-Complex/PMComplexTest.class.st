@@ -627,6 +627,19 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 ]
 
 { #category : #tests }
+PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+   | squareRoot expected pureImaginaryNumber |
+	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
+	
+	squareRoot := pureImaginaryNumber sqrt.
+
+	expected := 2 sqrt negated + 2 sqrt i.
+	self assert: squareRoot real closeTo: expected real.
+	self assert: squareRoot imaginary closeTo: expected imaginary
+
+]
+
+{ #category : #tests }
 PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
