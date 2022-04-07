@@ -618,6 +618,84 @@ PMComplexTest >> testSinh [
 ]
 
 { #category : #tests }
+PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+
+	"Given z = -4 + 0 i, the square root is 2 i"
+
+	| squareRoot z |
+	z := PMComplex real: -4 imaginary: 0.
+	
+	squareRoot := z sqrt.
+	
+	self assert: squareRoot equals: 2 i
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
+	| squareRoot z |
+	z := PMComplex real: 2 imaginary: 2.
+	
+	squareRoot := z sqrt.
+
+	self assert: squareRoot real closeTo: 1.55377397.
+	self assert: squareRoot imaginary closeTo: 0.643594253
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+   | squareRoot expected pureImaginaryNumber |
+	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
+	
+	squareRoot := pureImaginaryNumber sqrt.
+
+	expected := 2 sqrt negated + 2 sqrt i.
+	self assert: squareRoot real closeTo: expected real.
+	self assert: squareRoot imaginary closeTo: expected imaginary
+
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+
+	"e.g. square root of 4 i = root(2) + i root(2)"
+
+	| squareRoot expected pureImaginaryNumber |
+	pureImaginaryNumber := PMComplex real: 0 imaginary: 4.
+	
+	squareRoot := pureImaginaryNumber sqrt.
+
+	expected := 2 sqrt + 2 sqrt i.
+	self assert: squareRoot real closeTo: expected real.
+	self assert: squareRoot imaginary closeTo: expected imaginary
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
+
+	"Given z = 6 + 0 i, then root z = root 6"
+
+	| squareRoot expected positiveRealNumber |
+	positiveRealNumber := PMComplex real: 6 imaginary: 0.
+	
+	squareRoot := positiveRealNumber sqrt.
+
+	expected := PMComplex real: 6 sqrt imaginary: 0.
+	self assert: squareRoot equals: expected
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfZeroIsZero [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"	
+			
+	| squareRoot expected |
+	squareRoot := PMComplex zero sqrt .
+	
+	expected := PMComplex zero.
+	self assert: squareRoot equals: expected.
+]
+
+{ #category : #tests }
 PMComplexTest >> testSquared [
 	"self run: #testSquared"
 
