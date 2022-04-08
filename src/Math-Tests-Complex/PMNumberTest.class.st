@@ -5,6 +5,15 @@ Class {
 }
 
 { #category : #tests }
+PMNumberTest >> testComplexConjugateOfAnIntegerIsAnInteger [
+	|complexConjugateOfInteger|
+	
+	complexConjugateOfInteger := -5 complexConjugate. 
+	
+	self assert: complexConjugateOfInteger equals: -5.
+]
+
+{ #category : #tests }
 PMNumberTest >> testComplexConjugateOfRealNumberIsItself [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
