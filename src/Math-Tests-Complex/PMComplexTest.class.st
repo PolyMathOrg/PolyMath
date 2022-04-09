@@ -751,7 +751,19 @@ PMComplexTest >> testTimesPolynomial [
 ]
 
 { #category : #tests }
-PMComplexTest >> testWeCannotInstanciateAFractionWhoseNumeratorAndDenominatorAreComplexNumbers [
+PMComplexTest >> testWeCanWriteFractionsOfComplexNumbersWithDenominatorNormalized [
+
+	| z w fraction expected |
+	z := 1 + 2 i.
+	w := 3 + 4 i.
+	fraction := Fraction numerator: (z * w complexConjugate) denominator: w squaredNorm.
+	
+	expected := Fraction numerator: (11 + 2 i) denominator: 25. 
+	self assert: fraction equals: expected.
+]
+
+{ #category : #tests }
+PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
 	| numerator denominator |
 	"It is interesting that we cannot instanciate a fraction of the form z/w"
 	"Perhaps, we could do something like z * (w*)/ |w|**2"

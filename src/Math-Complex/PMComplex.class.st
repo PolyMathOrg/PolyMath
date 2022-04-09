@@ -403,6 +403,11 @@ PMComplex >> asComplex [
 	^self
 ]
 
+{ #category : #converting }
+PMComplex >> asInteger [
+	^ self.
+]
+
 { #category : #arithmetic }
 PMComplex >> complexConjugate [
 
