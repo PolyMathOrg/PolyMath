@@ -751,6 +751,17 @@ PMComplexTest >> testTimesPolynomial [
 ]
 
 { #category : #tests }
+PMComplexTest >> testWeCannotInstanciateAFractionWhoseNumeratorAndDenominatorAreComplexNumbers [
+	| numerator denominator |
+	"It is interesting that we cannot instanciate a fraction of the form z/w"
+	"Perhaps, we could do something like z * (w*)/ |w|**2"
+	numerator := PMComplex real: 1 imaginary: 1.
+	denominator := PMComplex real: 3 imaginary: 4 .
+
+	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
+]
+
+{ #category : #tests }
 PMComplexTest >> testZero [
 	| z |
 	z := PMComplex zero.
