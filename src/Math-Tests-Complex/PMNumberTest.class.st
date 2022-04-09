@@ -14,6 +14,14 @@ PMNumberTest >> testComplexConjugateOfAnIntegerIsAnInteger [
 ]
 
 { #category : #tests }
+PMNumberTest >> testComplexConjugateOfRealFractionIsARealFraction [
+	| complexConjugateOfFraction |
+	complexConjugateOfFraction := (Fraction numerator: 1 denominator: 6) complexConjugate.
+	
+	self assert: complexConjugateOfFraction equals: (Fraction numerator: 1 denominator: 6) .
+]
+
+{ #category : #tests }
 PMNumberTest >> testComplexConjugateOfRealNumberIsItself [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
