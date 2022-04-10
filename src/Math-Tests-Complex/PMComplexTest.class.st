@@ -751,6 +751,15 @@ PMComplexTest >> testTimesPolynomial [
 ]
 
 { #category : #tests }
+PMComplexTest >> testWeCanWriteComplexNumbersWhoRealAndImaginaryPartsAreFractions [
+	| z |
+	z := PMComplex real: 3 / 5 imaginary: 4 / 5.
+	 
+	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
+	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
+]
+
+{ #category : #tests }
 PMComplexTest >> testWeCanWriteFractionsOfComplexNumbersWithDenominatorNormalized [
 
 	| z w fraction expected |
