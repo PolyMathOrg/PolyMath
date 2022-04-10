@@ -22,10 +22,7 @@ PMNumberTest >> testComplexConjugateOfRealFractionIsARealFraction [
 ]
 
 { #category : #tests }
-PMNumberTest >> testComplexConjugateOfRealNumberIsItself [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
+PMNumberTest >> testComplexConjugateOfRealNumberIsItself [			
 	|realNumber|
 	realNumber := 4.5 complexConjugate. 
 			
