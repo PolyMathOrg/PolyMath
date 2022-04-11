@@ -751,7 +751,7 @@ PMComplexTest >> testTimesPolynomial [
 ]
 
 { #category : #tests }
-PMComplexTest >> testWeCanWriteComplexNumbersWhoRealAndImaginaryPartsAreFractions [
+PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
 	z := PMComplex real: 3 / 5 imaginary: 4 / 5.
 	 
