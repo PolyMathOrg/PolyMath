@@ -760,15 +760,15 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 ]
 
 { #category : #tests }
-PMComplexTest >> testWeCanWriteFractionsOfComplexNumbersWithDenominatorNormalized [
+PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
 
-	| z w fraction expected |
+	| z w numerator denominator |
 	z := 1 + 2 i.
 	w := 3 + 4 i.
-	fraction := Fraction numerator: (z * w complexConjugate) denominator: w squaredNorm.
+	numerator := z * w complexConjugate.
+	denominator := w squaredNorm.
 	
-	expected := Fraction numerator: (11 + 2 i) denominator: 25. 
-	self assert: fraction equals: expected.
+	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
 ]
 
 { #category : #tests }
