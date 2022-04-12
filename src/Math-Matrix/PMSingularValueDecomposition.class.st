@@ -32,9 +32,9 @@ Class {
 	#name : #PMSingularValueDecomposition,
 	#superclass : #Object,
 	#instVars : [
-		'u',
-		's',
-		'v'
+		'leftSingularForm',
+		'rightSingularForm',
+		'sForm'
 	],
 	#category : #'Math-Matrix'
 }
@@ -56,26 +56,26 @@ PMSingularValueDecomposition >> initialize: aMatrix [
 	"Expensive computation"
 	eigenU := symU eigen.
 	eigenV := symV eigen.
-	u := (PMMatrix rows: eigenU vectors) transpose.
-	v := (PMMatrix rows: eigenV vectors) transpose.
+	leftSingularForm := (PMMatrix rows: eigenU vectors) transpose.
+	rightSingularForm := (PMMatrix rows: eigenV vectors) transpose.
 	diag := m < n
 		        ifTrue: [ eigenU values ]
 		        ifFalse: [ eigenV values ].
-	s := PMMatrix rows: m columns: n random: 0.
-	s setDiagonal: diag sqrt
+	sForm := PMMatrix rows: m columns: n random: 0.
+	sForm setDiagonal: diag sqrt
 ]
 
 { #category : #accessing }
 PMSingularValueDecomposition >> leftSingularForm [
-	^ u
+	^ leftSingularForm
 ]
 
 { #category : #accessing }
 PMSingularValueDecomposition >> rightSingularForm [
-	^ v
+	^ rightSingularForm
 ]
 
 { #category : #accessing }
 PMSingularValueDecomposition >> sForm [
-	^ s
+	^ sForm
 ]
