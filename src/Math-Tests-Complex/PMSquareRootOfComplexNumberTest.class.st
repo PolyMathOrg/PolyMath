@@ -1,11 +1,11 @@
 Class {
-	#name : #SquareRootOfComplexNumber,
+	#name : #PMSquareRootOfComplexNumberTest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-Complex'
 }
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 
 	"Given z = -4 + 0 i, the square root is 2 i"
 
@@ -18,7 +18,7 @@ SquareRootOfComplexNumber >> testSquareRootOfANegativeRealNumberIsPureImaginary 
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfComplexNumberIsAComplexNumber [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	| squareRoot z |
 	z := PMComplex real: 2 imaginary: 2.
 	
@@ -29,7 +29,7 @@ SquareRootOfComplexNumber >> testSquareRootOfComplexNumberIsAComplexNumber [
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
    | squareRoot expected pureImaginaryNumber |
 	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
 	
@@ -42,7 +42,7 @@ SquareRootOfComplexNumber >> testSquareRootOfNegativePureImaginaryNumberIsACompl
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
 
@@ -57,7 +57,7 @@ SquareRootOfComplexNumber >> testSquareRootOfPositivePureImaginaryNumberIsACompl
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
 
 	"Given z = 6 + 0 i, then root z = root 6"
 
@@ -71,7 +71,7 @@ SquareRootOfComplexNumber >> testSquareRootOfPositiveRealNumberIsAComplexNumberW
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquareRootOfZeroIsZero [
+PMSquareRootOfComplexNumberTest >> testSquareRootOfZeroIsZero [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 			
@@ -83,7 +83,7 @@ SquareRootOfComplexNumber >> testSquareRootOfZeroIsZero [
 ]
 
 { #category : #tests }
-SquareRootOfComplexNumber >> testSquared [
+PMSquareRootOfComplexNumberTest >> testSquared [
 	"self run: #testSquared"
 
 	"self debug: #testSquared"
