@@ -26,7 +26,7 @@ PMComplexNumberUnaryOperationTests >> testAbsSecure [
 	self assert: (c absSecure equalsTo: 72 sqrt)
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArCosh [
 	| c |
 	c := (2.5 + 0 i).
@@ -40,7 +40,7 @@ PMComplexNumberUnaryOperationTests >> testArCosh [
 		self deny: c arCosh real negative]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArSinh [
 	| c |
 	c := (2.5 + 0 i).
@@ -53,7 +53,7 @@ PMComplexNumberUnaryOperationTests >> testArSinh [
 		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArTanh [
 	| c |
 	c := (0.5 + 0 i).
@@ -66,7 +66,7 @@ PMComplexNumberUnaryOperationTests >> testArTanh [
 		self assert: (c arTanh tanh imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArcCos [
 	| c |
 	c := (0.5 + 0 i).
@@ -79,7 +79,7 @@ PMComplexNumberUnaryOperationTests >> testArcCos [
 		self assert: (c arcCos cos imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArcCosPlusArcSin [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -89,7 +89,7 @@ PMComplexNumberUnaryOperationTests >> testArcCosPlusArcSin [
 		self assert: ((c arcCos + c arcSin) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArcSin [
 	| c |
 	c := (0.5 + 0 i).
@@ -102,7 +102,7 @@ PMComplexNumberUnaryOperationTests >> testArcSin [
 		self assert: (c arcSin sin imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArcTan [
 	| c |
 	c := (0.5 + 0 i).
@@ -115,7 +115,7 @@ PMComplexNumberUnaryOperationTests >> testArcTan [
 		self assert: (c arcTan tan imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testArcTanDenominator [
 	| c1 c2 |
 	c1 := 1 i.
@@ -125,7 +125,7 @@ PMComplexNumberUnaryOperationTests >> testArcTanDenominator [
 	self assert: (c2 arcTan: c1 * c1) equals: Float pi
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testCos [
 	| c c2 |
 	c := (2 + 0 i).
@@ -137,7 +137,7 @@ PMComplexNumberUnaryOperationTests >> testCos [
 	self assert: (c cos imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testCos2PlusSin2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -147,7 +147,7 @@ PMComplexNumberUnaryOperationTests >> testCos2PlusSin2 [
 		self assert: ((c cos squared + c sin squared) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testCosh [
 	| c c2 |
 	c := (2 + 0 i).
@@ -162,7 +162,7 @@ PMComplexNumberUnaryOperationTests >> testCosh [
 	self assert: (c cosh imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testCosh2MinusSinh2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -216,7 +216,7 @@ PMComplexNumberUnaryOperationTests >> testReciprocalError [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testSin [
 	| c c2 |
 	c := (2 + 0 i).
@@ -228,7 +228,7 @@ PMComplexNumberUnaryOperationTests >> testSin [
 	self assert: (c sin imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testSinh [
 	| c c2 |
 	c := (2 + 0 i).
@@ -337,7 +337,7 @@ PMComplexNumberUnaryOperationTests >> testSquared [
 	self assert: c2 real equals: 0
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testTan [
 	| c c2 |
 	c := (2 + 0 i).
@@ -349,7 +349,7 @@ PMComplexNumberUnaryOperationTests >> testTan [
 	self assert: (c2 imaginary closeTo: c tan imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testTanh [
 	| c c2 |
 	c := (2 + 0 i).
