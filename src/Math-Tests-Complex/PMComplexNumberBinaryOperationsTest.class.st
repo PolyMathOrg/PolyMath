@@ -163,6 +163,13 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 ]
 
 { #category : #multiplication }
+PMComplexNumberBinaryOperationsTest >> testMultiplicationByI [
+	| c |
+	c := 5 - 6 i.
+	self assert: c * 1 i equals: c i
+]
+
+{ #category : #multiplication }
 PMComplexNumberBinaryOperationsTest >> testMultiplicationIsAssociative [
 	| z w u expected |
 	
@@ -187,14 +194,7 @@ PMComplexNumberBinaryOperationsTest >> testMultiplicationIsCommutative [
 ]
 
 { #category : #multiplication }
-PMComplexNumberBinaryOperationsTest >> testMultiplyByI [
-	| c |
-	c := 5 - 6 i.
-	self assert: c * 1 i equals: c i
-]
-
-{ #category : #multiplication }
-PMComplexNumberBinaryOperationsTest >> testProductWithVector [
+PMComplexNumberBinaryOperationsTest >> testMultiplicationWithVector [
 	| v c |
 	c := 1 + 1 i.
 	v := PMVector new: 1.
