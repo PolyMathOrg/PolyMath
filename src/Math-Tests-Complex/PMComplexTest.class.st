@@ -194,17 +194,6 @@ PMComplexTest >> testComplexCollection [
 ]
 
 { #category : #tests }
-PMComplexTest >> testComplexConjugate [
-	| z complexConjugateOfZ expected |
-	z := 5 - 6 i.
-	
-	complexConjugateOfZ := z complexConjugate .
-	
-	expected := 5 + 6 i.
-	self assert: complexConjugateOfZ equals: expected.
-]
-
-{ #category : #tests }
 PMComplexTest >> testConversion [
 	"self run: #testConversion"
 
@@ -353,72 +342,6 @@ PMComplexTest >> testHash [
 	| aComplex |
 	aComplex := 2 - 3 i.
 	self assert: aComplex copy hash equals: aComplex hash
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
-
-	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplexAndReal [
-
-	self assert: ((5 + 0i) isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateRealAndComplex [
-
-	self assert: (5 isComplexConjugateOf: (5 - 0i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfDifferentReal [
-
-	self deny: (-5 isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
-
-	self deny: ((5 + 3i) isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
-
-	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
-
-	self deny: (5 isComplexConjugateOf: (5 - 3i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfSameComplex [
-
-	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfSameReal [
-
-	self assert: (5 isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexNumberOnComplex [
-	
-	self assert: (3 + 2i) isComplexNumber
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexNumberOnNaN [
-	
-	self deny: Character space isComplexNumber
 ]
 
 { #category : #tests }
