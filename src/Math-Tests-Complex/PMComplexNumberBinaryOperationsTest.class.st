@@ -84,15 +84,15 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 
 	self assert: 0 i equals: 0.
 	self assert: 0 i isZero.
-	self deny: 1 + 3 i = 1.
+	self deny: 1 + 3 i equals: 1.
 
 	"Some more stuff"
-	self deny: 1 i = nil.
-	self deny: nil = 1 i.
-	self deny: 1 i = #(1 2 3).
-	self deny: #(1 2 3) = 1 i.
-	self deny: 1 i = 0.
-	self deny: 0 = 1 i.
+	self deny: 1 i equals: nil.
+	self deny: nil equals: 1 i.
+	self deny: 1 i equals: #(1 2 3).
+	self deny: #(1 2 3) equals: 1 i.
+	self deny: 1 i equals: 0.
+	self deny: 0 equals: 1 i.
 ]
 
 { #category : #equality }
