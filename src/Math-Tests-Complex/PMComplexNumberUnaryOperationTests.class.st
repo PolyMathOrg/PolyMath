@@ -237,19 +237,7 @@ PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfSameReal [
 	self assert: (5 isComplexConjugateOf: 5)
 ]
 
-{ #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationTests >> testIsComplexNumberOnComplex [
-	
-	self assert: (3 + 2i) isComplexNumber
-]
-
-{ #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationTests >> testIsComplexNumberOnNaN [
-	
-	self deny: Character space isComplexNumber
-]
-
-{ #category : #'complex conjugation' }
+{ #category : #tests }
 PMComplexNumberUnaryOperationTests >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
