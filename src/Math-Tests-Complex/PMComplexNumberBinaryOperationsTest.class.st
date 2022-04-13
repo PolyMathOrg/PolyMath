@@ -87,7 +87,6 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 
 	"self debug: #testEquality"
 
-	self assert: 0 i equals: 0.
 	self assert: 0 i isZero.
 
 	"Some more stuff"
@@ -217,4 +216,10 @@ PMComplexNumberBinaryOperationsTest >> testTwoComplexNumbersWithDifferentRealPar
 	w := -7 + 3 i.
 	
 	self deny: z equals: w.
+]
+
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testZeroComplexNumberIsEqualToIntegerZero [
+	self assert: 0 i equals: 0.
+	self assert: 0 equals: 0 i.
 ]
