@@ -5,6 +5,20 @@ Class {
 }
 
 { #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAddingComplexNumbersToFractions [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"	
+			
+	| sum expected z |
+	z := 1 + 22 i.
+	
+	sum := z + (Fraction numerator: 3 denominator: 7).
+	
+	expected := (10 / 7) + 22 i.
+	self assert: sum equals: expected.
+]
+
+{ #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddingToPolynomials [
 	| c poly |
 	c := 6 - 6 i.
