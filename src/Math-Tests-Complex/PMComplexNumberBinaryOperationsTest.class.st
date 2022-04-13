@@ -148,6 +148,13 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 ]
 
 { #category : #multiplication }
+PMComplexNumberBinaryOperationsTest >> testMultiplyByI [
+	| c |
+	c := 5 - 6 i.
+	self assert: c * 1 i equals: c i
+]
+
+{ #category : #multiplication }
 PMComplexNumberBinaryOperationsTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.
