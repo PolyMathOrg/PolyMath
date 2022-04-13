@@ -114,7 +114,7 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithComplexNumbersAn
 	self assert: 1 equals: 1 + 0 i.
 ]
 
-{ #category : #tests }
+{ #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithFractions [
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
@@ -139,7 +139,7 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 	self assert: z equals: u.
 ]
 
-{ #category : #tests }
+{ #category : #multiplication }
 PMComplexNumberBinaryOperationsTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.
