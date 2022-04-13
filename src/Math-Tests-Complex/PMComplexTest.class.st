@@ -72,7 +72,7 @@ PMComplexTest >> testAddingToRealNumbers [
 	
 	expected := 12.12 - 9 i.
 	self assert: z  + 9.12 equals: expected.
-	self assert: (9.12 + 3 - 9 i) equals: expected.
+	self assert: 9.12 + z equals: expected.
 ]
 
 { #category : #addition }
