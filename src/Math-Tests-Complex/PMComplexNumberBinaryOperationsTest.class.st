@@ -94,8 +94,6 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	self deny: #(1 2 3) = 1 i.
 	self deny: 1 i = 0.
 	self deny: 0 = 1 i.
-	self assert: 1 + 0 i equals: 1.0.
-	self assert: 1.0 equals: 1 + 0 i.
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
@@ -121,6 +119,12 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetric [
 
 { #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithComplexNumbersAndIntegers [
+	self assert: 1 + 0 i equals: 1.
+	self assert: 1 equals: 1 + 0 i.
+]
+
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithRealNumbers [
 	self assert: 1 + 0 i equals: 1.
 	self assert: 1 equals: 1 + 0 i.
 ]
