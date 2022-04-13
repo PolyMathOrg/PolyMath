@@ -90,8 +90,6 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	self deny: nil equals: 1 i.
 	self deny: 1 i equals: #(1 2 3).
 	self deny: #(1 2 3) equals: 1 i.
-	self deny: 1 i equals: 0.
-	self deny: 0 equals: 1 i.
 	self deny: 1 + 3 i equals: 1.
 ]
 
@@ -143,6 +141,12 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 	self assert: z equals: w.
 	self assert: w equals: u.
 	self assert: z equals: u.
+]
+
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testPureImaginaryNumbersAreNoteEqualToZero [
+	self deny: 1 i equals: 0.
+	self deny: 0 equals: 1 i.
 ]
 
 { #category : #division }
