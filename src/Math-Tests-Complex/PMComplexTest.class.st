@@ -130,17 +130,6 @@ PMComplexTest >> testIsRealNumberOnReal [
 ]
 
 { #category : #tests }
-PMComplexTest >> testLn [
-	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
-]
-
-{ #category : #tests }
-PMComplexTest >> testLog [
-	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
-	self assert: (2 + 0 i log: 2) equals: 1
-]
-
-{ #category : #tests }
 PMComplexTest >> testNew [
 	| c |
 	c := PMComplex new.

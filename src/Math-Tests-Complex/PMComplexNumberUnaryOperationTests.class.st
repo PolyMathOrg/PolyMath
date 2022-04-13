@@ -173,6 +173,17 @@ PMComplexNumberUnaryOperationTests >> testCosh2MinusSinh2 [
 ]
 
 { #category : #tests }
+PMComplexNumberUnaryOperationTests >> testLn [
+	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
+]
+
+{ #category : #tests }
+PMComplexNumberUnaryOperationTests >> testLog [
+	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
+	self assert: (2 + 0 i log: 2) equals: 1
+]
+
+{ #category : #tests }
 PMComplexNumberUnaryOperationTests >> testNegated [
 	"self run: #testNegated"
 
