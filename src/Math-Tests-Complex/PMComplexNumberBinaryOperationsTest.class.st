@@ -89,6 +89,14 @@ PMComplexNumberBinaryOperationsTest >> testComplexNumberIsNotEqualToObjectsOfADi
 	self deny: #(1 2 3) equals: 1 i.
 ]
 
+{ #category : #division }
+PMComplexNumberBinaryOperationsTest >> testDividingPolynomial [
+	| c poly |
+	c := 4 + 4 i.
+	poly := PMPolynomial coefficients: #(1 0 1).
+	self assert: poly / c equals: 1 / c * poly
+]
+
 { #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEqualsIsReflexive [
 	| z |
