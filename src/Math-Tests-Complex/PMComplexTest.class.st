@@ -55,15 +55,6 @@ PMComplexTest >> testComplexCollection [
 ]
 
 { #category : #tests }
-PMComplexTest >> testConversion [
-	"self run: #testConversion"
-
-	"self debug: #testConversion"
-	self assert: 1 + 2 i + (2 / 3) equals: 5 / 3 + 2 i.
-	self assert: 2 / 3 + (1 + 2 i) equals: 5 / 3 + 2 i
-]
-
-{ #category : #tests }
 PMComplexTest >> testCreation [
 	"self run: #testCreation"
 

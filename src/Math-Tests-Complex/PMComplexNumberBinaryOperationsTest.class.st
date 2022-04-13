@@ -6,16 +6,18 @@ Class {
 
 { #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddingComplexNumbersToFractions [
+
 	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
-	| sum expected z |
+
+	"scope: class-variables  &  instance-variables"
+
+	| expected z fraction |
 	z := 1 + 22 i.
-	
-	sum := z + (Fraction numerator: 3 denominator: 7).
-	
-	expected := (10 / 7) + 22 i.
-	self assert: sum equals: expected.
+	fraction := Fraction numerator: 3 denominator: 7.
+
+	expected := 10 / 7 + 22 i.
+	self assert: z + fraction equals: expected.
+	self assert: fraction + z equals: expected
 ]
 
 { #category : #addition }
