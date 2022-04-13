@@ -38,12 +38,12 @@ PMComplexNumberBinaryOperationsTest >> testAddingToRealNumbers [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 			
-	| z sum expected |
+	| z expected |
 	z:= 3 - 9 i.
-	sum := z  + 9.12.
 	
 	expected := 12.12 - 9 i.
-	self assert: sum equals: expected.
+	self assert: z  + 9.12 equals: expected.
+	self assert: (9.12 + 3 - 9 i) equals: expected.
 ]
 
 { #category : #addition }
