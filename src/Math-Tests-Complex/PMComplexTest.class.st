@@ -166,11 +166,11 @@ PMComplexTest >> testRaisedTo [
 
 { #category : #tests }
 PMComplexTest >> testRaisedToInteger [
-	| c c3 |
-	c := 5 - 6 i.
-	c3 := c * c * c.
-	self assert: c3 equals: (c raisedToInteger: 3).
-	self assert: c3 reciprocal equals: (c raisedToInteger: -3)
+	| z zCubed |
+	z := 5 - 6 i.
+	zCubed := z * z * z.
+	self assert: zCubed equals: (z raisedToInteger: 3).
+	self assert: zCubed reciprocal equals: (z raisedToInteger: -3)
 ]
 
 { #category : #tests }
