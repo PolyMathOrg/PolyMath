@@ -83,7 +83,6 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	"self debug: #testEquality"
 
 	self assert: 0 i equals: 0.
-	self assert: 2 - 5 i equals: 1 - 4 i + (1 - 1 i).
 	self assert: 0 i isZero.
 	self deny: 1 + 3 i = 1.
 
