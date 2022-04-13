@@ -91,13 +91,13 @@ PMComplexTest >> testHash [
 	self assert: aComplex copy hash equals: aComplex hash
 ]
 
-{ #category : #'complex conjugation' }
+{ #category : #tests }
 PMComplexTest >> testIsComplexNumberOnComplex [
 	
 	self assert: (3 + 2i) isComplexNumber
 ]
 
-{ #category : #'complex conjugation' }
+{ #category : #tests }
 PMComplexTest >> testIsComplexNumberOnNaN [
 	
 	self deny: Character space isComplexNumber
