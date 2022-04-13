@@ -97,6 +97,24 @@ PMComplexNumberBinaryOperationsTest >> testDividingPolynomial [
 	self assert: poly / c equals: 1 / c * poly
 ]
 
+{ #category : #division }
+PMComplexNumberBinaryOperationsTest >> testDividingTwoComplexNumbers [
+	"self run: #testDivision1"
+	"self debug: #testDivision1"
+	
+	| c1 c2 quotient |
+	c1 := 2.0e252 + 3.0e70 i.
+	c2 := c1.
+	quotient := c1 / c2.
+ 	self deny: (quotient - 1) isZero.
+	
+	"This test fails due to the wonders of floating point arithmetic. 
+	 Please have a look at Complex>>divideSecureBy: and #divideFastAndSecureBy:
+	how this can be avoided."
+	
+
+]
+
 { #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEqualsIsReflexive [
 	| z |
