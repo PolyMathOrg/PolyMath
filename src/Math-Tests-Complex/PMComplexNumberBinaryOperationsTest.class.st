@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
-{ #category : #tests }
+{ #category : #adding }
 PMComplexNumberBinaryOperationsTest >> testAddPolynomial [
 	| c poly |
 	c := 6 - 6 i.
@@ -13,7 +13,7 @@ PMComplexNumberBinaryOperationsTest >> testAddPolynomial [
 	self assert: (c + poly at: 0) equals: 7 - 6 i
 ]
 
-{ #category : #tests }
+{ #category : #adding }
 PMComplexNumberBinaryOperationsTest >> testAdding [
 	"self run: #testAdding"
 
@@ -49,7 +49,7 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
-{ #category : #tests }
+{ #category : #division }
 PMComplexNumberBinaryOperationsTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
 	"self debug: #testSecureDivision1"
@@ -62,7 +62,7 @@ PMComplexNumberBinaryOperationsTest >> testSecureDivision1 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #division }
 PMComplexNumberBinaryOperationsTest >> testSecureDivision2 [
 	"self run: #testSecureDivision2"
 	"self debug: #testSecureDivision2"
