@@ -125,6 +125,17 @@ PMComplexNumberUnaryOperationTests >> testArcTanDenominator [
 	self assert: (c2 arcTan: c1 * c1) equals: Float pi
 ]
 
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testComplexConjugate [
+	| z complexConjugateOfZ expected |
+	z := 5 - 6 i.
+	
+	complexConjugateOfZ := z complexConjugate .
+	
+	expected := 5 + 6 i.
+	self assert: complexConjugateOfZ equals: expected.
+]
+
 { #category : #'trigonometric operations' }
 PMComplexNumberUnaryOperationTests >> testCos [
 	| c c2 |
@@ -172,7 +183,73 @@ PMComplexNumberUnaryOperationTests >> testCosh2MinusSinh2 [
 		self assert: ((c cosh squared - c sinh squared) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfConjugateComplex [
+
+	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfConjugateComplexAndReal [
+
+	self assert: ((5 + 0i) isComplexConjugateOf: 5)
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfConjugateRealAndComplex [
+
+	self assert: (5 isComplexConjugateOf: (5 - 0i))
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfDifferentReal [
+
+	self deny: (-5 isComplexConjugateOf: 5)
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfNonConjugateComplexAndReal [
+
+	self deny: ((5 + 3i) isComplexConjugateOf: 5)
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfNonConjugateDifferentComplex [
+
+	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfNonConjugateRealAndComplex [
+
+	self deny: (5 isComplexConjugateOf: (5 - 3i))
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfSameComplex [
+
+	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexConjugateOfSameReal [
+
+	self assert: (5 isComplexConjugateOf: 5)
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexNumberOnComplex [
+	
+	self assert: (3 + 2i) isComplexNumber
+]
+
+{ #category : #'complex conjugation' }
+PMComplexNumberUnaryOperationTests >> testIsComplexNumberOnNaN [
+	
+	self deny: Character space isComplexNumber
+]
+
+{ #category : #'complex conjugation' }
 PMComplexNumberUnaryOperationTests >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
