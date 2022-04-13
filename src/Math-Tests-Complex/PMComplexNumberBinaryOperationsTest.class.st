@@ -36,6 +36,19 @@ PMComplexNumberBinaryOperationsTest >> testAddingTwoComplexNumbers [
 ]
 
 { #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAdditionIsAssociative [
+	| z w u expected |
+	
+	z := 1 + 3 i.
+	w := 7 - 2 i.
+	u := -9 + 8 i.
+	
+	expected := -1 + 9 i.
+	self assert: (z + w) + u equals: expected.
+	self assert: z + (w + u) equals: expected.
+]
+
+{ #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAdditionIsCommutative [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
