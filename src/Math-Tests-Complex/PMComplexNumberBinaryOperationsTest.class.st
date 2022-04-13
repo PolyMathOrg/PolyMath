@@ -77,6 +77,11 @@ PMComplexNumberBinaryOperationsTest >> testAdditionIsCommutative [
 ]
 
 { #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
+	self deny: 1 + 3 i equals: 1.
+]
+
+{ #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEquality [
 	"self run: #testEquality"
 
@@ -90,7 +95,7 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	self deny: nil equals: 1 i.
 	self deny: 1 i equals: #(1 2 3).
 	self deny: #(1 2 3) equals: 1 i.
-	self deny: 1 + 3 i equals: 1.
+	
 ]
 
 { #category : #equality }
