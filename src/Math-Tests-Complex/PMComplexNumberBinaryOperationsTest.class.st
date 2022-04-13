@@ -22,6 +22,19 @@ PMComplexNumberBinaryOperationsTest >> testAdding [
 	self assert: c equals: 0 + 2 i
 ]
 
+{ #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAddingToRealNumbers [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"	
+			
+	| z sum expected |
+	z:= 3 - 9 i.
+	sum := z  + 9.12.
+	
+	expected := 12.12 - 9 i.
+	self assert: sum equals: expected.
+]
+
 { #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEquality [
 	"self run: #testEquality"
