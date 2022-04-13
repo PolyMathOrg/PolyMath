@@ -87,8 +87,6 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 
 	"self debug: #testEquality"
 
-	self assert: 0 i isZero.
-
 	"Some more stuff"
 	self deny: 1 i equals: nil.
 	self deny: nil equals: 1 i.

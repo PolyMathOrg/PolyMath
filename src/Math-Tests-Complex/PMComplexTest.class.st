@@ -501,4 +501,5 @@ PMComplexTest >> testZero [
 	self assert: z isComplexNumber.
 	self assert: z real isZero.
 	self assert: z imaginary isZero.
+	self assert: 0 i isZero.
 ]
