@@ -103,6 +103,38 @@ PMComplexNumberBinaryOperationsTest >> testEquality [
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testEqualsIsReflexive [
+	| z |
+	z := -10 + 10 i.
+	 
+	self assert: z equals: z.
+]
+
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetric [
+	| z w |
+	
+	z := 13 + 14 i.
+	w := 13 + 14 i.
+	
+	self assert: z equals: w.
+	self assert: w equals: z
+]
+
+{ #category : #equality }
+PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
+	| z w u |
+	
+	z := 4 - 1 i.
+	w := 4 - 1 i.
+	u := 4 - 1 i.
+	
+	self assert: z equals: w.
+	self assert: w equals: u.
+	self assert: z equals: u.
+]
+
 { #category : #division }
 PMComplexNumberBinaryOperationsTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
