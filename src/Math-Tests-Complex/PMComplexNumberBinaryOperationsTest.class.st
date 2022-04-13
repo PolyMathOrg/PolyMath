@@ -1,11 +1,11 @@
 Class {
-	#name : #PMComplexNumberBinaryOperationsTests,
+	#name : #PMComplexNumberBinaryOperationsTest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-Complex'
 }
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAddingComplexNumbersToFractions [
+PMComplexNumberBinaryOperationsTest >> testAddingComplexNumbersToFractions [
 	| expected z fraction |
 	z := 1 + 22 i.
 	fraction := Fraction numerator: 3 denominator: 7.
@@ -16,13 +16,13 @@ PMComplexNumberBinaryOperationsTests >> testAddingComplexNumbersToFractions [
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAddingToIntegers [
+PMComplexNumberBinaryOperationsTest >> testAddingToIntegers [
 	self assert: 1 + 2 i + 1 equals: 2 + 2 i.
 	self assert: 1 + (1 + 2 i) equals: 2 + 2 i.
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAddingToPolynomials [
+PMComplexNumberBinaryOperationsTest >> testAddingToPolynomials [
 	| c poly |
 	c := 6 - 6 i.
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -31,7 +31,7 @@ PMComplexNumberBinaryOperationsTests >> testAddingToPolynomials [
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAddingToRealNumbers [
+PMComplexNumberBinaryOperationsTest >> testAddingToRealNumbers [
 	| z expected |
 	z:= 3 - 9 i.
 	
@@ -41,7 +41,7 @@ PMComplexNumberBinaryOperationsTests >> testAddingToRealNumbers [
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAddingTwoComplexNumbers [
+PMComplexNumberBinaryOperationsTest >> testAddingTwoComplexNumbers [
 	"self run: #testAdding"
 
 	| c |
@@ -50,7 +50,7 @@ PMComplexNumberBinaryOperationsTests >> testAddingTwoComplexNumbers [
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAdditionIsAssociative [
+PMComplexNumberBinaryOperationsTest >> testAdditionIsAssociative [
 	| z w u expected |
 	
 	z := 1 + 3 i.
@@ -63,7 +63,7 @@ PMComplexNumberBinaryOperationsTests >> testAdditionIsAssociative [
 ]
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTests >> testAdditionIsCommutative [
+PMComplexNumberBinaryOperationsTest >> testAdditionIsCommutative [
 	| z w expected |
 	z := 5 - 6 i.
 	w := -8 + 1 i.
@@ -74,12 +74,12 @@ PMComplexNumberBinaryOperationsTests >> testAdditionIsCommutative [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
+PMComplexNumberBinaryOperationsTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
 	self deny: 1 + 3 i equals: 1.
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testComplexNumberIsNotEqualToObjectsOfADifferentType [
+PMComplexNumberBinaryOperationsTest >> testComplexNumberIsNotEqualToObjectsOfADifferentType [
 	self deny: 1 i equals: nil.
 	self deny: nil equals: 1 i.
 	self deny: 1 i equals: #(1 2 3).
@@ -87,7 +87,7 @@ PMComplexNumberBinaryOperationsTests >> testComplexNumberIsNotEqualToObjectsOfAD
 ]
 
 { #category : #division }
-PMComplexNumberBinaryOperationsTests >> testDividingPolynomial [
+PMComplexNumberBinaryOperationsTest >> testDividingPolynomial [
 	| c poly |
 	c := 4 + 4 i.
 	poly := PMPolynomial coefficients: #(1 0 1).
@@ -95,7 +95,7 @@ PMComplexNumberBinaryOperationsTests >> testDividingPolynomial [
 ]
 
 { #category : #division }
-PMComplexNumberBinaryOperationsTests >> testDividingTwoComplexNumbers [
+PMComplexNumberBinaryOperationsTest >> testDividingTwoComplexNumbers [
 	"self run: #testDivision1"
 	"self debug: #testDivision1"
 	
@@ -113,7 +113,7 @@ PMComplexNumberBinaryOperationsTests >> testDividingTwoComplexNumbers [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsReflexive [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsReflexive [
 	| z |
 	z := -10 + 10 i.
 	 
@@ -121,7 +121,7 @@ PMComplexNumberBinaryOperationsTests >> testEqualsIsReflexive [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsSymmetric [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetric [
 	| z w |
 	
 	z := 13 + 14 i.
@@ -132,25 +132,25 @@ PMComplexNumberBinaryOperationsTests >> testEqualsIsSymmetric [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsSymmetricWithComplexNumbersAndIntegers [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithComplexNumbersAndIntegers [
 	self assert: 1 + 0 i equals: 1.
 	self assert: 1 equals: 1 + 0 i.
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsSymmetricWithFractions [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithFractions [
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsSymmetricWithRealNumbers [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsSymmetricWithRealNumbers [
 	self assert: 1 + 0 i equals: 1.
 	self assert: 1 equals: 1 + 0 i.
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testEqualsIsTransitive [
+PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 	| z w u |
 	
 	z := 4 - 1 i.
@@ -163,14 +163,14 @@ PMComplexNumberBinaryOperationsTests >> testEqualsIsTransitive [
 ]
 
 { #category : #multiplication }
-PMComplexNumberBinaryOperationsTests >> testMultiplyByI [
+PMComplexNumberBinaryOperationsTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
 ]
 
 { #category : #multiplication }
-PMComplexNumberBinaryOperationsTests >> testProductWithVector [
+PMComplexNumberBinaryOperationsTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.
 	v := PMVector new: 1.
@@ -180,13 +180,13 @@ PMComplexNumberBinaryOperationsTests >> testProductWithVector [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testPureImaginaryNumbersAreNotEqualToZero [
+PMComplexNumberBinaryOperationsTest >> testPureImaginaryNumbersAreNotEqualToZero [
 	self deny: 1 i equals: 0.
 	self deny: 0 equals: 1 i.
 ]
 
 { #category : #division }
-PMComplexNumberBinaryOperationsTests >> testSecureDivision1 [
+PMComplexNumberBinaryOperationsTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
 	"self debug: #testSecureDivision1"
 	
@@ -199,7 +199,7 @@ PMComplexNumberBinaryOperationsTests >> testSecureDivision1 [
 ]
 
 { #category : #division }
-PMComplexNumberBinaryOperationsTests >> testSecureDivision2 [
+PMComplexNumberBinaryOperationsTest >> testSecureDivision2 [
 	"self run: #testSecureDivision2"
 	"self debug: #testSecureDivision2"
 	
@@ -212,7 +212,7 @@ PMComplexNumberBinaryOperationsTests >> testSecureDivision2 [
 ]
 
 { #category : #subtraction }
-PMComplexNumberBinaryOperationsTests >> testSubtractToPolynomial [
+PMComplexNumberBinaryOperationsTest >> testSubtractToPolynomial [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
 	c := 1 + 3 i.
@@ -221,7 +221,7 @@ PMComplexNumberBinaryOperationsTests >> testSubtractToPolynomial [
 ]
 
 { #category : #multiplication }
-PMComplexNumberBinaryOperationsTests >> testTimesPolynomial [
+PMComplexNumberBinaryOperationsTest >> testTimesPolynomial [
 	| c poly |
 	c := 1 + 1 i.
 	poly := PMPolynomial coefficients: #(1).
@@ -230,7 +230,7 @@ PMComplexNumberBinaryOperationsTests >> testTimesPolynomial [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
+PMComplexNumberBinaryOperationsTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
 	| z w |
 	z := 1 + 3 i.
 	w := 1 + 2 i.
@@ -239,7 +239,7 @@ PMComplexNumberBinaryOperationsTests >> testTwoComplexNumbersWithDifferentImagin
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
+PMComplexNumberBinaryOperationsTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 			
@@ -251,7 +251,7 @@ PMComplexNumberBinaryOperationsTests >> testTwoComplexNumbersWithDifferentRealPa
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTests >> testZeroComplexNumberIsEqualToIntegerZero [
+PMComplexNumberBinaryOperationsTest >> testZeroComplexNumberIsEqualToIntegerZero [
 	self assert: 0 i equals: 0.
 	self assert: 0 equals: 0 i.
 ]

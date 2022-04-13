@@ -1,11 +1,11 @@
 Class {
-	#name : #PMComplexNumberUnaryOperationsTests,
+	#name : #PMComplexNumberUnaryOperationsTest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-Complex'
 }
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testAbs [
+PMComplexNumberUnaryOperationsTest >> testAbs [
 	"self run: #testAbs"
 
 	"self debug: #testAbs"
@@ -16,7 +16,7 @@ PMComplexNumberUnaryOperationsTests >> testAbs [
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testAbsSecure [
+PMComplexNumberUnaryOperationsTest >> testAbsSecure [
 	"self run: #testAbsSecure"
 
 	"using equalsTo since absSecure returns a slightly different Float"
@@ -27,7 +27,7 @@ PMComplexNumberUnaryOperationsTests >> testAbsSecure [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArCosh [
+PMComplexNumberUnaryOperationsTest >> testArCosh [
 	| c |
 	c := (2.5 + 0 i).
 	self assert: (c arCosh real closeTo: c real arCosh).
@@ -41,7 +41,7 @@ PMComplexNumberUnaryOperationsTests >> testArCosh [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArSinh [
+PMComplexNumberUnaryOperationsTest >> testArSinh [
 	| c |
 	c := (2.5 + 0 i).
 	self assert: (c arSinh real closeTo: c real arSinh).
@@ -54,7 +54,7 @@ PMComplexNumberUnaryOperationsTests >> testArSinh [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArTanh [
+PMComplexNumberUnaryOperationsTest >> testArTanh [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arTanh real closeTo: c real arTanh).
@@ -67,7 +67,7 @@ PMComplexNumberUnaryOperationsTests >> testArTanh [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArcCos [
+PMComplexNumberUnaryOperationsTest >> testArcCos [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcCos real closeTo: c real arcCos).
@@ -80,7 +80,7 @@ PMComplexNumberUnaryOperationsTests >> testArcCos [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArcCosPlusArcSin [
+PMComplexNumberUnaryOperationsTest >> testArcCosPlusArcSin [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -90,7 +90,7 @@ PMComplexNumberUnaryOperationsTests >> testArcCosPlusArcSin [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArcSin [
+PMComplexNumberUnaryOperationsTest >> testArcSin [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcSin real closeTo: c real arcSin).
@@ -103,7 +103,7 @@ PMComplexNumberUnaryOperationsTests >> testArcSin [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArcTan [
+PMComplexNumberUnaryOperationsTest >> testArcTan [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcTan real closeTo: c real arcTan).
@@ -116,7 +116,7 @@ PMComplexNumberUnaryOperationsTests >> testArcTan [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testArcTanDenominator [
+PMComplexNumberUnaryOperationsTest >> testArcTanDenominator [
 	| c1 c2 |
 	c1 := 1 i.
 	c2 := 0.
@@ -126,7 +126,7 @@ PMComplexNumberUnaryOperationsTests >> testArcTanDenominator [
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testComplexConjugate [
+PMComplexNumberUnaryOperationsTest >> testComplexConjugate [
 	| z complexConjugateOfZ expected |
 	z := 5 - 6 i.
 	
@@ -137,7 +137,7 @@ PMComplexNumberUnaryOperationsTests >> testComplexConjugate [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testCos [
+PMComplexNumberUnaryOperationsTest >> testCos [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c cos real closeTo: c real cos).
@@ -149,7 +149,7 @@ PMComplexNumberUnaryOperationsTests >> testCos [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testCos2PlusSin2 [
+PMComplexNumberUnaryOperationsTest >> testCos2PlusSin2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -159,7 +159,7 @@ PMComplexNumberUnaryOperationsTests >> testCos2PlusSin2 [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testCosh [
+PMComplexNumberUnaryOperationsTest >> testCosh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c cosh real closeTo: c real cosh).
@@ -174,7 +174,7 @@ PMComplexNumberUnaryOperationsTests >> testCosh [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testCosh2MinusSinh2 [
+PMComplexNumberUnaryOperationsTest >> testCosh2MinusSinh2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -184,72 +184,72 @@ PMComplexNumberUnaryOperationsTests >> testCosh2MinusSinh2 [
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfConjugateComplex [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfConjugateComplex [
 
 	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfConjugateComplexAndReal [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfConjugateComplexAndReal [
 
 	self assert: ((5 + 0i) isComplexConjugateOf: 5)
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfConjugateRealAndComplex [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfConjugateRealAndComplex [
 
 	self assert: (5 isComplexConjugateOf: (5 - 0i))
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfDifferentReal [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfDifferentReal [
 
 	self deny: (-5 isComplexConjugateOf: 5)
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfNonConjugateComplexAndReal [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
 
 	self deny: ((5 + 3i) isComplexConjugateOf: 5)
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfNonConjugateDifferentComplex [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
 
 	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfNonConjugateRealAndComplex [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
 
 	self deny: (5 isComplexConjugateOf: (5 - 3i))
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfSameComplex [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfSameComplex [
 
 	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
 ]
 
 { #category : #'complex conjugation' }
-PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfSameReal [
+PMComplexNumberUnaryOperationsTest >> testIsComplexConjugateOfSameReal [
 
 	self assert: (5 isComplexConjugateOf: 5)
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testLn [
+PMComplexNumberUnaryOperationsTest >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testLog [
+PMComplexNumberUnaryOperationsTest >> testLog [
 	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
 	self assert: (2 + 0 i log: 2) equals: 1
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testNegated [
+PMComplexNumberUnaryOperationsTest >> testNegated [
 	"self run: #testNegated"
 
 	"self debug: #testNegated"
@@ -260,7 +260,7 @@ PMComplexNumberUnaryOperationsTests >> testNegated [
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testReciprocal [
+PMComplexNumberUnaryOperationsTest >> testReciprocal [
 	"self run: #testReciprocal"
 
 	"self debug: #testReciprocal"
@@ -271,7 +271,7 @@ PMComplexNumberUnaryOperationsTests >> testReciprocal [
 ]
 
 { #category : #'unary operations' }
-PMComplexNumberUnaryOperationsTests >> testReciprocalError [
+PMComplexNumberUnaryOperationsTest >> testReciprocalError [
 	"self run: #testReciprocalError"
 	"self debug: #testReciprocalError"
 	
@@ -282,7 +282,7 @@ PMComplexNumberUnaryOperationsTests >> testReciprocalError [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testSin [
+PMComplexNumberUnaryOperationsTest >> testSin [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c sin real closeTo: c real sin).
@@ -294,7 +294,7 @@ PMComplexNumberUnaryOperationsTests >> testSin [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testSinh [
+PMComplexNumberUnaryOperationsTest >> testSinh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c sinh real closeTo: c real sinh).
@@ -312,7 +312,7 @@ PMComplexNumberUnaryOperationsTests >> testSinh [
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 
 	"Given z = -4 + 0 i, the square root is 2 i"
 
@@ -325,7 +325,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfANegativeRealNumberIsPure
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfComplexNumberIsAComplexNumber [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	| squareRoot z |
 	z := PMComplex real: 2 imaginary: 2.
 	
@@ -336,7 +336,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfComplexNumberIsAComplexNu
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
    | squareRoot expected pureImaginaryNumber |
 	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
 	
@@ -349,7 +349,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfNegativePureImaginaryNumb
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
 
@@ -364,7 +364,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfPositivePureImaginaryNumb
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
 
 	"Given z = 6 + 0 i, then root z = root 6"
 
@@ -378,7 +378,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfPositiveRealNumberIsAComp
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquareRootOfZeroIsZero [
+PMComplexNumberUnaryOperationsTest >> testSquareRootOfZeroIsZero [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
 			
@@ -390,7 +390,7 @@ PMComplexNumberUnaryOperationsTests >> testSquareRootOfZeroIsZero [
 ]
 
 { #category : #'square root' }
-PMComplexNumberUnaryOperationsTests >> testSquared [
+PMComplexNumberUnaryOperationsTest >> testSquared [
 	"self run: #testSquared"
 
 	"self debug: #testSquared"
@@ -403,7 +403,7 @@ PMComplexNumberUnaryOperationsTests >> testSquared [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testTan [
+PMComplexNumberUnaryOperationsTest >> testTan [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c tan real closeTo: c real tan).
@@ -415,7 +415,7 @@ PMComplexNumberUnaryOperationsTests >> testTan [
 ]
 
 { #category : #'trigonometric operations' }
-PMComplexNumberUnaryOperationsTests >> testTanh [
+PMComplexNumberUnaryOperationsTest >> testTanh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c tanh real closeTo: c real tanh).
