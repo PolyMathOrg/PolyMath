@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testAbs [
 	"self run: #testAbs"
 
@@ -15,7 +15,7 @@ PMComplexNumberUnaryOperationsTests >> testAbs [
 	self assert: c abs equals: 72 sqrt
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testAbsSecure [
 	"self run: #testAbsSecure"
 
@@ -237,18 +237,18 @@ PMComplexNumberUnaryOperationsTests >> testIsComplexConjugateOfSameReal [
 	self assert: (5 isComplexConjugateOf: 5)
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testLog [
 	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
 	self assert: (2 + 0 i log: 2) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testNegated [
 	"self run: #testNegated"
 
@@ -259,7 +259,7 @@ PMComplexNumberUnaryOperationsTests >> testNegated [
 	self assert: c negated equals: -2 - 5 i
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testReciprocal [
 	"self run: #testReciprocal"
 
@@ -270,7 +270,7 @@ PMComplexNumberUnaryOperationsTests >> testReciprocal [
 	self assert: c reciprocal equals: 2 / 29 - (5 / 29) i
 ]
 
-{ #category : #tests }
+{ #category : #'unary operations' }
 PMComplexNumberUnaryOperationsTests >> testReciprocalError [
 	"self run: #testReciprocalError"
 	"self debug: #testReciprocalError"
