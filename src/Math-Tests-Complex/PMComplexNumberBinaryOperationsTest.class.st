@@ -163,6 +163,17 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 ]
 
 { #category : #multiplication }
+PMComplexNumberBinaryOperationsTest >> testMultiplicationIsCommutative [
+	| z w expected |
+	z := 3 - 4 i.
+	w := 5 + 8 i.
+	
+	expected := (15 + 32) + (24 - 20) i.
+	self assert: z * w equals: expected.
+	self assert: w * z equals: expected.
+]
+
+{ #category : #multiplication }
 PMComplexNumberBinaryOperationsTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
