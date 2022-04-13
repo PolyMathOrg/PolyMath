@@ -5,21 +5,12 @@ Class {
 }
 
 { #category : #addition }
-PMComplexNumberBinaryOperationsTest >> testAddPolynomial [
+PMComplexNumberBinaryOperationsTest >> testAddingToPolynomials [
 	| c poly |
 	c := 6 - 6 i.
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly + c at: 0) equals: 7 - 6 i.
 	self assert: (c + poly at: 0) equals: 7 - 6 i
-]
-
-{ #category : #addition }
-PMComplexNumberBinaryOperationsTest >> testAdding [
-	"self run: #testAdding"
-
-	| c |
-	c := 5 - 6 i + (-5 + 8 i).	"Complex with Complex"
-	self assert: c equals: 0 + 2 i
 ]
 
 { #category : #addition }
@@ -33,6 +24,29 @@ PMComplexNumberBinaryOperationsTest >> testAddingToRealNumbers [
 	
 	expected := 12.12 - 9 i.
 	self assert: sum equals: expected.
+]
+
+{ #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAddingTwoComplexNumbers [
+	"self run: #testAdding"
+
+	| c |
+	c := 5 - 6 i + (-5 + 8 i).	"Complex with Complex"
+	self assert: c equals: 0 + 2 i
+]
+
+{ #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAdditionIsCommutative [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"	
+			
+	| z w expected |
+	z := 5 - 6 i.
+	w := -8 + 1 i.
+	
+	expected := -3 - 5 i.
+	self assert: (z + w) equals: expected.
+	self assert: (w + z) equals: expected.
 ]
 
 { #category : #equality }
