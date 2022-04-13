@@ -82,17 +82,11 @@ PMComplexNumberBinaryOperationsTest >> testComplexNumberAndIntegerAreUnequalEven
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTest >> testEquality [
-	"self run: #testEquality"
-
-	"self debug: #testEquality"
-
-	"Some more stuff"
+PMComplexNumberBinaryOperationsTest >> testComplexNumberIsNotEqualToObjectsOfADifferentType [
 	self deny: 1 i equals: nil.
 	self deny: nil equals: 1 i.
 	self deny: 1 i equals: #(1 2 3).
 	self deny: #(1 2 3) equals: 1 i.
-	
 ]
 
 { #category : #equality }
@@ -146,7 +140,7 @@ PMComplexNumberBinaryOperationsTest >> testEqualsIsTransitive [
 ]
 
 { #category : #equality }
-PMComplexNumberBinaryOperationsTest >> testPureImaginaryNumbersAreNoteEqualToZero [
+PMComplexNumberBinaryOperationsTest >> testPureImaginaryNumbersAreNotEqualToZero [
 	self deny: 1 i equals: 0.
 	self deny: 0 equals: 1 i.
 ]
