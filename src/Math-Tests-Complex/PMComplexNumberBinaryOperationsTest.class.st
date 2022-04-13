@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
-{ #category : #adding }
+{ #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddPolynomial [
 	| c poly |
 	c := 6 - 6 i.
@@ -13,7 +13,7 @@ PMComplexNumberBinaryOperationsTest >> testAddPolynomial [
 	self assert: (c + poly at: 0) equals: 7 - 6 i
 ]
 
-{ #category : #adding }
+{ #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAdding [
 	"self run: #testAdding"
 
@@ -22,7 +22,7 @@ PMComplexNumberBinaryOperationsTest >> testAdding [
 	self assert: c equals: 0 + 2 i
 ]
 
-{ #category : #testing }
+{ #category : #equality }
 PMComplexNumberBinaryOperationsTest >> testEquality [
 	"self run: #testEquality"
 
@@ -75,7 +75,7 @@ PMComplexNumberBinaryOperationsTest >> testSecureDivision2 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #subtraction }
 PMComplexNumberBinaryOperationsTest >> testSubtractToPolynomial [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
@@ -84,7 +84,7 @@ PMComplexNumberBinaryOperationsTest >> testSubtractToPolynomial [
 	self assert: (poly - c at: 0) equals: -3 i
 ]
 
-{ #category : #tests }
+{ #category : #multiplication }
 PMComplexNumberBinaryOperationsTest >> testTimesPolynomial [
 	| c poly |
 	c := 1 + 1 i.
