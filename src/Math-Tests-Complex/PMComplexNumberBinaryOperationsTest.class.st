@@ -19,6 +19,12 @@ PMComplexNumberBinaryOperationsTest >> testAddingComplexNumbersToFractions [
 ]
 
 { #category : #addition }
+PMComplexNumberBinaryOperationsTest >> testAddingToIntegers [
+	self assert: 1 + 2 i + 1 equals: 2 + 2 i.
+	self assert: 1 + (1 + 2 i) equals: 2 + 2 i.
+]
+
+{ #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddingToPolynomials [
 	| c poly |
 	c := 6 - 6 i.
