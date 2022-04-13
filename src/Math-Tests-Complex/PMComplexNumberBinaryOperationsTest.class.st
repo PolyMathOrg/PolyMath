@@ -6,11 +6,6 @@ Class {
 
 { #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddingComplexNumbersToFractions [
-
-	"comment stating purpose of instance-side method"
-
-	"scope: class-variables  &  instance-variables"
-
 	| expected z fraction |
 	z := 1 + 22 i.
 	fraction := Fraction numerator: 3 denominator: 7.
@@ -37,9 +32,6 @@ PMComplexNumberBinaryOperationsTest >> testAddingToPolynomials [
 
 { #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAddingToRealNumbers [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
 	| z expected |
 	z:= 3 - 9 i.
 	
@@ -72,9 +64,6 @@ PMComplexNumberBinaryOperationsTest >> testAdditionIsAssociative [
 
 { #category : #addition }
 PMComplexNumberBinaryOperationsTest >> testAdditionIsCommutative [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
 	| z w expected |
 	z := 5 - 6 i.
 	w := -8 + 1 i.
