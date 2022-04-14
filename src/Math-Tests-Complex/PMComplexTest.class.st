@@ -820,6 +820,26 @@ PMComplexTest >> testSubtractToPolynomial [
 	self assert: (poly - c at: 0) equals: -3 i
 ]
 
+{ #category : #subtraction }
+PMComplexTest >> testSubtractingIntegerFromAComplexNumber [
+	| z integer expected |
+	z := -5 + 7 i.
+	integer := 5.
+	
+	expected := -10 + 7 i.
+	self assert: z - integer equals: expected.
+]
+
+{ #category : #subtraction }
+PMComplexTest >> testSubtractingTwoComplexNumbers [
+	| z w expected |
+	z := 17 + 20 i.
+	w := 3 - 34 i.
+	
+	expected := 14 + 54 i.
+	self assert: z - w equals: expected.
+]
+
 { #category : #'trigonometric operations' }
 PMComplexTest >> testTan [
 	| c c2 |
