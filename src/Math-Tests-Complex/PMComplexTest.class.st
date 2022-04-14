@@ -821,6 +821,16 @@ PMComplexTest >> testSubtractToPolynomial [
 ]
 
 { #category : #subtraction }
+PMComplexTest >> testSubtractingComplexNumberFromInteger [
+	| integer z expected |
+	integer := 23.
+	z := 10 + 6 i.
+	
+	expected := 13 - 6 i.
+	self assert: integer - z equals: expected.
+]
+
+{ #category : #subtraction }
 PMComplexTest >> testSubtractingIntegerFromAComplexNumber [
 	| z integer expected |
 	z := -5 + 7 i.
