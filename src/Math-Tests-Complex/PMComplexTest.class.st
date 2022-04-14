@@ -207,7 +207,7 @@ PMComplexTest >> testArcTanDenominator [
 	self assert: (c2 arcTan: c1 * c1) equals: Float pi
 ]
 
-{ #category : #'polar representation' }
+{ #category : #'polar coordinates' }
 PMComplexTest >> testArgumentOfAPureImaginaryNumber [
 	"self run: #testArg"
 
@@ -216,6 +216,14 @@ PMComplexTest >> testArgumentOfAPureImaginaryNumber [
 	| c |
 	c := 0 + 5 i.
 	self assert: c arg equals: Float pi / 2
+]
+
+{ #category : #'polar coordinates' }
+PMComplexTest >> testArgumentOfAPureRealNumber [
+	| realNumber |
+	realNumber := 5 + 0 i.
+	
+	self assert: realNumber arg equals: 0.
 ]
 
 { #category : #'testing - bugs' }
