@@ -864,9 +864,6 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
 
 { #category : #equality }
 PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
 	| z w |
 	z := 4 + 3 i.
 	w := -7 + 3 i.
