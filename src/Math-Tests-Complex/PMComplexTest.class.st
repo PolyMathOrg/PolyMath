@@ -208,6 +208,19 @@ PMComplexTest >> testArcTanDenominator [
 ]
 
 { #category : #'polar coordinates' }
+PMComplexTest >> testArgumentOfAComplexNumberWithANegativeRealPart [
+	| withNegativeRealPart |
+	withNegativeRealPart := (Float pi /4 + Float pi/ 2) cos + (Float pi /4 + Float pi/ 2) sin i.
+	
+	self assert: withNegativeRealPart arg closeTo: (Float pi /4 + Float pi/ 2)
+]
+
+{ #category : #'polar coordinates' }
+PMComplexTest >> testArgumentOfANegativePureImaginaryNumber [
+	self assert: -5i arg equals: (Float pi / 2) negated.
+]
+
+{ #category : #'polar coordinates' }
 PMComplexTest >> testArgumentOfAPureImaginaryNumber [
 	"self run: #testArg"
 
