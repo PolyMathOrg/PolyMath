@@ -217,18 +217,21 @@ PMComplexTest >> testArgumentOfAComplexNumberWithANegativeRealPart [
 
 { #category : #'polar coordinates' }
 PMComplexTest >> testArgumentOfANegativePureImaginaryNumber [
-	self assert: -5i arg equals: (Float pi / 2) negated.
+	| negativePureImaginaryNumber |
+	
+	negativePureImaginaryNumber := -5 i.
+	
+	self
+		assert: negativePureImaginaryNumber arg
+		equals: (Float pi / 2) negated
 ]
 
 { #category : #'polar coordinates' }
 PMComplexTest >> testArgumentOfAPureImaginaryNumber [
-	"self run: #testArg"
-
-	"self debug: #testArg"
-
-	| c |
-	c := 0 + 5 i.
-	self assert: c arg equals: Float pi / 2
+	| pureImaginaryNumber |
+	pureImaginaryNumber := 0 + 5 i.
+	
+	self assert: pureImaginaryNumber arg equals: Float pi / 2
 ]
 
 { #category : #'polar coordinates' }
