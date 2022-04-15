@@ -561,6 +561,16 @@ PMComplexTest >> testMultiplicationByI [
 ]
 
 { #category : #multiplication }
+PMComplexTest >> testMultiplicationByRealNumber [
+	| z realNumber |
+	z := 1 - 2 i.
+	realNumber := 2.0.
+	
+	self assert: z * realNumber equals: 2 - 4 i.
+	self assert: realNumber * z equals: 2 - 4 i.
+]
+
+{ #category : #multiplication }
 PMComplexTest >> testMultiplicationIsAssociative [
 	| z w u expected |
 	
