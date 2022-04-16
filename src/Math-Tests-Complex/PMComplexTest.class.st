@@ -279,6 +279,34 @@ PMComplexTest >> testComplexConjugate [
 	self assert: complexConjugateOfZ equals: expected.
 ]
 
+{ #category : #'complex conjugation' }
+PMComplexTest >> testComplexConjugationIsDistributiveOverAddition [
+	| z w |
+	
+	z := 5 + 6 i.
+	w := 7 - 3 i.
+	
+	self assert: (z + w) complexConjugate equals: z complexConjugate + w complexConjugate 
+]
+
+{ #category : #'complex conjugation' }
+PMComplexTest >> testComplexConjugationIsDistributiveOverDivision [
+	| z w |
+	z := 1 + 1 i.
+	w := 18 + 7 i.
+	
+	self assert: (z / w) complexConjugate equals: (z complexConjugate / w complexConjugate)
+]
+
+{ #category : #'complex conjugation' }
+PMComplexTest >> testComplexConjugationIsDistributiveOverMultiplication [
+	| z w |
+	z := 5 - 9 i.
+	w := 3 + 20 i.
+	
+	self assert: (z * w) complexConjugate equals: (z complexConjugate * w complexConjugate)
+]
+
 { #category : #equality }
 PMComplexTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
 	self deny: 1 + 3 i equals: 1.
