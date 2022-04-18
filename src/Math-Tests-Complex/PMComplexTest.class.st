@@ -332,14 +332,10 @@ PMComplexTest >> testEquality [
 	self deny: #(1 2 3) = 1 i.
 	self deny: 1 i = 0.
 	self deny: 0 = 1 i.
-	self assert: 1 + 0 i equals: 1.0.
-	self assert: 1.0 equals: 1 + 0 i.
-	self assert: 1 / 2 + 0 i equals: 1 / 2.
-	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsReflexive [ 
+PMComplexTest >> testEqualsIsReflexive [
 	| z |
  	z := -10 + 10 i.
 
@@ -361,6 +357,18 @@ PMComplexTest >> testEqualsIsSymmetric [
 PMComplexTest >> testEqualsIsSymmetricWithComplexNumbersAndIntegers [
 	self assert: 1 + 0 i equals: 1.
 	self assert: 1 equals: 1 + 0 i.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithFractions [
+	self assert: 1 / 2 + 0 i equals: 1 / 2.
+	self assert: 1 / 2 equals: 1 / 2 + 0 i
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithRealNumbers [
+	self assert: 1 + 0 i equals: 1.0.
+	self assert: 1.0 equals: 1 + 0 i.
 ]
 
 { #category : #'testing - equality' }
