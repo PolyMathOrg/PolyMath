@@ -325,19 +325,6 @@ PMComplexTest >> testDivision1 [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEquality [
-	"self run: #testEquality"
-
-	"self debug: #testEquality"
-
-	"Some more stuff"
-	self deny: 1 i = nil.
-	self deny: nil = 1 i.
-	self deny: 1 i = #(1 2 3).
-	self deny: #(1 2 3) = 1 i.
-]
-
-{ #category : #'testing - equality' }
 PMComplexTest >> testEqualsIsReflexive [
 	| z |
  	z := -10 + 10 i.
@@ -556,6 +543,14 @@ PMComplexTest >> testProductWithVector [
 	v at: 1 put: 1.
 	self assert: (v * c at: 1) equals: c.
 	self assert: (c * v at: 1) equals: c
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [ 
+	self deny: 1 i = nil.
+	self deny: nil = 1 i.
+	self deny: 1 i = #(1 2 3).
+	self deny: #(1 2 3) = 1 i.
 ]
 
 { #category : #tests }
