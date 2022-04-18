@@ -323,7 +323,6 @@ PMComplexTest >> testEquality [
 	self assert: 2 - 5 i equals: 1 - 4 i + (1 - 1 i).
 	self assert: 0 i isZero.
 	self deny: 1 + 3 i = 1.
-	self deny: 1 + 3 i = (1 + 2 i).
 
 	"Some more stuff"
 	self deny: 1 i = nil.
@@ -792,6 +791,15 @@ PMComplexTest >> testTimesPolynomial [
 	poly := PMPolynomial coefficients: #(1).
 	self assert: (c * poly at: 0) equals: c.
 	self assert: (poly * c at: 0) equals: c
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
+	| z w |
+ 	z := 1 + 3 i.
+ 	w := 1 + 2 i.
+
+ 	self deny: z equals: w.
 ]
 
 { #category : #'testing - equality' }
