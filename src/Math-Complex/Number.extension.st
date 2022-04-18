@@ -14,6 +14,11 @@ Number >> asComplex [
 ]
 
 { #category : #'*Math-Complex' }
+Number >> complexConjugate [
+	^ self.
+]
+
+{ #category : #'*Math-Complex' }
 Number >> i [
 	^ PMComplex real: 0 imaginary: self
 ]

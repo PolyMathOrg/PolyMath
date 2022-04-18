@@ -750,6 +750,38 @@ PMComplexTest >> testTimesPolynomial [
 	self assert: (poly * c at: 0) equals: c
 ]
 
+{ #category : #'expressing complex numbers' }
+PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
+	| z |
+	z := PMComplex real: 3 / 5 imaginary: 4 / 5.
+	 
+	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
+	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
+]
+
+{ #category : #'expressing complex numbers' }
+PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
+
+	| z w numerator denominator |
+	z := 1 + 2 i.
+	w := 3 + 4 i.
+	numerator := z * w complexConjugate.
+	denominator := w squaredNorm.
+	
+	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
+]
+
+{ #category : #'expressing complex numbers' }
+PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
+	| numerator denominator |
+	"It is interesting that we cannot instanciate a fraction of the form z/w"
+	"Perhaps, we could do something like z * (w*)/ |w|**2"
+	numerator := PMComplex real: 1 imaginary: 1.
+	denominator := PMComplex real: 3 imaginary: 4 .
+
+	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
+]
+
 { #category : #tests }
 PMComplexTest >> testZero [
 	| z |
