@@ -794,6 +794,15 @@ PMComplexTest >> testTimesPolynomial [
 	self assert: (poly * c at: 0) equals: c
 ]
 
+{ #category : #'testing - equality' }
+PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
+	| z w |
+ 	z := 4 + 3 i.
+ 	w := -7 + 3 i.
+
+ 	self deny: z equals: w.
+]
+
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
