@@ -344,19 +344,19 @@ PMComplexTest >> testEqualsIsSymmetric [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithComplexNumbersAndIntegers [
-	self assert: 1 + 0 i equals: 1.
-	self assert: 1 equals: 1 + 0 i.
-]
-
-{ #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithFractions [
+PMComplexTest >> testEqualsIsSymmetricWithRespectToFractions [
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithRealNumbers [
+PMComplexTest >> testEqualsIsSymmetricWithRespectToIntegers [
+	self assert: 1 + 0 i equals: 1.
+	self assert: 1 equals: 1 + 0 i.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithRespectToRealNumbers [
 	self assert: 1 + 0 i equals: 1.0.
 	self assert: 1.0 equals: 1 + 0 i.
 ]
