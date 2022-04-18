@@ -319,8 +319,6 @@ PMComplexTest >> testEquality [
 
 	"self debug: #testEquality"
 
-	self assert: 0 i equals: 0.
-	self assert: 0 i isZero.
 	self deny: 1 + 3 i = 1.
 
 	"Some more stuff"
@@ -850,4 +848,10 @@ PMComplexTest >> testZero [
 	self assert: z isComplexNumber.
 	self assert: z real isZero.
 	self assert: z imaginary isZero.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testZeroComplexNumberIsEqualToIntegerZero [
+	self assert: 0 i equals: 0.
+ 	self assert: 0 equals: 0 i.
 ]
