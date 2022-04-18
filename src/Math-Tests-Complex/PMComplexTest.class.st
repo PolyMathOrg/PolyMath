@@ -204,6 +204,11 @@ PMComplexTest >> testComplexConjugate [
 	self assert: complexConjugateOfZ equals: expected.
 ]
 
+{ #category : #'testing - equality' }
+PMComplexTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
+	self deny: 1 + 3 i equals: 1.
+]
+
 { #category : #tests }
 PMComplexTest >> testConversion [
 	"self run: #testConversion"
@@ -318,8 +323,6 @@ PMComplexTest >> testEquality [
 	"self run: #testEquality"
 
 	"self debug: #testEquality"
-
-	self deny: 1 + 3 i = 1.
 
 	"Some more stuff"
 	self deny: 1 i = nil.
