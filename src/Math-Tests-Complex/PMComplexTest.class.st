@@ -4,6 +4,12 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
+{ #category : #'testing - equality' }
+PMComplexTest >> testAPureImaginaryNumberIsNotEqualToZero [
+	self deny: 1 i equals: 0.
+	self deny: 0 equals: 1 i.
+]
+
 { #category : #tests }
 PMComplexTest >> testAbs [
 	"self run: #testAbs"
@@ -329,8 +335,6 @@ PMComplexTest >> testEquality [
 	self deny: nil = 1 i.
 	self deny: 1 i = #(1 2 3).
 	self deny: #(1 2 3) = 1 i.
-	self deny: 1 i = 0.
-	self deny: 0 = 1 i.
 ]
 
 { #category : #'testing - equality' }
