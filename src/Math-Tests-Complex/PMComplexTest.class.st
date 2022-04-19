@@ -796,7 +796,7 @@ PMComplexTest >> testThatTwoEntirelyDifferentComplexNumbersAreNotComplexConjugat
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreComplexConjugates [
+PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreComplexConjugatesOfEachOther [
 	| z |
 	z := 3 - 2 i.
 	
