@@ -5,6 +5,13 @@ Class {
 }
 
 { #category : #tests }
+PMFFTTest >> generateCosineWaveSignal: sampleSize [
+
+	^ (1 to: sampleSize) collect: [ :i | 
+		  (Float pi * (i - 1) / (sampleSize / 8)) cos ]
+]
+
+{ #category : #tests }
 PMFFTTest >> testBitReverse [
 	self should: [ 1 bitReverse: 0 ] raise: Error.
 	self should: [ 2 bitReverse: 1 ] raise: Error.
@@ -21,35 +28,63 @@ PMFFTTest >> testBitReverse [
 ]
 
 { #category : #tests }
-PMFFTTest >> testFFT [
-	| data data1 f s |
-	data := (1 to: 256)
-		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
-	f := PMFastFourierTransform data: data.
+PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
+
+	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	inputSequence := self generateCosineWaveSignal: 256.
+	f := PMFastFourierTransform data: inputSequence.
+
 	f transform.
 	f inverseTransform.
-	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 256.
-	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 256.
-	PMMitchellMooreGenerator reset: 1.
-	data1 := data collect: [ :i | i + 0.001 random - 0.0005 ].
-	f := PMFastFourierTransform data: data1.
+
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	inputOutputDiff := f realData - inputSequence.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 256.
+	self assert: zeroedRealData equals: 256.
+
+	PMMitchellMooreGenerator reset: 1
+]
+
+{ #category : #tests }
+PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForSmallDataSets [
+
+	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	inputSequence := #( -2 -2 -2 3 3 3 1 -2 ).
+	f := PMFastFourierTransform data: inputSequence.
+
+	f transform.
+	f inverseTransform.
+
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	inputOutputDiff := f realData - inputSequence.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 8.
+	self assert: zeroedRealData equals: 8
+]
+
+{ #category : #tests }
+PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
+
+	| cosineWaveSignal randomizedCosineWaveSignal f |
+	cosineWaveSignal := self generateCosineWaveSignal: 256.
+	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
+	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
+
 	f transform.
 	f chop: 0.01.
 	f inverseTransform.
-	self assert: (f realData - data) abs max < 4e-5.
-	data := #(-2 -2 -2 3 3 3 1 -2).
-	f := PMFastFourierTransform data: data.
+
+	self assert: (f realData - cosineWaveSignal) abs max < 4e-5
+]
+
+{ #category : #tests }
+PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance [ 
+	| inputSignal f |
+	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
+	f := PMFastFourierTransform data: inputSignal.
 	f chop: 1.01.
 	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
 	f chop: 2.01.
 	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
-	f data: data.
-	f transform.
-	f inverseTransform.
-	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 8.
-	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 8
 ]
