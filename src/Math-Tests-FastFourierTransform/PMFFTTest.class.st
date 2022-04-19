@@ -44,17 +44,20 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForSmallDataSets [
-	| inputSignal f s zeroedImaginaryData |
-	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
+
+	| inputSignal f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	inputSignal := #( -2 -2 -2 3 3 3 1 -2 ).
 	f := PMFastFourierTransform data: inputSignal.
-	
+
 	f transform.
 	f inverseTransform.
-	
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ])
+		                       size.
 	self assert: zeroedImaginaryData equals: 8.
-	s := (f realData - inputSignal select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 8
+	inputOutputDiff := f realData - inputSignal.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedRealData equals: 8
 ]
 
 { #category : #tests }
