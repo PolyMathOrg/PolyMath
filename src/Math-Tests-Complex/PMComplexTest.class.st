@@ -419,12 +419,6 @@ PMComplexTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
 	self deny: (5 isComplexConjugateOf: (5 - 3i))
 ]
 
-{ #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfSameComplex [
-
-	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
-]
-
 { #category : #tests }
 PMComplexTest >> testIsComplexNumberOnComplex [
 	
@@ -775,6 +769,12 @@ PMComplexTest >> testThatComplexConjugateOfAPureRealNumberIsItself [
 PMComplexTest >> testThatComplexConjugateOfAnIntegerIsItself [
 
 	self assert: (5 isComplexConjugateOf: 5)
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationIsNotSymmetric [
+
+	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
 ]
 
 { #category : #tests }
