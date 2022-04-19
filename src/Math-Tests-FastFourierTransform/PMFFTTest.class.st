@@ -80,7 +80,7 @@ PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClo
 ]
 
 { #category : #tests }
-PMFFTTest >> testThatChopRemovesInputSignalPointsLowerThanTolerance [ 
+PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance [ 
 	| inputSignal f |
 	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
 	f := PMFastFourierTransform data: inputSignal.
