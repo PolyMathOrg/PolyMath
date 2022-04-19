@@ -57,8 +57,8 @@ PMFFTTest >> testFastFourierTransformDoesNotLoseAnySignal [
 	f inverseTransform.
 	
 	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	self assert: zeroedImaginaryData equals: 256.
 	zeroedRealData := (f realData - cosineWaveSignal select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 256.
 	self assert: zeroedRealData equals: 256.
 	
 	PMMitchellMooreGenerator reset: 1.
