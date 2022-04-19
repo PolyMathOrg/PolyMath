@@ -4,6 +4,12 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
+{ #category : #'testing - equality' }
+PMComplexTest >> testAPureImaginaryNumberIsNotEqualToZero [
+	self deny: 1 i equals: 0.
+	self deny: 0 equals: 1 i.
+]
+
 { #category : #tests }
 PMComplexTest >> testAbs [
 	"self run: #testAbs"
@@ -204,6 +210,11 @@ PMComplexTest >> testComplexConjugate [
 	self assert: complexConjugateOfZ equals: expected.
 ]
 
+{ #category : #'testing - equality' }
+PMComplexTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
+	self deny: 1 + 3 i equals: 1.
+]
+
 { #category : #tests }
 PMComplexTest >> testConversion [
 	"self run: #testConversion"
@@ -313,31 +324,54 @@ PMComplexTest >> testDivision1 [
 
 ]
 
-{ #category : #testing }
-PMComplexTest >> testEquality [
-	"self run: #testEquality"
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsReflexive [
+	| z |
+ 	z := -10 + 10 i.
 
-	"self debug: #testEquality"
+ 	self assert: z equals: z.
+]
 
-	self assert: 0 i equals: 0.
-	self assert: 2 - 5 i equals: 1 - 4 i + (1 - 1 i).
-	self assert: 0 i isZero.
-	self deny: 1 + 3 i = 1.
-	self deny: 1 + 3 i = (1 + 2 i).
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetric [
+	| z w |
 
-	"Some more stuff"
-	self deny: 1 i = nil.
-	self deny: nil = 1 i.
-	self deny: 1 i = #(1 2 3).
-	self deny: #(1 2 3) = 1 i.
-	self deny: 1 i = 0.
-	self deny: 0 = 1 i.
-	self assert: 1 + 0 i equals: 1.
-	self assert: 1 equals: 1 + 0 i.
-	self assert: 1 + 0 i equals: 1.0.
-	self assert: 1.0 equals: 1 + 0 i.
+ 	z := 13 + 14 i.
+ 	w := 13 + 14 i.
+
+ 	self assert: z equals: w.
+ 	self assert: w equals: z.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithRespectToFractions [
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithRespectToIntegers [
+	self assert: 1 + 0 i equals: 1.
+	self assert: 1 equals: 1 + 0 i.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsSymmetricWithRespectToRealNumbers [
+	self assert: 1 + 0 i equals: 1.0.
+	self assert: 1.0 equals: 1 + 0 i.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testEqualsIsTransitive [
+	| z w u |
+
+ 	z := 4 - 1 i.
+ 	w := 4 - 1 i.
+ 	u := 4 - 1 i.
+
+ 	self assert: z equals: w.
+ 	self assert: w equals: u.
+ 	self assert: z equals: u.
 ]
 
 { #category : #tests }
@@ -509,6 +543,14 @@ PMComplexTest >> testProductWithVector [
 	v at: 1 put: 1.
 	self assert: (v * c at: 1) equals: c.
 	self assert: (c * v at: 1) equals: c
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [ 
+	self deny: 1 i = nil.
+	self deny: nil = 1 i.
+	self deny: 1 i = #(1 2 3).
+	self deny: #(1 2 3) = 1 i.
 ]
 
 { #category : #tests }
@@ -750,7 +792,25 @@ PMComplexTest >> testTimesPolynomial [
 	self assert: (poly * c at: 0) equals: c
 ]
 
-{ #category : #'expressing complex numbers' }
+{ #category : #'testing - equality' }
+PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
+	| z w |
+ 	z := 1 + 3 i.
+ 	w := 1 + 2 i.
+
+ 	self deny: z equals: w.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
+	| z w |
+ 	z := 4 + 3 i.
+ 	w := -7 + 3 i.
+
+ 	self deny: z equals: w.
+]
+
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
 	z := PMComplex real: 3 / 5 imaginary: 4 / 5.
@@ -759,7 +819,7 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
 ]
 
-{ #category : #'expressing complex numbers' }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
 
 	| z w numerator denominator |
@@ -771,7 +831,7 @@ PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormal
 	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
 ]
 
-{ #category : #'expressing complex numbers' }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
 	| numerator denominator |
 	"It is interesting that we cannot instanciate a fraction of the form z/w"
@@ -790,4 +850,10 @@ PMComplexTest >> testZero [
 	self assert: z isComplexNumber.
 	self assert: z real isZero.
 	self assert: z imaginary isZero.
+]
+
+{ #category : #'testing - equality' }
+PMComplexTest >> testZeroComplexNumberIsEqualToIntegerZero [
+	self assert: 0 i equals: 0.
+ 	self assert: 0 equals: 0 i.
 ]
