@@ -14,7 +14,7 @@ Class {
 		'permTable',
 		'data'
 	],
-	#category : 'Math-FastFourierTransform'
+	#category : #'Math-FastFourierTransform'
 }
 
 { #category : #'instance creation' }
@@ -140,7 +140,7 @@ PMFastFourierTransform >> transformForward: forward [
 			[ :j | 
 			temp := self multiplier: (j - 1) * (n // lev).
 			forward
-				ifFalse: [ temp := temp conjugated ].
+				ifFalse: [ temp := temp complexConjugate ].
 			i := j.
 			[ i <= n ]
 				whileTrue:
