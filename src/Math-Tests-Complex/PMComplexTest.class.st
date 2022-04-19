@@ -731,13 +731,18 @@ PMComplexTest >> testTanh [
 
 { #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatComplexConjugateHasEqualRealPartAndAnImaginaryPartWithEqualMagnitudeButOppositeSign [
-	self assert: (3 + 2 i isComplexConjugateOf: 3 - 2 i)
+	| z |
+	z := 3 + 2 i.
+	
+	self assert: z complexConjugate equals: 3 - 2 i
 ]
 
 { #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatComplexConjugateOfAPureRealNumberIsItself [
-
-	self assert: ((5 + 0i) isComplexConjugateOf: 5)
+	| z |
+	z := 5 + 0 i.
+	
+	self assert: z complexConjugate equals: 5.
 ]
 
 { #category : #'testing - complex conjugation' }
