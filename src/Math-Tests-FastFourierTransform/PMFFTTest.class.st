@@ -22,7 +22,7 @@ PMFFTTest >> testBitReverse [
 
 { #category : #tests }
 PMFFTTest >> testFFT [
-	| data data1 f s |
+	| data f s |
 	data := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
 	data := #(-2 -2 -2 3 3 3 1 -2).
@@ -64,7 +64,7 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformOutputSignalMatchesInputSignalClosely [
-	| data data1 f s |
+	| data data1 f |
 	data := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
 	data1 := data collect: [ :i | i + 0.001 random - 0.0005 ].
