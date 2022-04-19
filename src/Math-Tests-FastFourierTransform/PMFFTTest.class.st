@@ -63,14 +63,14 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 ]
 
 { #category : #tests }
-PMFFTTest >> testFastFourierTransformOutputSignalMatchesInputSignalClosely [
-	| data data1 f |
-	data := (1 to: 256)
+PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClosely [
+	| cosineWaveSignal randomizedCosineWaveSignal f |
+	cosineWaveSignal := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
-	data1 := data collect: [ :i | i + 0.001 random - 0.0005 ].
-	f := PMFastFourierTransform data: data1.
+	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
+	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
 	f transform.
 	f chop: 0.01.
 	f inverseTransform.
-	self assert: (f realData - data) abs max < 4e-5.
+	self assert: (f realData - cosineWaveSignal) abs max < 4e-5.
 ]
