@@ -37,11 +37,9 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ])
-		                       size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
 	inputOutputDiff := f realData - cosineWaveSignal.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ])
-		                  size.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
 	self assert: zeroedImaginaryData equals: 256.
 	self assert: zeroedRealData equals: 256.
 
@@ -58,8 +56,7 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ])
-		                       size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
 	inputOutputDiff := f realData - inputSignal.
 	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
 	self assert: zeroedImaginaryData equals: 8.
