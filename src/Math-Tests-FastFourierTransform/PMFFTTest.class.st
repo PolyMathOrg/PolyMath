@@ -74,3 +74,14 @@ PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClo
 	
 	self assert: (f realData - cosineWaveSignal) abs max < 4e-5.
 ]
+
+{ #category : #tests }
+PMFFTTest >> testThatChopRemovesInputSignalPointsLowerThanTolerance [ 
+	| inputSignal f |
+	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
+	f := PMFastFourierTransform data: inputSignal.
+	f chop: 1.01.
+	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
+	f chop: 2.01.
+	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
+]
