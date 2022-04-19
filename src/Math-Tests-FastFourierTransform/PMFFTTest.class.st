@@ -47,7 +47,7 @@ PMFFTTest >> testFFT [
 ]
 
 { #category : #tests }
-PMFFTTest >> testFastFourierTransformDoesNotLoseAnySignal [
+PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignal [
 
 	| cosineWaveSignal f zeroedImaginaryData zeroedRealData inputOutputDiff |
 	cosineWaveSignal := (1 to: 256) collect: [ :i | 
