@@ -25,11 +25,6 @@ PMFFTTest >> testFFT [
 	| inputSignal f s |
 	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
 	f := PMFastFourierTransform data: inputSignal.
-	f chop: 1.01.
-	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
-	f chop: 2.01.
-	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
-	f data: inputSignal.
 	f transform.
 	f inverseTransform.
 	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
