@@ -30,7 +30,7 @@ PMFFTTest >> testBitReverse [
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
 
-	| inputSignal f zeroedImaginaryData zeroedRealData inputOutputDiff |
+	| inputSignal f zeroedImaginaryData inputOutputDiff zeroedRealData |
 	inputSignal := self generateCosineWaveSignal: 256.
 	f := PMFastFourierTransform data: inputSignal.
 
