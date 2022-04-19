@@ -5,6 +5,13 @@ Class {
 }
 
 { #category : #tests }
+PMFFTTest >> generateCosineWaveSignal: sampleSize [
+
+	^ (1 to: sampleSize) collect: [ :i | 
+		  (Float pi * (i - 1) / (sampleSize / 8)) cos ]
+]
+
+{ #category : #tests }
 PMFFTTest >> testBitReverse [
 	self should: [ 1 bitReverse: 0 ] raise: Error.
 	self should: [ 2 bitReverse: 1 ] raise: Error.
@@ -23,9 +30,9 @@ PMFFTTest >> testBitReverse [
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
 
-	| cosineWaveSignal f zeroedImaginaryData zeroedRealData inputOutputDiff |
-	cosineWaveSignal := (1 to: 256) collect: [ :i | 
-		                    (Float pi * (i - 1) / (256 / 8)) cos ].
+	| cosineWaveSignal f zeroedImaginaryData zeroedRealData inputOutputDiff sampleSize |
+	sampleSize := 256.
+	cosineWaveSignal := self generateCosineWaveSignal: sampleSize.
 	f := PMFastFourierTransform data: cosineWaveSignal.
 
 	f transform.
@@ -36,8 +43,8 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	inputOutputDiff := f realData - cosineWaveSignal.
 	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ])
 		                  size.
-	self assert: zeroedImaginaryData equals: 256.
-	self assert: zeroedRealData equals: 256.
+	self assert: zeroedImaginaryData equals: sampleSize.
+	self assert: zeroedRealData equals: sampleSize.
 
 	PMMitchellMooreGenerator reset: 1
 ]
@@ -62,17 +69,18 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClosely [
+
 	| cosineWaveSignal randomizedCosineWaveSignal f |
-	cosineWaveSignal := (1 to: 256)
-		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
-	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
+	cosineWaveSignal := self generateCosineWaveSignal: 256.
+	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | 
+		                              i + 0.001 random - 0.0005 ].
 	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
-	
+
 	f transform.
 	f chop: 0.01.
 	f inverseTransform.
-	
-	self assert: (f realData - cosineWaveSignal) abs max < 4e-5.
+
+	self assert: (f realData - cosineWaveSignal) abs max < 4e-5
 ]
 
 { #category : #tests }
