@@ -390,12 +390,6 @@ PMComplexTest >> testHash [
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
-
-	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfDifferentReal [
 
 	self deny: (-5 isComplexConjugateOf: 5)
@@ -775,6 +769,11 @@ PMComplexTest >> testThatComplexConjugateOfAnIntegerIsItself [
 PMComplexTest >> testThatComplexConjugationIsNotSymmetric [
 
 	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationYieldsANumberWithTheSameRealPartAndNegativeImaginaryPart [
+	self assert: (3 + 2 i isComplexConjugateOf: 3 - 2 i)
 ]
 
 { #category : #tests }
