@@ -22,19 +22,19 @@ PMFFTTest >> testBitReverse [
 
 { #category : #tests }
 PMFFTTest >> testFFT [
-	| data f s |
-	data := #(-2 -2 -2 3 3 3 1 -2).
-	f := PMFastFourierTransform data: data.
+	| inputSignal f s |
+	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
+	f := PMFastFourierTransform data: inputSignal.
 	f chop: 1.01.
 	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
 	f chop: 2.01.
 	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
-	f data: data.
+	f data: inputSignal.
 	f transform.
 	f inverseTransform.
 	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 8.
-	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
+	s := (f realData - inputSignal select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 8
 ]
 
