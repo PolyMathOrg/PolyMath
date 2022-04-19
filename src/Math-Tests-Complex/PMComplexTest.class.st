@@ -390,12 +390,6 @@ PMComplexTest >> testHash [
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfDifferentReal [
-
-	self deny: (-5 isComplexConjugateOf: 5)
-]
-
-{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
 
 	self deny: ((5 + 3i) isComplexConjugateOf: 5)
