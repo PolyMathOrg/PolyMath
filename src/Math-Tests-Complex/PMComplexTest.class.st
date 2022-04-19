@@ -789,8 +789,10 @@ PMComplexTest >> testThatComplexConjugationPreservesModulus [
 
 { #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatTwoEntirelyDifferentComplexNumbersAreNotComplexConjugatesOfEachOther [
-
-	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
+	| z |
+	z := -0.5 - 1 i.
+	
+	self deny: z complexConjugate equals: (3 - 2i)
 ]
 
 { #category : #tests }
