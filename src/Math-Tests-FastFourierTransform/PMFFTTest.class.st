@@ -48,15 +48,15 @@ PMFFTTest >> testFFT [
 
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformDoesNotLoseAnySignal [
-	| data f s |
-	data := (1 to: 256)
+	| cosineWaveSignal f s |
+	cosineWaveSignal := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
-	f := PMFastFourierTransform data: data.
+	f := PMFastFourierTransform data: cosineWaveSignal.
 	f transform.
 	f inverseTransform.
 	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 256.
-	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
+	s := (f realData - cosineWaveSignal select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 256.
 	PMMitchellMooreGenerator reset: 1.
 ]
