@@ -546,7 +546,7 @@ PMComplex >> isComplexConjugateOfAComplexNumber: aComplexNumber [
 
 	"Answer true if self and aComplexNumber are complex conjugates of each other. The complex conjugate of a complex number is the number with an equal real part and an imaginary part equal in magnitude but opposite in sign."
 
-	^ self complexConjugate = aComplexNumber
+	^ self = aComplexNumber complexConjugate
 ]
 
 { #category : #testing }
