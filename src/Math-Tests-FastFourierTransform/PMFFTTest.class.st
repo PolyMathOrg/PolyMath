@@ -30,9 +30,8 @@ PMFFTTest >> testBitReverse [
 { #category : #tests }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
 
-	| cosineWaveSignal f zeroedImaginaryData zeroedRealData inputOutputDiff sampleSize |
-	sampleSize := 256.
-	cosineWaveSignal := self generateCosineWaveSignal: sampleSize.
+	| cosineWaveSignal f zeroedImaginaryData zeroedRealData inputOutputDiff |
+	cosineWaveSignal := self generateCosineWaveSignal: 256.
 	f := PMFastFourierTransform data: cosineWaveSignal.
 
 	f transform.
@@ -43,8 +42,8 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	inputOutputDiff := f realData - cosineWaveSignal.
 	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ])
 		                  size.
-	self assert: zeroedImaginaryData equals: sampleSize.
-	self assert: zeroedRealData equals: sampleSize.
+	self assert: zeroedImaginaryData equals: 256.
+	self assert: zeroedRealData equals: 256.
 
 	PMMitchellMooreGenerator reset: 1
 ]
