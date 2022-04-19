@@ -780,7 +780,7 @@ PMComplexTest >> testThatComplexConjugationIsNotSymmetric [
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testThatComplexConjugationLeavesModulusUnchanged [
+PMComplexTest >> testThatComplexConjugationPreservesModulus [
 	| z |
 	z := 3 - 4 i.
 	
