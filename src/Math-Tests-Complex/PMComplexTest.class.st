@@ -396,18 +396,6 @@ PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplexAndReal [
-
-	self assert: ((5 + 0i) isComplexConjugateOf: 5)
-]
-
-{ #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfConjugateRealAndComplex [
-
-	self assert: (5 isComplexConjugateOf: (5 - 0i))
-]
-
-{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfDifferentReal [
 
 	self deny: (-5 isComplexConjugateOf: 5)
@@ -775,6 +763,12 @@ PMComplexTest >> testTanh [
 	c2 := c sinh / c cosh.
 	self assert: (c2 real closeTo: c tanh real).
 	self assert: (c2 imaginary closeTo: c tanh imaginary).
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugateOfAPureRealNumberIsItself [
+
+	self assert: ((5 + 0i) isComplexConjugateOf: 5)
 ]
 
 { #category : #'testing - complex conjugation' }
