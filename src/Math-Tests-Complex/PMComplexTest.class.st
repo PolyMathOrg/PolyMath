@@ -389,12 +389,6 @@ PMComplexTest >> testHash [
 	self assert: aComplex copy hash equals: aComplex hash
 ]
 
-{ #category : #'testing - complex conjugation' }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
-
-	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
-]
-
 { #category : #tests }
 PMComplexTest >> testIsComplexNumberOnComplex [
 	
@@ -790,6 +784,12 @@ PMComplexTest >> testThatComplexConjugationPreservesModulus [
 	z := 3 - 4 i.
 	
 	self assert: z complexConjugate abs equals: 5
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatTwoEntirelyDifferentComplexNumbersAreNotComplexConjugatesOfEachOther [
+
+	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
 ]
 
 { #category : #tests }
