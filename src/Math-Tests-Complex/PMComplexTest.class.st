@@ -746,12 +746,6 @@ PMComplexTest >> testThatComplexConjugateOfAPureRealNumberIsItself [
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testThatComplexConjugateOfAnIntegerIsItself [
-
-	self assert: (5 isComplexConjugateOf: 5)
-]
-
-{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatComplexConjugationIsAnInvolution [		
 	| z |
 	z := -9 + 24 i.
