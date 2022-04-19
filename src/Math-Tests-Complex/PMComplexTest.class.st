@@ -748,9 +748,43 @@ PMComplexTest >> testThatComplexConjugateOfAnIntegerIsItself [
 ]
 
 { #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationIsAnInvolution [		
+	| z |
+	z := -9 + 24 i.
+	
+	self assert: z complexConjugate complexConjugate equals: -9 + 24 i
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationIsDistributiveOverAddition [
+	| z w |
+	z :=  -3 + 6 i.
+	w := 10 - 4 i.
+	
+	self assert: (z + w) complexConjugate equals: (z complexConjugate + w complexConjugate)
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationIsDistributiveOverDivision [
+	| z w |
+	z := 6 - 15 i.
+	w := 10 + 5 i.
+	
+	self assert: (z / w) complexConjugate equals: z complexConjugate / w complexConjugate
+]
+
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatComplexConjugationIsNotSymmetric [
 
 	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugationLeavesModulusUnchanged [
+	| z |
+	z := 3 - 4 i.
+	
+	self assert: z complexConjugate abs equals: 5
 ]
 
 { #category : #'testing - complex conjugation' }
