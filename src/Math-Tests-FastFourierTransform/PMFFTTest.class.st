@@ -25,14 +25,6 @@ PMFFTTest >> testFFT [
 	| data data1 f s |
 	data := (1 to: 256)
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
-	f := PMFastFourierTransform data: data.
-	f transform.
-	f inverseTransform.
-	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 256.
-	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
-	self assert: s equals: 256.
-	PMMitchellMooreGenerator reset: 1.
 	data1 := data collect: [ :i | i + 0.001 random - 0.0005 ].
 	f := PMFastFourierTransform data: data1.
 	f transform.
@@ -52,4 +44,19 @@ PMFFTTest >> testFFT [
 	self assert: s equals: 8.
 	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
 	self assert: s equals: 8
+]
+
+{ #category : #tests }
+PMFFTTest >> testFastFourierTransformDoesNotLoseAnySignal [
+	| data f s |
+	data := (1 to: 256)
+		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
+	f := PMFastFourierTransform data: data.
+	f transform.
+	f inverseTransform.
+	s := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	self assert: s equals: 256.
+	s := (f realData - data select: [ :i | i equalsTo: 0 ]) size.
+	self assert: s equals: 256.
+	PMMitchellMooreGenerator reset: 1.
 ]
