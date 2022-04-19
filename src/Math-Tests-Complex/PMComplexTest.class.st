@@ -773,8 +773,10 @@ PMComplexTest >> testThatComplexConjugationIsDistributiveOverDivision [
 
 { #category : #'testing - complex conjugation' }
 PMComplexTest >> testThatComplexConjugationIsNotSymmetric [
-
-	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
+	| z |
+	z := 3 - 2 i.
+	
+	self deny: z complexConjugate equals: z
 ]
 
 { #category : #'testing - complex conjugation' }
