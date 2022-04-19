@@ -389,58 +389,52 @@ PMComplexTest >> testHash [
 	self assert: aComplex copy hash equals: aComplex hash
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
 
 	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfConjugateComplexAndReal [
 
 	self assert: ((5 + 0i) isComplexConjugateOf: 5)
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfConjugateRealAndComplex [
 
 	self assert: (5 isComplexConjugateOf: (5 - 0i))
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfDifferentReal [
 
 	self deny: (-5 isComplexConjugateOf: 5)
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
 
 	self deny: ((5 + 3i) isComplexConjugateOf: 5)
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
 
 	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
 
 	self deny: (5 isComplexConjugateOf: (5 - 3i))
 ]
 
-{ #category : #tests }
+{ #category : #'testing - complex conjugation' }
 PMComplexTest >> testIsComplexConjugateOfSameComplex [
 
 	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfSameReal [
-
-	self assert: (5 isComplexConjugateOf: 5)
 ]
 
 { #category : #tests }
@@ -781,6 +775,12 @@ PMComplexTest >> testTanh [
 	c2 := c sinh / c cosh.
 	self assert: (c2 real closeTo: c tanh real).
 	self assert: (c2 imaginary closeTo: c tanh imaginary).
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatComplexConjugateOfAnIntegerIsItself [
+
+	self assert: (5 isComplexConjugateOf: 5)
 ]
 
 { #category : #tests }
