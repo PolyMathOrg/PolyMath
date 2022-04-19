@@ -796,19 +796,11 @@ PMComplexTest >> testThatTwoEntirelyDifferentComplexNumbersAreNotComplexConjugat
 ]
 
 { #category : #'testing - complex conjugation' }
-PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreComplexConjugatesOfEachOther [
+PMComplexTest >> testThatWeCanIdentifyTwoComplexNumbersAsBeingComplexConjugatesOfEachOther [
 	| z |
 	z := 3 - 2 i.
 	
 	self assert: (z isComplexConjugateOf: (3 + 2 i))
-]
-
-{ #category : #'testing - complex conjugation' }
-PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreNotComplexConjugatesOfEachOther [
-	| z |
-	z := -4 - 8 i.
-	
-	self deny: (z isComplexConjugateOf: 13 + 12 i)
 ]
 
 { #category : #tests }
@@ -836,6 +828,14 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
  	w := -7 + 3 i.
 
  	self deny: z equals: w.
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testWeCanIdentifyTwoComplexNumbersAsNotBeingComplexConjugatesOfEachOther [
+	| z |
+	z := -4 - 8 i.
+	
+	self deny: (z isComplexConjugateOf: 13 + 12 i)
 ]
 
 { #category : #'testing - expressing complex numbers' }
