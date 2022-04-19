@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Complex'
 }
 
-{ #category : #'complex conjugation' }
+{ #category : #'testing - complex conjugation' }
 PMNumberTest >> testComplexConjugateOfAnIntegerIsAnInteger [
 	|complexConjugateOfInteger|
 	
@@ -13,7 +13,7 @@ PMNumberTest >> testComplexConjugateOfAnIntegerIsAnInteger [
 	self assert: complexConjugateOfInteger equals: -5.
 ]
 
-{ #category : #'complex conjugation' }
+{ #category : #'testing - complex conjugation' }
 PMNumberTest >> testComplexConjugateOfRealFractionIsARealFraction [
 	| complexConjugateOfFraction |
 	complexConjugateOfFraction := (Fraction numerator: 1 denominator: 6) complexConjugate.
@@ -21,7 +21,7 @@ PMNumberTest >> testComplexConjugateOfRealFractionIsARealFraction [
 	self assert: complexConjugateOfFraction equals: (Fraction numerator: 1 denominator: 6) .
 ]
 
-{ #category : #'complex conjugation' }
+{ #category : #'testing - complex conjugation' }
 PMNumberTest >> testComplexConjugateOfRealNumberIsItself [			
 	|realNumber|
 	realNumber := 4.5 complexConjugate. 
