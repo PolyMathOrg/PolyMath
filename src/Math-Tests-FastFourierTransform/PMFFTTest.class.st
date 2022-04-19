@@ -23,8 +23,6 @@ PMFFTTest >> testBitReverse [
 { #category : #tests }
 PMFFTTest >> testFFT [
 	| data f s |
-	data := (1 to: 256)
-		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
 	data := #(-2 -2 -2 3 3 3 1 -2).
 	f := PMFastFourierTransform data: data.
 	f chop: 1.01.
@@ -69,8 +67,10 @@ PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClo
 		collect: [ :i | (Float pi * (i - 1) / (256 / 8)) cos ].
 	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
 	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
+	
 	f transform.
 	f chop: 0.01.
 	f inverseTransform.
+	
 	self assert: (f realData - cosineWaveSignal) abs max < 4e-5.
 ]
