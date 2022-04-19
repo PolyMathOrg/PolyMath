@@ -795,6 +795,22 @@ PMComplexTest >> testThatTwoEntirelyDifferentComplexNumbersAreNotComplexConjugat
 	self deny: z complexConjugate equals: (3 - 2i)
 ]
 
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreComplexConjugates [
+	| z |
+	z := 3 - 2 i.
+	
+	self assert: (z isComplexConjugateOf: (3 + 2 i))
+]
+
+{ #category : #'testing - complex conjugation' }
+PMComplexTest >> testThatWeCanIdentifyThatTwoComplexNumbersAreNotComplexConjugatesOfEachOther [
+	| z |
+	z := -4 - 8 i.
+	
+	self deny: (z isComplexConjugateOf: 13 + 12 i)
+]
+
 { #category : #tests }
 PMComplexTest >> testTimesPolynomial [
 	| c poly |
