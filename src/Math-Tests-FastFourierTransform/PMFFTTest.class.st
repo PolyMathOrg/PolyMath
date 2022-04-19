@@ -54,9 +54,9 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 
 	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ])
 		                       size.
-	self assert: zeroedImaginaryData equals: 8.
 	inputOutputDiff := f realData - inputSignal.
 	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 8.
 	self assert: zeroedRealData equals: 8
 ]
 
