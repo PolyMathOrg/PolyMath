@@ -64,7 +64,7 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 ]
 
 { #category : #tests }
-PMFFTTest >> testFastFourierTransformOutputSignalMatchesRandomizedInputSignalClosely [
+PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
 
 	| cosineWaveSignal randomizedCosineWaveSignal f |
 	cosineWaveSignal := self generateCosineWaveSignal: 256.
