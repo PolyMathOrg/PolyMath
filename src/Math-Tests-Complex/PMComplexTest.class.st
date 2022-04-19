@@ -769,7 +769,7 @@ PMComplexTest >> testThatComplexConjugationIsDistributiveOverDivision [
 	z := 6 - 15 i.
 	w := 10 + 5 i.
 	
-	self assert: (z / w) complexConjugate equals: z complexConjugate / w complexConjugate
+	self assert: (z / w) complexConjugate equals: (z complexConjugate / w complexConjugate)
 ]
 
 { #category : #'testing - complex conjugation' }
