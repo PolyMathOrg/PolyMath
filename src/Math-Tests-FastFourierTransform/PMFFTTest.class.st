@@ -68,8 +68,7 @@ PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosel
 
 	| cosineWaveSignal randomizedCosineWaveSignal f |
 	cosineWaveSignal := self generateCosineWaveSignal: 256.
-	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | 
-		                              i + 0.001 random - 0.0005 ].
+	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
 	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
 
 	f transform.
