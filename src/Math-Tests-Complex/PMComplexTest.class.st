@@ -45,7 +45,7 @@ PMComplexTest >> testAdaptToCollectionAndSend [
 	self assert: (arr * c at: 2) equals: c
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAddPolynomial [
 	| c poly |
 	c := 6 - 6 i.
@@ -54,7 +54,7 @@ PMComplexTest >> testAddPolynomial [
 	self assert: (c + poly at: 0) equals: 7 - 6 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAdding [
 	"self run: #testAdding"
 
@@ -214,7 +214,7 @@ PMComplexTest >> testComplexCollection [
 		do: [ :one :two | self assert: 2 * one equals: two ]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testComplexConjugate [
 
 	self assert: (5 - 6i) complexConjugate equals: (5 + 6i).
@@ -308,7 +308,7 @@ PMComplexTest >> testCreation [
 	self assert: c imaginary equals: 5
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testDividingPolynomial [
 	| c poly |
 	c := 4 + 4 i.
@@ -316,7 +316,7 @@ PMComplexTest >> testDividingPolynomial [
 	self assert: poly / c equals: 1 / c * poly
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testDivision1 [
 	"self run: #testDivision1"
 	"self debug: #testDivision1"
@@ -446,14 +446,14 @@ PMComplexTest >> testLog [
 	self assert: (2 + 0 i log: 2) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testNegated [
 	"self run: #testNegated"
 
@@ -537,7 +537,7 @@ PMComplexTest >> testRandom [
 	self assert: r abs < c abs
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testReciprocal [
 	"self run: #testReciprocal"
 
@@ -559,7 +559,7 @@ PMComplexTest >> testReciprocalError [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
 	"self debug: #testSecureDivision1"
@@ -572,7 +572,7 @@ PMComplexTest >> testSecureDivision1 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testSecureDivision2 [
 	"self run: #testSecureDivision2"
 	"self debug: #testSecureDivision2"
@@ -706,7 +706,7 @@ PMComplexTest >> testSquared [
 	self assert: c2 real equals: 0
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testSubtractToPolynomial [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
@@ -739,7 +739,7 @@ PMComplexTest >> testTanh [
 	self assert: (c2 imaginary closeTo: c tanh imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testTimesPolynomial [
 	| c poly |
 	c := 1 + 1 i.
