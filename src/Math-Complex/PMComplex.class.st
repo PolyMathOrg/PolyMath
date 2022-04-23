@@ -721,15 +721,18 @@ PMComplex >> sinh [
 
 { #category : #'mathematical functions' }
 PMComplex >> sqrt [
+	"Return the square root of the receiver with a positive imaginary part.
+	Implementation based on: https://en.wikipedia.org/wiki/Complex_number#Square_root"
 
-	"Return the square root of the receiver with a positive imaginary part."
-
-	| u v |
-	(imaginary = 0 and: [ real >= 0 ]) ifTrue: [ 
-		^ self class real: real sqrt imaginary: 0 ].
-	v := (self abs - real / 2) sqrt.
-	u := imaginary / 2 / v.
-	^ self class real: u imaginary: v
+	| newReal newImaginary imaginarySign |
+	
+	imaginarySign := imaginary sign = 0
+		ifTrue: [ 1 ] ifFalse: [ imaginary sign ].
+	
+	newReal := ((self abs + real) / 2) sqrt.
+	newImaginary := imaginarySign * ((self abs - real) / 2) sqrt.
+	
+	^ newReal + newImaginary i
 ]
 
 { #category : #'mathematical functions' }

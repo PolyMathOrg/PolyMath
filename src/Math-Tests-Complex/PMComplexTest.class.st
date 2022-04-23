@@ -715,7 +715,7 @@ PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWith
 	
 	squareRoot := pureImaginaryNumber sqrt.
 
-	expected := 2 sqrt negated + 2 sqrt i.
+	expected := 2 sqrt - 2 sqrt i.
 	self assert: squareRoot real closeTo: expected real.
 	self assert: squareRoot imaginary closeTo: expected imaginary
 
@@ -748,6 +748,44 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 
 	expected := PMComplex real: 6 sqrt imaginary: 0.
 	self assert: squareRoot equals: expected
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
+	"This may cause problems because of the loss of precision.
+	Very large and very small floating point numbers have different units of least precision.
+	
+	verySmall ~= 0.
+	veryLarge + verySmall = veryLarge."
+
+	| veryLarge verySmall complexNumber expected |
+	
+	veryLarge := 1e20.
+	verySmall := 1e-20.
+	
+	complexNumber := veryLarge + verySmall i.
+	expected := 1e10 + 1e-31 i.
+	
+	self assert: complexNumber sqrt closeTo: expected
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
+	"This may cause problems because of the loss of precision.
+	Very large and very small floating point numbers have different units of least precision.
+	
+	verySmall ~= 0.
+	veryLarge + verySmall = veryLarge."
+
+	| veryLarge verySmall complexNumber expected |
+	
+	veryLarge := 1e20.
+	verySmall := 1e-20.
+	
+	complexNumber := verySmall + veryLarge i.
+	expected := 7071067811.865476 + 7071067811.865475 i.
+	
+	self assert: complexNumber sqrt closeTo: expected
 ]
 
 { #category : #tests }
