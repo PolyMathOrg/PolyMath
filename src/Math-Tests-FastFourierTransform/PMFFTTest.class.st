@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-FastFourierTransform'
 }
 
-{ #category : #tests }
+{ #category : #asserting }
 PMFFTTest >> assertNoDataLossInDiscreteFourierTransferOf: inputSequence [
 
 	| zeroedRealData f zeroedImaginaryData inputOutputDiff |
