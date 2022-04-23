@@ -567,7 +567,7 @@ PMMatrix >> isHermitian [
 	
 	1 to: self numberOfRows do: [ :i |
 		1 to: (i - 1) do: [ :j |
-			((self at: i at: j) isComplexConjugateOf: (self at: j at: i))
+			((self at: i at: j) complexConjugate = (self at: j at: i))
 				ifFalse: [ ^ false ] ] ].
 		
 	^ true

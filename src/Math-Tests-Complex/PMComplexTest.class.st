@@ -385,60 +385,6 @@ PMComplexTest >> testHash [
 ]
 
 { #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplex [
-
-	self assert: ((3 + 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateComplexAndReal [
-
-	self assert: ((5 + 0i) isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfConjugateRealAndComplex [
-
-	self assert: (5 isComplexConjugateOf: (5 - 0i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfDifferentReal [
-
-	self deny: (-5 isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateComplexAndReal [
-
-	self deny: ((5 + 3i) isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateDifferentComplex [
-
-	self deny: ((-0.5 - 1i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfNonConjugateRealAndComplex [
-
-	self deny: (5 isComplexConjugateOf: (5 - 3i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfSameComplex [
-
-	self deny: ((3 - 2i) isComplexConjugateOf: (3 - 2i))
-]
-
-{ #category : #tests }
-PMComplexTest >> testIsComplexConjugateOfSameReal [
-
-	self assert: (5 isComplexConjugateOf: 5)
-]
-
-{ #category : #tests }
 PMComplexTest >> testIsComplexNumberOnComplex [
 	
 	self assert: (3 + 2i) isComplexNumber

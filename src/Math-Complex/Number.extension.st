@@ -15,7 +15,12 @@ Number >> asComplex [
 
 { #category : #'*Math-Complex' }
 Number >> complexConjugate [
-	^ self.
+	"The complex conjugate of a complex number (a + bi) is another complex number (a - bi).
+	Every real number x is also a complex number with imaginary part equal to 0.
+	In other words, x = x + 0i and x = x - 0i.
+	Therefore, the complex conjugate of a real number is the same real number"
+	
+	^ self
 ]
 
 { #category : #'*Math-Complex' }
@@ -37,13 +42,11 @@ Number >> i: aNumber [
 { #category : #'*Math-Complex' }
 Number >> isComplexConjugateOf: aNumber [
 	"A complex conjugate of a real number is same real number"
-	^ self = aNumber
-]
+	self
+		deprecated: 'This method is redundant. Just check the equality with complexConjugate'
+		transformWith: '`@rec isComplexConjugate: `@arg' -> '`@rec complexConjugate = `@arg'.
 
-{ #category : #'*Math-Complex' }
-Number >> isComplexConjugateOfAComplexNumber: aComplexNumber [
-	"A complex conjugate of a real number is same real number"
-	^ self isComplexConjugateOf: aComplexNumber
+	^ self complexConjugate = aNumber
 ]
 
 { #category : #'*Math-Complex' }
