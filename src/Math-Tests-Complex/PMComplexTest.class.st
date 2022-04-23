@@ -164,10 +164,7 @@ PMComplexTest >> testArcTanDenominator [
 
 { #category : #'testing - polar coordinates' }
 PMComplexTest >> testArgumentOfAComplexNumber [
-	| z |
-	z := (Fraction numerator: 1 denominator: 2 sqrt) + (Fraction numerator: 1 denominator: 2 sqrt) i.
-	
-	self assert: z arg equals: Float pi / 4
+	self assert: (1 + 1 i) arg equals: Float pi / 4
 ]
 
 { #category : #'testing - polar coordinates' }
