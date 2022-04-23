@@ -542,6 +542,21 @@ PMComplexTest >> testNew [
 ]
 
 { #category : #tests }
+PMComplexTest >> testNotCloseToRealWithPrecision [
+
+	self deny: (2 + 0.001i closeTo: 2 precision: 0.000001).
+	self deny: (2.001 + 0.001i closeTo: 2 precision: 0.000001).
+]
+
+{ #category : #tests }
+PMComplexTest >> testNotCloseToWithPrecision [
+
+	self deny: (2 + 3.001i closeTo: 2 + 3i precision: 0.000001).
+	self deny: (2.001 + 3i closeTo: 2 + 3i precision: 0.000001).
+	self deny: (2.001 + 3.001i closeTo: 2 + 3i precision: 0.000001).
+]
+
+{ #category : #tests }
 PMComplexTest >> testNumberAsComplex [
 	| minusOne |
 	minusOne := -1 asComplex.
