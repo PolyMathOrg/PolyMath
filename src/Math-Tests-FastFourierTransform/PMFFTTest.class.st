@@ -28,42 +28,6 @@ PMFFTTest >> testBitReverse [
 ]
 
 { #category : #tests }
-PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
-
-	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
-	inputSequence := self generateCosineWaveSignal: 256.
-	f := PMFastFourierTransform data: inputSequence.
-
-	f transform.
-	f inverseTransform.
-
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
-	self assert: zeroedImaginaryData equals: 256.
-	self assert: zeroedRealData equals: 256.
-
-	PMMitchellMooreGenerator reset: 1
-]
-
-{ #category : #tests }
-PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForSmallDataSets [
-
-	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
-	inputSequence := #( -2 -2 -2 3 3 3 1 -2 ).
-	f := PMFastFourierTransform data: inputSequence.
-
-	f transform.
-	f inverseTransform.
-
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
-	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
-	self assert: zeroedImaginaryData equals: 8.
-	self assert: zeroedRealData equals: 8
-]
-
-{ #category : #tests }
 PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
 
 	| cosineWaveSignal randomizedCosineWaveSignal f |
@@ -87,4 +51,40 @@ PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance 
 	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
 	f chop: 2.01.
 	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
+]
+
+{ #category : #tests }
+PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForLargeDataSets [
+
+	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	inputSequence := self generateCosineWaveSignal: 256.
+	f := PMFastFourierTransform data: inputSequence.
+
+	f transform.
+	f inverseTransform.
+
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	inputOutputDiff := f realData - inputSequence.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 256.
+	self assert: zeroedRealData equals: 256.
+
+	PMMitchellMooreGenerator reset: 1
+]
+
+{ #category : #tests }
+PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForSmallDataSets [
+
+	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	inputSequence := #( -2 -2 -2 3 3 3 1 -2 ).
+	f := PMFastFourierTransform data: inputSequence.
+
+	f transform.
+	f inverseTransform.
+
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	inputOutputDiff := f realData - inputSequence.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	self assert: zeroedImaginaryData equals: 8.
+	self assert: zeroedRealData equals: 8
 ]
