@@ -775,6 +775,11 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
 ]
 
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testWeCannotTakeReciprocalOfZeroComplexNumbers [
+	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
+]
+
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
 
