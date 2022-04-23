@@ -63,11 +63,11 @@ PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForLargeDataSets [
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]).
 	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
-	self assert: zeroedImaginaryData equals: inputSequence size.
-	self assert: zeroedRealData equals: inputSequence size.
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]).
+	self assert: zeroedImaginaryData size equals: inputSequence size.
+	self assert: zeroedRealData size equals: inputSequence size.
 	
 ]
 
@@ -81,9 +81,9 @@ PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForSmallDataSets [
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]).
 	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
-	self assert: zeroedImaginaryData equals: inputSequence size.
-	self assert: zeroedRealData equals: inputSequence size
+	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]).
+	self assert: zeroedImaginaryData size equals: inputSequence size.
+	self assert: zeroedRealData size equals: inputSequence size
 ]
