@@ -5,8 +5,7 @@ Class {
 }
 
 { #category : #asserting }
-PMFFTTest >> assertNoDataLossInDiscreteFourierTransferOf: inputSequence [
-
+PMFFTTest >> assertDiscreteFourierTransformOf: inputSequence hasSize: size [ 
 	| zeroedRealData f zeroedImaginaryData inputOutputDiff |
 	f := PMFastFourierTransform data: inputSequence.
 
@@ -16,8 +15,8 @@ PMFFTTest >> assertNoDataLossInDiscreteFourierTransferOf: inputSequence [
 	zeroedImaginaryData := f imaginaryData select: [ :i | i equalsTo: 0 ].
 	inputOutputDiff := f realData - inputSequence.
 	zeroedRealData := inputOutputDiff select: [ :i | i equalsTo: 0 ].
-	self assert: zeroedImaginaryData size equals: inputSequence size.
-	self assert: zeroedRealData size equals: inputSequence size
+	self assert: zeroedImaginaryData size equals: size.
+	self assert: zeroedRealData size equals: size
 ]
 
 { #category : #tests }
@@ -74,7 +73,7 @@ PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForLargeDataSets [
 
 	| inputSequence |
 	inputSequence := self generateCosineWaveSignal: 256.
-	self assertNoDataLossInDiscreteFourierTransferOf: inputSequence
+	self assertDiscreteFourierTransformOf: inputSequence hasSize: 256.
 ]
 
 { #category : #tests }
@@ -82,5 +81,5 @@ PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForSmallDataSets [
 
 	| inputSequence |
 	inputSequence := #(  -2  -2  -2 3 3 3 1  -2 ).
-	self assertNoDataLossInDiscreteFourierTransferOf: inputSequence
+	self assertDiscreteFourierTransformOf: inputSequence hasSize: 8.
 ]
