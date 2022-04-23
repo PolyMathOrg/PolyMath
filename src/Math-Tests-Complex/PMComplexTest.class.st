@@ -178,7 +178,7 @@ PMComplexTest >> testBug1 [
 	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testCloseTo [
 
 	self assert: 2 + 3.000000000000001i closeTo: 2 + 3i.
@@ -186,21 +186,21 @@ PMComplexTest >> testCloseTo [
 	self assert: 2.000000000000001 + 3.000000000000001i closeTo: 2 + 3i.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testCloseToReal [
 
 	self assert: 2 + 0.000000000000001i closeTo: 2.
 	self assert: 2.000000000000001 + 0.000000000000001i closeTo: 2.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testCloseToRealWithPrecision [
 
 	self assert: (2 + 0.001i closeTo: 2 precision: 0.01).
 	self assert: (2.001 + 0.001i closeTo: 2 precision: 0.01).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testCloseToWithPrecision [
 
 	self assert: (2 + 3.001i closeTo: 2 + 3i precision: 0.01).
@@ -541,14 +541,14 @@ PMComplexTest >> testNew [
 	self assert: c imaginary equals: 0
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testNotCloseToRealWithPrecision [
 
 	self deny: (2 + 0.001i closeTo: 2 precision: 0.000001).
 	self deny: (2.001 + 0.001i closeTo: 2 precision: 0.000001).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - close to' }
 PMComplexTest >> testNotCloseToWithPrecision [
 
 	self deny: (2 + 3.001i closeTo: 2 + 3i precision: 0.000001).
