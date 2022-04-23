@@ -162,8 +162,8 @@ PMComplexTest >> testArcTanDenominator [
 	self assert: (c2 arcTan: c1 * c1) equals: Float pi
 ]
 
-{ #category : #tests }
-PMComplexTest >> testArg [
+{ #category : #'testing - polar coordinates' }
+PMComplexTest >> testArgOfPureImaginaryNumber [
 	"self run: #testArg"
 
 	"self debug: #testArg"
