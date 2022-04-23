@@ -403,6 +403,21 @@ PMComplex >> asComplex [
 	^self
 ]
 
+{ #category : #comparing }
+PMComplex >> closeTo: aNumber precision: aPrecision [
+	"A complex number self is close to a complex number other with precision epsilon if both
+	self real is close to other real with precision epsilon and
+	self imaginary is close to other imaginary with precision epsilon.
+	
+	In case aNumber is real and not complex, we convert it to a complex number
+	other = aNumber + 0i"
+	| other |
+	other := aNumber asComplex.
+	
+	^ (real closeTo: other real precision: aPrecision) and: [ 
+		imaginary closeTo: other imaginary precision: aPrecision ].
+]
+
 { #category : #arithmetic }
 PMComplex >> complexConjugate [
 

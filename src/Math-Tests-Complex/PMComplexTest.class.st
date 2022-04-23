@@ -179,6 +179,36 @@ PMComplexTest >> testBug1 [
 ]
 
 { #category : #tests }
+PMComplexTest >> testCloseTo [
+
+	self assert: 2 + 3.000000000000001i closeTo: 2 + 3i.
+	self assert: 2.000000000000001 + 3i closeTo: 2 + 3i.
+	self assert: 2.000000000000001 + 3.000000000000001i closeTo: 2 + 3i.
+]
+
+{ #category : #tests }
+PMComplexTest >> testCloseToReal [
+
+	self assert: 2 + 0.000000000000001i closeTo: 2.
+	self assert: 2.000000000000001 + 0.000000000000001i closeTo: 2.
+]
+
+{ #category : #tests }
+PMComplexTest >> testCloseToRealWithPrecision [
+
+	self assert: (2 + 0.001i closeTo: 2 precision: 0.01).
+	self assert: (2.001 + 0.001i closeTo: 2 precision: 0.01).
+]
+
+{ #category : #tests }
+PMComplexTest >> testCloseToWithPrecision [
+
+	self assert: (2 + 3.001i closeTo: 2 + 3i precision: 0.01).
+	self assert: (2.001 + 3i closeTo: 2 + 3i precision: 0.01).
+	self assert: (2.001 + 3.001i closeTo: 2 + 3i precision: 0.01).
+]
+
+{ #category : #tests }
 PMComplexTest >> testComplexAsComplex [
 	| ineg |
 	ineg := -1 i.
