@@ -5,6 +5,22 @@ Class {
 }
 
 { #category : #tests }
+PMFFTTest >> assertNoDataLossInDiscreteFourierTransferOf: inputSequence [
+
+	| zeroedRealData f zeroedImaginaryData inputOutputDiff |
+	f := PMFastFourierTransform data: inputSequence.
+
+	f transform.
+	f inverseTransform.
+
+	zeroedImaginaryData := f imaginaryData select: [ :i | i equalsTo: 0 ].
+	inputOutputDiff := f realData - inputSequence.
+	zeroedRealData := inputOutputDiff select: [ :i | i equalsTo: 0 ].
+	self assert: zeroedImaginaryData size equals: inputSequence size.
+	self assert: zeroedRealData size equals: inputSequence size
+]
+
+{ #category : #tests }
 PMFFTTest >> generateCosineWaveSignal: sampleSize [
 
 	^ (1 to: sampleSize) collect: [ :i | 
@@ -56,34 +72,15 @@ PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance 
 { #category : #tests }
 PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForLargeDataSets [
 
-	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
+	| inputSequence |
 	inputSequence := self generateCosineWaveSignal: 256.
-	f := PMFastFourierTransform data: inputSequence.
-
-	f transform.
-	f inverseTransform.
-
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]).
-	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]).
-	self assert: zeroedImaginaryData size equals: inputSequence size.
-	self assert: zeroedRealData size equals: inputSequence size.
-	
+	self assertNoDataLossInDiscreteFourierTransferOf: inputSequence
 ]
 
 { #category : #tests }
 PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForSmallDataSets [
 
-	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
-	inputSequence := #( -2 -2 -2 3 3 3 1 -2 ).
-	f := PMFastFourierTransform data: inputSequence.
-
-	f transform.
-	f inverseTransform.
-
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]).
-	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]).
-	self assert: zeroedImaginaryData size equals: inputSequence size.
-	self assert: zeroedRealData size equals: inputSequence size.
+	| inputSequence |
+	inputSequence := #(  -2  -2  -2 3 3 3 1  -2 ).
+	self assertNoDataLossInDiscreteFourierTransferOf: inputSequence
 ]
