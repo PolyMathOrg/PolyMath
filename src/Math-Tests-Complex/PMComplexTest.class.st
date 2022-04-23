@@ -46,7 +46,7 @@ PMComplexTest >> testAdaptToCollectionAndSend [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddPolynomial [
+PMComplexTest >> testAddingToAPolynomial [
 	| c poly |
 	c := 6 - 6 i.
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -55,7 +55,7 @@ PMComplexTest >> testAddPolynomial [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAdding [
+PMComplexTest >> testAddingTwoComplexNumbers [
 	"self run: #testAdding"
 
 	| c |
@@ -309,15 +309,7 @@ PMComplexTest >> testCreation [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testDividingPolynomial [
-	| c poly |
-	c := 4 + 4 i.
-	poly := PMPolynomial coefficients: #(1 0 1).
-	self assert: poly / c equals: 1 / c * poly
-]
-
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testDivision1 [
+PMComplexTest >> testDividingALargeComplexNumbersByItself [
 	"self run: #testDivision1"
 	"self debug: #testDivision1"
 	
@@ -332,6 +324,14 @@ PMComplexTest >> testDivision1 [
 	how this can be avoided."
 	
 
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testDividingPolynomialByAComplexNumber [
+	| c poly |
+	c := 4 + 4 i.
+	poly := PMPolynomial coefficients: #(1 0 1).
+	self assert: poly / c equals: 1 / c * poly
 ]
 
 { #category : #'testing - equality' }
@@ -451,6 +451,15 @@ PMComplexTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testMultiplyingByPolynomials [
+	| c poly |
+	c := 1 + 1 i.
+	poly := PMPolynomial coefficients: #(1).
+	self assert: (c * poly at: 0) equals: c.
+	self assert: (poly * c at: 0) equals: c
 ]
 
 { #category : #'testing - arithmetic' }
@@ -707,7 +716,7 @@ PMComplexTest >> testSquared [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testSubtractToPolynomial [
+PMComplexTest >> testSubtractingPolynomials [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
 	c := 1 + 3 i.
@@ -737,15 +746,6 @@ PMComplexTest >> testTanh [
 	c2 := c sinh / c cosh.
 	self assert: (c2 real closeTo: c tanh real).
 	self assert: (c2 imaginary closeTo: c tanh imaginary).
-]
-
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testTimesPolynomial [
-	| c poly |
-	c := 1 + 1 i.
-	poly := PMPolynomial coefficients: #(1).
-	self assert: (c * poly at: 0) equals: c.
-	self assert: (poly * c at: 0) equals: c
 ]
 
 { #category : #'testing - equality' }
