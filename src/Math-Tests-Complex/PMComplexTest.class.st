@@ -191,6 +191,9 @@ PMComplexTest >> testCloseToReal [
 
 	self assert: 2 + 0.000000000000001i closeTo: 2.
 	self assert: 2.000000000000001 + 0.000000000000001i closeTo: 2.
+	
+	self assert: 2 + 0i closeTo: 2.000000000000001.
+	self deny: 2 + 3i closeTo: 2.000000000000001
 ]
 
 { #category : #'testing - close to' }
