@@ -178,6 +178,11 @@ PMComplexTest >> testArgumentOfPureImaginaryNumber [
 	self assert: c arg equals: Float pi / 2
 ]
 
+{ #category : #'testing - polar coordinates' }
+PMComplexTest >> testArgumentOfPureNegativeImaginaryNumber [
+	self assert: -1 i arg equals: (Float pi / 2) negated
+]
+
 { #category : #'testing - bugs' }
 PMComplexTest >> testBug1 [
 	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
