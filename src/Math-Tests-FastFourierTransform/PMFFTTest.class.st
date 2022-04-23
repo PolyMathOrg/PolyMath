@@ -85,5 +85,5 @@ PMFFTTest >> testThatDiscreteFourierTransformDoesNotLoseDataForSmallDataSets [
 	inputOutputDiff := f realData - inputSequence.
 	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]).
 	self assert: zeroedImaginaryData size equals: inputSequence size.
-	self assert: zeroedRealData size equals: inputSequence size
+	self assert: zeroedRealData size equals: inputSequence size.
 ]
