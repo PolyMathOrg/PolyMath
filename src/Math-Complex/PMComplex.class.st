@@ -403,6 +403,21 @@ PMComplex >> asComplex [
 	^self
 ]
 
+{ #category : #comparing }
+PMComplex >> closeTo: aNumber precision: aPrecision [
+	"A complex number self is close to a complex number other with precision epsilon if both
+	self real is close to other real with precision epsilon and
+	self imaginary is close to other imaginary with precision epsilon.
+	
+	In case aNumber is real and not complex, we convert it to a complex number
+	other = aNumber + 0i"
+	| other |
+	other := aNumber asComplex.
+	
+	^ (real closeTo: other real precision: aPrecision) and: [ 
+		imaginary closeTo: other imaginary precision: aPrecision ].
+]
+
 { #category : #arithmetic }
 PMComplex >> complexConjugate [
 
@@ -704,15 +719,18 @@ PMComplex >> sinh [
 
 { #category : #'mathematical functions' }
 PMComplex >> sqrt [
+	"Return the square root of the receiver with a positive imaginary part.
+	Implementation based on: https://en.wikipedia.org/wiki/Complex_number#Square_root"
 
-	"Return the square root of the receiver with a positive imaginary part."
-
-	| u v |
-	(imaginary = 0 and: [ real >= 0 ]) ifTrue: [ 
-		^ self class real: real sqrt imaginary: 0 ].
-	v := (self abs - real / 2) sqrt.
-	u := imaginary / 2 / v.
-	^ self class real: u imaginary: v
+	| newReal newImaginary imaginarySign |
+	
+	imaginarySign := imaginary sign = 0
+		ifTrue: [ 1 ] ifFalse: [ imaginary sign ].
+	
+	newReal := ((self abs + real) / 2) sqrt.
+	newImaginary := imaginarySign * ((self abs - real) / 2) sqrt.
+	
+	^ newReal + newImaginary i
 ]
 
 { #category : #'mathematical functions' }

@@ -193,6 +193,39 @@ PMComplexTest >> testBug1 [
 	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
 ]
 
+{ #category : #'testing - close to' }
+PMComplexTest >> testCloseTo [
+
+	self assert: 2 + 3.000000000000001i closeTo: 2 + 3i.
+	self assert: 2.000000000000001 + 3i closeTo: 2 + 3i.
+	self assert: 2.000000000000001 + 3.000000000000001i closeTo: 2 + 3i.
+]
+
+{ #category : #'testing - close to' }
+PMComplexTest >> testCloseToReal [
+
+	self assert: 2 + 0.000000000000001i closeTo: 2.
+	self assert: 2.000000000000001 + 0.000000000000001i closeTo: 2.
+	
+	self assert: 2 + 0i closeTo: 2.000000000000001.
+	self deny: 2 + 3i closeTo: 2.000000000000001
+]
+
+{ #category : #'testing - close to' }
+PMComplexTest >> testCloseToRealWithPrecision [
+
+	self assert: 2 + 0.001i closeTo: 2 precision: 0.01.
+	self assert: 2.001 + 0.001i closeTo: 2 precision: 0.01.
+]
+
+{ #category : #'testing - close to' }
+PMComplexTest >> testCloseToWithPrecision [
+
+	self assert: 2 + 3.001i closeTo: 2 + 3i precision: 0.01.
+	self assert: 2.001 + 3i closeTo: 2 + 3i precision: 0.01.
+	self assert: 2.001 + 3.001i closeTo: 2 + 3i precision: 0.01.
+]
+
 { #category : #tests }
 PMComplexTest >> testComplexAsComplex [
 	| ineg |
@@ -472,6 +505,21 @@ PMComplexTest >> testNew [
 	self assert: c imaginary equals: 0
 ]
 
+{ #category : #'testing - close to' }
+PMComplexTest >> testNotCloseToRealWithPrecision [
+
+	self deny: 2 + 0.001i closeTo: 2 precision: 0.000001.
+	self deny: 2.001 + 0.001i closeTo: 2 precision: 0.000001.
+]
+
+{ #category : #'testing - close to' }
+PMComplexTest >> testNotCloseToWithPrecision [
+
+	self deny: 2 + 3.001i closeTo: 2 + 3i precision: 0.000001.
+	self deny: 2.001 + 3i closeTo: 2 + 3i precision: 0.000001.
+	self deny: 2.001 + 3.001i closeTo: 2 + 3i precision: 0.000001.
+]
+
 { #category : #tests }
 PMComplexTest >> testNumberAsComplex [
 	| minusOne |
@@ -646,7 +694,7 @@ PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWith
 	
 	squareRoot := pureImaginaryNumber sqrt.
 
-	expected := 2 sqrt negated + 2 sqrt i.
+	expected := 2 sqrt - 2 sqrt i.
 	self assert: squareRoot real closeTo: expected real.
 	self assert: squareRoot imaginary closeTo: expected imaginary
 
@@ -679,6 +727,44 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 
 	expected := PMComplex real: 6 sqrt imaginary: 0.
 	self assert: squareRoot equals: expected
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
+	"This may cause problems because of the loss of precision.
+	Very large and very small floating point numbers have different units of least precision.
+	
+	verySmall ~= 0.
+	veryLarge + verySmall = veryLarge."
+
+	| veryLarge verySmall complexNumber expected |
+	
+	veryLarge := 1e20.
+	verySmall := 1e-20.
+	
+	complexNumber := veryLarge + verySmall i.
+	expected := 1e10 + 1e-31 i.
+	
+	self assert: complexNumber sqrt closeTo: expected
+]
+
+{ #category : #tests }
+PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
+	"This may cause problems because of the loss of precision.
+	Very large and very small floating point numbers have different units of least precision.
+	
+	verySmall ~= 0.
+	veryLarge + verySmall = veryLarge."
+
+	| veryLarge verySmall complexNumber expected |
+	
+	veryLarge := 1e20.
+	verySmall := 1e-20.
+	
+	complexNumber := verySmall + veryLarge i.
+	expected := 7071067811.865476 + 7071067811.865475 i.
+	
+	self assert: complexNumber sqrt closeTo: expected
 ]
 
 { #category : #tests }
