@@ -5,9 +5,7 @@ Class {
 	#name : #PMLeastSquaresTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'matrixA',
-		'vectorB',
-		'expectedSolution'
+		'leastSquares'
 	],
 	#category : #'Math-Tests-Numerical'
 }
@@ -15,25 +13,33 @@ Class {
 { #category : #running }
 PMLeastSquaresTest >> setUp [
 	super setUp.
-	
-	"Put here a common initialization logic for tests"
-	
-	matrixA := PMMatrix rows: #(
-		(0 1.1)
-		(1 0)
-		(0 -0.2)).
-		
-	vectorB := #(1.1 -1.1 -0.2) asPMVector.
-	expectedSolution := #(-1.1 1) asPMVector.
+	leastSquares := PMLeastSquares new.
 ]
 
 { #category : #tests }
-PMLeastSquaresTest >> testSolve [
+PMLeastSquaresTest >> testSolveIntelFortran [
 
-	| leastSquares solution |
-	leastSquares := PMLeastSquares new.
+	| fixture solution |
 	
-	solution := leastSquares solveMatrixA: matrixA vectorB: vectorB.
+	fixture := PMLeastSquaresFixtureIntelFortran new.
 	
-	self assert: solution closeTo: expectedSolution.
+	solution := leastSquares
+		solveMatrixA: fixture matrixA
+		matrixB: fixture matrixB.
+	
+	self assert: solution closeTo: fixture matrixX.
+]
+
+{ #category : #tests }
+PMLeastSquaresTest >> testSolveSmallOneSolution [
+
+	| fixture solution |
+	
+	fixture := PMLeastSquaresFixtureSmallOneSolution new.
+	
+	solution := leastSquares
+		solveMatrixA: fixture matrixA
+		matrixB: fixture matrixB.
+	
+	self assert: solution closeTo: fixture matrixX.
 ]

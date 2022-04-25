@@ -5,13 +5,18 @@ Class {
 }
 
 { #category : #'as yet unclassified' }
-PMLeastSquares >> solveMatrixA: aPMMatrix vectorB: aPMVector [
+PMLeastSquares >> solveMatrixA: aMatrix matrixB: aMatrixOrVector [
 
 	"SVD-based implementation of a minimum-norm solution to the overdetermined least squares problem.
-	minimize || b - Ax ||"
+	
+	If b is a vector:
+	x' = minimize || b - Ax ||
+	
+	If B is a matrix:
+	X' = minimize || B - AX ||"
 
 	| svd u s v pseudoinverse |
-	svd := PMSingularValueDecomposition decompose: aPMMatrix.
+	svd := PMSingularValueDecomposition decompose: aMatrix.
 
 	u := svd leftSingularMatrix.
 	s := svd diagonalSingularValueMatrix.
@@ -19,5 +24,5 @@ PMLeastSquares >> solveMatrixA: aPMMatrix vectorB: aPMVector [
 
 	pseudoinverse := s inverse.
 
-	^ v * pseudoinverse * u transpose * aPMVector
+	^ v * pseudoinverse * u transpose * aMatrixOrVector
 ]
