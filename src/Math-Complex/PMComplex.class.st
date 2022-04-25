@@ -390,7 +390,7 @@ PMComplex >> arcTan: denominator [
 			res]
 ]
 
-{ #category : #arithmetic }
+{ #category : #'polar coordinates' }
 PMComplex >> arg [
 	"Answer the argument of the receiver."
 

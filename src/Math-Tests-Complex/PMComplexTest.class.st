@@ -45,8 +45,8 @@ PMComplexTest >> testAdaptToCollectionAndSend [
 	self assert: (arr * c at: 2) equals: c
 ]
 
-{ #category : #tests }
-PMComplexTest >> testAddPolynomial [
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testAddingToAPolynomial [
 	| c poly |
 	c := 6 - 6 i.
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -54,8 +54,8 @@ PMComplexTest >> testAddPolynomial [
 	self assert: (c + poly at: 0) equals: 7 - 6 i
 ]
 
-{ #category : #tests }
-PMComplexTest >> testAdding [
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testAddingTwoComplexNumbers [
 	"self run: #testAdding"
 
 	| c |
@@ -247,7 +247,7 @@ PMComplexTest >> testComplexCollection [
 		do: [ :one :two | self assert: 2 * one equals: two ]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testComplexConjugate [
 
 	self assert: (5 - 6i) complexConjugate equals: (5 + 6i).
@@ -341,16 +341,8 @@ PMComplexTest >> testCreation [
 	self assert: c imaginary equals: 5
 ]
 
-{ #category : #tests }
-PMComplexTest >> testDividingPolynomial [
-	| c poly |
-	c := 4 + 4 i.
-	poly := PMPolynomial coefficients: #(1 0 1).
-	self assert: poly / c equals: 1 / c * poly
-]
-
-{ #category : #tests }
-PMComplexTest >> testDivision1 [
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testDividingALargeComplexNumbersByItself [
 	"self run: #testDivision1"
 	"self debug: #testDivision1"
 	
@@ -365,6 +357,14 @@ PMComplexTest >> testDivision1 [
 	how this can be avoided."
 	
 
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testDividingPolynomialByAComplexNumber [
+	| c poly |
+	c := 4 + 4 i.
+	poly := PMPolynomial coefficients: #(1 0 1).
+	self assert: poly / c equals: 1 / c * poly
 ]
 
 { #category : #'testing - equality' }
@@ -479,14 +479,23 @@ PMComplexTest >> testLog [
 	self assert: (2 + 0 i log: 2) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testMultiplyingByPolynomials [
+	| c poly |
+	c := 1 + 1 i.
+	poly := PMPolynomial coefficients: #(1).
+	self assert: (c * poly at: 0) equals: c.
+	self assert: (poly * c at: 0) equals: c
+]
+
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testNegated [
 	"self run: #testNegated"
 
@@ -585,7 +594,7 @@ PMComplexTest >> testRandom [
 	self assert: r abs < c abs
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testReciprocal [
 	"self run: #testReciprocal"
 
@@ -607,7 +616,7 @@ PMComplexTest >> testReciprocalError [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
 	"self debug: #testSecureDivision1"
@@ -620,7 +629,7 @@ PMComplexTest >> testSecureDivision1 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testSecureDivision2 [
 	"self run: #testSecureDivision2"
 	"self debug: #testSecureDivision2"
@@ -792,8 +801,8 @@ PMComplexTest >> testSquared [
 	self assert: c2 real equals: 0
 ]
 
-{ #category : #tests }
-PMComplexTest >> testSubtractToPolynomial [
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testSubtractingPolynomials [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
 	c := 1 + 3 i.
@@ -825,15 +834,6 @@ PMComplexTest >> testTanh [
 	self assert: (c2 imaginary closeTo: c tanh imaginary).
 ]
 
-{ #category : #tests }
-PMComplexTest >> testTimesPolynomial [
-	| c poly |
-	c := 1 + 1 i.
-	poly := PMPolynomial coefficients: #(1).
-	self assert: (c * poly at: 0) equals: c.
-	self assert: (poly * c at: 0) equals: c
-]
-
 { #category : #'testing - equality' }
 PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
 	| z w |
@@ -859,6 +859,11 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 	 
 	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testWeCannotTakeReciprocalOfZeroComplexNumbers [
+	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
 ]
 
 { #category : #'testing - expressing complex numbers' }
