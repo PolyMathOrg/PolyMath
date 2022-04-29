@@ -230,7 +230,7 @@ PMComplexTest >> testCloseToWithPrecision [
 PMComplexTest >> testComplexAsComplex [
 	| ineg |
 	ineg := -1 i.
-	self assert: ineg asComplex == ineg.
+	self assert: ineg asComplex equals: ineg.
 ]
 
 { #category : #tests }
