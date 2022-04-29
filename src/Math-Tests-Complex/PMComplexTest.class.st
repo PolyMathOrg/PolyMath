@@ -566,7 +566,7 @@ PMComplexTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [
 	self deny: #(1 2 3) = 1 i.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testRaisedTo [
 	
 	| c c3 |
@@ -576,7 +576,7 @@ PMComplexTest >> testRaisedTo [
 	self assert: (c3 imaginary closeTo: c imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testRaisedToInteger [
 	| c c3 |
 	c := 5 - 6 i.
@@ -642,7 +642,7 @@ PMComplexTest >> testSecureDivision2 [
 	
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSin [
 	| c c2 |
 	c := (2 + 0 i).
@@ -654,7 +654,7 @@ PMComplexTest >> testSin [
 	self assert: (c sin imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSinh [
 	| c c2 |
 	c := (2 + 0 i).
@@ -672,7 +672,7 @@ PMComplexTest >> testSinh [
 	self assert: (c sinh imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 
 	"Given z = -4 + 0 i, the square root is 2 i"
@@ -685,7 +685,7 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 	self assert: squareRoot equals: 2 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	| squareRoot z |
 	z := PMComplex real: 2 imaginary: 2.
@@ -696,7 +696,7 @@ PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	self assert: squareRoot imaginary closeTo: 0.643594253
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
    | squareRoot expected pureImaginaryNumber |
 	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
@@ -709,7 +709,7 @@ PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWith
 
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
@@ -724,7 +724,7 @@ PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWith
 	self assert: squareRoot imaginary closeTo: expected imaginary
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
 
 	"Given z = 6 + 0 i, then root z = root 6"
@@ -738,7 +738,7 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 	self assert: squareRoot equals: expected
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
 	"This may cause problems because of the loss of precision.
 	Very large and very small floating point numbers have different units of least precision.
@@ -757,7 +757,7 @@ PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
 	self assert: complexNumber sqrt closeTo: expected
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 	"This may cause problems because of the loss of precision.
 	Very large and very small floating point numbers have different units of least precision.
@@ -776,7 +776,7 @@ PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 	self assert: complexNumber sqrt closeTo: expected
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfZeroIsZero [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"	
@@ -788,7 +788,7 @@ PMComplexTest >> testSquareRootOfZeroIsZero [
 	self assert: squareRoot equals: expected.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquared [
 	"self run: #testSquared"
 
