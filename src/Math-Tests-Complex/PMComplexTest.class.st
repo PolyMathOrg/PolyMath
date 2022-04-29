@@ -10,7 +10,7 @@ PMComplexTest >> testAPureImaginaryNumberIsNotEqualToZero [
 	self deny: 0 equals: 1 i.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAbs [
 	"self run: #testAbs"
 
@@ -21,7 +21,7 @@ PMComplexTest >> testAbs [
 	self assert: c abs equals: 72 sqrt
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAbsSecure [
 	"self run: #testAbsSecure"
 
@@ -63,7 +63,7 @@ PMComplexTest >> testAddingTwoComplexNumbers [
 	self assert: c equals: 0 + 2 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArCosh [
 	| c |
 	c := (2.5 + 0 i).
@@ -77,7 +77,7 @@ PMComplexTest >> testArCosh [
 		self deny: c arCosh real negative]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArSinh [
 	| c |
 	c := (2.5 + 0 i).
@@ -90,7 +90,7 @@ PMComplexTest >> testArSinh [
 		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArTanh [
 	| c |
 	c := (0.5 + 0 i).
@@ -103,7 +103,7 @@ PMComplexTest >> testArTanh [
 		self assert: (c arTanh tanh imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArcCos [
 	| c |
 	c := (0.5 + 0 i).
@@ -116,7 +116,7 @@ PMComplexTest >> testArcCos [
 		self assert: (c arcCos cos imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArcCosPlusArcSin [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -126,7 +126,7 @@ PMComplexTest >> testArcCosPlusArcSin [
 		self assert: ((c arcCos + c arcSin) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArcSin [
 	| c |
 	c := (0.5 + 0 i).
@@ -139,7 +139,7 @@ PMComplexTest >> testArcSin [
 		self assert: (c arcSin sin imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArcTan [
 	| c |
 	c := (0.5 + 0 i).
@@ -152,7 +152,7 @@ PMComplexTest >> testArcTan [
 		self assert: (c arcTan tan imaginary closeTo: c imaginary)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testArcTanDenominator [
 	| c1 c2 |
 	c1 := 1 i.
@@ -272,7 +272,7 @@ PMComplexTest >> testConversion [
 	self assert: 2 / 3 + (1 + 2 i) equals: 5 / 3 + 2 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testCos [
 	| c c2 |
 	c := (2 + 0 i).
@@ -284,7 +284,7 @@ PMComplexTest >> testCos [
 	self assert: (c cos imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testCos2PlusSin2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -294,7 +294,7 @@ PMComplexTest >> testCos2PlusSin2 [
 		self assert: ((c cos squared + c sin squared) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testCosh [
 	| c c2 |
 	c := (2 + 0 i).
@@ -309,7 +309,7 @@ PMComplexTest >> testCosh [
 	self assert: (c cosh imaginary closeTo: c2 imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testCosh2MinusSinh2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
@@ -319,7 +319,7 @@ PMComplexTest >> testCosh2MinusSinh2 [
 		self assert: ((c cosh squared - c sinh squared) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testCreation [
 	"self run: #testCreation"
 
@@ -468,12 +468,12 @@ PMComplexTest >> testIsRealNumberOnReal [
 	self assert: 0.5 isRealNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testLog [
 	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
 	self assert: (2 + 0 i log: 2) equals: 1
@@ -810,7 +810,7 @@ PMComplexTest >> testSubtractingPolynomials [
 	self assert: (poly - c at: 0) equals: -3 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testTan [
 	| c c2 |
 	c := (2 + 0 i).
@@ -822,7 +822,7 @@ PMComplexTest >> testTan [
 	self assert: (c2 imaginary closeTo: c tan imaginary).
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexTest >> testTanh [
 	| c c2 |
 	c := (2 + 0 i).
