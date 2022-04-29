@@ -2,7 +2,7 @@
 
 *This file is currently not complete but will be improve step by step.*
 
-You need to download Pharo 8.0 first.
+You need to download Pharo 9.0 or 10 first.
 
 ## Setup Iceberg
 You need an ssh key in order to commit on github. Open Iceberg tool, and then click on the settings. Check the box : "Use custom SSH keys".
@@ -14,7 +14,7 @@ All changes you'll do will be versionned in your own fork of the [PolyMath repos
 Go to PolyMath github's repository and click on the fork button on the top right. Yes, this means that you'll need a github account to contribute to PolyMath.
 
 ## Load last dev version of PolyMath
-In a fresh Pharo 8.0 image, load last development version of Polymath : 
+In a fresh Pharo 9.0 or 10 image, load last development version of Polymath : 
 
 ```Smalltalk
 Metacello new
