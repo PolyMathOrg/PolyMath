@@ -21,11 +21,11 @@
 <img width="1675" alt="Screenshot 2019-04-24 at 11 12 57" src="https://user-images.githubusercontent.com/327334/56652094-66eb7780-6682-11e9-9753-101be18df67c.png">
 
 
-You can load PolyMath 1.0.3 into a fresh Pharo 9.0 or 10 image with:
+You can load PolyMath 1.0.4 into a fresh Pharo 9.0 or 10 image with:
 
 ```Smalltalk
 Metacello new
-        repository: 'github://PolyMathOrg/PolyMath:v1.0.3';
+        repository: 'github://PolyMathOrg/PolyMath:v1.0.4';
         baseline: 'PolyMath';
         load
 ```
