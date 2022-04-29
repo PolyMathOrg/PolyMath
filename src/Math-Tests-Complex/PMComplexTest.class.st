@@ -605,7 +605,7 @@ PMComplexTest >> testReciprocal [
 	self assert: c reciprocal equals: 2 / 29 - (5 / 29) i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testReciprocalError [
 	"self run: #testReciprocalError"
 	"self debug: #testReciprocalError"
