@@ -238,9 +238,9 @@ PMComplexTest >> testComplexCollection [
 	complexNumbersMultiplied := 2 * complexNumbers .
 	
 	expected := Array with: 2 + 4 i with: 6 + 8 i with: 10 + 12 i. 
-	expected 
-		with: complexNumbersMultiplied
-		do: [ :expectedComplexNumber :actual | self assert: actual equals: expectedComplexNumber ]
+	complexNumbersMultiplied 
+		with: expected
+		do: [ :actual :expectedComplexNumber | self assert: actual equals: expectedComplexNumber ]
 ]
 
 { #category : #'testing - arithmetic' }
