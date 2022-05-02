@@ -47,14 +47,17 @@ PMComplexTest >> testAdaptToCollectionAndSend [
 
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testAddingToAPolynomial [
-	| c poly |
+
+	| c poly sum |
 	c := 6 - 6 i.
-	poly := PMPolynomial coefficients: #(1 1 1).
-	self assert: (poly + c at: 0) equals: 7 - 6 i.
-	self assert: (poly + c at: 1) equals: 1.
-	self assert: (poly + c at: 2) equals: 1.
+	poly := PMPolynomial coefficients: #( 1 1 1 ).
 	
-	self assert: (c + poly at: 0) equals: 7 - 6 i.
+	sum := poly + c.
+	
+	self assert: (sum at: 0) equals: 7 - 6 i.
+	self assert: (sum at: 1) equals: 1.
+	self assert: (sum at: 2) equals: 1.
+	self assert: (c + poly at: 0) equals: 7 - 6 i
 ]
 
 { #category : #'testing - arithmetic' }
