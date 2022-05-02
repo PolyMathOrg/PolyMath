@@ -10,7 +10,7 @@ PMComplexTest >> testAPureImaginaryNumberIsNotEqualToZero [
 	self deny: 0 equals: 1 i.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAbs [
 	"self run: #testAbs"
 
@@ -21,7 +21,7 @@ PMComplexTest >> testAbs [
 	self assert: c abs equals: 72 sqrt
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAbsSecure [
 	"self run: #testAbsSecure"
 
