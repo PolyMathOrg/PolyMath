@@ -244,7 +244,7 @@ PMComplexTest >> testComplexCollection [
 
 	complexNumbersMultiplied
 		with: expectedComplexNumbers
-		do: [ :complexNumber :expected | self assert: expected equals: complexNumber ]
+		do: [ :complexNumber :expected | self assert: complexNumber equals: expected ]
 ]
 
 { #category : #'testing - arithmetic' }
