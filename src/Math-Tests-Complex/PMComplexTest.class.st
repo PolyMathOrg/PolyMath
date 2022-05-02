@@ -71,16 +71,24 @@ PMComplexTest >> testAddingTwoComplexNumbers [
 
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testArCosh [
-	| c |
+	| c complexNumbers |
 	c := (2.5 + 0 i).
 	self assert: (c arCosh real closeTo: c real arCosh).
 	self assert: (c arCosh imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
+
+	complexNumbers := Array new: 6.
+	complexNumbers at: 1 put: -0.5 - 0.5 i.
+	complexNumbers at: 2 put: -2 - 2 i.
+	complexNumbers at: 3 put: PMComplex zero.
+	complexNumbers at: 4 put: 0.5 + 0.5 i.
+	complexNumbers at: 5 put: 2 + 2 i.
+	complexNumbers at: 6 put: 3 + 3 i.
+	
+	complexNumbers do: [ :complexNumber | 
 		self assert: (c arCosh cosh real closeTo: c real).
 		self assert: (c arCosh cosh imaginary closeTo: c imaginary).
-		self deny: c arCosh real negative]]
+		self deny: c arCosh real negative
+	]
 ]
 
 { #category : #'testing - mathematical functions' }
