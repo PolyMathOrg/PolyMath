@@ -85,9 +85,9 @@ PMComplexTest >> testArCosh [
 	complexNumbers at: 6 put: 3 + 3 i.
 	
 	complexNumbers do: [ :complexNumber | 
-		self assert: (c arCosh cosh real closeTo: c real).
-		self assert: (c arCosh cosh imaginary closeTo: c imaginary).
-		self deny: c arCosh real negative
+		self assert: (complexNumber arCosh cosh real closeTo: complexNumber real).
+		self assert: (complexNumber arCosh cosh imaginary closeTo: complexNumber imaginary).
+		self deny: complexNumber arCosh real negative
 	]
 ]
 
@@ -101,7 +101,7 @@ PMComplexTest >> testArSinh [
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
 		c := real + imag i.
 		self assert: (c arSinh sinh real closeTo: c real).
-		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]]
+		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]].
 ]
 
 { #category : #'testing - mathematical functions' }
