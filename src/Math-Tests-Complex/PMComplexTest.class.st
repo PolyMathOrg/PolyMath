@@ -598,17 +598,6 @@ PMComplexTest >> testReciprocal [
 	self assert: c reciprocal equals: 2 / 29 - (5 / 29) i
 ]
 
-{ #category : #tests }
-PMComplexTest >> testReciprocalError [
-	"self run: #testReciprocalError"
-	"self debug: #testReciprocalError"
-	
-	| c |
-	c := (0 i).
-	self should: [c reciprocal] raise: ZeroDivide
-	
-]
-
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
@@ -857,6 +846,17 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testWeCannotTakeReciprocalOfZeroComplexNumbers [
 	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
+]
+
+{ #category : #tests }
+PMComplexTest >> testWeCannotTakeTheReciprocalOfZero [
+	"self run: #testReciprocalError"
+	"self debug: #testReciprocalError"
+	
+	| c |
+	c := (0 i).
+	self should: [c reciprocal] raise: ZeroDivide
+	
 ]
 
 { #category : #'testing - expressing complex numbers' }
