@@ -17,7 +17,7 @@ PMComplexTest >> testAbs [
 	"self debug: #testAbs"
 
 	| c |
-	c := 6 i: -6.
+	c := -6 + 6 i.
 	self assert: c abs equals: 72 sqrt
 ]
 
