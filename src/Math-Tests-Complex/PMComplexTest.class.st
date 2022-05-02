@@ -228,18 +228,23 @@ PMComplexTest >> testCloseToWithPrecision [
 
 { #category : #tests }
 PMComplexTest >> testComplexCollection [
+
 	"self run: #testComplexCollection"
 
 	"self debug: #testComplexCollection"
 
-	| complexNumbers complexNumbersMultiplied |
+	| complexNumbers complexNumbersMultiplied expectedComplexNumbers |
 	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
-	
 	complexNumbersMultiplied := 2 * complexNumbers.
-	
-	complexNumbers
-		with: complexNumbersMultiplied
-		do: [ :complexNumber :expected | self assert: 2 * complexNumber equals: expected ]
+
+	expectedComplexNumbers := Array
+		                          with: 2 + 4 i
+		                          with: 6 + 8 i
+		                          with: 10 + 12 i.
+
+	complexNumbersMultiplied
+		with: expectedComplexNumbers
+		do: [ :complexNumber :expected | self assert: expected equals: complexNumber ]
 ]
 
 { #category : #'testing - arithmetic' }
