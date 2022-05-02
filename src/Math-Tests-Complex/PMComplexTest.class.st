@@ -239,7 +239,7 @@ PMComplexTest >> testComplexCollection [
 	 
 	expected 
 		with: complexNumbersMultiplied
-		do: [ :one :two | self assert: one equals: two ]
+		do: [ :expectedComplexNumber :actual | self assert: expectedComplexNumber equals: actual ]
 ]
 
 { #category : #'testing - arithmetic' }
