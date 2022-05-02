@@ -232,12 +232,14 @@ PMComplexTest >> testComplexCollection [
 
 	"self debug: #testComplexCollection"
 
-	| complexNumbersMultiplied complexNumbers |
+	| complexNumbersMultiplied complexNumbers expected |
 	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
 	complexNumbersMultiplied := 2 * complexNumbers .
-	complexNumbers 
+	expected := Array with: 2 + 4 i with: 6 + 8 i with: 10 + 12 i.
+	 
+	expected 
 		with: complexNumbersMultiplied
-		do: [ :one :two | self assert: 2 * one equals: two ]
+		do: [ :one :two | self assert: one equals: two ]
 ]
 
 { #category : #'testing - arithmetic' }
