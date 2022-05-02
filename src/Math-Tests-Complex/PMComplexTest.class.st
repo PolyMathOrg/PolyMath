@@ -227,13 +227,6 @@ PMComplexTest >> testCloseToWithPrecision [
 ]
 
 { #category : #tests }
-PMComplexTest >> testComplexAsComplex [
-	| ineg |
-	ineg := -1 i.
-	self assert: ineg asComplex == ineg.
-]
-
-{ #category : #tests }
 PMComplexTest >> testComplexCollection [
 	"self run: #testComplexCollection"
 
