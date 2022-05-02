@@ -234,7 +234,9 @@ PMComplexTest >> testComplexCollection [
 
 	| complexNumbers complexNumbersMultiplied |
 	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
+	
 	complexNumbersMultiplied := 2 * complexNumbers.
+	
 	complexNumbers
 		with: complexNumbersMultiplied
 		do: [ :complexNumber :expected | self assert: 2 * complexNumber equals: expected ]
