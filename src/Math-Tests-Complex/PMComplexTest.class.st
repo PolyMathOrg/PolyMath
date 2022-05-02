@@ -76,13 +76,14 @@ PMComplexTest >> testArCosh [
 	self assert: (c arCosh real closeTo: c real arCosh).
 	self assert: (c arCosh imaginary closeTo: 0).
 
-	complexNumbers := Array new: 6.
+	complexNumbers := Array new: 7.
 	complexNumbers at: 1 put: -0.5 - 0.5 i.
 	complexNumbers at: 2 put: -2 - 2 i.
-	complexNumbers at: 3 put: PMComplex zero.
-	complexNumbers at: 4 put: 0.5 + 0.5 i.
-	complexNumbers at: 5 put: 2 + 2 i.
-	complexNumbers at: 6 put: 3 + 3 i.
+	complexNumbers at: 3 put: -3 - 3 i.
+	complexNumbers at: 4 put: PMComplex zero.
+	complexNumbers at: 5 put: 0.5 + 0.5 i.
+	complexNumbers at: 6 put: 2 + 2 i.
+	complexNumbers at: 7 put: 3 + 3 i.
 	
 	complexNumbers do: [ :complexNumber | 
 		self assert: (complexNumber arCosh cosh real closeTo: complexNumber real).
@@ -93,15 +94,24 @@ PMComplexTest >> testArCosh [
 
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testArSinh [
-	| c |
+	| c complexNumbers |
 	c := (2.5 + 0 i).
 	self assert: (c arSinh real closeTo: c real arSinh).
 	self assert: (c arSinh imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arSinh sinh real closeTo: c real).
-		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]].
+
+	complexNumbers := Array new: 7.
+	complexNumbers at: 1 put: -0.5 - 0.5 i.
+	complexNumbers at: 2 put: -2 - 2 i.
+	complexNumbers at: 3 put: -3 - 3 i.
+	complexNumbers at: 4 put: PMComplex zero.
+	complexNumbers at: 5 put: 0.5 + 0.5 i.
+	complexNumbers at: 6 put: 2 + 2 i.
+	complexNumbers at: 7 put: 3 + 3 i.
+	
+	complexNumbers do: [ :complexNumber |
+		self assert: (complexNumber arSinh sinh real closeTo: complexNumber real).
+		self assert: (complexNumber arSinh sinh imaginary closeTo: complexNumber imaginary)
+	].
 ]
 
 { #category : #'testing - mathematical functions' }
