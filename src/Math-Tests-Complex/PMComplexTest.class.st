@@ -541,7 +541,7 @@ PMComplexTest >> testOne [
 	self assert: one imaginary equals: 0
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.
@@ -848,7 +848,7 @@ PMComplexTest >> testWeCannotTakeReciprocalOfZeroComplexNumbers [
 	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
 ]
 
-{ #category : #tests }
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testWeCannotTakeTheReciprocalOfZero [
 	"self run: #testReciprocalError"
 	"self debug: #testReciprocalError"
