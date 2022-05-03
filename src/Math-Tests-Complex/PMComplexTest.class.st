@@ -298,7 +298,7 @@ PMComplexTest >> testCosh2MinusSinh2 [
 		self assert: ((c cosh squared - c sinh squared) imaginary closeTo: 0.0)]]
 ]
 
-{ #category : #tests }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testCreation [
 	"self run: #testCreation"
 
@@ -498,7 +498,7 @@ PMComplexTest >> testNegated [
 	self assert: c negated equals: -2 - 5 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testNew [
 	| c |
 	c := PMComplex new.
