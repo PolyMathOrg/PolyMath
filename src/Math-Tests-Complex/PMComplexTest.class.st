@@ -34,17 +34,9 @@ PMComplexTest >> testAbsSecure [
 
 { #category : #tests }
 PMComplexTest >> testAdaptToCollectionAndSend [
-	| c arr expected expectedMultiplication |
+	| c arr expectedMultiplication |
 	c := 6 - 6 i.
 	arr := #(0 1 2 3 4 5).
-	expected := Array new: 6.
-	expected at: 1 put: 6 - 6 i.
-	expected at: 2 put: 7 - 6 i.
-	expected at: 3 put: 8 - 6 i.
-	expected at: 4 put: 9 - 6 i.
-	expected at: 5 put: 10 - 6 i.
-	expected at: 6 put: 11 - 6 i.
-	self assert: (arr + c) equals: expected.
 	
 	expectedMultiplication := Array new: 6.
 	expectedMultiplication at: 1 put: 0 + 0 i.
@@ -841,6 +833,22 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
  	w := -7 + 3 i.
 
  	self deny: z equals: w.
+]
+
+{ #category : #tests }
+PMComplexTest >> testWeCanAddComplexNumbersToAnArrayOfIntegers [
+	| c arr expected |
+	c := 6 - 6 i.
+	arr := #(0 1 2 3 4 5).
+	
+	expected := Array new: 6.
+	expected at: 1 put: 6 - 6 i.
+	expected at: 2 put: 7 - 6 i.
+	expected at: 3 put: 8 - 6 i.
+	expected at: 4 put: 9 - 6 i.
+	expected at: 5 put: 10 - 6 i.
+	expected at: 6 put: 11 - 6 i.
+	self assert: (arr + c) equals: expected.
 ]
 
 { #category : #'testing - expressing complex numbers' }
