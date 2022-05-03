@@ -226,23 +226,6 @@ PMComplexTest >> testCloseToWithPrecision [
 	self assert: 2.001 + 3.001i closeTo: 2 + 3i precision: 0.01.
 ]
 
-{ #category : #tests }
-PMComplexTest >> testComplexCollection [
-	"self run: #testComplexCollection"
-
-	"self debug: #testComplexCollection"
-
-	| complexNumbersMultiplied complexNumbers expected |
-	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
-	
-	complexNumbersMultiplied := 2 * complexNumbers .
-	
-	expected := Array with: 2 + 4 i with: 6 + 8 i with: 10 + 12 i. 
-	complexNumbersMultiplied 
-		with: expected
-		do: [ :actual :expectedComplexNumber | self assert: actual equals: expectedComplexNumber ]
-]
-
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testComplexConjugate [
 
@@ -480,6 +463,19 @@ PMComplexTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testMultiplyingArraysOfComplexNumbers [
+	| complexNumbersMultiplied complexNumbers expected |
+	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
+	
+	complexNumbersMultiplied := 2 * complexNumbers .
+	
+	expected := Array with: 2 + 4 i with: 6 + 8 i with: 10 + 12 i. 
+	complexNumbersMultiplied 
+		with: expected
+		do: [ :actual :expectedComplexNumber | self assert: actual equals: expectedComplexNumber ]
 ]
 
 { #category : #'testing - arithmetic' }
