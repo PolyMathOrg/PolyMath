@@ -43,8 +43,6 @@ PMComplexTest >> testAddingToAPolynomial [
 
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testAddingTwoComplexNumbers [
-	"self run: #testAdding"
-
 	| c |
 	c := 5 - 6 i + (-5 + 8 i).	"Complex with Complex"
 	self assert: c equals: 0 + 2 i
@@ -168,10 +166,6 @@ PMComplexTest >> testArgumentOfAComplexNumber [
 
 { #category : #'testing - polar coordinates' }
 PMComplexTest >> testArgumentOfAPositivePureImaginaryNumber [
-	"self run: #testArg"
-
-	"self debug: #testArg"
-
 	| c |
 	c := 0 + 5 i.
 	self assert: c arg equals: Float pi / 2
@@ -285,8 +279,6 @@ PMComplexTest >> testCosh2MinusSinh2 [
 
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testCreation [
-	"self run: #testCreation"
-
 	| c |
 	c := 5 i.
 	self assert: c real equals: 0.
@@ -307,9 +299,6 @@ PMComplexTest >> testCreation [
 
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testDividingALargeComplexNumbersByItself [
-	"self run: #testDivision1"
-	"self debug: #testDivision1"
-	
 	| c1 c2 quotient |
 	c1 := 2.0e252 + 3.0e70 i.
 	c2 := c1.
@@ -474,10 +463,6 @@ PMComplexTest >> testMultiplyingByPolynomials [
 
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testNegated [
-	"self run: #testNegated"
-
-	"self debug: #testNegated"
-
 	| c |
 	c := 2 + 5 i.
 	self assert: c negated equals: -2 - 5 i
@@ -744,9 +729,6 @@ PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfZeroIsZero [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"	
-			
 	| squareRoot expected |
 	squareRoot := PMComplex zero sqrt .
 	
@@ -756,10 +738,6 @@ PMComplexTest >> testSquareRootOfZeroIsZero [
 
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquared [
-	"self run: #testSquared"
-
-	"self debug: #testSquared"
-
 	| c c2 |
 	c := 6 - 6 i.
 	c2 := c squared.
