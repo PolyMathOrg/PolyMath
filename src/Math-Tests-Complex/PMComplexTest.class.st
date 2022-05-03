@@ -34,10 +34,6 @@ PMComplexTest >> testAbsSecure [
 
 { #category : #tests }
 PMComplexTest >> testAdaptToCollectionAndSend [
-	"self run: #testAbsSecure"
-
-	"using equalsTo since absSecure returns a slightly different Float"
-
 	| c arr expected expectedMultiplication |
 	c := 6 - 6 i.
 	arr := #(0 1 2 3 4 5).
