@@ -215,6 +215,30 @@ PMMatrixTest >> testIdentityMatrix [
 	self assert: identityMatrix equals: expectedIdentityMatrix.
 ]
 
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInversePureCRLSingularMatrixError [
+
+	self
+		should: [ (PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1))) inversePureCRL ]
+		raise: PMSingularMatrixError.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInversePureLUPSingularMatrixError [
+
+	self
+		should: [ (PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1))) inversePureLUP ]
+		raise: PMSingularMatrixError.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInverseSingularMatrixError [
+
+	self
+		should: [ (PMMatrix rows: #((1 2 3)(3 4 6))) inverse ]
+		raise: PMSingularMatrixError.
+]
+
 { #category : #tests }
 PMMatrixTest >> testIsRealOnComplexMatrix [
 	| matrix |
@@ -755,22 +779,6 @@ PMMatrixTest >> testSimpleMatrixOperations [
 	m := PMMatrix rows: #(#(-1 -2 7) #(5 6 7)).
 	self assert: m * s equals: (s * m transpose) transpose.
 	self assert: m transpose * m equals: m squared
-]
-
-{ #category : #'linear algebra' }
-PMMatrixTest >> testSingularMatrixError [
-|h f|
-h:=PMHistogram new.
-h freeExtent: true.
-1 to: 3 do:  [:i| h accumulate: i ].
-f:=PMLeastSquareFit histogram: h distributionClass: PMTriangularDistribution.
-self should: [ f evaluate ] raise: PMSingularMatrixError .
-"and not something completely incomprehensible"
-"also here:"
-self should: [ f errorMatrix ] raise: PMSingularMatrixError .
-self should: [(PMMatrix rows: #((1 2 3)(3 4 6)))inverse] raise: PMSingularMatrixError .
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureLUP] raise: PMSingularMatrixError.
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureCRL] raise: PMSingularMatrixError.
 ]
 
 { #category : #tests }
