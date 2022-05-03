@@ -409,37 +409,37 @@ PMComplexTest >> testHash [
 	self assert: aComplex copy hash equals: aComplex hash
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsComplexNumberOnComplex [
 	
 	self assert: (3 + 2i) isComplexNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsComplexNumberOnNaN [
 	
 	self deny: Character space isComplexNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsComplexNumberOnReal [
 	
 	self deny: 5 isComplexNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsRealNumberOnComplex [
 	
 	self deny: (3 + 2i) isRealNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsRealNumberOnNaN [
 	
 	self deny: Character space isRealNumber
 ]
 
-{ #category : #tests }
+{ #category : #'testing - type checking' }
 PMComplexTest >> testIsRealNumberOnReal [
 	
 	self assert: 0.5 isRealNumber
