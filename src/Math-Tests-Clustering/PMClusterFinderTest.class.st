@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'dataServer'
 	],
-	#category : 'Math-Tests-Clustering'
+	#category : #'Math-Tests-Clustering'
 }
 
 { #category : #utils }
@@ -12,30 +12,44 @@ PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection
 	"Private - Generate a random point around the given center and insert it into the collection.
 	aNumber is the sigma for the distance to the center"
 	
-	| r phi psi localVector |
+	| random r phi psi localVector |
+	random := Random new.
+	
 	r := (PMNormalDistribution new: 0 sigma: aNumber) random.
-	phi := Float pi random.
-	psi := Float pi random.
+	
+	phi := random nextBetween: 0 and: Float pi.
+	psi := random nextBetween: 0 and: Float pi.
+	
 	localVector := PMVector new: 3.
-	localVector at: 1 put: ( phi sin * psi sin * r );
-					   at: 2 put: ( phi cos * psi sin * r );
-					   at: 3 put: ( psi cos * r ).
+	localVector
+		at: 1 put: (phi sin * psi sin * r);
+		at: 2 put: (phi cos * psi sin * r);
+		at: 3 put: (psi cos * r).
+		
 	aCollection add: (localVector + aVector).
 ]
 
 { #category : #utils }
 PMClusterFinderTest >> generatedPoints: anInteger [
 	"Private - Generate random points into aCollection. 3 clusters are used"
-	| centers results |
-	centers := Array new: 3.
-	centers at: 1 put: #( 200 200  200) asPMVector;
-				 at: 2 put: #(-200 200  200) asPMVector;
-				 at: 3 put: #( 200 200 -200) asPMVector.
+	| centers results random randomNumber |
+	
+	centers := {
+		#( 200 200  200) asPMVector .
+		#(-200 200  200) asPMVector .
+		#( 200 200 -200) asPMVector }.
+		
 	results := OrderedCollection new.
 	PMMitchellMooreGenerator reset: 6.
-		"make tests non-random to make sure that they will not fail on the integrator server."
-	anInteger timesRepeat: [ self accumulateAround: ( centers at: (3 random + 1)) size: 1 into: results ].
-	^results
+	
+	"make tests non-random to make sure that they will not fail on the integrator server."
+	random := Random new.
+	
+	anInteger timesRepeat: [
+		randomNumber := random nextIntegerBetween: 1 and: 3.
+		self accumulateAround: (centers at: randomNumber) size: 1 into: results ].
+	
+	^ results
 ]
 
 { #category : #setUp }
