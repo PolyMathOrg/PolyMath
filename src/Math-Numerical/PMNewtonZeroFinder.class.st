@@ -49,7 +49,7 @@ PMNewtonZeroFinder >> computeInitialValues [
 	derivativeBlock isNil
 		ifTrue: [ derivativeBlock := self defaultDerivativeBlock].
 	n := 0.
-	[ (derivativeBlock value: result) equalsTo: 0]
+	[ (derivativeBlock value: result) closeTo: 0]
 		whileTrue: [ n := n + 1.
 					 n > maximumIterations
 						ifTrue: [ self error: 'Function''s derivative seems to be zero everywhere'].

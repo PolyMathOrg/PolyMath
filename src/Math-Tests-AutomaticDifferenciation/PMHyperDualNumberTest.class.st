@@ -75,21 +75,18 @@ PMHyperDualNumberTest >> testAdd [
 
 { #category : #'tests-mathematical functions' }
 PMHyperDualNumberTest >> testArcCos [
+
 	| a |
-	self
-		assert:
-			(zero arcCos
-				equalsTo:
-					(PMHyperDualNumber
-						value: Float halfPi
-						eps: -1
-						eps2: -1
-						eps1eps2: 0)).
+	self assert: (zero arcCos closeTo: (PMHyperDualNumber
+				  value: Float halfPi
+				  eps: -1
+				  eps2: -1
+				  eps1eps2: 0)).
 	a := (PMHyperDualNumber
-		value: 1.0 predecessor
-		eps: 1
-		eps2: 1
-		eps1eps2: 0) arcCos.
+		      value: 1.0 predecessor
+		      eps: 1
+		      eps2: 1
+		      eps1eps2: 0) arcCos.
 	self assert: (a value closeTo: 0).
 	self assert: a eps < -1e6.
 	self assert: a eps2 < -1e6.
@@ -141,22 +138,19 @@ PMHyperDualNumberTest >> testConverting [
 
 { #category : #'tests-mathematical functions' }
 PMHyperDualNumberTest >> testCos [
-	self
-		assert:
-			((PMHyperDualNumber
-				value: Float halfPi negated
-				eps: 1
-				eps2: 1
-				eps1eps2: 0) cos equalsTo: zero).
-	self
-		assert:
-			((PMHyperDualNumber
-				value: Float halfPi
-				eps: 1
-				eps2: 1
-				eps1eps2: 0) cos equalsTo: zero negated).
-	self
-		assert: ((PMHyperDualNumber value: Float halfPi) cos equalsTo: zeroc)
+
+	self assert: ((PMHyperDualNumber
+			  value: Float halfPi negated
+			  eps: 1
+			  eps2: 1
+			  eps1eps2: 0) cos closeTo: zero).
+	self assert: ((PMHyperDualNumber
+			  value: Float halfPi
+			  eps: 1
+			  eps2: 1
+			  eps1eps2: 0) cos closeTo: zero negated).
+	self assert:
+		((PMHyperDualNumber value: Float halfPi) cos closeTo: zeroc)
 ]
 
 { #category : #'tests-arithmetic' }
@@ -206,36 +200,25 @@ PMHyperDualNumberTest >> testEqual [
 
 { #category : #tests }
 PMHyperDualNumberTest >> testEqualsTo [
-	self assert: (zeroc equalsTo: zeroc).
-	self deny: (zeroc equalsTo: zero).
-	self assert: (zero equalsTo: zero).
-	self
-		assert:
-			(one
-				equalsTo:
-					(PMHyperDualNumber
-						value: 1.0000000001
-						eps: 1.0000000001
-						eps2: 1.0000000001
-						eps1eps2: 0.0000000001)).
-	self
-		deny:
-			(one
-				equalsTo:
-					(PMHyperDualNumber
-						value: 1.0000000001
-						eps: 1.0000000001
-						eps2: 1.0000000001
-						eps1eps2: 0.001)).
-	self
-		deny:
-			(one
-				equalsTo:
-					(PMHyperDualNumber
-						value: 1.0000000001
-						eps: 1.0000000001
-						eps2: 1.001
-						eps1eps2: 0.0000000001))
+
+	self assert: (zeroc closeTo: zeroc).
+	self deny: (zeroc closeTo: zero).
+	self assert: (zero closeTo: zero).
+	self assert: (one closeTo: (PMHyperDualNumber
+				  value: 1.0000000001
+				  eps: 1.0000000001
+				  eps2: 1.0000000001
+				  eps1eps2: 0.0000000001)).
+	self deny: (one closeTo: (PMHyperDualNumber
+				  value: 1.0000000001
+				  eps: 1.0000000001
+				  eps2: 1.0000000001
+				  eps1eps2: 0.001)).
+	self deny: (one closeTo: (PMHyperDualNumber
+				  value: 1.0000000001
+				  eps: 1.0000000001
+				  eps2: 1.001
+				  eps1eps2: 0.0000000001))
 ]
 
 { #category : #'tests-mathematical functions' }
@@ -348,10 +331,10 @@ PMHyperDualNumberTest >> testPrintOn [
 PMHyperDualNumberTest >> testRaisedTo [
 
 	| a b |
-	self assert: ((three raisedTo: 2) equalsTo: three squared).
+	self assert: ((three raisedTo: 2) closeTo: three squared).
 	self assertEquality: (three raisedTo: 0) and: onec.
 	self assert:
-		((three + one raisedTo: 1 / 2) equalsTo: (PMHyperDualNumber
+		((three + one raisedTo: 1 / 2) closeTo: (PMHyperDualNumber
 				  value: 2
 				  eps: 1 / 2
 				  eps2: 1 / 2
@@ -364,7 +347,7 @@ PMHyperDualNumberTest >> testRaisedTo [
 	self assert: (a eps2 closeTo: b).
 	self assert: (a eps1eps2 closeTo: 2 ln * b).
 	self assertEquality: (1 raisedTo: three) and: onec.
-	self assert: ((one raisedTo: one) equalsTo: (PMHyperDualNumber
+	self assert: ((one raisedTo: one) closeTo: (PMHyperDualNumber
 				  value: 1
 				  eps: 1
 				  eps2: 1
@@ -418,32 +401,25 @@ PMHyperDualNumberTest >> testReciprocal [
 
 { #category : #'tests-mathematical functions' }
 PMHyperDualNumberTest >> testSin [
-	self
-		assert:
-			((PMHyperDualNumber
-				value: Float halfPi negated
-				eps: 1
-				eps2: 1
-				eps1eps2: 0) sin
-				equalsTo:
-					(PMHyperDualNumber
-						value: -1
-						eps: 0
-						eps2: 0
-						eps1eps2: 1)).
-	self
-		assert:
-			((PMHyperDualNumber
-				value: Float halfPi
-				eps: 1
-				eps2: 1
-				eps1eps2: 0) sin
-				equalsTo:
-					(PMHyperDualNumber
-						value: 1
-						eps: 0
-						eps2: 0
-						eps1eps2: -1)).
+
+	self assert: ((PMHyperDualNumber
+			  value: Float halfPi negated
+			  eps: 1
+			  eps2: 1
+			  eps1eps2: 0) sin closeTo: (PMHyperDualNumber
+				  value: -1
+				  eps: 0
+				  eps2: 0
+				  eps1eps2: 1)).
+	self assert: ((PMHyperDualNumber
+			  value: Float halfPi
+			  eps: 1
+			  eps2: 1
+			  eps1eps2: 0) sin closeTo: (PMHyperDualNumber
+				  value: 1
+				  eps: 0
+				  eps2: 0
+				  eps1eps2: -1)).
 	self assertEquality: zero sin and: zero
 ]
 
@@ -488,19 +464,16 @@ PMHyperDualNumberTest >> testSqrt [
 
 { #category : #'tests-mathematical functions' }
 PMHyperDualNumberTest >> testSquared [
-	self
-		assert:
-			((PMHyperDualNumber
-				value: -3
-				eps: 5
-				eps2: 1
-				eps1eps2: 0) squared
-				equalsTo:
-					(PMHyperDualNumber
-						value: 9
-						eps: -30
-						eps2: -6
-						eps1eps2: 10)).
+
+	self assert: ((PMHyperDualNumber
+			  value: -3
+			  eps: 5
+			  eps2: 1
+			  eps1eps2: 0) squared closeTo: (PMHyperDualNumber
+				  value: 9
+				  eps: -30
+				  eps2: -6
+				  eps1eps2: 10)).
 	zeroc eps1eps2: 2.
 	self assertEquality: zero squared and: zeroc
 ]

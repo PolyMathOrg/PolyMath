@@ -5,33 +5,37 @@ Class {
 }
 
 { #category : #running }
-PMQRTest >> mpTestFunction:aMatrix [
- |inv mult| 
-		inv := aMatrix mpInverse .
-		mult := inv * aMatrix.
-		self assert: (aMatrix * mult equalsTo: aMatrix).
-		self assert: mult * inv closeTo: inv.
-		self assert: mult transpose closeTo: mult.
-		mult := aMatrix * inv.
-		self assert: mult transpose closeTo: mult. 
+PMQRTest >> mpTestFunction: aMatrix [
+
+	| inv mult |
+	inv := aMatrix mpInverse.
+	mult := inv * aMatrix.
+	self assert: (aMatrix * mult closeTo: aMatrix).
+	self assert: mult * inv closeTo: inv.
+	self assert: mult transpose closeTo: mult.
+	mult := aMatrix * inv.
+	self assert: mult transpose closeTo: mult
 ]
 
 { #category : #tests }
 PMQRTest >> testMPInverse [
+
 	| a |
-	a:=(PMMatrix new initializeRows: #(#(5 40 1) #(0 0 1) #(0 0 1) ) ).
+	a := PMMatrix new initializeRows:
+		     #( #( 5 40 1 ) #( 0 0 1 ) #( 0 0 1 ) ).
 	self mpTestFunction: a.
-	a :=a *  (PMMatrix rows: 3 columns: 3 random:  5.0)  .
+	a := a * (PMMatrix rows: 3 columns: 3 random: 5.0).
 	self mpTestFunction: a.
-	a :=PMMatrix new initializeRows: #(#(5 40 1 2.5) #(0 0 1 2.5) #(0 0 1 2.5) ) .
+	a := PMMatrix new initializeRows:
+		     #( #( 5 40 1 2.5 ) #( 0 0 1 2.5 ) #( 0 0 1 2.5 ) ).
 	self mpTestFunction: a.
-	a:=	a transpose .
+	a := a transpose.
 	self mpTestFunction: a.
-	3 timesRepeat: [
-		a :=PMMatrix rows: 3 columns: 3 random: 1.0 .
-		self assert: (a mpInverse equalsTo: a inverse  )  .
-		a :=PMSymmetricMatrix new: 4 random: 1.0 .
-		self assert: (a mpInverse equalsTo: a inverse  )  ]
+	3 timesRepeat: [ 
+		a := PMMatrix rows: 3 columns: 3 random: 1.0.
+		self assert: (a mpInverse closeTo: a inverse).
+		a := PMSymmetricMatrix new: 4 random: 1.0.
+		self assert: (a mpInverse closeTo: a inverse) ]
 ]
 
 { #category : #tests }
@@ -58,30 +62,44 @@ PMQRTest >> testOrthogonalize [
 
 { #category : #tests }
 PMQRTest >> testQRFactorization [
-	| a qr|
-5 timesRepeat:[   
-	a :=PMMatrix  rows: 5 columns: 4 random: 10.0. 
-	qr :=a qrFactorization .
-	self assert:( a equalsTo: (qr first * qr second )  ).
-	self assert: ( (qr first squared ) equalsTo: (PMSymmetricMatrix identity: qr first numberOfColumns)    )  .
-	2 to: (qr second numberOfRows) do: [:r| self  assert: (  ((qr second rowAt: r)first: (r-1)) equalsTo:  (Array new: (r-1) withAll:   0 ) ) ].
-	
-	qr :=a qrFactorizationWithPivoting .
-	self assert:( a equalsTo: (qr first * (qr second inversePivotColumns:  (qr at:3)) )  ).
-	self assert: ( (qr first squared ) equalsTo: (PMSymmetricMatrix identity: qr first numberOfColumns)    )  .
-	2 to: (qr second numberOfRows) do: [:r| self  assert: (  ((qr second rowAt: r)first: (r-1)) equalsTo:  (Array new: (r-1) withAll:   0 ) ) ].
-	
-	a :=PMSymmetricMatrix new: 4 random: 10.0. 
-	qr :=a qrFactorization .
-	self assert:( a equalsTo: (qr first * qr second )  ).
-	self assert: ( (qr first squared ) equalsTo: (PMSymmetricMatrix identity: qr first numberOfColumns)    )  .
-	2 to: (qr second numberOfRows) do: [:r| self  assert: (  ((qr second rowAt: r)first: (r-1)) equalsTo:  (Array new: (r-1) withAll:   0 ) ) ].
-	
-	qr :=a qrFactorizationWithPivoting .
-	self assert:( a equalsTo: (qr first * (qr second inversePivotColumns:  (qr at:3)) )  ).
-	self assert: ( (qr first squared ) equalsTo: (PMSymmetricMatrix identity: qr first numberOfColumns)    )  .
-	2 to: (qr second numberOfRows) do: [:r| self  assert: (  ((qr second rowAt: r)first: (r-1)) equalsTo:  (Array new: (r-1) withAll:   0 ) ) ].
-	]
+
+	| a qr |
+	5 timesRepeat: [ 
+		a := PMMatrix rows: 5 columns: 4 random: 10.0.
+		qr := a qrFactorization.
+		self assert: (a closeTo: qr first * qr second).
+		self assert: (qr first squared closeTo:
+				 (PMSymmetricMatrix identity: qr first numberOfColumns)).
+		2 to: qr second numberOfRows do: [ :r | 
+			self assert: (((qr second rowAt: r) first: r - 1) closeTo:
+					 (Array new: r - 1 withAll: 0)) ].
+
+		qr := a qrFactorizationWithPivoting.
+		self assert:
+			(a closeTo: qr first * (qr second inversePivotColumns: (qr at: 3))).
+		self assert: (qr first squared closeTo:
+				 (PMSymmetricMatrix identity: qr first numberOfColumns)).
+		2 to: qr second numberOfRows do: [ :r | 
+			self assert: (((qr second rowAt: r) first: r - 1) closeTo:
+					 (Array new: r - 1 withAll: 0)) ].
+
+		a := PMSymmetricMatrix new: 4 random: 10.0.
+		qr := a qrFactorization.
+		self assert: (a closeTo: qr first * qr second).
+		self assert: (qr first squared closeTo:
+				 (PMSymmetricMatrix identity: qr first numberOfColumns)).
+		2 to: qr second numberOfRows do: [ :r | 
+			self assert: (((qr second rowAt: r) first: r - 1) closeTo:
+					 (Array new: r - 1 withAll: 0)) ].
+
+		qr := a qrFactorizationWithPivoting.
+		self assert:
+			(a closeTo: qr first * (qr second inversePivotColumns: (qr at: 3))).
+		self assert: (qr first squared closeTo:
+				 (PMSymmetricMatrix identity: qr first numberOfColumns)).
+		2 to: qr second numberOfRows do: [ :r | 
+			self assert: (((qr second rowAt: r) first: r - 1) closeTo:
+					 (Array new: r - 1 withAll: 0)) ] ]
 ]
 
 { #category : #tests }

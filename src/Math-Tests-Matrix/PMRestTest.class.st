@@ -1,20 +1,18 @@
 Class {
 	#name : #PMRestTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
 PMRestTest >> testEqualsTo [
-|a b|
-a:=PMMatrix rows: 5 columns: 7 random: 5.0 .
-b:=a deepCopy.
-self assert: (a equalsTo: b).
-b rowAt: 4 columnAt: 6 put: 6.
-self deny: (a equalsTo: b).
 
-
-
+	| a b |
+	a := PMMatrix rows: 5 columns: 7 random: 5.0.
+	b := a deepCopy.
+	self assert: (a closeTo: b).
+	b rowAt: 4 columnAt: 6 put: 6.
+	self deny: (a closeTo: b)
 ]
 
 { #category : #tests }

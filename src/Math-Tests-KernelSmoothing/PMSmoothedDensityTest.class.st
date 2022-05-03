@@ -85,12 +85,17 @@ PMSmoothedDensityTest >> testKernelAndData [
 
 { #category : #tests }
 PMSmoothedDensityTest >> testNormal [
-|r|
-density normal.
-r:=0.2419707245.
-self assert: (( #(1 0 -1 -2.9)collect:[:x|density kernel value: x])equalsTo: 
-				(Array with:r with: 0.3989422804 with: r with: 0.0059525324197)).
 
+	| r |
+	density normal.
+	r := 0.2419707245.
+	self assert:
+		((#( 1 0 -1 -2.9 ) collect: [ :x | density kernel value: x ]) 
+			 closeTo: (Array
+					  with: r
+					  with: 0.3989422804
+					  with: r
+					  with: 0.0059525324197))
 ]
 
 { #category : #tests }
@@ -113,7 +118,7 @@ PMSmoothedDensityTest >> testValue [
 
 	self assert: ((density value: 0.5) closeTo: 0.1632610644).
 	self assert:
-		((density value: #( 0.5 1 )) equalsTo: #( 0.1632610644 0.28923996 )).
+		((density value: #( 0.5 1 )) closeTo: #( 0.1632610644 0.28923996 )).
 	density epanechnikov.
 	self assert: (density value: -0.4) equals: 0.
 	self assert: ((density value: 0.5) closeTo: 0.177824205).

@@ -46,10 +46,10 @@ self assert: (r>go computePrecision  ).
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testEvaluate [
-go maximumIterations: 170.
-go chromosomeManager populationSize: 50.
-self assert: (go evaluate equalsTo: #(0 0 0)  ).
 
+	go maximumIterations: 170.
+	go chromosomeManager populationSize: 50.
+	self assert: (go evaluate closeTo: #( 0 0 0 ))
 ]
 
 { #category : #tests }

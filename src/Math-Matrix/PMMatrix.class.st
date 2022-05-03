@@ -483,10 +483,12 @@ PMMatrix >> elementwiseProductWithMatrix: aMatrix [
 
 { #category : #'as yet unclassified' }
 PMMatrix >> equalsTo: aMatrix [
-	self rows 
-			with: aMatrix rows  
-			do: [:a :b| (a equalsTo: b) ifFalse: [ ^false ] ].
-	^ true 
+
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+	
+	^ self closeTo: aMatrix
 ]
 
 { #category : #'as yet unclassified' }
