@@ -32,23 +32,6 @@ PMComplexTest >> testAbsSecure [
 	self assert: (c absSecure equalsTo: 72 sqrt)
 ]
 
-{ #category : #tests }
-PMComplexTest >> testAdaptToCollectionAndSend [
-	| c arr expectedMultiplication |
-	c := 6 - 6 i.
-	arr := #(0 1 2 3 4 5).
-	
-	expectedMultiplication := Array new: 6.
-	expectedMultiplication at: 1 put: 0 + 0 i.
-	expectedMultiplication at: 2 put: 6 - 6 i.
-	expectedMultiplication at: 3 put: 12 - 12 i.
-	expectedMultiplication at: 4 put: 18 - 18 i.
-	expectedMultiplication at: 5 put: 24 - 24 i.
-	expectedMultiplication at: 6 put: 30 - 30 i.
-	self assert: (arr * c at: 2) equals: c.
-	self assert: (arr * c) equals: expectedMultiplication .
-]
-
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testAddingToAPolynomial [
 	| c poly |
@@ -849,6 +832,23 @@ PMComplexTest >> testWeCanAddComplexNumbersToAnArrayOfIntegers [
 	expected at: 5 put: 10 - 6 i.
 	expected at: 6 put: 11 - 6 i.
 	self assert: (arr + c) equals: expected.
+]
+
+{ #category : #tests }
+PMComplexTest >> testWeCanMultiplyAnArrayOfIntegersByAComplexNumber [
+	| c arr expected |
+	c := 6 - 6 i.
+	arr := #(0 1 2 3 4 5).
+	
+	expected := Array new: 6.
+	expected at: 1 put: 0 + 0 i.
+	expected at: 2 put: 6 - 6 i.
+	expected at: 3 put: 12 - 12 i.
+	expected at: 4 put: 18 - 18 i.
+	expected at: 5 put: 24 - 24 i.
+	expected at: 6 put: 30 - 30 i.
+	self assert: (arr * c at: 2) equals: c.
+	self assert: (arr * c) equals: expected .
 ]
 
 { #category : #'testing - expressing complex numbers' }
