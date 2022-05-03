@@ -847,7 +847,6 @@ PMComplexTest >> testWeCanMultiplyAnArrayOfIntegersByAComplexNumber [
 	expected at: 4 put: 18 - 18 i.
 	expected at: 5 put: 24 - 24 i.
 	expected at: 6 put: 30 - 30 i.
-	self assert: (arrayOfIntegers * c at: 2) equals: c.
 	self assert: (arrayOfIntegers * c) equals: expected .
 ]
 
