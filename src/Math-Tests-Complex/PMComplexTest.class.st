@@ -48,18 +48,6 @@ PMComplexTest >> testAddingTwoComplexNumbers [
 	self assert: c equals: 0 + 2 i
 ]
 
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testAdditionIsCommutativeWithAllRealNumbers [
-	self assert: 1 + 2 i + 1 equals: 2 + 2 i.
-	self assert: 1 + (1 + 2 i) equals: 2 + 2 i.
-	
-	self assert: 1 + 2 i + 1.0 equals: 2.0 + 2 i.
-	self assert: 1.0 + (1 + 2 i) equals: 2.0 + 2 i.
-	
-	self assert: 1 + 2 i + (2 / 3) equals: 5 / 3 + 2 i.
-	self assert: 2 / 3 + (1 + 2 i) equals: 5 / 3 + 2 i
-]
-
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testArCosh [
 	| c |
@@ -228,6 +216,18 @@ PMComplexTest >> testComplexConjugate [
 { #category : #'testing - equality' }
 PMComplexTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
 	self deny: 1 + 3 i equals: 1.
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testConversion [
+	self assert: 1 + 2 i + 1 equals: 2 + 2 i.
+	self assert: 1 + (1 + 2 i) equals: 2 + 2 i.
+	
+	self assert: 1 + 2 i + 1.0 equals: 2.0 + 2 i.
+	self assert: 1.0 + (1 + 2 i) equals: 2.0 + 2 i.
+	
+	self assert: 1 + 2 i + (2 / 3) equals: 5 / 3 + 2 i.
+	self assert: 2 / 3 + (1 + 2 i) equals: 5 / 3 + 2 i
 ]
 
 { #category : #'testing - mathematical functions' }
