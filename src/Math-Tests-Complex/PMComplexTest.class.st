@@ -847,19 +847,8 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testWeCannotTakeReciprocalOfZeroComplexNumbers [
+PMComplexTest >> testWeCannotTheTakeReciprocalOfZeroComplexNumbers [
 	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
-]
-
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testWeCannotTakeTheReciprocalOfZero [
-	"self run: #testReciprocalError"
-	"self debug: #testReciprocalError"
-	
-	| c |
-	c := (0 i).
-	self should: [c reciprocal] raise: ZeroDivide
-	
 ]
 
 { #category : #'testing - expressing complex numbers' }
