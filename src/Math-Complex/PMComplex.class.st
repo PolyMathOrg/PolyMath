@@ -102,9 +102,13 @@ PMComplex class >> one [
 
 { #category : #'*Math-Complex' }
 PMComplex class >> random [
-		"Answers a random number with abs between 0 and 1." 
-
-	^ self abs: 1.0 random arg: 2 * Float pi random
+	"Answers a random number with abs between 0 and 1." 
+	| random |
+	random := Random new.
+	
+	^ self
+		abs: random next
+		arg: 2 * (random nextBetween: 0 and: Float pi)
 ]
 
 { #category : #'instance creation' }
