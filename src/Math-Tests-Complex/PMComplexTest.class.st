@@ -38,11 +38,27 @@ PMComplexTest >> testAdaptToCollectionAndSend [
 
 	"using equalsTo since absSecure returns a slightly different Float"
 
-	| c arr |
+	| c arr expected expectedMultiplication |
 	c := 6 - 6 i.
 	arr := #(0 1 2 3 4 5).
-	self assert: (arr + c at: 1) equals: c.
-	self assert: (arr * c at: 2) equals: c
+	expected := Array new: 6.
+	expected at: 1 put: 6 - 6 i.
+	expected at: 2 put: 7 - 6 i.
+	expected at: 3 put: 8 - 6 i.
+	expected at: 4 put: 9 - 6 i.
+	expected at: 5 put: 10 - 6 i.
+	expected at: 6 put: 11 - 6 i.
+	self assert: (arr + c) equals: expected.
+	
+	expectedMultiplication := Array new: 6.
+	expectedMultiplication at: 1 put: 0 + 0 i.
+	expectedMultiplication at: 2 put: 6 - 6 i.
+	expectedMultiplication at: 3 put: 12 - 12 i.
+	expectedMultiplication at: 4 put: 18 - 18 i.
+	expectedMultiplication at: 5 put: 24 - 24 i.
+	expectedMultiplication at: 6 put: 30 - 30 i.
+	self assert: (arr * c at: 2) equals: c.
+	self assert: (arr * c) equals: expectedMultiplication .
 ]
 
 { #category : #'testing - arithmetic' }
