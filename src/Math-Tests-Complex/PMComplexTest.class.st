@@ -531,7 +531,7 @@ PMComplexTest >> testNumberAsComplex [
 	self assert: minusOne sqrt equals: 1 i
 ]
 
-{ #category : #tests }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testOne [
 	| one |
 	one := PMComplex one.
@@ -870,7 +870,7 @@ PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComple
 	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
 ]
 
-{ #category : #tests }
+{ #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testZero [
 	| z |
 	z := PMComplex zero.
