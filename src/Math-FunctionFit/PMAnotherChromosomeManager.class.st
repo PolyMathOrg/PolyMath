@@ -13,7 +13,7 @@ Class {
 	#classVars : [
 		'Primes'
 	],
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #utils }
@@ -57,14 +57,24 @@ PMAnotherChromosomeManager class >> origin: anArray range: anotherArray [
 PMAnotherChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
 "the Discrete Recombination  operator
 that does not prefer schemata of certain parameters based on their position"
-|new1 new2|
-	aChromosome1=aChromosome2 ifTrue:[^Array with:( self mutate: aChromosome2) with: (self mutate: aChromosome1) ].
+	| random new1 new2 |
+	
+	aChromosome1 = aChromosome2 ifTrue:[
+		^ Array
+			with: (self mutate: aChromosome2)
+			with: (self mutate: aChromosome1) ].
+	
 	new1 := self clone: aChromosome1.
 	new2 := self clone: aChromosome2.
-	2 to: new1 size do: [:i| (Float random <0.5)ifTrue:[
+	
+	random := Random new.
+	
+	2 to: new1 size do: [ :i |
+		(random next < 0.5) ifTrue: [
 			new1 at: i put: (aChromosome2 at: i).
-			new2 at: i put: (aChromosome1 at: i)]].
-	^Array with: new1 with: new2
+			new2 at: i put: (aChromosome1 at: i) ] ].
+	
+	^ Array with: new1 with: new2
 ]
 
 { #category : #operation }
@@ -116,20 +126,26 @@ PMAnotherChromosomeManager >> lineCrossOver: aChromosome1 and: aChromosome2 [
 
 { #category : #operation }
 PMAnotherChromosomeManager >> mutate: aVector [
-"BGA mutation"
-	| isMutated threshold new index|
-	isMutated :=false.
-	threshold :=1/ aVector size asFloat .
-	new :=aVector copy.
-	1 to: aVector size do:[:i| Float random < threshold ifTrue:[
-			isMutated :=true.
+	"BGA mutation"
+	| isMutated threshold new random index|
+	
+	isMutated := false.
+	threshold := 1 / aVector size asFloat.
+	new := aVector copy.
+	random := Random new.
+	
+	1 to: aVector size do: [ :i |
+		random next < threshold ifTrue: [
+			isMutated := true.
 			new at: i put: (new at: i) + 
-			((Float random <0.5 ifTrue: [0.5] ifFalse:[0.5 negated ] )*(self randomRangeAt: i))]].
+				((random next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: i)) ] ].
+	
 	isMutated ifFalse: [
 		index := aVector size random + 1.
 		new at: index put: (new at: index) + 
-			((Float random <0.5 ifTrue: [0.5] ifFalse:[0.5 negated ] )*(self randomRangeAt: index))].
-	^new
+			((random next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: index)) ].
+	
+	^ new
 ]
 
 { #category : #accessing }
@@ -155,8 +171,9 @@ PMAnotherChromosomeManager >> printOn: aStream [
 
 { #category : #operation }
 PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
-	| roll |
-	roll := Number random.
+	| random roll |
+	random := Random new.
+	roll := random next.
 	roll < rateOfCrossover 
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
 		ifFalse: 
@@ -224,8 +241,10 @@ PMAnotherChromosomeManager >> rateOfMutation: aNumber [
 
 { #category : #private }
 PMAnotherChromosomeManager >> smallDistribution [
-"an exponential distribution as used by H. Mühlenbein"
-^2 raisedTo: (16 *Float random negated)
+	"an exponential distribution as used by H. Mühlenbein"
+	| random |
+	random := Random new.
+	^ 2 raisedTo: (16 * random next negated)
 ]
 
 { #category : #private }

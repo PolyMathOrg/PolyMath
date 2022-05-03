@@ -43,17 +43,22 @@ PMNewtonZeroFinder class >> function: aBlock1 derivative: aBlock2 [
 PMNewtonZeroFinder >> computeInitialValues [
 	"Private - If no derivative has been defined, take an ad-hoc definition.
 	 If no initial value has been defined, take 0 as the starting point (for lack of anything better)."
-	| n |
-	result isNil
-		ifTrue: [ result := 0].
-	derivativeBlock isNil
-		ifTrue: [ derivativeBlock := self defaultDerivativeBlock].
+	| n random |
+	
+	result ifNil: [ result := 0].
+	derivativeBlock ifNil: [ derivativeBlock := self defaultDerivativeBlock].
+	
 	n := 0.
-	[ (derivativeBlock value: result) equalsTo: 0]
-		whileTrue: [ n := n + 1.
-					 n > maximumIterations
-						ifTrue: [ self error: 'Function''s derivative seems to be zero everywhere'].
-					 result := Number random + result].
+	random := Random new.
+	
+	[ (derivativeBlock value: result) equalsTo: 0] whileTrue: [
+		n := n + 1.
+		
+		n > maximumIterations ifTrue: [
+			self error: 'Function''s derivative seems to be zero everywhere' ].
+		
+		result := random next + result ].
+	
 	newFunctionValue := functionBlock value: result.
 ]
 
@@ -105,16 +110,22 @@ PMNewtonZeroFinder >> initialize [
 PMNewtonZeroFinder >> setDerivative: aBlock [ 
 	"Defines the derivative of the function for which zeroes will be found.
 	Tests if provided block indeed implements the derivative of the function"
-	| x |
-	(aBlock respondsTo: #value:)
-		ifFalse: [self error: 'Derivative block must implement the method value:'].
-	x := result isNil
-				ifTrue: [Number random]
-				ifFalse: [result + Number random].
+	| x random |
+	
+	(aBlock respondsTo: #value:) ifFalse: [
+		self error: 'Derivative block must implement the method value:' ].
+	
+	random := Random new.
+	
+	x := result
+		ifNil: [ random next ]
+		ifNotNil: [ result + random next ].
+		
 	((aBlock value: x)
-		relativelyEqualsTo: (self defaultDerivativeBlock value: x)
-		upTo: 1.0e-4)
-		ifFalse: [self error: 'Supplied derivative is not correct'].
+		closeTo: (self defaultDerivativeBlock value: x)
+		precision: 1.0e-4)
+		ifFalse: [ self error: 'Supplied derivative is not correct' ].
+	
 	derivativeBlock := aBlock
 ]
 

@@ -7,7 +7,7 @@ Class {
 		'rateOfMutation',
 		'rateOfCrossover'
 	],
-	#category : 'Math-Chromosome'
+	#category : #'Math-Chromosome'
 }
 
 { #category : #creation }
@@ -55,8 +55,9 @@ PMChromosomeManager >> populationSize: anInteger [
 { #category : #operation }
 PMChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
 	
-	| roll |
-	roll := Number random.
+	| random roll |
+	random := Random new.
+	roll := random next.
 	roll < rateOfCrossover 
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
 		ifFalse: 

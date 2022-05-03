@@ -579,8 +579,9 @@ PMComplexTest >> testRaisedToInteger [
 
 { #category : #tests }
 PMComplexTest >> testRandom [
-	| c r |
-	c := Float random + Float random i.
+	| random c r |
+	random := Random new.
+	c := random next + random next i.
 	r := c random.
 	self assert: r isComplexNumber.
 	self assert: r abs < c abs
