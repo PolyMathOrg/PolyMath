@@ -81,13 +81,13 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testRangeScale [
-go initializeIterations.
-self assert: (go rangeScale first equalsTo: 0.1).
-self assert: (go rangeScale second equalsTo: 0.19473684210526315).
-go initializeIterations.
-self assert: (go rangeScale first equalsTo: 0.1).
-self assert: (go rangeScale second equalsTo: 0.19473684210526315).
 
+	go initializeIterations.
+	self assert: (go rangeScale first closeTo: 0.1).
+	self assert: (go rangeScale second closeTo: 0.19473684210526315).
+	go initializeIterations.
+	self assert: (go rangeScale first closeTo: 0.1).
+	self assert: (go rangeScale second closeTo: 0.19473684210526315)
 ]
 
 { #category : #tests }

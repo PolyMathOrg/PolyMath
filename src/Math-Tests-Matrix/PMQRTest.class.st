@@ -1,19 +1,19 @@
 Class {
 	#name : #PMQRTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #running }
 PMQRTest >> mpTestFunction:aMatrix [
  |inv mult| 
-		inv :=aMatrix mpInverse .
-		mult :=inv *aMatrix.
-		self assert: (aMatrix * mult equalsTo: aMatrix  ).
-		self assert: (mult *inv equalsTo: inv ).
-		self assert: (mult transpose equalsTo:  mult ) .
-		mult :=aMatrix *inv.
-		self assert: (mult transpose equalsTo: mult ) 
+		inv := aMatrix mpInverse .
+		mult := inv * aMatrix.
+		self assert: (aMatrix * mult equalsTo: aMatrix).
+		self assert: mult * inv closeTo: inv.
+		self assert: mult transpose closeTo: mult.
+		mult := aMatrix * inv.
+		self assert: mult transpose closeTo: mult. 
 ]
 
 { #category : #tests }
@@ -36,21 +36,23 @@ PMQRTest >> testMPInverse [
 
 { #category : #tests }
 PMQRTest >> testOrthogonalize [
+
 	| a b i |
 	i := 0.
-	[ a := PMMatrix rows: 5 columns: 5 random: 5.0.
-	a rank = 5
-		ifTrue: [ a atRow: 2 put: (a rowAt: 1) + (3 * (a rowAt: 3)).
-			a atRow: 4 put: 3.11 * (a rowAt: 2).
-			b := a orthogonalize.
-			self assert: b numberOfColumns equals: 3.
-			i := i + 1.
-			self assert: ((b columnAt: 1) * (b columnAt: 2) equalsTo: 0).
-			self assert: ((b columnAt: 1) * (b columnAt: 3) equalsTo: 0).
-			self assert: ((b columnAt: 3) * (b columnAt: 2) equalsTo: 0).
-			self assert: ((b columnAt: 1) * (b columnAt: 1) equalsTo: 1).
-			self assert: ((b columnAt: 3) * (b columnAt: 3) equalsTo: 1).
-			self assert: ((b columnAt: 2) * (b columnAt: 2) equalsTo: 1) ].
+	[ 
+	a := PMMatrix rows: 5 columns: 5 random: 5.0.
+	a rank = 5 ifTrue: [ 
+		a atRow: 2 put: (a rowAt: 1) + (3 * (a rowAt: 3)).
+		a atRow: 4 put: 3.11 * (a rowAt: 2).
+		b := a orthogonalize.
+		self assert: b numberOfColumns equals: 3.
+		i := i + 1.
+		self assert: ((b columnAt: 1) * (b columnAt: 2) closeTo: 0).
+		self assert: ((b columnAt: 1) * (b columnAt: 3) closeTo: 0).
+		self assert: ((b columnAt: 3) * (b columnAt: 2) closeTo: 0).
+		self assert: ((b columnAt: 1) * (b columnAt: 1) closeTo: 1).
+		self assert: ((b columnAt: 3) * (b columnAt: 3) closeTo: 1).
+		self assert: ((b columnAt: 2) * (b columnAt: 2) closeTo: 1) ].
 	i < 10 ] whileTrue
 ]
 
@@ -98,11 +100,17 @@ PMQRTest >> testRank [
 
 { #category : #tests }
 PMQRTest >> testVectorHouseholder [
-"result is householdermatrix * v"
-(2 to: 5) do:[:i| |v h result| (1 to: 9) do:  [:unimportant|
-	v:=PMVector new:i random:5.8.
-	h :=v householder .
-	result :=(((PMSymmetricMatrix identity: i) -  ((h at: 1)*(h at:2) tensorProduct: (h at:2))) *v).
-	self deny:   (result first equalsTo: 0).
-	result allButFirst 	do: [:aNumber|self assert:   (aNumber equalsTo: 0)  ] . ] ]
+
+	"result is householdermatrix * v"
+
+	(2 to: 5) do: [ :i | 
+		| v h result |
+		(1 to: 9) do: [ :unimportant | 
+			v := PMVector new: i random: 5.8.
+			h := v householder.
+			result := (PMSymmetricMatrix identity: i)
+			          - ((h at: 1) * (h at: 2) tensorProduct: (h at: 2)) * v.
+			self deny: (result first closeTo: 0).
+			result allButFirst do: [ :aNumber | 
+				self assert: (aNumber closeTo: 0) ] ] ]
 ]

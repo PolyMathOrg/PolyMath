@@ -126,9 +126,10 @@ PMHyperDualNumber >> eps2: anEps2 [
 
 { #category : #comparing }
 PMHyperDualNumber >> equalsTo: aHyperDualNumber [
-	^ (super equalsTo: aHyperDualNumber)
-		and: [ (eps2 equalsTo: aHyperDualNumber eps2)
-				and: [ eps1eps2 equalsTo: aHyperDualNumber eps1eps2 ] ] 
+
+	^ (super equalsTo: aHyperDualNumber) and: [ 
+		  (eps2 closeTo: aHyperDualNumber eps2) and: [ 
+			  eps1eps2 closeTo: aHyperDualNumber eps1eps2 ] ]
 ]
 
 { #category : #'mathematical functions' }

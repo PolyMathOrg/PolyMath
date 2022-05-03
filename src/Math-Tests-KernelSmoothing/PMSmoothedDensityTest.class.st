@@ -14,40 +14,43 @@ density:=PMKernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4).
 
 { #category : #tests }
 PMSmoothedDensityTest >> testAverage [
-self assert: (density data average equalsTo: density average).
 
+	self assert: (density data average closeTo: density average)
 ]
 
 { #category : #tests }
 PMSmoothedDensityTest >> testBandWidth [
+
 	density bandWidth: 2.
 	self assert: density bandWidth equals: 2.
 	density ruleOfThumbBandWidth.
-	self assert: (density bandWidth equalsTo: 0.505899674).
-	density data: #(1 2 3 1 2.3 2.4 7).
+	self assert: (density bandWidth closeTo: 0.505899674).
+	density data: #( 1 2 3 1 2.3 2.4 7 ).
 	density ruleOfThumbBandWidth.
-	self assert: (density bandWidth equalsTo: 0.728178892).
-	density data: #(1 2 3 1 2.3 2.4 7 -7).
+	self assert: (density bandWidth closeTo: 0.728178892).
+	density data: #( 1 2 3 1 2.3 2.4 7 -7 ).
 	density epanechnikov.
-	self assert: (density bandWidth equalsTo: 0.728178892).
+	self assert: (density bandWidth closeTo: 0.728178892).
 	density ruleOfThumbBandWidth.
-	self assert: (density bandWidth equalsTo: 0.753301158)
+	self assert: (density bandWidth closeTo: 0.753301158)
 ]
 
 { #category : #tests }
 PMSmoothedDensityTest >> testDistributionValue [
+
 	self assert: (density distributionValue: 500) equals: 1.
 	self assert: (density distributionValue: -500) equals: 0.
-	self assert: ((density distributionValue: 2) equalsTo: 0.494519759).
-	self assert: ((density distributionValue: 3) equalsTo: 0.8791407588).
+	self assert: ((density distributionValue: 2) closeTo: 0.494519759).
+	self assert: ((density distributionValue: 3) closeTo: 0.8791407588).
 	density epanechnikov.
 	self assert: (density distributionValue: 5) equals: 1.
 	self assert: (density distributionValue: -1) equals: 0.
-	self assert: ((density distributionValue: 2) equalsTo: 0.506985855)
+	self assert: ((density distributionValue: 2) closeTo: 0.506985855)
 ]
 
 { #category : #tests }
 PMSmoothedDensityTest >> testEpanechnikov [
+
 	| f |
 	f := 5 sqrt.
 	density epanechnikov.
@@ -55,8 +58,8 @@ PMSmoothedDensityTest >> testEpanechnikov [
 	self assert: (density kernel value: f negated) equals: 0.
 	self assert: (density kernel value: 0) equals: 3 / (4 * f).
 	f := 3 / (5 * f).
-	self assert: ((density kernel value: 1) equalsTo: f).
-	self assert: ((density kernel value: -1) equalsTo: f).
+	self assert: ((density kernel value: 1) closeTo: f).
+	self assert: ((density kernel value: -1) closeTo: f).
 	f := ReadWriteStream with: ''.
 	density printOn: f.
 	self assert: (f contents findString: 'epanechnikov') > 0
@@ -64,8 +67,9 @@ PMSmoothedDensityTest >> testEpanechnikov [
 
 { #category : #tests }
 PMSmoothedDensityTest >> testIKernel [
+
 	density iKernel: [ :x | x ].
-	self assert: ((density distributionValue: 1) equalsTo: -1.87784268)
+	self assert: ((density distributionValue: 1) closeTo: -1.87784268)
 ]
 
 { #category : #tests }
@@ -106,20 +110,22 @@ self assert: ((s findString: '0.50589967')>0).
 
 { #category : #tests }
 PMSmoothedDensityTest >> testValue [
-	self assert: ((density value: 0.5) equalsTo: 0.1632610644).
-	self
-		assert: ((density value: #(0.5 1)) equalsTo: #(0.1632610644 0.28923996)).
+
+	self assert: ((density value: 0.5) closeTo: 0.1632610644).
+	self assert:
+		((density value: #( 0.5 1 )) equalsTo: #( 0.1632610644 0.28923996 )).
 	density epanechnikov.
 	self assert: (density value: -0.4) equals: 0.
-	self assert: ((density value: 0.5) equalsTo: 0.177824205).
+	self assert: ((density value: 0.5) closeTo: 0.177824205).
 	self assert: (density value: 5) equals: 0
 ]
 
 { #category : #tests }
 PMSmoothedDensityTest >> testVariance [
+
 	| v |
 	v := density variance.
-	self assert: (density standardDeviation equalsTo: v sqrt).
+	self assert: (density standardDeviation closeTo: v sqrt).
 	self assert: density data stdev < v sqrt.
-	self assert: (v equalsTo: 0.902934480)
+	self assert: (v closeTo: 0.902934480)
 ]

@@ -157,7 +157,9 @@ PMDualNumber >> eps: aNumber [
 
 { #category : #comparing }
 PMDualNumber >> equalsTo: aDualNumber [
-	^ (value equalsTo: aDualNumber value) and: [ eps equalsTo: aDualNumber eps ]
+
+	^ (value closeTo: aDualNumber value) and: [ 
+		  eps closeTo: aDualNumber eps ]
 ]
 
 { #category : #testing }

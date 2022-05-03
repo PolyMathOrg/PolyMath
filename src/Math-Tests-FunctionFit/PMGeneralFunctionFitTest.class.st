@@ -36,16 +36,17 @@ self assert: (fit error<d).
 ]
 
 { #category : #tests }
-PMGeneralFunctionFitTest >> testFunction [ 
-|y|
-fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
-y:=fit function  value: 3 value: 0.1 value: 0.4.
-fit evaluate .
-self assert: ((fit function value:3) equalsTo:  y).
+PMGeneralFunctionFitTest >> testFunction [
 
-
-
-
+	| y |
+	fit := PMGeneralFunctionFit
+		       function: f
+		       data: col
+		       minimumValues: 0
+		       maximumValues: 5.
+	y := fit function value: 3 value: 0.1 value: 0.4.
+	fit evaluate.
+	self assert: ((fit function value: 3) closeTo: y)
 ]
 
 { #category : #tests }
@@ -126,26 +127,26 @@ self assert: (s includesSubstring: '#(0.').
 
 { #category : #tests }
 PMGeneralFunctionFitTest >> testRelativeError [
-|r|
-f:=[ :x :a| a].
-col:=Array with: 1@2 with: 2@6.
-fit:=PMGeneralFunctionFit function: f data: col minimumValues: -6 maximumValues: 6 .
-fit populationSize: 10.
-r :=fit evaluate first .
-self assert: (r equalsTo: 4 ).
-fit errorType: #abs.
-fit relativeError: true.
-r :=fit evaluate first .
-self assert: ((r - (2*6)sqrt)abs<1e-5 ).
-fit errorType: #squared.
-r :=fit evaluate first .
-self assert: (r>(2*6)sqrt ).
-self assert: (r<4 ).
 
-
-
-
-
+	| r |
+	f := [ :x :a | a ].
+	col := Array with: 1 @ 2 with: 2 @ 6.
+	fit := PMGeneralFunctionFit
+		       function: f
+		       data: col
+		       minimumValues: -6
+		       maximumValues: 6.
+	fit populationSize: 10.
+	r := fit evaluate first.
+	self assert: (r closeTo: 4).
+	fit errorType: #abs.
+	fit relativeError: true.
+	r := fit evaluate first.
+	self assert: (r - (2 * 6) sqrt) abs < 1e-5.
+	fit errorType: #squared.
+	r := fit evaluate first.
+	self assert: r > (2 * 6) sqrt.
+	self assert: r < 4
 ]
 
 { #category : #tests }
