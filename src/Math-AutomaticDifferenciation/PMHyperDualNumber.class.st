@@ -96,6 +96,14 @@ PMHyperDualNumber >> arcTan [
 		yourself
 ]
 
+{ #category : #comparing }
+PMHyperDualNumber >> closeTo: aHyperDualNumber [
+
+	^ (super closeTo: aHyperDualNumber) and: [ 
+		  (eps2 closeTo: aHyperDualNumber eps2) and: [ 
+			  eps1eps2 closeTo: aHyperDualNumber eps1eps2 ] ]
+]
+
 { #category : #'mathematical functions' }
 PMHyperDualNumber >> cos [
 	^ super cos
@@ -126,9 +134,12 @@ PMHyperDualNumber >> eps2: anEps2 [
 
 { #category : #comparing }
 PMHyperDualNumber >> equalsTo: aHyperDualNumber [
-	^ (super equalsTo: aHyperDualNumber)
-		and: [ (eps2 equalsTo: aHyperDualNumber eps2)
-				and: [ eps1eps2 equalsTo: aHyperDualNumber eps1eps2 ] ] 
+
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+
+	^ self closeTo: aHyperDualNumber
 ]
 
 { #category : #'mathematical functions' }

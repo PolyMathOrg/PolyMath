@@ -21,7 +21,7 @@ PMAB4Solver class >> thirdStepperClass [
 { #category : #'as yet unclassified' }
 PMAB4Solver >> lastStepPrevState: prevState prevPrevState: prevPrevState initState:initState endTime: endTime [
 	"catch partial or full step at end"
-	(lastTime equalsTo: endTime )
+	(lastTime closeTo: endTime )
 	ifFalse:
 		[state := stepper 
 			lastStep: state 

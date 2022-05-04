@@ -19,8 +19,12 @@ Number >> dividingPolynomial: aPolynomial [
 
 { #category : #'*Math-Numerical' }
 Number >> equalsTo: aNumber [
-		"compare to Float>>closeTo:"
-	^self relativelyEqualsTo: aNumber upTo: PMFloatingPointMachine new defaultNumericalPrecision
+		
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+		
+	^ self closeTo: aNumber
 ]
 
 { #category : #'*Math-Numerical' }
