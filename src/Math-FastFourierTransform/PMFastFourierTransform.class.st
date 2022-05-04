@@ -38,7 +38,7 @@ PMFastFourierTransform >> chop: tolerance [
 				ifTrue: [ r := 0 ].
 			i abs < tolerance
 				ifTrue: [ i := 0 ].
-			PMComplex real: r imaginary: i ]
+			PMComplexNumber real: r imaginary: i ]
 ]
 
 { #category : #accessing }
@@ -98,9 +98,9 @@ PMFastFourierTransform >> inverseTransform [
 PMFastFourierTransform >> multiplier: theta [
 	^ theta < (n // 4)
 		ifTrue:
-			[ PMComplex real: (sinTable at: sinTable size - theta) imaginary: (sinTable at: theta + 1) ]
+			[ PMComplexNumber real: (sinTable at: sinTable size - theta) imaginary: (sinTable at: theta + 1) ]
 		ifFalse:
-			[ PMComplex
+			[ PMComplexNumber
 				real: (sinTable at: theta - (n // 4) + 1) negated
 				imaginary: (sinTable at: n // 2 - theta + 1) ]
 ]
@@ -119,7 +119,7 @@ PMFastFourierTransform >> realData [
 PMFastFourierTransform >> scaleData [
 	| temp |
 	temp := n sqrt.
-	data := data collect: [ :j | PMComplex real: j real / temp imaginary: j imaginary / temp ]	"minimizes floating point error this way"
+	data := data collect: [ :j | PMComplexNumber real: j real / temp imaginary: j imaginary / temp ]	"minimizes floating point error this way"
 ]
 
 { #category : #evaluation }
