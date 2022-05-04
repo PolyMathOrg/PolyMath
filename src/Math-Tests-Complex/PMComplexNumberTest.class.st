@@ -503,6 +503,18 @@ PMComplexNumberTest >> testNew [
 	self assert: c imaginary equals: 0
 ]
 
+{ #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testNormalizedFractionsOfComplexNumbersCannotBeWritten [
+
+	| z w numerator denominator |
+	z := 1 + 2 i.
+	w := 3 + 4 i.
+	numerator := z * w complexConjugate.
+	denominator := w squaredNorm.
+	
+	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
+]
+
 { #category : #'testing - close to' }
 PMComplexNumberTest >> testNotCloseToRealWithPrecision [
 
@@ -553,6 +565,17 @@ PMComplexNumberTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentT
 	self deny: nil = 1 i.
 	self deny: 1 i = #(1 2 3).
 	self deny: #(1 2 3) = 1 i.
+]
+
+{ #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testQuotientsOfComplexNumbersCannotBeWritten [
+	| numerator denominator |
+	"It is interesting that we cannot instanciate a fraction of the form z/w"
+	"Perhaps, we could do something like z * (w*)/ |w|**2"
+	numerator := PMComplexNumber real: 1 imaginary: 1.
+	denominator := PMComplexNumber real: 3 imaginary: 4 .
+
+	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
 ]
 
 { #category : #'testing - mathematical functions' }
@@ -825,35 +848,12 @@ PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
+PMComplexNumberTest >> testWritingComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
 	z := PMComplexNumber real: 3 / 5 imaginary: 4 / 5.
 	 
 	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
-]
-
-{ #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
-
-	| z w numerator denominator |
-	z := 1 + 2 i.
-	w := 3 + 4 i.
-	numerator := z * w complexConjugate.
-	denominator := w squaredNorm.
-	
-	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
-]
-
-{ #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
-	| numerator denominator |
-	"It is interesting that we cannot instanciate a fraction of the form z/w"
-	"Perhaps, we could do something like z * (w*)/ |w|**2"
-	numerator := PMComplexNumber real: 1 imaginary: 1.
-	denominator := PMComplexNumber real: 3 imaginary: 4 .
-
-	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
 ]
 
 { #category : #'testing - expressing complex numbers' }
