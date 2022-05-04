@@ -33,6 +33,22 @@ PMComplexTest >> testAbsSecure [
 ]
 
 { #category : #'testing - arithmetic' }
+PMComplexTest >> testAddingComplexNumbersToAnArrayOfIntegers [
+	| c arrayOfIntegers expected |
+	c := 6 - 6 i.
+	arrayOfIntegers := #(0 1 2 3 4 5).
+	
+	expected := Array new: 6.
+	expected at: 1 put: 6 - 6 i.
+	expected at: 2 put: 7 - 6 i.
+	expected at: 3 put: 8 - 6 i.
+	expected at: 4 put: 9 - 6 i.
+	expected at: 5 put: 10 - 6 i.
+	expected at: 6 put: 11 - 6 i.
+	self assert: (arrayOfIntegers + c) equals: expected.
+]
+
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testAddingToAPolynomial [
 	| c poly |
 	c := 6 - 6 i.
@@ -440,6 +456,22 @@ PMComplexTest >> testMultiplyByI [
 ]
 
 { #category : #'testing - arithmetic' }
+PMComplexTest >> testMultiplyingAnArrayOfIntegersByAComplexNumber [
+	| c arrayOfIntegers expected |
+	c := 6 - 6 i.
+	arrayOfIntegers := #(0 1 2 3 4 5).
+	
+	expected := Array new: 6.
+	expected at: 1 put: 0 + 0 i.
+	expected at: 2 put: 6 - 6 i.
+	expected at: 3 put: 12 - 12 i.
+	expected at: 4 put: 18 - 18 i.
+	expected at: 5 put: 24 - 24 i.
+	expected at: 6 put: 30 - 30 i.
+	self assert: (arrayOfIntegers * c) equals: expected .
+]
+
+{ #category : #'testing - arithmetic' }
 PMComplexTest >> testMultiplyingArraysOfComplexNumbers [
 	| complexNumbersMultiplied complexNumbers expected |
 	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
@@ -796,38 +828,6 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
  	self deny: z equals: w.
 ]
 
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testWeCanAddComplexNumbersToAnArrayOfIntegers [
-	| c arrayOfIntegers expected |
-	c := 6 - 6 i.
-	arrayOfIntegers := #(0 1 2 3 4 5).
-	
-	expected := Array new: 6.
-	expected at: 1 put: 6 - 6 i.
-	expected at: 2 put: 7 - 6 i.
-	expected at: 3 put: 8 - 6 i.
-	expected at: 4 put: 9 - 6 i.
-	expected at: 5 put: 10 - 6 i.
-	expected at: 6 put: 11 - 6 i.
-	self assert: (arrayOfIntegers + c) equals: expected.
-]
-
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testWeCanMultiplyAnArrayOfIntegersByAComplexNumber [
-	| c arrayOfIntegers expected |
-	c := 6 - 6 i.
-	arrayOfIntegers := #(0 1 2 3 4 5).
-	
-	expected := Array new: 6.
-	expected at: 1 put: 0 + 0 i.
-	expected at: 2 put: 6 - 6 i.
-	expected at: 3 put: 12 - 12 i.
-	expected at: 4 put: 18 - 18 i.
-	expected at: 5 put: 24 - 24 i.
-	expected at: 6 put: 30 - 30 i.
-	self assert: (arrayOfIntegers * c) equals: expected .
-]
-
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
@@ -835,11 +835,6 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 	 
 	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
-]
-
-{ #category : #'testing - arithmetic' }
-PMComplexTest >> testWeCannotTheTakeReciprocalOfZeroComplexNumbers [
-	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
 ]
 
 { #category : #'testing - expressing complex numbers' }
@@ -879,4 +874,9 @@ PMComplexTest >> testZero [
 PMComplexTest >> testZeroComplexNumberIsEqualToIntegerZero [
 	self assert: 0 i equals: 0.
  	self assert: 0 equals: 0 i.
+]
+
+{ #category : #'testing - arithmetic' }
+PMComplexTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
+	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
 ]
