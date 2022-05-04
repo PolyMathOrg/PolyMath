@@ -1,17 +1,17 @@
 Class {
-	#name : #PMComplexTest,
+	#name : #PMComplexNumberTest,
 	#superclass : #TestCase,
 	#category : #'Math-Tests-Complex'
 }
 
 { #category : #'testing - equality' }
-PMComplexTest >> testAPureImaginaryNumberIsNotEqualToZero [
+PMComplexNumberTest >> testAPureImaginaryNumberIsNotEqualToZero [
 	self deny: 1 i equals: 0.
 	self deny: 0 equals: 1 i.
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAbs [
+PMComplexNumberTest >> testAbs [
 	"self run: #testAbs"
 
 	"self debug: #testAbs"
@@ -22,7 +22,7 @@ PMComplexTest >> testAbs [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAbsSecure [
+PMComplexNumberTest >> testAbsSecure [
 
 	"self run: #testAbsSecure"
 
@@ -34,7 +34,7 @@ PMComplexTest >> testAbsSecure [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingComplexNumbersToAnArrayOfIntegers [
+PMComplexNumberTest >> testAddingComplexNumbersToAnArrayOfIntegers [
 	| c arrayOfIntegers expected |
 	c := 6 - 6 i.
 	arrayOfIntegers := #(0 1 2 3 4 5).
@@ -44,25 +44,25 @@ PMComplexTest >> testAddingComplexNumbersToAnArrayOfIntegers [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingFractionsAndComplexNumbers [	
+PMComplexNumberTest >> testAddingFractionsAndComplexNumbers [	
 	self assert: 1 + 2 i + (2 / 3) equals: 5 / 3 + 2 i.
 	self assert: 2 / 3 + (1 + 2 i) equals: 5 / 3 + 2 i
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingIntegersAndComplexNumbers [
+PMComplexNumberTest >> testAddingIntegersAndComplexNumbers [
 	self assert: 1 + 2 i + 1 equals: 2 + 2 i.
 	self assert: 1 + (1 + 2 i) equals: 2 + 2 i.
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingRealNumbersAndComplexNumbers [
+PMComplexNumberTest >> testAddingRealNumbersAndComplexNumbers [
 	self assert: 1 + 2 i + 1.0 equals: 2.0 + 2 i.
 	self assert: 1.0 + (1 + 2 i) equals: 2.0 + 2 i.
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingToAPolynomial [
+PMComplexNumberTest >> testAddingToAPolynomial [
 	| c poly |
 	c := 6 - 6 i.
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -71,14 +71,14 @@ PMComplexTest >> testAddingToAPolynomial [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testAddingTwoComplexNumbers [
+PMComplexNumberTest >> testAddingTwoComplexNumbers [
 	| c |
 	c := 5 - 6 i + (-5 + 8 i).	"Complex with Complex"
 	self assert: c equals: 0 + 2 i
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArCosh [
+PMComplexNumberTest >> testArCosh [
 	| c |
 	c := (2.5 + 0 i).
 	self assert: (c arCosh real closeTo: c real arCosh).
@@ -92,7 +92,7 @@ PMComplexTest >> testArCosh [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArSinh [
+PMComplexNumberTest >> testArSinh [
 	| c |
 	c := (2.5 + 0 i).
 	self assert: (c arSinh real closeTo: c real arSinh).
@@ -105,7 +105,7 @@ PMComplexTest >> testArSinh [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArTanh [
+PMComplexNumberTest >> testArTanh [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arTanh real closeTo: c real arTanh).
@@ -118,7 +118,7 @@ PMComplexTest >> testArTanh [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArcCos [
+PMComplexNumberTest >> testArcCos [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcCos real closeTo: c real arcCos).
@@ -131,7 +131,7 @@ PMComplexTest >> testArcCos [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArcCosPlusArcSin [
+PMComplexNumberTest >> testArcCosPlusArcSin [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -141,7 +141,7 @@ PMComplexTest >> testArcCosPlusArcSin [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArcSin [
+PMComplexNumberTest >> testArcSin [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcSin real closeTo: c real arcSin).
@@ -154,7 +154,7 @@ PMComplexTest >> testArcSin [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArcTan [
+PMComplexNumberTest >> testArcTan [
 	| c |
 	c := (0.5 + 0 i).
 	self assert: (c arcTan real closeTo: c real arcTan).
@@ -167,7 +167,7 @@ PMComplexTest >> testArcTan [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testArcTanDenominator [
+PMComplexNumberTest >> testArcTanDenominator [
 	| c1 c2 |
 	c1 := 1 i.
 	c2 := 0.
@@ -177,34 +177,34 @@ PMComplexTest >> testArcTanDenominator [
 ]
 
 { #category : #'testing - polar coordinates' }
-PMComplexTest >> testArgumentOfAComplexNumber [
+PMComplexNumberTest >> testArgumentOfAComplexNumber [
 	self assert: (1 + 1 i) arg equals: Float pi / 4
 ]
 
 { #category : #'testing - polar coordinates' }
-PMComplexTest >> testArgumentOfAPositivePureImaginaryNumber [
+PMComplexNumberTest >> testArgumentOfAPositivePureImaginaryNumber [
 	| c |
 	c := 0 + 5 i.
 	self assert: c arg equals: Float pi / 2
 ]
 
 { #category : #'testing - polar coordinates' }
-PMComplexTest >> testArgumentOfAPositiveRealNumber [
+PMComplexNumberTest >> testArgumentOfAPositiveRealNumber [
 	self assert: (5 + 0 i) arg equals: 0.
 ]
 
 { #category : #'testing - polar coordinates' }
-PMComplexTest >> testArgumentOfPureNegativeImaginaryNumber [
+PMComplexNumberTest >> testArgumentOfPureNegativeImaginaryNumber [
 	self assert: -1 i arg equals: (Float pi / 2) negated
 ]
 
 { #category : #'testing - bugs' }
-PMComplexTest >> testBug1 [
+PMComplexNumberTest >> testBug1 [
 	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testCloseTo [
+PMComplexNumberTest >> testCloseTo [
 
 	self assert: 2 + 3.000000000000001i closeTo: 2 + 3i.
 	self assert: 2.000000000000001 + 3i closeTo: 2 + 3i.
@@ -212,7 +212,7 @@ PMComplexTest >> testCloseTo [
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testCloseToReal [
+PMComplexNumberTest >> testCloseToReal [
 
 	self assert: 2 + 0.000000000000001i closeTo: 2.
 	self assert: 2.000000000000001 + 0.000000000000001i closeTo: 2.
@@ -222,14 +222,14 @@ PMComplexTest >> testCloseToReal [
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testCloseToRealWithPrecision [
+PMComplexNumberTest >> testCloseToRealWithPrecision [
 
 	self assert: 2 + 0.001i closeTo: 2 precision: 0.01.
 	self assert: 2.001 + 0.001i closeTo: 2 precision: 0.01.
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testCloseToWithPrecision [
+PMComplexNumberTest >> testCloseToWithPrecision [
 
 	self assert: 2 + 3.001i closeTo: 2 + 3i precision: 0.01.
 	self assert: 2.001 + 3i closeTo: 2 + 3i precision: 0.01.
@@ -237,18 +237,18 @@ PMComplexTest >> testCloseToWithPrecision [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testComplexConjugate [
+PMComplexNumberTest >> testComplexConjugate [
 
 	self assert: (5 - 6i) complexConjugate equals: (5 + 6i).
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
+PMComplexNumberTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqualToInteger [
 	self deny: 1 + 3 i equals: 1.
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testCos [
+PMComplexNumberTest >> testCos [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c cos real closeTo: c real cos).
@@ -260,7 +260,7 @@ PMComplexTest >> testCos [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testCos2PlusSin2 [
+PMComplexNumberTest >> testCos2PlusSin2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -270,7 +270,7 @@ PMComplexTest >> testCos2PlusSin2 [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testCosh [
+PMComplexNumberTest >> testCosh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c cosh real closeTo: c real cosh).
@@ -285,7 +285,7 @@ PMComplexTest >> testCosh [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testCosh2MinusSinh2 [
+PMComplexNumberTest >> testCosh2MinusSinh2 [
 	| c |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
 	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
@@ -295,7 +295,7 @@ PMComplexTest >> testCosh2MinusSinh2 [
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testCreation [
+PMComplexNumberTest >> testCreation [
 	| c |
 	c := 5 i.
 	self assert: c real equals: 0.
@@ -315,7 +315,7 @@ PMComplexTest >> testCreation [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testDividingALargeComplexNumbersByItself [
+PMComplexNumberTest >> testDividingALargeComplexNumbersByItself [
 	| c1 c2 quotient |
 	c1 := 2.0e252 + 3.0e70 i.
 	c2 := c1.
@@ -330,7 +330,7 @@ PMComplexTest >> testDividingALargeComplexNumbersByItself [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testDividingPolynomialByAComplexNumber [
+PMComplexNumberTest >> testDividingPolynomialByAComplexNumber [
 	| c poly |
 	c := 4 + 4 i.
 	poly := PMPolynomial coefficients: #(1 0 1).
@@ -338,7 +338,7 @@ PMComplexTest >> testDividingPolynomialByAComplexNumber [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsReflexive [
+PMComplexNumberTest >> testEqualsIsReflexive [
 	| z |
  	z := -10 + 10 i.
 
@@ -346,7 +346,7 @@ PMComplexTest >> testEqualsIsReflexive [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetric [
+PMComplexNumberTest >> testEqualsIsSymmetric [
 	| z w |
 
  	z := 13 + 14 i.
@@ -357,25 +357,25 @@ PMComplexTest >> testEqualsIsSymmetric [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithRespectToFractions [
+PMComplexNumberTest >> testEqualsIsSymmetricWithRespectToFractions [
 	self assert: 1 / 2 + 0 i equals: 1 / 2.
 	self assert: 1 / 2 equals: 1 / 2 + 0 i
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithRespectToIntegers [
+PMComplexNumberTest >> testEqualsIsSymmetricWithRespectToIntegers [
 	self assert: 1 + 0 i equals: 1.
 	self assert: 1 equals: 1 + 0 i.
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsSymmetricWithRespectToRealNumbers [
+PMComplexNumberTest >> testEqualsIsSymmetricWithRespectToRealNumbers [
 	self assert: 1 + 0 i equals: 1.0.
 	self assert: 1.0 equals: 1 + 0 i.
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testEqualsIsTransitive [
+PMComplexNumberTest >> testEqualsIsTransitive [
 	| z w u |
 
  	z := 4 - 1 i.
@@ -388,7 +388,7 @@ PMComplexTest >> testEqualsIsTransitive [
 ]
 
 { #category : #tests }
-PMComplexTest >> testFloatClass [
+PMComplexNumberTest >> testFloatClass [
 	"just make sure it's implemented"
 
 	self assert: ((1 + 3.4 i) imaginary isKindOf: 1 i floatClass).
@@ -396,68 +396,68 @@ PMComplexTest >> testFloatClass [
 ]
 
 { #category : #tests }
-PMComplexTest >> testHash [
+PMComplexNumberTest >> testHash [
 	| aComplex |
 	aComplex := 2 - 3 i.
 	self assert: aComplex copy hash equals: aComplex hash
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsComplexNumberOnComplex [
+PMComplexNumberTest >> testIsComplexNumberOnComplex [
 	
 	self assert: (3 + 2i) isComplexNumber
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsComplexNumberOnNaN [
+PMComplexNumberTest >> testIsComplexNumberOnNaN [
 	
 	self deny: Character space isComplexNumber
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsComplexNumberOnReal [
+PMComplexNumberTest >> testIsComplexNumberOnReal [
 	
 	self deny: 5 isComplexNumber
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsRealNumberOnComplex [
+PMComplexNumberTest >> testIsRealNumberOnComplex [
 	
 	self deny: (3 + 2i) isRealNumber
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsRealNumberOnNaN [
+PMComplexNumberTest >> testIsRealNumberOnNaN [
 	
 	self deny: Character space isRealNumber
 ]
 
 { #category : #'testing - type checking' }
-PMComplexTest >> testIsRealNumberOnReal [
+PMComplexNumberTest >> testIsRealNumberOnReal [
 	
 	self assert: 0.5 isRealNumber
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testLn [
+PMComplexNumberTest >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testLog [
+PMComplexNumberTest >> testLog [
 	self assert: (Float e + 0 i log: Float e) equals: Float e ln.	"See Bug 1815 on Mantis"
 	self assert: (2 + 0 i log: 2) equals: 1
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testMultiplyByI [
+PMComplexNumberTest >> testMultiplyByI [
 	| c |
 	c := 5 - 6 i.
 	self assert: c * 1 i equals: c i
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testMultiplyingAnArrayOfIntegersByAComplexNumber [
+PMComplexNumberTest >> testMultiplyingAnArrayOfIntegersByAComplexNumber [
 	| c arrayOfIntegers expected |
 	c := 6 - 6 i.
 	arrayOfIntegers := #(0 1 2 3 4 5).
@@ -467,7 +467,7 @@ PMComplexTest >> testMultiplyingAnArrayOfIntegersByAComplexNumber [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testMultiplyingArraysOfComplexNumbers [
+PMComplexNumberTest >> testMultiplyingArraysOfComplexNumbers [
 	| complexNumbersMultiplied complexNumbers expected |
 	complexNumbers := Array with: 1 + 2 i with: 3 + 4 i with: 5 + 6 i.
 	
@@ -480,7 +480,7 @@ PMComplexTest >> testMultiplyingArraysOfComplexNumbers [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testMultiplyingByPolynomials [
+PMComplexNumberTest >> testMultiplyingByPolynomials [
 	| c poly |
 	c := 1 + 1 i.
 	poly := PMPolynomial coefficients: #(1).
@@ -489,14 +489,14 @@ PMComplexTest >> testMultiplyingByPolynomials [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testNegated [
+PMComplexNumberTest >> testNegated [
 	| c |
 	c := 2 + 5 i.
 	self assert: c negated equals: -2 - 5 i
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testNew [
+PMComplexNumberTest >> testNew [
 	| c |
 	c := PMComplexNumber new.
 	self assert: c real equals: 0.
@@ -504,14 +504,14 @@ PMComplexTest >> testNew [
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testNotCloseToRealWithPrecision [
+PMComplexNumberTest >> testNotCloseToRealWithPrecision [
 
 	self deny: 2 + 0.001i closeTo: 2 precision: 0.000001.
 	self deny: 2.001 + 0.001i closeTo: 2 precision: 0.000001.
 ]
 
 { #category : #'testing - close to' }
-PMComplexTest >> testNotCloseToWithPrecision [
+PMComplexNumberTest >> testNotCloseToWithPrecision [
 
 	self deny: 2 + 3.001i closeTo: 2 + 3i precision: 0.000001.
 	self deny: 2.001 + 3i closeTo: 2 + 3i precision: 0.000001.
@@ -519,7 +519,7 @@ PMComplexTest >> testNotCloseToWithPrecision [
 ]
 
 { #category : #tests }
-PMComplexTest >> testNumberAsComplex [
+PMComplexNumberTest >> testNumberAsComplex [
 	| minusOne |
 	minusOne := -1 asComplex.
 	self assert: minusOne real equals: -1.
@@ -529,7 +529,7 @@ PMComplexTest >> testNumberAsComplex [
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testOne [
+PMComplexNumberTest >> testOne [
 	| one |
 	one := PMComplexNumber one.
 	self assert: one isComplexNumber.
@@ -538,7 +538,7 @@ PMComplexTest >> testOne [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testProductWithVector [
+PMComplexNumberTest >> testProductWithVector [
 	| v c |
 	c := 1 + 1 i.
 	v := PMVector new: 1.
@@ -548,7 +548,7 @@ PMComplexTest >> testProductWithVector [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [ 
+PMComplexNumberTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [ 
 	self deny: 1 i = nil.
 	self deny: nil = 1 i.
 	self deny: 1 i = #(1 2 3).
@@ -556,7 +556,7 @@ PMComplexTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testRaisedTo [
+PMComplexNumberTest >> testRaisedTo [
 	
 	| c c3 |
 	c := (5 - 6 i).
@@ -566,7 +566,7 @@ PMComplexTest >> testRaisedTo [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testRaisedToInteger [
+PMComplexNumberTest >> testRaisedToInteger [
 	| c c3 |
 	c := 5 - 6 i.
 	c3 := c * c * c.
@@ -575,7 +575,7 @@ PMComplexTest >> testRaisedToInteger [
 ]
 
 { #category : #tests }
-PMComplexTest >> testRandom [
+PMComplexNumberTest >> testRandom [
 	| random c r |
 	random := Random new.
 	c := random next + random next i.
@@ -585,7 +585,7 @@ PMComplexTest >> testRandom [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testReciprocal [
+PMComplexNumberTest >> testReciprocal [
 	"self run: #testReciprocal"
 
 	"self debug: #testReciprocal"
@@ -596,7 +596,7 @@ PMComplexTest >> testReciprocal [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testSecureDivision1 [
+PMComplexNumberTest >> testSecureDivision1 [
 	"self run: #testSecureDivision1"
 	"self debug: #testSecureDivision1"
 	
@@ -609,7 +609,7 @@ PMComplexTest >> testSecureDivision1 [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testSecureDivision2 [
+PMComplexNumberTest >> testSecureDivision2 [
 	"self run: #testSecureDivision2"
 	"self debug: #testSecureDivision2"
 	
@@ -622,7 +622,7 @@ PMComplexTest >> testSecureDivision2 [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSin [
+PMComplexNumberTest >> testSin [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c sin real closeTo: c real sin).
@@ -634,7 +634,7 @@ PMComplexTest >> testSin [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSinh [
+PMComplexNumberTest >> testSinh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c sinh real closeTo: c real sinh).
@@ -652,7 +652,7 @@ PMComplexTest >> testSinh [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
+PMComplexNumberTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 
 	"Given z = -4 + 0 i, the square root is 2 i"
 
@@ -665,7 +665,7 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
+PMComplexNumberTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	| squareRoot z |
 	z := PMComplexNumber real: 2 imaginary: 2.
 	
@@ -676,7 +676,7 @@ PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMComplexNumberTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
    | squareRoot expected pureImaginaryNumber |
 	pureImaginaryNumber := PMComplexNumber real: 0 imaginary: -4.
 	
@@ -689,7 +689,7 @@ PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWith
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
+PMComplexNumberTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
 
 	"e.g. square root of 4 i = root(2) + i root(2)"
 
@@ -704,7 +704,7 @@ PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWith
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
+PMComplexNumberTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyARealPart [
 
 	"Given z = 6 + 0 i, then root z = root 6"
 
@@ -718,7 +718,7 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
+PMComplexNumberTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
 	"This may cause problems because of the loss of precision.
 	Very large and very small floating point numbers have different units of least precision.
 	
@@ -737,7 +737,7 @@ PMComplexTest >> testSquareRootOfVeryLargeRealAndVerySmallImaginary [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
+PMComplexNumberTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 	"This may cause problems because of the loss of precision.
 	Very large and very small floating point numbers have different units of least precision.
 	
@@ -756,7 +756,7 @@ PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquareRootOfZeroIsZero [
+PMComplexNumberTest >> testSquareRootOfZeroIsZero [
 	| squareRoot expected |
 	squareRoot := PMComplexNumber zero sqrt .
 	
@@ -765,7 +765,7 @@ PMComplexTest >> testSquareRootOfZeroIsZero [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testSquared [
+PMComplexNumberTest >> testSquared [
 	| c c2 |
 	c := 6 - 6 i.
 	c2 := c squared.
@@ -774,7 +774,7 @@ PMComplexTest >> testSquared [
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testSubtractingPolynomials [
+PMComplexNumberTest >> testSubtractingPolynomials [
 	| c poly |
 	poly := PMPolynomial coefficients: #(1 2 3).
 	c := 1 + 3 i.
@@ -783,7 +783,7 @@ PMComplexTest >> testSubtractingPolynomials [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testTan [
+PMComplexNumberTest >> testTan [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c tan real closeTo: c real tan).
@@ -795,7 +795,7 @@ PMComplexTest >> testTan [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexTest >> testTanh [
+PMComplexNumberTest >> testTanh [
 	| c c2 |
 	c := (2 + 0 i).
 	self assert: (c tanh real closeTo: c real tanh).
@@ -807,7 +807,7 @@ PMComplexTest >> testTanh [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
+PMComplexNumberTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
 	| z w |
  	z := 1 + 3 i.
  	w := 1 + 2 i.
@@ -816,7 +816,7 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentImaginaryPartsAreNotEqual [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
+PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 	| z w |
  	z := 4 + 3 i.
  	w := -7 + 3 i.
@@ -825,7 +825,7 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
+PMComplexNumberTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
 	z := PMComplexNumber real: 3 / 5 imaginary: 4 / 5.
 	 
@@ -834,7 +834,7 @@ PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFracti
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
+PMComplexNumberTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormalized [
 
 	| z w numerator denominator |
 	z := 1 + 2 i.
@@ -846,7 +846,7 @@ PMComplexTest >> testWeCannotWriteFractionsOfComplexNumbersWithDenominatorNormal
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
+PMComplexNumberTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComplexNumbers [
 	| numerator denominator |
 	"It is interesting that we cannot instanciate a fraction of the form z/w"
 	"Perhaps, we could do something like z * (w*)/ |w|**2"
@@ -857,7 +857,7 @@ PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComple
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexTest >> testZero [
+PMComplexNumberTest >> testZero [
 	| z |
 	z := PMComplexNumber zero.
 	self assert: z isZero.
@@ -867,12 +867,12 @@ PMComplexTest >> testZero [
 ]
 
 { #category : #'testing - equality' }
-PMComplexTest >> testZeroComplexNumberIsEqualToIntegerZero [
+PMComplexNumberTest >> testZeroComplexNumberIsEqualToIntegerZero [
 	self assert: 0 i equals: 0.
  	self assert: 0 equals: 0 i.
 ]
 
 { #category : #'testing - arithmetic' }
-PMComplexTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
+PMComplexNumberTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
 	self should: [ PMComplexNumber zero reciprocal ] raise: ZeroDivide.
 ]
