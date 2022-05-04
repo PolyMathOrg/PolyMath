@@ -306,10 +306,10 @@ PMComplexTest >> testCreation [
 	c := 5.6 - 8 i.
 	self assert: c real equals: 5.6.
 	self assert: c imaginary equals: -8.
-	c := PMComplex real: 10 imaginary: 5.
+	c := PMComplexNumber real: 10 imaginary: 5.
 	self assert: c real equals: 10.
 	self assert: c imaginary equals: 5.
-	c := PMComplex abs: 5 arg: Float pi / 2.
+	c := PMComplexNumber abs: 5 arg: Float pi / 2.
 	self assert: c real rounded equals: 0.
 	self assert: c imaginary equals: 5
 ]
@@ -498,7 +498,7 @@ PMComplexTest >> testNegated [
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testNew [
 	| c |
-	c := PMComplex new.
+	c := PMComplexNumber new.
 	self assert: c real equals: 0.
 	self assert: c imaginary equals: 0
 ]
@@ -531,7 +531,7 @@ PMComplexTest >> testNumberAsComplex [
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testOne [
 	| one |
-	one := PMComplex one.
+	one := PMComplexNumber one.
 	self assert: one isComplexNumber.
 	self assert: one real equals: 1.
 	self assert: one imaginary equals: 0
@@ -657,7 +657,7 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 	"Given z = -4 + 0 i, the square root is 2 i"
 
 	| squareRoot z |
-	z := PMComplex real: -4 imaginary: 0.
+	z := PMComplexNumber real: -4 imaginary: 0.
 	
 	squareRoot := z sqrt.
 	
@@ -667,7 +667,7 @@ PMComplexTest >> testSquareRootOfANegativeRealNumberIsPureImaginary [
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 	| squareRoot z |
-	z := PMComplex real: 2 imaginary: 2.
+	z := PMComplexNumber real: 2 imaginary: 2.
 	
 	squareRoot := z sqrt.
 
@@ -678,7 +678,7 @@ PMComplexTest >> testSquareRootOfComplexNumberIsAComplexNumber [
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfNegativePureImaginaryNumberIsAComplexNumberWithRealAndImaginaryParts [
    | squareRoot expected pureImaginaryNumber |
-	pureImaginaryNumber := PMComplex real: 0 imaginary: -4.
+	pureImaginaryNumber := PMComplexNumber real: 0 imaginary: -4.
 	
 	squareRoot := pureImaginaryNumber sqrt.
 
@@ -694,7 +694,7 @@ PMComplexTest >> testSquareRootOfPositivePureImaginaryNumberIsAComplexNumberWith
 	"e.g. square root of 4 i = root(2) + i root(2)"
 
 	| squareRoot expected pureImaginaryNumber |
-	pureImaginaryNumber := PMComplex real: 0 imaginary: 4.
+	pureImaginaryNumber := PMComplexNumber real: 0 imaginary: 4.
 	
 	squareRoot := pureImaginaryNumber sqrt.
 
@@ -709,11 +709,11 @@ PMComplexTest >> testSquareRootOfPositiveRealNumberIsAComplexNumberWithOnlyAReal
 	"Given z = 6 + 0 i, then root z = root 6"
 
 	| squareRoot expected positiveRealNumber |
-	positiveRealNumber := PMComplex real: 6 imaginary: 0.
+	positiveRealNumber := PMComplexNumber real: 6 imaginary: 0.
 	
 	squareRoot := positiveRealNumber sqrt.
 
-	expected := PMComplex real: 6 sqrt imaginary: 0.
+	expected := PMComplexNumber real: 6 sqrt imaginary: 0.
 	self assert: squareRoot equals: expected
 ]
 
@@ -758,9 +758,9 @@ PMComplexTest >> testSquareRootOfVerySmallRealAndVeryLargeImaginary [
 { #category : #'testing - mathematical functions' }
 PMComplexTest >> testSquareRootOfZeroIsZero [
 	| squareRoot expected |
-	squareRoot := PMComplex zero sqrt .
+	squareRoot := PMComplexNumber zero sqrt .
 	
-	expected := PMComplex zero.
+	expected := PMComplexNumber zero.
 	self assert: squareRoot equals: expected.
 ]
 
@@ -827,7 +827,7 @@ PMComplexTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testWeCanWriteComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
-	z := PMComplex real: 3 / 5 imaginary: 4 / 5.
+	z := PMComplexNumber real: 3 / 5 imaginary: 4 / 5.
 	 
 	self assert: (z real) equals: (Fraction numerator: 3 denominator: 5).
 	self assert: (z imaginary) equals: (Fraction numerator: 4 denominator: 5).
@@ -850,8 +850,8 @@ PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComple
 	| numerator denominator |
 	"It is interesting that we cannot instanciate a fraction of the form z/w"
 	"Perhaps, we could do something like z * (w*)/ |w|**2"
-	numerator := PMComplex real: 1 imaginary: 1.
-	denominator := PMComplex real: 3 imaginary: 4 .
+	numerator := PMComplexNumber real: 1 imaginary: 1.
+	denominator := PMComplexNumber real: 3 imaginary: 4 .
 
 	self should: [ Fraction numerator: numerator denominator: denominator ] raise: Exception .
 ]
@@ -859,7 +859,7 @@ PMComplexTest >> testWeCannotWriteFractionsWhoseNumeratorAndDenominatorAreComple
 { #category : #'testing - expressing complex numbers' }
 PMComplexTest >> testZero [
 	| z |
-	z := PMComplex zero.
+	z := PMComplexNumber zero.
 	self assert: z isZero.
 	self assert: z isComplexNumber.
 	self assert: z real isZero.
@@ -874,5 +874,5 @@ PMComplexTest >> testZeroComplexNumberIsEqualToIntegerZero [
 
 { #category : #'testing - arithmetic' }
 PMComplexTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
-	self should: [ PMComplex zero reciprocal ] raise: ZeroDivide.
+	self should: [ PMComplexNumber zero reciprocal ] raise: ZeroDivide.
 ]
