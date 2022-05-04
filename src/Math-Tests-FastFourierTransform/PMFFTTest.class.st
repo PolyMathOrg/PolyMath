@@ -81,7 +81,7 @@ PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosel
 	fourier inverseTransform.
 	
 	fourier realData with: cosineWaveSignal do: [ :expected :actual |
-		self assert: actual closeTo: expected precision: 4e-5 ].
+		self assert: actual closeTo: expected ].
 ]
 
 { #category : #tests }
