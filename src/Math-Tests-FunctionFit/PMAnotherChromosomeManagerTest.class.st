@@ -132,13 +132,6 @@ self assert: (s includesSubstring: '#(2 3)').
 
 ]
 
-{ #category : #test }
-PMAnotherChromosomeManagerTest >> testProcessAnd [
-
-	self flag: #toImplement.
-	self assert: false
-]
-
 { #category : #tests }
 PMAnotherChromosomeManagerTest >> testProcessand [
 	cm reset.
