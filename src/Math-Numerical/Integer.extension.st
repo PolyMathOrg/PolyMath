@@ -37,9 +37,3 @@ Integer >> inverseBinomialCoefficient [
 				  choose := choose * (n + 1).
 				  choose := (choose / (n + 1 - k)) ceiling ] ] ]
 ]
-
-{ #category : #'*Math-Numerical' }
-Integer >> random [
-		"Answer a random integer between 0 and the receiver."
-	^ PMMitchellMooreGenerator new integerValue: self
-]
