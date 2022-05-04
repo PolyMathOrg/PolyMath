@@ -59,17 +59,6 @@ Number >> logGamma [
 ]
 
 { #category : #'*Math-Numerical' }
-Number >> productWithMatrix: aMatrix [
-^aMatrix class rows: (aMatrix rowsCollect: [:r| self productWithVector: r])
-]
-
-{ #category : #'*Math-Numerical' }
-Number >> productWithVector: aVector [
-		"Answers a new vector product of the receiver with aVector."
-	^aVector collect: [ :each | each * self]
-]
-
-{ #category : #'*Math-Numerical' }
 Number class >> random [
 	"Answers a floating random number between 0 and 1 excluded"
 
