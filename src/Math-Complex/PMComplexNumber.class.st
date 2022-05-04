@@ -84,10 +84,10 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMComplexNumber class >> abs: aNumber1 arg: aNumber2 [
+PMComplexNumber class >> abs: modulus arg: theta [
 	^self
-		real: aNumber1 * aNumber2 cos
-		imaginary: aNumber1 * aNumber2 sin
+		real: modulus * theta cos
+		imaginary: modulus * theta sin
 ]
 
 { #category : #'instance creation' }
