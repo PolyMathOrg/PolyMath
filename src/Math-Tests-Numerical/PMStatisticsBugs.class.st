@@ -52,7 +52,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 
 	"testing this method usually produces (not always and not always the same) three different errors: 'zerodivide', ' 'Function''s derivative seems to be zero everywhere' and 'Supplied derivative is not correct', the latter happens in other cases than the documented one too, i just dont remember which ones they are and i was too lazy to construct them, one example is enough"
 
-	| a b |
+	| a b random |
 	a := PMNormalDistribution new: -20 sigma: 0.7.
 	self assert: (a inverseDistributionValue: 0.5) equals: -20.
 	"ocassionally 'Supplied derivative is not correct'"
@@ -320,7 +320,11 @@ self assert: ((a distributionValue: (a inverseDistributionValue: 0.9))equalsTo: 
 	"self assert: ((a distributionValue: (a inverseDistributionValue: 1.0))equalsTo: 1)."
 	"zerod"
 	a := PMHistogram new.
-	20 timesRepeat: [ a accumulate: 7.0 random ].
+	random := Random new.
+	
+	20 timesRepeat: [
+		a accumulate: (random nextBetween: 0 and: 7) ].
+	
 	b := PMHistogrammedDistribution histogram: a.
 	self assert:
 		((b distributionValue: (b inverseDistributionValue: 0.99)) closeTo:

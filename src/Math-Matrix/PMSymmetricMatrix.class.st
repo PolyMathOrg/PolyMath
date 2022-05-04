@@ -58,15 +58,21 @@ aBlock value: RowposRespectivelyColpos value: ColposRespectivelyRowpos"
 { #category : #'as yet unclassified' }
 PMSymmetricMatrix class >> new: dim random: aMaxNumber [
 	"Answer a new symmetric matrix of the given dimensions filled with random numbers"
-	|a aRow|
-	a:=self new:dim .
-	1 to: dim do:[:i|a rowAt: 1 columnAt: i put: (aMaxNumber random)].
-	2 to: dim do: [:rowPos|
+	| matrix random aRow |
+	
+	matrix := self new: dim.
+	random := Random new.
+	
+	1 to: dim do: [ :i |
+		matrix rowAt: 1 columnAt: i put: (random nextBetween: 0 and: aMaxNumber)].
+	
+	2 to: dim do: [ :j |
 		aRow :=PMVector new: dim .
-		1 to: rowPos -1 do:[:pos| aRow at: pos put: (a rowAt: pos columnAt: rowPos)  ] .
-		rowPos to: dim do:[:pos| aRow at: pos put: (aMaxNumber random) ]. 
-		(a rows) at: rowPos put: aRow ]  .    
-	^a 
+		
+		1 to: j - 1 do: [ :i | aRow at: i put: (matrix rowAt: i columnAt: j) ].
+		j to: dim do: [ :i | aRow at: i put: (random nextBetween: 0 and: aMaxNumber) ]. 
+		(matrix rows) at: j put: aRow ]  .    
+	^ matrix 
 ]
 
 { #category : #'as yet unclassified' }

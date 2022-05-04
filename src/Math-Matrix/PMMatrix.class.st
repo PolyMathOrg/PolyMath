@@ -146,14 +146,16 @@ PMMatrix class >> rows: nRows columns: nCols  element: fillElement [
 ]
 
 { #category : #'as yet unclassified' }
-PMMatrix class >> rows: rows columns: columns random: aMaxNumber [
+PMMatrix class >> rows: aNumberOfRows columns: aNumberOfColumns random: aMaxNumber [
 	"Answer a new Matrix of the given dimensions filled with random numbers"
-	|a b|
-	a:=	(1 to: rows) collect: [:row |b:=PMVector new:columns .
-		1 to: columns do: [:column |
-			b  at: column put: (aMaxNumber random)].
-		b].
-	^PMMatrix rows: a
+	| random rows |
+	random := Random new.
+	
+	rows := (1 to: aNumberOfRows) collect: [ :i |
+		(1 to: aNumberOfColumns) collect: [ :j |
+			random nextBetween: 0 and: aMaxNumber ] ].
+	
+	^ self rows: rows
 ]
 
 { #category : #'instance creation' }

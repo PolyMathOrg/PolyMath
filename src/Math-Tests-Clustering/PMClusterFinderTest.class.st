@@ -2,7 +2,8 @@ Class {
 	#name : #PMClusterFinderTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'dataServer'
+		'dataServer',
+		'randomNumberGenerator'
 	],
 	#category : #'Math-Tests-Clustering'
 }
@@ -13,35 +14,44 @@ PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection
 	aNumber is the sigma for the distance to the center"
 	
 	| r phi psi localVector |
-	r := (PMNormalDistribution new: 0 sigma: aNumber) random.
-	phi := Float pi random.
-	psi := Float pi random.
+	
+	r := randomNumberGenerator nextBetween: -1 * aNumber and: aNumber.
+	phi := randomNumberGenerator nextBetween: 0 and: Float pi.
+	psi := randomNumberGenerator nextBetween: 0 and: Float pi.
+	
 	localVector := PMVector new: 3.
-	localVector at: 1 put: ( phi sin * psi sin * r );
-					   at: 2 put: ( phi cos * psi sin * r );
-					   at: 3 put: ( psi cos * r ).
+	localVector
+		at: 1 put: (phi sin * psi sin * r);
+		at: 2 put: (phi cos * psi sin * r);
+		at: 3 put: (psi cos * r).
+		
 	aCollection add: (localVector + aVector).
 ]
 
 { #category : #utils }
 PMClusterFinderTest >> generatedPoints: anInteger [
 	"Private - Generate random points into aCollection. 3 clusters are used"
-	| centers results |
-	centers := Array new: 3.
-	centers at: 1 put: #( 200 200  200) asPMVector;
-				 at: 2 put: #(-200 200  200) asPMVector;
-				 at: 3 put: #( 200 200 -200) asPMVector.
+	| centers results randomNumber |
+	
+	centers := {
+		#( 200 200  200) asPMVector .
+		#(-200 200  200) asPMVector .
+		#( 200 200 -200) asPMVector }.
+		
 	results := OrderedCollection new.
-	PMMitchellMooreGenerator reset: 6.
-		"make tests non-random to make sure that they will not fail on the integrator server."
-	anInteger timesRepeat: [ self accumulateAround: ( centers at: (3 random + 1)) size: 1 into: results ].
-	^results
+	
+	anInteger timesRepeat: [
+		randomNumber := randomNumberGenerator nextIntegerBetween: 1 and: 3.
+		self accumulateAround: (centers at: randomNumber) size: 1 into: results ].
+	
+	^ results
 ]
 
 { #category : #setUp }
 PMClusterFinderTest >> setUp [
-
-
+	super setUp.
+	randomNumberGenerator := Random seed: 3.
+	
 	dataServer := PMMemoryBasedDataServer new.
 	dataServer data: (self generatedPoints: 1000).
 	

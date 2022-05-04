@@ -57,12 +57,15 @@ PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [
 
 { #category : #'*Math-Quaternion' }
 PMQuaternion class >> random [
-		"Answers a random quaternion with abs at most one."
+	"Answers a random quaternion with abs at most one."
+	
+	| random |
+	random := Random new.
 
-	^ (0.5 - Float random) 
-		i: (0.5 - Float random)
-		j: (0.5 - Float random)
-		k: (0.5 - Float random).
+	^ (0.5 - random next) 
+		i: (0.5 - random next)
+		j: (0.5 - random next)
+		k: (0.5 - random next).
 ]
 
 { #category : #'constants access' }

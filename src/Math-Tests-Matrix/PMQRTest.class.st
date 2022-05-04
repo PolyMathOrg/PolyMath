@@ -104,16 +104,20 @@ PMQRTest >> testQRFactorization [
 
 { #category : #tests }
 PMQRTest >> testRank [
-	| a i |
-	i := 0.
-	[ a := PMMatrix rows: 5 columns: 7 random: 5.0.
-	a rank = 5
-		ifTrue: [ a atRow: 2 put: (a rowAt: 1) + (3.0 random * (a rowAt: 3)).
-			a atRow: 4 put: (0.5 + 3.0 random) * (a rowAt: 5).
-			i := i + 1.
-			self assert: a rank equals: 3.
-			self assert: a transpose rank equals: 3 ].
-	i < 10 ] whileTrue
+	| random randomNumber matrix |
+	random := Random new.
+	
+	10 timesRepeat: [
+		matrix := PMMatrix rows: 5 columns: 7 random: 5.0.
+		matrix rank = 5 ifTrue: [
+			randomNumber := random nextBetween: 0 and: 3.
+			matrix atRow: 2 put: (matrix rowAt: 1) + (randomNumber * (matrix rowAt: 3)).
+			
+			randomNumber := random nextBetween: 0 and: 3.
+			matrix atRow: 4 put: (0.5 + randomNumber) * (matrix rowAt: 5).
+			
+			self assert: matrix rank equals: 3.
+			self assert: matrix transpose rank equals: 3 ] ].
 ]
 
 { #category : #tests }
