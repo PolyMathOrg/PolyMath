@@ -34,18 +34,27 @@ PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 
 { #category : #utils }
 PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d randomized: aBoolean [
-"a bit randomized "
-|dist|
-dist :=1.0 / n.
-^(1 to:  n) collect: [:number| (1 to: d)collect: [:dim|
-		( dim=1)
-		ifTrue:[aBoolean ifTrue: [(number/n)- dist random] ifFalse: [(number/n)]]
-		ifFalse: [|sum prime| 
-			sum :=0.
-			prime :=Primes at: dim-1.
-			(self integerDigitsFor: number base: prime)
-				reverse withIndexDo: [:i :index|sum:= i/(prime raisedToInteger: index)+sum.].
-			aBoolean ifTrue: [sum + dist random] ifFalse: [sum] ] ]]. 
+	"a bit randomized "
+	| dist randomNumberGenerator |
+	dist := 1.0 / n.
+	randomNumberGenerator := Random new.
+	
+	^(1 to: n) collect: [ :number |
+		(1 to: d) collect: [ :dim |
+			(dim=1)
+				ifTrue: [ aBoolean
+					ifTrue: [ (number/n) - (randomNumberGenerator nextBetween: 0 and: dist) ]
+					ifFalse: [ number/n ] ]
+				ifFalse: [ |sum prime| 
+					sum := 0.
+					prime := Primes at: dim - 1.
+					
+					(self integerDigitsFor: number base: prime) reverse withIndexDo: [ :i :index |
+						sum := i / (prime raisedToInteger: index) + sum ].
+					
+					aBoolean
+						ifTrue: [ sum + (randomNumberGenerator nextBetween: 0 and: dist) ]
+						ifFalse: [ sum ] ] ]]. 
 ]
 
 { #category : #'instance creation' }
@@ -57,7 +66,7 @@ PMAnotherChromosomeManager class >> origin: anArray range: anotherArray [
 PMAnotherChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
 "the Discrete Recombination  operator
 that does not prefer schemata of certain parameters based on their position"
-	| random new1 new2 |
+	| new1 new2 |
 	
 	aChromosome1 = aChromosome2 ifTrue:[
 		^ Array
@@ -67,10 +76,8 @@ that does not prefer schemata of certain parameters based on their position"
 	new1 := self clone: aChromosome1.
 	new2 := self clone: aChromosome2.
 	
-	random := Random new.
-	
 	2 to: new1 size do: [ :i |
-		(random next < 0.5) ifTrue: [
+		(randomNumberGenerator next < 0.5) ifTrue: [
 			new1 at: i put: (aChromosome2 at: i).
 			new2 at: i put: (aChromosome1 at: i) ] ].
 	
@@ -79,15 +86,24 @@ that does not prefer schemata of certain parameters based on their position"
 
 { #category : #operation }
 PMAnotherChromosomeManager >> eirCrossover: aChromosome1 and: aChromosome2 [
-"the Extended Intermediate Recombination  0.5 operator, slightly changed to make it more similar to linecrossover (distribution is more centered around Chromosome1, which is better than C2)"
-| r new1 new2 dif|
-dif:=aChromosome2 - aChromosome1.
-dif norm=0 ifTrue:[^Array with:( self mutate: aChromosome2) with: (self mutate: aChromosome1) ].
-r:=(1 to: aChromosome1 size) collect:[:i| 2.0 random -0.5] .
-new1 := aChromosome1+ (r * dif).
-r:=(1 to: aChromosome1 size) collect:[:i| 1.0 random -0.5] .
-new2 := aChromosome1+ (r * dif).
-^Array with: new1 with: new2
+	"the Extended Intermediate Recombination  0.5 operator, slightly changed to make it more similar to linecrossover (distribution is more centered around Chromosome1, which is better than C2)"
+	| randomNumbers new1 new2 dif |
+	dif := aChromosome2 - aChromosome1.
+	
+	dif norm = 0 ifTrue: [
+		^ { self mutate: aChromosome2 . self mutate: aChromosome1 } ].
+	
+	randomNumbers := (1 to: aChromosome1 size) collect: [ :i |
+		randomNumberGenerator nextBetween: -0.5 and: 1.5 ].
+	
+	new1 := aChromosome1 + (randomNumbers * dif).
+	
+	randomNumbers := (1 to: aChromosome1 size) collect: [ :i |
+		randomNumberGenerator nextBetween: -0.5 and: 0.5 ].
+	
+	new2 := aChromosome1 + (randomNumbers * dif).
+	
+	^ { new1 . new2 }
 
 ]
 
@@ -127,23 +143,22 @@ PMAnotherChromosomeManager >> lineCrossOver: aChromosome1 and: aChromosome2 [
 { #category : #operation }
 PMAnotherChromosomeManager >> mutate: aVector [
 	"BGA mutation"
-	| isMutated threshold new random index|
+	| isMutated threshold new index |
 	
 	isMutated := false.
 	threshold := 1 / aVector size asFloat.
 	new := aVector copy.
-	random := Random new.
 	
 	1 to: aVector size do: [ :i |
-		random next < threshold ifTrue: [
+		randomNumberGenerator next < threshold ifTrue: [
 			isMutated := true.
 			new at: i put: (new at: i) + 
-				((random next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: i)) ] ].
+				((randomNumberGenerator next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: i)) ] ].
 	
 	isMutated ifFalse: [
-		index := aVector size random + 1.
+		index := randomNumberGenerator nextIntegerBetween: 1 and: aVector size.
 		new at: index put: (new at: index) + 
-			((random next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: index)) ].
+			((randomNumberGenerator next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: index)) ].
 	
 	^ new
 ]
@@ -171,9 +186,8 @@ PMAnotherChromosomeManager >> printOn: aStream [
 
 { #category : #operation }
 PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
-	| random roll |
-	random := Random new.
-	roll := random next.
+	| roll |
+	roll := randomNumberGenerator next.
 	roll < rateOfCrossover 
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
 		ifFalse: 
@@ -242,9 +256,7 @@ PMAnotherChromosomeManager >> rateOfMutation: aNumber [
 { #category : #private }
 PMAnotherChromosomeManager >> smallDistribution [
 	"an exponential distribution as used by H. Mühlenbein"
-	| random |
-	random := Random new.
-	^ 2 raisedTo: (16 * random next negated)
+	^ 2 raisedTo: (16 * randomNumberGenerator next negated)
 ]
 
 { #category : #private }

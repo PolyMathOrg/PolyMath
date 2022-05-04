@@ -5,7 +5,8 @@ Class {
 		'population',
 		'populationSize',
 		'rateOfMutation',
-		'rateOfCrossover'
+		'rateOfCrossover',
+		'randomNumberGenerator'
 	],
 	#category : #'Math-Chromosome'
 }
@@ -26,6 +27,12 @@ PMChromosomeManager >> clone: aChromosome [
 PMChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
 	
 	^self subclassResponsibility
+]
+
+{ #category : #initialization }
+PMChromosomeManager >> initialize [ 
+	super initialize.
+	randomNumberGenerator := Random new.
 ]
 
 { #category : #information }
@@ -55,9 +62,8 @@ PMChromosomeManager >> populationSize: anInteger [
 { #category : #operation }
 PMChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
 	
-	| random roll |
-	random := Random new.
-	roll := random next.
+	| roll |
+	roll := randomNumberGenerator next.
 	roll < rateOfCrossover 
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
 		ifFalse: 
