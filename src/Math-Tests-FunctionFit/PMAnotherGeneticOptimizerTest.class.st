@@ -46,10 +46,10 @@ self assert: (r>go computePrecision  ).
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testEvaluate [
-go maximumIterations: 170.
-go chromosomeManager populationSize: 50.
-self assert: (go evaluate equalsTo: #(0 0 0)  ).
 
+	go maximumIterations: 170.
+	go chromosomeManager populationSize: 50.
+	self assert: (go evaluate closeTo: #( 0 0 0 ))
 ]
 
 { #category : #tests }
@@ -81,13 +81,13 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testRangeScale [
-go initializeIterations.
-self assert: (go rangeScale first equalsTo: 0.1).
-self assert: (go rangeScale second equalsTo: 0.19473684210526315).
-go initializeIterations.
-self assert: (go rangeScale first equalsTo: 0.1).
-self assert: (go rangeScale second equalsTo: 0.19473684210526315).
 
+	go initializeIterations.
+	self assert: (go rangeScale first closeTo: 0.1).
+	self assert: (go rangeScale second closeTo: 0.19473684210526315).
+	go initializeIterations.
+	self assert: (go rangeScale first closeTo: 0.1).
+	self assert: (go rangeScale second closeTo: 0.19473684210526315)
 ]
 
 { #category : #tests }

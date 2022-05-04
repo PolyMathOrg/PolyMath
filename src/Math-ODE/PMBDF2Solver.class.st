@@ -35,7 +35,7 @@ PMBDF2Solver >> firstStepperClass [
 { #category : #'as yet unclassified' }
 PMBDF2Solver >> lastStepPrevState: prevState endTime: endTime [
 	"catch partial or full step at end"
-	(lastTime equalsTo: endTime )
+	(lastTime closeTo: endTime )
 	ifFalse:
 		[state := stepper 
 			doStep: state 

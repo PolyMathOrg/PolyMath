@@ -9,7 +9,7 @@ fit result parameters .   --->  #(1.9999999999999998 0.39999999999999863)
 Class {
 	#name : #PMFunctionFit,
 	#superclass : #PMLeastSquareFit,
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #creation }
@@ -78,9 +78,12 @@ PMFunctionFit >> parameters [
 
 { #category : #initialization }
 PMFunctionFit >> parameters: indexableCollection [
-indexableCollection do:[ :e|(e equalsTo: 0.0)ifTrue: [ self error:'parameters shouldnt be set to practically zero' ] ].
-result parameters: indexableCollection.
-self finalizeIterations .
+
+	indexableCollection do: [ :e | 
+		(e closeTo: 0.0) ifTrue: [ 
+			self error: 'parameters shouldnt be set to practically zero' ] ].
+	result parameters: indexableCollection.
+	self finalizeIterations
 ]
 
 { #category : #printing }

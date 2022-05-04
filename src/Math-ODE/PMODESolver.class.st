@@ -72,7 +72,7 @@ PMODESolver >> initialize [
 { #category : #solving }
 PMODESolver >> lastStepState: aState endTime: endTime [
 	"catch partial or full step at end"
-	(lastTime equalsTo: endTime )
+	(lastTime closeTo: endTime )
 		ifFalse:
 			[state := stepper 
 				lastStep: state 

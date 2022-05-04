@@ -51,7 +51,7 @@ PMNewtonZeroFinder >> computeInitialValues [
 	n := 0.
 	random := Random new.
 	
-	[ (derivativeBlock value: result) equalsTo: 0] whileTrue: [
+	[ (derivativeBlock value: result) closeTo: 0] whileTrue: [
 		n := n + 1.
 		
 		n > maximumIterations ifTrue: [

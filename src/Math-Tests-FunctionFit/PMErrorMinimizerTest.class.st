@@ -9,6 +9,7 @@ Class {
 
 { #category : #tests }
 PMErrorMinimizerTest >> testErrorMinimizer [
+
 	| f col er fit |
 	f := [ :x :a :b | a * x / (b + x) ].
 	col := (0 to: 20) collect: [ :i | i @ (f cull: i cull: 2 cull: 0.4) ].
@@ -18,5 +19,5 @@ PMErrorMinimizerTest >> testErrorMinimizer [
 	fit := PMErrorMinimizer function: er.
 	fit evaluate.
 	self assert: fit maxFunction > 2.
-	self assert: (fit parameters equalsTo: #(2 0.4))
+	self assert: (fit parameters closeTo: #( 2 0.4 ))
 ]
