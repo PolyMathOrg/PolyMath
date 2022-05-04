@@ -38,13 +38,7 @@ PMComplexTest >> testAddingComplexNumbersToAnArrayOfIntegers [
 	c := 6 - 6 i.
 	arrayOfIntegers := #(0 1 2 3 4 5).
 	
-	expected := Array new: 6.
-	expected at: 1 put: 6 - 6 i.
-	expected at: 2 put: 7 - 6 i.
-	expected at: 3 put: 8 - 6 i.
-	expected at: 4 put: 9 - 6 i.
-	expected at: 5 put: 10 - 6 i.
-	expected at: 6 put: 11 - 6 i.
+	expected := { 6 - 6 i . 7 - 6 i . 8 - 6 i . 9 - 6 i . 10 - 6 i . 11 - 6 i }.
 	self assert: (arrayOfIntegers + c) equals: expected.
 ]
 
@@ -461,13 +455,7 @@ PMComplexTest >> testMultiplyingAnArrayOfIntegersByAComplexNumber [
 	c := 6 - 6 i.
 	arrayOfIntegers := #(0 1 2 3 4 5).
 	
-	expected := Array new: 6.
-	expected at: 1 put: 0 + 0 i.
-	expected at: 2 put: 6 - 6 i.
-	expected at: 3 put: 12 - 12 i.
-	expected at: 4 put: 18 - 18 i.
-	expected at: 5 put: 24 - 24 i.
-	expected at: 6 put: 30 - 30 i.
+	expected := { 0 + 0 i . 6 - 6 i . 12 - 12 i . 18 - 18 i . 24 - 24 i . 30 - 30 i }.
 	self assert: (arrayOfIntegers * c) equals: expected .
 ]
 
