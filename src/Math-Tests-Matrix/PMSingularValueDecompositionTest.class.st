@@ -189,10 +189,11 @@ PMSingularValueDecompositionTest >> testIsExampleOrthonormalV [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testIsOrthonormalU [
+
 	"Verifying that matrix U is orthonormal. That is, all columns of U are unit vectors and orthogonal to each other."
 
 	| u m identity |
-	u := matrix decomposeSV leftSingularForm.
+	u := matrix decomposeSV leftSingularMatrix.
 	m := u numberOfRows.
 	identity := PMSymmetricMatrix identity: m.
 	self assert: u transpose * u closeTo: identity
@@ -200,10 +201,11 @@ PMSingularValueDecompositionTest >> testIsOrthonormalU [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testIsOrthonormalV [
+
 	"Verifying that matrix U is orthonormal. That is, all columns of U are unit vectors and orthogonal to each other."
 
 	| v n identity |
-	v := matrix decomposeSV rightSingularForm.
+	v := matrix decomposeSV rightSingularMatrix.
 	n := v numberOfRows.
 	identity := PMSymmetricMatrix identity: n.
 	self assert: v transpose * v closeTo: identity
@@ -211,39 +213,43 @@ PMSingularValueDecompositionTest >> testIsOrthonormalV [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testIsSquareU [
+
 	"U should be a square matrix"
 
 	| u |
-	u := matrix decomposeSV leftSingularForm.
+	u := matrix decomposeSV leftSingularMatrix.
 	self assert: u numberOfRows equals: u numberOfColumns
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testIsSquareV [
+
 	"V should be a square matrix"
 
 	| v |
-	v := matrix decomposeSV rightSingularForm.
+	v := matrix decomposeSV rightSingularMatrix.
 	self assert: v numberOfRows equals: v numberOfColumns
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testReconstruction [
+
 	| svd u v s reconstructed |
 	svd := matrix decomposeSV.
-	u := svd leftSingularForm.
-	v := svd rightSingularForm.
-	s := svd sForm.
+	u := svd leftSingularMatrix.
+	v := svd rightSingularMatrix.
+	s := svd diagonalSingularValueMatrix.
 	reconstructed := u * s * v transpose.
 	self assert: reconstructed closeTo: matrix
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testShapeS [
+
 	"If A is an (m x n) matrix, then S should be an (m x n) matrix"
 
 	| s m n |
-	s := matrix decomposeSV sForm.
+	s := matrix decomposeSV diagonalSingularValueMatrix.
 	m := matrix numberOfRows.
 	n := matrix numberOfColumns.
 	self assert: s numberOfRows equals: m.
@@ -252,10 +258,11 @@ PMSingularValueDecompositionTest >> testShapeS [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testShapeU [
+
 	"If A is an (m x n) matrix, then U should be an (m x m) matrix"
 
 	| u m |
-	u := matrix decomposeSV leftSingularForm.
+	u := matrix decomposeSV leftSingularMatrix.
 	m := matrix numberOfRows.
 	self assert: u numberOfRows equals: m.
 	self assert: u numberOfColumns equals: m
@@ -263,10 +270,11 @@ PMSingularValueDecompositionTest >> testShapeU [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testShapeV [
+
 	"If A is an (m x n) matrix, then V should be an (n x n) matrix"
 
 	| v n |
-	v := matrix decomposeSV rightSingularForm.
+	v := matrix decomposeSV rightSingularMatrix.
 	n := matrix numberOfColumns.
 	self assert: v numberOfRows equals: n.
 	self assert: v numberOfColumns equals: n
@@ -274,27 +282,30 @@ PMSingularValueDecompositionTest >> testShapeV [
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testValueS [
+
 	"Comparing S to its known value"
 
 	| s |
-	s := matrix decomposeSV sForm.
+	s := matrix decomposeSV diagonalSingularValueMatrix.
 	self assert: s closeTo: actualS
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testValueU [
+
 	"Comparing U to its known value"
 
 	| u |
-	u := matrix decomposeSV leftSingularForm.
+	u := matrix decomposeSV leftSingularMatrix.
 	self assert: u closeTo: actualU
 ]
 
 { #category : #tests }
 PMSingularValueDecompositionTest >> testValueV [
+
 	"Comparing V to its known value"
 
 	| v |
-	v := matrix decomposeSV rightSingularForm.
+	v := matrix decomposeSV rightSingularMatrix.
 	self assert: v closeTo: actualV
 ]

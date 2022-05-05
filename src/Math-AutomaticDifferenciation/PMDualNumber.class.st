@@ -142,9 +142,10 @@ PMDualNumber >> closeTo: aDualNumber [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> conjugated [
+
 	^ self class
-		value: self value conjugated
-		eps: self eps asComplex complexConjugate
+		  value: self value complexConjugate
+		  eps: self eps asComplex complexConjugate
 ]
 
 { #category : #'mathematical functions' }

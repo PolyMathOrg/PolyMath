@@ -37,9 +37,10 @@ d1 scatterplotMatrix.
 
 { #category : #accessing }
 PMPrincipalComponentAnalyserSVD >> fit: aPMMatrix [
+
 	svd := aPMMatrix decomposeSV.
-	u := svd leftSingularForm.
-	v := svd rightSingularForm.
+	u := svd leftSingularMatrix.
+	v := svd rightSingularMatrix.
 	self flipEigenvectorsSign
 ]
 
