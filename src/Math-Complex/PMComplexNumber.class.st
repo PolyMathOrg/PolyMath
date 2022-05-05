@@ -74,7 +74,7 @@ Missing methods
 	Complex | mathematical functions | arcTan
 "
 Class {
-	#name : #PMComplex,
+	#name : #PMComplexNumber,
 	#superclass : #Object,
 	#instVars : [
 		'real',
@@ -84,24 +84,24 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMComplex class >> abs: aNumber1 arg: aNumber2 [
+PMComplexNumber class >> abs: modulus arg: theta [
 	^self
-		real: aNumber1 * aNumber2 cos
-		imaginary: aNumber1 * aNumber2 sin
+		real: modulus * theta cos
+		imaginary: modulus * theta sin
 ]
 
 { #category : #'instance creation' }
-PMComplex class >> new [
+PMComplexNumber class >> new [
 	^ self real: 0 imaginary: 0
 ]
 
 { #category : #'instance creation' }
-PMComplex class >> one [
+PMComplexNumber class >> one [
 	^ self real: 1 imaginary: 0
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex class >> random [
+PMComplexNumber class >> random [
 	"Answers a random number with abs between 0 and 1." 
 	| random |
 	random := Random new.
@@ -112,17 +112,17 @@ PMComplex class >> random [
 ]
 
 { #category : #'instance creation' }
-PMComplex class >> real: aNumber1 imaginary: aNumber2 [
+PMComplexNumber class >> real: aNumber1 imaginary: aNumber2 [
 	^self basicNew	real: aNumber1 imaginary: aNumber2
 ]
 
 { #category : #'instance creation' }
-PMComplex class >> zero [
+PMComplexNumber class >> zero [
 	^ self real: 0 imaginary: 0
 ]
 
 { #category : #arithmetic }
-PMComplex >> * anObject [
+PMComplexNumber >> * anObject [
 	"Answer the result of multiplying the receiver by aNumber."
 	| a b c d newReal newImaginary |
 	anObject isComplexNumber
@@ -133,13 +133,13 @@ PMComplex >> * anObject [
 			d := anObject imaginary.
 			newReal := (a * c) - (b * d).
 			newImaginary := (a * d) + (b * c).
-			^ PMComplex real: newReal imaginary: newImaginary]
+			^ PMComplexNumber real: newReal imaginary: newImaginary]
 		ifFalse:
 			[^ anObject adaptToComplex: self andSend: #*]
 ]
 
 { #category : #arithmetic }
-PMComplex >> + anObject [
+PMComplexNumber >> + anObject [
 	"Answer the sum of the receiver and aNumber."
 	| a b c d newReal newImaginary |
 	anObject isComplexNumber
@@ -150,13 +150,13 @@ PMComplex >> + anObject [
 			d := anObject imaginary.
 			newReal := a + c.
 			newImaginary := b + d.
-			^ PMComplex real: newReal imaginary: newImaginary]
+			^ PMComplexNumber real: newReal imaginary: newImaginary]
 		ifFalse:
 			[^ anObject adaptToComplex: self andSend: #+]
 ]
 
 { #category : #arithmetic }
-PMComplex >> - anObject [
+PMComplexNumber >> - anObject [
 	"Answer the difference between the receiver and aNumber."
 	| a b c d newReal newImaginary |
 	anObject isComplexNumber
@@ -167,13 +167,13 @@ PMComplex >> - anObject [
 			d := anObject imaginary.
 			newReal := a - c.
 			newImaginary := b - d.
-			^ PMComplex real: newReal imaginary: newImaginary]
+			^ PMComplexNumber real: newReal imaginary: newImaginary]
 		ifFalse:
 			[^ anObject adaptToComplex: self andSend: #-]
 ]
 
 { #category : #arithmetic }
-PMComplex >> / aNumber [
+PMComplexNumber >> / aNumber [
 	"Answer the result of dividing receiver by aNumber"
 	| a b c d newReal newImaginary |
 	aNumber isComplexNumber ifTrue:
@@ -188,7 +188,7 @@ PMComplex >> / aNumber [
 ]
 
 { #category : #comparing }
-PMComplex >> = anObject [
+PMComplexNumber >> = anObject [
 	anObject isNumber ifFalse: [^false].
 	anObject isComplexNumber
 		ifTrue: [^ (real = anObject real) & (imaginary = anObject imaginary)]
@@ -196,14 +196,14 @@ PMComplex >> = anObject [
 ]
 
 { #category : #arithmetic }
-PMComplex >> abs [
+PMComplexNumber >> abs [
 	"Answer the distance of the receiver from zero (0 + 0 i)."
 
 	^ ((real * real) + (imaginary * imaginary)) sqrt
 ]
 
 { #category : #arithmetic }
-PMComplex >> absSecure [
+PMComplexNumber >> absSecure [
 	"Answer the distance of the receiver from zero (0 + 0 i).
 	Try avoiding overflow and/or underflow"
 
@@ -215,13 +215,13 @@ PMComplex >> absSecure [
 ]
 
 { #category : #arithmetic }
-PMComplex >> absSquared [
+PMComplexNumber >> absSquared [
 
 	^ self real * self real + (self imaginary * self imaginary)
 ]
 
 { #category : #converting }
-PMComplex >> adaptToCollection: rcvr andSend: selector [
+PMComplexNumber >> adaptToCollection: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Collection, return a Collection of
 	the results of each element combined with me in that expression."
 
@@ -229,30 +229,30 @@ PMComplex >> adaptToCollection: rcvr andSend: selector [
 ]
 
 { #category : #converting }
-PMComplex >> adaptToFloat: rcvr andSend: selector [
+PMComplexNumber >> adaptToFloat: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Float, convert it to a Complex number."
 	^ rcvr asComplex perform: selector with: self
 ]
 
 { #category : #converting }
-PMComplex >> adaptToFraction: rcvr andSend: selector [
+PMComplexNumber >> adaptToFraction: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Fraction, convert it to a Complex number."
 	^ rcvr asComplex perform: selector with: self
 ]
 
 { #category : #converting }
-PMComplex >> adaptToInteger: rcvr andSend: selector [
+PMComplexNumber >> adaptToInteger: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a Complex number."
 	^ rcvr asComplex perform: selector with: self
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> addPolynomial: aPolynomial [
+PMComplexNumber >> addPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arCosh [
+PMComplexNumber >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh.
 	Some possible implementations:
@@ -284,7 +284,7 @@ PMComplex >> arCosh [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arSinh [
+PMComplexNumber >> arSinh [
 	"Answer receiver's area hyperbolic sine.
 	That is the inverse function of sinh."
 
@@ -298,7 +298,7 @@ PMComplex >> arSinh [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arTanh [
+PMComplexNumber >> arTanh [
 	"Answer receiver's area hyperbolic tangent.
 	That is the inverse function of tanh."
 
@@ -310,7 +310,7 @@ PMComplex >> arTanh [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arcCos [
+PMComplexNumber >> arcCos [
 	"Answer the arc cosine of the receiver.
 	This is the inverse function of cos."
 
@@ -335,7 +335,7 @@ PMComplex >> arcCos [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arcSin [
+PMComplexNumber >> arcSin [
 	"Answer the arc sine of the receiver.
 	This is the inverse function of sin."
 
@@ -360,7 +360,7 @@ PMComplex >> arcSin [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arcTan [
+PMComplexNumber >> arcTan [
 	"Answer the arc tangent of the receiver.
 	This is the inverse function of tan."
 
@@ -372,7 +372,7 @@ PMComplex >> arcTan [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> arcTan: denominator [ 
+PMComplexNumber >> arcTan: denominator [ 
 	"Answer the  four quadrants arc tangent of receiver over denominator."
 
 	^denominator isZero 
@@ -395,7 +395,7 @@ PMComplex >> arcTan: denominator [
 ]
 
 { #category : #'polar coordinates' }
-PMComplex >> arg [
+PMComplexNumber >> arg [
 	"Answer the argument of the receiver."
 
 	self isZero ifTrue: [self error: 'zero has no argument.'].
@@ -403,12 +403,12 @@ PMComplex >> arg [
 ]
 
 { #category : #converting }
-PMComplex >> asComplex [
+PMComplexNumber >> asComplex [
 	^self
 ]
 
 { #category : #comparing }
-PMComplex >> closeTo: aNumber precision: aPrecision [
+PMComplexNumber >> closeTo: aNumber precision: aPrecision [
 	"A complex number self is close to a complex number other with precision epsilon if both
 	self real is close to other real with precision epsilon and
 	self imaginary is close to other imaginary with precision epsilon.
@@ -423,13 +423,13 @@ PMComplex >> closeTo: aNumber precision: aPrecision [
 ]
 
 { #category : #arithmetic }
-PMComplex >> complexConjugate [
+PMComplexNumber >> complexConjugate [
 
 	^ self class real: real imaginary: imaginary negated
 ]
 
 { #category : #arithmetic }
-PMComplex >> conjugated [
+PMComplexNumber >> conjugated [
 	"Return the complex conjugate of this complex number."
 
 	self
@@ -442,14 +442,14 @@ PMComplex >> conjugated [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> cos [
+PMComplexNumber >> cos [
 	"Answer receiver's cosine."
 
 	^self i cosh
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> cosh [
+PMComplexNumber >> cosh [
 	"Answer receiver's hyperbolic cosine.
 	Hyperbolic cosine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp + self negated exp) / 2.
@@ -461,7 +461,7 @@ PMComplex >> cosh [
 ]
 
 { #category : #arithmetic }
-PMComplex >> divideFastAndSecureBy: anObject [
+PMComplexNumber >> divideFastAndSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
 	" Both operands are scaled to avoid arithmetic overflow. 
 	  This algorithm works for a wide range of values, and it needs only three divisions.
@@ -483,12 +483,12 @@ PMComplex >> divideFastAndSecureBy: anObject [
 			newImaginary := r*imaginary - real/d.
 		    ].
 		
-		^ PMComplex real: newReal imaginary: newImaginary].
+		^ PMComplexNumber real: newReal imaginary: newImaginary].
 	^ anObject adaptToComplex: self andSend: #/.
 ]
 
 { #category : #arithmetic }
-PMComplex >> divideSecureBy: anObject [
+PMComplexNumber >> divideSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
 	" Both operands are scaled to avoid arithmetic overflow. This algorithm 
 	  works for a wide range of values, but it requires six divisions.  
@@ -506,24 +506,24 @@ PMComplex >> divideSecureBy: anObject [
 		
 		newReal := ars*brs + (ais*bis) /s.
 		newImaginary := ais*brs - (ars*bis)/s.
-		^ PMComplex real: newReal imaginary: newImaginary].
+		^ PMComplexNumber real: newReal imaginary: newImaginary].
 	^ anObject adaptToComplex: self andSend: #/.
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> dividingPolynomial: aPolynomial [
+PMComplexNumber >> dividingPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: 1 / self
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> exp [
+PMComplexNumber >> exp [
 	"Answer the exponential of the receiver."
 
 	^ real exp * (imaginary cos + imaginary sin i)
 ]
 
 { #category : #private }
-PMComplex >> floatClass [
+PMComplexNumber >> floatClass [
 	"Answer the class suitable for doing floating point operations.
 	In default Squeak, this is Float.
 	In an image with single and double IEEE 754 floating point numbers,
@@ -533,14 +533,14 @@ PMComplex >> floatClass [
 ]
 
 { #category : #comparing }
-PMComplex >> hash [
+PMComplexNumber >> hash [
 	"Hash is reimplemented because = is implemented."
 	
 	^ real hash bitXor: imaginary hash.
 ]
 
 { #category : #arithmetic }
-PMComplex >> i [
+PMComplexNumber >> i [
 	"Answer the result of multiplying the receiver with pure imaginary.
 		^self * 1 i
 	This is an obvious extension of method i implemented in Number."
@@ -549,12 +549,12 @@ PMComplex >> i [
 ]
 
 { #category : #accessing }
-PMComplex >> imaginary [
+PMComplexNumber >> imaginary [
 	^ imaginary
 ]
 
 { #category : #testing }
-PMComplex >> isComplexConjugateOf: aNumber [
+PMComplexNumber >> isComplexConjugateOf: aNumber [
 	"Answer true if self and aNumber are complex conjugates of each other. The complex conjugate of a complex number is the number with an equal real part and an imaginary part equal in magnitude but opposite in sign."
 	self
 		deprecated: 'This method is redundant. Just check the equality with complexConjugate'
@@ -564,43 +564,43 @@ PMComplex >> isComplexConjugateOf: aNumber [
 ]
 
 { #category : #testing }
-PMComplex >> isComplexNumber [
+PMComplexNumber >> isComplexNumber [
 	^ true
 ]
 
 { #category : #testing }
-PMComplex >> isNumber [
+PMComplexNumber >> isNumber [
 	^ true
 ]
 
 { #category : #testing }
-PMComplex >> isZero [
+PMComplexNumber >> isZero [
 	^ real isZero and: [imaginary isZero]
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> ln [
+PMComplexNumber >> ln [
 	"Answer the natural log of the receiver."
 
 	^ self abs ln + self arg i
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> log: aNumber [ 
+PMComplexNumber >> log: aNumber [ 
 	"Answer the log base aNumber of the receiver."
 
 	^self ln / aNumber ln
 ]
 
 { #category : #arithmetic }
-PMComplex >> negated [
+PMComplexNumber >> negated [
 	"Answer a Number that is the negation of the receiver."
 
 	^self class real: real negated imaginary: imaginary negated
 ]
 
 { #category : #printing }
-PMComplex >> printOn: aStream [
+PMComplexNumber >> printOn: aStream [
 	real printOn: aStream.
 	aStream nextPut: Character space.
 	0 <= imaginary
@@ -614,14 +614,14 @@ PMComplex >> printOn: aStream [
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> productWithVector: aVector [
+PMComplexNumber >> productWithVector: aVector [
 	"Answers a new vector product of the receiver with aVector."
 
 	^ aVector collect: [ :each | each * self ]
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> raisedTo: aNumber [ 
+PMComplexNumber >> raisedTo: aNumber [ 
 	"Answer the receiver raised to aNumber."
 
 	aNumber isInteger ifTrue:
@@ -638,7 +638,7 @@ PMComplex >> raisedTo: aNumber [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> raisedToInteger: operand [ 
+PMComplexNumber >> raisedToInteger: operand [ 
 	"Answer the receiver raised to the power operand, an Integer."
 
 	"implementation note: this code is copied from Number.
@@ -663,26 +663,26 @@ PMComplex >> raisedToInteger: operand [
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> random [
+PMComplexNumber >> random [
 	"analog to Number>>random. However, the only bound is that the abs of the produced complex is less than the length of the receive. The receiver effectively defines a disc within which the random element can be produced."
 	^ self class random * self
 	
 ]
 
 { #category : #accessing }
-PMComplex >> real [
+PMComplexNumber >> real [
 	^ real
 ]
 
 { #category : #private }
-PMComplex >> real: aNumber1 imaginary: aNumber2 [
+PMComplexNumber >> real: aNumber1 imaginary: aNumber2 [
 	"Private - initialize the real and imaginary parts of a Complex"
 	real := aNumber1.
 	imaginary := aNumber2.
 ]
 
 { #category : #arithmetic }
-PMComplex >> reciprocal [
+PMComplexNumber >> reciprocal [
 	"Answer 1 divided by the receiver. Create an error notification if the 
 	receiver is 0."
 
@@ -693,24 +693,24 @@ PMComplex >> reciprocal [
 ]
 
 { #category : #testing }
-PMComplex >> sign [
+PMComplexNumber >> sign [
 	^ real sign
 ]
 
 { #category : #testing }
-PMComplex >> signBit [
+PMComplexNumber >> signBit [
 ^self real signBit
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> sin [
+PMComplexNumber >> sin [
 	"Answer receiver's sine."
 
 	^self i sinh i negated
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> sinh [
+PMComplexNumber >> sinh [
 	"Answer receiver's hyperbolic sine.
 	Hyperbolic sine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp - self negated exp) / 2.
@@ -722,7 +722,7 @@ PMComplex >> sinh [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> sqrt [
+PMComplexNumber >> sqrt [
 	"Return the square root of the receiver with a positive imaginary part.
 	Implementation based on: https://en.wikipedia.org/wiki/Complex_number#Square_root"
 
@@ -738,33 +738,33 @@ PMComplex >> sqrt [
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> squared [
+PMComplexNumber >> squared [
 	"Answer the receiver multipled by itself."
 
 	^self * self
 ]
 
 { #category : #arithmetic }
-PMComplex >> squaredNorm [
+PMComplexNumber >> squaredNorm [
 	"Answer the square of receiver norm."
 
 	^real * real + (imaginary * imaginary)
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> subtractToPolynomial: aPolynomial [
+PMComplexNumber >> subtractToPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self negated
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> tan [
+PMComplexNumber >> tan [
 	"Answer receivers tangent."
 
 	^ self sin / self cos
 ]
 
 { #category : #'mathematical functions' }
-PMComplex >> tanh [
+PMComplexNumber >> tanh [
 	"Answer receiver's hyperbolic tangent."
 
 	"Some possible implementation are:
@@ -780,6 +780,6 @@ PMComplex >> tanh [
 ]
 
 { #category : #'*Math-Complex' }
-PMComplex >> timesPolynomial: aPolynomial [
+PMComplexNumber >> timesPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: self
 ]
