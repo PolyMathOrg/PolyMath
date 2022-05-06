@@ -47,7 +47,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Clustering'
 					with:
 						[ spec requires: #('Math-Numerical' 'Math-Core-Process' 'Math-Matrix') ];
-				package: 'Math-Complex'
+				package: 'Math-Complex-Number'
 					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Core';
 				package: 'Math-Core-Distribution'

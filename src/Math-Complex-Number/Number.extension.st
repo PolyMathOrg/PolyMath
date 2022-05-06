@@ -1,19 +1,19 @@
 Extension { #name : #Number }
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> adaptToComplex: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Complex number, convert me to a Complex number."
 	^ rcvr perform: selector with: self asComplex
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> asComplex [
 	"Answer a Complex number that represents value of the receiver."
 
 	^ PMComplexNumber real: self imaginary: 0
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> complexConjugate [
 	"The complex conjugate of a complex number (a + bi) is another complex number (a - bi).
 	Every real number x is also a complex number with imaginary part equal to 0.
@@ -23,12 +23,12 @@ Number >> complexConjugate [
 	^ self
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> i [
 	^ PMComplexNumber real: 0 imaginary: self
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> i: aNumber [
 	"Form a complex number with
 		receiver as realPart
@@ -39,7 +39,7 @@ Number >> i: aNumber [
 	^PMComplexNumber real: self imaginary: aNumber
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> isComplexConjugateOf: aNumber [
 	"A complex conjugate of a real number is same real number"
 	self
@@ -49,7 +49,7 @@ Number >> isComplexConjugateOf: aNumber [
 	^ self complexConjugate = aNumber
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'*Math-Complex-Number' }
 Number >> isRealNumber [
 	"Answer true if receiver is a real number. All instances of Number are real numbers."
 	^ true

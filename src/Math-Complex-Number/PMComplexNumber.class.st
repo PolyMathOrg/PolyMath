@@ -80,7 +80,7 @@ Class {
 		'real',
 		'imaginary'
 	],
-	#category : #'Math-Complex'
+	#category : #'Math-Complex-Number-Math-Complex-Number'
 }
 
 { #category : #'instance creation' }
