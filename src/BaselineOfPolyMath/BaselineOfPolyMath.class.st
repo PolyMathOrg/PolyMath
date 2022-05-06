@@ -159,7 +159,7 @@ BaselineOfPolyMath >> baseline: spec [
 					with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 				group: 'Core'
 					with:
-					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Core' 'Math-Core-Distribution');
+					#('Math-Complex-Number' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Core' 'Math-Core-Distribution');
 				group: 'Extensions'
 					with:
 					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-KolmogorovSmirnov');
