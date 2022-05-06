@@ -1,7 +1,7 @@
 Class {
 	#name : #PMComplexNumberTest,
 	#superclass : #TestCase,
-	#category : #'Math-Tests-Complex'
+	#category : #'Math-Tests-Complex-Number-Math-Tests-Complex-Number'
 }
 
 { #category : #'testing - equality' }

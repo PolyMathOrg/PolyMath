@@ -109,7 +109,7 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec
 						requires:
 							#('Math-Clustering' 'Math-Core' 'Math-Core-Distribution' 'Math-UtilsDataServer') ];
-				package: 'Math-Tests-Complex'
+				package: 'Math-Tests-Complex-Number'
 					with: [ spec requires: #('Math-Complex') ];
 				package: 'Math-Tests-Core'
 					with: [ spec requires: #('Math-Core') ];
