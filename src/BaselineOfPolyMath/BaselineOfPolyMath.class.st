@@ -68,7 +68,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-DistributionGamma'
 					with: [ spec requires: #('Math-Core-Distribution') ];
 				package: 'Math-FastFourierTransform'
-					with: [ spec requires: #('Math-Complex') ];
+					with: [ spec requires: #('Math-Complex-Number') ];
 				package: 'Math-FunctionFit'
 					with: [ spec
 						requires:
@@ -93,7 +93,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Quantile';
 				package: 'Math-Quaternion'
 					with:
-						[ spec requires: #('Math-Complex' 'Math-Numerical' 'Math-Polynomials') ];
+						[ spec requires: #('Math-Complex-Number' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Random';
 				package: 'Math-Series';
 				package: 'Math-StatisticalMoments'
@@ -110,7 +110,7 @@ BaselineOfPolyMath >> baseline: spec [
 						requires:
 							#('Math-Clustering' 'Math-Core' 'Math-Core-Distribution' 'Math-UtilsDataServer') ];
 				package: 'Math-Tests-Complex-Number'
-					with: [ spec requires: #('Math-Complex') ];
+					with: [ spec requires: #('Math-Complex-Number') ];
 				package: 'Math-Tests-Core'
 					with: [ spec requires: #('Math-Core') ];
 				package: 'Math-Tests-Core-Distribution'
