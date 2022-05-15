@@ -76,8 +76,13 @@ PMQuaternionTest >> testAngle [
 
 { #category : #running }
 PMQuaternionTest >> testAsQuaternion [
-	self assert: 1 asQuaternion equals: q1 asQuaternion.
-	self assert: q1234 asQuaternion equals: q1234
+
+	| quaternion unit |
+	unit := 1 asQuaternion .
+	self assert: unit equals: 1 + 0 i + 0 j + 0 k.
+
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: quaternion asQuaternion equals: 1 + 2 i + 3 j + 4 k
 ]
 
 { #category : #running }
