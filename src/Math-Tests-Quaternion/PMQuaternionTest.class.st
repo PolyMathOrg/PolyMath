@@ -39,16 +39,12 @@ PMQuaternionTest >> testAbs [
 
 { #category : #running }
 PMQuaternionTest >> testAddingFractionsAndQuaternionsIsCommutative [
-	"needed for coverage of adaptToFraction:andSend:"
-
 	| frac quaternion expected |
 	frac := 1 / 2.
 	quaternion := 1 + 2 i + 3 j + 4 k.
 	expected := 3 / 2 + 2 i + 3 j + 4 k.
 	self assert: (frac + quaternion) equals: expected .
 	self assert: (quaternion + frac) equals: expected .
-	self assert: ((frac + q1234) real isKindOf: Fraction).
-	self assert: (frac + q1234) real equals: 3 / 2.
 	
 ]
 
