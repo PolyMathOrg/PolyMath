@@ -161,22 +161,7 @@ PMQuaternionTest >> testLog [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testOne [
-	self assert: PMQuaternion one unreal isZero.
-	self assert: PMQuaternion one real equals: 1
-]
-
-{ #category : #running }
-PMQuaternionTest >> testPrintOn [
-	| s |
-	s := q1234 printString.
-	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
-]
-
-{ #category : #running }
-PMQuaternionTest >> testProduct [
-	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
+PMQuaternionTest >> testMultiplicationOfBasisElements [
 	self assert: 1 i * 1 i equals: -1.
 	self assert: 1 j * 1 j equals: -1.
 	self assert: 1 k * 1 k equals: -1.
@@ -195,6 +180,25 @@ PMQuaternionTest >> testProduct [
 	self assert: 1 j i equals: -1 k.
 	self assert: 1 k j equals: -1 i.
 	self assert: 1 i k equals: -1 j.
+]
+
+{ #category : #running }
+PMQuaternionTest >> testOne [
+	self assert: PMQuaternion one unreal isZero.
+	self assert: PMQuaternion one real equals: 1
+]
+
+{ #category : #running }
+PMQuaternionTest >> testPrintOn [
+	| s |
+	s := q1234 printString.
+	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
+]
+
+{ #category : #running }
+PMQuaternionTest >> testProduct [
+	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
+	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
 	self assert: q1234 * 1 i equals: q1234 i.
 	self assert: q1234 * 1 j equals: q1234 j.
 	self assert: q1234 * 1 k equals: q1234 k.
@@ -309,7 +313,7 @@ PMQuaternionTest >> testTimesPolynomial [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testUnreal [
+PMQuaternionTest >> testVectorPart [
 	| expectedVectorPart vectorPart |
 	vectorPart := q1234 unreal.
 	expectedVectorPart := PMQuaternion
