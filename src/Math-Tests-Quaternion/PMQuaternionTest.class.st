@@ -114,7 +114,7 @@ PMQuaternionTest >> testDividePolynomial [
 	self assert: (quaternion / poly at: 0) equals: 0.
 	polynomial := poly * quaternion.
 	self assert:
-		((polynomial / quaternion) coefficients allSatisfy: [ :ea | ea = 1 ])
+		((polynomial / quaternion) coefficients allSatisfy: [ :coefficient | coefficient = 1 ])
 ]
 
 { #category : #running }
