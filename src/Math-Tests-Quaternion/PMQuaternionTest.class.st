@@ -110,12 +110,11 @@ PMQuaternionTest >> testDividePolynomial [
 	| poly quaternion polynomial |
 	poly := PMPolynomial coefficients: #( 1 1 1 ).
 	quaternion := (1 + 2 i) asQuaternion.
-	self assert: (poly / q12 at: 0) equals: q12 reciprocal.
 	self assert: (poly / quaternion at: 0) equals: quaternion reciprocal.
-	self assert: (q12 / poly at: 0) equals: 0.
 	self assert: (quaternion / poly at: 0) equals: 0.
-	polynomial := poly * q12.
-	self assert: ((polynomial / q12) coefficients allSatisfy: [ :ea | ea = 1 ])
+	polynomial := poly * quaternion.
+	self assert:
+		((polynomial / quaternion) coefficients allSatisfy: [ :ea | ea = 1 ])
 ]
 
 { #category : #running }
