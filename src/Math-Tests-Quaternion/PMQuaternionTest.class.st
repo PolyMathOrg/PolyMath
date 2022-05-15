@@ -38,7 +38,18 @@ PMQuaternionTest >> testAbs [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testAddPolynomial [
+PMQuaternionTest >> testAddingFractionsAndQuaternionsIsCommutative [
+	"needed for coverage of adaptToFraction:andSend:"
+
+	| frac |
+	frac := 1 / 2.
+	self assert: frac + q1234 equals: q1234 + frac.
+	self assert: ((frac + q1234) real isKindOf: Fraction).
+	self assert: (frac + q1234) real equals: 3 / 2
+]
+
+{ #category : #running }
+PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
 	self assert: (poly + q12 at: 0) equals: (2 + 2 i) asQuaternion.
@@ -110,17 +121,6 @@ PMQuaternionTest >> testFloatClass [
 
 	self assert: (1.5 isKindOf: (1.5 * q1234) floatClass).
 	self assert: q12 floatClass equals: q12 reduce floatClass
-]
-
-{ #category : #running }
-PMQuaternionTest >> testFractionDoubleDispatch [
-	"needed for coverage of adaptToFraction:andSend:"
-
-	| frac |
-	frac := 1 / 2.
-	self assert: frac + q1234 equals: q1234 + frac.
-	self assert: ((frac + q1234) real isKindOf: Fraction).
-	self assert: (frac + q1234) real equals: 3 / 2
 ]
 
 { #category : #running }
@@ -310,10 +310,10 @@ PMQuaternionTest >> testTimesPolynomial [
 
 { #category : #running }
 PMQuaternionTest >> testUnreal [
+	| vectorPart |
 	self assert: q1234 unreal real equals: 0.
-	self
-		assert: q1234 unreal squared
-		equals: (2 squared + 3 squared + 4 squared) negated
+	vectorPart := PMQuaternion qr: 0 qi: 2 qj: 3 qk: 4.
+	self assert: q1234 unreal equals: vectorPart .
 ]
 
 { #category : #running }
