@@ -314,8 +314,9 @@ PMQuaternionTest >> testTimesPolynomial [
 
 { #category : #running }
 PMQuaternionTest >> testVectorPart [
-	| expectedVectorPart vectorPart |
-	vectorPart := q1234 unreal.
+	| expectedVectorPart vectorPart quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	vectorPart := quaternion unreal.
 	expectedVectorPart := PMQuaternion
 		                      qr: 0
 		                      qi: 2
