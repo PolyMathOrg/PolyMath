@@ -50,8 +50,11 @@ PMQuaternionTest >> testAddingFractionsAndQuaternionsIsCommutative [
 
 { #category : #running }
 PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
-	| poly |
+	| poly quaternion |
 	poly := PMPolynomial coefficients: #(1 1 1).
+	quaternion := 1 + 2 i asQuaternion .
+	self assert: ((poly + quaternion) at: 0) equals: (2 + 2 i) asQuaternion .
+	self assert: ((quaternion + poly) at: 0) equals: (2 + 2 i) asQuaternion .
 	self assert: (poly + q12 at: 0) equals: (2 + 2 i) asQuaternion.
 	self assert: (q12 + poly at: 0) equals: (2 + 2 i) asQuaternion
 ]
