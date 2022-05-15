@@ -82,10 +82,17 @@ PMQuaternionTest >> testAsQuaternion [
 
 { #category : #running }
 PMQuaternionTest >> testCos [
-	| eps |
+
+	"The purpose of this test feels unclear. Any elaboration would be appreciated."
+
+	| eps quaternion computation |
 	eps := 1.0e-6.
-	self assert: (q1234 cos - ((q1234 real cos * q1234 unreal cos) - (q1234 real sin * q1234 unreal sin))) abs < eps.
-	self assert: ((1 + 2 i) cos - (1 + 2 j k) cos) abs < eps.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	computation := quaternion cos
+	               - (quaternion real cos * quaternion unreal cos
+		                - (quaternion real sin * quaternion unreal sin)).
+	self assert: computation abs < eps.
+	self assert: ((1 + 2 i) cos - (1 + 2 j k) cos) abs < eps
 ]
 
 { #category : #running }
