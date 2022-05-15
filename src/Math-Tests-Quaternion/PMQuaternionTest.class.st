@@ -64,17 +64,14 @@ PMQuaternionTest >> testAngle [
 	realQuaternion := 1 asQuaternion .
 	self assert: realQuaternion angle equals: 0.
 	
-	difference := (1 + 2 i) asQuaternion - 1 asQuaternion .
+	difference := (1 + 2 i) asQuaternion - 1 asQuaternion.
 	self assert: difference angle equals: Float pi.
-	self assert: (q12 - q1) angle equals: Float pi.
 	
-	difference := (1 + 2 i + 3 j) - (1 + 2 i) asQuaternion .
+	difference := (1 + 2 i + 3 j) - (1 + 2 i) asQuaternion.
 	self assert: difference angle equals: Float pi.
-	self assert: (q123 - q12) angle equals: Float pi.
 	
 	difference := 1 + 2 i + 3 j + 4 k - 1 + 2 i + 3 j.
-	self assert: difference angleInDegrees equals: 180. 
-	self assert: (q1234 - q123) angleInDegrees equals: 180
+	self assert: difference angleInDegrees equals: 180.
 ]
 
 { #category : #running }
