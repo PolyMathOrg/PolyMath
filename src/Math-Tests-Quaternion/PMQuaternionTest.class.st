@@ -310,10 +310,16 @@ PMQuaternionTest >> testTimesPolynomial [
 
 { #category : #running }
 PMQuaternionTest >> testUnreal [
-	| expectedVectorPart |
-	self assert: q1234 unreal real equals: 0.
-	expectedVectorPart := PMQuaternion qr: 0 qi: 2 qj: 3 qk: 4.
-	self assert: q1234 unreal equals: expectedVectorPart .
+	| expectedVectorPart vectorPart |
+	vectorPart := q1234 unreal.
+	expectedVectorPart := PMQuaternion
+		                      qr: 0
+		                      qi: 2
+		                      qj: 3
+		                      qk: 4.
+	
+	self assert: vectorPart real equals: 0.
+	self assert: vectorPart equals: expectedVectorPart
 ]
 
 { #category : #running }
