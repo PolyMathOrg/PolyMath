@@ -58,6 +58,20 @@ PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
 ]
 
 { #category : #'testing - arithmetic' }
+PMQuaternionTest >> testAdditionIsCommutative [
+
+	| quaternion q u |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: quaternion + 5 equals: (6 i: 2 j: 3 k: 4).
+	self assert: 5 + quaternion equals: (6 i: 2 j: 3 k: 4).
+
+	q := 3 + 1 i + 7 j - 4 k.
+	u := 5 + 2 i + 3 j - 7 k.
+	self assert: q + u equals: 8 + 3 i + 10 j - 11 k.
+	self assert: u + q equals: 8 + 3 i + 10 j - 11 k.
+]
+
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAngle [
 	"Angles are in radians."
 	| realQuaternion difference |
@@ -337,10 +351,9 @@ PMQuaternionTest >> testSubtractPolynomial [
 
 { #category : #'testing - arithmetic' }
 PMQuaternionTest >> testSum [
+
 	self assert: 1 + 2 i + 3 j + 4 k equals: q1234.
 	self assert: 1 + 2 i + (3 + 4 i) j equals: q1234.
-	self assert: q1234 + 5 equals: (6 i: 2 j: 3 k: 4).
-	self assert: 5 + q1234 equals: (6 i: 2 j: 3 k: 4).
 	self assert: q1234 - 9 equals: (-8 i: 2 j: 3 k: 4).
 	self assert: 9 - q1234 equals: (8 i: -2 j: -3 k: -4).
 	self assert: q1234 + q1234 conjugated equals: q1234 real * 2.
