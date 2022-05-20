@@ -127,8 +127,6 @@ PMQuaternionTest >> testEquality [
 
 	| quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
-	self assert: 1 + 2 i equals: 1 + 2 j k.
-	self assert: 1 + 2 j k equals: 1 + 2 i.
 	self deny: 1 + 2 j equals: 1 + 2 i.
 	self deny: quaternion equals: 1.
 	self deny: quaternion isNil
