@@ -131,8 +131,6 @@ PMQuaternionTest >> testEquality [
 	self assert: 1 + 2 j k equals: 1 + 2 i.
 	self deny: 1 + 2 j equals: 1 + 2 i.
 	self deny: quaternion equals: 1.
-	self assert: 1 k k equals: -1.
-	self assert: 1 equals: -1 k k.
 	self deny: quaternion isNil
 ]
 
