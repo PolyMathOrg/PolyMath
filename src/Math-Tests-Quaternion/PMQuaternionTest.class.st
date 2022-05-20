@@ -122,7 +122,7 @@ PMQuaternionTest >> testDividePolynomial [
 		((polynomial / quaternion) coefficients allSatisfy: [ :coefficient | coefficient = 1 ])
 ]
 
-{ #category : #running }
+{ #category : #'testing - equality' }
 PMQuaternionTest >> testEquality [
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
@@ -132,6 +132,40 @@ PMQuaternionTest >> testEquality [
 	self assert: 1 k k equals: -1.
 	self assert: 1 equals: -1 k k.
 	self deny: q1234 = nil
+]
+
+{ #category : #'testing - equality' }
+PMQuaternionTest >> testEqualsIsReflexive [
+
+	"Given an equivalence relation R, then a R a"
+
+	self assert: 1 + 2 i + 3 j + 4 k equals: 1 + 2 i + 3 j + 4 k
+]
+
+{ #category : #'testing - equality' }
+PMQuaternionTest >> testEqualsIsSymmetric [
+
+	"Given an equivalence relation R, then a R b and b R a"
+
+	| quaternion sameQuaternion |
+	quaternion := 3 + 6 i + 4 j + 2 k.
+	sameQuaternion := 3 + 6 i + 4 j + 2 k.
+
+	self assert: quaternion equals: sameQuaternion.
+	self assert: sameQuaternion equals: quaternion.
+]
+
+{ #category : #'testing - equality' }
+PMQuaternionTest >> testEqualsIsTransitive [
+
+	| quaternion1 quaternion2 quaternion3 |
+	quaternion1 := 4 - 5 i + 16 j - 10 k.
+	quaternion2 := 4 - 5 i + 16 j - 10 k.
+	quaternion3 := 4 - 5 i + 16 j - 10 k.
+	
+	self assert: quaternion1 equals: quaternion2.
+	self assert: quaternion2 equals: quaternion3.
+	self assert: quaternion3 equals: quaternion1
 ]
 
 { #category : #running }
