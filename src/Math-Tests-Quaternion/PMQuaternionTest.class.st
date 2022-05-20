@@ -21,7 +21,7 @@ PMQuaternionTest >> setUp [
 	q123 := (1 + 2 i + 3 j).
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAbs [
 	self assert: (1 i: 1 j: 1 k: 1) abs equals: 2.
 	self
@@ -37,7 +37,7 @@ PMQuaternionTest >> testAbs [
 		description: 'An underflow should be avoided'
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAddingFractionsAndQuaternionsIsCommutative [
 	| frac quaternion expected |
 	frac := 1 / 2.
@@ -48,7 +48,7 @@ PMQuaternionTest >> testAddingFractionsAndQuaternionsIsCommutative [
 	
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
 	| poly quaternion |
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -57,7 +57,7 @@ PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
 	self assert: ((quaternion + poly) at: 0) equals: (2 + 2 i) asQuaternion .
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAngle [
 	"Angles are in radians."
 	| realQuaternion difference |
@@ -109,7 +109,7 @@ PMQuaternionTest >> testCosh [
 	self assert: computation abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testDividePolynomial [
 
 	| poly quaternion polynomial |
@@ -219,7 +219,7 @@ PMQuaternionTest >> testLog [
 	self assert: (qln qk closeTo: qlg10ln qk)
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationOfBasisElements [
 	self assert: 1 i * 1 i equals: -1.
 	self assert: 1 j * 1 j equals: -1.
@@ -254,7 +254,7 @@ PMQuaternionTest >> testPrintOn [
 	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testProduct [
 	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
 	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
@@ -268,7 +268,7 @@ PMQuaternionTest >> testProduct [
 	self assert: q1234 / q1234 equals: 1
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testProductWithVector [
 	| vec |
 	vec := PMVector new: 2.
@@ -327,7 +327,7 @@ PMQuaternionTest >> testSinh [
 	self assert: ((1 + 2 i) sinh - (1 + 2 j k) sinh) abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testSubtractPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -335,7 +335,7 @@ PMQuaternionTest >> testSubtractPolynomial [
 	self assert: (q12 - poly at: 0) equals: (0 + 2 i) asQuaternion
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testSum [
 	self assert: 1 + 2 i + 3 j + 4 k equals: q1234.
 	self assert: 1 + 2 i + (3 + 4 i) j equals: q1234.
@@ -363,7 +363,7 @@ PMQuaternionTest >> testTanh [
 	self assert: ((1 + 2 i) tanh - (1 + 2 j k) tanh) abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testTimesPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
