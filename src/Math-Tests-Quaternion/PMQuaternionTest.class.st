@@ -237,17 +237,17 @@ PMQuaternionTest >> testLog [
 
 	"this ensures that log and ln have the expected relationship"
 
-	| qln qlg10ln quaternion |
+	| naturalLogOfQuaternion qlg10ln quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
 	
-	qln := quaternion ln.
+	naturalLogOfQuaternion := quaternion ln.
 	qlg10ln := quaternion log * 10 ln.
 
 	"this inspires me to implement Quaternion>>equalsTo: "
-	self assert: (qln qr closeTo: qlg10ln real).
-	self assert: (qln qi closeTo: qlg10ln qi).
-	self assert: (qln qj closeTo: qlg10ln qj).
-	self assert: (qln qk closeTo: qlg10ln qk)
+	self assert: (naturalLogOfQuaternion qr closeTo: qlg10ln real).
+	self assert: (naturalLogOfQuaternion qi closeTo: qlg10ln qi).
+	self assert: (naturalLogOfQuaternion qj closeTo: qlg10ln qj).
+	self assert: (naturalLogOfQuaternion qk closeTo: qlg10ln qk)
 ]
 
 { #category : #'testing - arithmetic' }
