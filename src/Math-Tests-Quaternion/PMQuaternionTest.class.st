@@ -112,7 +112,7 @@ PMQuaternionTest >> testAsQuaternion [
 	self assert: quaternion asQuaternion equals: 1 + 2 i + 3 j + 4 k
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testCos [
 
 	"The purpose of this test feels unclear. Any elaboration would be appreciated."
@@ -127,7 +127,7 @@ PMQuaternionTest >> testCos [
 	self assert: ((1 + 2 i) cos - (1 + 2 j k) cos) abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testCosh [
 
 	| eps computation |
@@ -193,7 +193,7 @@ PMQuaternionTest >> testEqualsIsTransitive [
 	self assert: quaternion3 equals: quaternion1
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testExp [
 	| eps |
 	eps := 1.0e-6.
@@ -223,14 +223,14 @@ PMQuaternionTest >> testHash [
 	self assert: 1 k k hash equals: -1 hash
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLn [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLog [
 
 	"this ensures that log and ln have the expected relationship"
@@ -308,7 +308,7 @@ PMQuaternionTest >> testProductWithVector [
 	self assert: (q1234 * vec at: 1) equals: q1234
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testRaisedTo [
 	| eps |
 	eps := 1.0e-6.
@@ -339,7 +339,7 @@ PMQuaternionTest >> testReduce [
 	self shouldnt: [ q123 reduce isComplexNumber ]
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testSin [
 	| eps |
 	eps := 1.0e-6.
@@ -347,7 +347,7 @@ PMQuaternionTest >> testSin [
 	self assert: ((1 + 2 i) sin - (1 + 2 j k) sin) abs < eps.
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testSinh [
 	| eps |
 	eps := 1.0e-6.
@@ -375,14 +375,14 @@ PMQuaternionTest >> testSum [
 	self assert: (q1234 negated + q1234) isZero
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testTan [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tan - (1 + 2 j k) tan) abs < eps
 ]
 
-{ #category : #running }
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testTanh [
 	| eps |
 	eps := 1.0e-6.
