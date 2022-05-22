@@ -195,9 +195,11 @@ PMQuaternionTest >> testEqualsIsTransitive [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testExp [
-	| eps |
+	| eps quaternion |
 	eps := 1.0e-6.
-	self assert: (q1234 exp - (q1234 real exp * q1234 unreal exp)) abs < eps.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: (quaternion exp - (quaternion real exp * quaternion unreal exp)) abs < eps.
 	self assert: ((1 + 2 i) exp - (1 + 2 j k) exp) abs < eps
 ]
 
