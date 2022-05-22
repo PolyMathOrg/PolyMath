@@ -13,6 +13,15 @@ Class {
 	#category : #'Math-Tests-Quaternion'
 }
 
+{ #category : #asserting }
+PMQuaternionTest >> assert: quaternion isCloseTo: expected [
+
+	self assert: quaternion real closeTo: expected real.
+	self assert: quaternion qi closeTo: expected qi.
+	self assert: quaternion qj closeTo: expected qj.
+	self assert: quaternion qk closeTo: expected qk
+]
+
 { #category : #running }
 PMQuaternionTest >> setUp [
 	q1234 := 1 i: 2 j: 3 k: 4.
@@ -378,11 +387,9 @@ PMQuaternionTest >> testSwitchingBasesBetweenNaturalLogAndBase10Log [
 	naturalLogOfQuaternion := quaternion ln.
 	naturalLogByBaseSwitching := quaternion log * 10 ln.
 
-	"this inspires me to implement Quaternion>>equalsTo: "
-	self assert: (naturalLogOfQuaternion qr closeTo: naturalLogByBaseSwitching real).
-	self assert: (naturalLogOfQuaternion qi closeTo: naturalLogByBaseSwitching qi).
-	self assert: (naturalLogOfQuaternion qj closeTo: naturalLogByBaseSwitching qj).
-	self assert: (naturalLogOfQuaternion qk closeTo: naturalLogByBaseSwitching qk)
+	self
+		assert: naturalLogByBaseSwitching
+		isCloseTo: naturalLogOfQuaternion
 ]
 
 { #category : #'testing - mathematical functions' }
