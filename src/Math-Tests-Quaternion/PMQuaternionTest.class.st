@@ -311,9 +311,12 @@ PMQuaternionTest >> testProductWithVector [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testRaisedTo [
-	| eps |
+
+	| eps quaternion |
 	eps := 1.0e-6.
-	self assert: ((q1234 raisedTo: 3) - (q1234 ln * 3) exp) abs < eps.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert:
+		((quaternion raisedTo: 3) - (quaternion ln * 3) exp) abs < eps
 ]
 
 { #category : #running }
