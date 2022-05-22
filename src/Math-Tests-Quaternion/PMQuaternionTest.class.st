@@ -58,6 +58,19 @@ PMQuaternionTest >> testAddingPolynomialsAndQuaternionIsCommutative [
 ]
 
 { #category : #'testing - arithmetic' }
+PMQuaternionTest >> testAdditionIsAssociative [
+
+	| q u w expected |
+	q := 2 + 3 i - 4 j + 5 k.
+	u := 4 - 4 i + 5 j + 6 k.
+	w := -10 + 2 i + 20 j + 2 k.
+
+	expected := -4 + 1 i + 21 j + 13 k.
+	self assert: q + (u + w) equals: expected.
+	self assert: (q + u) + w equals: expected
+]
+
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testAdditionIsCommutative [
 
 	| quaternion q u |
