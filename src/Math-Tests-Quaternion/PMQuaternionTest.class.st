@@ -227,13 +227,15 @@ PMQuaternionTest >> testHash [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLn [
+
 	| quaternion naturalLogOfQuaternion expected |
 	quaternion := 1 + 1 i + 1 j + 1 k.
 	naturalLogOfQuaternion := quaternion ln.
-	expected := quaternion abs ln + ((quaternion unreal / quaternion unreal abs) * (1.0 / quaternion abs) arcCos).
-	self assert: naturalLogOfQuaternion qr closeTo: expected qr.
-	self assert: naturalLogOfQuaternion qi closeTo: expected qi.
-
+	expected := 2 ln + (quaternion unreal / 3 sqrt * Float pi / 3).
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj equals: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
 ]
 
 { #category : #'testing - mathematical functions' }
