@@ -238,24 +238,6 @@ PMQuaternionTest >> testLn [
 	self assert: naturalLogOfQuaternion qk equals: expected qk
 ]
 
-{ #category : #'testing - mathematical functions' }
-PMQuaternionTest >> testLog [
-
-	"this ensures that log and ln have the expected relationship"
-
-	| naturalLogOfQuaternion qlg10ln quaternion |
-	quaternion := 1 + 2 i + 3 j + 4 k.
-	
-	naturalLogOfQuaternion := quaternion ln.
-	qlg10ln := quaternion log * 10 ln.
-
-	"this inspires me to implement Quaternion>>equalsTo: "
-	self assert: (naturalLogOfQuaternion qr closeTo: qlg10ln real).
-	self assert: (naturalLogOfQuaternion qi closeTo: qlg10ln qi).
-	self assert: (naturalLogOfQuaternion qj closeTo: qlg10ln qj).
-	self assert: (naturalLogOfQuaternion qk closeTo: qlg10ln qk)
-]
-
 { #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationOfBasisElements [
 	self assert: 1 i * 1 i equals: -1.
@@ -383,6 +365,24 @@ PMQuaternionTest >> testSum [
 	self assert: q1234 + q1234 negated equals: 0.
 	self assert: q1234 isZero not.
 	self assert: (q1234 negated + q1234) isZero
+]
+
+{ #category : #'testing - mathematical functions' }
+PMQuaternionTest >> testSwitchingBasesBetweenNaturalLogAndBase10Log [
+
+	"this ensures that log and ln have the expected relationship"
+
+	| naturalLogOfQuaternion naturalLogByBaseSwitching quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+
+	naturalLogOfQuaternion := quaternion ln.
+	naturalLogByBaseSwitching := quaternion log * 10 ln.
+
+	"this inspires me to implement Quaternion>>equalsTo: "
+	self assert: (naturalLogOfQuaternion qr closeTo: naturalLogByBaseSwitching real).
+	self assert: (naturalLogOfQuaternion qi closeTo: naturalLogByBaseSwitching qi).
+	self assert: (naturalLogOfQuaternion qj closeTo: naturalLogByBaseSwitching qj).
+	self assert: (naturalLogOfQuaternion qk closeTo: naturalLogByBaseSwitching qk)
 ]
 
 { #category : #'testing - mathematical functions' }
