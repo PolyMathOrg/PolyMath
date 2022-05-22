@@ -349,6 +349,7 @@ PMQuaternion >> k [
 { #category : #'mathematical functions' }
 PMQuaternion >> ln [
 	"Answer the receiver natural logarithm"
+	"ln|q| + v / |v| * arccos(a/|q|)"
 
 	| z |
 	z := self unreal abs.
@@ -360,13 +361,11 @@ PMQuaternion >> ln [
 				qj: 0
 				qk: 0]
 		ifFalse: 
-			[| theta |
-			theta := (z arcTan: qr) / z.
-			self species 
-				qr: self abs ln
-				qi: qi * theta
-				qj: qj * theta
-				qk: qk * theta]
+			[| theta vectorPart |
+			theta := (qr / self abs) arcCos.
+			vectorPart := (self unreal / self unreal abs) * theta .
+			self abs ln + vectorPart 
+			]
 ]
 
 { #category : #'mathematical functions' }

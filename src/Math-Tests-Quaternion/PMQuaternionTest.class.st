@@ -227,9 +227,13 @@ PMQuaternionTest >> testHash [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLn [
-	| eps |
-	eps := 1.0e-6.
-	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
+	| quaternion naturalLogOfQuaternion expected |
+	quaternion := 1 + 1 i + 1 j + 1 k.
+	naturalLogOfQuaternion := quaternion ln.
+	expected := quaternion abs ln + ((quaternion unreal / quaternion unreal abs) * (1.0 / quaternion abs) arcCos).
+	self assert: naturalLogOfQuaternion qr closeTo: expected qr.
+	self assert: naturalLogOfQuaternion qi closeTo: expected qi.
+
 ]
 
 { #category : #'testing - mathematical functions' }
