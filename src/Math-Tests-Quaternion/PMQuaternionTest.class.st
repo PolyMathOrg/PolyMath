@@ -227,7 +227,7 @@ PMQuaternionTest >> testHash [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLn [
-
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
 	| quaternion naturalLogOfQuaternion expected |
 	quaternion := 1 + 1 i + 1 j + 1 k.
 	naturalLogOfQuaternion := quaternion ln.
