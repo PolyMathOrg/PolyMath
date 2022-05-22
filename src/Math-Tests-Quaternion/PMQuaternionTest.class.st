@@ -380,7 +380,7 @@ PMQuaternionTest >> testSum [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMQuaternionTest >> testSwitchingBasesBetweenNaturalLogAndBase10Log [
+PMQuaternionTest >> testSwitchingBasesBetweenNaturalLogAndLogBase10 [
 
 	"this ensures that log and ln have the expected relationship"
 
