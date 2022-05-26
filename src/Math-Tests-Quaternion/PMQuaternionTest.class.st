@@ -239,11 +239,18 @@ PMQuaternionTest >> testHash [
 
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testLn [
+
 	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
-	| quaternion naturalLogOfQuaternion expected |
+
+	| quaternion naturalLogOfQuaternion expected vectorPart |
 	quaternion := 1 + 1 i + 1 j + 1 k.
 	naturalLogOfQuaternion := quaternion ln.
-	expected := 2 ln + (quaternion unreal / 3 sqrt * Float pi / 3).
+	vectorPart := PMQuaternion
+		              qr: 0
+		              qi: 1
+		              qj: 1
+		              qk: 1.
+	expected := 2 ln + (vectorPart / 3 sqrt * Float pi / 3).
 	self assert: naturalLogOfQuaternion qr equals: expected qr.
 	self assert: naturalLogOfQuaternion qi equals: expected qi.
 	self assert: naturalLogOfQuaternion qj equals: expected qj.
