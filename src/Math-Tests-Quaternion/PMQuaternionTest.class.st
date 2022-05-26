@@ -122,6 +122,15 @@ PMQuaternionTest >> testAsQuaternion [
 	self assert: quaternion asQuaternion equals: 1 + 2 i + 3 j + 4 k
 ]
 
+{ #category : #running }
+PMQuaternionTest >> testCompositeFunctionOfFunctionAndInverse [
+
+	| eps quaternion |
+	eps := 1.0e-6.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: (quaternion ln exp - quaternion) abs < eps
+]
+
 { #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testCos [
 
@@ -219,13 +228,6 @@ PMQuaternionTest >> testFloatClass [
 
 	self assert: (1.5 isKindOf: (1.5 * q1234) floatClass).
 	self assert: q12 floatClass equals: q12 reduce floatClass
-]
-
-{ #category : #running }
-PMQuaternionTest >> testFunctions [
-	| eps |
-	eps := 1.0e-6.
-	self assert: (q1234 ln exp - q1234) abs < eps
 ]
 
 { #category : #running }
