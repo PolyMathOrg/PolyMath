@@ -279,6 +279,12 @@ PMQuaternionTest >> testMultiplicationOfBasisElements [
 	self assert: 1 i k equals: -1 j.
 ]
 
+{ #category : #'testing - mathematical functions' }
+PMQuaternionTest >> testNaturalLogOfZero [
+
+	self assert: PMQuaternion zero ln equals: Float negativeInfinity 
+]
+
 { #category : #running }
 PMQuaternionTest >> testOne [
 	self assert: PMQuaternion one unreal isZero.
