@@ -280,6 +280,12 @@ PMQuaternionTest >> testMultiplicationOfBasisElements [
 ]
 
 { #category : #'testing - mathematical functions' }
+PMQuaternionTest >> testNaturalLogOfOne [
+
+	self assert: PMQuaternion one ln equals: PMQuaternion zero
+]
+
+{ #category : #'testing - mathematical functions' }
 PMQuaternionTest >> testNaturalLogOfZero [
 
 	self assert: PMQuaternion zero ln equals: Float negativeInfinity 
