@@ -357,7 +357,7 @@ PMQuaternion >> ln [
 	"c.f. https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39"
 
 	| z |
-	z := self unreal abs.
+	z := self unreal.
 	^ z isZero
 		  ifTrue: [
 			| vectorPart |
