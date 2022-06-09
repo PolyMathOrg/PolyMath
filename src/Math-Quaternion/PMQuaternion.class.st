@@ -359,12 +359,13 @@ PMQuaternion >> ln [
 	| z |
 	z := self unreal abs.
 	^ z isZero
-		  ifTrue: [ 
+		  ifTrue: [
 			  self species
 				  qr: self abs ln
-				  qi: (z arcTan: qr)
+				  qi: 0
 				  qj: 0
-				  qk: 0 ]
+				  qk: 0 .
+				]
 		  ifFalse: [ 
 			  | theta vectorPart |
 			  theta := (qr / self abs) arcCos.
