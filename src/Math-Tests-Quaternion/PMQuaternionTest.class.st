@@ -243,18 +243,20 @@ PMQuaternionTest >> testLn [
 	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
 
 	| quaternion naturalLogOfQuaternion expected vectorPart |
-	quaternion := 1 + 1 i + 1 j + 1 k.
+	quaternion := 3 + 4 i + 5 j + 6 k.
 	naturalLogOfQuaternion := quaternion ln.
 	vectorPart := PMQuaternion
 		              qr: 0
-		              qi: 1
-		              qj: 1
-		              qk: 1.
-	expected := 2 ln + (vectorPart / 3 sqrt * Float pi / 3).
+		              qi: 4
+		              qj: 5
+		              qk: 6.
+	expected := 86 sqrt ln
+	            + (vectorPart / 77 sqrt * (3 / (86 sqrt)) arcCos).
+
 	self assert: naturalLogOfQuaternion qr equals: expected qr.
-	self assert: naturalLogOfQuaternion qi equals: expected qi.
-	self assert: naturalLogOfQuaternion qj equals: expected qj.
-	self assert: naturalLogOfQuaternion qk equals: expected qk
+	self assert: naturalLogOfQuaternion qi closeTo: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk closeTo: expected qk
 ]
 
 { #category : #'testing - arithmetic' }
