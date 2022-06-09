@@ -254,9 +254,9 @@ PMQuaternionTest >> testLn [
 	            + (vectorPart / 77 sqrt * (3 / (86 sqrt)) arcCos).
 
 	self assert: naturalLogOfQuaternion qr equals: expected qr.
-	self assert: naturalLogOfQuaternion qi closeTo: expected qi.
-	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
-	self assert: naturalLogOfQuaternion qk closeTo: expected qk
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj equals: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
 ]
 
 { #category : #'testing - arithmetic' }
