@@ -360,11 +360,9 @@ PMQuaternion >> ln [
 	z := self unreal abs.
 	^ z isZero
 		  ifTrue: [
-			  self species
-				  qr: self abs ln
-				  qi: 0
-				  qj: 0
-				  qk: 0 .
+			| vectorPart |
+				vectorPart := self class zero.
+				self abs ln + vectorPart
 				]
 		  ifFalse: [ 
 			  | theta vectorPart |
