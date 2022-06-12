@@ -191,6 +191,29 @@ PMQuaternionTest >> testNaturalLogOfQuaternionWithNoVectorPart [
 	self assert: naturalLogOfQuaternion qk equals: 0.
 ]
 
+{ #category : #tests }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithOnlyVectorPart [
+
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+
+	| quaternion naturalLogOfQuaternion expected expectedVectorPart |
+	quaternion := 0 + 7 i - 10 j + 23 k.
+	naturalLogOfQuaternion := quaternion ln.
+	expectedVectorPart := PMQuaternion
+		                      qr: 0
+		                      qi: 7
+		                      qj: -10
+		                      qk: 23.
+
+
+	expected := 678 sqrt ln + ((expectedVectorPart / 678 sqrt) * ((0 / 678 sqrt) arcCos)).
+
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
+]
+
 { #category : #running }
 PMQuaternionTest >> testOne [
 	self assert: PMQuaternion one unreal isZero.
