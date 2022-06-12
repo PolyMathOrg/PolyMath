@@ -319,6 +319,15 @@ PMQuaternionTest >> testSinh [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testSquareOfQuaternion [
+| q expected |
+	q := 1 + 2 i - 3 j - 4 k.
+	expected := -28 + 4 i - 6 j - 8 k.
+
+	self assert: q squared equals: expected
+]
+
+{ #category : #running }
 PMQuaternionTest >> testSubtractPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
