@@ -170,6 +170,18 @@ PMQuaternionTest >> testNaturalLogOfQuaternion [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithNoVectorPart [
+	| expected naturalLogOfQuaternion quaternionWithNoVector |
+	
+	quaternionWithNoVector := 5 + 0 i + 0 j + 0 k.
+	
+	naturalLogOfQuaternion := quaternionWithNoVector ln.
+	
+	expected := 5 ln + 0 i + 0 j + 0 k.
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+]
+
+{ #category : #running }
 PMQuaternionTest >> testOne [
 	self assert: PMQuaternion one unreal isZero.
 	self assert: PMQuaternion one real equals: 1
