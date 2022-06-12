@@ -158,17 +158,17 @@ PMQuaternionTest >> testNaturalLogOfQuaternion [
 
 	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
 
-	| quaternion naturalLogOfQuaternion expected expectedVectorPart |
+	| quaternion naturalLogOfQuaternion expected vectorPartOfQuaternion |
 	quaternion := 3 + 4 i + 5 j + 6 k.
 	naturalLogOfQuaternion := quaternion ln.
-	
-	expectedVectorPart := PMQuaternion
+
+	vectorPartOfQuaternion := PMQuaternion
 		                      qr: 0
 		                      qi: 4
 		                      qj: 5
 		                      qk: 6.
 	expected := 86 sqrt ln
-	            + (expectedVectorPart / 77 sqrt * (3 / 86 sqrt) arcCos).
+	            + (vectorPartOfQuaternion / 77 sqrt * (3 / 86 sqrt) arcCos).
 
 	self assert: naturalLogOfQuaternion qr equals: expected qr.
 	self assert: naturalLogOfQuaternion qi equals: expected qi.
