@@ -349,7 +349,7 @@ PMQuaternion >> k [
 { #category : #'mathematical functions' }
 PMQuaternion >> ln [
 
-	"Answer the receiver natural logarithm"
+	"Compute the natural logarithm."
 
 	| z |
 	z := self unreal abs.
