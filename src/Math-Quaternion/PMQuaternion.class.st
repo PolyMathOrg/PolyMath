@@ -354,16 +354,11 @@ PMQuaternion >> ln [
 	| z |
 	z := self unreal abs.
 	^ z isZero
-		  ifTrue: [ 
-			  self abs ln + (z arcTan: qr) i + 0 j + 0 k ]
+		  ifTrue: [ self abs ln + (z arcTan: qr) i + 0 j + 0 k ]
 		  ifFalse: [ 
 			  | theta |
 			  theta := (z arcTan: qr) / z.
-			  self species
-				  qr: self abs ln
-				  qi: qi * theta
-				  qj: qj * theta
-				  qk: qk * theta ]
+			  self abs ln + (theta * (0 + qi i + qj j + qk k)) ]
 ]
 
 { #category : #'mathematical functions' }
