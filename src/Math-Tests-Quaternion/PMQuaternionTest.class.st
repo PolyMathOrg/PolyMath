@@ -138,13 +138,6 @@ PMQuaternionTest >> testHash [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testLn [
-	| eps |
-	eps := 1.0e-6.
-	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
-]
-
-{ #category : #running }
 PMQuaternionTest >> testLog [
 
 	"this ensures that log and ln have the expected relationship"
@@ -158,6 +151,22 @@ PMQuaternionTest >> testLog [
 	self assert: (qln qi closeTo: qlg10ln qi).
 	self assert: (qln qj closeTo: qlg10ln qj).
 	self assert: (qln qk closeTo: qlg10ln qk)
+]
+
+{ #category : #running }
+PMQuaternionTest >> testNaturalLogOfQuaternion [
+"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+	| quaternion naturalLogOfQuaternion expected expectedVectorPart |
+	quaternion := 3 + 4 i + 5 j + 6 k.
+	naturalLogOfQuaternion := quaternion ln.
+	expectedVectorPart := PMQuaternion
+		              qr: 0
+		              qi: 4
+		              qj: 5
+		              qk: 6.
+		
+	expected := 86 sqrt ln
+	            + (expectedVectorPart / 77 sqrt * (3 / 86 sqrt) arcCos)
 ]
 
 { #category : #running }
