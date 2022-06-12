@@ -354,7 +354,7 @@ PMQuaternion >> ln [
 	| z |
 	z := self unreal abs.
 	^ z isZero
-		  ifTrue: [ self abs ln + (z arcTan: qr) i + 0 j + 0 k ]
+		  ifTrue: [ self abs ln + (z arcTan: qr) i + qj j + qk k ]
 		  ifFalse: [ 
 			  | theta |
 			  theta := (z arcTan: qr) / z.
