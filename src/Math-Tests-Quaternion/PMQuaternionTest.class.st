@@ -199,7 +199,10 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 
 { #category : #running }
 PMQuaternionTest >> testMultiplicationByZero [
-	self assert: (q1234 * 0) equals: 0 + 0 i + 0 j + 0 k.
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k.
 ]
 
 { #category : #running }
