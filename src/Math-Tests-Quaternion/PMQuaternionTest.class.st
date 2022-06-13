@@ -178,6 +178,14 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 	self assert: 5 * quaternion equals: (5 i: 10 j: 15 k: 20)
 ]
 
+{ #category : #running }
+PMQuaternionTest >> testMultiplicationByPolynomialIsCommutative [
+	| poly |
+	poly := PMPolynomial coefficients: #(1 1 1).
+	self assert: (poly * q12 at: 0) equals: q12.
+	self assert: (q12 * poly at: 0) equals: q12
+]
+
 { #category : #tests }
 PMQuaternionTest >> testMultiplicationByTheBasisElements [
 
@@ -394,14 +402,6 @@ PMQuaternionTest >> testTanh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tanh - (1 + 2 j k) tanh) abs < eps
-]
-
-{ #category : #running }
-PMQuaternionTest >> testTimesPolynomial [
-	| poly |
-	poly := PMPolynomial coefficients: #(1 1 1).
-	self assert: (poly * q12 at: 0) equals: q12.
-	self assert: (q12 * poly at: 0) equals: q12
 ]
 
 { #category : #running }
