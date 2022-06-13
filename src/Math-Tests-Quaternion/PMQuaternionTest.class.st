@@ -154,6 +154,14 @@ PMQuaternionTest >> testLog [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testMultiplicationByConjugate [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: quaternion * (quaternion conjugated) equals: 30
+]
+
+{ #category : #running }
 PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 
 	| quaternion |
