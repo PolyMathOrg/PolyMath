@@ -161,6 +161,16 @@ PMQuaternionTest >> testLog [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
+	| quaternion complexNumber |
+	quaternion := 2 + 3 i + 4 j + 5 k.
+	complexNumber := 1 - 1 i.
+	
+	self assert: (quaternion * complexNumber) equals: 5 + 1 i - 1 j + 9 k.
+	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k.
+]
+
+{ #category : #running }
 PMQuaternionTest >> testMultiplicationByConjugate [
 
 	| quaternion |
