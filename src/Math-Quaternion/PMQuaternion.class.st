@@ -98,12 +98,8 @@ PMQuaternion >> * multiplier [
 				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti) ]
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
-				  ifTrue: [ "handle case much faster than adapt..."
-					  self species
-						  qr: qr * multiplier
-						  qi: qi * multiplier
-						  qj: qj * multiplier
-						  qk: qk * multiplier ]
+				  ifTrue: [ 
+					  self * multiplier asQuaternion ]
 				  ifFalse: [ multiplier adaptToQuaternion: self andSend: #* ] ]
 ]
 
