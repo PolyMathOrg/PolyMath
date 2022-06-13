@@ -190,6 +190,11 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testMultiplicationByZero [
+	self assert: (q1234 * 0) equals: 0 + 0 i + 0 j + 0 k.
+]
+
+{ #category : #running }
 PMQuaternionTest >> testMultiplicationOfBasisElements [
 "https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
 
@@ -285,11 +290,6 @@ PMQuaternionTest >> testPrintOn [
 	| s |
 	s := q1234 printString.
 	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
-]
-
-{ #category : #running }
-PMQuaternionTest >> testProduct [
-	self assert: (q1234 * 0) isZero.
 ]
 
 { #category : #running }
