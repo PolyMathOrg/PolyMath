@@ -78,29 +78,33 @@ PMQuaternion class >> zero [
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> * multiplier [ 
+PMQuaternion >> * multiplier [
+
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
+
 	^ multiplier isQuaternion
-		ifTrue: [| tr ti tj tk | 
-			tr := multiplier qr.
-			ti := multiplier qi.
-			tj := multiplier qj.
-			tk := multiplier qk.
-			^ self species
-				qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
-				qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
-				qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
-				qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)]
-		ifFalse: [(multiplier isNumber and: [multiplier isComplexNumber not])
-				ifTrue: ["handle case much faster than adapt..."
-					self species
-						qr: qr * multiplier
-						qi: qi * multiplier
-						qj: qj * multiplier
-						qk: qk * multiplier]
-				ifFalse: [multiplier adaptToQuaternion: self andSend: #*]]
+		  ifTrue: [ 
+			  | tr ti tj tk |
+			  tr := multiplier qr.
+			  ti := multiplier qi.
+			  tj := multiplier qj.
+			  tk := multiplier qk.
+			  ^ self species
+				    qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
+				    qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
+				    qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
+				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti) ]
+		  ifFalse: [ 
+			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
+				  ifTrue: [ "handle case much faster than adapt..."
+					  self species
+						  qr: qr * multiplier
+						  qi: qi * multiplier
+						  qj: qj * multiplier
+						  qk: qk * multiplier ]
+				  ifFalse: [ multiplier adaptToQuaternion: self andSend: #* ] ]
 ]
 
 { #category : #arithmetic }
