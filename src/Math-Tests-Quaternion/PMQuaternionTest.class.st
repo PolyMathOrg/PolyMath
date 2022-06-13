@@ -154,6 +154,30 @@ PMQuaternionTest >> testLog [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testMultiplicationOfBasisElements [
+"https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
+
+	self assert: 1 i * 1 i equals: -1.
+	self assert: 1 j * 1 j equals: -1.
+	self assert: 1 k * 1 k equals: -1.
+	self assert: 1 i * 1 j equals: 1 k.
+	self assert: 1 j * 1 k equals: 1 i.
+	self assert: 1 k * 1 i equals: 1 j.
+	self assert: 1 j * 1 i equals: -1 k.
+	self assert: 1 k * 1 j equals: -1 i.
+	self assert: 1 i * 1 k equals: -1 j.
+	self assert: 1 i i equals: -1.
+	self assert: 1 j j equals: -1.
+	self assert: 1 k k equals: -1.
+	self assert: 1 i j equals: 1 k.
+	self assert: 1 j k equals: 1 i.
+	self assert: 1 k i equals: 1 j.
+	self assert: 1 j i equals: -1 k.
+	self assert: 1 k j equals: -1 i.
+	self assert: 1 i k equals: -1 j.
+]
+
+{ #category : #running }
 PMQuaternionTest >> testNaturalLogOfQuaternion [
 
 	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
@@ -231,24 +255,6 @@ PMQuaternionTest >> testPrintOn [
 PMQuaternionTest >> testProduct [
 	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
 	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 1 i * 1 i equals: -1.
-	self assert: 1 j * 1 j equals: -1.
-	self assert: 1 k * 1 k equals: -1.
-	self assert: 1 i * 1 j equals: 1 k.
-	self assert: 1 j * 1 k equals: 1 i.
-	self assert: 1 k * 1 i equals: 1 j.
-	self assert: 1 j * 1 i equals: -1 k.
-	self assert: 1 k * 1 j equals: -1 i.
-	self assert: 1 i * 1 k equals: -1 j.
-	self assert: 1 i i equals: -1.
-	self assert: 1 j j equals: -1.
-	self assert: 1 k k equals: -1.
-	self assert: 1 i j equals: 1 k.
-	self assert: 1 j k equals: 1 i.
-	self assert: 1 k i equals: 1 j.
-	self assert: 1 j i equals: -1 k.
-	self assert: 1 k j equals: -1 i.
-	self assert: 1 i k equals: -1 j.
 	self assert: q1234 * 1 i equals: q1234 i.
 	self assert: q1234 * 1 j equals: q1234 j.
 	self assert: q1234 * 1 k equals: q1234 k.
