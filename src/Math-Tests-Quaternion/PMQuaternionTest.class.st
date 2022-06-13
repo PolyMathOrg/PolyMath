@@ -165,9 +165,13 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 
 { #category : #tests }
 PMQuaternionTest >> testMultiplicationByTheBasisElements [
-	self assert: q1234 * 1 i equals: q1234 i.
-	self assert: q1234 * 1 j equals: q1234 j.
-	self assert: q1234 * 1 k equals: q1234 k.
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 1 i equals: (-2 + 1 i + 4 j - 3 k).
+	self assert: quaternion * 1 j equals: (-3 - 4 i + 1 j + 2 k).
+	self assert: quaternion * 1 k equals: (-4 + 3 i - 2 j + 1 k)
 ]
 
 { #category : #running }
