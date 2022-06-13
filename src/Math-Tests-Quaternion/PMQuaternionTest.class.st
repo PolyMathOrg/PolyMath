@@ -284,7 +284,6 @@ PMQuaternionTest >> testPrintOn [
 PMQuaternionTest >> testProduct [
 	self assert: (q1234 * 0) isZero.
 	self assert: (0 / q1234) isZero.
-	self assert: q1234 * q1234 conjugated equals: q1234 squaredNorm.
 	self assert: 1 / q1234 equals: q1234 reciprocal.
 	self assert: q1234 / q1234 equals: 1
 ]
