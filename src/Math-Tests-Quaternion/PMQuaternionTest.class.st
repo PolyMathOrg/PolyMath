@@ -138,13 +138,6 @@ PMQuaternionTest >> testHash [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testLn [
-	| eps |
-	eps := 1.0e-6.
-	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
-]
-
-{ #category : #running }
 PMQuaternionTest >> testLog [
 
 	"this ensures that log and ln have the expected relationship"
@@ -158,6 +151,67 @@ PMQuaternionTest >> testLog [
 	self assert: (qln qi closeTo: qlg10ln qi).
 	self assert: (qln qj closeTo: qlg10ln qj).
 	self assert: (qln qk closeTo: qlg10ln qk)
+]
+
+{ #category : #running }
+PMQuaternionTest >> testNaturalLogOfQuaternion [
+
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+
+	| quaternion naturalLogOfQuaternion expected vectorPartOfQuaternion |
+	quaternion := 3 + 4 i + 5 j + 6 k.
+	naturalLogOfQuaternion := quaternion ln.
+
+	vectorPartOfQuaternion := PMQuaternion
+		                      qr: 0
+		                      qi: 4
+		                      qj: 5
+		                      qk: 6.
+	expected := 86 sqrt ln
+	            + (vectorPartOfQuaternion / 77 sqrt * (3 / 86 sqrt) arcCos).
+
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
+]
+
+{ #category : #running }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithNoVectorPart [
+	| expected naturalLogOfQuaternion quaternionWithNoVector |
+	
+	quaternionWithNoVector := 5 + 0 i + 0 j + 0 k.
+	
+	naturalLogOfQuaternion := quaternionWithNoVector ln.
+	
+	expected := 5 ln + 0 i + 0 j + 0 k.
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: 0.
+	self assert: naturalLogOfQuaternion qj equals: 0.
+	self assert: naturalLogOfQuaternion qk equals: 0.
+]
+
+{ #category : #tests }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithOnlyVectorPart [
+
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+
+	| quaternion naturalLogOfQuaternion expected expectedVectorPart |
+	quaternion := 0 + 7 i - 10 j + 23 k.
+	naturalLogOfQuaternion := quaternion ln.
+	expectedVectorPart := PMQuaternion
+		                      qr: 0
+		                      qi: 7
+		                      qj: -10
+		                      qk: 23.
+
+
+	expected := 678 sqrt ln + ((expectedVectorPart / 678 sqrt) * ((0 / 678 sqrt) arcCos)).
+
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
 ]
 
 { #category : #running }
@@ -262,6 +316,15 @@ PMQuaternionTest >> testSinh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) sinh - (1 + 2 j k) sinh) abs < eps
+]
+
+{ #category : #running }
+PMQuaternionTest >> testSquareOfQuaternion [
+| q expected |
+	q := 1 + 2 i - 3 j - 4 k.
+	expected := -28 + 4 i - 6 j - 8 k.
+
+	self assert: q squared equals: expected
 ]
 
 { #category : #running }

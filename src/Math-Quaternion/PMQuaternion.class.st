@@ -348,25 +348,21 @@ PMQuaternion >> k [
 
 { #category : #'mathematical functions' }
 PMQuaternion >> ln [
-	"Answer the receiver natural logarithm"
+
+	"Compute the natural logarithm."
 
 	| z |
 	z := self unreal abs.
-	^z isZero 
-		ifTrue: 
-			[self species 
-				qr: self abs ln
-				qi: (z arcTan: qr)
-				qj: 0
-				qk: 0]
-		ifFalse: 
-			[| theta |
-			theta := (z arcTan: qr) / z.
-			self species 
-				qr: self abs ln
-				qi: qi * theta
-				qj: qj * theta
-				qk: qk * theta]
+	^ z isZero
+		  ifTrue: [ 
+			  | vectorPart |
+			  vectorPart := 0 + (z arcTan: qr) i + qj j + qk k.
+			  self abs ln + vectorPart ]
+		  ifFalse: [ 
+			  | theta vectorPart |
+			  theta := (z arcTan: qr) / z.
+			  vectorPart := theta * (0 + qi i + qj j + qk k).
+			  self abs ln + vectorPart ]
 ]
 
 { #category : #'mathematical functions' }
