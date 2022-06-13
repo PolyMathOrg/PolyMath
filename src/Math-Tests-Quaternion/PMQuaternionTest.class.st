@@ -163,6 +163,13 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 	self assert: 5 * quaternion equals: (5 i: 10 j: 15 k: 20)
 ]
 
+{ #category : #tests }
+PMQuaternionTest >> testMultiplicationByTheBasisElements [
+	self assert: q1234 * 1 i equals: q1234 i.
+	self assert: q1234 * 1 j equals: q1234 j.
+	self assert: q1234 * 1 k equals: q1234 k.
+]
+
 { #category : #running }
 PMQuaternionTest >> testMultiplicationOfBasisElements [
 "https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
@@ -263,9 +270,6 @@ PMQuaternionTest >> testPrintOn [
 
 { #category : #running }
 PMQuaternionTest >> testProduct [
-	self assert: q1234 * 1 i equals: q1234 i.
-	self assert: q1234 * 1 j equals: q1234 j.
-	self assert: q1234 * 1 k equals: q1234 k.
 	self assert: (q1234 * 0) isZero.
 	self assert: (0 / q1234) isZero.
 	self assert: q1234 * q1234 conjugated equals: q1234 squaredNorm.
