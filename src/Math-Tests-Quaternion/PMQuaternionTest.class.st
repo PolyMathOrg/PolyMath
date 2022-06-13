@@ -198,6 +198,19 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testMultiplicationByVector [
+	| vec |
+	vec := PMVector new: 2.
+	vec at: 1 put: 1.
+	vec at: 2 put: 2.
+	"This uses productWithVector"
+	self assert: (vec * q1234 at: 2) equals: 2 * q1234.
+
+	"This uses adaptToQuaternion:andSend:"
+	self assert: (q1234 * vec at: 1) equals: q1234
+]
+
+{ #category : #running }
 PMQuaternionTest >> testMultiplicationByZero [
 	| quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
@@ -301,19 +314,6 @@ PMQuaternionTest >> testPrintOn [
 	| s |
 	s := q1234 printString.
 	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
-]
-
-{ #category : #running }
-PMQuaternionTest >> testProductWithVector [
-	| vec |
-	vec := PMVector new: 2.
-	vec at: 1 put: 1.
-	vec at: 2 put: 2.
-	"This uses productWithVector"
-	self assert: (vec * q1234 at: 2) equals: 2 * q1234.
-
-	"This uses adaptToQuaternion:andSend:"
-	self assert: (q1234 * vec at: 1) equals: q1234
 ]
 
 { #category : #running }
