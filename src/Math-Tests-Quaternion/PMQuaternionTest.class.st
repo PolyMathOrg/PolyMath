@@ -85,6 +85,13 @@ PMQuaternionTest >> testDividePolynomial [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testDivision [
+	self assert: (0 / q1234) isZero.
+	self assert: 1 / q1234 equals: q1234 reciprocal.
+	self assert: q1234 / q1234 equals: 1
+]
+
+{ #category : #running }
 PMQuaternionTest >> testEquality [
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
@@ -283,9 +290,6 @@ PMQuaternionTest >> testPrintOn [
 { #category : #running }
 PMQuaternionTest >> testProduct [
 	self assert: (q1234 * 0) isZero.
-	self assert: (0 / q1234) isZero.
-	self assert: 1 / q1234 equals: q1234 reciprocal.
-	self assert: q1234 / q1234 equals: 1
 ]
 
 { #category : #running }
