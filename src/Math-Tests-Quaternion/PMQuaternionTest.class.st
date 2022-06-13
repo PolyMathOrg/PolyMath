@@ -198,7 +198,7 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testMultiplicationByVector [
+PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
 	| vec quaternion |
 	vec := PMVector new: 2.
 	vec at: 1 put: 1.
