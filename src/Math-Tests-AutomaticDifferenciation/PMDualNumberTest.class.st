@@ -86,13 +86,15 @@ PMDualNumberTest >> testArcTan [
 
 { #category : #test }
 PMDualNumberTest >> testConjugated [
+
 	| a z |
 	z := PMDualNumber value: 1.0 + 1.0 i eps: 1.0.
 	a := z absSquared.
 	self assert: a value equals: z value absSquared.
 	self
 		assert: a eps
-		equals: z eps asComplex complexConjugate * z value + (z value asComplex conjugated * z eps)
+		equals: z eps asComplex complexConjugate * z value
+			+ (z value asComplex complexConjugate * z eps)
 ]
 
 { #category : #tests }
