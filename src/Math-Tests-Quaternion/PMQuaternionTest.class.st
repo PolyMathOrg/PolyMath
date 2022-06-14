@@ -182,10 +182,10 @@ PMQuaternionTest >> testMultiplicationByConjugate [
 PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 
 	| quaternion |
-	quaternion := 1 i: 2 j: 3 k: 4.
-	
-	self assert: quaternion * 5 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 5 * quaternion equals: (5 i: 10 j: 15 k: 20)
+	quaternion := 1 + 2 i + 3 j + 4 k.
+
+	self assert: quaternion * 5 equals: 5 + 10 i + 15 j + 20 k.
+	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k.
 ]
 
 { #category : #running }
