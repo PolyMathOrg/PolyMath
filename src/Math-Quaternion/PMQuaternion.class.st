@@ -86,16 +86,7 @@ PMQuaternion >> * multiplier [
 
 	^ multiplier isQuaternion
 		  ifTrue: [ 
-			  | tr ti tj tk |
-			  tr := multiplier qr.
-			  ti := multiplier qi.
-			  tj := multiplier qj.
-			  tk := multiplier qk.
-			  ^ self species
-				    qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
-				    qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
-				    qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
-				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti) ]
+			  ^ self multiplyByQuaternion: multiplier ]
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
 				  ifTrue: [ multiplier multiplyByQuaternion: self ]
@@ -374,6 +365,20 @@ PMQuaternion >> log [
 { #category : #arithmetic }
 PMQuaternion >> multiplyByNumber: multiplier [
 	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> multiplyByQuaternion: multiplier [
+ | tr ti tj tk |
+tr := multiplier qr.
+			  ti := multiplier qi.
+			  tj := multiplier qj.
+			  tk := multiplier qk.
+			  ^ self species
+				    qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
+				    qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
+				    qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
+				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)
 ]
 
 { #category : #arithmetic }
