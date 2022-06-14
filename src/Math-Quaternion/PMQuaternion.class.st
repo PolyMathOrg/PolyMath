@@ -85,7 +85,7 @@ PMQuaternion >> * multiplier [
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
 
 	^ multiplier isQuaternion
-		  ifTrue: [ self multiplyByQuaternion: multiplier ]
+		  ifTrue: [ multiplier multiplyByQuaternion: self ]
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
 				  ifTrue: [ multiplier multiplyByQuaternion: self ]
@@ -368,16 +368,17 @@ PMQuaternion >> multiplyByNumber: multiplier [
 
 { #category : #arithmetic }
 PMQuaternion >> multiplyByQuaternion: multiplier [
- | tr ti tj tk |
-tr := multiplier qr.
-			  ti := multiplier qi.
-			  tj := multiplier qj.
-			  tk := multiplier qk.
-			  ^ self species
-				    qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
-				    qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
-				    qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
-				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)
+
+	| tr ti tj tk |
+	tr := self qr.
+	ti := self qi.
+	tj := self qj.
+	tk := self qk.
+	^ self species
+		  qr: (multiplier qr * tr) - (multiplier qi * ti) - (multiplier qj * tj) - (multiplier qk * tk)
+		  qi: (multiplier qr * ti) + (multiplier qi * tr) + (multiplier qj * tk) - (multiplier qk * tj)
+		  qj: (multiplier qr * tj) + (multiplier qj * tr) + (multiplier qk * ti) - (multiplier qi * tk)
+		  qk: (multiplier qr * tk) + (multiplier qk * tr) + (multiplier qi * tj) - (multiplier qj * ti)
 ]
 
 { #category : #arithmetic }
