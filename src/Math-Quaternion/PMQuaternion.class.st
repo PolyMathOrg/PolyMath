@@ -356,25 +356,6 @@ PMQuaternion >> log [
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> multiplyByComplexNumber: complexNumber [
-
-	| x y |
-	x := complexNumber real.
-	y := complexNumber imaginary.
-
-	^ self species
-		  qr: x * qr - (y * qi)
-		  qi: x * qi + (y * qr)
-		  qj: x * qj + (y * qk)
-		  qk: x * qk - (y * qj)
-]
-
-{ #category : #arithmetic }
-PMQuaternion >> multiplyByNumber: multiplier [
-	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
-]
-
-{ #category : #arithmetic }
 PMQuaternion >> multiplyByQuaternion: multiplier [
 
 	| tr ti tj tk |
@@ -608,6 +589,25 @@ PMQuaternion >> tanh [
 	ep := self exp.
 	em := self negated exp.
 	^(ep - em) / (ep + em)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesComplexNumber: complexNumber [
+
+	| x y |
+	x := complexNumber real.
+	y := complexNumber imaginary.
+
+	^ self species
+		  qr: x * qr - (y * qi)
+		  qi: x * qi + (y * qr)
+		  qj: x * qj + (y * qk)
+		  qk: x * qk - (y * qj)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesNumber: multiplier [
+	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
 ]
 
 { #category : #'*Math-Quaternion' }

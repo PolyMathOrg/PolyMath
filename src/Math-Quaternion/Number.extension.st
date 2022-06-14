@@ -44,5 +44,5 @@ Number >> k [
 
 { #category : #'*Math-Quaternion' }
 Number >> multiplyByQuaternion: quaternion [
-	^ quaternion multiplyByNumber: self.
+	^ quaternion timesNumber: self.
 ]

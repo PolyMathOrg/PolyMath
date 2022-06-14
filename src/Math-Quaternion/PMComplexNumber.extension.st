@@ -40,5 +40,5 @@ PMComplexNumber >> k [
 { #category : #'*Math-Quaternion' }
 PMComplexNumber >> multiplyByQuaternion: quaternion [
 
-	^ quaternion multiplyByComplexNumber: self
+	^ quaternion timesComplexNumber: self
 ]
