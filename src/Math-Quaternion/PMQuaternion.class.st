@@ -89,7 +89,7 @@ PMQuaternion >> * multiplier [
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
 				  ifTrue: [ multiplier multiplyByQuaternion: self ]
-				  ifFalse: [ multiplier adaptToQuaternion: self andSend: #* ] ]
+				  ifFalse: [ multiplier multiplyByQuaternion: self ] ]
 ]
 
 { #category : #arithmetic }
@@ -359,6 +359,20 @@ PMQuaternion >> log [
 	"Answer receiver base 10 logarithm."
 
 	^self ln / 10 ln
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> multiplyByComplexNumber: complexNumber [
+
+	| x y |
+	x := complexNumber real.
+	y := complexNumber imaginary.
+
+	^ self species
+		  qr: x * qr - (y * qi)
+		  qi: x * qi + (y * qr)
+		  qj: x * qj + (y * qk)
+		  qk: x * qk - (y * qj)
 ]
 
 { #category : #arithmetic }

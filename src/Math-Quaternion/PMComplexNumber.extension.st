@@ -36,3 +36,9 @@ PMComplexNumber >> k [
 		qj: imaginary negated
 		qk: real
 ]
+
+{ #category : #'*Math-Quaternion' }
+PMComplexNumber >> multiplyByQuaternion: quaternion [
+
+	^ quaternion multiplyByComplexNumber: self
+]
