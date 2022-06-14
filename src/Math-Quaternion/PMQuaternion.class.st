@@ -98,8 +98,7 @@ PMQuaternion >> * multiplier [
 				    qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti) ]
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
-				  ifTrue: [ 
-					  self * multiplier asQuaternion ]
+				  ifTrue: [ multiplier multiplyByQuaternion: self ]
 				  ifFalse: [ multiplier adaptToQuaternion: self andSend: #* ] ]
 ]
 
@@ -370,6 +369,11 @@ PMQuaternion >> log [
 	"Answer receiver base 10 logarithm."
 
 	^self ln / 10 ln
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> multiplyByNumber: multiplier [
+	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
 ]
 
 { #category : #arithmetic }
