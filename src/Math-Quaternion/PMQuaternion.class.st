@@ -85,8 +85,7 @@ PMQuaternion >> * multiplier [
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
 
 	^ multiplier isQuaternion
-		  ifTrue: [ 
-			  ^ self multiplyByQuaternion: multiplier ]
+		  ifTrue: [ self multiplyByQuaternion: multiplier ]
 		  ifFalse: [ 
 			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
 				  ifTrue: [ multiplier multiplyByQuaternion: self ]
