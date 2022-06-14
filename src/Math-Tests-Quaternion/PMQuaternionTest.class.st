@@ -190,10 +190,12 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 
 { #category : #running }
 PMQuaternionTest >> testMultiplicationByPolynomialIsCommutative [
-	| poly |
-	poly := PMPolynomial coefficients: #(1 1 1).
-	self assert: (poly * q12 at: 0) equals: q12.
-	self assert: (q12 * poly at: 0) equals: q12
+
+	| poly quaternion |
+	poly := PMPolynomial coefficients: #( 1 1 1 ).
+	quaternion := 1 + 2 i + 0 j + 0 k.
+	self assert: (poly * quaternion at: 0) equals: q12.
+	self assert: (quaternion * poly at: 0) equals: q12
 ]
 
 { #category : #tests }
