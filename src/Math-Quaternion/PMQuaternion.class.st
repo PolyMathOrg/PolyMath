@@ -83,13 +83,7 @@ PMQuaternion >> * multiplier [
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
-
-	^ multiplier isQuaternion
-		  ifTrue: [ multiplier multiplyByQuaternion: self ]
-		  ifFalse: [ 
-			  (multiplier isNumber and: [ multiplier isComplexNumber not ])
-				  ifTrue: [ multiplier multiplyByQuaternion: self ]
-				  ifFalse: [ multiplier multiplyByQuaternion: self ] ]
+	^ multiplier multiplyByQuaternion: self.
 ]
 
 { #category : #arithmetic }
