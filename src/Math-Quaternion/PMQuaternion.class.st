@@ -369,16 +369,15 @@ PMQuaternion >> multiplyByNumber: multiplier [
 { #category : #arithmetic }
 PMQuaternion >> multiplyByQuaternion: multiplier [
 
-	| tr ti tj tk |
-	tr := self qr.
-	ti := self qi.
-	tj := self qj.
-	tk := self qk.
 	^ self species
-		  qr: (multiplier qr * tr) - (multiplier qi * ti) - (multiplier qj * tj) - (multiplier qk * tk)
-		  qi: (multiplier qr * ti) + (multiplier qi * tr) + (multiplier qj * tk) - (multiplier qk * tj)
-		  qj: (multiplier qr * tj) + (multiplier qj * tr) + (multiplier qk * ti) - (multiplier qi * tk)
-		  qk: (multiplier qr * tk) + (multiplier qk * tr) + (multiplier qi * tj) - (multiplier qj * ti)
+		  qr: multiplier qr * self qr - (multiplier qi * self qi)
+			  - (multiplier qj * self qj) - (multiplier qk * self qk)
+		  qi: multiplier qr * self qi + (multiplier qi * self qr)
+			  + (multiplier qj * self qk) - (multiplier qk * self qj)
+		  qj: multiplier qr * self qj + (multiplier qj * self qr)
+			  + (multiplier qk * self qi) - (multiplier qi * self qk)
+		  qk: multiplier qr * self qk + (multiplier qk * self qr)
+			  + (multiplier qi * self qj) - (multiplier qj * self qi)
 ]
 
 { #category : #arithmetic }
