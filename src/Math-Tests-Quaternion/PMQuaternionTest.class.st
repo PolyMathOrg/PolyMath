@@ -160,7 +160,7 @@ PMQuaternionTest >> testLog [
 	self assert: (qln qk closeTo: qlg10ln qk)
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
 	| quaternion complexNumber |
 	quaternion := 2 + 3 i + 4 j + 5 k.
@@ -170,7 +170,7 @@ PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
 	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k.
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByConjugate [
 
 	| quaternion |
@@ -178,7 +178,7 @@ PMQuaternionTest >> testMultiplicationByConjugate [
 	self assert: quaternion * (quaternion conjugated) equals: 30
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 
 	| quaternion |
@@ -188,7 +188,7 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k.
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByPolynomialIsCommutative [
 
 	| poly quaternion |
@@ -209,7 +209,7 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 	self assert: quaternion * 1 k equals: (-4 + 3 i - 2 j + 1 k)
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
 	| vec quaternion |
 	vec := PMVector new: 2.
@@ -225,7 +225,7 @@ PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
 	self assert: (quaternion * vec at: 2) equals: 2 + 4 i + 6 j + 8 k.
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByZero [
 	| quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
@@ -233,7 +233,7 @@ PMQuaternionTest >> testMultiplicationByZero [
 	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k.
 ]
 
-{ #category : #running }
+{ #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationOfBasisElements [
 "https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
 
