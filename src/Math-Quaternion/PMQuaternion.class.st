@@ -78,29 +78,12 @@ PMQuaternion class >> zero [
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> * aQuaternion [ 
+PMQuaternion >> * multiplier [
+
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
-	^ aQuaternion isQuaternion
-		ifTrue: [| tr ti tj tk | 
-			tr := aQuaternion qr.
-			ti := aQuaternion qi.
-			tj := aQuaternion qj.
-			tk := aQuaternion qk.
-			^ self species
-				qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
-				qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
-				qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
-				qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)]
-		ifFalse: [(aQuaternion isNumber and: [aQuaternion isComplexNumber not])
-				ifTrue: ["handle case much faster than adapt..."
-					self species
-						qr: qr * aQuaternion
-						qi: qi * aQuaternion
-						qj: qj * aQuaternion
-						qk: qk * aQuaternion]
-				ifFalse: [aQuaternion adaptToQuaternion: self andSend: #*]]
+	^ multiplier multiplyByQuaternion: self.
 ]
 
 { #category : #arithmetic }
@@ -373,6 +356,22 @@ PMQuaternion >> log [
 ]
 
 { #category : #arithmetic }
+PMQuaternion >> multiplyByQuaternion: multiplier [
+
+	| tr ti tj tk |
+	tr := multiplier qr.
+	ti := multiplier qi.
+	tj := multiplier qj.
+	tk := multiplier qk.
+
+	^ self species
+		  qr: tr * qr - (ti * qi) - (tj * qj) - (tk * qk)
+		  qi: tr * qi + (ti * qr) + (tj * qk) - (tk * qj)
+		  qj: tr * qj - (ti * qk) + (tj * qr) + (tk * qi)
+		  qk: tr * qk + (tk * qr)- (tj * qi) + (ti * qj)
+]
+
+{ #category : #arithmetic }
 PMQuaternion >> negated [
 	^self species 
 		qr: qr negated
@@ -589,6 +588,25 @@ PMQuaternion >> tanh [
 	ep := self exp.
 	em := self negated exp.
 	^(ep - em) / (ep + em)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesComplexNumber: complexNumber [
+
+	| x y |
+	x := complexNumber real.
+	y := complexNumber imaginary.
+
+	^ self species
+		  qr: x * qr - (y * qi)
+		  qi: x * qi + (y * qr)
+		  qj: x * qj + (y * qk)
+		  qk: x * qk - (y * qj)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesNumber: multiplier [
+	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
 ]
 
 { #category : #'*Math-Quaternion' }

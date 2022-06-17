@@ -85,6 +85,13 @@ PMQuaternionTest >> testDividePolynomial [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testDivision [
+	self assert: (0 / q1234) isZero.
+	self assert: 1 / q1234 equals: q1234 reciprocal.
+	self assert: q1234 / q1234 equals: 1
+]
+
+{ #category : #running }
 PMQuaternionTest >> testEquality [
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
@@ -151,6 +158,103 @@ PMQuaternionTest >> testLog [
 	self assert: (qln qi closeTo: qlg10ln qi).
 	self assert: (qln qj closeTo: qlg10ln qj).
 	self assert: (qln qk closeTo: qlg10ln qk)
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
+	| quaternion complexNumber |
+	quaternion := 2 + 3 i + 4 j + 5 k.
+	complexNumber := 1 - 1 i.
+	
+	self assert: (quaternion * complexNumber) equals: 5 + 1 i - 1 j + 9 k.
+	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByConjugate [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: quaternion * (quaternion conjugated) equals: 30
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+
+	self assert: quaternion * 5 equals: 5 + 10 i + 15 j + 20 k.
+	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByPolynomialIsCommutative [
+
+	| poly quaternion |
+	poly := PMPolynomial coefficients: #( 1 1 1 ).
+	quaternion := 1 + 2 i + 0 j + 0 k.
+	self assert: (poly * quaternion at: 0) equals: q12.
+	self assert: (quaternion * poly at: 0) equals: q12
+]
+
+{ #category : #tests }
+PMQuaternionTest >> testMultiplicationByTheBasisElements [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 1 i equals: (-2 + 1 i + 4 j - 3 k).
+	self assert: quaternion * 1 j equals: (-3 - 4 i + 1 j + 2 k).
+	self assert: quaternion * 1 k equals: (-4 + 3 i - 2 j + 1 k)
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
+	| vec quaternion |
+	vec := PMVector new: 2.
+	vec at: 1 put: 1.
+	vec at: 2 put: 2.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	"This uses productWithVector"
+	self assert: (vec * quaternion at: 1) equals: (1 + 2 i + 3 j + 4 k).
+	self assert: (vec * quaternion at: 2) equals: (2 + 4 i + 6 j + 8 k).
+
+	"This uses adaptToQuaternion:andSend:"
+	self assert: (quaternion * vec at: 1) equals: 1 + 2 i + 3 j + 4 k.
+	self assert: (quaternion * vec at: 2) equals: 2 + 4 i + 6 j + 8 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByZero [
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationOfBasisElements [
+"https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
+
+	self assert: 1 i * 1 i equals: -1.
+	self assert: 1 j * 1 j equals: -1.
+	self assert: 1 k * 1 k equals: -1.
+	self assert: 1 i * 1 j equals: 1 k.
+	self assert: 1 j * 1 k equals: 1 i.
+	self assert: 1 k * 1 i equals: 1 j.
+	self assert: 1 j * 1 i equals: -1 k.
+	self assert: 1 k * 1 j equals: -1 i.
+	self assert: 1 i * 1 k equals: -1 j.
+	self assert: 1 i i equals: -1.
+	self assert: 1 j j equals: -1.
+	self assert: 1 k k equals: -1.
+	self assert: 1 i j equals: 1 k.
+	self assert: 1 j k equals: 1 i.
+	self assert: 1 k i equals: 1 j.
+	self assert: 1 j i equals: -1 k.
+	self assert: 1 k j equals: -1 i.
+	self assert: 1 i k equals: -1 j.
 ]
 
 { #category : #running }
@@ -225,51 +329,6 @@ PMQuaternionTest >> testPrintOn [
 	| s |
 	s := q1234 printString.
 	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
-]
-
-{ #category : #running }
-PMQuaternionTest >> testProduct [
-	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 1 i * 1 i equals: -1.
-	self assert: 1 j * 1 j equals: -1.
-	self assert: 1 k * 1 k equals: -1.
-	self assert: 1 i * 1 j equals: 1 k.
-	self assert: 1 j * 1 k equals: 1 i.
-	self assert: 1 k * 1 i equals: 1 j.
-	self assert: 1 j * 1 i equals: -1 k.
-	self assert: 1 k * 1 j equals: -1 i.
-	self assert: 1 i * 1 k equals: -1 j.
-	self assert: 1 i i equals: -1.
-	self assert: 1 j j equals: -1.
-	self assert: 1 k k equals: -1.
-	self assert: 1 i j equals: 1 k.
-	self assert: 1 j k equals: 1 i.
-	self assert: 1 k i equals: 1 j.
-	self assert: 1 j i equals: -1 k.
-	self assert: 1 k j equals: -1 i.
-	self assert: 1 i k equals: -1 j.
-	self assert: q1234 * 1 i equals: q1234 i.
-	self assert: q1234 * 1 j equals: q1234 j.
-	self assert: q1234 * 1 k equals: q1234 k.
-	self assert: (q1234 * 0) isZero.
-	self assert: (0 / q1234) isZero.
-	self assert: q1234 * q1234 conjugated equals: q1234 squaredNorm.
-	self assert: 1 / q1234 equals: q1234 reciprocal.
-	self assert: q1234 / q1234 equals: 1
-]
-
-{ #category : #running }
-PMQuaternionTest >> testProductWithVector [
-	| vec |
-	vec := PMVector new: 2.
-	vec at: 1 put: 1.
-	vec at: 2 put: 2.
-	"This uses productWithVector"
-	self assert: (vec * q1234 at: 2) equals: 2 * q1234.
-
-	"This uses adaptToQuaternion:andSend:"
-	self assert: (q1234 * vec at: 1) equals: q1234
 ]
 
 { #category : #running }
@@ -361,14 +420,6 @@ PMQuaternionTest >> testTanh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tanh - (1 + 2 j k) tanh) abs < eps
-]
-
-{ #category : #running }
-PMQuaternionTest >> testTimesPolynomial [
-	| poly |
-	poly := PMPolynomial coefficients: #(1 1 1).
-	self assert: (poly * q12 at: 0) equals: q12.
-	self assert: (q12 * poly at: 0) equals: q12
 ]
 
 { #category : #running }

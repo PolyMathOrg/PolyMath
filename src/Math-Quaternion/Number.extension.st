@@ -41,3 +41,8 @@ Number >> k [
 		qj: 0
 		qk: self
 ]
+
+{ #category : #'*Math-Quaternion' }
+Number >> multiplyByQuaternion: quaternion [
+	^ quaternion timesNumber: self.
+]
