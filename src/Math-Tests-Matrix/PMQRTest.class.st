@@ -18,7 +18,7 @@ PMQRTest >> mpTestFunction: aMatrix [
 ]
 
 { #category : #tests }
-PMQRTest >> testMPInverse [
+PMQRTest >> testMoorePenroseInverse [
 
 	| a |
 	a := PMMatrix new initializeRows:
