@@ -5,16 +5,24 @@ Class {
 }
 
 { #category : #running }
-PMQRTest >> mpTestFunction: aMatrix [
+PMQRTest >> assert: inverse isInverseOf: aMatrix [
 
-	| inverse identityMatrix |
-	inverse := aMatrix mpInverse.
+	| identityMatrix |
 	identityMatrix := inverse * aMatrix.
 	self assert: (aMatrix * identityMatrix closeTo: aMatrix).
 	self assert: identityMatrix * inverse closeTo: inverse.
 	self assert: identityMatrix transpose closeTo: identityMatrix.
 	identityMatrix := aMatrix * inverse.
 	self assert: identityMatrix transpose closeTo: identityMatrix
+]
+
+{ #category : #running }
+PMQRTest >> mpTestFunction: aMatrix [
+
+	| inverse |
+	inverse := aMatrix mpInverse.
+	self assert: inverse isInverseOf: aMatrix.
+
 ]
 
 { #category : #tests }
