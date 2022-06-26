@@ -24,29 +24,28 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 	self assert: (identityMatrix * aMatrix) closeTo: aMatrix.
 ]
 
-{ #category : #running }
-PMQRTest >> mpTestFunction: aMatrix [
-
-	| inverse |
-	inverse := aMatrix mpInverse.
-	self assert: inverse isMoorePenroseInverseOf: aMatrix.
-
-]
-
 { #category : #tests }
 PMQRTest >> testMoorePenroseInverse [
 
-	| a |
+	| a inverse |
 	a := PMMatrix new initializeRows:
 		     #( #( 5 40 1 ) #( 0 0 1 ) #( 0 0 1 ) ).
-	self mpTestFunction: a.
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+	
 	a := a * (PMMatrix rows: 3 columns: 3 random: 5.0).
-	self mpTestFunction: a.
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+	
 	a := PMMatrix new initializeRows:
 		     #( #( 5 40 1 2.5 ) #( 0 0 1 2.5 ) #( 0 0 1 2.5 ) ).
-	self mpTestFunction: a.
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+	
 	a := a transpose.
-	self mpTestFunction: a.
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+	
 	3 timesRepeat: [ 
 		a := PMMatrix rows: 3 columns: 3 random: 1.0.
 		self assert: (a mpInverse closeTo: a inverse).
