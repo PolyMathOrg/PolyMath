@@ -7,14 +7,14 @@ Class {
 { #category : #running }
 PMQRTest >> mpTestFunction: aMatrix [
 
-	| inverse mult identityMatrix |
+	| inverse identityMatrix |
 	inverse := aMatrix mpInverse.
 	identityMatrix := inverse * aMatrix.
 	self assert: (aMatrix * identityMatrix closeTo: aMatrix).
 	self assert: identityMatrix * inverse closeTo: inverse.
 	self assert: identityMatrix transpose closeTo: identityMatrix.
-	mult := aMatrix * inverse.
-	self assert: mult transpose closeTo: mult
+	identityMatrix := aMatrix * inverse.
+	self assert: identityMatrix transpose closeTo: identityMatrix
 ]
 
 { #category : #tests }
