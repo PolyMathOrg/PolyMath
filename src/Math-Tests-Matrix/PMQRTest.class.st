@@ -6,6 +6,7 @@ Class {
 
 { #category : #running }
 PMQRTest >> assert: inverse isInverseOf: aMatrix [
+	"A~ * A = A * A~ = I"
 
 	| identityMatrix |
 	identityMatrix := inverse * aMatrix.
@@ -13,7 +14,8 @@ PMQRTest >> assert: inverse isInverseOf: aMatrix [
 	self assert: identityMatrix * inverse closeTo: inverse.
 	self assert: identityMatrix transpose closeTo: identityMatrix.
 	identityMatrix := aMatrix * inverse.
-	self assert: identityMatrix transpose closeTo: identityMatrix
+	self assert: identityMatrix transpose closeTo: identityMatrix.
+	self assert: (identityMatrix * aMatrix) closeTo: aMatrix.
 ]
 
 { #category : #running }
