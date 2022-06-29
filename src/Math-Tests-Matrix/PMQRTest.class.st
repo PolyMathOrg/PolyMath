@@ -61,7 +61,7 @@ PMQRTest >> testMoorePenroseInverseOfProductOfMatrices [
 ]
 
 { #category : #tests }
-PMQRTest >> testMoorePenroseInverseOfRandomMatrix [
+PMQRTest >> testMoorePenroseInverseOfRandomMatrixIsAPseudoInverse [
 
 	| a |
 	a := PMSymmetricMatrix new: 4 random: 1.0.
