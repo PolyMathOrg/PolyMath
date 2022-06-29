@@ -25,10 +25,8 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 ]
 
 { #category : #tests }
-PMQRTest >> testMoorePenroseInverse [
-
+PMQRTest >> testMoorePenroseInverseOfLargeNonRandomMatrix [
 	| a inverse |
-	
 	a := PMMatrix new initializeRows:
 		     #( #( 5 40 1 2.5 ) #( 0 0 1 2.5 ) #( 0 0 1 2.5 ) ).
 	inverse := a mpInverse .
@@ -37,12 +35,6 @@ PMQRTest >> testMoorePenroseInverse [
 	a := a transpose.
 	inverse := a mpInverse .
 	self assert: inverse isMoorePenroseInverseOf: a.
-	
-	3 timesRepeat: [ 
-		a := PMMatrix rows: 3 columns: 3 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse).
-		a := PMSymmetricMatrix new: 4 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse) ]
 ]
 
 { #category : #tests }
@@ -63,6 +55,17 @@ PMQRTest >> testMoorePenroseInverseOfProductOfMatrices [
 	a := a * (PMMatrix rows: 3 columns: 3 random: 5.0).
 	inverse := a mpInverse .
 	self assert: inverse isMoorePenroseInverseOf: a.
+]
+
+{ #category : #tests }
+PMQRTest >> testMoorePenroseInverseRepeatedly [
+
+	| a |
+	3 timesRepeat: [ 
+		a := PMMatrix rows: 3 columns: 3 random: 1.0.
+		self assert: (a mpInverse closeTo: a inverse).
+		a := PMSymmetricMatrix new: 4 random: 1.0.
+		self assert: (a mpInverse closeTo: a inverse) ]
 ]
 
 { #category : #tests }
