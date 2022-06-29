@@ -16,15 +16,15 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 	"
 	self assert: aMatrix * inverse * aMatrix closeTo: aMatrix.
 	self assert: inverse * aMatrix * inverse closeTo: inverse.
+	
+	identityMatrix := aMatrix * inverse.
+	self assert: identityMatrix transpose closeTo: identityMatrix.
+	self assert: identityMatrix * aMatrix closeTo: aMatrix.
 
 	"Pseudoinversion commutes with transposition, complex conjugation, and taking the conjugate transpose"
 	self
 		assert: aMatrix transpose mpInverse
 		closeTo: aMatrix mpInverse transpose.
-
-	identityMatrix := aMatrix * inverse.
-	self assert: identityMatrix transpose closeTo: identityMatrix.
-	self assert: identityMatrix * aMatrix closeTo: aMatrix
 ]
 
 { #category : #tests }
