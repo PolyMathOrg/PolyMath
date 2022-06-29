@@ -65,7 +65,7 @@ PMQRTest >> testMoorePenroseInverseOfRandomMatrixIsAnInverse [
 "
 Proofs for the properties below can be found in literature:
 If A has real entries, then so does A+
-If A is invertible, its pseudoinverse is its inverse. That is, A+=A**−1
+If A is invertible, its pseudoinverse is its inverse. That is, A+ = A**−1
 "
 
 	| a |
