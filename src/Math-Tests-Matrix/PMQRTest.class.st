@@ -25,16 +25,16 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 ]
 
 { #category : #tests }
-PMQRTest >> testMoorePenroseInverseOfLargeNonRandomMatrix [
-	| a inverse |
+PMQRTest >> testMoorePenroseInverseOfLargeNonRandomMatrixAndItsTranspose [
+	| a inverse transposeOfA |
 	a := PMMatrix new initializeRows:
 		     #( #( 5 40 1 2.5 ) #( 0 0 1 2.5 ) #( 0 0 1 2.5 ) ).
 	inverse := a mpInverse .
 	self assert: inverse isMoorePenroseInverseOf: a.
 	
-	a := a transpose.
-	inverse := a mpInverse .
-	self assert: inverse isMoorePenroseInverseOf: a.
+	transposeOfA := a transpose.
+	inverse := transposeOfA mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: transposeOfA.
 ]
 
 { #category : #tests }
