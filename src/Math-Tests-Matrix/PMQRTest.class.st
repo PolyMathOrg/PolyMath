@@ -14,7 +14,7 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 	the Moore–Penrose conditions of which there are four, but here we have two. The other two
 	are that (A * A+) and A+ * A are Hermitian.
 	"
-	self assert: (aMatrix * inverse * aMatrix closeTo: aMatrix).
+	self assert: aMatrix * inverse * aMatrix closeTo: aMatrix.
 	self assert: inverse * aMatrix * inverse closeTo: inverse.
 
 	"Pseudoinversion commutes with transposition, complex conjugation, and taking the conjugate transpose"
