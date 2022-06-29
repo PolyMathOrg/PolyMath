@@ -58,14 +58,11 @@ PMQRTest >> testMoorePenroseInverseOfProductOfMatrices [
 ]
 
 { #category : #tests }
-PMQRTest >> testMoorePenroseInverseRepeatedly [
+PMQRTest >> testMoorePenroseInverseOfRandomMatrix [
 
 	| a |
-	3 timesRepeat: [ 
-		a := PMMatrix rows: 3 columns: 3 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse).
-		a := PMSymmetricMatrix new: 4 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse) ]
+	a := PMSymmetricMatrix new: 4 random: 1.0.
+	self assert: (a mpInverse closeTo: a inverse)
 ]
 
 { #category : #tests }
