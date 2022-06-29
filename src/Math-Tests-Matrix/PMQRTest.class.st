@@ -6,6 +6,7 @@ Class {
 
 { #category : #running }
 PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
+
 	"https://en.wikipedia.org/wiki/Moore–Penrose_inverse#Definition"
 
 	| identityMatrix |
@@ -15,13 +16,15 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 	"
 	self assert: (aMatrix * inverse * aMatrix closeTo: aMatrix).
 	self assert: inverse * aMatrix * inverse closeTo: inverse.
-	
+
 	"Pseudoinversion commutes with transposition, complex conjugation, and taking the conjugate transpose"
-	self assert: aMatrix transpose mpInverse closeTo: aMatrix mpInverse transpose.
-	
+	self
+		assert: aMatrix transpose mpInverse
+		closeTo: aMatrix mpInverse transpose.
+
 	identityMatrix := aMatrix * inverse.
 	self assert: identityMatrix transpose closeTo: identityMatrix.
-	self assert: (identityMatrix * aMatrix) closeTo: aMatrix.
+	self assert: identityMatrix * aMatrix closeTo: aMatrix
 ]
 
 { #category : #tests }
