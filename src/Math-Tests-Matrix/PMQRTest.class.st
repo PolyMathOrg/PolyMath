@@ -5,37 +5,72 @@ Class {
 }
 
 { #category : #running }
-PMQRTest >> mpTestFunction: aMatrix [
+PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 
-	| inv mult |
-	inv := aMatrix mpInverse.
-	mult := inv * aMatrix.
-	self assert: (aMatrix * mult closeTo: aMatrix).
-	self assert: mult * inv closeTo: inv.
-	self assert: mult transpose closeTo: mult.
-	mult := aMatrix * inv.
-	self assert: mult transpose closeTo: mult
+	"https://en.wikipedia.org/wiki/Moore–Penrose_inverse#Definition"
+
+	| identityMatrix |
+	"These two assertions are what define a pseudoinverse. They are known as
+	the Moore–Penrose conditions of which there are four, but here we have two. The other two
+	are that (A * A+) and A+ * A are Hermitian.
+	"
+	self assert: aMatrix * inverse * aMatrix closeTo: aMatrix.
+	self assert: inverse * aMatrix * inverse closeTo: inverse.
+	
+	identityMatrix := aMatrix * inverse.
+	self assert: identityMatrix transpose closeTo: identityMatrix.
+	self assert: identityMatrix * aMatrix closeTo: aMatrix.
+
+	"Pseudoinversion commutes with transposition, complex conjugation, and taking the conjugate transpose"
+	self
+		assert: aMatrix transpose mpInverse
+		closeTo: aMatrix mpInverse transpose.
 ]
 
 { #category : #tests }
-PMQRTest >> testMPInverse [
-
-	| a |
-	a := PMMatrix new initializeRows:
-		     #( #( 5 40 1 ) #( 0 0 1 ) #( 0 0 1 ) ).
-	self mpTestFunction: a.
-	a := a * (PMMatrix rows: 3 columns: 3 random: 5.0).
-	self mpTestFunction: a.
+PMQRTest >> testMoorePenroseInverseOfLargeNonRandomMatrixAndItsTranspose [
+	| a inverse transposeOfA |
 	a := PMMatrix new initializeRows:
 		     #( #( 5 40 1 2.5 ) #( 0 0 1 2.5 ) #( 0 0 1 2.5 ) ).
-	self mpTestFunction: a.
-	a := a transpose.
-	self mpTestFunction: a.
-	3 timesRepeat: [ 
-		a := PMMatrix rows: 3 columns: 3 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse).
-		a := PMSymmetricMatrix new: 4 random: 1.0.
-		self assert: (a mpInverse closeTo: a inverse) ]
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+	
+	transposeOfA := a transpose.
+	inverse := transposeOfA mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: transposeOfA.
+]
+
+{ #category : #tests }
+PMQRTest >> testMoorePenroseInverseOfNonRandomMatrix [
+	| a inverse |
+	a := PMMatrix new initializeRows:
+		     #( #( 5 40 1 ) #( 0 0 1 ) #( 0 0 1 ) ).
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+]
+
+{ #category : #tests }
+PMQRTest >> testMoorePenroseInverseOfProductOfMatrices [
+	| a inverse |
+	a := PMMatrix new initializeRows:
+		     #( #( 5 40 1 ) #( 0 0 1 ) #( 0 0 1 ) ).
+	
+	a := a * (PMMatrix rows: 3 columns: 3 random: 5.0).
+	inverse := a mpInverse .
+	self assert: inverse isMoorePenroseInverseOf: a.
+]
+
+{ #category : #tests }
+PMQRTest >> testMoorePenroseInverseOfRandomMatrixIsAnInverse [
+"
+Proofs for the properties below can be found in literature:
+If A has real entries, then so does A+
+If A is invertible, its pseudoinverse is its inverse. That is, A+ = A**−1
+"
+
+	| a |
+	a := PMSymmetricMatrix new: 4 random: 1.0.
+	self assert: (a mpInverse closeTo: a inverse)
 ]
 
 { #category : #tests }
