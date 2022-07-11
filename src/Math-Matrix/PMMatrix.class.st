@@ -145,7 +145,7 @@ PMMatrix class >> rows: nRows columns: nCols  element: fillElement [
 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PMMatrix class >> rows: aNumberOfRows columns: aNumberOfColumns random: aMaxNumber [
 	"Answer a new Matrix of the given dimensions filled with random numbers"
 	| random rows |
