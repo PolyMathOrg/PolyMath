@@ -4,7 +4,7 @@ SVD-based implementation of a minimum-norm solution to the overdetermined least 
 Class {
 	#name : #PMLeastSquares,
 	#superclass : #Object,
-	#category : #'Math-Numerical'
+	#category : #'Math-Numerical-Math-LinearAlgebra'
 }
 
 { #category : #accessing }
