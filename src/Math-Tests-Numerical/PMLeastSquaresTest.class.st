@@ -12,8 +12,9 @@ Class {
 
 { #category : #running }
 PMLeastSquaresTest >> setUp [
+
 	super setUp.
-	leastSquares := PMLeastSquares new.
+	leastSquares := PMLeastSquares new
 ]
 
 { #category : #tests }
@@ -22,16 +23,16 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrix [
 	| matrix expectedInverse inverse |
 	
 	matrix := PMMatrix rows: #(
-		(2 0 0 0)
-		(0 1 0 0)
-		(0 0 -3 0)
-		(0 0 0 -1)).
+		(2  0  0  0)
+		(0  1  0  0)
+		(0  0 -3  0)
+		(0  0  0 -1) ).
 		
 	expectedInverse := PMMatrix rows: {
-		{ 1/2 . 0 . 0 . 0 } .
-		{ 0 . 1 . 0 . 0 } .
-		{0 . 0 . -1/3 . 0} .
-		{0 . 0 . 0 . -1 }}.
+		{ 1/2 . 0 .   0  .  0 } .
+		{  0  . 1 .   0  .  0 } .
+		{  0  . 0 . -1/3 .  0} .
+		{  0  . 0 .   0  . -1 } }.
 		
 	inverse := leastSquares pseudoinverseOfDiagonal: matrix.
 	self assert: inverse closeTo: expectedInverse.
@@ -46,13 +47,13 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrixWithZeros [
 		(2 0 0 0)
 		(0 1 0 0)
 		(0 0 0 0)
-		(0 0 0 0)).
+		(0 0 0 0) ).
 		
 	expectedInverse := PMMatrix rows: #(
-		(0.5 0 0 0)
-		(0 1 0 0)
-		(0 0 0 0)
-		(0 0 0 0)).
+		(0.5 0  0  0)
+		( 0  1  0  0)
+		( 0  0  0  0)
+		( 0  0  0  0) ).
 		
 	inverse := leastSquares pseudoinverseOfDiagonal: matrix.
 	self assert: inverse closeTo: expectedInverse.
@@ -64,18 +65,18 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalTallMatrix [
 	| matrix expectedInverse inverse |
 	
 	matrix := PMMatrix rows: #(
-		(2 0 0 0)
-		(0 1 0 0)
-		(0 0 -3 0)
-		(0 0 0 -1)
-		(0 0 0 0)
-		(0 0 0 0)).
+		(2  0  0  0)
+		(0  1  0  0)
+		(0  0 -3  0)
+		(0  0  0 -1)
+		(0  0  0  0)
+		(0  0  0  0) ).
 		
 	expectedInverse := PMMatrix rows: {
-		{ 1/2 . 0 . 0 . 0 . 0 . 0 } .
-		{ 0 . 1 . 0 . 0 . 0 . 0 } .
-		{0 . 0 . -1/3 . 0 . 0 . 0 } .
-		{0 . 0 . 0 . -1 . 0 . 0 }}.
+		{ 1/2 . 0 .    0 .  0 . 0 . 0 } .
+		{   0 . 1 .    0 .  0 . 0 . 0 } .
+		{   0 . 0 . -1/3 .  0 . 0 . 0 } .
+		{   0 . 0 .    0 . -1 . 0 . 0 }}.
 		
 	inverse := leastSquares pseudoinverseOfDiagonal: matrix.
 	self assert: inverse closeTo: expectedInverse.
@@ -87,10 +88,10 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalWideMatrix [
 	| matrix expectedInverse inverse |
 	
 	matrix := PMMatrix rows: #(
-		(2 0 0 0 0 0)
-		(0 1 0 0 0 0)
-		(0 0 -3 0 0 0)
-		(0 0 0 -1 0 0)).
+		(2 0  0  0  0  0)
+		(0 1  0  0  0  0)
+		(0 0 -3  0  0  0)
+		(0 0  0 -1  0  0)).
 		
 	expectedInverse := PMMatrix rows: {
 		{ 1/2 . 0 . 0 . 0 } .
@@ -110,9 +111,9 @@ PMLeastSquaresTest >> testSolveSmallOneSolution [
 	| matrixA vectorB expectedSolution solution |
 	
 	matrixA := PMMatrix rows: #(
-		(0 1.1)
-		(1 0)
-		(0 -0.2)).
+		(0   1.1)
+		(1    0 )
+		(0  -0.2) ).
 		
 	vectorB := #(1.1 -1.1 -0.2) asPMVector.
 	expectedSolution := #(-1.1 1) asPMVector.
