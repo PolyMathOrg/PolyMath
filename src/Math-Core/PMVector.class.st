@@ -27,8 +27,12 @@ Class {
 PMVector class >> new: size random: maxRandomNumber [ 
 	"Answer an instance of me, with number of elements equal to size, each 
 	a randomNumber lower than maxRandomNumber ."
+	
+	| random |
+	random := Random new.
 
-	^self newFrom:  ( (1 to: size ) collect: [:e|maxRandomNumber random ]  )
+	^ self newFrom: ((1 to: size ) collect: [ :each |
+		random nextBetween: 0 and: maxRandomNumber ]).
 ]
 
 { #category : #private }
@@ -43,10 +47,14 @@ PMVector class >> ones: anInteger [
 { #category : #private }
 PMVector class >> randomSize: anInteger maxNumber: aMaxNumber [
 	"Creates a vector of rand numbers from 0 to aMaxNumber."
-	|a|
-	a := PMVector new: anInteger.
-	1 to: a size do: [ :n | a at: n put: (aMaxNumber random)].
-	^a
+	| random vector |
+	random := Random new.
+	
+	vector := PMVector new: anInteger.
+	1 to: vector size do: [ :i |
+		vector at: i put: (random nextBetween: 0 and: aMaxNumber)].
+	
+	^ vector
 ]
 
 { #category : #private }

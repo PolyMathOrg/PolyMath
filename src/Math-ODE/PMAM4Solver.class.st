@@ -21,7 +21,7 @@ PMAM4Solver class >> stepperClass [
 { #category : #'as yet unclassified' }
 PMAM4Solver >> lastStepPrevState: prevState prevPrevState: prevPrevState endTime: endTime [
 	"catch partial or full step at end"
-	(lastTime equalsTo: endTime )
+	(lastTime closeTo: endTime )
 	ifFalse:
 		[state := stepper 
 			lastStep: state 

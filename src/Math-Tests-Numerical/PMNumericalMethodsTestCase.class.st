@@ -392,6 +392,24 @@ PMNumericalMethodsTestCase >> testLeastSquarePolynomial [
 ]
 
 { #category : #'iterative algorithms' }
+PMNumericalMethodsTestCase >> testLeastSquaresSingularMatrixError [
+	| histogram leastSquares |
+	
+	histogram := PMHistogram new
+		freeExtent: true;
+		yourself.
+		
+	1 to: 3 do: [:i| histogram accumulate: i ].
+	
+	leastSquares := PMLeastSquareFit
+		histogram: histogram
+		distributionClass: PMTriangularDistribution.
+		
+	self should: [ leastSquares evaluate ] raise: PMSingularMatrixError.
+	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError .
+]
+
+{ #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch1 [
 	"Test line searh for an initial step of Newton solver for equation
 	
@@ -492,15 +510,16 @@ PMNumericalMethodsTestCase >> testLinearEquations [
 
 { #category : #'linear algebra' }
 PMNumericalMethodsTestCase >> testLinearEquationsSingle [
+
 	| s sol |
 	s := PMLinearEquationSystem
-		equations: #(#(1 2 0) #(3 5 4) #(5 6 3))
-		constant: #(0.1 12.5 10.3).
+		     equations: #( #( 1 2 0 ) #( 3 5 4 ) #( 5 6 3 ) )
+		     constant: #( 0.1 12.5 10.3 ).
 	sol := s solution.
 	self assert: sol size equals: 3.
-	self assert: ((sol at: 1) equalsTo: 0.5).
-	self assert: ((sol at: 2) equalsTo: -0.2).
-	self assert: ((sol at: 3) equalsTo: 3.0)
+	self assert: ((sol at: 1) closeTo: 0.5).
+	self assert: ((sol at: 2) closeTo: -0.2).
+	self assert: ((sol at: 3) closeTo: 3.0)
 ]
 
 { #category : #'linear algebra' }
@@ -850,22 +869,6 @@ PMNumericalMethodsTestCase >> testOptimizeSimplex [
 	self assert: (result at: 1) abs < 1.0e-6.
 	self assert: (result at: 2) abs < 1.0e-6.
 	self assert: (result at: 3) abs < 1.0e-6
-]
-
-{ #category : #'linear algebra' }
-PMNumericalMethodsTestCase >> testSingularMatrixError [
-|h f|
-h:=PMHistogram new.
-h freeExtent: true.
-1 to: 3 do:  [:i| h accumulate: i ].
-f:=PMLeastSquareFit histogram: h distributionClass: PMTriangularDistribution.
-self should: [ f evaluate ] raise: PMSingularMatrixError .
-"and not something completely incomprehensible"
-"also here:"
-self should: [ f errorMatrix ] raise: PMSingularMatrixError .
-self should: [(PMMatrix rows: #((1 2 3)(3 4 6)))inverse] raise: PMSingularMatrixError .
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureLUP] raise: PMSingularMatrixError.
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureCRL] raise: PMSingularMatrixError.
 ]
 
 { #category : #statistics }

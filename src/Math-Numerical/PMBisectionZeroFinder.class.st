@@ -32,9 +32,11 @@ PMBisectionZeroFinder >> evaluateIteration [
 
 { #category : #operation }
 PMBisectionZeroFinder >> findNegativeXFrom: aNumber1 range: aNumber2 [
-	| n |
+	| random n |
 	n := 0.
-	[ negativeX := Number random * aNumber2 + aNumber1.
+	random := Random new.
+	
+	[ negativeX := random next * aNumber2 + aNumber1.
 	  ( functionBlock value: negativeX) < 0
 		] whileFalse: [ n := n + 0.1.
 						n > maximumIterations
@@ -44,9 +46,11 @@ PMBisectionZeroFinder >> findNegativeXFrom: aNumber1 range: aNumber2 [
 
 { #category : #operation }
 PMBisectionZeroFinder >> findPositiveXFrom: aNumber1 range: aNumber2 [
-	| n |
+	| n random |
 	n := 0.
-	[ positiveX := Number random * aNumber2 + aNumber1.
+	random := Random new.
+	
+	[ positiveX := random next * aNumber2 + aNumber1.
 	  ( functionBlock value: positiveX) > 0
 		] whileFalse: [ n := n + 1.
 						n > maximumIterations

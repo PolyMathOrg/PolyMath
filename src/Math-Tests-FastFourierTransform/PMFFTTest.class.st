@@ -37,9 +37,11 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i closeTo: 0 ])
+		                       size.
 	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	zeroedRealData := (inputOutputDiff select: [ :i | i closeTo: 0 ])
+		                  size.
 	self assert: zeroedImaginaryData equals: 256.
 	self assert: zeroedRealData equals: 256.
 
@@ -56,9 +58,11 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	f transform.
 	f inverseTransform.
 
-	zeroedImaginaryData := (f imaginaryData select: [ :i | i equalsTo: 0 ]) size.
+	zeroedImaginaryData := (f imaginaryData select: [ :i | i closeTo: 0 ])
+		                       size.
 	inputOutputDiff := f realData - inputSequence.
-	zeroedRealData := (inputOutputDiff select: [ :i | i equalsTo: 0 ]) size.
+	zeroedRealData := (inputOutputDiff select: [ :i | i closeTo: 0 ])
+		                  size.
 	self assert: zeroedImaginaryData equals: 8.
 	self assert: zeroedRealData equals: 8
 ]
@@ -66,16 +70,22 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 { #category : #tests }
 PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
 
-	| cosineWaveSignal randomizedCosineWaveSignal f |
+	| random cosineWaveSignal randomizedCosineWaveSignal fourier |
+	
 	cosineWaveSignal := self generateCosineWaveSignal: 256.
-	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i | i + 0.001 random - 0.0005 ].
-	f := PMFastFourierTransform data: randomizedCosineWaveSignal.
+	random := Random new.
+	
+	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i |
+		i + (random nextBetween: 0 and: 0.001) - 0.0005 ].
+	
+	fourier := PMFastFourierTransform data: randomizedCosineWaveSignal.
 
-	f transform.
-	f chop: 0.01.
-	f inverseTransform.
-
-	self assert: (f realData - cosineWaveSignal) abs max < 4e-5
+	fourier transform.
+	fourier chop: 0.01.
+	fourier inverseTransform.
+	
+	fourier realData with: cosineWaveSignal do: [ :expected :actual |
+		self assert: actual closeTo: expected ].
 ]
 
 { #category : #tests }

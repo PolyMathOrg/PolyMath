@@ -157,34 +157,47 @@ PMMatrixTest >> testDimension [
 PMMatrixTest >> testEigenvalues [
 	"Code Example 8.15"
 
-	| m charPol roots eigenvalues finder |
-	m := PMMatrix rows: #(#(3 -2 0) #(-2 7 1) #(0 1 5)).
-	charPol := PMPolynomial coefficients: #(82 -66 15 -1).
-	roots := charPol roots asSortedCollection asArray reverse.
-	finder := PMJacobiTransformation matrix: m.
+	| matrix expectedEigenvalues eigenvalues finder |
+	
+	matrix := PMMatrix rows: #(
+		(3 -2 0) 
+		(-2 7 1)
+		(0 1 5)).
+		
+	expectedEigenvalues := #(8.105482616526306 4.776537928330764 2.1179794551429305).
+	
+	finder := PMJacobiTransformation matrix: matrix.
 	finder desiredPrecision: 1.0e-09.
+	
 	eigenvalues := finder evaluate.
-	self assert: eigenvalues size equals: 3.
-	self assert: ((roots at: 1) - (eigenvalues at: 1)) abs < 1.0e-09.
-	self assert: ((roots at: 2) - (eigenvalues at: 2)) abs < 1.0e-09.
-	self assert: ((roots at: 3) - (eigenvalues at: 3)) abs < 1.0e-09
+	
+	eigenvalues with: expectedEigenvalues do: [ :actual :expected |
+		self assert: actual closeTo: expected ].
 ]
 
 { #category : #'linear algebra' }
 PMMatrixTest >> testEigenvaluesLargest [
 	"Code Example 8.13"
 
-	| m charPol roots eigenvalue finder |
-	m := PMMatrix rows: #(#(3 -2 0) #(-2 7 1) #(0 1 5)).
-	charPol := PMPolynomial coefficients: #(82 -66 15 -1).
-	roots := charPol roots asSortedCollection asArray reverse.
-	finder := PMLargestEigenValueFinder matrix: m.
+	| matrix expectedEigenvalues firstEigenvalue secondEigenvalue finder |
+	
+	matrix := PMMatrix rows: #(
+		(3 -2 0)
+		(-2 7 1)
+		(0 1 5)).
+		
+	expectedEigenvalues := #(8.105482616526306 4.776537928330764 2.1179794551429305).
+	
+	finder := PMLargestEigenValueFinder matrix: matrix.
 	finder desiredPrecision: 1.0e-08.
-	eigenvalue := finder evaluate.
-	self assert: ((roots at: 1) - eigenvalue) abs < 1.0e-08.
+	
+	firstEigenvalue := finder evaluate.
+	
 	finder := finder nextLargestEigenValueFinder.
-	eigenvalue := finder evaluate.
-	self assert: ((roots at: 2) - eigenvalue) abs < 1.0e-08
+	secondEigenvalue := finder evaluate.
+	
+	self assert: firstEigenvalue closeTo: expectedEigenvalues first.
+	self assert: secondEigenvalue closeTo: expectedEigenvalues second.
 ]
 
 { #category : #tests }
@@ -213,6 +226,30 @@ PMMatrixTest >> testIdentityMatrix [
 
 	identityMatrix := PMMatrix identity: 3.
 	self assert: identityMatrix equals: expectedIdentityMatrix.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInversePureCRLSingularMatrixError [
+
+	self
+		should: [ (PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1))) inversePureCRL ]
+		raise: PMSingularMatrixError.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInversePureLUPSingularMatrixError [
+
+	self
+		should: [ (PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1))) inversePureLUP ]
+		raise: PMSingularMatrixError.
+]
+
+{ #category : #'linear algebra' }
+PMMatrixTest >> testInverseSingularMatrixError [
+
+	self
+		should: [ (PMMatrix rows: #((1 2 3)(3 4 6))) inverse ]
+		raise: PMSingularMatrixError.
 ]
 
 { #category : #tests }
@@ -279,15 +316,16 @@ PMMatrixTest >> testLinearEquations [
 
 { #category : #tests }
 PMMatrixTest >> testLinearEquationsSingle [
+
 	| s sol |
 	s := PMLinearEquationSystem
-		equations: #(#(1 2 0) #(3 5 4) #(5 6 3))
-		constant: #(0.1 12.5 10.3).
+		     equations: #( #( 1 2 0 ) #( 3 5 4 ) #( 5 6 3 ) )
+		     constant: #( 0.1 12.5 10.3 ).
 	sol := s solution.
 	self assert: sol size equals: 3.
-	self assert: ((sol at: 1) equalsTo: 0.5).
-	self assert: ((sol at: 2) equalsTo: -0.2).
-	self assert: ((sol at: 3) equalsTo: 3.0)
+	self assert: ((sol at: 1) closeTo: 0.5).
+	self assert: ((sol at: 2) closeTo: -0.2).
+	self assert: ((sol at: 3) closeTo: 3.0)
 ]
 
 { #category : #'linear algebra' }
@@ -755,22 +793,6 @@ PMMatrixTest >> testSimpleMatrixOperations [
 	m := PMMatrix rows: #(#(-1 -2 7) #(5 6 7)).
 	self assert: m * s equals: (s * m transpose) transpose.
 	self assert: m transpose * m equals: m squared
-]
-
-{ #category : #'linear algebra' }
-PMMatrixTest >> testSingularMatrixError [
-|h f|
-h:=PMHistogram new.
-h freeExtent: true.
-1 to: 3 do:  [:i| h accumulate: i ].
-f:=PMLeastSquareFit histogram: h distributionClass: PMTriangularDistribution.
-self should: [ f evaluate ] raise: PMSingularMatrixError .
-"and not something completely incomprehensible"
-"also here:"
-self should: [ f errorMatrix ] raise: PMSingularMatrixError .
-self should: [(PMMatrix rows: #((1 2 3)(3 4 6)))inverse] raise: PMSingularMatrixError .
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureLUP] raise: PMSingularMatrixError.
-self should: [(PMSymmetricMatrix rows: #((1 2 3)(2 2 2)(3 2 1)))inversePureCRL] raise: PMSingularMatrixError.
 ]
 
 { #category : #tests }

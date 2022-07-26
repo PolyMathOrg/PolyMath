@@ -77,8 +77,9 @@ PMGeneticOptimizer >> processRandomParents: aNumberArray [
 { #category : #information }
 PMGeneticOptimizer >> randomIndex: aNumberArray [
 		"Private"
-	| x n |
-	x := Number random.
+	| random x n |
+	random := Random new.
+	x := random next.
 	n := 1.
 	aNumberArray do: 
 		[ :each |

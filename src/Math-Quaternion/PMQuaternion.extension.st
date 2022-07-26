@@ -17,19 +17,22 @@ PMQuaternion >> productWithVector: aVector [
 ]
 
 { #category : #'*Math-Quaternion' }
-PMQuaternion class >> random [
-		"Answers a random quaternion with abs at most one."
-
-	^ (0.5 - Float random) 
-		i: (0.5 - Float random)
-		j: (0.5 - Float random)
-		k: (0.5 - Float random).
-]
-
-{ #category : #'*Math-Quaternion' }
 PMQuaternion >> random [
 	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
 	^ self class random * self.
+]
+
+{ #category : #'*Math-Quaternion' }
+PMQuaternion class >> random [
+	"Answers a random quaternion with abs at most one."
+	
+	| random |
+	random := Random new.
+
+	^ (0.5 - random next) 
+		i: (0.5 - random next)
+		j: (0.5 - random next)
+		k: (0.5 - random next).
 ]
 
 { #category : #'*Math-Quaternion' }

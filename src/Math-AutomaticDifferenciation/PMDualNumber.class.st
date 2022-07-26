@@ -133,11 +133,19 @@ PMDualNumber >> asInteger [
 	^ value asInteger
 ]
 
+{ #category : #comparing }
+PMDualNumber >> closeTo: aDualNumber [
+
+	^ (value closeTo: aDualNumber value) and: [ 
+		  eps closeTo: aDualNumber eps ]
+]
+
 { #category : #'mathematical functions' }
 PMDualNumber >> conjugated [
+
 	^ self class
-		value: self value conjugated
-		eps: self eps asComplex complexConjugate
+		  value: self value complexConjugate
+		  eps: self eps asComplex complexConjugate
 ]
 
 { #category : #'mathematical functions' }
@@ -157,7 +165,12 @@ PMDualNumber >> eps: aNumber [
 
 { #category : #comparing }
 PMDualNumber >> equalsTo: aDualNumber [
-	^ (value equalsTo: aDualNumber value) and: [ eps equalsTo: aDualNumber eps ]
+
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+
+	^ self closeTo: aDualNumber 
 ]
 
 { #category : #testing }

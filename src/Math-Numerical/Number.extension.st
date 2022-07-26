@@ -19,8 +19,12 @@ Number >> dividingPolynomial: aPolynomial [
 
 { #category : #'*Math-Numerical' }
 Number >> equalsTo: aNumber [
-		"compare to Float>>closeTo:"
-	^self relativelyEqualsTo: aNumber upTo: PMFloatingPointMachine new defaultNumericalPrecision
+		
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+		
+	^ self closeTo: aNumber
 ]
 
 { #category : #'*Math-Numerical' }
@@ -56,30 +60,6 @@ Number >> logGamma [
 						ifTrue: [ ( PMLanczosFormula new logGamma: ( self + 1) ) - self ln ]
 						ifFalse: [ ^self error: 'Argument for the log gamma function must be positive']
 					]
-]
-
-{ #category : #'*Math-Numerical' }
-Number >> productWithMatrix: aMatrix [
-^aMatrix class rows: (aMatrix rowsCollect: [:r| self productWithVector: r])
-]
-
-{ #category : #'*Math-Numerical' }
-Number >> productWithVector: aVector [
-		"Answers a new vector product of the receiver with aVector."
-	^aVector collect: [ :each | each * self]
-]
-
-{ #category : #'*Math-Numerical' }
-Number class >> random [
-	"Answers a floating random number between 0 and 1 excluded"
-
-	^ PMMitchellMooreGenerator new floatValue
-]
-
-{ #category : #'*Math-Numerical' }
-Number >> random [
-		"Answers a random number distributed between 0 and the receiver."
-	^self class random * self
 ]
 
 { #category : #'*Math-Numerical' }

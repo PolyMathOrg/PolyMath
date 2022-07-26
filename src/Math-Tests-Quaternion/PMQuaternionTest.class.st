@@ -85,6 +85,13 @@ PMQuaternionTest >> testDividePolynomial [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testDivision [
+	self assert: (0 / q1234) isZero.
+	self assert: 1 / q1234 equals: q1234 reciprocal.
+	self assert: q1234 / q1234 equals: 1
+]
+
+{ #category : #running }
 PMQuaternionTest >> testEquality [
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
@@ -138,14 +145,8 @@ PMQuaternionTest >> testHash [
 ]
 
 { #category : #running }
-PMQuaternionTest >> testLn [
-	| eps |
-	eps := 1.0e-6.
-	self assert: ((1 + 2 i) ln - (1 + 2 j k) ln) abs < eps
-]
-
-{ #category : #running }
 PMQuaternionTest >> testLog [
+
 	"this ensures that log and ln have the expected relationship"
 
 	| qln qlg10ln |
@@ -153,29 +154,89 @@ PMQuaternionTest >> testLog [
 	qlg10ln := q1234 log * 10 ln.
 
 	"this inspires me to implement Quaternion>>equalsTo: "
-	self assert: (qln qr equalsTo: qlg10ln real).
-	self assert: (qln qi equalsTo: qlg10ln qi).
-	self assert: (qln qj equalsTo: qlg10ln qj).
-	self assert: (qln qk equalsTo: qlg10ln qk)
+	self assert: (qln qr closeTo: qlg10ln real).
+	self assert: (qln qi closeTo: qlg10ln qi).
+	self assert: (qln qj closeTo: qlg10ln qj).
+	self assert: (qln qk closeTo: qlg10ln qk)
 ]
 
-{ #category : #running }
-PMQuaternionTest >> testOne [
-	self assert: PMQuaternion one unreal isZero.
-	self assert: PMQuaternion one real equals: 1
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
+	| quaternion complexNumber |
+	quaternion := 2 + 3 i + 4 j + 5 k.
+	complexNumber := 1 - 1 i.
+	
+	self assert: (quaternion * complexNumber) equals: 5 + 1 i - 1 j + 9 k.
+	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k.
 ]
 
-{ #category : #running }
-PMQuaternionTest >> testPrintOn [
-	| s |
-	s := q1234 printString.
-	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByConjugate [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	self assert: quaternion * (quaternion conjugated) equals: 30
 ]
 
-{ #category : #running }
-PMQuaternionTest >> testProduct [
-	self assert: q1234 * 5 equals: (5 i: 10 j: 15 k: 20).
-	self assert: 5 * q1234 equals: (5 i: 10 j: 15 k: 20).
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+
+	self assert: quaternion * 5 equals: 5 + 10 i + 15 j + 20 k.
+	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByPolynomialIsCommutative [
+
+	| poly quaternion |
+	poly := PMPolynomial coefficients: #( 1 1 1 ).
+	quaternion := 1 + 2 i + 0 j + 0 k.
+	self assert: (poly * quaternion at: 0) equals: q12.
+	self assert: (quaternion * poly at: 0) equals: q12
+]
+
+{ #category : #tests }
+PMQuaternionTest >> testMultiplicationByTheBasisElements [
+
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 1 i equals: (-2 + 1 i + 4 j - 3 k).
+	self assert: quaternion * 1 j equals: (-3 - 4 i + 1 j + 2 k).
+	self assert: quaternion * 1 k equals: (-4 + 3 i - 2 j + 1 k)
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
+	| vec quaternion |
+	vec := PMVector new: 2.
+	vec at: 1 put: 1.
+	vec at: 2 put: 2.
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	"This uses productWithVector"
+	self assert: (vec * quaternion at: 1) equals: (1 + 2 i + 3 j + 4 k).
+	self assert: (vec * quaternion at: 2) equals: (2 + 4 i + 6 j + 8 k).
+
+	"This uses adaptToQuaternion:andSend:"
+	self assert: (quaternion * vec at: 1) equals: 1 + 2 i + 3 j + 4 k.
+	self assert: (quaternion * vec at: 2) equals: 2 + 4 i + 6 j + 8 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationByZero [
+	| quaternion |
+	quaternion := 1 + 2 i + 3 j + 4 k.
+	
+	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k.
+]
+
+{ #category : #'testing - arithmetic' }
+PMQuaternionTest >> testMultiplicationOfBasisElements [
+"https://en.wikipedia.org/wiki/Quaternion#Multiplication_of_basis_elements"
+
 	self assert: 1 i * 1 i equals: -1.
 	self assert: 1 j * 1 j equals: -1.
 	self assert: 1 k * 1 k equals: -1.
@@ -194,27 +255,80 @@ PMQuaternionTest >> testProduct [
 	self assert: 1 j i equals: -1 k.
 	self assert: 1 k j equals: -1 i.
 	self assert: 1 i k equals: -1 j.
-	self assert: q1234 * 1 i equals: q1234 i.
-	self assert: q1234 * 1 j equals: q1234 j.
-	self assert: q1234 * 1 k equals: q1234 k.
-	self assert: (q1234 * 0) isZero.
-	self assert: (0 / q1234) isZero.
-	self assert: q1234 * q1234 conjugated equals: q1234 squaredNorm.
-	self assert: 1 / q1234 equals: q1234 reciprocal.
-	self assert: q1234 / q1234 equals: 1
 ]
 
 { #category : #running }
-PMQuaternionTest >> testProductWithVector [
-	| vec |
-	vec := PMVector new: 2.
-	vec at: 1 put: 1.
-	vec at: 2 put: 2.
-	"This uses productWithVector"
-	self assert: (vec * q1234 at: 2) equals: 2 * q1234.
+PMQuaternionTest >> testNaturalLogOfQuaternion [
 
-	"This uses adaptToQuaternion:andSend:"
-	self assert: (q1234 * vec at: 1) equals: q1234
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+
+	| quaternion naturalLogOfQuaternion expected vectorPartOfQuaternion |
+	quaternion := 3 + 4 i + 5 j + 6 k.
+	naturalLogOfQuaternion := quaternion ln.
+
+	vectorPartOfQuaternion := PMQuaternion
+		                      qr: 0
+		                      qi: 4
+		                      qj: 5
+		                      qk: 6.
+	expected := 86 sqrt ln
+	            + (vectorPartOfQuaternion / 77 sqrt * (3 / 86 sqrt) arcCos).
+
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
+]
+
+{ #category : #running }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithNoVectorPart [
+	| expected naturalLogOfQuaternion quaternionWithNoVector |
+	
+	quaternionWithNoVector := 5 + 0 i + 0 j + 0 k.
+	
+	naturalLogOfQuaternion := quaternionWithNoVector ln.
+	
+	expected := 5 ln + 0 i + 0 j + 0 k.
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: 0.
+	self assert: naturalLogOfQuaternion qj equals: 0.
+	self assert: naturalLogOfQuaternion qk equals: 0.
+]
+
+{ #category : #tests }
+PMQuaternionTest >> testNaturalLogOfQuaternionWithOnlyVectorPart [
+
+	"See https://en.wikipedia.org/wiki/Quaternion#cite_note-Särkkä2007-39 for more detail"
+
+	| quaternion naturalLogOfQuaternion expected expectedVectorPart |
+	quaternion := 0 + 7 i - 10 j + 23 k.
+	naturalLogOfQuaternion := quaternion ln.
+	expectedVectorPart := PMQuaternion
+		                      qr: 0
+		                      qi: 7
+		                      qj: -10
+		                      qk: 23.
+
+
+	expected := 678 sqrt ln + ((expectedVectorPart / 678 sqrt) * ((0 / 678 sqrt) arcCos)).
+
+	self assert: naturalLogOfQuaternion qr equals: expected qr.
+	self assert: naturalLogOfQuaternion qi equals: expected qi.
+	self assert: naturalLogOfQuaternion qj closeTo: expected qj.
+	self assert: naturalLogOfQuaternion qk equals: expected qk
+]
+
+{ #category : #running }
+PMQuaternionTest >> testOne [
+	self assert: PMQuaternion one unreal isZero.
+	self assert: PMQuaternion one real equals: 1
+]
+
+{ #category : #running }
+PMQuaternionTest >> testPrintOn [
+	| s |
+	s := q1234 printString.
+	self assert: s equals: '(1 i: 2 j: 3 k: 4)'
 ]
 
 { #category : #running }
@@ -264,6 +378,15 @@ PMQuaternionTest >> testSinh [
 ]
 
 { #category : #running }
+PMQuaternionTest >> testSquareOfQuaternion [
+| q expected |
+	q := 1 + 2 i - 3 j - 4 k.
+	expected := -28 + 4 i - 6 j - 8 k.
+
+	self assert: q squared equals: expected
+]
+
+{ #category : #running }
 PMQuaternionTest >> testSubtractPolynomial [
 	| poly |
 	poly := PMPolynomial coefficients: #(1 1 1).
@@ -297,14 +420,6 @@ PMQuaternionTest >> testTanh [
 	| eps |
 	eps := 1.0e-6.
 	self assert: ((1 + 2 i) tanh - (1 + 2 j k) tanh) abs < eps
-]
-
-{ #category : #running }
-PMQuaternionTest >> testTimesPolynomial [
-	| poly |
-	poly := PMPolynomial coefficients: #(1 1 1).
-	self assert: (poly * q12 at: 0) equals: q12.
-	self assert: (q12 * poly at: 0) equals: q12
 ]
 
 { #category : #running }

@@ -5,7 +5,7 @@ here are tests that would be in Math-Tests-DHB-Numerical, if it could construct 
 Class {
 	#name : #PMAdditionalTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
@@ -17,18 +17,18 @@ PMAdditionalTest >> testMatrixInversionSmall [
 	3
 		timesRepeat: [ [ m := PMSymmetricMatrix new: 5 random: 20.
 			m determinant = 0 ] whileTrue.	"singular matrix not allowed"
-			self assert: (i := m crlInverse) * m equals: c.
+			self assert: (i := m crlInverse) * m closeTo: c.
 			self assert: i class equals: PMSymmetricMatrix.
-			self assert: (i := m inversePureLUP) * m equals: c.
+			self assert: (i := m inversePureLUP) * m closeTo: c.
 			self assert: i class equals: PMSymmetricMatrix.
-			self assert: m * (i := m inversePureCRL) equals: c.
+			self assert: m * (i := m inversePureCRL) closeTo: c.
 			self assert: i class equals: PMSymmetricMatrix ].
 	3
 		timesRepeat: [ [ m := PMMatrix rows: 5 columns: 5 random: 20.
 			m determinant = 0 ] whileTrue.
-			self assert: m * (i := m inverse) equals: c.
+			self assert: m * (i := m inverse) closeTo: c.
 			self assert: i class equals: PMMatrix.
-			self assert: (i := m inversePureCRL) * m equals: c.
+			self assert: (i := m inversePureCRL) * m closeTo: c.
 			self assert: i class equals: PMMatrix ]
 ]
 

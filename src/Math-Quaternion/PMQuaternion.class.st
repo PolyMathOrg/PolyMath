@@ -57,12 +57,15 @@ PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [
 
 { #category : #'*Math-Quaternion' }
 PMQuaternion class >> random [
-		"Answers a random quaternion with abs at most one."
+	"Answers a random quaternion with abs at most one."
+	
+	| random |
+	random := Random new.
 
-	^ (0.5 - Float random) 
-		i: (0.5 - Float random)
-		j: (0.5 - Float random)
-		k: (0.5 - Float random).
+	^ (0.5 - random next) 
+		i: (0.5 - random next)
+		j: (0.5 - random next)
+		k: (0.5 - random next).
 ]
 
 { #category : #'constants access' }
@@ -75,29 +78,12 @@ PMQuaternion class >> zero [
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> * aQuaternion [ 
+PMQuaternion >> * multiplier [
+
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
-	^ aQuaternion isQuaternion
-		ifTrue: [| tr ti tj tk | 
-			tr := aQuaternion qr.
-			ti := aQuaternion qi.
-			tj := aQuaternion qj.
-			tk := aQuaternion qk.
-			^ self species
-				qr: qr * tr - (qi * ti) - (qj * tj) - (qk * tk)
-				qi: qr * ti + (qi * tr) + (qj * tk) - (qk * tj)
-				qj: qr * tj + (qj * tr) + (qk * ti) - (qi * tk)
-				qk: qr * tk + (qk * tr) + (qi * tj) - (qj * ti)]
-		ifFalse: [(aQuaternion isNumber and: [aQuaternion isComplexNumber not])
-				ifTrue: ["handle case much faster than adapt..."
-					self species
-						qr: qr * aQuaternion
-						qi: qi * aQuaternion
-						qj: qj * aQuaternion
-						qk: qk * aQuaternion]
-				ifFalse: [aQuaternion adaptToQuaternion: self andSend: #*]]
+	^ multiplier multiplyByQuaternion: self.
 ]
 
 { #category : #arithmetic }
@@ -345,25 +331,21 @@ PMQuaternion >> k [
 
 { #category : #'mathematical functions' }
 PMQuaternion >> ln [
-	"Answer the receiver natural logarithm"
+
+	"Compute the natural logarithm."
 
 	| z |
 	z := self unreal abs.
-	^z isZero 
-		ifTrue: 
-			[self species 
-				qr: self abs ln
-				qi: (z arcTan: qr)
-				qj: 0
-				qk: 0]
-		ifFalse: 
-			[| theta |
-			theta := (z arcTan: qr) / z.
-			self species 
-				qr: self abs ln
-				qi: qi * theta
-				qj: qj * theta
-				qk: qk * theta]
+	^ z isZero
+		  ifTrue: [ 
+			  | vectorPart |
+			  vectorPart := 0 + (z arcTan: qr) i + qj j + qk k.
+			  self abs ln + vectorPart ]
+		  ifFalse: [ 
+			  | theta vectorPart |
+			  theta := (z arcTan: qr) / z.
+			  vectorPart := theta * (0 + qi i + qj j + qk k).
+			  self abs ln + vectorPart ]
 ]
 
 { #category : #'mathematical functions' }
@@ -371,6 +353,22 @@ PMQuaternion >> log [
 	"Answer receiver base 10 logarithm."
 
 	^self ln / 10 ln
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> multiplyByQuaternion: multiplier [
+
+	| tr ti tj tk |
+	tr := multiplier qr.
+	ti := multiplier qi.
+	tj := multiplier qj.
+	tk := multiplier qk.
+
+	^ self species
+		  qr: tr * qr - (ti * qi) - (tj * qj) - (tk * qk)
+		  qi: tr * qi + (ti * qr) + (tj * qk) - (tk * qj)
+		  qj: tr * qj - (ti * qk) + (tj * qr) + (tk * qi)
+		  qk: tr * qk + (tk * qr)- (tj * qi) + (ti * qj)
 ]
 
 { #category : #arithmetic }
@@ -590,6 +588,25 @@ PMQuaternion >> tanh [
 	ep := self exp.
 	em := self negated exp.
 	^(ep - em) / (ep + em)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesComplexNumber: complexNumber [
+
+	| x y |
+	x := complexNumber real.
+	y := complexNumber imaginary.
+
+	^ self species
+		  qr: x * qr - (y * qi)
+		  qi: x * qi + (y * qr)
+		  qj: x * qj + (y * qk)
+		  qk: x * qk - (y * qj)
+]
+
+{ #category : #arithmetic }
+PMQuaternion >> timesNumber: multiplier [
+	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
 ]
 
 { #category : #'*Math-Quaternion' }

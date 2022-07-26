@@ -12,7 +12,11 @@ PMOptimizingBracketFinder class >> initialPoints: aSortedCollection function: aF
 
 { #category : #operation }
 PMOptimizingBracketFinder >> computeInitialValues [
-	[bestPoints size < 2] whileTrue: [self addPointAt: Number random]
+	| random |
+	random := Random new.
+	
+	[ bestPoints size < 2 ] whileTrue: [
+		self addPointAt: random next ]
 ]
 
 { #category : #operation }

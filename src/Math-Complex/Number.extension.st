@@ -10,7 +10,7 @@ Number >> adaptToComplex: rcvr andSend: selector [
 Number >> asComplex [
 	"Answer a Complex number that represents value of the receiver."
 
-	^ PMComplex real: self imaginary: 0
+	^ PMComplexNumber real: self imaginary: 0
 ]
 
 { #category : #'*Math-Complex' }
@@ -25,7 +25,7 @@ Number >> complexConjugate [
 
 { #category : #'*Math-Complex' }
 Number >> i [
-	^ PMComplex real: 0 imaginary: self
+	^ PMComplexNumber real: 0 imaginary: self
 ]
 
 { #category : #'*Math-Complex' }
@@ -36,7 +36,7 @@ Number >> i: aNumber [
 	this is the same as (self + aNumber i) but a little bit more efficient."
 
 	aNumber isNumber ifFalse: [self error: 'Badly formed complex number'].
-	^PMComplex real: self imaginary: aNumber
+	^PMComplexNumber real: self imaginary: aNumber
 ]
 
 { #category : #'*Math-Complex' }

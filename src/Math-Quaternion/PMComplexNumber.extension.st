@@ -1,13 +1,13 @@
-Extension { #name : #PMComplex }
+Extension { #name : #PMComplexNumber }
 
 { #category : #'*Math-Quaternion' }
-PMComplex >> adaptToQuaternion: rcvr andSend: selector [ 
+PMComplexNumber >> adaptToQuaternion: rcvr andSend: selector [ 
 	"If I am involved in arithmetic with a Quaternion, convert me to a Quaternion."
 	^ rcvr perform: selector with: self asQuaternion
 ]
 
 { #category : #'*Math-Quaternion' }
-PMComplex >> asQuaternion [
+PMComplexNumber >> asQuaternion [
 	^ PMQuaternion
 		qr: real
 		qi: imaginary
@@ -16,7 +16,7 @@ PMComplex >> asQuaternion [
 ]
 
 { #category : #'*Math-Quaternion' }
-PMComplex >> j [
+PMComplexNumber >> j [
 	"same as self * 1 j"
 
 	^PMQuaternion 
@@ -27,7 +27,7 @@ PMComplex >> j [
 ]
 
 { #category : #'*Math-Quaternion' }
-PMComplex >> k [
+PMComplexNumber >> k [
 	"same as self * 1 k"
 
 	^PMQuaternion 
@@ -35,4 +35,10 @@ PMComplex >> k [
 		qi: 0
 		qj: imaginary negated
 		qk: real
+]
+
+{ #category : #'*Math-Quaternion' }
+PMComplexNumber >> multiplyByQuaternion: quaternion [
+
+	^ quaternion timesComplexNumber: self
 ]

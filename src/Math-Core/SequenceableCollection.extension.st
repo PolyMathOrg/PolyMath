@@ -1,9 +1,20 @@
 Extension { #name : #SequenceableCollection }
 
 { #category : #'*Math-Core' }
-SequenceableCollection >> equalsTo: aSequenceableCollection [
+SequenceableCollection >> closeTo: aSequenceableCollection [
 
-"^ self = aSequenceableCollection "
-self with: aSequenceableCollection do: [:a :b| (a equalsTo: b) ifFalse: [^false]   ].
-^true
+	self
+		with: aSequenceableCollection
+		do: [ :a :b | (a closeTo: b) ifFalse: [ ^ false ] ].
+	^ true
+]
+
+{ #category : #'*Math-Core' }
+SequenceableCollection >> equalsTo: aSequenceableCollection [
+	
+	self
+		deprecated: 'Use closeTo: instead'
+		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
+
+	^ self closeTo: aSequenceableCollection
 ]
