@@ -55,7 +55,7 @@ aBlock value: RowposRespectivelyColpos value: ColposRespectivelyRowpos"
 	^a 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PMSymmetricMatrix class >> new: dim random: aMaxNumber [
 	"Answer a new symmetric matrix of the given dimensions filled with random numbers"
 	| matrix random aRow |
@@ -75,7 +75,7 @@ PMSymmetricMatrix class >> new: dim random: aMaxNumber [
 	^ matrix 
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #'instance creation' }
 PMSymmetricMatrix class >> rows: rows columns: columns random: aMaxNumber [
 	^ self shouldNotImplement
 ]
