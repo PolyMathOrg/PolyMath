@@ -10,7 +10,7 @@ Class {
 { #category : #'instance creation' }
 PMQRDecomposition >> decompose: aMatrix [
 
-	| identityMatrix q r hh colSize i |
+	| identityMatrix q r householderVector colSize i |
 	aMatrix numberOfRows < aMatrix numberOfColumns ifTrue: [ 
 		self error: 'numberOfRows<numberOfColumns' ].
 	r := PMMatrix rows: aMatrix rows deepCopy.
@@ -18,13 +18,13 @@ PMQRDecomposition >> decompose: aMatrix [
 	q := PMSymmetricMatrix identity: colSize.
 	identityMatrix := q deepCopy.
 	1 to: aMatrix numberOfColumns do: [ :col | 
-		hh := ((r columnAt: col) copyFrom: col to: colSize) householder.
-		i := (PMVector new: col - 1 withAll: 0) , (hh at: 2).
-		q := q * (identityMatrix - ((hh at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
+		householderVector := ((r columnAt: col) copyFrom: col to: colSize) householder.
+		i := (PMVector new: col - 1 withAll: 0) , (householderVector at: 2).
+		q := q * (identityMatrix - ((householderVector at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
 		i := PMMatrix rows:
 			     ((r rows allButFirst: col - 1) collect: [ :aRow | 
 				      aRow allButFirst: col - 1 ]).
-		i := i - ((hh at: 2) tensorProduct: (hh at: 1) * (hh at: 2) * i).
+		i := i - ((householderVector at: 2) tensorProduct: (householderVector at: 1) * (householderVector at: 2) * i).
 		i rows withIndexDo: [ :aRow :index | 
 			aRow withIndexDo: [ :n :c | 
 				r
