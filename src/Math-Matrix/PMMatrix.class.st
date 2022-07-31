@@ -750,7 +750,8 @@ PMMatrix >> productWithVector: aVector [
 
 { #category : #'as yet unclassified' }
 PMMatrix >> qrFactorization [
-	^ PMQRDecomposition new decompose: self.
+
+	^ (PMQRDecomposition of: self) decompose: self
 ]
 
 { #category : #'as yet unclassified' }

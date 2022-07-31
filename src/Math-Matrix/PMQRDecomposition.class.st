@@ -4,8 +4,17 @@ I am responsible for the decomposition of a matrix, A say, into a product A = QR
 Class {
 	#name : #PMQRDecomposition,
 	#superclass : #Object,
+	#instVars : [
+		'matrixToDecompose'
+	],
 	#category : #'Math-Matrix'
 }
+
+{ #category : #'instance creation' }
+PMQRDecomposition class >> of: matrix [
+
+	^ self new of: matrix.
+]
 
 { #category : #'instance creation' }
 PMQRDecomposition >> decompose: aMatrix [
@@ -44,4 +53,9 @@ PMQRDecomposition >> decompose: aMatrix [
 		q := PMMatrix rows:
 			     (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r
+]
+
+{ #category : #'instance creation' }
+PMQRDecomposition >> of: matrix [
+	matrixToDecompose := matrix.
 ]
