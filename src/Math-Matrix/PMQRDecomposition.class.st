@@ -27,13 +27,18 @@ PMQRDecomposition >> decompose: aMatrix [
 	q := PMSymmetricMatrix identity: colSize.
 	identityMatrix := q deepCopy.
 	1 to: aMatrix numberOfColumns do: [ :col | 
-		householderVector := ((r columnAt: col) copyFrom: col to: colSize) householder.
+		householderVector := ((r columnAt: col) copyFrom: col to: colSize)
+			                     householder.
 		i := (PMVector new: col - 1 withAll: 0) , (householderVector at: 2).
-		q := q * (identityMatrix - ((householderVector at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
+		q := q
+		     *
+		     (identityMatrix
+		      - ((householderVector at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
 		i := PMMatrix rows:
 			     ((r rows allButFirst: col - 1) collect: [ :aRow | 
 				      aRow allButFirst: col - 1 ]).
-		i := i - ((householderVector at: 2) tensorProduct: (householderVector at: 1) * (householderVector at: 2) * i).
+		i := i - ((householderVector at: 2) tensorProduct:
+			      (householderVector at: 1) * (householderVector at: 2) * i).
 		i rows withIndexDo: [ :aRow :index | 
 			aRow withIndexDo: [ :n :c | 
 				r
@@ -41,8 +46,7 @@ PMQRDecomposition >> decompose: aMatrix [
 					columnAt: col + c - 1
 					put: ((n closeTo: 0)
 							 ifTrue: [ 0 ]
-							 ifFalse: [ n ]) ] ]
- ].
+							 ifFalse: [ n ]) ] ] ].
 	i := 0.
 	[ (r rowAt: colSize) allSatisfy: [ :n | n = 0 ] ] whileTrue: [ 
 		i := i + 1.
@@ -57,5 +61,6 @@ PMQRDecomposition >> decompose: aMatrix [
 
 { #category : #'instance creation' }
 PMQRDecomposition >> of: matrix [
-	matrixToDecompose := matrix.
+
+	matrixToDecompose := matrix
 ]
