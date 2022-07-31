@@ -12,8 +12,9 @@ Class {
 
 { #category : #'instance creation' }
 PMQRDecomposition class >> of: matrix [
-
-	^ self new of: matrix.
+	matrix numberOfRows < matrix numberOfColumns ifTrue: [ 
+		self error: 'numberOfRows<numberOfColumns' ].
+	^ self new of: matrix
 ]
 
 { #category : #'instance creation' }
