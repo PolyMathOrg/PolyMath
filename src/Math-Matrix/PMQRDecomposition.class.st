@@ -5,7 +5,8 @@ Class {
 	#name : #PMQRDecomposition,
 	#superclass : #Object,
 	#instVars : [
-		'matrixToDecompose'
+		'matrixToDecompose',
+		'colSize'
 	],
 	#category : #'Math-Matrix'
 }
@@ -20,9 +21,8 @@ PMQRDecomposition class >> of: matrix [
 { #category : #'instance creation' }
 PMQRDecomposition >> decompose: aMatrix [
 
-	| identityMatrix q r householderVector colSize i |
+	| identityMatrix q r householderVector i |
 	r := PMMatrix rows: aMatrix rows deepCopy.
-	colSize := aMatrix numberOfRows.
 	q := PMSymmetricMatrix identity: colSize.
 	identityMatrix := q deepCopy.
 	1 to: aMatrix numberOfColumns do: [ :col | 
@@ -32,7 +32,7 @@ PMQRDecomposition >> decompose: aMatrix [
 		q := q
 		     *
 		     (identityMatrix
-		      - ((householderVector at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
+		      - ((householderVector at: 1) * i tensorProduct: i)).
 		i := PMMatrix rows:
 			     ((r rows allButFirst: col - 1) collect: [ :aRow | 
 				      aRow allButFirst: col - 1 ]).
@@ -61,5 +61,6 @@ PMQRDecomposition >> decompose: aMatrix [
 { #category : #'instance creation' }
 PMQRDecomposition >> of: matrix [
 
-	matrixToDecompose := matrix
+	matrixToDecompose := matrix.
+	colSize := matrixToDecompose numberOfRows.
 ]
