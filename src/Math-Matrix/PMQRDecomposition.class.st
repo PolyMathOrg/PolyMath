@@ -21,8 +21,6 @@ PMQRDecomposition class >> of: matrix [
 PMQRDecomposition >> decompose: aMatrix [
 
 	| identityMatrix q r householderVector colSize i |
-	aMatrix numberOfRows < aMatrix numberOfColumns ifTrue: [ 
-		self error: 'numberOfRows<numberOfColumns' ].
 	r := PMMatrix rows: aMatrix rows deepCopy.
 	colSize := aMatrix numberOfRows.
 	q := PMSymmetricMatrix identity: colSize.

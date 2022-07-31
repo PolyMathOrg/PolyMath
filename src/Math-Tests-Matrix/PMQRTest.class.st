@@ -37,8 +37,7 @@ PMQRTest >> testHorizontalRectangularMatrixCannotBeDecomposed [
 
 	self
 		should: [ 
-			(PMQRDecomposition of: horizontalRectangularMatrix) decompose:
-				horizontalRectangularMatrix ]
+			(PMQRDecomposition of: horizontalRectangularMatrix) ]
 		raise: Error
 ]
 
