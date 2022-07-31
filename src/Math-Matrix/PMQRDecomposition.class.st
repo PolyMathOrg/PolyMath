@@ -34,7 +34,6 @@ PMQRDecomposition >> decompose: aMatrix [
 							 ifTrue: [ 0 ]
 							 ifFalse: [ n ]) ] ]
 		"col <colSize ifTrue: [i :=(hh at: 2) copyFrom: 2 to: colSize -col +1.  i withIndexDo: [:n :index| r rowAt: col columnAt: index put: n  ]  ]""and this part is not correct, dont uncomment before the bug is corrected! useful if q is not explicitely necessary" ].
-	"r rows allButFirst withIndexDo: [:aRow :ri|1 to: (ri min: self numberOfColumns ) do: [:ci|aRow at: ci put:0  ]   ]  ""not necessary with equalsTo:0"
 	i := 0.
 	[ (r rowAt: colSize) allSatisfy: [ :n | n = 0 ] ] whileTrue: [ 
 		i := i + 1.
