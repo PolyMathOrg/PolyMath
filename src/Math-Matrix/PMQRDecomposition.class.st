@@ -10,17 +10,17 @@ Class {
 { #category : #'instance creation' }
 PMQRDecomposition >> decompose: aMatrix [
 
-	| identMat q r hh colSize i |
+	| identityMatrix q r hh colSize i |
 	aMatrix numberOfRows < aMatrix numberOfColumns ifTrue: [ 
 		self error: 'numberOfRows<numberOfColumns' ].
 	r := PMMatrix rows: aMatrix rows deepCopy.
 	colSize := aMatrix numberOfRows.
 	q := PMSymmetricMatrix identity: colSize.
-	identMat := q deepCopy.
+	identityMatrix := q deepCopy.
 	1 to: aMatrix numberOfColumns do: [ :col | 
 		hh := ((r columnAt: col) copyFrom: col to: colSize) householder.
 		i := (PMVector new: col - 1 withAll: 0) , (hh at: 2).
-		q := q * (identMat - ((hh at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
+		q := q * (identityMatrix - ((hh at: 1) * i tensorProduct: i)). "not really necessary, should be simplified"
 		i := PMMatrix rows:
 			     ((r rows allButFirst: col - 1) collect: [ :aRow | 
 				      aRow allButFirst: col - 1 ]).
