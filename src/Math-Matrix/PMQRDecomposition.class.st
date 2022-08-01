@@ -22,9 +22,9 @@ PMQRDecomposition class >> of: matrix [
 PMQRDecomposition >> decompose [
 
 	| identityMatrix q r householderVector i |
-	r := PMMatrix rows: matrixToDecompose rows deepCopy.
-	q := PMSymmetricMatrix identity: colSize.
-	identityMatrix := PMSymmetricMatrix identity: colSize.
+	r := self initialRMatrix.
+	q := self initialQMatrix.
+	identityMatrix := self initialQMatrix.
 	1 to: self numberOfColumns do: [ :col | 
 		householderVector := ((r columnAt: col) copyFrom: col to: colSize)
 			                     householder.
@@ -56,6 +56,18 @@ PMQRDecomposition >> decompose [
 		q := PMMatrix rows:
 			     (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r
+]
+
+{ #category : #private }
+PMQRDecomposition >> initialQMatrix [
+
+	^ PMSymmetricMatrix identity: colSize
+]
+
+{ #category : #private }
+PMQRDecomposition >> initialRMatrix [
+
+	^ PMMatrix rows: matrixToDecompose rows deepCopy
 ]
 
 { #category : #private }
