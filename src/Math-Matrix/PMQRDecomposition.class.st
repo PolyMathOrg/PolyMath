@@ -18,6 +18,11 @@ PMQRDecomposition class >> of: matrix [
 	^ self new of: matrix
 ]
 
+{ #category : #private }
+PMQRDecomposition >> decompose [
+	^ self decompose: matrixToDecompose .
+]
+
 { #category : #'instance creation' }
 PMQRDecomposition >> decompose: aMatrix [
 
