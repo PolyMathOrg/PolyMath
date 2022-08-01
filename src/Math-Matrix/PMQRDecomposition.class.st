@@ -22,10 +22,10 @@ PMQRDecomposition class >> of: matrix [
 PMQRDecomposition >> decompose: aMatrix [
 
 	| identityMatrix q r householderVector i |
-	r := PMMatrix rows: aMatrix rows deepCopy.
+	r := PMMatrix rows: matrixToDecompose rows deepCopy.
 	q := PMSymmetricMatrix identity: colSize.
 	identityMatrix := q deepCopy.
-	1 to: aMatrix numberOfColumns do: [ :col | 
+	1 to: matrixToDecompose numberOfColumns do: [ :col | 
 		householderVector := ((r columnAt: col) copyFrom: col to: colSize)
 			                     householder.
 		i := (PMVector new: col - 1 withAll: 0) , (householderVector at: 2).
