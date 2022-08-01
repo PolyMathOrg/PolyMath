@@ -24,7 +24,7 @@ PMQRDecomposition >> decompose [
 	| identityMatrix q r householderVector i |
 	r := self initialRMatrix.
 	q := self initialQMatrix.
-	identityMatrix := self initialQMatrix.
+	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
 		householderVector := ((r columnAt: col) copyFrom: col to: colSize)
 			                     householder.
