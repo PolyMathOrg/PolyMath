@@ -20,11 +20,6 @@ PMQRDecomposition class >> of: matrix [
 
 { #category : #private }
 PMQRDecomposition >> decompose [
-	^ self decompose: matrixToDecompose .
-]
-
-{ #category : #'instance creation' }
-PMQRDecomposition >> decompose: aMatrix [
 
 	| identityMatrix q r householderVector i |
 	r := PMMatrix rows: matrixToDecompose rows deepCopy.
