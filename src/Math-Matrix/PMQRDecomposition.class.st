@@ -19,6 +19,12 @@ PMQRDecomposition class >> of: matrix [
 ]
 
 { #category : #private }
+PMQRDecomposition >> columnVectorFrom: r startingAt: col [
+
+	^ (r columnAt: col) copyFrom: col to: colSize
+]
+
+{ #category : #private }
 PMQRDecomposition >> decompose [
 
 	| identityMatrix q r householderVector i |
@@ -27,11 +33,9 @@ PMQRDecomposition >> decompose [
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
 		| columnVectorFromRMatrix |
-		columnVectorFromRMatrix := (r columnAt: col)
-			                           copyFrom: col
-			                           to: colSize.
+		columnVectorFromRMatrix := self columnVectorFrom: r startingAt: col.
 		householderVector := columnVectorFromRMatrix householder.
-		i := (PMVector new: col - 1 withAll: 0) , (householderVector at: 2).
+		i := (PMVector zeros: col - 1) , (householderVector at: 2).
 		q := q
 		     *
 		     (identityMatrix
