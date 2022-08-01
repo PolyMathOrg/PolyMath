@@ -24,8 +24,8 @@ PMQRDecomposition >> decompose [
 	| identityMatrix q r householderVector i |
 	r := PMMatrix rows: matrixToDecompose rows deepCopy.
 	q := PMSymmetricMatrix identity: colSize.
-	identityMatrix := q deepCopy.
-	1 to: matrixToDecompose numberOfColumns do: [ :col | 
+	identityMatrix := PMSymmetricMatrix identity: colSize.
+	1 to: self numberOfColumns do: [ :col | 
 		householderVector := ((r columnAt: col) copyFrom: col to: colSize)
 			                     householder.
 		i := (PMVector new: col - 1 withAll: 0) , (householderVector at: 2).
@@ -56,6 +56,12 @@ PMQRDecomposition >> decompose [
 		q := PMMatrix rows:
 			     (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r
+]
+
+{ #category : #private }
+PMQRDecomposition >> numberOfColumns [
+
+	^ matrixToDecompose numberOfColumns
 ]
 
 { #category : #'instance creation' }
