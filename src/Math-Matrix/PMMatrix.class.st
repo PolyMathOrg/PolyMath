@@ -409,6 +409,12 @@ PMMatrix >> columnAt: anInteger [
 	^ rows collect: [ :each | each at: anInteger ]
 ]
 
+{ #category : #'cell accessing' }
+PMMatrix >> columnVectorAt: col size: dimension [
+
+	^ (self columnAt: col) copyFrom: col to: dimension 
+]
+
 { #category : #iterators }
 PMMatrix >> columnsCollect: aBlock [
 	"Perform the collect: operation on the rows of the receiver."

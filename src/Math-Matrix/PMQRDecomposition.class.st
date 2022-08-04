@@ -21,7 +21,7 @@ PMQRDecomposition class >> of: matrix [
 { #category : #private }
 PMQRDecomposition >> columnVectorFrom: r startingAt: col [
 
-	^ (r columnAt: col) copyFrom: col to: colSize
+	^ r columnVectorAt: col size: colSize .
 ]
 
 { #category : #private }
