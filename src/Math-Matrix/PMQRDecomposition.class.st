@@ -19,13 +19,13 @@ PMQRDecomposition class >> of: matrix [
 ]
 
 { #category : #private }
-PMQRDecomposition >> columnVectorFrom: r startingAt: col [
-
-	^ r columnVectorAt: col size: colSize .
-]
-
-{ #category : #private }
 PMQRDecomposition >> decompose [
+
+"
+The method appears to be using Householder reflection. There is a wiki page
+that describes the mechanics:
+https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
+"
 
 	| identityMatrix q r householderVector i |
 	r := self initialRMatrix.
@@ -33,7 +33,7 @@ PMQRDecomposition >> decompose [
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
 		| columnVectorFromRMatrix |
-		columnVectorFromRMatrix := self columnVectorFrom: r startingAt: col.
+		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
 		i := (PMVector zeros: col - 1) , (householderVector at: 2).
 		q := q
