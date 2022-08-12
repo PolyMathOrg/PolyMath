@@ -21,7 +21,7 @@ PMQRDecomposition class >> of: matrix [
 { #category : #private }
 PMQRDecomposition >> decompose [
 
-"
+	"
 The method appears to be using Householder reflection. There is a wiki page
 that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
@@ -32,14 +32,14 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 	q := self initialQMatrix.
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
-		| columnVectorFromRMatrix |
+		| columnVectorFromRMatrix householderMatrix |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
 		i := (PMVector zeros: col - 1) , (householderVector at: 2).
-		q := q
-		     *
-		     (identityMatrix
-		      - ((householderVector at: 1) * i tensorProduct: i)).
+		householderMatrix := identityMatrix
+		                     -
+		                     ((householderVector at: 1) * i tensorProduct: i).
+		q := q * householderMatrix.
 		i := PMMatrix rows:
 			     ((r rows allButFirst: col - 1) collect: [ :aRow | 
 				      aRow allButFirst: col - 1 ]).
