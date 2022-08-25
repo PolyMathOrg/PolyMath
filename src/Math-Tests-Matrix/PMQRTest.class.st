@@ -28,6 +28,20 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 ]
 
 { #category : #tests }
+PMQRTest >> testHorizontalRectangularMatrixCannotBeDecomposed [
+
+	| horizontalRectangularMatrix |
+	horizontalRectangularMatrix := PMMatrix rows: { 
+			                               { 1. 2. 4 }.
+			                               { 5. 6. 7 } }.
+
+	self
+		should: [ 
+			(PMQRDecomposition of: horizontalRectangularMatrix) ]
+		raise: Error
+]
+
+{ #category : #tests }
 PMQRTest >> testMoorePenroseInverseOfLargeNonRandomMatrixAndItsTranspose [
 	| a inverse transposeOfA |
 	a := PMMatrix new initializeRows:
