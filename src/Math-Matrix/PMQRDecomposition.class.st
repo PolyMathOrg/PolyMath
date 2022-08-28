@@ -18,7 +18,7 @@ PMQRDecomposition class >> of: matrix [
 	^ self new of: matrix
 ]
 
-{ #category : #private }
+{ #category : #arithmetic }
 PMQRDecomposition >> decompose [
 
 	"
