@@ -186,6 +186,29 @@ PMQRTest >> testSimpleQRDecomposition [
 ]
 
 { #category : #tests }
+PMQRTest >> testSimpleQRDecompositionWithPivot [
+
+	| a qrDecomposition decomposition expected |
+	a := PMMatrix rows: { 
+			     { 12. -51. 4 }.
+			     { 6. 167. -68 }.
+			     { -4. 24. -41 } }.
+
+	qrDecomposition := PMQRDecomposition of: a.
+
+	decomposition := qrDecomposition decomposeWithPivot.
+	decomposition first * decomposition second.
+
+	expected := PMMatrix rows: { 
+			            { -51. 4. 12 }.
+			            { 167. -68. 6 }.
+			            { 24. -41. -4 } }.
+	self
+		assert: decomposition first * decomposition second
+		closeTo: expected
+]
+
+{ #category : #tests }
 PMQRTest >> testVectorHouseholder [
 
 	"result is householdermatrix * v"

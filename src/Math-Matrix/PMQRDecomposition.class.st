@@ -65,6 +65,11 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 	^ Array with: q with: r
 ]
 
+{ #category : #arithmetic }
+PMQRDecomposition >> decomposeWithPivot [
+	^ matrixToDecompose qrFactorizationWithPivoting 
+]
+
 { #category : #private }
 PMQRDecomposition >> initialQMatrix [
 
