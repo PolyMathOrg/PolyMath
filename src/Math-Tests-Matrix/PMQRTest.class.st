@@ -170,6 +170,22 @@ PMQRTest >> testRank [
 ]
 
 { #category : #tests }
+PMQRTest >> testSimpleQRDecomposition [
+
+	| a qrDecomposition decomposition |
+	a := PMMatrix rows: { 
+			     { 12. -51. 4 }.
+			     { 6. 167. -68 }.
+			     { -4. 24. -41 } }.
+
+	qrDecomposition := PMQRDecomposition of: a.
+
+	decomposition := qrDecomposition decompose.
+	decomposition first * decomposition second.
+	self assert: decomposition first * decomposition second equals: a
+]
+
+{ #category : #tests }
 PMQRTest >> testVectorHouseholder [
 
 	"result is householdermatrix * v"
