@@ -42,9 +42,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		q := q * householderMatrix.
 		rowIndex := col - 1.
 		columnIndex := col - 1.
-		i := PMMatrix rows:
-			     ((r rows allButFirst: columnIndex) collect: [ :aRow | 
-				      aRow allButFirst: rowIndex ]).
+		i := r minor: rowIndex and: columnIndex.
 		i := i - ((householderVector at: 2) tensorProduct:
 			      (householderVector at: 1) * (householderVector at: 2) * i).
 		i rows withIndexDo: [ :aRow :index | 

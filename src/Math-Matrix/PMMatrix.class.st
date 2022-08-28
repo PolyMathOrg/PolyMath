@@ -660,6 +660,14 @@ PMMatrix >> lupInverse [
 		ifNotNil: [ :i | ^ self class rows: i ]
 ]
 
+{ #category : #operation }
+PMMatrix >> minor: rowIndex and: columnIndex [
+
+	^ PMMatrix rows:
+		  ((self rows allButFirst: columnIndex) collect: [ :aRow | 
+			   aRow allButFirst: rowIndex ])
+]
+
 { #category : #'as yet unclassified' }
 PMMatrix >> mpInverse [
 	"Moore Penrose Inverse. "
