@@ -652,6 +652,21 @@ PMMatrixTest >> testMatrixTrace [
 	self assert: a tr equals: 15
 ]
 
+{ #category : #'linear algebra' }
+PMMatrixTest >> testMinorsOfSquareMatrix [
+
+	| matrix expected |
+	matrix := PMMatrix rows: { 
+			          { 1. 2. 3 }.
+			          { 6. 7. 8 }.
+			          { 5. 4. 1 } }.
+
+	expected := PMMatrix rows: { 
+			            { 7. 8 }.
+			            { 4. 1 } }.
+	self assert: (matrix minor: 1 and: 1) equals: expected
+]
+
 { #category : #tests }
 PMMatrixTest >> testOnesMatrix [
 	| a |
