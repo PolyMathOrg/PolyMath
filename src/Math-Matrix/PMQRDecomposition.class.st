@@ -84,9 +84,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	hh := ((r columnAt: rank) copyFrom: rank to: colSize) householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (hh at: 2).
 	q := q * (identMat - ((hh at: 1) * i tensorProduct: i)).
-	i := PMMatrix rows:
-		     ((r rows allButFirst: rank - 1) collect: [ :aRow | 
-			      aRow allButFirst: rank - 1 ]).
+	i := r minor: rank - 1 and: rank - 1.
 	i := i - ((hh at: 2) tensorProduct: (hh at: 1) * (hh at: 2) * i).
 	i rows withIndexDo: [ :aRow :index | 
 		aRow withIndexDo: [ :n :c | 

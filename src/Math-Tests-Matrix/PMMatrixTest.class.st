@@ -682,7 +682,9 @@ PMMatrixTest >> testMinorsOfSquareMatrix [
 			            { 4. 1 } }.
 	self assert: (matrix minor: 0 and: 0) equals: matrix.
 	self assert: (matrix minor: 1 and: 1) equals: expected.
-	self assert: (matrix minor: 2 and: 2) equals: (PMMatrix rows: {{ 1 }})
+	self
+		assert: (matrix minor: 2 and: 2)
+		equals: (PMMatrix rows: { { 1 } })
 ]
 
 { #category : #tests }
