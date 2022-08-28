@@ -664,6 +664,7 @@ PMMatrixTest >> testMinorsOfSquareMatrix [
 	expected := PMMatrix rows: { 
 			            { 7. 8 }.
 			            { 4. 1 } }.
+	self assert: (matrix minor: 0 and: 0) equals: matrix.
 	self assert: (matrix minor: 1 and: 1) equals: expected
 ]
 
