@@ -74,8 +74,8 @@ PMQRDecomposition >> decomposeWithPivot [
 	pivot := Array new: lengthArray size.
 	rank := 0.
 	r := self initialRMatrix.
-	q := self initialQMatrix .
-	identMat := q deepCopy.
+	q := self initialQMatrix.
+	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
 	rank := rank + 1.
 	pivot at: rank put: mx.
