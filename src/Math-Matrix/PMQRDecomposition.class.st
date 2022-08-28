@@ -32,7 +32,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 	q := self initialQMatrix.
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
-		| columnVectorFromRMatrix householderMatrix dimension |
+		| columnVectorFromRMatrix householderMatrix rowIndex columnIndex |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
 		i := (PMVector zeros: col - 1) , (householderVector at: 2).
@@ -40,10 +40,11 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		                     -
 		                     ((householderVector at: 1) * i tensorProduct: i).
 		q := q * householderMatrix.
-		dimension := col - 1.
+		rowIndex := col - 1.
+		columnIndex := col - 1.
 		i := PMMatrix rows:
-			     ((r rows allButFirst: dimension) collect: [ :aRow | 
-				      aRow allButFirst: dimension ]).
+			     ((r rows allButFirst: columnIndex) collect: [ :aRow | 
+				      aRow allButFirst: rowIndex ]).
 		i := i - ((householderVector at: 2) tensorProduct:
 			      (householderVector at: 1) * (householderVector at: 2) * i).
 		i rows withIndexDo: [ :aRow :index | 
