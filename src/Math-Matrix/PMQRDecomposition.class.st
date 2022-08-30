@@ -32,7 +32,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 	q := self initialQMatrix.
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
-		| columnVectorFromRMatrix householderMatrix rowIndex columnIndex |
+		| columnVectorFromRMatrix householderMatrix |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
 		i := (PMVector zeros: col - 1) , (householderVector at: 2).
@@ -40,9 +40,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		                     -
 		                     ((householderVector at: 1) * i tensorProduct: i).
 		q := q * householderMatrix.
-		rowIndex := col - 1.
-		columnIndex := col - 1.
-		i := r minor: rowIndex and: columnIndex.
+		i := r minor: col - 1 and: col - 1.
 		i := i - ((householderVector at: 2) tensorProduct:
 			      (householderVector at: 1) * (householderVector at: 2) * i).
 		i rows withIndexDo: [ :aRow :index | 
@@ -81,7 +79,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
 	lengthArray swap: rank with: mx.
-	hh := ((r columnAt: rank) copyFrom: rank to: colSize) householder.
+	hh := (r columnVectorAt: rank size: colSize) householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (hh at: 2).
 	q := q * (identMat - ((hh at: 1) * i tensorProduct: i)).
 	i := r minor: rank - 1 and: rank - 1.
