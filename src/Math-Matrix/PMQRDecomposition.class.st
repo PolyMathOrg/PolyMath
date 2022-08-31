@@ -32,13 +32,13 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 	q := self initialQMatrix.
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
-		| columnVectorFromRMatrix householderMatrix |
+		| columnVectorFromRMatrix householderMatrix v |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
-		i := (PMVector zeros: col - 1) , (householderVector at: 2).
+		v := (PMVector zeros: col - 1) , (householderVector at: 2).
 		householderMatrix := identityMatrix
 		                     -
-		                     ((householderVector at: 1) * i tensorProduct: i).
+		                     ((householderVector at: 1) * v tensorProduct: v).
 		q := q * householderMatrix.
 		i := r minor: col - 1 and: col - 1.
 		i := i - ((householderVector at: 2) tensorProduct:
