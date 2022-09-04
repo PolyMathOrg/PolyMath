@@ -30,7 +30,7 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 { #category : #tests }
 PMQRTest >> testDecompositionOfMatrixCausingErraticFailure [
 
-	| a qrDecomposition matricesAndPivot q r expectedMatrix |
+	| a qrDecomposition matricesAndPivot q r expectedMatrix pivot |
 	a := PMSymmetricMatrix rows:
 		     #( #( 0.41929313699681925 0.05975350554089691
 		           0.2771676258543356 0.35628773381760703 )
@@ -55,8 +55,9 @@ PMQRTest >> testDecompositionOfMatrixCausingErraticFailure [
 		                        0.35628773381760703 0.28814463284245906 ) ).
 	q := matricesAndPivot at: 1.
 	r := matricesAndPivot at: 2.
-	self assert: q * r closeTo: expectedMatrix .
-	self assert: (matricesAndPivot at: 3) equals: #( 3 4 3 nil )
+	pivot := matricesAndPivot at: 3.
+	self assert: q * r closeTo: expectedMatrix.
+	self assert: pivot equals: #( 3 4 3 nil )
 ]
 
 { #category : #tests }
