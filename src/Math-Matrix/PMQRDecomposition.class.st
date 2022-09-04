@@ -87,13 +87,13 @@ PMQRDecomposition >> decomposeWithPivot [
 	i := i - ((householderVector at: 2) tensorProduct:
 		      (householderVector at: 1) * (householderVector at: 2) * i).
 	i rows withIndexDo: [ :aRow :index | 
-		aRow withIndexDo: [ :n :c | 
+		aRow withIndexDo: [ :element :column | 
 			r
 				rowAt: rank + index - 1
-				columnAt: rank + c - 1
-				put: ((n closeTo: 0)
+				columnAt: rank + column - 1
+				put: ((element closeTo: 0)
 						 ifTrue: [ 0 ]
-						 ifFalse: [ n ]) ] ].
+						 ifFalse: [ element ]) ] ].
 	rank + 1 to: vectorOfNormSquareds size do: [ :ind | 
 		vectorOfNormSquareds
 			at: ind
