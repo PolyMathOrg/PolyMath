@@ -6,7 +6,9 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'matrixToDecompose',
-		'colSize'
+		'colSize',
+		'r',
+		'q'
 	],
 	#category : #'Math-Matrix'
 }
@@ -27,9 +29,7 @@ that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 "
 
-	| identityMatrix q r householderVector i |
-	r := self initialRMatrix.
-	q := self initialQMatrix.
+	| identityMatrix householderVector i |
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
 		| columnVectorFromRMatrix householderMatrix v |
@@ -66,24 +66,25 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| identMat q r householderVector i lengthArray rank mx pivot |
+	| identMat householderVector i lengthArray rank mx pivot |
 	lengthArray := matrixToDecompose columnsCollect: [ :col | col * col ].
 	mx := lengthArray indexOf: lengthArray max.
 	pivot := Array new: lengthArray size.
 	rank := 0.
-	r := self initialRMatrix.
-	q := self initialQMatrix.
 	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
 	lengthArray swap: rank with: mx.
-	householderVector := (r columnVectorAt: rank size: colSize) householder.
+	householderVector := (r columnVectorAt: rank size: colSize)
+		                     householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (householderVector at: 2).
-	q := q * (identMat - ((householderVector at: 1) * i tensorProduct: i)).
+	q := q
+	     * (identMat - ((householderVector at: 1) * i tensorProduct: i)).
 	i := r minor: rank - 1 and: rank - 1.
-	i := i - ((householderVector at: 2) tensorProduct: (householderVector at: 1) * (householderVector at: 2) * i).
+	i := i - ((householderVector at: 2) tensorProduct:
+		      (householderVector at: 1) * (householderVector at: 2) * i).
 	i rows withIndexDo: [ :aRow :index | 
 		aRow withIndexDo: [ :n :c | 
 			r
@@ -141,4 +142,6 @@ PMQRDecomposition >> of: matrix [
 
 	matrixToDecompose := matrix.
 	colSize := matrixToDecompose numberOfRows.
+		r := self initialRMatrix.
+	q := self initialQMatrix.
 ]
