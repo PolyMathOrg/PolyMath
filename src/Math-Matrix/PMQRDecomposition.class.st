@@ -66,17 +66,17 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| identMat householderVector i lengthArray rank mx pivot |
-	lengthArray := matrixToDecompose columnsCollect: [ :col | col * col ].
-	mx := lengthArray indexOf: lengthArray max.
-	pivot := Array new: lengthArray size.
+	| identMat householderVector i normSquaredVector rank mx pivot |
+	normSquaredVector := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
+	mx := normSquaredVector indexOf: normSquaredVector max.
+	pivot := Array new: normSquaredVector size.
 	rank := 0.
 	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
-	lengthArray swap: rank with: mx.
+	normSquaredVector swap: rank with: mx.
 	householderVector := (r columnVectorAt: rank size: colSize)
 		                     householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (householderVector at: 2).
@@ -93,16 +93,16 @@ PMQRDecomposition >> decomposeWithPivot [
 				put: ((n closeTo: 0)
 						 ifTrue: [ 0 ]
 						 ifFalse: [ n ]) ] ].
-	rank + 1 to: lengthArray size do: [ :ind | 
-		lengthArray
+	rank + 1 to: normSquaredVector size do: [ :ind | 
+		normSquaredVector
 			at: ind
-			put: (lengthArray at: ind) - (r rowAt: rank columnAt: ind) squared ].
-	rank < lengthArray size
+			put: (normSquaredVector at: ind) - (r rowAt: rank columnAt: ind) squared ].
+	rank < normSquaredVector size
 		ifTrue: [ 
-			mx := (lengthArray copyFrom: rank + 1 to: lengthArray size) max.
+			mx := (normSquaredVector copyFrom: rank + 1 to: normSquaredVector size) max.
 			(mx closeTo: 0) ifTrue: [ mx := 0 ].
 			mx := mx > 0
-				      ifTrue: [ lengthArray indexOf: mx startingAt: rank + 1 ]
+				      ifTrue: [ normSquaredVector indexOf: mx startingAt: rank + 1 ]
 				      ifFalse: [ 0 ] ]
 		ifFalse: [ mx := 0 ].
 	mx > 0 ] whileTrue.
