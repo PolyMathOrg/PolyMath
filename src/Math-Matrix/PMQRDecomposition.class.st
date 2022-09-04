@@ -67,7 +67,8 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 PMQRDecomposition >> decomposeWithPivot [
 
 	| identMat householderVector i vectorOfNormSquareds rank mx pivot |
-	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
+	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ 
+		                        :columnVector | columnVector * columnVector ].
 	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
 	pivot := Array new: vectorOfNormSquareds size.
 	rank := 0.
@@ -79,7 +80,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	vectorOfNormSquareds swap: rank with: mx.
 	householderVector := (r columnVectorAt: rank size: colSize)
 		                     householder.
-	i := (PMVector new: rank - 1 withAll: 0) , (householderVector at: 2).
+	i := (PMVector zeros: rank - 1) , (householderVector at: 2).
 	q := q
 	     * (identMat - ((householderVector at: 1) * i tensorProduct: i)).
 	i := r minor: rank - 1 and: rank - 1.
@@ -96,13 +97,18 @@ PMQRDecomposition >> decomposeWithPivot [
 	rank + 1 to: vectorOfNormSquareds size do: [ :ind | 
 		vectorOfNormSquareds
 			at: ind
-			put: (vectorOfNormSquareds at: ind) - (r rowAt: rank columnAt: ind) squared ].
+			put:
+			(vectorOfNormSquareds at: ind)
+			- (r rowAt: rank columnAt: ind) squared ].
 	rank < vectorOfNormSquareds size
 		ifTrue: [ 
-			mx := (vectorOfNormSquareds copyFrom: rank + 1 to: vectorOfNormSquareds size) max.
+			mx := (vectorOfNormSquareds
+				       copyFrom: rank + 1
+				       to: vectorOfNormSquareds size) max.
 			(mx closeTo: 0) ifTrue: [ mx := 0 ].
 			mx := mx > 0
-				      ifTrue: [ vectorOfNormSquareds indexOf: mx startingAt: rank + 1 ]
+				      ifTrue: [ 
+				      vectorOfNormSquareds indexOf: mx startingAt: rank + 1 ]
 				      ifFalse: [ 0 ] ]
 		ifFalse: [ mx := 0 ].
 	mx > 0 ] whileTrue.
