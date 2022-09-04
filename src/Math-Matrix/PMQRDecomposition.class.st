@@ -66,17 +66,17 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| identMat householderVector i vectorOfnormSquareds rank mx pivot |
-	vectorOfnormSquareds := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
-	mx := vectorOfnormSquareds indexOf: vectorOfnormSquareds max.
-	pivot := Array new: vectorOfnormSquareds size.
+	| identMat householderVector i vectorOfNormSquareds rank mx pivot |
+	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
+	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
+	pivot := Array new: vectorOfNormSquareds size.
 	rank := 0.
 	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
-	vectorOfnormSquareds swap: rank with: mx.
+	vectorOfNormSquareds swap: rank with: mx.
 	householderVector := (r columnVectorAt: rank size: colSize)
 		                     householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (householderVector at: 2).
@@ -93,16 +93,16 @@ PMQRDecomposition >> decomposeWithPivot [
 				put: ((n closeTo: 0)
 						 ifTrue: [ 0 ]
 						 ifFalse: [ n ]) ] ].
-	rank + 1 to: vectorOfnormSquareds size do: [ :ind | 
-		vectorOfnormSquareds
+	rank + 1 to: vectorOfNormSquareds size do: [ :ind | 
+		vectorOfNormSquareds
 			at: ind
-			put: (vectorOfnormSquareds at: ind) - (r rowAt: rank columnAt: ind) squared ].
-	rank < vectorOfnormSquareds size
+			put: (vectorOfNormSquareds at: ind) - (r rowAt: rank columnAt: ind) squared ].
+	rank < vectorOfNormSquareds size
 		ifTrue: [ 
-			mx := (vectorOfnormSquareds copyFrom: rank + 1 to: vectorOfnormSquareds size) max.
+			mx := (vectorOfNormSquareds copyFrom: rank + 1 to: vectorOfNormSquareds size) max.
 			(mx closeTo: 0) ifTrue: [ mx := 0 ].
 			mx := mx > 0
-				      ifTrue: [ vectorOfnormSquareds indexOf: mx startingAt: rank + 1 ]
+				      ifTrue: [ vectorOfNormSquareds indexOf: mx startingAt: rank + 1 ]
 				      ifFalse: [ 0 ] ]
 		ifFalse: [ mx := 0 ].
 	mx > 0 ] whileTrue.
