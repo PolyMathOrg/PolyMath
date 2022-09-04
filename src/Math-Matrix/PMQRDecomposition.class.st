@@ -66,17 +66,17 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| identMat householderVector i normSquaredVector rank mx pivot |
-	normSquaredVector := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
-	mx := normSquaredVector indexOf: normSquaredVector max.
-	pivot := Array new: normSquaredVector size.
+	| identMat householderVector i vectorOfnormSquareds rank mx pivot |
+	vectorOfnormSquareds := matrixToDecompose columnsCollect: [ :columnVector | columnVector * columnVector ].
+	mx := vectorOfnormSquareds indexOf: vectorOfnormSquareds max.
+	pivot := Array new: vectorOfnormSquareds size.
 	rank := 0.
 	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
-	normSquaredVector swap: rank with: mx.
+	vectorOfnormSquareds swap: rank with: mx.
 	householderVector := (r columnVectorAt: rank size: colSize)
 		                     householder.
 	i := (PMVector new: rank - 1 withAll: 0) , (householderVector at: 2).
@@ -93,16 +93,16 @@ PMQRDecomposition >> decomposeWithPivot [
 				put: ((n closeTo: 0)
 						 ifTrue: [ 0 ]
 						 ifFalse: [ n ]) ] ].
-	rank + 1 to: normSquaredVector size do: [ :ind | 
-		normSquaredVector
+	rank + 1 to: vectorOfnormSquareds size do: [ :ind | 
+		vectorOfnormSquareds
 			at: ind
-			put: (normSquaredVector at: ind) - (r rowAt: rank columnAt: ind) squared ].
-	rank < normSquaredVector size
+			put: (vectorOfnormSquareds at: ind) - (r rowAt: rank columnAt: ind) squared ].
+	rank < vectorOfnormSquareds size
 		ifTrue: [ 
-			mx := (normSquaredVector copyFrom: rank + 1 to: normSquaredVector size) max.
+			mx := (vectorOfnormSquareds copyFrom: rank + 1 to: vectorOfnormSquareds size) max.
 			(mx closeTo: 0) ifTrue: [ mx := 0 ].
 			mx := mx > 0
-				      ifTrue: [ normSquaredVector indexOf: mx startingAt: rank + 1 ]
+				      ifTrue: [ vectorOfnormSquareds indexOf: mx startingAt: rank + 1 ]
 				      ifFalse: [ 0 ] ]
 		ifFalse: [ mx := 0 ].
 	mx > 0 ] whileTrue.
