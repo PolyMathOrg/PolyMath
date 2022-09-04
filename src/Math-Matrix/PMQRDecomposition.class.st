@@ -113,7 +113,7 @@ PMQRDecomposition >> decomposeWithPivot [
 		ifFalse: [ mx := 0 ].
 	mx > 0 ] whileTrue.
 	i := 0.
-	[ (r rowAt: colSize) allSatisfy: [ :n | n = 0 ] ] whileTrue: [ 
+	[ (r rowAt: colSize) isZero ] whileTrue: [ 
 		i := i + 1.
 		colSize := colSize - 1 ].
 	i > 0 ifTrue: [ 
