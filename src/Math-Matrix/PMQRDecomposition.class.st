@@ -29,7 +29,7 @@ that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 "
 
-	| identityMatrix householderVector i |
+	| identityMatrix householderVector i matrixOfMinor |
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	1 to: self numberOfColumns do: [ :col | 
 		| columnVectorFromRMatrix householderMatrix v |
@@ -40,10 +40,12 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		                     -
 		                     ((householderVector at: 1) * v tensorProduct: v).
 		q := q * householderMatrix.
-		i := r minor: col - 1 and: col - 1.
-		i := i - ((householderVector at: 2) tensorProduct:
-			      (householderVector at: 1) * (householderVector at: 2) * i).
-		i rows withIndexDo: [ :aRow :index | 
+		matrixOfMinor := r minor: col - 1 and: col - 1.
+		matrixOfMinor := matrixOfMinor
+		                 - ((householderVector at: 2) tensorProduct:
+				                  (householderVector at: 1)
+				                  * (householderVector at: 2) * matrixOfMinor).
+		matrixOfMinor rowsWithIndexDo: [ :aRow :index | 
 			aRow withIndexDo: [ :n :c | 
 				r
 					rowAt: col + index - 1
