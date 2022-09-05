@@ -28,6 +28,39 @@ PMQRTest >> assert: inverse isMoorePenroseInverseOf: aMatrix [
 ]
 
 { #category : #tests }
+PMQRTest >> testDecompositionOfMatrixCausingErraticFailure [
+
+	| a qrDecomposition matricesAndPivot q r expectedMatrix pivot |
+	a := PMSymmetricMatrix rows:
+		     #( #( 0.41929313699681925 0.05975350554089691
+		           0.2771676258543356 0.35628773381760703 )
+		        #( 0.05975350554089691 0.12794227252152854
+		           0.3257742693302102 0.28814463284245906 )
+		        #( 0.2771676258543356 0.3257742693302102 0.8468441832097453
+		           0.9101872061892353 )
+		        #( 0.35628773381760703 0.28814463284245906
+		           0.9101872061892353 0.5163744224777326 ) ).
+
+	qrDecomposition := PMQRDecomposition of: a.
+	matricesAndPivot := qrDecomposition decomposeWithPivot.
+
+	expectedMatrix := PMMatrix rows:
+		                  #( #( 0.2771676258543356 0.35628773381760703
+		                        0.41929313699681925 0.05975350554089691 )
+		                     #( 0.3257742693302102 0.28814463284245906
+		                        0.05975350554089691 0.12794227252152854 )
+		                     #( 0.8468441832097453 0.9101872061892353
+		                        0.2771676258543356 0.3257742693302102 )
+		                     #( 0.9101872061892353 0.5163744224777326
+		                        0.35628773381760703 0.28814463284245906 ) ).
+	q := matricesAndPivot at: 1.
+	r := matricesAndPivot at: 2.
+	pivot := matricesAndPivot at: 3.
+	self assert: q * r closeTo: expectedMatrix.
+	self assert: pivot equals: #( 3 4 3 nil )
+]
+
+{ #category : #tests }
 PMQRTest >> testHorizontalRectangularMatrixCannotBeDecomposed [
 
 	| horizontalRectangularMatrix |
@@ -167,6 +200,45 @@ PMQRTest >> testRank [
 			
 			self assert: matrix rank equals: 3.
 			self assert: matrix transpose rank equals: 3 ] ].
+]
+
+{ #category : #tests }
+PMQRTest >> testSimpleQRDecomposition [
+
+	| a qrDecomposition decomposition |
+	a := PMMatrix rows: { 
+			     { 12. -51. 4 }.
+			     { 6. 167. -68 }.
+			     { -4. 24. -41 } }.
+
+	qrDecomposition := PMQRDecomposition of: a.
+
+	decomposition := qrDecomposition decompose.
+	decomposition first * decomposition second.
+	self assert: decomposition first * decomposition second equals: a
+]
+
+{ #category : #tests }
+PMQRTest >> testSimpleQRDecompositionWithPivot [
+
+	| a qrDecomposition decomposition expected |
+	a := PMMatrix rows: { 
+			     { 12. -51. 4 }.
+			     { 6. 167. -68 }.
+			     { -4. 24. -41 } }.
+
+	qrDecomposition := PMQRDecomposition of: a.
+
+	decomposition := qrDecomposition decomposeWithPivot.
+	decomposition first * decomposition second.
+
+	expected := PMMatrix rows: { 
+			            { -51. 4. 12 }.
+			            { 167. -68. 6 }.
+			            { 24. -41. -4 } }.
+	self
+		assert: decomposition first * decomposition second
+		closeTo: expected
 ]
 
 { #category : #tests }

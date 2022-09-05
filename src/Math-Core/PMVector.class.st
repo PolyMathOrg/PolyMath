@@ -220,6 +220,11 @@ PMVector >> isReal [
 	^ self allSatisfy: [ :each | each isRealNumber ].
 ]
 
+{ #category : #testing }
+PMVector >> isZero [
+ ^ self allSatisfy: [ :element | element = 0 ]
+]
+
 { #category : #operation }
 PMVector >> log [
 	"Apply log function to every element of a vector"
