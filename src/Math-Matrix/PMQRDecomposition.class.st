@@ -54,7 +54,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 							 ifTrue: [ 0 ]
 							 ifFalse: [ n ]) ] ] ].
 	i := 0.
-	[ (r rowAt: colSize) allSatisfy: [ :n | n = 0 ] ] whileTrue: [ 
+	[ (r rowAt: colSize) isZero ] whileTrue: [ 
 		i := i + 1.
 		colSize := colSize - 1 ].
 	i > 0 ifTrue: [ 
