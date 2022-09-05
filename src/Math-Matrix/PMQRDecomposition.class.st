@@ -76,6 +76,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	rank := 0.
 	identMat := PMSymmetricMatrix identity: colSize.
 	[ 
+	| householderMatrix |
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
@@ -83,8 +84,10 @@ PMQRDecomposition >> decomposeWithPivot [
 	householderVector := (r columnVectorAt: rank size: colSize)
 		                     householder.
 	v := (PMVector zeros: rank - 1) , (householderVector at: 2).
-	q := q
-	     * (identMat - ((householderVector at: 1) * v tensorProduct: v)).
+	householderMatrix := identMat
+	                     -
+	                     ((householderVector at: 1) * v tensorProduct: v).
+	q := q * householderMatrix.
 	matrixOfMinor := r minor: rank - 1 and: rank - 1.
 	matrixOfMinor := matrixOfMinor
 	                 - ((householderVector at: 2) tensorProduct:
