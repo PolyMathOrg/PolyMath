@@ -88,7 +88,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	                 - ((householderVector at: 2) tensorProduct:
 			                  (householderVector at: 1)
 			                  * (householderVector at: 2) * matrixOfMinor).
-	matrixOfMinor rows withIndexDo: [ :aRow :index | 
+	matrixOfMinor rowsWithIndexDo: [ :aRow :index | 
 		aRow withIndexDo: [ :element :column | 
 			r
 				rowAt: rank + index - 1

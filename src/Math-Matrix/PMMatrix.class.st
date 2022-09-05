@@ -891,6 +891,12 @@ PMMatrix >> rowsDo: aBlock [
 	^ rows do: aBlock
 ]
 
+{ #category : #iterators }
+PMMatrix >> rowsWithIndexDo: aBlock [
+
+	^ rows withIndexDo: aBlock
+]
+
 { #category : #transformation }
 PMMatrix >> scaleBy: aNumber [
 
