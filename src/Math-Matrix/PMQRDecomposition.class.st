@@ -61,7 +61,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		r := PMMatrix rows: (r rows copyFrom: 1 to: colSize).
 		i := q numberOfColumns - i.
 		q := PMMatrix rows:
-			     (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
+			     (q rowsCollect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r
 ]
 
