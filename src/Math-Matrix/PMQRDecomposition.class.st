@@ -128,7 +128,7 @@ PMQRDecomposition >> decomposeWithPivot [
 		i := q numberOfColumns - i.
 		pivot := pivot copyFrom: 1 to: i.
 		q := PMMatrix rows:
-			     (q rows collect: [ :row | row copyFrom: 1 to: i ]) ].
+			     (q rowsCollect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r with: pivot
 ]
 
