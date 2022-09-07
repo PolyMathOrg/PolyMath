@@ -46,10 +46,10 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 				                  (householderVector at: 1)
 				                  * (householderVector at: 2) * matrixOfMinor).
 		matrixOfMinor rowsWithIndexDo: [ :aRow :index | 
-			aRow withIndexDo: [ :element :c | 
+			aRow withIndexDo: [ :element :column | 
 				r
 					rowAt: col + index - 1
-					columnAt: col + c - 1
+					columnAt: col + column - 1
 					put: ((element closeTo: 0)
 							 ifTrue: [ 0 ]
 							 ifFalse: [ element ]) ] ] ].
