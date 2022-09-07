@@ -47,9 +47,12 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 				                  * (householderVector at: 2) * matrixOfMinor).
 		matrixOfMinor rowsWithIndexDo: [ :aRow :index | 
 			aRow withIndexDo: [ :element :column | 
+				| rowNumber columnNumber |
+				rowNumber := col + index - 1.
+				columnNumber := col + column - 1.
 				r
-					rowAt: col + index - 1
-					columnAt: col + column - 1
+					rowAt: rowNumber
+					columnAt: columnNumber
 					put: ((element closeTo: 0)
 							 ifTrue: [ 0 ]
 							 ifFalse: [ element ]) ] ] ].
@@ -95,9 +98,12 @@ PMQRDecomposition >> decomposeWithPivot [
 			                  * (householderVector at: 2) * matrixOfMinor).
 	matrixOfMinor rowsWithIndexDo: [ :aRow :index | 
 		aRow withIndexDo: [ :element :column | 
+			| rowNumber columnNumber |
+			rowNumber := rank + index - 1.
+			columnNumber := rank + column - 1.
 			r
-				rowAt: rank + index - 1
-				columnAt: rank + column - 1
+				rowAt: rowNumber
+				columnAt: columnNumber
 				put: ((element closeTo: 0)
 						 ifTrue: [ 0 ]
 						 ifFalse: [ element ]) ] ].
