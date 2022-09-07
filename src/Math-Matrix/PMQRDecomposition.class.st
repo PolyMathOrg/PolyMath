@@ -58,7 +58,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 		i := i + 1.
 		colSize := colSize - 1 ].
 	i > 0 ifTrue: [ 
-		r := PMMatrix rows: (r rows copyFrom: 1 to: colSize).
+		r := self upperTriangularPartOf: r With: colSize.
 		i := q numberOfColumns - i.
 		q := PMMatrix rows:
 			     (q rowsCollect: [ :row | row copyFrom: 1 to: i ]) ].
@@ -124,7 +124,7 @@ PMQRDecomposition >> decomposeWithPivot [
 		i := i + 1.
 		colSize := colSize - 1 ].
 	i > 0 ifTrue: [ 
-		r := PMMatrix rows: (r rows copyFrom: 1 to: colSize).
+		r := self upperTriangularPartOf: r With: colSize.
 		i := q numberOfColumns - i.
 		pivot := pivot copyFrom: 1 to: i.
 		q := PMMatrix rows:
@@ -157,4 +157,10 @@ PMQRDecomposition >> of: matrix [
 	colSize := matrixToDecompose numberOfRows.
 		r := self initialRMatrix.
 	q := self initialQMatrix.
+]
+
+{ #category : #private }
+PMQRDecomposition >> upperTriangularPartOf: matrix With: columnSize [
+
+	^ PMMatrix rows: (r rows copyFrom: 1 to: columnSize)
 ]
