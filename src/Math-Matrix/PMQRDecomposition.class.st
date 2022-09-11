@@ -29,16 +29,16 @@ that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 "
 
-	| i matrixOfMinor |
+	| i matrixOfMinor householderReflection |
 	1 to: self numberOfColumns do: [ :col | 
-		| householderVector householderMatrix columnVectorFromRMatrix identityMatrix v |
+		| householderVector householderMatrix columnVectorFromRMatrix |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
-		householderVector := columnVectorFromRMatrix householder.
-		v := (PMVector zeros: col - 1) , (householderVector at: 2).
-		identityMatrix := PMSymmetricMatrix identity: colSize.
-		householderMatrix := identityMatrix
-		                     -
-		                     ((householderVector at: 1) * v tensorProduct: v).
+		householderReflection := self
+			                         householderReflectionOf:
+			                         columnVectorFromRMatrix
+			                         atColumnNumber: col.
+		householderVector := householderReflection at: 1.
+		householderMatrix := householderReflection at: 2.
 		q := q * householderMatrix.
 		matrixOfMinor := r minor: col - 1 and: col - 1.
 		matrixOfMinor := matrixOfMinor
@@ -136,6 +136,19 @@ PMQRDecomposition >> decomposeWithPivot [
 		q := PMMatrix rows:
 			     (q rowsCollect: [ :row | row copyFrom: 1 to: i ]) ].
 	^ Array with: q with: r with: pivot
+]
+
+{ #category : #private }
+PMQRDecomposition >> householderReflectionOf: columnVector atColumnNumber: columnNumber [
+
+	| householderVector v identityMatrix householderMatrix |
+	householderVector := columnVector householder.
+	v := (PMVector zeros: columnNumber - 1) , (householderVector at: 2).
+	identityMatrix := PMSymmetricMatrix identity: colSize.
+	householderMatrix := identityMatrix
+	                     -
+	                     ((householderVector at: 1) * v tensorProduct: v).
+	^ Array with: householderVector with: householderMatrix .
 ]
 
 { #category : #private }
