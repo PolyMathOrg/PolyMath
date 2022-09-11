@@ -71,15 +71,14 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| identityMatrix householderVector i v vectorOfNormSquareds rank mx pivot matrixOfMinor |
+	| householderVector i v vectorOfNormSquareds rank mx pivot matrixOfMinor |
 	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ 
 		                        :columnVector | columnVector * columnVector ].
 	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
 	pivot := Array new: vectorOfNormSquareds size.
 	rank := 0.
-	identityMatrix := PMSymmetricMatrix identity: colSize.
 	[ 
-	| householderMatrix columnVectorFromRMatrix |
+	| householderMatrix columnVectorFromRMatrix identityMatrix |
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
@@ -87,6 +86,7 @@ PMQRDecomposition >> decomposeWithPivot [
 	columnVectorFromRMatrix := r columnVectorAt: rank size: colSize.
 	householderVector := columnVectorFromRMatrix householder.
 	v := (PMVector zeros: rank - 1) , (householderVector at: 2).
+	identityMatrix := PMSymmetricMatrix identity: colSize.
 	householderMatrix := identityMatrix
 	                     -
 	                     ((householderVector at: 1) * v tensorProduct: v).
