@@ -71,25 +71,25 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| householderVector i v vectorOfNormSquareds rank mx pivot matrixOfMinor |
+	| i v vectorOfNormSquareds rank mx pivot matrixOfMinor |
 	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ 
 		                        :columnVector | columnVector * columnVector ].
 	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
 	pivot := Array new: vectorOfNormSquareds size.
 	rank := 0.
 	[ 
-	| householderMatrix columnVectorFromRMatrix identityMatrix |
+	| householderReflection householderMatrix householderVector columnVectorFromRMatrix |
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
 	vectorOfNormSquareds swap: rank with: mx.
 	columnVectorFromRMatrix := r columnVectorAt: rank size: colSize.
-	householderVector := columnVectorFromRMatrix householder.
-	v := (PMVector zeros: rank - 1) , (householderVector at: 2).
-	identityMatrix := PMSymmetricMatrix identity: colSize.
-	householderMatrix := identityMatrix
-	                     -
-	                     ((householderVector at: 1) * v tensorProduct: v).
+	householderReflection := self
+		                         householderReflectionOf:
+		                         columnVectorFromRMatrix
+		                         atColumnNumber: rank.
+	householderVector := householderReflection at: 1.
+	householderMatrix := householderReflection at: 2.
 	q := q * householderMatrix.
 	matrixOfMinor := r minor: rank - 1 and: rank - 1.
 	matrixOfMinor := matrixOfMinor
