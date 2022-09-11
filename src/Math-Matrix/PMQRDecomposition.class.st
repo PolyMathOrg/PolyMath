@@ -79,13 +79,13 @@ PMQRDecomposition >> decomposeWithPivot [
 	rank := 0.
 	identityMatrix := PMSymmetricMatrix identity: colSize.
 	[ 
-	| householderMatrix |
+	| householderMatrix columnVectorFromRMatrix |
 	rank := rank + 1.
 	pivot at: rank put: mx.
 	r swapColumn: rank withColumn: mx.
 	vectorOfNormSquareds swap: rank with: mx.
-	householderVector := (r columnVectorAt: rank size: colSize)
-		                     householder.
+	columnVectorFromRMatrix := r columnVectorAt: rank size: colSize.
+	householderVector := columnVectorFromRMatrix householder.
 	v := (PMVector zeros: rank - 1) , (householderVector at: 2).
 	householderMatrix := identityMatrix
 	                     -
