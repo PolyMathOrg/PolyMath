@@ -29,9 +29,9 @@ that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 "
 
-	| i matrixOfMinor householderReflection |
+	| i matrixOfMinor |
 	1 to: self numberOfColumns do: [ :col | 
-		| householderVector householderMatrix columnVectorFromRMatrix |
+		| householderReflection householderMatrix householderVector columnVectorFromRMatrix |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderReflection := self
 			                         householderReflectionOf:
