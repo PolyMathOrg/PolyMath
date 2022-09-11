@@ -29,13 +29,13 @@ that describes the mechanics:
 https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 "
 
-	| identityMatrix householderVector i matrixOfMinor |
-	identityMatrix := PMSymmetricMatrix identity: colSize.
+	| i matrixOfMinor |
 	1 to: self numberOfColumns do: [ :col | 
-		| columnVectorFromRMatrix householderMatrix v |
+		| householderVector householderMatrix columnVectorFromRMatrix identityMatrix v |
 		columnVectorFromRMatrix := r columnVectorAt: col size: colSize.
 		householderVector := columnVectorFromRMatrix householder.
 		v := (PMVector zeros: col - 1) , (householderVector at: 2).
+		identityMatrix := PMSymmetricMatrix identity: colSize.
 		householderMatrix := identityMatrix
 		                     -
 		                     ((householderVector at: 1) * v tensorProduct: v).
