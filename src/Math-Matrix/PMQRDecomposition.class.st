@@ -71,7 +71,7 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| i v vectorOfNormSquareds rank mx pivot matrixOfMinor |
+	| i vectorOfNormSquareds rank mx pivot matrixOfMinor |
 	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ 
 		                        :columnVector | columnVector * columnVector ].
 	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
