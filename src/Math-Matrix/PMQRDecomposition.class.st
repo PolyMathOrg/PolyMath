@@ -71,18 +71,18 @@ https://en.wikipedia.org/wiki/QR_decomposition#Using_Householder_reflections
 { #category : #arithmetic }
 PMQRDecomposition >> decomposeWithPivot [
 
-	| i vectorOfNormSquareds rank mx pivot matrixOfMinor |
+	| i vectorOfNormSquareds rank positionOfMaximum pivot matrixOfMinor |
 	vectorOfNormSquareds := matrixToDecompose columnsCollect: [ 
 		                        :columnVector | columnVector * columnVector ].
-	mx := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
+	positionOfMaximum := vectorOfNormSquareds indexOf: vectorOfNormSquareds max.
 	pivot := Array new: vectorOfNormSquareds size.
 	rank := 0.
 	[ 
 	| householderReflection householderMatrix householderVector columnVectorFromRMatrix |
 	rank := rank + 1.
-	pivot at: rank put: mx.
-	r swapColumn: rank withColumn: mx.
-	vectorOfNormSquareds swap: rank with: mx.
+	pivot at: rank put: positionOfMaximum.
+	r swapColumn: rank withColumn: positionOfMaximum.
+	vectorOfNormSquareds swap: rank with: positionOfMaximum.
 	columnVectorFromRMatrix := r columnVectorAt: rank size: colSize.
 	householderReflection := self
 		                         householderReflectionOf:
@@ -115,16 +115,16 @@ PMQRDecomposition >> decomposeWithPivot [
 			- (r rowAt: rank columnAt: ind) squared ].
 	rank < vectorOfNormSquareds size
 		ifTrue: [ 
-			mx := (vectorOfNormSquareds
+			positionOfMaximum := (vectorOfNormSquareds
 				       copyFrom: rank + 1
 				       to: vectorOfNormSquareds size) max.
-			(mx closeTo: 0) ifTrue: [ mx := 0 ].
-			mx := mx > 0
+			(positionOfMaximum closeTo: 0) ifTrue: [ positionOfMaximum := 0 ].
+			positionOfMaximum := positionOfMaximum > 0
 				      ifTrue: [ 
-				      vectorOfNormSquareds indexOf: mx startingAt: rank + 1 ]
+				      vectorOfNormSquareds indexOf: positionOfMaximum startingAt: rank + 1 ]
 				      ifFalse: [ 0 ] ]
-		ifFalse: [ mx := 0 ].
-	mx > 0 ] whileTrue.
+		ifFalse: [ positionOfMaximum := 0 ].
+	positionOfMaximum > 0 ] whileTrue.
 	i := 0.
 	[ (r rowAt: colSize) isZero ] whileTrue: [ 
 		i := i + 1.
