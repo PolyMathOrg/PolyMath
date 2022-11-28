@@ -385,13 +385,14 @@ PMMatrixTest >> testMatrixCloseToPrecision [
 
 { #category : #tests }
 PMMatrixTest >> testMatrixConversionWithBothDims [
+
 	| vect result expected |
-	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
-	result := vect reshapeWithDimensions: #(6 2).
-	
-	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
-	
-	self assert: result equals: expected.
+	vect := #( 1 0.5 0.2 3 1 -1 7 3 2 12 13 3 ) asPMVector.
+	result := vect reshapeWithDimensions: #( 6 2 ).
+
+	expected := PMMatrix rows: #( #( 1 0.5 ) #( 0.2 3 ) #( 1 -1 ) #( 7 3 ) #( 2 12 ) #( 13 3 ) ).
+
+	self assert: result equals: expected
 ]
 
 { #category : #comparing }
