@@ -215,12 +215,6 @@ PMVector >> householder [
 ]
 
 { #category : #testing }
-PMVector >> isReal [
-	"Answer true if all values of the vector are real numbers"
-	^ self allSatisfy: [ :each | each isRealNumber ].
-]
-
-{ #category : #testing }
 PMVector >> isZero [
  ^ self allSatisfy: [ :element | element = 0 ]
 ]
