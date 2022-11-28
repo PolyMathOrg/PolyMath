@@ -268,17 +268,6 @@ PMVector >> productWithVector: aVector [
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
 ]
 
-{ #category : #'as yet unclassified' }
-PMVector >> reshapeWithDimensions: dimensionArray [
-	| computedRows rowNum colNum |
-	self checkDimensionalCompatibility: dimensionArray.
-	rowNum := dimensionArray at: 1.
-	colNum := dimensionArray at: 2.
-	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
-	
-	^PMMatrix rows: computedRows
-]
-
 { #category : #operation }
 PMVector >> scalarProduct: aVector [
 	

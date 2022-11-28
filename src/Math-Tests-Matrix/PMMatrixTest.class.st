@@ -383,6 +383,17 @@ PMMatrixTest >> testMatrixCloseToPrecision [
 	self deny: (a closeTo: b precision: 0.2)
 ]
 
+{ #category : #tests }
+PMMatrixTest >> testMatrixConversionWithBothDims [
+	| vect result expected |
+	vect := #(1 0.5 0.2 3 1 -1 7 3 2 12 13 3) asPMVector .
+	result := vect reshapeWithDimensions: #(6 2).
+	
+	expected := PMMatrix rows: #(#(1 0.5) #(0.2 3) #(1 -1) #(7 3) #(2 12) #(13 3)).
+	
+	self assert: result equals: expected.
+]
+
 { #category : #comparing }
 PMMatrixTest >> testMatrixCos [
 	| a |
@@ -930,7 +941,7 @@ PMMatrixTest >> testSymmetricMatrixAdd3 [
 	self assert: ((c rowAt: 3) at: 1) equals: 31
 ]
 
-{ #category : #test }
+{ #category : #tests }
 PMMatrixTest >> testTake [
 
 	| m expected |
@@ -965,6 +976,18 @@ PMMatrixTest >> testVectorMatrixOperation [
 	self assert: v size equals: 2.
 	self assert: (v at: 1) equals: 4.
 	self assert: (v at: 2) equals: 4
+]
+
+{ #category : #tests }
+PMMatrixTest >> testVectorToVectorConversion [
+
+	| vect result expected |
+	vect := #( 1 0.5 0.2 3 1 -1 7 3 2 12 13 3 ) asPMVector.
+	result := vect reshapeWithDimensions: #( 1 12 ).
+
+	expected := PMMatrix rows: #( #( 1 0.5 0.2 3 1 -1 7 3 2 12 13 3 ) ).
+
+	self assert: result equals: expected
 ]
 
 { #category : #'linear algebra' }

@@ -1,6 +1,18 @@
 Extension { #name : #PMVector }
 
 { #category : #'*Math-Matrix' }
+PMVector >> reshapeWithDimensions: dimensionArray [
+
+	| computedRows rowNum colNum |
+	self checkDimensionalCompatibility: dimensionArray.
+	rowNum := dimensionArray at: 1.
+	colNum := dimensionArray at: 2.
+	computedRows := (1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: i - 1 * colNum + j ] ].
+
+	^ PMMatrix rows: computedRows
+]
+
+{ #category : #'*Math-Matrix' }
 PMVector >> tensorProduct: aVector [
 	"Answers the tensor product of the receiver with aVector."
 	^self == aVector "dont use #="
