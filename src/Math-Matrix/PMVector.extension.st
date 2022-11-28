@@ -1,6 +1,14 @@
 Extension { #name : #PMVector }
 
 { #category : #'*Math-Matrix' }
+PMVector >> productWithMatrix: aMatrix [
+
+	"Answers the product of aMatrix with the receiver."
+
+	^ aMatrix rowsCollect: [ :each | each * self ]
+]
+
+{ #category : #'*Math-Matrix' }
 PMVector >> reshapeWithDimensions: dimensionArray [
 
 	| computedRows rowNum colNum |

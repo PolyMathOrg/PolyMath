@@ -254,12 +254,6 @@ PMVector >> normalized [
 ]
 
 { #category : #operation }
-PMVector >> productWithMatrix: aMatrix [
-	"Answers the product of aMatrix with the receiver."
-	^aMatrix rowsCollect: [ :each | each * self]
-]
-
-{ #category : #operation }
 PMVector >> productWithVector: aVector [
 	"Answers the scalar product of aVector with the receiver."
 	| n |
