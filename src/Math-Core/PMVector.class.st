@@ -254,29 +254,12 @@ PMVector >> normalized [
 ]
 
 { #category : #operation }
-PMVector >> productWithMatrix: aMatrix [
-	"Answers the product of aMatrix with the receiver."
-	^aMatrix rowsCollect: [ :each | each * self]
-]
-
-{ #category : #operation }
 PMVector >> productWithVector: aVector [
 	"Answers the scalar product of aVector with the receiver."
 	| n |
 	n := 0.
 	^self inject: 0
 			into: [ :sum :each | n := n + 1. (aVector at: n) * each + sum]
-]
-
-{ #category : #'as yet unclassified' }
-PMVector >> reshapeWithDimensions: dimensionArray [
-	| computedRows rowNum colNum |
-	self checkDimensionalCompatibility: dimensionArray.
-	rowNum := dimensionArray at: 1.
-	colNum := dimensionArray at: 2.
-	computedRows := ((1 to: rowNum) collect: [ :i | (1 to: colNum) collect: [ :j | self at: (i-1*colNum)+j ] ]).
-	
-	^PMMatrix rows: computedRows
 ]
 
 { #category : #operation }
