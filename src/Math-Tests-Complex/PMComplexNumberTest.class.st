@@ -438,6 +438,22 @@ PMComplexNumberTest >> testIsRealNumberOnReal [
 	self assert: 0.5 isRealNumber
 ]
 
+{ #category : #tests }
+PMComplexNumberTest >> testIsRealOnComplexVector [
+
+	| vector |
+	vector := { 1. 4. -2. (0.5 + 3 i) } asPMVector.
+	self deny: vector isReal
+]
+
+{ #category : #tests }
+PMComplexNumberTest >> testIsRealOnRealVector [
+
+	| vector |
+	vector := #( 1 4 -2 0.5 ) asPMVector.
+	self assert: vector isReal
+]
+
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testLn [
 	self assert: (Float e + 0 i) ln equals: Float e ln	"See Bug 1815 on Mantis"

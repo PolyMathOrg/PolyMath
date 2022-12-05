@@ -85,20 +85,6 @@ PMVectorTest >> testHouseholder [
 ]
 
 { #category : #tests }
-PMVectorTest >> testIsRealOnComplexVector [
-	| vector |
-	vector := { 1 . 4 . -2 . 0.5 + 3i } asPMVector.
-	self deny: vector isReal.
-]
-
-{ #category : #tests }
-PMVectorTest >> testIsRealOnRealVector [
-	| vector |
-	vector := #(1 4 -2 0.5) asPMVector.
-	self assert: vector isReal.
-]
-
-{ #category : #tests }
 PMVectorTest >> testLessThan [
 	| vec vecCopy |
 	vec := #(1 2 3) asPMVector.
