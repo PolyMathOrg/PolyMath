@@ -1,7 +1,7 @@
 Class {
 	#name : #PMNDArrayTest,
 	#superclass : #TestCase,
-	#category : #'Math-Matrix'
+	#category : #'Math-Tests-Matrix'
 }
 
 { #category : #tests }
