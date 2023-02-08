@@ -55,7 +55,7 @@ PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [
 		qk: qk
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #information }
 PMQuaternion class >> random [
 	"Answers a random quaternion with abs at most one."
 	
@@ -169,7 +169,7 @@ PMQuaternion >> adaptToInteger: rcvr andSend: selector [
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> addPolynomial: aPolynomial [
 	^aPolynomial addNumber: self
 ]
@@ -233,7 +233,7 @@ PMQuaternion >> cosh [
 	^(self exp + self negated exp) / 2
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> dividingPolynomial: aPolynomial [
 	^aPolynomial timesNumber: (1 / self)
 ]
@@ -387,7 +387,7 @@ PMQuaternion >> printOn: aStream [
 	self storeOn: aStream
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> productWithVector: aVector [
 		"Answers a new vector product of the receiver with aVector."
 	^aVector collect: [ :each | each * self]
@@ -463,7 +463,7 @@ PMQuaternion >> raisedToInteger: operand [
 	^ result
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #information }
 PMQuaternion >> random [
 	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
 	^ self class random * self.
@@ -568,7 +568,7 @@ PMQuaternion >> storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> subtractToPolynomial: aPolynomial [
 	^aPolynomial addNumber: self negated
 ]
@@ -609,7 +609,7 @@ PMQuaternion >> timesNumber: multiplier [
 	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> timesPolynomial: aPolynomial [
 	^aPolynomial timesNumber: self
 ]

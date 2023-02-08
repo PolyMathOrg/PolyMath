@@ -100,7 +100,7 @@ PMComplexNumber class >> one [
 	^ self real: 1 imaginary: 0
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #information }
 PMComplexNumber class >> random [
 	"Answers a random number with abs between 0 and 1." 
 	| random |
@@ -246,7 +246,7 @@ PMComplexNumber >> adaptToInteger: rcvr andSend: selector [
 	^ rcvr asComplex perform: selector with: self
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> addPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self
 ]
@@ -510,7 +510,7 @@ PMComplexNumber >> divideSecureBy: anObject [
 	^ anObject adaptToComplex: self andSend: #/.
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> dividingPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: 1 / self
 ]
@@ -613,7 +613,7 @@ PMComplexNumber >> printOn: aStream [
 
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> productWithVector: aVector [
 	"Answers a new vector product of the receiver with aVector."
 
@@ -662,7 +662,7 @@ PMComplexNumber >> raisedToInteger: operand [
 	^ result
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #information }
 PMComplexNumber >> random [
 	"analog to Number>>random. However, the only bound is that the abs of the produced complex is less than the length of the receive. The receiver effectively defines a disc within which the random element can be produced."
 	^ self class random * self
@@ -751,7 +751,7 @@ PMComplexNumber >> squaredNorm [
 	^real * real + (imaginary * imaginary)
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> subtractToPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self negated
 ]
@@ -779,7 +779,7 @@ PMComplexNumber >> tanh [
 	^self i tan i negated
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> timesPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: self
 ]
