@@ -57,20 +57,20 @@ PMPermutation class >> fromCycles: aCollectionofCollections [
 ]
 
 { #category : #accessing }
-PMPermutation class >> generator:arrayOfPermutations [
-|f max generators|
-max:=(arrayOfPermutations collect:[:g|g size])max.
-generators:=arrayOfPermutations collect:[:g| g extendTo: max].
-f:=PMFixpoint 
-  block: [ :s| |aSet|
-				aSet:=Set newFrom: s.
-				s do:[:p|s do:[:q|
-						aSet add:(p permute:q)]].
-				aSet]
-  value: generators.
-f verbose:false.
-^f evaluate asArray.
+PMPermutation class >> generator: arrayOfPermutations [
 
+	| f max generators |
+	max := (arrayOfPermutations collect: [ :g | g size ]) max.
+	generators := arrayOfPermutations collect: [ :g | g extendTo: max ].
+	f := PMFixpoint
+		     block: [ :s |
+			     | aSet |
+			     aSet := Set newFrom: s.
+			     s do: [ :p | s do: [ :q | aSet add: (p permute: q) ] ].
+			     aSet ]
+		     value: generators.
+	f verbose: false.
+	^ f evaluate asArray
 ]
 
 { #category : #'instance creation' }
@@ -87,19 +87,28 @@ uses super withAll: since this way a primitive can be used, which is generally m
 
 { #category : #'instance creation' }
 PMPermutation class >> ordering: aCollection [
-"use #newFrom: for an unreduced Permutation! but then most things won't work before you call #reduce.
+	"use #newFrom: for an unreduced Permutation! but then most things won't work before you call #reduce.
 aCollection must consist of elements that can be sorted via #<="
-^( super withAll:  aCollection ) reduce
+
+	^ (super withAll: aCollection) reduce
 ]
 
 { #category : #accessing }
 PMPermutation class >> randomGenerator [
-^RandomGenerator ifNil: [ RandomGenerator := Random new ]
+
+	^ RandomGenerator ifNil: [ RandomGenerator := Random new ]
+]
+
+{ #category : #accessing }
+PMPermutation class >> randomGenerator: aGenerator [
+
+	^ RandomGenerator := aGenerator
 ]
 
 { #category : #'instance creation' }
 PMPermutation class >> randomPermutation: size [
-^self ordering: (self randomGenerator next:size)
+
+	^ self newFrom: ((1 to: size) asArray shuffleBy: self randomGenerator)
 ]
 
 { #category : #'instance creation' }
