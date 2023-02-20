@@ -4,21 +4,19 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
-  push:
-    branches:
-      - '**'
-  pull_request:
-    types: [assigned, opened, synchronize, reopened]
+  release:
+    types: [created, edited]
 
 jobs:
   build:
-    runs-on: ubuntu-latest
-    env:
-      PROJECT_NAME: PolyMath-${{ matrix.smalltalk }}
     strategy:
       matrix:
         smalltalk: [ Pharo64-9.0, Pharo64-10 ]
-    name: ${{ matrix.smalltalk }}
+        os: [ macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
+    env:
+      PROJECT_NAME: PolyMath-${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2
       - uses: hpi-swa/setup-smalltalkCI@v1

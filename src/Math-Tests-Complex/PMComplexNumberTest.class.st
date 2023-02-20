@@ -439,11 +439,35 @@ PMComplexNumberTest >> testIsRealNumberOnReal [
 ]
 
 { #category : #tests }
+PMComplexNumberTest >> testIsRealOnComplexMatrix [
+	| matrix |
+
+	matrix := PMMatrix rows: {
+		{ 1 . 3 + 4i . 0 } .
+		{ 1 - 2i . 2 . -4 } .
+		{ -8 + 0i . 5 . -1 } }.
+
+	self deny: matrix isReal
+]
+
+{ #category : #tests }
 PMComplexNumberTest >> testIsRealOnComplexVector [
 
 	| vector |
 	vector := { 1. 4. -2. (0.5 + 3 i) } asPMVector.
 	self deny: vector isReal
+]
+
+{ #category : #tests }
+PMComplexNumberTest >> testIsRealOnRealMatrix [
+
+	| matrix |
+	matrix := PMMatrix rows: #(
+		#(  1  3  0 )
+		#(  1  2 -4 )
+		#( -8  5 -1 ) ).
+
+	self assert: matrix isReal
 ]
 
 { #category : #tests }
