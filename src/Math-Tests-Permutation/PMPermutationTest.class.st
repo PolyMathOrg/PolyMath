@@ -236,17 +236,17 @@ self assert: g third isFloat.
 
 { #category : #'class tests' }
 PMPermutationTest >> testRandomPermutation [
-|p p2 l|
-l:=173."relatively high for a randomized test"
-PMPermutation randomGenerator seed:10. "can be put into comments for a randomized test"
-p:=PMPermutation randomPermutation: l.
-p2:=PMPermutation randomPermutation: l.
-self deny: p=p2.
-self assert: p class equals: PMPermutation.
-l:=1 to: l.
-self assert: p sorted equals: l.
-self assert: p2 sorted equals: l.
 
+	| p p2 l |
+	l := 173. "relatively high for a randomized test"
+	PMPermutation randomGenerator seed: 10. "can be put into comments for a randomized test"
+	p := PMPermutation randomPermutation: l.
+	p2 := PMPermutation randomPermutation: l.
+	self deny: p equals: p2.
+	self assert: p class equals: PMPermutation.
+	l := 1 to: l.
+	self assert: p sorted equals: l.
+	self assert: p2 sorted equals: l
 ]
 
 { #category : #tests }
