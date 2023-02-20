@@ -21,14 +21,12 @@ BaselineOfPolyMath >> baseline: spec [
 	spec
 		for: #common
 		do: [
-			spec blessing: #baseline.
-			spec repository: 'github://PolyMathOrg/PolyMath/src'.
-			spec
-				baseline: 'SMark'
-					with: [ spec repository: 'github://smarr/SMark:v1.0.4' ];
-				baseline: 'XMLWriter'
-					with: [ spec
-						repository: 'github://pharo-contributions/XML-XMLWriter:2.9.x/src' ].
+			"External dependencies"
+			self
+				sMark: spec;
+				xmlWriter: spec;
+				polyMathDataStructures: spec.
+
 			spec
 				package: 'ExtendedNumberParser';
 				package: 'Math-Accuracy-Core';
@@ -42,25 +40,15 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec requires: #('Math-KDTree' 'SMark') ];
 				package: 'Math-Benchmarks-ODE'
 					with: [ spec requires: #('Math-ODE' 'SMark' 'XMLWriter') ];
-				package: 'Math-Chromosome'
-					with: [ spec requires: #('Math-Core') ];
-				package: 'Math-Clustering'
-					with:
-						[ spec requires: #('Math-Numerical' 'Math-Core-Process' 'Math-Matrix') ];
+				package: 'Math-Chromosome' with: [ spec requires: #('PolyMathDataStructures') ];
+				package: 'Math-Clustering' with: [ spec requires: #('Math-Numerical' 'Math-Core-Process' 'PolyMathDataStructures') ];
 				package: 'Math-Complex'
 					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
-				package: 'Math-Core';
-				package: 'Math-Core-Distribution'
-					with: [ spec requires: #('Math-Core') ];
-				package: 'Math-Core-Process';
-				package: 'Math-Numerical'
-					with: [ spec
-						requires:
-							#('Math-Core' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
-				package: 'Math-Polynomials'
-					with: [ spec
-						requires:
-							#('Math-Core' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
+				package: 'Math-Helpers';
+				package: 'Math-Core-Distribution' with: [ spec requires: #('PolyMathDataStructures') ];
+				package: 'Math-Core-Process' with: [ spec requires: #('Math-Helpers') ];
+				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
+				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helprs' 'Math-Core-Process' 'Math-Core-Distribution' 'Math-DistributionGamma' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-DistributionBeta'
 					with: [ spec requires: #('Math-DistributionGamma') ];
 				package: 'Math-DistributionForHistogram'
@@ -72,47 +60,32 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-FunctionFit'
 					with: [ spec
 						requires:
-							#('Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'Math-Core' 'Math-Matrix' 'Math-Polynomials') ];
+							#('Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'PolyMathDataStructures' 'Math-Helpers' 'Math-Matrix' 'Math-Polynomials') ];
 				package: 'Math-KDTree';
-				package: 'Math-KernelSmoothing'
-					with: [ spec
-						requires: #('Math-Quantile' 'Math-Numerical' 'Math-Polynomials') ];
+				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-KolmogorovSmirnov'
 					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
-				package: 'Math-Matrix';
 				package: 'Math-Number-Extensions';
-				package: 'Math-ODE'
-					with:
-						[ spec requires: #('Math-Numerical' 'Math-Matrix' 'Math-Polynomials') ];
-				package: 'Math-Permutation'
-					with: [ spec requires: #('Math-Core' 'Math-Matrix' 'Math-Core-Process') ];
+				package: 'Math-ODE' with: [ spec requires: #('Math-Numerical' 'PolyMathDataStructures' 'Math-Polynomials') ];
+				package: 'Math-Permutation' with: [ spec requires: #('PolyMathDataStructures' 'Math-Core-Process') ];
 				package: 'Math-Physics-Constants';
-				package: 'Math-PrincipalComponentAnalysis'
-					with:
-						[ spec requires: #('Math-Numerical' 'Math-Matrix' 'Math-Polynomials') ];
+				package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #('Math-Numerical' 'PolyMathDataStructures' 'Math-Polynomials') ];
 				package: 'Math-Quantile';
 				package: 'Math-Quaternion'
 					with:
 						[ spec requires: #('Math-Complex' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Random';
 				package: 'Math-Series';
-				package: 'Math-StatisticalMoments'
-					with: [ spec requires: #('Math-Core' 'Math-DistributionForHistogram') ];
+				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Helpers' 'Math-DistributionForHistogram') ];
 				package: 'Math-TSNE';
 				package: 'Math-Tests-Accuracy'
 					with: [ spec requires: #('Math-Accuracy-Core') ];
 				package: 'Math-Tests-ArbitraryPrecisionFloat'
 					with: [ spec requires: #('Math-ArbitraryPrecisionFloat') ];
-				package: 'Math-Tests-AutomaticDifferenciation'
-					with: [ spec requires: #('Math-AutomaticDifferenciation' 'Math-Matrix') ];
-				package: 'Math-Tests-Clustering'
-					with: [ spec
-						requires:
-							#('Math-Clustering' 'Math-Core' 'Math-Core-Distribution' 'Math-UtilsDataServer') ];
+				package: 'Math-Tests-AutomaticDifferenciation' with: [ spec requires: #('Math-AutomaticDifferenciation' 'PolyMathDataStructures') ];
+				package: 'Math-Tests-Clustering' with: [ spec requires: #('Math-Clustering' 'Math-Core-Distribution' 'Math-UtilsDataServer') ];
 				package: 'Math-Tests-Complex'
 					with: [ spec requires: #('Math-Complex') ];
-				package: 'Math-Tests-Core'
-					with: [ spec requires: #('Math-Core') ];
 				package: 'Math-Tests-Core-Distribution'
 					with: [ spec requires: #('Math-Core-Distribution') ];
 				package: 'Math-Tests-Core-Process'
@@ -130,10 +103,6 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Tests-KolmogorovSmirnov'
 					with: [ spec
 						requires: #('Math-Numerical' 'Math-KolmogorovSmirnov' 'Math-Polynomials') ];
-				package: 'Math-Tests-Matrix'
-					with: [ spec
-						requires:
-							#('Math-Core' 'Math-Numerical' 'Math-StatisticalMoments' 'Math-Matrix' 'Math-Polynomials') ];
 				package: 'Math-Tests-Number-Extensions'
 					with: [ spec requires: #('Math-Number-Extensions') ];
 				package: 'Math-Tests-ODE' with: [ spec requires: #('Math-ODE') ];
@@ -159,15 +128,21 @@ BaselineOfPolyMath >> baseline: spec [
 					with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 				group: 'Core'
 					with:
-					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Core' 'Math-Core-Distribution');
+					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Helpers' 'PolyMathDataStructures' 'Math-Core-Distribution');
 				group: 'Extensions'
 					with:
 					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-KolmogorovSmirnov');
 				group: 'Tests'
 					with:
-					#('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution' 'Math-Tests-Core');
+					#('Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution');
 				group: 'default'
 					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ]
+]
+
+{ #category : #dependencies }
+BaselineOfPolyMath >> polyMathDataStructures: spec [
+
+	spec baseline: 'PolyMathDataStructures' with: [ spec repository: 'github://PolyMathOrg/PolyMath-DataStructures:v1.x.x/src' ]
 ]
 
 { #category : #accessing }
@@ -175,4 +150,16 @@ BaselineOfPolyMath >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
+]
+
+{ #category : #dependencies }
+BaselineOfPolyMath >> sMark: spec [
+
+	spec baseline: 'SMark' with: [ spec repository: 'github://smarr/SMark:v1.0.4' ]
+]
+
+{ #category : #dependencies }
+BaselineOfPolyMath >> xmlWriter: spec [
+
+	spec baseline: 'XMLWriter' with: [ spec repository: 'github://pharo-contributions/XML-XMLWriter:2.9.x/src' ]
 ]

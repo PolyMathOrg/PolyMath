@@ -1,6 +1,6 @@
 Extension { #name : #SequenceableCollection }
 
-{ #category : #'*Math-Core' }
+{ #category : #'*Math-Helpers' }
 SequenceableCollection >> closeTo: aSequenceableCollection [
 
 	self
@@ -9,7 +9,7 @@ SequenceableCollection >> closeTo: aSequenceableCollection [
 	^ true
 ]
 
-{ #category : #'*Math-Core' }
+{ #category : #'*Math-Helpers' }
 SequenceableCollection >> equalsTo: aSequenceableCollection [
 	
 	self

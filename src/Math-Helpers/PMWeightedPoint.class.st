@@ -10,7 +10,7 @@ Class {
 		'weight',
 		'error'
 	],
-	#category : #'Math-Core'
+	#category : #'Math-Helpers'
 }
 
 { #category : #creation }
