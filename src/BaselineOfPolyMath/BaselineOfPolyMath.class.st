@@ -171,10 +171,10 @@ BaselineOfPolyMath >> baseline: spec [
 				
 	spec for: #( #'pharo6.x' #'pharo7.x' #'pharo8.x' #'pharo9.x' #'pharo10.x' ) do: [ 
 		spec
-			package: 'Math-Numerical' with: [ spec requires: #( 'Math-Pharo11' ) ];
-			package: 'Math-Benchmarks-KDTree' with: [ spec requires: #( 'Math-Pharo11' ) ];
-			package: 'Math-Tests-KDTree' with: [ spec requires: #( 'Math-Pharo11' ) ];
-			package: 'Math-Pharo11' ]
+			package: 'Math-Numerical' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-Benchmarks-KDTree' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-Tests-KDTree' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-CompatibilityUpToPharo11' ]
 ]
 
 { #category : #accessing }
