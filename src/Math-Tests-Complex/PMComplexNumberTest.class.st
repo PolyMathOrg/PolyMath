@@ -447,6 +447,18 @@ PMComplexNumberTest >> testIsRealOnComplexVector [
 ]
 
 { #category : #tests }
+PMComplexNumberTest >> testIsRealOnRealMatrix [
+
+	| matrix |
+	matrix := PMMatrix rows: #(
+		#(  1  3  0 )
+		#(  1  2 -4 )
+		#( -8  5 -1 ) ).
+
+	self assert: matrix isReal
+]
+
+{ #category : #tests }
 PMComplexNumberTest >> testIsRealOnRealVector [
 
 	| vector |
