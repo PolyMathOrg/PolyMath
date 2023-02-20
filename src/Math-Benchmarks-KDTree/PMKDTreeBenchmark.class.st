@@ -15,7 +15,7 @@ Class {
 		'collType',
 		'm'
 	],
-	#category : 'Math-Benchmarks-KDTree'
+	#category : #'Math-Benchmarks-KDTree'
 }
 
 { #category : #defaults }
@@ -109,7 +109,7 @@ PMKDTreeBenchmark >> collType: aSequencableCollectionClass [
 { #category : #'initialize-release' }
 PMKDTreeBenchmark >> initialize [
 	super initialize.
-	collType := FloatArray.
+	collType := Float32Array.
 	rand := Random new
 ]
 
