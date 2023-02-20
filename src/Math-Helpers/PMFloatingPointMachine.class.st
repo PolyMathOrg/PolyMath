@@ -31,7 +31,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'Math-Core'
+	#category : #'Math-Helpers'
 }
 
 { #category : #'instance creation' }
