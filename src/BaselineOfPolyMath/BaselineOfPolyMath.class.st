@@ -35,7 +35,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-ArbitraryPrecisionFloat'
 					with: [ spec requires: #('ExtendedNumberParser') ];
 				package: 'Math-AutomaticDifferenciation'
-					with: [ spec requires: #('Math-Numerical' 'Math-Matrix') ];
+					with: [ spec requires: #('Math-Numerical' 'PolyMathDataStructures') ];
 				package: 'Math-Benchmarks-KDTree'
 					with: [ spec requires: #('Math-KDTree' 'SMark') ];
 				package: 'Math-Benchmarks-ODE'
@@ -60,7 +60,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-FunctionFit'
 					with: [ spec
 						requires:
-							#('Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'PolyMathDataStructures' 'Math-Helpers' 'Math-Matrix' 'Math-Polynomials') ];
+							#('Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'PolyMathDataStructures' 'Math-Helpers' 'Math-Polynomials') ];
 				package: 'Math-KDTree';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-KolmogorovSmirnov'
