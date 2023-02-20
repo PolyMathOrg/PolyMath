@@ -17,7 +17,7 @@ jobs:
       PROJECT_NAME: PolyMath-${{ matrix.smalltalk }}
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-10 ]
+        smalltalk: [ Pharo64-9.0, Pharo64-10, Pharo64-11 ]
     name: ${{ matrix.smalltalk }}
     steps:
       - uses: actions/checkout@v2

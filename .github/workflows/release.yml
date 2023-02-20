@@ -1,4 +1,4 @@
-name: CI
+name: Release
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -11,7 +11,7 @@ jobs:
   build:
     strategy:
       matrix:
-        smalltalk: [ Pharo64-9.0, Pharo64-10 ]
+        smalltalk: [ Pharo64-9.0, Pharo64-10, Pharo64-11 ]
         os: [ macos-latest, windows-latest, ubuntu-latest]
     runs-on: ${{ matrix.os }}
     name: ${{ matrix.smalltalk }} on ${{ matrix.os }}

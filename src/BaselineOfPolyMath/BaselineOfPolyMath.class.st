@@ -167,7 +167,14 @@ BaselineOfPolyMath >> baseline: spec [
 					with:
 					#('Math-Tests-Matrix' 'Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution' 'Math-Tests-Core');
 				group: 'default'
-					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ]
+					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ].
+				
+	spec for: #( #'pharo6.x' #'pharo7.x' #'pharo8.x' #'pharo9.x' #'pharo10.x' ) do: [ 
+		spec
+			package: 'Math-Numerical' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-Benchmarks-KDTree' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-Tests-KDTree' with: [ spec requires: #( 'Math-CompatibilityUpToPharo11' ) ];
+			package: 'Math-CompatibilityUpToPharo11' ]
 ]
 
 { #category : #accessing }
