@@ -6,7 +6,7 @@ Class {
 		'covarianceMatrix',
 		'distribution'
 	],
-	#category : #'Math-Tests-Core-Distribution'
+	#category : #'Math-Tests-Distributions-Normal'
 }
 
 { #category : #running }

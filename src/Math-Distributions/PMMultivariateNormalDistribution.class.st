@@ -5,7 +5,7 @@ Class {
 		'meanVector',
 		'covarianceMatrix'
 	],
-	#category : #'Math-Core-Distribution'
+	#category : #'Math-Distributions-Normal'
 }
 
 { #category : #'instance creation' }

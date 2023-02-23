@@ -8,7 +8,7 @@ Class {
 	#classVars : [
 		'NextRandom'
 	],
-	#category : #'Math-Core-Distribution'
+	#category : #'Math-Distributions-Normal'
 }
 
 { #category : #information }

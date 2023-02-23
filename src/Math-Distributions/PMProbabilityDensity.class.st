@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'flatGenerator'
 	],
-	#category : #'Math-Core-Distribution'
+	#category : #'Math-Distributions-Core'
 }
 
 { #category : #information }

@@ -40,7 +40,7 @@ Class {
 	#classVars : [
 		'UniqueInstance'
 	],
-	#category : #'Math-Core-Distribution'
+	#category : #'Math-Distributions-Core'
 }
 
 { #category : #creation }
