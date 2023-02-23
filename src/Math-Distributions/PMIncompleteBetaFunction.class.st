@@ -8,7 +8,7 @@ Class {
 		'inverseFraction',
 		'logNorm'
 	],
-	#category : 'Math-DistributionBeta'
+	#category : #'Math-Distributions-Beta'
 }
 
 { #category : #creation }

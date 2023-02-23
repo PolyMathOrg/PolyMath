@@ -9,7 +9,7 @@ Class {
 		'logNorm',
 		'incompleteBetaFunction'
 	],
-	#category : 'Math-DistributionBeta'
+	#category : #'Math-Distributions-Beta'
 }
 
 { #category : #information }

@@ -47,10 +47,8 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Helpers';
 				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures') ];
 				package: 'Math-Core-Process' with: [ spec requires: #('Math-Helpers') ];
-				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
-				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionBeta' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
-				package: 'Math-DistributionBeta'
-					with: [ spec requires: #('Math-Distributions') ];
+				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
+				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-DistributionForHistogram'
 					with: [ spec requires: #('Math-Distributions') ];
 				package: 'Math-FastFourierTransform'
