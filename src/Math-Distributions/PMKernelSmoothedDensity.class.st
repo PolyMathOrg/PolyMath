@@ -16,7 +16,7 @@ Class {
 		'kernelName',
 		'ikernel'
 	],
-	#category : 'Math-KernelSmoothing'
+	#category : #'Math-Distributions-KernelSmoothing'
 }
 
 { #category : #information }
