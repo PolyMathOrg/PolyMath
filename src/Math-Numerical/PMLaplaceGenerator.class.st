@@ -11,8 +11,16 @@ Class {
 		'laplaceDistribution',
 		'next'
 	],
-	#category : #'Math-Random'
+	#category : #'Math-Numerical'
 }
+
+{ #category : #testing }
+PMLaplaceGenerator class >> isDeprecated [
+
+	"I am just a wrapper for Laplace distribution. The Distribution should be used directly as it is."
+
+	^ true
+]
 
 { #category : #'instance creation' }
 PMLaplaceGenerator class >> shape: peakValue scale: falloffValue [
