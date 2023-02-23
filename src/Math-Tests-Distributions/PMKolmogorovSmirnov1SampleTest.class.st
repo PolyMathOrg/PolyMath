@@ -5,7 +5,7 @@ Class {
 		'distribution',
 		'test'
 	],
-	#category : #'Math-Tests-KolmogorovSmirnov'
+	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
 }
 
 { #category : #running }

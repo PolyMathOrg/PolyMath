@@ -29,7 +29,7 @@ Class {
 		'bigSize',
 		'ksStatistic'
 	],
-	#category : #'Math-KolmogorovSmirnov'
+	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
 }
 
 { #category : #'instance creation' }

@@ -19,7 +19,7 @@ Class {
 		'distribution',
 		'popDistribution'
 	],
-	#category : #'Math-KolmogorovSmirnov'
+	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
 }
 
 { #category : #'instance creation' }

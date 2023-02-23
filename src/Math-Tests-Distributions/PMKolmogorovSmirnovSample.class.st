@@ -8,7 +8,7 @@ Class {
 		'data',
 		'compareWith'
 	],
-	#category : #'Math-KolmogorovSmirnov'
+	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
 }
 
 { #category : #accessing }

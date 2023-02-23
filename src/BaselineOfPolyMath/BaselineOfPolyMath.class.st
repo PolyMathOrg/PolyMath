@@ -45,7 +45,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Complex'
 					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Helpers';
-				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures') ];
+				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Core-Process' with: [ spec requires: #('Math-Helpers') ];
 				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];
@@ -57,8 +57,6 @@ BaselineOfPolyMath >> baseline: spec [
 							#('Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'PolyMathDataStructures' 'Math-Helpers' 'Math-Polynomials') ];
 				package: 'Math-KDTree';
 				package: 'Math-KernelSmoothing' with: [ spec requires: #('Math-Quantile' 'Math-Numerical' 'Math-Polynomials') ];
-				package: 'Math-KolmogorovSmirnov'
-					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Number-Extensions';
 				package: 'Math-ODE' with: [ spec requires: #('Math-Numerical' 'PolyMathDataStructures' 'Math-Polynomials') ];
 				package: 'Math-Permutation' with: [ spec requires: #('PolyMathDataStructures' 'Math-Core-Process') ];
@@ -94,9 +92,6 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec requires: #('Math-KDTree') ];
 				package: 'Math-Tests-KernelSmoothing'
 					with: [ spec requires: #('Math-KernelSmoothing') ];
-				package: 'Math-Tests-KolmogorovSmirnov'
-					with: [ spec
-						requires: #('Math-Numerical' 'Math-KolmogorovSmirnov' 'Math-Polynomials') ];
 				package: 'Math-Tests-Number-Extensions'
 					with: [ spec requires: #('Math-Number-Extensions') ];
 				package: 'Math-Tests-ODE' with: [ spec requires: #('Math-ODE') ];
@@ -125,10 +120,10 @@ BaselineOfPolyMath >> baseline: spec [
 					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Helpers' 'PolyMathDataStructures' 'Math-Distributions');
 				group: 'Extensions'
 					with:
-					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-KolmogorovSmirnov');
+					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation');
 				group: 'Tests'
 					with:
-					#('Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Distributions');
+					#('Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Distributions');
 				group: 'default'
 					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ].
 				

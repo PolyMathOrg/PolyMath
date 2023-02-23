@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'k'
 	],
-	#category : #'Math-Tests-KolmogorovSmirnov'
+	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
 }
 
 { #category : #running }
