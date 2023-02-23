@@ -45,7 +45,7 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Complex'
 					with: [ spec requires: #('Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Helpers';
-				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures' 'Math-Quantile') ];
+				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures' 'Math-Quantile' 'Math-Core-Process') ];
 				package: 'Math-Core-Process' with: [ spec requires: #('Math-Helpers') ];
 				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];

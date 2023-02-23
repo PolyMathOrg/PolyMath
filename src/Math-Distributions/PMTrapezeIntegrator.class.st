@@ -5,8 +5,9 @@ A PMTrapezeIntegrator is the base class for integration methods. You should not 
 "
 Class {
 	#name : #PMTrapezeIntegrator,
-	#superclass : #PMFunctionalIterator,
+	#superclass : #PMIterativeProcess,
 	#instVars : [
+		'functionBlock',
 		'from',
 		'to',
 		'sum',
@@ -28,9 +29,10 @@ PMTrapezeIntegrator class >> function: aBlock from: aNumber1 to: aNumber2 [
 
 { #category : #operation }
 PMTrapezeIntegrator >> computeInitialValues [
-		"Private"
+	"Private"
+
 	step := to - from.
-	sum := ( ( functionBlock value: from) + ( functionBlock value: to)) * step /2.
+	sum := (functionBlock value: from) + (functionBlock value: to) * step / 2.
 	result := sum
 ]
 
@@ -68,4 +70,25 @@ PMTrapezeIntegrator >> initialize: aBlock from: aNumber1 to: aNumber2 [
 		"Private"
 	functionBlock := aBlock.
 	self from: aNumber1 to: aNumber2
+]
+
+{ #category : #initialization }
+PMTrapezeIntegrator >> initializeIterations [
+	"If no initial value has been defined, take 0 as the starting point (for lack of anything better)."
+
+	super initializeIterations.
+	functionBlock ifNil: [ self error: 'No function supplied' ].
+	self computeInitialValues
+]
+
+{ #category : #information }
+PMTrapezeIntegrator >> relativePrecision: aNumber [
+
+	^ self precisionOf: aNumber relativeTo: result abs
+]
+
+{ #category : #initialization }
+PMTrapezeIntegrator >> setFunction: aBlock [
+
+	functionBlock := aBlock
 ]
