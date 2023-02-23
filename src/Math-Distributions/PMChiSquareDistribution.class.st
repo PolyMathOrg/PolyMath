@@ -1,7 +1,7 @@
 Class {
 	#name : #PMChiSquareDistribution,
 	#superclass : #PMGammaDistribution,
-	#category : 'Math-DistributionGamma'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #creation }

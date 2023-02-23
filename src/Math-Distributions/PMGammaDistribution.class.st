@@ -8,7 +8,7 @@ Class {
 		'randomCoefficients',
 		'incompleteGammaFunction'
 	],
-	#category : 'Math-DistributionGamma'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #information }

@@ -6,7 +6,7 @@ Class {
 		'reducedDOF',
 		'normalDistribution'
 	],
-	#category : 'Math-DistributionGamma'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #creation }

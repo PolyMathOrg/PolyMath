@@ -7,7 +7,7 @@ Class {
 		'series',
 		'fraction'
 	],
-	#category : 'Math-DistributionGamma'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #creation }
