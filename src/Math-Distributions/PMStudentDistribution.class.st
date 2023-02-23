@@ -7,7 +7,7 @@ Class {
 		'chiSquareDistribution',
 		'incompleteBetaFunction'
 	],
-	#category : 'Math-DistributionForHistogram'
+	#category : #'Math-Distributions-ForHistogram'
 }
 
 { #category : #creation }

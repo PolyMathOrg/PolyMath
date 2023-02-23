@@ -47,10 +47,8 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Helpers';
 				package: 'Math-Distributions' with: [ spec requires: #('PolyMathDataStructures') ];
 				package: 'Math-Core-Process' with: [ spec requires: #('Math-Helpers') ];
-				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
-				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-DistributionForHistogram' 'Math-StatisticalMoments' 'Math-Series') ];
-				package: 'Math-DistributionForHistogram'
-					with: [ spec requires: #('Math-Distributions') ];
+				package: 'Math-Numerical' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];
+				package: 'Math-Polynomials' with: [ spec requires: #('PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments' 'Math-Series') ];
 				package: 'Math-FastFourierTransform'
 					with: [ spec requires: #('Math-Complex') ];
 				package: 'Math-FunctionFit'
@@ -72,7 +70,7 @@ BaselineOfPolyMath >> baseline: spec [
 						[ spec requires: #('Math-Complex' 'Math-Numerical' 'Math-Polynomials') ];
 				package: 'Math-Random';
 				package: 'Math-Series';
-				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Helpers' 'Math-DistributionForHistogram') ];
+				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Helpers' 'Math-Distributions') ];
 				package: 'Math-TSNE';
 				package: 'Math-Tests-Accuracy'
 					with: [ spec requires: #('Math-Accuracy-Core') ];
