@@ -44,7 +44,7 @@ PMTSNE class >> entropyOf: distanceVector andPRow: pVector withBeta: beta [
 
 	| pVectorTemp sumP entropy |
 	pVectorTemp := (-1 * distanceVector * beta) exp.
-	sumP := pVectorTemp sum max: (Float epsilon).
+	sumP := pVectorTemp sum max: (Float machineEpsilon).
 	entropy := sumP ln + (beta * (distanceVector * pVectorTemp) / sumP).
 	pVector copyFrom: (pVectorTemp / sumP).
 	^ entropy
@@ -189,9 +189,9 @@ PMTSNE >> computeGradient [
 	| num sumNum pq dY tmp yiDiff |
 	"Calculates num and q"
 	num := self computeLowDimensionalStudentT.
-	sumNum := num sum sum max: (Float epsilon).
+	sumNum := num sum sum max: (Float machineEpsilon).
 	q := num collect: [:element |
-				(element / sumNum) max: (Float epsilon)
+				(element / sumNum) max: (Float machineEpsilon)
 			].
 
 	pq := p - q.
@@ -215,9 +215,9 @@ PMTSNE >> computeLowDimensionalAffinities [
 
 	| num sumNum |
 	num := self computeLowDimensionalStudentT.
-	sumNum := num sum sum max: (Float epsilon).
+	sumNum := num sum sum max: (Float machineEpsilon).
 	q := num collect: [:element |
-				(element / sumNum) max: (Float epsilon)
+				(element / sumNum) max: (Float machineEpsilon)
 			].
 	^ q
 ]
@@ -245,7 +245,7 @@ PMTSNE >> computePValues [
 	sumP := p sum sum.
 	p := p collect: [ :element |
 		"4 is for early exaggeration, will be removed after 100 iterations"
-		(element / sumP * 4) asFloat max: (Float epsilon).
+		(element / sumP * 4) asFloat max: (Float machineEpsilon).
 		 ].
 	^ p
 ]
