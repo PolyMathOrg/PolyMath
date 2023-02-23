@@ -1,10 +1,10 @@
 Class {
 	#name : #PMLogNormalDistribution,
-	#superclass : #PMProbabilityDensityWithUnknownDistribution,
+	#superclass : #PMProbabilityDensity,
 	#instVars : [
 		'normalDistribution'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions-Normal'
 }
 
 { #category : #information }
@@ -43,6 +43,13 @@ PMLogNormalDistribution class >> new: aNumber1 sigma: aNumber2 [
 ]
 
 { #category : #information }
+PMLogNormalDistribution >> acceptanceBetween: aNumber1 and: aNumber2 [
+		"Answers the probability of observing a random variable distributed according to
+		 the receiver with a value larger than aNumber 1 and lower than or equal to aNumber2."
+	^( PMRombergIntegrator function: [:x| self value:x] from: aNumber1 to: aNumber2) evaluate
+]
+
+{ #category : #information }
 PMLogNormalDistribution >> average [
 		"Answer the average of the receiver."
 	^( normalDistribution variance*0.5 + normalDistribution average) exp
@@ -52,6 +59,14 @@ PMLogNormalDistribution >> average [
 PMLogNormalDistribution >> changeParametersBy: aVector [
 		"Modify the parameters of the receiver by aVector."
 	normalDistribution changeParametersBy: aVector.
+]
+
+{ #category : #information }
+PMLogNormalDistribution >> distributionValue: aNumber [
+		"Answers the probability of observing a random variable distributed according to
+		 the receiver with a value lower than or equal to aNumber.
+		 This general purpose routine uses numerical integration."
+	^( PMRombergIntegrator function: [:x| self value:x] from: self lowestValue to: aNumber) evaluate
 ]
 
 { #category : #information }
@@ -77,6 +92,11 @@ PMLogNormalDistribution >> kurtosis [
 	| x |
 	x := normalDistribution variance exp.
 	^( ( x + 2) * x + 3) * ( x squared) - 6
+]
+
+{ #category : #information }
+PMLogNormalDistribution >> lowestValue [
+	^0
 ]
 
 { #category : #information }

@@ -11,7 +11,7 @@ Class {
 		'laplaceDistribution',
 		'next'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions'
 }
 
 { #category : #testing }

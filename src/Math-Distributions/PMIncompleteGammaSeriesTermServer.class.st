@@ -5,7 +5,7 @@ Class {
 		'alpha',
 		'sum'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #information }

@@ -5,7 +5,7 @@ Class {
 		'lowLimit',
 		'highLimit'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions'
 }
 
 { #category : #public }

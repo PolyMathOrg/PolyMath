@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'alpha'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #information }

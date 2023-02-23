@@ -12,7 +12,7 @@ Class {
 		'sum',
 		'step'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions-Core'
 }
 
 { #category : #information }

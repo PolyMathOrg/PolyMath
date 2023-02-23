@@ -6,7 +6,7 @@ Class {
 		'highLimit',
 		'peak'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions'
 }
 
 { #category : #information }

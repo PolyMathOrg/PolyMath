@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'probabilityDensity'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions'
 }
 
 { #category : #creation }

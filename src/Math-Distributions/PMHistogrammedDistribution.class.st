@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'histogram'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions'
 }
 
 { #category : #information }

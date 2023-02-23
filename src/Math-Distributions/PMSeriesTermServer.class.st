@@ -5,7 +5,7 @@ Class {
 		'x',
 		'lastTerm'
 	],
-	#category : #'Math-Numerical'
+	#category : #'Math-Distributions-Gamma'
 }
 
 { #category : #initialization }

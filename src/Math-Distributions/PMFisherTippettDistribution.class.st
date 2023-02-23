@@ -5,7 +5,7 @@ Class {
 		'alpha',
 		'beta'
 	],
-	#category : #'Math-Numerical-Math-Distribution'
+	#category : #'Math-Distributions'
 }
 
 { #category : #information }
