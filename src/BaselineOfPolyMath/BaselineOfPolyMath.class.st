@@ -25,7 +25,8 @@ BaselineOfPolyMath >> baseline: spec [
 			self
 				sMark: spec;
 				xmlWriter: spec;
-				polyMathDataStructures: spec.
+				polyMathDataStructures: spec;
+				randomNumbers: spec.
 
 			spec
 				package: 'ExtendedNumberParser';
@@ -74,7 +75,6 @@ BaselineOfPolyMath >> baseline: spec [
 				package: 'Math-Quaternion'
 					with:
 						[ spec requires: #('Math-Complex' 'Math-Numerical' 'Math-Polynomials') ];
-				package: 'Math-Random';
 				package: 'Math-Series';
 				package: 'Math-StatisticalMoments' with: [ spec requires: #('Math-Helpers' 'Math-DistributionForHistogram') ];
 				package: 'Math-TSNE';
@@ -116,8 +116,6 @@ BaselineOfPolyMath >> baseline: spec [
 					with: [ spec requires: #('Math-Polynomials') ];
 				package: 'Math-Tests-Quaternion'
 					with: [ spec requires: #('Math-Quaternion') ];
-				package: 'Math-Tests-Random'
-					with: [ spec requires: #('Math-Random') ];
 				package: 'Math-Tests-TSNE'
 					with: [ spec requires: #('Math-TSNE') ];
 				package: 'Math-UtilsDataServer'.
@@ -128,13 +126,13 @@ BaselineOfPolyMath >> baseline: spec [
 					with: #('Math-Benchmarks-ODE' 'Math-Benchmarks-KDTree');
 				group: 'Core'
 					with:
-					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'Math-Random' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Helpers' 'PolyMathDataStructures' 'Math-Core-Distribution');
+					#('Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'MathRandomNumbers' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat' 'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process' 'Math-Helpers' 'PolyMathDataStructures' 'Math-Core-Distribution');
 				group: 'Extensions'
 					with:
 					#('Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation' 'Math-KernelSmoothing' 'Math-Permutation' 'Math-KolmogorovSmirnov');
 				group: 'Tests'
 					with:
-					#('Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-Random' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution');
+					#('Math-Tests-Clustering' 'Math-Tests-Numerical' 'Math-Tests-Complex' 'Math-Tests-Quaternion' 'Math-Tests-ODE' 'Math-Tests-KDTree' 'Math-Tests-FunctionFit' 'Math-Tests-AutomaticDifferenciation' 'Math-Tests-FastFourierTransform' 'Math-Tests-Accuracy' 'Math-Tests-ArbitraryPrecisionFloat' 'Math-Tests-KolmogorovSmirnov' 'Math-Tests-Quantile' 'Math-Tests-Polynomials' 'Math-Tests-PrincipalComponentAnalysis' 'Math-Tests-KernelSmoothing' 'Math-Tests-Number-Extensions' 'Math-Tests-Permutation' 'Math-Tests-TSNE' 'Math-Tests-Core-Process' 'Math-Tests-Core-Distribution');
 				group: 'default'
 					with: #('Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy') ].
 				
@@ -157,6 +155,12 @@ BaselineOfPolyMath >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
+]
+
+{ #category : #dependencies }
+BaselineOfPolyMath >> randomNumbers: spec [
+
+	spec baseline: 'MathRandomNumbers' with: [ spec repository: 'github://PolyMathOrg/random-numbers:v1.x.x/src' ]
 ]
 
 { #category : #dependencies }
