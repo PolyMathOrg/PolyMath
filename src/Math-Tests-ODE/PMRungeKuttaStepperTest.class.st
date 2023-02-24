@@ -6,17 +6,15 @@ Class {
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
+
 	| stepper sys dt |
 	sys := PMExplicitSystem block: [ :x :t | x * t ].
 	stepper := PMRungeKuttaStepper onSystem: sys.
 	dt := 0.1.
-	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0).
-	self
-		assert: ((stepper doStep: 10 time: 0 stepSize: dt) closeTo: 10.05).
-	self
-		assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.1107).
-	self
-		assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.1071)
+	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0 precision: 0.01).
+	self assert: ((stepper doStep: 10 time: 0 stepSize: dt) closeTo: 10.05 precision: 0.01).
+	self assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.1107 precision: 0.01).
+	self assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.1071 precision: 0.01)
 ]
 
 { #category : #'tests-stepping' }

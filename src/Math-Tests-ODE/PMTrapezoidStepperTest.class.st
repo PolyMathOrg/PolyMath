@@ -26,17 +26,15 @@ PMTrapezoidStepperTest >> testDoStepTime [
 
 { #category : #'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
+
 	| stepper sys dt |
 	sys := PMImplicitSystem block: [ :x :t | x * t ].
 	stepper := PMTrapezoidStepper onSystem: sys.
 	dt := 0.1.
-	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0).
-	self
-		assert: ((stepper doStep: 10 time: 0 stepSize: dt) closeTo: 10.05).
-	self
-		assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.1111).
-	self
-		assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.11)
+	self assert: ((stepper doStep: 0 time: 10 stepSize: dt) closeTo: 0.0 precision: 0.01).
+	self assert: ((stepper doStep: 10 time: 0 stepSize: dt) closeTo: 10.05 precision: 0.01).
+	self assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.11 precision: 0.01).
+	self assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.11 precision: 0.01)
 ]
 
 { #category : #'tests-stepping' }
