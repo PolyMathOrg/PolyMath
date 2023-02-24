@@ -7,6 +7,9 @@ SmalltalkCISpec {
     }
   ],
   #testing : {
+    #include : {
+      #packages : [ 'Math-.*' ]
+    },
     #coverage : {
       #packages : [
         'Math-A*',
