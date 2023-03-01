@@ -31,30 +31,30 @@ BaselineOfPolyMath >> baseline: spec [
 			package: 'Math-Accuracy-Core';
 			package: 'Math-Accuracy-ODE' with: [ spec requires: #( 'Math-ODE' 'XMLWriter' ) ];
 			package: 'Math-ArbitraryPrecisionFloat' with: [ spec requires: #( 'ExtendedNumberParser' ) ];
-			package: 'Math-AutomaticDifferenciation' with: [ spec requires: #( 'Math-Numerical' 'PolyMathDataStructures' ) ];
+			package: 'Math-AutomaticDifferenciation' with: [ spec requires: #( 'Math-Numerical' 'MathVectorMatrix' ) ];
 			package: 'Math-Benchmarks-KDTree' with: [ spec requires: #( 'Math-KDTree' 'SMark' ) ];
 			package: 'Math-Benchmarks-ODE' with: [ spec requires: #( 'Math-ODE' 'SMark' 'XMLWriter' ) ];
-			package: 'Math-Chromosome' with: [ spec requires: #( 'PolyMathDataStructures' ) ];
-			package: 'Math-Clustering' with: [ spec requires: #( 'Math-Numerical' 'Math-Core-Process' 'PolyMathDataStructures' ) ];
+			package: 'Math-Chromosome' with: [ spec requires: #( 'MathVectorMatrix' ) ];
+			package: 'Math-Clustering' with: [ spec requires: #( 'Math-Numerical' 'Math-Core-Process' 'MathVectorMatrix' ) ];
 			package: 'Math-Complex' with: [ spec requires: #( 'Math-Numerical' 'Math-Polynomials' ) ];
 			package: 'Math-Helpers';
-			package: 'Math-Distributions' with: [ spec requires: #( 'PolyMathDataStructures' 'Math-Quantile' 'Math-Core-Process' ) ];
+			package: 'Math-Distributions' with: [ spec requires: #( 'MathVectorMatrix' 'Math-Quantile' 'Math-Core-Process' ) ];
 			package: 'Math-Core-Process' with: [ spec requires: #( 'Math-Helpers' ) ];
 			package: 'Math-Numerical'
-			with: [ spec requires: #( 'PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
+			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
 					   'Math-Series' ) ];
 			package: 'Math-Polynomials'
-			with: [ spec requires: #( 'PolyMathDataStructures' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
+			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
 					   'Math-Series' ) ];
 			package: 'Math-FastFourierTransform' with: [ spec requires: #( 'Math-Complex' ) ];
 			package: 'Math-FunctionFit'
-			with: [ spec requires: #( 'Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'PolyMathDataStructures' 'Math-Helpers' 'Math-Polynomials' ) ];
+			with: [ spec requires: #( 'Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core' 'MathVectorMatrix' 'Math-Helpers' 'Math-Polynomials' ) ];
 			package: 'Math-KDTree';
 			package: 'Math-Number-Extensions';
-			package: 'Math-ODE' with: [ spec requires: #( 'Math-Numerical' 'PolyMathDataStructures' 'Math-Polynomials' ) ];
-			package: 'Math-Permutation' with: [ spec requires: #( 'PolyMathDataStructures' 'Math-Core-Process' ) ];
+			package: 'Math-ODE' with: [ spec requires: #( 'Math-Numerical' 'MathVectorMatrix' 'Math-Polynomials' ) ];
+			package: 'Math-Permutation' with: [ spec requires: #( 'MathVectorMatrix' 'Math-Core-Process' ) ];
 			package: 'Math-Physics-Constants';
-			package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #( 'Math-Numerical' 'PolyMathDataStructures' 'Math-Polynomials' ) ];
+			package: 'Math-PrincipalComponentAnalysis' with: [ spec requires: #( 'Math-Numerical' 'MathVectorMatrix' 'Math-Polynomials' ) ];
 			package: 'Math-Quantile';
 			package: 'Math-Quaternion' with: [ spec requires: #( 'Math-Complex' 'Math-Numerical' 'Math-Polynomials' ) ];
 			package: 'Math-Series';
@@ -62,7 +62,7 @@ BaselineOfPolyMath >> baseline: spec [
 			package: 'Math-TSNE';
 			package: 'Math-Tests-Accuracy' with: [ spec requires: #( 'Math-Accuracy-Core' ) ];
 			package: 'Math-Tests-ArbitraryPrecisionFloat' with: [ spec requires: #( 'Math-ArbitraryPrecisionFloat' ) ];
-			package: 'Math-Tests-AutomaticDifferenciation' with: [ spec requires: #( 'Math-AutomaticDifferenciation' 'PolyMathDataStructures' ) ];
+			package: 'Math-Tests-AutomaticDifferenciation' with: [ spec requires: #( 'Math-AutomaticDifferenciation' 'MathVectorMatrix' ) ];
 			package: 'Math-Tests-Clustering' with: [ spec requires: #( 'Math-Clustering' 'Math-Distributions' 'Math-UtilsDataServer' ) ];
 			package: 'Math-Tests-Complex' with: [ spec requires: #( 'Math-Complex' ) ];
 			package: 'Math-Tests-Distributions' with: [ spec requires: #( 'Math-Distributions' ) ];
@@ -87,7 +87,7 @@ BaselineOfPolyMath >> baseline: spec [
 			with:
 				#( 'Math-Complex' 'Math-Quaternion' 'Math-Numerical' 'MathRandomNumbers' 'Math-KDTree' 'Math-ODE' 'Math-ArbitraryPrecisionFloat'
 				   'Math-FastFourierTransform' 'ExtendedNumberParser' 'Math-Quantile' 'Math-Physics-Constants' 'Math-Polynomials' 'Math-TSNE' 'Math-Core-Process'
-				   'Math-Helpers' 'PolyMathDataStructures' 'Math-Distributions' );
+				   'Math-Helpers' 'MathVectorMatrix' 'Math-Distributions' );
 			group: 'Extensions'
 			with: #( 'Math-Clustering' 'Math-Number-Extensions' 'Math-Chromosome' 'Math-PrincipalComponentAnalysis' 'Math-FunctionFit' 'Math-AutomaticDifferenciation'
 				   'Math-Permutation' );
