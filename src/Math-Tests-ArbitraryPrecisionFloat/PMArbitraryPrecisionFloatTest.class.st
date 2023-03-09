@@ -438,6 +438,7 @@ PMArbitraryPrecisionFloatTest >> testDivide [
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testEqual [
+
 	self assert: zero = zero.
 	self assert: one = one.
 	self assert: one = one copy.
@@ -451,13 +452,13 @@ PMArbitraryPrecisionFloatTest >> testEqual [
 	self assert: zero = 0.0.
 	self assert: 0.0 = zero.
 
-	self deny: two = (1/2).
-	self deny: (1/2) = two.
+	self deny: two = (1 / 2).
+	self deny: 1 / 2 = two.
 	self deny: zero = 1.0.
 	self deny: 0.0 = one.
 
-	self deny: one = nil.
-	self deny: nil = one.
+	self deny: one isNil.
+	self deny: nil = one
 ]
 
 { #category : #'testing-functions' }
