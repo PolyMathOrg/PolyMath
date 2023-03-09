@@ -151,10 +151,15 @@ PMGeneralFunctionFitTest >> testRelativeError [
 
 { #category : #tests }
 PMGeneralFunctionFitTest >> testResetBestPoints [
-fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
-fit evaluate .
-fit resetBestPoints.
-self assert: (fit optimizer bestPoints isEmpty )
+
+	fit := PMGeneralFunctionFit
+		       function: f
+		       data: col
+		       minimumValues: 0
+		       maximumValues: 5.
+	fit evaluate.
+	fit resetBestPoints.
+	self assertEmpty: fit optimizer bestPoints
 ]
 
 { #category : #tests }

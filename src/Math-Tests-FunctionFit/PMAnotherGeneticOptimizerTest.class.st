@@ -53,14 +53,15 @@ PMAnotherGeneticOptimizerTest >> testEvaluate [
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testInitializeIterations [
-self assert: (go bestPoints isEmpty ).
-go initializeIterations .
-self deny: (go bestPoints isEmpty ).
-go calcStatistics: true.
-go evaluate .
-self deny: (go bestValueHistory isEmpty  ).
-go initializeIterations .
-self assert: (go bestValueHistory isEmpty  )
+
+	self assertEmpty: go bestPoints.
+	go initializeIterations.
+	self denyEmpty: go bestPoints.
+	go calcStatistics: true.
+	go evaluate.
+	self denyEmpty: go bestValueHistory.
+	go initializeIterations.
+	self assertEmpty: go bestValueHistory
 ]
 
 { #category : #tests }
@@ -169,11 +170,12 @@ PMAnotherGeneticOptimizerTest >> testaddPointAt [
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testcalcStatistics [
+
 	| s |
 	go evaluate.
-	self assert: go bestValueHistory isEmpty.
-	self assert: go worstValueHistory isEmpty.
-	self assert: go whateverHistory isEmpty.
+	self assertEmpty: go bestValueHistory.
+	self assertEmpty: go worstValueHistory.
+	self assertEmpty: go whateverHistory.
 	go calcStatistics: true.
 	go evaluate.
 	s := go iterations.
@@ -184,7 +186,8 @@ PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testresetBestPoints [
-go evaluate .
-go resetBestPoints .
-self assert: (go bestPoints isEmpty  )
+
+	go evaluate.
+	go resetBestPoints.
+	self assertEmpty: go bestPoints
 ]

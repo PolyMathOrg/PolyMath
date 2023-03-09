@@ -40,13 +40,14 @@ self assert: i < p."
 
 { #category : #tests }
 PMPermutationTest >> testAsCycles [
-	self assert: PMPermutation new asCycles isEmpty.
-	self assert: (PMPermutation identity: 1) asCycles equals: #((1)).
-	self assert: (PMPermutation identity: 3) asCycles equals: #((1)(2)(3)).
-	self assert: (PMPermutation ordering: #(3 1 4 2)) asCycles equals: #((1 3 4 2)).
-	self assert: (PMPermutation ordering: #(2 4 3 6 7 8 5 1)) asCycles equals: #((1 2 4 6 8)(3)(5 7)).
-	self assert: (PMPermutation ordering: #(5 4 2 3 1)) asCycles equals: #((1 5)(2 4 3)).
-	self assert: (PMPermutation ordering: #(1 2 5 3 4 6)) asCycles equals: #((1)(2)(3 5 4)(6))
+
+	self assertEmpty: PMPermutation new asCycles.
+	self assert: (PMPermutation identity: 1) asCycles equals: #( #( 1 ) ).
+	self assert: (PMPermutation identity: 3) asCycles equals: #( #( 1 ) #( 2 ) #( 3 ) ).
+	self assert: (PMPermutation ordering: #( 3 1 4 2 )) asCycles equals: #( #( 1 3 4 2 ) ).
+	self assert: (PMPermutation ordering: #( 2 4 3 6 7 8 5 1 )) asCycles equals: #( #( 1 2 4 6 8 ) #( 3 ) #( 5 7 ) ).
+	self assert: (PMPermutation ordering: #( 5 4 2 3 1 )) asCycles equals: #( #( 1 5 ) #( 2 4 3 ) ).
+	self assert: (PMPermutation ordering: #( 1 2 5 3 4 6 )) asCycles equals: #( #( 1 ) #( 2 ) #( 3 5 4 ) #( 6 ) )
 ]
 
 { #category : #tests }
@@ -99,16 +100,17 @@ PMPermutationTest >> testExtendTo [
 
 { #category : #'class tests' }
 PMPermutationTest >> testFromCycles [
-	self assert: (PMPermutation fromCycles: #()) isEmpty.
-	self assert: (PMPermutation fromCycles: #(#())) isEmpty.
-	self assert: (PMPermutation fromCycles: #(#(1))) equals: #(1).
-	self assert: (PMPermutation size: 3 fromCycles: #()) equals: #(1 2 3).
-	self assert: (PMPermutation size: 3 fromCycles: #(#())) equals: #(1 2 3).
-	self assert: (PMPermutation fromCycles: #(#(1 3 4 2))) equals: #(3 1 4 2).
-	self assert: (PMPermutation fromCycles: #(#(1 2 4 6 8) #(5 7))) equals: #(2 4 3 6 7 8 5 1).
-	self assert: (PMPermutation fromCycles: #(#(1 5) #(2 4 3))) equals: #(5 4 2 3 1).
-	self assert: (PMPermutation fromCycles: #(#(1) #(3 5 4) #(6) #(2))) equals: #(1 2 5 3 4 6).
-	self assert: (PMPermutation size: 6 fromCycles: #(#(3 5 4))) equals: #(1 2 5 3 4 6)
+
+	self assertEmpty: (PMPermutation fromCycles: #(  )).
+	self assertEmpty: (PMPermutation fromCycles: #( #(  ) )).
+	self assert: (PMPermutation fromCycles: #( #( 1 ) )) equals: #( 1 ).
+	self assert: (PMPermutation size: 3 fromCycles: #(  )) equals: #( 1 2 3 ).
+	self assert: (PMPermutation size: 3 fromCycles: #( #(  ) )) equals: #( 1 2 3 ).
+	self assert: (PMPermutation fromCycles: #( #( 1 3 4 2 ) )) equals: #( 3 1 4 2 ).
+	self assert: (PMPermutation fromCycles: #( #( 1 2 4 6 8 ) #( 5 7 ) )) equals: #( 2 4 3 6 7 8 5 1 ).
+	self assert: (PMPermutation fromCycles: #( #( 1 5 ) #( 2 4 3 ) )) equals: #( 5 4 2 3 1 ).
+	self assert: (PMPermutation fromCycles: #( #( 1 ) #( 3 5 4 ) #( 6 ) #( 2 ) )) equals: #( 1 2 5 3 4 6 ).
+	self assert: (PMPermutation size: 6 fromCycles: #( #( 3 5 4 ) )) equals: #( 1 2 5 3 4 6 )
 ]
 
 { #category : #'class tests' }

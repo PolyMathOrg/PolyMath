@@ -28,11 +28,11 @@ PMNNStoreTest >> testCopyEmpty [
 	| n m |
 	n := PMNNStore newFrom: #( #( 1 $a ) #( 3 1.0 ) #( 0 '2' ) ).
 	n := n copyEmpty.
-	self assert: n isEmpty.
+	self assertEmpty: n.
 	n
 		add: #( 2 10 );
 		add: #( 1 100 ).
-	self deny: n isEmpty.
+	self denyEmpty: n.
 	self assert: n maxDistance equals: Float infinity. "because it is not yet full"
 	self assert: n data equals: #( 100 10 ).
 	m := n copyEmpty.
@@ -77,7 +77,7 @@ PMNNStoreTest >> testExtremeCase [
 	n add: #( 1 1 ). "adding should also always be possible, although it will not be added in this case"
 	self deny: n maxDistance equals: 1.
 	n add: (Array with: 0 - Float infinity with: 1). "and this extreme case too."
-	self assert: n isEmpty.
+	self assertEmpty: n.
 	self assert: n data equals: #(  ).
 	self should: [ n add: (Array with: nil with: 1) ] raise: Error "but this should always raise an error (not only in NNStores with size 0), also in subclasses, otherwise one can have strange bugs"
 ]
@@ -131,14 +131,15 @@ PMNNStoreTest >> testInitialize3 [
 
 { #category : #tests }
 PMNNStoreTest >> testNew [
+
 	| n |
 	n := PMNNStore new: 1.
-	self assert: n isEmpty.
-	self assert: n data equals: #().
-	self assert: n completeData equals: #().
-	n add: #(1 2).
-	n add: #(3 1).	"will not be added"
-	self assert: n data equals: #(2)
+	self assertEmpty: n.
+	self assert: n data equals: #(  ).
+	self assert: n completeData equals: #(  ).
+	n add: #( 1 2 ).
+	n add: #( 3 1 ). "will not be added"
+	self assert: n data equals: #( 2 )
 ]
 
 { #category : #tests }
@@ -153,13 +154,14 @@ PMNNStoreTest >> testNew2 [
 
 { #category : #tests }
 PMNNStoreTest >> testNew3 [
+
 	| n |
 	n := PMNNStore new: 0.
-	self assert: n isEmpty.
+	self assertEmpty: n.
 	self assert: n isFull.
 	self assert: n equals: n copyEmpty.
-	self assert: n data equals: #().
-	self assert: n completeData equals: #()
+	self assert: n data equals: #(  ).
+	self assert: n completeData equals: #(  )
 ]
 
 { #category : #tests }
