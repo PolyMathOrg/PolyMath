@@ -465,28 +465,27 @@ PMComplexNumber >> cosh [
 { #category : #arithmetic }
 PMComplexNumber >> divideFastAndSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
+
 	" Both operands are scaled to avoid arithmetic overflow. 
 	  This algorithm works for a wide range of values, and it needs only three divisions.
 	  Note: #reciprocal uses #/ for devision "
-	 
+
 	| r d newReal newImaginary |
-	anObject isComplexNumber ifTrue:
-		[anObject real abs > anObject imaginary abs
-		  ifTrue:
-		    [r := anObject imaginary / anObject real.
-			d := r*anObject imaginary + anObject real.
-			newReal := r*imaginary + real/d.
-			newImaginary := r negated * real + imaginary/d.
-		    ]
-		  ifFalse:
-		    [r := anObject real / anObject imaginary.
-			d := r*anObject real + anObject imaginary.
-			newReal := r*real + imaginary/d.
-			newImaginary := r*imaginary - real/d.
-		    ].
-		
-		^ PMComplexNumber real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+	anObject isComplexNumber ifTrue: [
+		newImaginary := anObject real abs > anObject imaginary abs
+			                ifTrue: [
+				                r := anObject imaginary / anObject real.
+				                d := r * anObject imaginary + anObject real.
+				                newReal := r * imaginary + real / d.
+				                r negated * real + imaginary / d ]
+			                ifFalse: [
+				                r := anObject real / anObject imaginary.
+				                d := r * anObject real + anObject imaginary.
+				                newReal := r * real + imaginary / d.
+				                r * imaginary - real / d ].
+
+		^ PMComplexNumber real: newReal imaginary: newImaginary ].
+	^ anObject adaptToComplex: self andSend: #/
 ]
 
 { #category : #arithmetic }
@@ -623,20 +622,18 @@ PMComplexNumber >> productWithVector: aVector [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedTo: aNumber [ 
+PMComplexNumber >> raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue:
-		["Do the special case of integer power"
-		^ self raisedToInteger: aNumber].
-	
-	0 = aNumber ifTrue: [^ self class one].	"Special case of exponent=0"
-	1 = aNumber ifTrue: [^ self].	"Special case of exponent=1"
-	0 = self ifTrue: [				"Special case of self = 0"
-		aNumber < 0
-			ifTrue: [^ (ZeroDivide dividend: self) signal]
-			ifFalse: [^ self]].
-	^ (aNumber * self ln) exp		"Otherwise use logarithms"
+	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+
+	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
+	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
+	0 = self ifTrue: [ "Special case of self = 0"
+		^ aNumber < 0
+			  ifTrue: [ (ZeroDivide dividend: self) signal ]
+			  ifFalse: [ self ] ].
+	^ (aNumber * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }

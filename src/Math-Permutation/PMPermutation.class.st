@@ -24,25 +24,27 @@ Class {
 
 { #category : #accessing }
 PMPermutation class >> allOfSize: anInteger [
-"generates all permutations of the given size, in other words it produces the symmetric group of degree anInteger.
+	"generates all permutations of the given size, in other words it produces the symmetric group of degree anInteger.
 Heap's algorithm, used here, seems to be just a tiny bit faster than using #permutationsDo:"
-	| result perm c i ci|
-	anInteger = 0 ifTrue:[^#()].
+
+	| result perm c i ci |
+	anInteger = 0 ifTrue: [ ^ #(  ) ].
 	perm := self identity: anInteger.
-	(result := WriteStream on:(Array new: anInteger factorial)) nextPut: perm copy.
+	(result := WriteStream on: (Array new: anInteger factorial)) nextPut: perm copy.
 	c := Array new: anInteger withAll: 1.
 	i := 1.
-	[ i <= anInteger ]
-		whileTrue: [ 
-			(ci :=(c at: i)) < i
-				ifTrue: [ 
-					i odd
-						ifTrue: [ perm swap: 1 with: i ]
-						ifFalse: [ perm swap: ci with: i ].
-					result nextPut: perm copy.
-					c at: i put: ci + 1.
-					i := 1 ]
-				ifFalse: [ c at: i put: 1. i := i + 1 ] ].
+	[ i <= anInteger ] whileTrue: [
+		i := (ci := c at: i) < i
+			     ifTrue: [
+				     i odd
+					     ifTrue: [ perm swap: 1 with: i ]
+					     ifFalse: [ perm swap: ci with: i ].
+				     result nextPut: perm copy.
+				     c at: i put: ci + 1.
+				     1 ]
+			     ifFalse: [
+				     c at: i put: 1.
+				     i + 1 ] ].
 	^ result contents
 ]
 

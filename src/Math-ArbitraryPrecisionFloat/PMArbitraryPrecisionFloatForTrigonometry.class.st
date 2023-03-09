@@ -14,7 +14,7 @@ Class {
 	#instVars : [
 		'pi'
 	],
-	#category : 'Math-ArbitraryPrecisionFloat'
+	#category : #'Math-ArbitraryPrecisionFloat'
 }
 
 { #category : #private }
@@ -25,15 +25,20 @@ PMArbitraryPrecisionFloatForTrigonometry >> cos [
 	x := self moduloNegPiToPi.
 	x inPlaceAbs.
 	halfPi := pi timesTwoPower: -1.
-	(neg := x > halfPi) ifTrue: [x inPlaceSubtract: pi; inPlaceNegated].
+	(neg := x > halfPi) ifTrue: [
+		x
+			inPlaceSubtract: pi;
+			inPlaceNegated ].
 	quarterPi := halfPi timesTwoPower: -1.
-	x > quarterPi
-		ifTrue:
-			[x inPlaceSubtract: halfPi; inPlaceNegated.
-			x := self sin: x]
-		ifFalse: [x := self cos: x].
-	neg ifTrue: [x inPlaceNegated].
-	^x asArbitraryPrecisionFloatNumBits: nBits
+	x := x > quarterPi
+		     ifTrue: [
+			     x
+				     inPlaceSubtract: halfPi;
+				     inPlaceNegated.
+			     self sin: x ]
+		     ifFalse: [ self cos: x ].
+	neg ifTrue: [ x inPlaceNegated ].
+	^ x asArbitraryPrecisionFloatNumBits: nBits
 ]
 
 { #category : #private }
@@ -98,15 +103,20 @@ PMArbitraryPrecisionFloatForTrigonometry >> sin [
 	neg := x negative.
 	x inPlaceAbs.
 	halfPi := pi timesTwoPower: -1.
-	x > halfPi ifTrue: [x inPlaceSubtract: pi; inPlaceNegated].
+	x > halfPi ifTrue: [
+		x
+			inPlaceSubtract: pi;
+			inPlaceNegated ].
 	quarterPi := halfPi timesTwoPower: -1.
-	x > quarterPi
-		ifTrue:
-			[x inPlaceSubtract: halfPi; inPlaceNegated.
-			x := self cos: x]
-		ifFalse: [x := self sin: x].
-	neg ifTrue: [x inPlaceNegated].
-	^x asArbitraryPrecisionFloatNumBits: nBits
+	x := x > quarterPi
+		     ifTrue: [
+			     x
+				     inPlaceSubtract: halfPi;
+				     inPlaceNegated.
+			     self cos: x ]
+		     ifFalse: [ self sin: x ].
+	neg ifTrue: [ x inPlaceNegated ].
+	^ x asArbitraryPrecisionFloatNumBits: nBits
 ]
 
 { #category : #private }
@@ -138,17 +148,21 @@ PMArbitraryPrecisionFloatForTrigonometry >> sincos [
 	sinneg := x negative.
 	x inPlaceAbs.
 	halfPi := pi timesTwoPower: -1.
-	(cosneg := x > halfPi) ifTrue: [x inPlaceSubtract: pi; inPlaceNegated].
+	(cosneg := x > halfPi) ifTrue: [
+		x
+			inPlaceSubtract: pi;
+			inPlaceNegated ].
 	quarterPi := halfPi timesTwoPower: -1.
-	x > quarterPi
-		ifTrue:
-			[x inPlaceSubtract: halfPi; inPlaceNegated.
-			sincos := (self sincos: x) reversed]
-		ifFalse:
-			[sincos := self sincos: x].
-	sinneg ifTrue: [sincos first inPlaceNegated].
-	cosneg ifTrue: [sincos last inPlaceNegated].
-	^sincos collect: [:e | e asArbitraryPrecisionFloatNumBits: nBits]
+	sincos := x > quarterPi
+		          ifTrue: [
+			          x
+				          inPlaceSubtract: halfPi;
+				          inPlaceNegated.
+			          (self sincos: x) reversed ]
+		          ifFalse: [ self sincos: x ].
+	sinneg ifTrue: [ sincos first inPlaceNegated ].
+	cosneg ifTrue: [ sincos last inPlaceNegated ].
+	^ sincos collect: [ :e | e asArbitraryPrecisionFloatNumBits: nBits ]
 ]
 
 { #category : #private }
@@ -181,22 +195,24 @@ PMArbitraryPrecisionFloatForTrigonometry >> tan [
 	neg := x negative.
 	x inPlaceAbs.
 	halfPi := pi timesTwoPower: -1.
-	(x > halfPi)
-		ifTrue:
-			[x inPlaceSubtract: pi; inPlaceNegated.
-			neg := neg not].
-	x exponent * -4 >= nBits
-		ifTrue: [tan := x powerExpansionTanPrecision: x numBits]
-		ifFalse:
-			[quarterPi := halfPi timesTwoPower: -1.
-			x > quarterPi
-				ifTrue:
-					[x inPlaceSubtract: halfPi; inPlaceNegated.
-					sincos := (self sincos: x) reversed]
-				ifFalse:
-					[sincos := self sincos: x].
-			sincos first inPlaceDivideBy: sincos last.
-			tan := sincos first].
-	neg ifTrue: [tan inPlaceNegated].
-	^tan asArbitraryPrecisionFloatNumBits: nBits
+	x > halfPi ifTrue: [
+		x
+			inPlaceSubtract: pi;
+			inPlaceNegated.
+		neg := neg not ].
+	tan := x exponent * -4 >= nBits
+		       ifTrue: [ x powerExpansionTanPrecision: x numBits ]
+		       ifFalse: [
+			       quarterPi := halfPi timesTwoPower: -1.
+			       sincos := x > quarterPi
+				                 ifTrue: [
+					                 x
+						                 inPlaceSubtract: halfPi;
+						                 inPlaceNegated.
+					                 (self sincos: x) reversed ]
+				                 ifFalse: [ self sincos: x ].
+			       sincos first inPlaceDivideBy: sincos last.
+			       sincos first ].
+	neg ifTrue: [ tan inPlaceNegated ].
+	^ tan asArbitraryPrecisionFloatNumBits: nBits
 ]

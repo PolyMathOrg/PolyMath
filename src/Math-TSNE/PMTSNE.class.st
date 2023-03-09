@@ -637,28 +637,22 @@ PMTSNE >> updateProgressEveryDefaultValue [
 
 { #category : #'stepping and presenter' }
 PMTSNE >> updateProgressWithError [
+
 	| error |
-	
-	(iterations % updateProgressEvery = 0)
-		ifFalse: [ ^ self ].
-	
+	iterations % updateProgressEvery = 0 ifFalse: [ ^ self ].
+
 	"Computing error can take more than 10% additional time.
 	 Setting this to false will speedup computation."
-	updateError ifFalse: [ error := '' ]
-	ifTrue: [
-		error := PMMatrix rows: x dimension x columns: x dimension x.
-		1 to: x dimension x do: [ :i | 
-			1 to: x dimension x do: [ :j | 
-				error rowAt: i columnAt: j
-					put: (p rowAt: i columnAt: j) * ((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln 
-			] ].
-		error := error sum sum ].
-	
-	job title: (
-		'Step 3/3: Performing gradient descent {1}/{2} error = {3}'
-			format: (Array with: iterations with: maxIter with: error)
-		).
-	job progress: iterations / maxIter.
+	error := updateError
+		         ifFalse: [ '' ]
+		         ifTrue: [
+			         error := PMMatrix rows: x dimension x columns: x dimension x.
+			         1 to: x dimension x do: [ :i |
+			         1 to: x dimension x do: [ :j | error rowAt: i columnAt: j put: (p rowAt: i columnAt: j) * ((p rowAt: i columnAt: j) / (q rowAt: i columnAt: j)) ln ] ].
+			         error sum sum ].
+
+	job title: ('Step 3/3: Performing gradient descent {1}/{2} error = {3}' format: (Array with: iterations with: maxIter with: error)).
+	job progress: iterations / maxIter
 ]
 
 { #category : #accessing }
