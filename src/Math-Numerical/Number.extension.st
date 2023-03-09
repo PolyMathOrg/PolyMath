@@ -64,12 +64,12 @@ Number >> logGamma [
 
 { #category : #'*Math-Numerical' }
 Number >> relativelyEqualsTo: aNumber upTo: aSmallNumber [
-		"compare to Float>>closeTo:
+	"compare to Float>>closeTo:
 		generally called from Number>>equalsTo:"
+
 	| norm |
 	norm := self abs max: aNumber abs.
-	^norm <= PMFloatingPointMachine new defaultNumericalPrecision
-		or: [ (self - aNumber) abs < ( aSmallNumber * norm)]
+	^ norm <= Float machineEpsilon or: [ (self - aNumber) abs < (aSmallNumber * norm) ]
 ]
 
 { #category : #'*Math-Numerical' }

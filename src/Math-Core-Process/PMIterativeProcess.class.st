@@ -33,7 +33,8 @@ PMIterativeProcess class >> defaultMaximumIterations [
 { #category : #default }
 PMIterativeProcess class >> defaultPrecision [
 	"Private - Answers the default precision for newly created instances."
-	^PMFloatingPointMachine new defaultNumericalPrecision
+
+	^ Float machineEpsilon
 ]
 
 { #category : #initialization }
@@ -119,10 +120,10 @@ PMIterativeProcess >> precision [
 
 { #category : #information }
 PMIterativeProcess >> precisionOf: aNumber1 relativeTo: aNumber2 [
-	
-	^aNumber2 > PMFloatingPointMachine new defaultNumericalPrecision
-		ifTrue: [ aNumber1 / aNumber2]
-		ifFalse:[ aNumber1]
+
+	^ aNumber2 > Float machineEpsilon
+		  ifTrue: [ aNumber1 / aNumber2 ]
+		  ifFalse: [ aNumber1 ]
 ]
 
 { #category : #information }

@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'coefficients'
 	],
-	#category : 'Math-Polynomials'
+	#category : #'Math-Polynomials'
 }
 
 { #category : #creation }
@@ -233,8 +233,8 @@ PMPolynomial >> reciprocal [
 
 { #category : #information }
 PMPolynomial >> roots [
-	
-	^self roots: PMFloatingPointMachine new defaultNumericalPrecision
+
+	^ self roots: Float machineEpsilon
 ]
 
 { #category : #information }

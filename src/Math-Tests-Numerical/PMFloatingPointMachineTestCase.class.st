@@ -5,49 +5,6 @@ Class {
 }
 
 { #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecision [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self assert: mach machinePrecision > 0.
-	self assert: mach machinePrecision < 1.
-	self assert: mach negativeMachinePrecision > 0.
-	self assert: mach negativeMachinePrecision < 1.
-	self
-		assert: (mach radix raisedTo: mach negativeMachinePrecision)
-		equals: 1.0.
-	self assert: (mach radix raisedTo: mach machinePrecision) equals: 1.0
-]
-
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionIsFloatPrecision [
-	"sanity check. Take logs to find the exponent, then compare to Float's method"
-
-	| prec |
-	prec := (PMFloatingPointMachine new machinePrecision ln
-		/ PMFloatingPointMachine new radix ln) negated.
-	self assert: prec equals: Float precision
-]
-
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberGreaterThanAnyFractionOfItself [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self
-		assert:
-			mach largestNumber * (1 - mach defaultNumericalPrecision)
-				< mach largestNumber
-]
-
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberIsLargest [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self
-		assert: mach largestNumber * (1 + mach defaultNumericalPrecision)
-		equals: Float infinity
-]
-
-{ #category : #precision }
 PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberNotInfinity [
 	| mach |
 	mach := PMFloatingPointMachine new.

@@ -104,7 +104,7 @@ firstResult := go evaluate .
 self errorType =#squared 
 	ifTrue: [ff :=PMFunctionFit function: errorFunction function data: errorFunction data ].
 ff parameters: firstResult.
-ff desiredPrecision: PMFloatingPointMachine new machinePrecision.
+ff desiredPrecision: Float machineEpsilon.
 ff maximumIterations: 1000 .
 result:=[ff evaluate .ff parameters] 
 			onErrorDo: [ 

@@ -19,29 +19,27 @@ PMIncompleteBetaFunction class >> shape: aNumber1 shape: aNumber2 [
 ]
 
 { #category : #private }
-PMIncompleteBetaFunction >> evaluateFraction: aNumber [ 
+PMIncompleteBetaFunction >> evaluateFraction: aNumber [
 
-	fraction isNil 
-		ifTrue: 
-			[fraction := PMIncompleteBetaFractionTermServer new.
-			fraction setParameter: alpha1 second: alpha2].
+	fraction isNil ifTrue: [
+		fraction := PMIncompleteBetaFractionTermServer new.
+		fraction setParameter: alpha1 second: alpha2 ].
 	fraction setArgument: aNumber.
-	^(PMContinuedFraction server: fraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMContinuedFraction server: fraction)
+		  desiredPrecision: Float machineEpsilon;
+		  evaluate
 ]
 
 { #category : #private }
-PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [ 
+PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [
 
-	inverseFraction isNil 
-		ifTrue: 
-			[inverseFraction := PMIncompleteBetaFractionTermServer new.
-			inverseFraction setParameter: alpha2 second: alpha1].
-	inverseFraction setArgument: (1 - aNumber).
-	^(PMContinuedFraction server: inverseFraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	inverseFraction isNil ifTrue: [
+		inverseFraction := PMIncompleteBetaFractionTermServer new.
+		inverseFraction setParameter: alpha2 second: alpha1 ].
+	inverseFraction setArgument: 1 - aNumber.
+	^ (PMContinuedFraction server: inverseFraction)
+		  desiredPrecision: Float machineEpsilon;
+		  evaluate
 ]
 
 { #category : #initialization }

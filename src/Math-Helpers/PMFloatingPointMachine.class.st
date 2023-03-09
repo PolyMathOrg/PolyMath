@@ -19,9 +19,7 @@ Class {
 	#name : #PMFloatingPointMachine,
 	#superclass : #Object,
 	#instVars : [
-		'defaultNumericalPrecision',
 		'radix',
-		'machinePrecision',
 		'negativeMachinePrecision',
 		'smallestNumber',
 		'largestNumber',
@@ -58,19 +56,6 @@ PMFloatingPointMachine >> computeLargestNumber [
 	    largestNumber := fullMantissaNumber.
 		true] whileTrue: [ ].
 		] on: Error do: [ :signal | signal return: nil]
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> computeMachinePrecision [
-	
-	| one zero inverseRadix tmp |
-	one := 1.0.
-	zero := 0.0.
-	inverseRadix := one / self radix asFloat.
-	machinePrecision := one.
-	[ tmp := one + machinePrecision.
-	  tmp - one = zero]
-		whileFalse:[  machinePrecision := machinePrecision * inverseRadix]
 ]
 
 { #category : #information }
@@ -123,14 +108,6 @@ PMFloatingPointMachine >> computeSmallestNumber [
 ]
 
 { #category : #information }
-PMFloatingPointMachine >> defaultNumericalPrecision [
-
-	defaultNumericalPrecision isNil
-		ifTrue: [ defaultNumericalPrecision := self machinePrecision sqrt].
-	^defaultNumericalPrecision
-]
-
-{ #category : #information }
 PMFloatingPointMachine >> largestExponentArgument [
 	
 	largestExponentArgument isNil
@@ -144,14 +121,6 @@ PMFloatingPointMachine >> largestNumber [
 	largestNumber isNil
 		ifTrue: [ self computeLargestNumber].
 	^largestNumber
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> machinePrecision [
-	
-	machinePrecision isNil
-		ifTrue: [ self computeMachinePrecision].
-	^machinePrecision
 ]
 
 { #category : #information }
@@ -179,7 +148,7 @@ PMFloatingPointMachine >> showParameters [
 			nextPutAll: 'Radix: '.
 	self radix printOn: Transcript.
 	Transcript cr; nextPutAll: 'Machine precision: '.
-	self machinePrecision printOn: Transcript.
+	Float machineEpsilon printOn: Transcript.
 	Transcript cr; nextPutAll: 'Negative machine precision: '.
 	self negativeMachinePrecision printOn: Transcript.
 	Transcript cr; nextPutAll: 'Smallest number: '.

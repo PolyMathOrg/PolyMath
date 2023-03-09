@@ -14,12 +14,13 @@ Class {
 		'whateverHistory',
 		'originalFunction'
 	],
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #information }
 PMAnotherGeneticOptimizer class >> defaultPrecision [
-	^PMFloatingPointMachine new machinePrecision
+
+	^ Float machineEpsilon
 ]
 
 { #category : #'instance creation' }

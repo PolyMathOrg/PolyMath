@@ -17,29 +17,27 @@ PMIncompleteGammaFunction class >> shape: aNumber [
 ]
 
 { #category : #private }
-PMIncompleteGammaFunction >> evaluateFraction: aNumber [ 
+PMIncompleteGammaFunction >> evaluateFraction: aNumber [
 
-	fraction isNil 
-		ifTrue: 
-			[fraction := PMIncompleteGammaFractionTermServer new.
-			fraction setParameter: alpha].
+	fraction isNil ifTrue: [
+		fraction := PMIncompleteGammaFractionTermServer new.
+		fraction setParameter: alpha ].
 	fraction setArgument: aNumber.
-	^(PMContinuedFraction server: fraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMContinuedFraction server: fraction)
+		  desiredPrecision: Float machineEpsilon;
+		  evaluate
 ]
 
 { #category : #private }
 PMIncompleteGammaFunction >> evaluateSeries: aNumber [
 
-	series isNil
-		ifTrue: [ series := PMIncompleteGammaSeriesTermServer new.
-				  series setParameter: alpha.
-				].
+	series isNil ifTrue: [
+		series := PMIncompleteGammaSeriesTermServer new.
+		series setParameter: alpha ].
 	series setArgument: aNumber.
-	^(PMInfiniteSeries server: series)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMInfiniteSeries server: series)
+		  desiredPrecision: Float machineEpsilon;
+		  evaluate
 ]
 
 { #category : #initialization }
