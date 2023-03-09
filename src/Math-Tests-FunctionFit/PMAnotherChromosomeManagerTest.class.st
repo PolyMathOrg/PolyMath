@@ -37,18 +37,20 @@ PMAnotherChromosomeManagerTest >> testAccessing [
 
 { #category : #tests }
 PMAnotherChromosomeManagerTest >> testCrossOver [
-|a|
-1 to: 20 do: [:i| a:=cm crossover: #(1 2 3) and: #(4 5 6).
-	1 to:2 do:[:index|
-		self assert: (#(1 4) includes: ((a at: index) first)).
-		self assert: (#(2 5)includes:((a at: index) at: 2)).
-		self assert: (#(3 6) includes:((a at: index) at: 3)).].
-	self deny: (((a at: 1)at: 2)=((a at: 2)at: 2)).
-	self deny: (((a at: 1)at: 1)=((a at: 2)at: 1)).
-	self deny: (((a at: 1)at: 3)=((a at: 2)at: 3)).
-	a].
-a:= a collect: [:g|g first].
-self assert: ((a occurrencesOf: #(1 2 3))<20)
+
+	| a |
+	1 to: 20 do: [ :i |
+		a := cm crossover: #( 1 2 3 ) and: #( 4 5 6 ).
+		1 to: 2 do: [ :index |
+			self assert: (#( 1 4 ) includes: (a at: index) first).
+			self assert: (#( 2 5 ) includes: ((a at: index) at: 2)).
+			self assert: (#( 3 6 ) includes: ((a at: index) at: 3)) ].
+		self deny: ((a at: 1) at: 2) equals: ((a at: 2) at: 2).
+		self deny: ((a at: 1) at: 1) equals: ((a at: 2) at: 1).
+		self deny: ((a at: 1) at: 3) equals: ((a at: 2) at: 3).
+		a ].
+	a := a collect: [ :g | g first ].
+	self assert: (a occurrencesOf: #( 1 2 3 )) < 20
 ]
 
 { #category : #tests }
@@ -142,14 +144,15 @@ PMAnotherChromosomeManagerTest >> testProcessand [
 
 { #category : #tests }
 PMAnotherChromosomeManagerTest >> testRandomizePopulation [
-|g|
-self setHammersleyTest: true.
-g :=cm population first.
-self setHammersleyTest: false.
-self deny: (cm population first =g).
-g :=cm population first.
-self setHammersleyTest: false.
-self deny: (cm population first =g)
+
+	| g |
+	self setHammersleyTest: true.
+	g := cm population first.
+	self setHammersleyTest: false.
+	self deny: cm population first equals: g.
+	g := cm population first.
+	self setHammersleyTest: false.
+	self deny: cm population first equals: g
 ]
 
 { #category : #tests }

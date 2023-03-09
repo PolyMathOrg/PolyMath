@@ -325,7 +325,7 @@ PMNumericalMethodsTestCase >> testLanczosFormulaObject [
 	second := PMLanczosFormula new.
 	self shouldnt: [ first == second ].
 	third := PMLanczosFormula new.
-	self assert: second == third
+	self assert: second identicalTo: third
 ]
 
 { #category : #estimation }
@@ -431,21 +431,22 @@ PMNumericalMethodsTestCase >> testLineSearch2 [
 
 	This case does not require line search, should return 1.
 	"
+
 	| xOld p functionBlock g0 g1 dg0 xAnswer |
 	xOld := 2.0.
-	p := ((xOld sqrt - xOld) / (0.5 / xOld sqrt - 1)) negated.
-	functionBlock := [  :x | 0.5 * ((x * p + xOld) sqrt - (x * p + xOld)) squared ].
+	p := (xOld sqrt - xOld / (0.5 / xOld sqrt - 1)) negated.
+	functionBlock := [ :x | 0.5 * ((x * p + xOld) sqrt - (x * p + xOld)) squared ].
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
 	xAnswer := (PMLineSearch
-					function: functionBlock
-					valueAtZero: g0
-					derivativeAtZero: dg0
-					valueAtOne: g1) evaluate.
+		            function: functionBlock
+		            valueAtZero: g0
+		            derivativeAtZero: dg0
+		            valueAtOne: g1) evaluate.
 	self assert: xAnswer equals: 1.0.
 	self assert: (functionBlock value: xAnswer) < g0.
-	self assert: (functionBlock value: xAnswer) = g1
+	self assert: (functionBlock value: xAnswer) equals: g1
 ]
 
 { #category : #'iterative algorithms' }
@@ -765,13 +766,14 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 
 	This should converge in two iterations: the first iteration produces large step,
 	but the second iteration step is zero => convergence"
+
 	| zeroFinder result |
-	zeroFinder := PMNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1  ].
+	zeroFinder := PMNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1 ].
 	zeroFinder initialValue: 5.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
 	self assert: (result + 1) abs <= zeroFinder precision.
-	self assert: zeroFinder iterations = 2
+	self assert: zeroFinder iterations equals: 2
 ]
 
 { #category : #statistics }

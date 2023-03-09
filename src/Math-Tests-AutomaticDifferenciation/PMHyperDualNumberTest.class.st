@@ -48,13 +48,14 @@ PMHyperDualNumberTest >> testAbs [
 
 { #category : #tests }
 PMHyperDualNumberTest >> testAccessing [
+
 	self assert: three eps equals: 1.
 	self assert: three value equals: 3.
 	self assert: three eps2 equals: 1.
 	self assert: three eps1eps2 equals: 0.
 	three eps1eps2: 2.
 	three eps2: 2.
-	self assert: three eps2 == 2.
+	self assert: three eps2 identicalTo: 2.
 	self assert: three eps1eps2 equals: 2
 ]
 
@@ -124,16 +125,17 @@ PMHyperDualNumberTest >> testArcTan [
 
 { #category : #tests }
 PMHyperDualNumberTest >> testConverting [
+
 	| a |
-	self assert: zeroc asInteger == 0.
-	self assert: three asInteger == 3.
+	self assert: zeroc asInteger identicalTo: 0.
+	self assert: three asInteger identicalTo: 3.
 	self assert: onec asFloat isFloat.
 	self deny: onec isFloat.
 	self assert: onec asFloat equals: 1.
 	a := three negated asFloat.
 	self assert: a isFloat.
 	self assert: a equals: -3.
-	self assert: (PMDualNumber value: -3.7 eps: 2) asInteger == -3
+	self assert: (PMDualNumber value: -3.7 eps: 2) asInteger identicalTo: -3
 ]
 
 { #category : #'tests-mathematical functions' }

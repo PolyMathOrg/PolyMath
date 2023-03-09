@@ -6,41 +6,36 @@ Class {
 
 { #category : #'class tests' }
 PMPermutationTest >> testAllOfSize [
+
 	| p "i	w" |
 	"special"
-	self assert: (PMPermutation allOfSize: 0) equals: #().
-	self
-		assert: (PMPermutation allOfSize: 1)
-		equals: (Array with: (PMPermutation identity: 1)).
+	self assert: (PMPermutation allOfSize: 0) equals: #(  ).
+	self assert: (PMPermutation allOfSize: 1) equals: (Array with: (PMPermutation identity: 1)).
 	"odd"
 	p := PMPermutation allOfSize: 3.
 	self assert: p size equals: 3 factorial.
 	self assert: p asSet size equals: 3 factorial.
-	p
-		do: [ :per |
-			self assert: per size equals: 3.
-			self assert: per class == PMPermutation ].
+	p do: [ :per |
+		self assert: per size equals: 3.
+		self assert: per class identicalTo: PMPermutation ].
 	"even"
 	p := PMPermutation allOfSize: 4.
 	self assert: p size equals: 4 factorial.
 	self assert: p asSet size equals: 4 factorial.
-	p
-		do: [ :per |
-			"the following speed-test is indeed randomized and will occasionally fail!therefore it is put into comments, but it is important nevertheless, as, if this last #assert: is not true mostly, one can simplify #allOfSize: this way:
+	p do: [ :per | "the following speed-test is indeed randomized and will occasionally fail!therefore it is put into comments, but it is important nevertheless, as, if this last #assert: is not true mostly, one can simplify #allOfSize: this way:
 Permutation class>>allOfSize:anInteger
 	|result|
 	(result := WriteStream on:(Array new: anInteger factorial)).
 	(Permutation identity: anInteger) permutationsDo: [:p|result nextPut: p copy].
-	^result contents"
-			"Smalltalk garbageCollect. Smalltalk garbageCollect.
+	^result contents""Smalltalk garbageCollect. Smalltalk garbageCollect.
 i := [Permutation allOfSize: 9] timeToRun.
 w:=WriteStream on: ( Array new: 9 factorial ).
 Smalltalk garbageCollect. Smalltalk garbageCollect.
 p := [(Permutation identity: 9) permutationsDo: [:each | w nextPut: each copy]] timeToRun.
 w:=nil.
 self assert: i < p."
-			self assert: per size equals: 4.
-			self assert: per class == PMPermutation ]
+		self assert: per size equals: 4.
+		self assert: per class identicalTo: PMPermutation ]
 ]
 
 { #category : #tests }
@@ -219,12 +214,13 @@ self should: [ (PMPermutation identity: 4) permute:'aBc' ] raise: SizeMismatch
 
 { #category : #'class tests' }
 PMPermutationTest >> testRandomGenerator [
-|g|
-g:=PMPermutation randomGenerator .
-g:=g next:4.
-self assert: g size equals: 4.
-self deny: g first = g second.
-self assert: g third isFloat
+
+	| g |
+	g := PMPermutation randomGenerator.
+	g := g next: 4.
+	self assert: g size equals: 4.
+	self deny: g first equals: g second.
+	self assert: g third isFloat
 ]
 
 { #category : #'class tests' }

@@ -601,9 +601,9 @@ PMComplexNumberTest >> testProductWithVector [
 PMComplexNumberTest >> testPureImaginaryNumbersAreNotEqualToObjectsOfADifferentType [
 
 	self deny: 1 i isNil.
-	self deny: nil = 1 i.
-	self deny: 1 i = #( 1 2 3 ).
-	self deny: #( 1 2 3 ) = 1 i
+	self deny: nil equals: 1 i.
+	self deny: 1 i equals: #( 1 2 3 ).
+	self deny: #( 1 2 3 ) equals: 1 i
 ]
 
 { #category : #'testing - expressing complex numbers' }

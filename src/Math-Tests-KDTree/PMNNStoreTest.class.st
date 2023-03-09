@@ -13,87 +13,90 @@ PMNNStoreTest >> testCopy [
 	"a separate copy method is necessary because of this scenario"
 
 	| a b |
-	a := PMNNStore withAll: #(1 2 4).
+	a := PMNNStore withAll: #( 1 2 4 ).
 	b := a copy.
 	self assert: b equals: a.
 	self assert: b hash equals: a hash.
 	b sortFor: nil.
-	self deny: b = a.	"here is the problem"
-	self deny: b hash = a hash
+	self deny: b equals: a. "here is the problem"
+	self deny: b hash equals: a hash
 ]
 
 { #category : #tests }
 PMNNStoreTest >> testCopyEmpty [
+
 	| n m |
-	n := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2')).
+	n := PMNNStore newFrom: #( #( 1 $a ) #( 3 1.0 ) #( 0 '2' ) ).
 	n := n copyEmpty.
 	self assert: n isEmpty.
 	n
-		add: #(2 10);
-		add: #(1 100).
+		add: #( 2 10 );
+		add: #( 1 100 ).
 	self deny: n isEmpty.
-	self assert: n maxDistance equals: Float infinity.	"because it is not yet full"
-	self assert: n data equals: #(100 10).
+	self assert: n maxDistance equals: Float infinity. "because it is not yet full"
+	self assert: n data equals: #( 100 10 ).
 	m := n copyEmpty.
-	self assert: m size equals: 2.	"size is reduced now"
+	self assert: m size equals: 2. "size is reduced now"
 	m
-		add: #(2 10);
-		add: #(1 100).
-	self deny: m = n.
+		add: #( 2 10 );
+		add: #( 1 100 ).
+	self deny: m equals: n.
 	self assert: m completeData equals: n completeData
 ]
 
 { #category : #tests }
 PMNNStoreTest >> testEqual [
+
 	| a b |
-	b := #(#(1 $a) #(3 1.0) #(0 '2')).
+	b := #( #( 1 $a ) #( 3 1.0 ) #( 0 '2' ) ).
 	a := PMNNStore newFrom: b.
-	self deny: a = b.
-	b := PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 2)).
-	self deny: a = b.
+	self deny: a equals: b.
+	b := PMNNStore newFrom: #( #( 1 $a ) #( 3 1.0 ) #( 0 2 ) ).
+	self deny: a equals: b.
 	b := a copyEmpty.
-	self deny: a = b.
-	b addAll: #(#(3 1.0) #(1 $a) #(4 true) #(0 '2')).
+	self deny: a equals: b.
+	b addAll: #( #( 3 1.0 ) #( 1 $a ) #( 4 true ) #( 0 '2' ) ).
 	self assert: a equals: b.
-	b add: #(2 nil).
-	self deny: a = b.
+	b add: #( 2 nil ).
+	self deny: a equals: b.
 	b := PMNNStore new: 3.
 	a := PMNNStore new: 2.
-	a add: #(2 nil).
-	b add: #(2 nil).
-	self deny: a = b.
-	self deny: b hash = a hash
+	a add: #( 2 nil ).
+	b add: #( 2 nil ).
+	self deny: a equals: b.
+	self deny: b hash equals: a hash
 ]
 
 { #category : #tests }
 PMNNStoreTest >> testExtremeCase [
+
 	| n |
 	n := PMNNStore new.
-	n sortFor: nil.	"this should indeed always be possible and shouldnt raise an error!"
+	n sortFor: nil. "this should indeed always be possible and shouldnt raise an error!"
 	self assert: n isFull.
-	n add: #(1 1).	"adding should also always be possible, although it will not be added in this case"
-	self deny: n maxDistance = 1.
-	n
-		add: (Array with: (0 - Float infinity) with: 1).	"and this extreme case too."
+	n add: #( 1 1 ). "adding should also always be possible, although it will not be added in this case"
+	self deny: n maxDistance equals: 1.
+	n add: (Array with: 0 - Float infinity with: 1). "and this extreme case too."
 	self assert: n isEmpty.
-	self assert: n data equals: #().
-	self should: [ n add: (Array with: nil with: 1) ] raise: Error	"but this should always raise an error (not only in NNStores with size 0), also in subclasses, otherwise one can have strange bugs"
+	self assert: n data equals: #(  ).
+	self should: [ n add: (Array with: nil with: 1) ] raise: Error "but this should always raise an error (not only in NNStores with size 0), also in subclasses, otherwise one can have strange bugs"
 ]
 
 { #category : #tests }
 PMNNStoreTest >> testInitialize [
+
 	| a b |
-	a := PMNNStore newFrom: #(#(4 $a) #(5 1.0) #(6 '2')).
-	b := (PMNNStore newFrom: #(#(4 $a) #(5 1.0) #(6 '2'))) initialize.
-	self deny: a = b.
+	a := PMNNStore newFrom: #( #( 4 $a ) #( 5 1.0 ) #( 6 '2' ) ).
+	b := (PMNNStore newFrom: #( #( 4 $a ) #( 5 1.0 ) #( 6 '2' ) )) initialize.
+	self deny: a equals: b.
 	a initialize.
 	self assert: a equals: b.
-	b add: #(4 $a).
-	self deny: a = b.
-	a add: #(4 $a).
+	b add: #( 4 $a ).
+	self deny: a equals: b.
+	a add: #( 4 $a ).
 	self assert: a equals: b.
-	a add: #(5 1.0).
-	self deny: a = b
+	a add: #( 5 1.0 ).
+	self deny: a equals: b
 ]
 
 { #category : #tests }
@@ -101,16 +104,16 @@ PMNNStoreTest >> testInitialize2 [
 	"a separate = method is necessary because of this scenario with resetting"
 
 	| a b c |
-	a := (PMNNStore newFrom: #(#(1 $a) #(3 1.0) #(0 '2'))) initialize.	"initialize = resetting"
-	b := (PMNNStore newFrom: #(#(1 $a) #(3 false) #(0 '2'))) initialize.
-	self assert: a equals: b.	"first  problematic part"
-	c := #(#(3 true) #(2 1)).
+	a := (PMNNStore newFrom: #( #( 1 $a ) #( 3 1.0 ) #( 0 '2' ) )) initialize. "initialize = resetting"
+	b := (PMNNStore newFrom: #( #( 1 $a ) #( 3 false ) #( 0 '2' ) )) initialize.
+	self assert: a equals: b. "first  problematic part"
+	c := #( #( 3 true ) #( 2 1 ) ).
 	a addAll: c.
 	b addAll: c.
-	self assert: a equals: b.	"second problematic part"
-	c := #(2 nil).
+	self assert: a equals: b. "second problematic part"
+	c := #( 2 nil ).
 	a add: c.
-	self deny: a = b.
+	self deny: a equals: b.
 	b add: c.
 	self assert: a equals: b
 ]
