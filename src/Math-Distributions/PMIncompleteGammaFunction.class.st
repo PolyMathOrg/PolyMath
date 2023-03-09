@@ -17,29 +17,27 @@ PMIncompleteGammaFunction class >> shape: aNumber [
 ]
 
 { #category : #private }
-PMIncompleteGammaFunction >> evaluateFraction: aNumber [ 
+PMIncompleteGammaFunction >> evaluateFraction: aNumber [
 
-	fraction isNil 
-		ifTrue: 
-			[fraction := PMIncompleteGammaFractionTermServer new.
-			fraction setParameter: alpha].
+	fraction ifNil: [
+		fraction := PMIncompleteGammaFractionTermServer new.
+		fraction setParameter: alpha ].
 	fraction setArgument: aNumber.
-	^(PMContinuedFraction server: fraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMContinuedFraction server: fraction)
+		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  evaluate
 ]
 
 { #category : #private }
 PMIncompleteGammaFunction >> evaluateSeries: aNumber [
 
-	series isNil
-		ifTrue: [ series := PMIncompleteGammaSeriesTermServer new.
-				  series setParameter: alpha.
-				].
+	series ifNil: [
+		series := PMIncompleteGammaSeriesTermServer new.
+		series setParameter: alpha ].
 	series setArgument: aNumber.
-	^(PMInfiniteSeries server: series)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMInfiniteSeries server: series)
+		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  evaluate
 ]
 
 { #category : #initialization }
@@ -54,13 +52,13 @@ PMIncompleteGammaFunction >> initialize: aNumber [
 PMIncompleteGammaFunction >> value: aNumber [
 
 	| x norm |
-	aNumber = 0
-		ifTrue: [ ^0].
+	aNumber = 0 ifTrue: [ ^ 0 ].
 	x := aNumber asFloat.
-	norm := [ ( x ln * alpha - x - alphaLogGamma) exp] on: Error do: [ :signal | signal return: nil].
-	norm isNil
-		ifTrue: [ ^1].
-	^x - 1 < alpha
-		ifTrue: [ ( self evaluateSeries: x) * norm]
-		ifFalse:[ 1 - ( norm / ( self evaluateFraction: x))]
+	norm := [ (x ln * alpha - x - alphaLogGamma) exp ]
+		        on: Error
+		        do: [ :signal | signal return: nil ].
+	norm ifNil: [ ^ 1 ].
+	^ x - 1 < alpha
+		  ifTrue: [ (self evaluateSeries: x) * norm ]
+		  ifFalse: [ 1 - (norm / (self evaluateFraction: x)) ]
 ]

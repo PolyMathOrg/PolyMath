@@ -25,12 +25,12 @@ Class {
 
 { #category : #creation }
 PMLanczosFormula class >> new [
-		"Answer a unique instance. Create it if it does not exist."
-	UniqueInstance isNil
-		ifTrue: [ UniqueInstance := super new.
-					 UniqueInstance initialize.
-					].
-	^UniqueInstance
+	"Answer a unique instance. Create it if it does not exist."
+
+	UniqueInstance ifNil: [
+		UniqueInstance := super new.
+		UniqueInstance initialize ].
+	^ UniqueInstance
 ]
 
 { #category : #'instance creation' }

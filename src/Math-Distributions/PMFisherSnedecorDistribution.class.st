@@ -99,11 +99,8 @@ PMFisherSnedecorDistribution >> distributionValue: aNumber [
 PMFisherSnedecorDistribution >> incompleteBetaFunction [
 	"Private - Answers the incomplete beta function used to compute the symmetric acceptance integral of the receiver. "
 
-	incompleteBetaFunction isNil 
-		ifTrue: 
-			[incompleteBetaFunction := PMIncompleteBetaFunction shape: dof2 / 2
-						shape: dof1 / 2].
-	^incompleteBetaFunction
+	incompleteBetaFunction ifNil: [ incompleteBetaFunction := PMIncompleteBetaFunction shape: dof2 / 2 shape: dof1 / 2 ].
+	^ incompleteBetaFunction
 ]
 
 { #category : #initialization }
@@ -132,11 +129,11 @@ PMFisherSnedecorDistribution >> parameters [
 { #category : #information }
 PMFisherSnedecorDistribution >> random [
 	"Answer a random number distributed according to the receiver."
-	chiSquareDistribution1 isNil
-		ifTrue: [ chiSquareDistribution1 := PMChiSquareDistribution degreeOfFreedom: dof1.
-				  chiSquareDistribution2 := PMChiSquareDistribution degreeOfFreedom: dof2.
-				].
-	^chiSquareDistribution1 random * dof2 / ( chiSquareDistribution2 random * dof1)
+
+	chiSquareDistribution1 ifNil: [
+		chiSquareDistribution1 := PMChiSquareDistribution degreeOfFreedom: dof1.
+		chiSquareDistribution2 := PMChiSquareDistribution degreeOfFreedom: dof2 ].
+	^ chiSquareDistribution1 random * dof2 / (chiSquareDistribution2 random * dof1)
 ]
 
 { #category : #information }

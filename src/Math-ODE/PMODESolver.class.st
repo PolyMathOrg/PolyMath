@@ -141,7 +141,7 @@ PMODESolver >> solve: aSystem startState: initialState startTime: initialTime en
 PMODESolver >> stepper: aStepper [
 
 	stepper := aStepper.
-	system isNotNil ifTrue: [ stepper system: system ]
+	system ifNotNil: [ stepper system: system ]
 ]
 
 { #category : #private }
@@ -159,5 +159,5 @@ PMODESolver >> system [
 PMODESolver >> system: aSystem [
 
 	system := aSystem.
-	stepper isNotNil ifTrue: [ stepper system: aSystem ]
+	stepper ifNotNil: [ stepper system: aSystem ]
 ]

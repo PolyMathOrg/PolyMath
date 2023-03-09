@@ -22,19 +22,19 @@ PMProjectedOneVariableFunction >> argumentWith: aNumber [
 
 { #category : #transformation }
 PMProjectedOneVariableFunction >> bumpIndex [
-	index isNil
-		ifTrue: [ index := 1]
-		ifFalse:[ index := index + 1.
-				  index > argument size
-					ifTrue: [ index := 1].
-				].
+
+	index
+		ifNil: [ index := 1 ]
+		ifNotNil: [
+			index := index + 1.
+			index > argument size ifTrue: [ index := 1 ] ]
 ]
 
 { #category : #information }
 PMProjectedOneVariableFunction >> index [
-	index isNil
-		ifTrue: [ index := 1].
-	^index
+
+	index ifNil: [ index := 1 ].
+	^ index
 ]
 
 { #category : #initialization }

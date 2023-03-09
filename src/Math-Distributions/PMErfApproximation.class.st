@@ -46,10 +46,11 @@ Class {
 { #category : #creation }
 PMErfApproximation class >> new [
 	"Answer a unique instance. Create it if it does not exist."
-	UniqueInstance isNil
-		ifTrue: [ UniqueInstance := super new.
-					 UniqueInstance initialize ].
-	^UniqueInstance
+
+	UniqueInstance ifNil: [
+		UniqueInstance := super new.
+		UniqueInstance initialize ].
+	^ UniqueInstance
 ]
 
 { #category : #creation }

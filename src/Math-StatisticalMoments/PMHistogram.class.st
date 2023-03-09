@@ -262,7 +262,7 @@ PMHistogram >> flushCache [
 	"Private"
 
 	| maximum values |
-	minimum isNil ifTrue: [ minimum := contents ifEmpty: [ 0 ] ifNotEmpty: [ contents first ] ].
+	minimum ifNil: [ minimum := contents ifEmpty: [ 0 ] ifNotEmpty: [ contents first ] ].
 	maximum := minimum.
 	contents do: [ :each |
 		each < minimum

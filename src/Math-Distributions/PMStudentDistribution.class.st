@@ -76,9 +76,9 @@ PMStudentDistribution >> changeParametersBy: aVector [
 { #category : #information }
 PMStudentDistribution >> chiSquareDistribution [
 	"Answer the chi square distribution used to generate random numbers for the receiver."
-	chiSquareDistribution isNil
-		ifTrue: [ chiSquareDistribution := PMChiSquareDistribution degreeOfFreedom: (degreeOfFreedom - 1)].
-	^chiSquareDistribution
+
+	chiSquareDistribution ifNil: [ chiSquareDistribution := PMChiSquareDistribution degreeOfFreedom: degreeOfFreedom - 1 ].
+	^ chiSquareDistribution
 ]
 
 { #category : #private }
@@ -107,12 +107,8 @@ PMStudentDistribution >> distributionValue: aNumber [
 PMStudentDistribution >> incompleteBetaFunction [
 	"Private - Answers the incomplete beta function used to compute the symmetric acceptance integral of the receiver."
 
-	incompleteBetaFunction isNil 
-		ifTrue: 
-			[incompleteBetaFunction := PMIncompleteBetaFunction 
-						shape: degreeOfFreedom / 2
-						shape: 0.5].
-	^incompleteBetaFunction
+	incompleteBetaFunction ifNil: [ incompleteBetaFunction := PMIncompleteBetaFunction shape: degreeOfFreedom / 2 shape: 0.5 ].
+	^ incompleteBetaFunction
 ]
 
 { #category : #initialization }

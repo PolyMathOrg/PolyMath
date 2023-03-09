@@ -120,7 +120,7 @@ PMProbabilityDensity >> printOn: aStream [
 
 	| params |
 	aStream nextPutAll: self class distributionName.
-	(params := self parameters) isNotNil ifTrue: [
+	(params := self parameters) ifNotNil: [
 		| first |
 		first := true.
 		aStream nextPut: $(.

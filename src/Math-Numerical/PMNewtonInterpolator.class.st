@@ -50,12 +50,11 @@ PMNewtonInterpolator >> resetCoefficients [
 { #category : #information }
 PMNewtonInterpolator >> value: aNumber [
 	"Compute the value of the Lagrange interpolation polynomial on the receiver's points at aNumber."
+
 	| answer size |
-	coefficients isNil
-		ifTrue: [ self computeCoefficients].
+	coefficients ifNil: [ self computeCoefficients ].
 	size := coefficients size.
 	answer := coefficients at: size.
-	(size - 1) to: 1 by: -1
-		do: [ :n | answer := answer * ( aNumber - (self xPointAt:  n)) + ( coefficients at: n)].
-	^answer
+	size - 1 to: 1 by: -1 do: [ :n | answer := answer * (aNumber - (self xPointAt: n)) + (coefficients at: n) ].
+	^ answer
 ]

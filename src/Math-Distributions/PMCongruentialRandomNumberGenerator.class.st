@@ -25,11 +25,11 @@ PMCongruentialRandomNumberGenerator class >> constant: aNumber1 multiplicator: a
 { #category : #creation }
 PMCongruentialRandomNumberGenerator class >> new [
 	"Create a new instance of the receiver with D. Knuth's constants."
-	UniqueInstance isNil
-		ifTrue: [ UniqueInstance := super new initialize.
-					 UniqueInstance setSeed: 1.
-				   ].
-	^UniqueInstance
+
+	UniqueInstance ifNil: [
+		UniqueInstance := super new initialize.
+		UniqueInstance setSeed: 1 ].
+	^ UniqueInstance
 ]
 
 { #category : #creation }

@@ -74,18 +74,21 @@ PMBetaDistribution >> computeNorm [
 { #category : #information }
 PMBetaDistribution >> distributionValue: aNumber [
 	"Answers the probability of observing a random variable distributed according to the receiver with a value lower than or equal to aNumber."
-	
-	incompleteBetaFunction isNil
-		ifTrue: [ incompleteBetaFunction := PMIncompleteBetaFunction shape: alpha1 shape: alpha2].
-	^aNumber <= 0.0 ifTrue:[0]ifFalse:[aNumber >= 1.0 ifTrue:[1] ifFalse:[incompleteBetaFunction value: aNumber]]
+
+	incompleteBetaFunction ifNil: [ incompleteBetaFunction := PMIncompleteBetaFunction shape: alpha1 shape: alpha2 ].
+	^ aNumber <= 0.0
+		  ifTrue: [ 0 ]
+		  ifFalse: [
+			  aNumber >= 1.0
+				  ifTrue: [ 1 ]
+				  ifFalse: [ incompleteBetaFunction value: aNumber ] ]
 ]
 
 { #category : #information }
 PMBetaDistribution >> firstGammaDistribution [
 
-	gamma1 isNil
-		ifTrue: [ gamma1 := PMGammaDistribution shape: alpha1 scale: 1].
-	 ^gamma1
+	gamma1 ifNil: [ gamma1 := PMGammaDistribution shape: alpha1 scale: 1 ].
+	^ gamma1
 ]
 
 { #category : #initialization }
@@ -122,10 +125,9 @@ PMBetaDistribution >> random [
 
 { #category : #information }
 PMBetaDistribution >> secondGammaDistribution [
-	
-	gamma2 isNil
-		ifTrue: [ gamma2 := PMGammaDistribution shape: alpha2 scale: 1].
-	 ^gamma2
+
+	gamma2 ifNil: [ gamma2 := PMGammaDistribution shape: alpha2 scale: 1 ].
+	^ gamma2
 ]
 
 { #category : #information }

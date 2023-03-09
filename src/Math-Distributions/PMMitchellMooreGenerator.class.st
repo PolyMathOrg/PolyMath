@@ -35,9 +35,9 @@ PMMitchellMooreGenerator class >> generateSeeds: congruentialGenerator [
 
 { #category : #creation }
 PMMitchellMooreGenerator class >> new [
-	UniqueInstance isNil
-		ifTrue: [ UniqueInstance := self default].
-	^UniqueInstance
+
+	UniqueInstance ifNil: [ UniqueInstance := self default ].
+	^ UniqueInstance
 ]
 
 { #category : #creation }

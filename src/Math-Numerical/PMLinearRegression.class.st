@@ -76,10 +76,10 @@ PMLinearRegression >> computeResults [
 
 { #category : #information }
 PMLinearRegression >> correlationCoefficient [
-		"Answers the correlation coefficient of the receiver."
-	correlationCoefficient isNil
-		ifTrue: [ self computeResults].
-	^correlationCoefficient
+	"Answers the correlation coefficient of the receiver."
+
+	correlationCoefficient ifNil: [ self computeResults ].
+	^ correlationCoefficient
 ]
 
 { #category : #information }
@@ -108,10 +108,10 @@ PMLinearRegression >> errorOnSlope [
 
 { #category : #information }
 PMLinearRegression >> intercept [
-		"Answers the intercept of the receiver."
-	intercept isNil
-		ifTrue: [ self computeResults].
-	^intercept
+	"Answers the intercept of the receiver."
+
+	intercept ifNil: [ self computeResults ].
+	^ intercept
 ]
 
 { #category : #transformation }
@@ -150,10 +150,10 @@ PMLinearRegression >> resetResults [
 
 { #category : #information }
 PMLinearRegression >> slope [
-		"Answers the slope of the receiver."
-	slope isNil
-		ifTrue: [ self computeResults].
-	^slope
+	"Answers the slope of the receiver."
+
+	slope ifNil: [ self computeResults ].
+	^ slope
 ]
 
 { #category : #information }

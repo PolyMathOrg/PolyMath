@@ -125,49 +125,43 @@ PMFloatingPointMachine >> computeSmallestNumber [
 { #category : #information }
 PMFloatingPointMachine >> defaultNumericalPrecision [
 
-	defaultNumericalPrecision isNil
-		ifTrue: [ defaultNumericalPrecision := self machinePrecision sqrt].
-	^defaultNumericalPrecision
+	defaultNumericalPrecision ifNil: [ defaultNumericalPrecision := self machinePrecision sqrt ].
+	^ defaultNumericalPrecision
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> largestExponentArgument [
-	
-	largestExponentArgument isNil
-		ifTrue: [ largestExponentArgument := self largestNumber ln].
-	^largestExponentArgument
+
+	largestExponentArgument ifNil: [ largestExponentArgument := self largestNumber ln ].
+	^ largestExponentArgument
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> largestNumber [
-	
-	largestNumber isNil
-		ifTrue: [ self computeLargestNumber].
-	^largestNumber
+
+	largestNumber ifNil: [ self computeLargestNumber ].
+	^ largestNumber
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> machinePrecision [
-	
-	machinePrecision isNil
-		ifTrue: [ self computeMachinePrecision].
-	^machinePrecision
+
+	machinePrecision ifNil: [ self computeMachinePrecision ].
+	^ machinePrecision
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> negativeMachinePrecision [
-	
-	negativeMachinePrecision isNil
-		ifTrue: [ self computeNegativeMachinePrecision].
-	^negativeMachinePrecision
+
+	negativeMachinePrecision ifNil: [ self computeNegativeMachinePrecision ].
+	^ negativeMachinePrecision
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> radix [
-	
-	radix isNil
-		ifTrue: [ self computeRadix].
-	^radix
+
+	radix ifNil: [ self computeRadix ].
+	^ radix
 ]
 
 { #category : #display }
@@ -191,16 +185,14 @@ PMFloatingPointMachine >> showParameters [
 
 { #category : #information }
 PMFloatingPointMachine >> smallNumber [
-	
-	smallNumber isNil
-		ifTrue: [ smallNumber := self smallestNumber sqrt].
-	^smallNumber
+
+	smallNumber ifNil: [ smallNumber := self smallestNumber sqrt ].
+	^ smallNumber
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> smallestNumber [
-	
-	smallestNumber isNil
-		ifTrue: [ self computeSmallestNumber].
-	^smallestNumber
+
+	smallestNumber ifNil: [ self computeSmallestNumber ].
+	^ smallestNumber
 ]

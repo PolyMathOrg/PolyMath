@@ -73,10 +73,8 @@ PMGammaDistribution >> distributionValue: aNumber [
 PMGammaDistribution >> incompleteGammaFunction [
 	"Private"
 
-	incompleteGammaFunction isNil 
-		ifTrue: 
-			[incompleteGammaFunction := PMIncompleteGammaFunction shape: alpha].
-	^incompleteGammaFunction
+	incompleteGammaFunction ifNil: [ incompleteGammaFunction := PMIncompleteGammaFunction shape: alpha ].
+	^ incompleteGammaFunction
 ]
 
 { #category : #initialization }
@@ -131,17 +129,17 @@ PMGammaDistribution >> random [
 { #category : #information }
 PMGammaDistribution >> randomCoefficientsForLargeAlpha [
 	"Private"
-	randomCoefficients isNil
-		ifTrue: [ randomCoefficients := self initializeRandomCoefficientsForLargeAlpha].
-	^randomCoefficients
+
+	randomCoefficients ifNil: [ randomCoefficients := self initializeRandomCoefficientsForLargeAlpha ].
+	^ randomCoefficients
 ]
 
 { #category : #information }
 PMGammaDistribution >> randomCoefficientsForSmallAlpha [
 	"Private"
-	randomCoefficients isNil
-		ifTrue: [ randomCoefficients := self initializeRandomCoefficientsForSmallAlpha].
-	^randomCoefficients
+
+	randomCoefficients ifNil: [ randomCoefficients := self initializeRandomCoefficientsForSmallAlpha ].
+	^ randomCoefficients
 ]
 
 { #category : #information }

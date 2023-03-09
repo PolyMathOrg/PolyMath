@@ -13,11 +13,10 @@ Class {
 
 { #category : #operation }
 PMBisectionZeroFinder >> computeInitialValues [
-		"Private"
-	positiveX isNil
-		ifTrue: [ self error: 'No positive value supplied'].
-	negativeX isNil
-		ifTrue: [ self error: 'No negative value supplied']
+	"Private"
+
+	positiveX ifNil: [ self error: 'No positive value supplied' ].
+	negativeX ifNil: [ self error: 'No negative value supplied' ]
 ]
 
 { #category : #operation }

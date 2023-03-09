@@ -57,8 +57,7 @@ PMWeightedPoint >> chi2Contribution: aFunction [
 { #category : #accessing }
 PMWeightedPoint >> error [
 
-	error isNil
-		ifTrue: [ error := 1 / weight sqrt ].
+	error ifNil: [ error := 1 / weight sqrt ].
 	^ error
 ]
 

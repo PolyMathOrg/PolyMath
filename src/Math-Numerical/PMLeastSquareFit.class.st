@@ -21,9 +21,10 @@ PMLeastSquareFit class >> histogram: aHistogram distributionClass: aProbabilityD
 
 { #category : #creation }
 PMLeastSquareFit class >> points: aDataHolder function: aParametricFunction [
-	^aParametricFunction isNil
-		ifTrue: [nil]
-		ifFalse: [self new initialize: aDataHolder data: aParametricFunction]
+
+	^ aParametricFunction
+		  ifNil: [ nil ]
+		  ifNotNil: [ self new initialize: aDataHolder data: aParametricFunction ]
 ]
 
 { #category : #operation }
@@ -48,9 +49,9 @@ PMLeastSquareFit >> accumulateEquationSystem [
 
 { #category : #information }
 PMLeastSquareFit >> chiSquare [
-	chiSquare isNil
-		ifTrue: [ self computeChiSquare].
-	^chiSquare
+
+	chiSquare ifNil: [ self computeChiSquare ].
+	^ chiSquare
 ]
 
 { #category : #operation }
@@ -87,9 +88,9 @@ PMLeastSquareFit >> confidenceLevel [
 
 { #category : #information }
 PMLeastSquareFit >> degreeOfFreedom [
-	degreeOfFreedom isNil
-		ifTrue: [ self computeChiSquare].
-	^degreeOfFreedom
+
+	degreeOfFreedom ifNil: [ self computeChiSquare ].
+	^ degreeOfFreedom
 ]
 
 { #category : #information }
