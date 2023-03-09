@@ -22,9 +22,7 @@ PMLeastSquareFit class >> histogram: aHistogram distributionClass: aProbabilityD
 { #category : #creation }
 PMLeastSquareFit class >> points: aDataHolder function: aParametricFunction [
 
-	^ aParametricFunction
-		  ifNil: [ nil ]
-		  ifNotNil: [ self new initialize: aDataHolder data: aParametricFunction ]
+	^ aParametricFunction ifNotNil: [ self new initialize: aDataHolder data: aParametricFunction ]
 ]
 
 { #category : #operation }

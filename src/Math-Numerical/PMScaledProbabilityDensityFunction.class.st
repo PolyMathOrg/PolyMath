@@ -23,9 +23,7 @@ PMScaledProbabilityDensityFunction class >> histogram: aHistogram distributionCl
 	"Create a new instance of the receiver with given probability density function and histogram."
 
 	| dp |
-	^ (dp := aProbabilityDensityFunctionClass fromHistogram: aHistogram)
-		  ifNil: [ nil ]
-		  ifNotNil: [ self histogram: aHistogram against: dp ]
+	^ (dp := aProbabilityDensityFunctionClass fromHistogram: aHistogram) ifNotNil: [ self histogram: aHistogram against: dp ]
 ]
 
 { #category : #transformation }

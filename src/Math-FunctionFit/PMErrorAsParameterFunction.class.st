@@ -4,7 +4,7 @@ ErrorAsParameterFunction is used internally by ErrorMinimizer. it is essentially
 Class {
 	#name : #PMErrorAsParameterFunction,
 	#superclass : #PMSimpleParameterFunction,
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #accessing }
@@ -50,17 +50,18 @@ PMErrorAsParameterFunction >> parameters: indexableCollection [
 
 { #category : #printing }
 PMErrorAsParameterFunction >> printOn: aStream [
+
 	aStream
 		nextPutAll: 'an ';
 		nextPutAll: self class name;
 		nextPutAll: '( function: ';
-		print: (function ifNil: [ nil ] ifNotNil: [ :f | f first ]);
+		print: (function ifNotNil: [ :f | f first ]);
 		nextPutAll: ' maxFunction: ';
 		print: self maxFunction.
-	varArray
-		ifNotNil: [ aStream
-				nextPutAll: ' parameters: ';
-				print: self parameters ].
+	varArray ifNotNil: [
+		aStream
+			nextPutAll: ' parameters: ';
+			print: self parameters ].
 	aStream nextPut: $)
 ]
 

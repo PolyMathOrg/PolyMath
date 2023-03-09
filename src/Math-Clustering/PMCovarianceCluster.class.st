@@ -7,9 +7,7 @@ Class {
 { #category : #initialization }
 PMCovarianceCluster >> centerOn: aVector [
 
-	accumulator := aVector
-		               ifNil: [ nil ]
-		               ifNotNil: [ PMMahalanobisCenter onVector: aVector ]
+	accumulator := aVector ifNotNil: [ PMMahalanobisCenter onVector: aVector ]
 ]
 
 { #category : #transformation }
