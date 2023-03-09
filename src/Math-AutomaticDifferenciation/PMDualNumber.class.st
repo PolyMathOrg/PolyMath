@@ -205,11 +205,6 @@ PMDualNumber >> isNaN [
 ]
 
 { #category : #testing }
-PMDualNumber >> isNumber [
-^true
-]
-
-{ #category : #testing }
 PMDualNumber >> isZero [
 	^value = 0
 ]
