@@ -62,7 +62,8 @@ PMPointSeries >> isEmpty [
 
 { #category : #'public methods' }
 PMPointSeries >> notEmpty [
-	^points notEmpty
+
+	^ points isNotEmpty
 ]
 
 { #category : #'public methods' }

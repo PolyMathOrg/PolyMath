@@ -87,10 +87,11 @@ PMButcherTableauStepper >> doStep: aState time: aTime stepSize: stepSize [
 
 { #category : #assertion }
 PMButcherTableauStepper >> isInitialized [
-	self assert: [stageCoefficients notNil].
-	self assert: [stageIncrements notNil].
-	self assert: [stageWeights notNil].
-	self assert: [system notNil].
+
+	self assert: [ stageCoefficients isNotNil ].
+	self assert: [ stageIncrements isNotNil ].
+	self assert: [ stageWeights isNotNil ].
+	self assert: [ system isNotNil ].
 	^ self
 ]
 

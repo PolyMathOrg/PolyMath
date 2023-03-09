@@ -6,8 +6,8 @@ Class {
 
 { #category : #operation }
 PMMultiVariableGeneralOptimizer >> computeInitialValues [
-	self range notNil
-		ifTrue: [ self performGeneticOptimization].
+
+	self range isNotNil ifTrue: [ self performGeneticOptimization ].
 	self performSimplexOptimization
 ]
 

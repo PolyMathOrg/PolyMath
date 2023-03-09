@@ -138,9 +138,10 @@ PMODESolver >> solve: aSystem startState: initialState startTime: initialTime en
 ]
 
 { #category : #accessing }
-PMODESolver >> stepper: aStepper [ 
+PMODESolver >> stepper: aStepper [
+
 	stepper := aStepper.
-	system notNil ifTrue: [stepper system: system].
+	system isNotNil ifTrue: [ stepper system: system ]
 ]
 
 { #category : #private }
@@ -155,7 +156,8 @@ PMODESolver >> system [
 ]
 
 { #category : #accessing }
-PMODESolver >> system: aSystem [ 
+PMODESolver >> system: aSystem [
+
 	system := aSystem.
-	stepper notNil ifTrue: [stepper system: aSystem].
+	stepper isNotNil ifTrue: [ stepper system: aSystem ]
 ]

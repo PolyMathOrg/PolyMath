@@ -40,9 +40,10 @@ PMEulerStepperTest >> testDoStepTimeStepSize [
 
 { #category : #'tests-stepping' }
 PMEulerStepperTest >> testOrderOfBaseExplicitStepperIsOne [
+
 	| order |
 	order := PMExplicitStepper new order.
-	self assert: order notNil.
+	self assert: order isNotNil.
 	self assert: order equals: 1
 ]
 
