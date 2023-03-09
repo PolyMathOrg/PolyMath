@@ -124,52 +124,52 @@ PMComplexNumber class >> zero [
 { #category : #arithmetic }
 PMComplexNumber >> * anObject [
 	"Answer the result of multiplying the receiver by aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := (a * c) - (b * d).
-			newImaginary := (a * d) + (b * c).
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #*]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a * c - (b * d).
+			  newImaginary := a * d + (b * c).
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #* ]
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> + anObject [
 	"Answer the sum of the receiver and aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := a + c.
-			newImaginary := b + d.
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #+]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a + c.
+			  newImaginary := b + d.
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #+ ]
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> - anObject [
 	"Answer the difference between the receiver and aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := a - c.
-			newImaginary := b - d.
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #-]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a - c.
+			  newImaginary := b - d.
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #- ]
 ]
 
 { #category : #arithmetic }
@@ -189,10 +189,11 @@ PMComplexNumber >> / aNumber [
 
 { #category : #comparing }
 PMComplexNumber >> = anObject [
-	anObject isNumber ifFalse: [^false].
-	anObject isComplexNumber
-		ifTrue: [^ (real = anObject real) & (imaginary = anObject imaginary)]
-		ifFalse: [^ anObject adaptToComplex: self andSend: #=]
+
+	anObject isNumber ifFalse: [ ^ false ].
+	^ anObject isComplexNumber
+		  ifTrue: [ real = anObject real & (imaginary = anObject imaginary) ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #= ]
 ]
 
 { #category : #arithmetic }
@@ -262,16 +263,17 @@ PMComplexNumber >> arCosh [
 	^self arcCos i
 	This implementation provides an answer with a positive real part.
 	It also avoids creating intermediate Complex."
-	
+
 	| x y tmp sh2x shx delta ch2x chx |
-	imaginary = 0 ifTrue: [real abs > 1
-			ifTrue: 
-				[y := real < 0
-					ifTrue: [Float pi]
-					ifFalse: [0].
-				x := real abs arCosh.
-				^self class real: x imaginary: y]
-			ifFalse: [^self class real: 0 imaginary: real arcCos]].
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  y := real < 0
+					       ifTrue: [ Float pi ]
+					       ifFalse: [ 0 ].
+				  x := real abs arCosh.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: 0 imaginary: real arcCos ] ].
 	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2x := tmp + delta sqrt.
@@ -280,7 +282,7 @@ PMComplexNumber >> arCosh [
 	chx := ch2x sqrt.
 	x := shx arSinh.
 	y := imaginary copySignTo: (real / chx) arcCos.
-	^self class real: x imaginary: y
+	^ self class real: x imaginary: y
 ]
 
 { #category : #'mathematical functions' }
@@ -315,14 +317,15 @@ PMComplexNumber >> arcCos [
 	This is the inverse function of cos."
 
 	| x y tmp sh2y shy delta ch2y chy |
-	imaginary = 0 ifTrue: [real abs > 1
-			ifTrue: 
-				[x := real < 0
-					ifTrue: [Float pi]
-					ifFalse: [0].
-				y := real copySignTo: real abs arCosh.
-				^self class real: x imaginary: y]
-			ifFalse: [^self class real: real arcCos imaginary: 0]].
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  x := real < 0
+					       ifTrue: [ Float pi ]
+					       ifFalse: [ 0 ].
+				  y := real copySignTo: real abs arCosh.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: real arcCos imaginary: 0 ] ].
 	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2y := tmp + delta sqrt.
@@ -331,7 +334,7 @@ PMComplexNumber >> arcCos [
 	chy := ch2y sqrt.
 	y := imaginary copySignTo: shy arSinh.
 	x := (real / chy) arcCos.
-	^self class real: x imaginary: y negated
+	^ self class real: x imaginary: y negated
 ]
 
 { #category : #'mathematical functions' }
@@ -340,15 +343,14 @@ PMComplexNumber >> arcSin [
 	This is the inverse function of sin."
 
 	| x y tmp delta sh2y shy ch2y chy |
-	imaginary = 0 
-		ifTrue: 
-			[real abs > 1 
-				ifTrue: 
-					[x := Float pi / 2 * real sign.
-					y := (real copySignTo: real abs arCosh) negated.
-					^self class real: x imaginary: y]
-				ifFalse: [^self class real: real arcSin imaginary: 0]].
-	tmp := (self squaredNorm - 1) / 2.
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  x := Float pi / 2 * real sign.
+				  y := (real copySignTo: real abs arCosh) negated.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: real arcSin imaginary: 0 ] ].
+	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2y := tmp + delta sqrt.
 	shy := sh2y sqrt.
@@ -356,7 +358,7 @@ PMComplexNumber >> arcSin [
 	chy := ch2y sqrt.
 	y := imaginary copySignTo: shy arSinh.
 	x := (real / chy) arcSin.
-	^self class real: x imaginary: y
+	^ self class real: x imaginary: y
 ]
 
 { #category : #'mathematical functions' }
@@ -686,10 +688,9 @@ PMComplexNumber >> reciprocal [
 	"Answer 1 divided by the receiver. Create an error notification if the 
 	receiver is 0."
 
-	self = 0
-		ifTrue: [^ (ZeroDivide dividend: self) signal]
-		ifFalse: [^1 / self]
-		
+	^ self = 0
+		  ifTrue: [ (ZeroDivide dividend: self) signal ]
+		  ifFalse: [ 1 / self ]
 ]
 
 { #category : #testing }

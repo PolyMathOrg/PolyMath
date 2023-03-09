@@ -28,7 +28,7 @@ Class {
 		'mantissa',
 		'biasedExponent'
 	],
-	#category : 'Math-ArbitraryPrecisionFloat'
+	#category : #'Math-ArbitraryPrecisionFloat'
 }
 
 { #category : #examples }
@@ -129,33 +129,38 @@ PMArbitraryPrecisionFloat >> / aNumber [
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> < aNumber [
-	aNumber class = self class ifTrue:
-		[self negative == aNumber negative
-			ifTrue: [self negative
-						ifTrue: [^ (self digitCompare: aNumber) > 0]
-						ifFalse: [^ (self digitCompare: aNumber) < 0]]
-			ifFalse: [^ self negative]].
+
+	aNumber class = self class ifTrue: [
+		^ self negative == aNumber negative
+			  ifTrue: [
+				  self negative
+					  ifTrue: [ (self digitCompare: aNumber) > 0 ]
+					  ifFalse: [ (self digitCompare: aNumber) < 0 ] ]
+			  ifFalse: [ self negative ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #<
 ]
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> = aNumber [
-	aNumber isNumber ifFalse: [^ false].
-	aNumber class = self class ifTrue:
-		[aNumber negative == self negative
-			ifTrue: [^ (self digitCompare: aNumber) = 0]
-			ifFalse: [^ false]].
+
+	aNumber isNumber ifFalse: [ ^ false ].
+	aNumber class = self class ifTrue: [
+		^ aNumber negative == self negative
+			  ifTrue: [ (self digitCompare: aNumber) = 0 ]
+			  ifFalse: [ false ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #=
 ]
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> > aNumber [
-	aNumber class = self class ifTrue:
-		[self negative == aNumber negative
-			ifTrue: [self negative
-						ifTrue: [^(self digitCompare: aNumber) < 0]
-						ifFalse: [^(self digitCompare: aNumber) > 0]]
-			ifFalse: [^ aNumber negative]].
+
+	aNumber class = self class ifTrue: [
+		^ self negative == aNumber negative
+			  ifTrue: [
+				  self negative
+					  ifTrue: [ (self digitCompare: aNumber) < 0 ]
+					  ifFalse: [ (self digitCompare: aNumber) > 0 ] ]
+			  ifFalse: [ aNumber negative ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #>
 ]
 
@@ -612,21 +617,20 @@ PMArbitraryPrecisionFloat >> decimalPrecision [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> digitCompare: b [ 
+PMArbitraryPrecisionFloat >> digitCompare: b [
 	"both are positive or negative.
 	answer +1 if i am of greater magnitude, -1 if i am of smaller magnitude, 0 if equal magnitude"
-	
+
 	| compare |
-	self isZero
-		ifTrue: [b isZero
-				ifTrue: [^ 0]
-				ifFalse: [^ -1]].
-	b isZero
-		ifTrue: [^ 1].
+	self isZero ifTrue: [
+		^ b isZero
+			  ifTrue: [ 0 ]
+			  ifFalse: [ -1 ] ].
+	b isZero ifTrue: [ ^ 1 ].
 	compare := (self exponent - b exponent) sign.
 	^ compare = 0
-		ifTrue: [(self abs - b abs) sign]
-		ifFalse: [compare]
+		  ifTrue: [ (self abs - b abs) sign ]
+		  ifFalse: [ compare ]
 ]
 
 { #category : #'mathematical functions' }

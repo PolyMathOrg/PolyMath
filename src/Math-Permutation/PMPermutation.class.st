@@ -213,11 +213,12 @@ PMPermutation >> odd [
 
 { #category : #applying }
 PMPermutation >> permute: aSequentialCollection [
+
 	| s c |
-	(s := aSequentialCollection size) < self size
-		ifTrue: [ aSequentialCollection class==self class 
-			ifTrue: [ ^ self permute: (aSequentialCollection extendTo: self size) ] 
-			ifFalse: [ ^ SizeMismatch signal ] ].
+	(s := aSequentialCollection size) < self size ifTrue: [
+		^ aSequentialCollection class == self class
+			  ifTrue: [ self permute: (aSequentialCollection extendTo: self size) ]
+			  ifFalse: [ SizeMismatch signal ] ].
 	c := aSequentialCollection copy.
 	1 to: self size do: [ :i | c at: i put: (aSequentialCollection at: (self at: i)) ].
 	^ c

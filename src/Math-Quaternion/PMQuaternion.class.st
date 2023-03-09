@@ -422,20 +422,18 @@ PMQuaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [
 ]
 
 { #category : #'mathematical functions' }
-PMQuaternion >> raisedTo: aNumber [ 
+PMQuaternion >> raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue:
-		["Do the special case of integer power"
-		^ self raisedToInteger: aNumber].
-	
-	0 = aNumber ifTrue: [^ self class one].	"Special case of exponent=0"
-	1 = aNumber ifTrue: [^ self].	"Special case of exponent=1"
-	0 = self ifTrue: [				"Special case of self = 0"
-		aNumber < 0
-			ifTrue: [^ (ZeroDivide dividend: self) signal]
-			ifFalse: [^ self]].
-	^ (aNumber * self ln) exp		"Otherwise use logarithms"
+	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+
+	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
+	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
+	0 = self ifTrue: [ "Special case of self = 0"
+		^ aNumber < 0
+			  ifTrue: [ (ZeroDivide dividend: self) signal ]
+			  ifFalse: [ self ] ].
+	^ (aNumber * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }
