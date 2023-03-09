@@ -13,12 +13,12 @@ PMAB3Solver class >> secondStepperClass [
 	^ PMAB2Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMAB3Solver class >> stepperClass [
 	^ PMAB3Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB3Solver >> lastStepPrevState: prevState prevPrevState: prevPrevState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
@@ -73,7 +73,7 @@ PMAB3Solver >> secondStepperClass [
 	^ self class secondStepperClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMAB3Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 |prevState prevPrevState statesPair |
 	self system: aSystem.

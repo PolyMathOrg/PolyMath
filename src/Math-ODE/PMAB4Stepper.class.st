@@ -8,7 +8,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB4Stepper class >> order [
 	"AB4 is a fourth order method."
 	^ 4

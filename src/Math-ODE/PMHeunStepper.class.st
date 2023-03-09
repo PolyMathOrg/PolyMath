@@ -8,7 +8,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMHeunStepper class >> order [
 	"Heun's method is a second order method."
 	^ 2

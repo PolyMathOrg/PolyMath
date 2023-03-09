@@ -8,17 +8,17 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB2Solver class >> firstStepperClass [
 	^ PMMidpointStepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMAB2Solver class >> stepperClass [
 	^ PMAB2Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB2Solver >> firstStepStartTime: t [
 	state := stepper doStep: state time: t stepSize: self dt.
 	self announceState: state time: t + self dt.
@@ -26,7 +26,7 @@ PMAB2Solver >> firstStepStartTime: t [
 	^ state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB2Solver >> firstStepperClass [
 	^ self class firstStepperClass
 ]
@@ -67,7 +67,7 @@ PMAB2Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: end
 	^ Array with: previousState with: state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMAB2Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 |prevState statesPair|
 	self system: aSystem.

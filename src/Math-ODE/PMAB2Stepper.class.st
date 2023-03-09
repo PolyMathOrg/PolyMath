@@ -7,7 +7,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB2Stepper class >> order [
 	"AB2 is a second order method."
 	^ 2

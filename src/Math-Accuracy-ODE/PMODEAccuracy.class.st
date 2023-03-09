@@ -12,7 +12,7 @@ Class {
 	#category : #'Math-Accuracy-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMODEAccuracy class >> run [
 	| instance checkSelectors |
 	instance := self new.

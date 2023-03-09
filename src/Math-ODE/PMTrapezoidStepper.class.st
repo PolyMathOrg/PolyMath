@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMTrapezoidStepper class >> order [
 	"Trapezoid is a second order method."
 	^ 2

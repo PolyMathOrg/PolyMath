@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMExplicitSolver class >> stepperClass [
 	^ PMExplicitStepper
 ]

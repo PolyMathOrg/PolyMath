@@ -7,7 +7,7 @@ Class {
 	#category : #'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMStandardizationScaler >> fit: aPMMatrix [
 	"Compute the mean and the scale of a PMMatrix (in order to have a std of 1)"
 

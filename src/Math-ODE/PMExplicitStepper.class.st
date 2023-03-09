@@ -15,7 +15,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMExplicitStepper class >> order [
 	"the default ExplicitStepper is a Euler Method, order 1"
 	^ 1

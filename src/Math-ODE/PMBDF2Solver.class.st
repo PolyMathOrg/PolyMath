@@ -8,17 +8,17 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF2Solver class >> firstStepperClass [
 	^ PMImplicitStepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMBDF2Solver class >> stepperClass [
 	^ PMBDF2Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF2Solver >> firstStepStartTime: t [
 
 	state := stepper doStep: state time: t stepSize: self dt.
@@ -27,12 +27,12 @@ PMBDF2Solver >> firstStepStartTime: t [
 	^ state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF2Solver >> firstStepperClass [
 	^ self class firstStepperClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF2Solver >> lastStepPrevState: prevState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
@@ -68,7 +68,7 @@ PMBDF2Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: en
 	^ Array with: previousState with: state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMBDF2Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 |prevState statesPair|
 	self system: aSystem.

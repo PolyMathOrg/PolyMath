@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMODESystem class >> block: aBlock [
 	^ (self new block: aBlock; yourself)
 ]

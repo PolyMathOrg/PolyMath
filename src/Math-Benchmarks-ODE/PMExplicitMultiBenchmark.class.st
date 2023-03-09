@@ -34,7 +34,7 @@ PMExplicitMultiBenchmark >> benchAB4 [
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMExplicitMultiBenchmark >> setUp [
 	super setUp.
 	system := PMExplicitSystem block: function

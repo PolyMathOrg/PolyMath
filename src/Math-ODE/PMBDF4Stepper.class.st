@@ -9,7 +9,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF4Stepper class >> order [
 	"BDF4 is a fourth order method."
 	^ 4

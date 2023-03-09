@@ -12,7 +12,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMImplicitSolverAnnouncement class >> state: aState time: aTime [
 	^ self new state: aState time: aTime; yourself
 ]

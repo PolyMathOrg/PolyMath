@@ -61,7 +61,7 @@ PMImplicitMultiBenchmark >> benchTrapezoidAM2 [
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMImplicitMultiBenchmark >> setUp [
 	super setUp.
 	system := PMImplicitSystem block: function

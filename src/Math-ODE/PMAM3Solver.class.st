@@ -8,17 +8,17 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver class >> firstStepperClass [
 	^ PMTrapezoidStepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMAM3Solver class >> stepperClass [
 	^ PMAM3Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> firstStepStartTime: t [
 	state := stepper doStep: state time: t stepSize: self dt.
 	self announceState: state time: t + self dt.
@@ -26,12 +26,12 @@ PMAM3Solver >> firstStepStartTime: t [
 	^ state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> firstStepperClass [
 	^ self class firstStepperClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> lastStepPrevState: prevState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
@@ -67,7 +67,7 @@ PMAM3Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: end
 	^ Array with: previousState with: state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMAM3Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 |prevState statesPair|
 	self system: aSystem.

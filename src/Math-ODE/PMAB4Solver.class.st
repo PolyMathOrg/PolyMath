@@ -8,7 +8,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMAB4Solver class >> stepperClass [
 	^ PMAB4Stepper
 ]
@@ -18,7 +18,7 @@ PMAB4Solver class >> thirdStepperClass [
 	^ PMAB3Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB4Solver >> lastStepPrevState: prevState prevPrevState: prevPrevState initState:initState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
@@ -66,7 +66,7 @@ PMAB4Solver >> mainStepsPrevState: prevState prevPrevState: prevPrevState initSt
 	^ Array with: initialState with: previousPrevState with: previousState
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMAB4Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 	| prevState prevPrevState statesPair initState |
 	self system: aSystem.

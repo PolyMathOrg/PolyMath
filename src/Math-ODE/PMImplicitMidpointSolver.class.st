@@ -8,12 +8,12 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMImplicitMidpointSolver class >> stepperClass [
 	^ PMImplicitMidpointStepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMImplicitMidpointSolver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 
 	self system: aSystem.

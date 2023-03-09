@@ -11,7 +11,7 @@ Class {
 	#category : #'Math-Benchmarks-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #defaults }
 PMODEBenchmark class >> defaultProblemSize [
 	^200
 ]

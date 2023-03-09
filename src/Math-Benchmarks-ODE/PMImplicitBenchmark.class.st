@@ -25,7 +25,7 @@ PMImplicitBenchmark >> benchImplicitMidpoint [
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMImplicitBenchmark >> setUp [
 	super setUp.
 	system := PMImplicitSystem block: function

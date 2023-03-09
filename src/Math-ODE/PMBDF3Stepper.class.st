@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF3Stepper class >> order [
 	"BDF3 is a third order method."
 	^ 3

@@ -121,7 +121,7 @@ PMLineSearch >> failingMin: newFailingMin [
 	failingMin := newFailingMin
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PMLineSearch >> hasConverged [
 	"Customized convergence test: minimize the function as g(x)<=g(0)+alpha*g'(0)"
 	| g0 dg0 gNew |
