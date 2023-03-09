@@ -546,13 +546,13 @@ PMComplexNumberTest >> testNew [
 { #category : #'testing - expressing complex numbers' }
 PMComplexNumberTest >> testNormalizedFractionsOfComplexNumbersCannotBeWritten [
 
-	| z w numerator denominator |
+	| z w numerator |
 	z := 1 + 2 i.
 	w := 3 + 4 i.
 	numerator := z * w complexConjugate.
-	denominator := w squaredNorm.
-	
-	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception.
+	w squaredNorm.
+
+	self should: [ Fraction numerator: numerator denominator: w squaredNorm ] raise: Exception
 ]
 
 { #category : #'testing - close to' }

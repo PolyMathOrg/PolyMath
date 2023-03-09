@@ -176,16 +176,14 @@ PMNNStoreTest >> testNewFrom [
 { #category : #tests }
 PMNNStoreTest >> testWithAll [
 
-	| n array |
+	| n |
 	n := PMNNStore withAll: #( 2 5 4 ).
-	self
-		assert: n completeData
-		equals: #( #( nil 2 ) #( nil 5 ) #( nil 4 ) ).
+	self assert: n completeData equals: #( #( nil 2 ) #( nil 5 ) #( nil 4 ) ).
 	n sortFor: nil. "calling sortFor: is necessary with withAll:"
 	self assert: n data equals: #( 2 4 5 ).
 	self assert: n isFull.
-	n add: #(3 6) copy. 
-	
+	n add: #( 3 6 ) copy.
+
 	"one has to be a bit carefull when one uses 
 				 PMNNStore withAll:, as sortfor: changes this data. 
 				 n add: #(3 6) is not possible here!"
