@@ -1,16 +1,16 @@
 Class {
 	#name : #PMFastStatisticalMoments,
 	#superclass : #PMStatisticalMoments,
-	#category : 'Math-StatisticalMoments'
+	#category : #'Math-StatisticalMoments'
 }
 
 { #category : #transformation }
-PMFastStatisticalMoments >> accumulate: aNumber [ 
+PMFastStatisticalMoments >> accumulate: aNumber [
 	| var |
 	var := 1.
 	1 to: moments size
-		do: 
-			[:n | 
+		do:
+			[:n |
 			moments at: n put: (moments at: n) + var.
 			var := var * aNumber]
 ]
@@ -51,7 +51,7 @@ PMFastStatisticalMoments >> skewness [
 	x1 := (moments at: 2) / n.
 	x2 := (moments at: 3) / n.
 	x3 := (moments at: 4) / n.
-	^(x3 - (3 * x1 * x2) + (2 * x1 * x1 * x1)) * n * n 
+	^(x3 - (3 * x1 * x2) + (2 * x1 * x1 * x1)) * n * n
 		/ (stdev squared * stdev * (n - 1) * (n - 2))
 ]
 

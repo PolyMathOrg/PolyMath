@@ -14,7 +14,7 @@ Class {
 		'whateverHistory',
 		'originalFunction'
 	],
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #information }
@@ -30,48 +30,46 @@ m :=PMAnotherChromosomeManager new.
 m  populationSize: 50.
 o chromosomeManager:m.
 o maximumIterations: 170.
-(anotherArray - anArray allSatisfy: [:each| each >0]) ifFalse: 
+(anotherArray - anArray allSatisfy: [:each| each >0]) ifFalse:
 	[^DomainError signal: 'maximum values should be greater than minimum values'].
 m origin: anArray.
 m range: (anotherArray - anArray).
 ^o
-
 ]
 
 { #category : #transformation }
 PMAnotherGeneticOptimizer >> add: aMinimizingPoint [
-^bestPoints add: aMinimizingPoint 
+^bestPoints add: aMinimizingPoint
 ]
 
 { #category : #transformation }
 PMAnotherGeneticOptimizer >> addPointAt: aVector [
-"makes room if necessary and adds point only, 
-if there is already enough  room or the bestPoints get better with the new point" 
+"makes room if necessary and adds point only,
+if there is already enough  room or the bestPoints get better with the new point"
 	|p|
 	p:=optimizingPointClass vector: aVector function: functionBlock.
 	((p value isInfinite)or:[p value isNaN]) ifTrue:[^self].
 	(bestPoints size >= chromosomeManager populationSize)
-		ifTrue: [(p betterThan: bestPoints last ) ifTrue: 
+		ifTrue: [(p betterThan: bestPoints last ) ifTrue:
 			[removeLast ifTrue: [bestPoints removeLast] ifFalse: [self removeNearestTo: p].
-			self add: p] ]  
-		ifFalse: [self add: p].
+			self add: p] ]
+		ifFalse: [self add: p]
 ]
 
 { #category : #information }
-PMAnotherGeneticOptimizer >> bestValueHistory [ 
-^bestValueHistory 
+PMAnotherGeneticOptimizer >> bestValueHistory [
+^bestValueHistory
 ]
 
 { #category : #accessing }
 PMAnotherGeneticOptimizer >> calcStatistics:aBoolean [
 "calc the best and the worst function return history. default is false."
-statistics :=aBoolean 
+statistics :=aBoolean
 ]
 
 { #category : #accessing }
 PMAnotherGeneticOptimizer >> chromosomeManager [
-^chromosomeManager  
-
+^chromosomeManager
 ]
 
 { #category : #operation }
@@ -87,11 +85,11 @@ PMAnotherGeneticOptimizer >> collectPoints [
 ]
 
 { #category : #information }
-PMAnotherGeneticOptimizer >> computePrecision: whateverData [  "can be changed to check how the ga behaves"	
+PMAnotherGeneticOptimizer >> computePrecision: whateverData [  "can be changed to check how the ga behaves"
 	statistics ifTrue:
 	[bestValueHistory add: bestPoints first value.
 	whateverHistory add: whateverData .
-	worstValueHistory add: bestPoints last value].	
+	worstValueHistory add: bestPoints last value].
 	^steadyState ifTrue: [bestPoints last value - bestPoints first value] ifFalse: [1]
 ]
 
@@ -112,32 +110,31 @@ PMAnotherGeneticOptimizer >> findNearestTo: anOptimizingPointClass [
 	|max dist|
 	max:=Array with: bestPoints size with: Float infinity.
 	(bestPoints size to: 2 by: -1)
-		do: [:index |(anOptimizingPointClass better: (bestPoints at: index) ) ifTrue: 
+		do: [:index |(anOptimizingPointClass better: (bestPoints at: index) ) ifTrue:
 			[dist:=(anOptimizingPointClass position - (bestPoints at: index) position / chromosomeManager range)abs sum.
 			 dist=0 ifTrue:[^index ].
-			 (dist < max second) ifTrue: [max at: 1 put: index. max at: 2 put: dist]] ifFalse: 
+			 (dist < max second) ifTrue: [max at: 1 put: index. max at: 2 put: dist]] ifFalse:
 			[ ^max first]] .
-	^max first.
+	^max first
 ]
 
 { #category : #initialization }
-PMAnotherGeneticOptimizer >> initialize [ 
+PMAnotherGeneticOptimizer >> initialize [
 super initialize .
 rangeScale :=true.
 steadyState :=true.
 removeLast:=false.
-statistics :=false.
+statistics :=false
 ]
 
 { #category : #operation }
 PMAnotherGeneticOptimizer >> initializeIterations [
-	bestPoints size>=chromosomeManager populationSize 
+	bestPoints size>=chromosomeManager populationSize
 		ifTrue: [bestPoints := bestPoints copyFrom: 1 to: (bestPoints size // 2 max: 1)].
 	super initializeIterations.
 	bestValueHistory:=OrderedCollection new.
 	worstValueHistory:=OrderedCollection new.
-	whateverHistory:=OrderedCollection new.
-
+	whateverHistory:=OrderedCollection new
 ]
 
 { #category : #operation }
@@ -210,7 +207,7 @@ PMAnotherGeneticOptimizer >> processRandomParents: aNumberArray [
 	pos2 := self randomIndex: aNumberArray.
 	pos1 > pos2 ifTrue: [c := pos1. pos1 := pos2. pos2 := c].
 	chromosomeManager process: ( bestPoints at: pos1) position
-						and:  ( bestPoints at: pos2) position.
+						and:  ( bestPoints at: pos2) position
 ]
 
 { #category : #operation }
@@ -219,32 +216,31 @@ PMAnotherGeneticOptimizer >> rangeScale [
 	| size best|
 size:=bestPoints size -1.
 best := 0.0 .
-^(size to: 1 by: (-1)) collect: [:i | best := 2 * i / (size * (size + 1)) + best].
-
+^(size to: 1 by: (-1)) collect: [:i | best := 2 * i / (size * (size + 1)) + best]
 ]
 
 { #category : #accessing }
 PMAnotherGeneticOptimizer >> rangeScale: aBoolean [
 "if rangeScale is false the old method of selecting an individual proportionally to its fitness is used, if it is true a constant selection pressure is used. default is true. "
-rangeScale :=aBoolean 
+rangeScale :=aBoolean
 ]
 
 { #category : #accessing }
 PMAnotherGeneticOptimizer >> removeLast: aBoolean [
 "if steadyState is true, then either the worst individual (removeLast:true) is deleted, or the most similar to the new individual (removeLast:false) is deleted, to make room for the new one. default is false, since this keeps diversity high. But it is a bit slow"
-removeLast :=aBoolean .
+removeLast :=aBoolean
 ]
 
 { #category : #transformation }
 PMAnotherGeneticOptimizer >> removeNearestTo: anOptimizingPointClass [
-bestPoints removeAt: (self findNearestTo: anOptimizingPointClass).
+bestPoints removeAt: (self findNearestTo: anOptimizingPointClass)
 ]
 
 { #category : #operation }
-PMAnotherGeneticOptimizer >> resetBestPoints [ 
+PMAnotherGeneticOptimizer >> resetBestPoints [
 "for repeated evaluating with different starting populations"
 bestPoints := SortedCollection sortBlock: [ :a :b | a betterThan: b].
-result :=nil.
+result :=nil
 ]
 
 { #category : #initialization }
@@ -253,22 +249,21 @@ PMAnotherGeneticOptimizer >> setFunction: aBlock [
 		ifFalse:[ self error: 'Function block must implement the method value:'].
 	originalFunction :=aBlock . "necessary for subclass; do not delete that nonsense!"
 	functionBlock := aBlock.
-	self resetBestPoints.
-
+	self resetBestPoints
 ]
 
 { #category : #accessing }
 PMAnotherGeneticOptimizer >> steadyState: aBoolean [
 "if steadyState is false, the old method of making room for new individuals after one iteration and just keeping the best so far is used. If it is true (the default), then everything is kept and only offspring that are better than the worst so far are put into the population."
-steadyState :=aBoolean .
+steadyState :=aBoolean
 ]
 
 { #category : #information }
-PMAnotherGeneticOptimizer >> whateverHistory [  
-^whateverHistory 
+PMAnotherGeneticOptimizer >> whateverHistory [
+^whateverHistory
 ]
 
 { #category : #information }
-PMAnotherGeneticOptimizer >> worstValueHistory [ 
-^worstValueHistory 
+PMAnotherGeneticOptimizer >> worstValueHistory [
+^worstValueHistory
 ]

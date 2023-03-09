@@ -42,7 +42,7 @@ PMIncompleteGammaFunction >> evaluateSeries: aNumber [
 
 { #category : #initialization }
 PMIncompleteGammaFunction >> initialize: aNumber [
-	
+
 	alpha := aNumber asFloat.
 	alphaLogGamma := alpha logGamma.
 	^self

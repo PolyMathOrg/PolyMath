@@ -34,7 +34,7 @@ PMBisectionZeroFinder >> findNegativeXFrom: aNumber1 range: aNumber2 [
 	| random n |
 	n := 0.
 	random := Random new.
-	
+
 	[ negativeX := random next * aNumber2 + aNumber1.
 	  ( functionBlock value: negativeX) < 0
 		] whileFalse: [ n := n + 0.1.
@@ -48,7 +48,7 @@ PMBisectionZeroFinder >> findPositiveXFrom: aNumber1 range: aNumber2 [
 	| n random |
 	n := 0.
 	random := Random new.
-	
+
 	[ positiveX := random next * aNumber2 + aNumber1.
 	  ( functionBlock value: positiveX) > 0
 		] whileFalse: [ n := n + 1.

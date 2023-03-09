@@ -11,7 +11,7 @@ SequenceableCollection >> closeTo: aSequenceableCollection [
 
 { #category : #'*Math-Helpers' }
 SequenceableCollection >> equalsTo: aSequenceableCollection [
-	
+
 	self
 		deprecated: 'Use closeTo: instead'
 		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.

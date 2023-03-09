@@ -21,17 +21,17 @@ Class {
 PMFastFourierTransform class >> data: anArrayOfNumbersOrComplex [
 	^ self new
 		data: anArrayOfNumbersOrComplex;
-		yourself 
+		yourself
 ]
 
 { #category : #accessing }
 PMFastFourierTransform >> chop: tolerance [
 	"sets numbers smaller than tolerance to zero"
 
-	| r i | 
+	| r i |
 	^ data := data
 		collect:
-			[ :k | 
+			[ :k |
 			r := k real.
 			i := k imaginary.
 			r abs < tolerance
@@ -67,14 +67,14 @@ PMFastFourierTransform >> data: anArrayOfNumberOrComplex [
 
 { #category : #accessing }
 PMFastFourierTransform >> imaginaryData [
-	^ data collect: [ :i | i imaginary ] 
+	^ data collect: [ :i | i imaginary ]
 ]
 
 { #category : #initializing }
 PMFastFourierTransform >> initPermTable [
 	| r |
 	permTable := OrderedCollection new: n // 2.
-	2 to: n - 1 do: [ :i | 
+	2 to: n - 1 do: [ :i |
 		r := (i - 1 bitReverse: nu) + 1.
 		r > i
 			ifTrue: [ permTable
@@ -107,11 +107,11 @@ PMFastFourierTransform >> multiplier: theta [
 
 { #category : #accessing }
 PMFastFourierTransform >> n [
-	^ n 
+	^ n
 ]
 
 { #category : #accessing }
-PMFastFourierTransform >> realData [ 
+PMFastFourierTransform >> realData [
 	^ data collect: [ :i | i real ]
 ]
 
@@ -129,15 +129,15 @@ PMFastFourierTransform >> transform [
 ]
 
 { #category : #private }
-PMFastFourierTransform >> transformForward: forward [ 
+PMFastFourierTransform >> transformForward: forward [
 	| lev lev1 ip temp temp2 i |
 	permTable do: [ :j | data swap: j first with: j second ].
 	1 to: nu do:
-		[ :level | 
+		[ :level |
 		lev := 1 bitShift: level.
 		lev1 := lev // 2.
 		1 to: lev1 do:
-			[ :j | 
+			[ :j |
 			temp := self multiplier: (j - 1) * (n // lev).
 			forward
 				ifFalse: [ temp := temp complexConjugate ].

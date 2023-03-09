@@ -23,7 +23,7 @@ PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	ks := PMKolmogorovSmirnov2Sample
 		compareData: #(1.2 1.4 1.9 3.7 4.4 4.8 9.7 17.3 21.1 28.4)
 		withData: #(5.6 6.5 6.6 6.9 9.2 10.4 10.6 19.3).
-	
+
 	self
 		assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
 		equals: true
@@ -31,7 +31,7 @@ PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 
 { #category : #tests }
 PMKolmogorovSmirnov2SampleTest >> testSecondSmallSample [
-	"sample from Kim, P. J. & Jennrich, R. I. 
+	"sample from Kim, P. J. & Jennrich, R. I.
 	Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
 	in Selected Tables in Mathematical Statistics Volume I (1973)"
 

@@ -25,25 +25,25 @@ PMMultivariateNormalDistribution >> average [
 PMMultivariateNormalDistribution >> changeParametersBy: aVector [
 	"Modify the parameters of the receiver by aVector."
 	meanVector := meanVector + aVector first.
-	covarianceMatrix := covarianceMatrix + aVector second.
+	covarianceMatrix := covarianceMatrix + aVector second
 ]
 
 { #category : #information }
 PMMultivariateNormalDistribution >> covarianceMatrix [
-	^ covarianceMatrix 
+	^ covarianceMatrix
 ]
 
 { #category : #information }
 PMMultivariateNormalDistribution >> distributionValue: aNumber [
 	"Answers the probability of observing a random variable distributed according to the receiver with a value lower than or equal to aNumber. Also known as the cumulative density function (CDF)."
-	
-	self shouldBeImplemented 
+
+	self shouldBeImplemented
 ]
 
 { #category : #initialization }
 PMMultivariateNormalDistribution >> initializeMeanVector: aMeanVector covarianceMatrix: aCovarianceMatrix [
 	meanVector := aMeanVector.
-	covarianceMatrix := aCovarianceMatrix.
+	covarianceMatrix := aCovarianceMatrix
 ]
 
 { #category : #information }
@@ -54,12 +54,12 @@ PMMultivariateNormalDistribution >> kurtosis [
 
 { #category : #information }
 PMMultivariateNormalDistribution >> meanVector [
-	^ meanVector 
+	^ meanVector
 ]
 
 { #category : #information }
 PMMultivariateNormalDistribution >> parameters [
-	"Returns an Array containing the parameters of the distribution. 
+	"Returns an Array containing the parameters of the distribution.
 	It is used to print out the distribution and for fitting."
 
 	^ { meanVector . covarianceMatrix }
@@ -72,15 +72,15 @@ PMMultivariateNormalDistribution >> power [
 ]
 
 { #category : #information }
-PMMultivariateNormalDistribution >> random [ 
+PMMultivariateNormalDistribution >> random [
 	"Answer a vector of random numbers distributed accroding to the receiver."
 	| standardNormalRandom upperTriangular |
-	
+
 	standardNormalRandom := (1 to: self power) asPMVector
 		collect: [ :each | PMNormalDistribution random ].
-		
+
 	upperTriangular := covarianceMatrix choleskyDecomposition.
-	
+
 	^ upperTriangular transpose * standardNormalRandom + meanVector
 ]
 
@@ -93,6 +93,6 @@ PMMultivariateNormalDistribution >> skewness [
 { #category : #information }
 PMMultivariateNormalDistribution >> value: aVector [
 	"Answers the probability that a random variable distributed according to the receiver gives a value between aVector and aVector + espilon (infinitesimal interval)."
-	
+
 	^ (-1/2 * (aVector - meanVector) * covarianceMatrix inverse * (aVector - meanVector)) exp / (((2 * Float pi) raisedTo: self power) * covarianceMatrix determinant) sqrt
 ]

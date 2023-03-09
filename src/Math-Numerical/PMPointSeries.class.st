@@ -74,19 +74,19 @@ PMPointSeries >> pointCollection [
 
 { #category : #'public methods' }
 PMPointSeries >> pointsDo: aBlock [
-	points do: aBlock.
+	points do: aBlock
 ]
 
 { #category : #privateMethods }
 PMPointSeries >> primitiveAdd: aPoint [
 	"Private - Add a point to the receiver"
-	points add: aPoint.
+	points add: aPoint
 ]
 
 { #category : #privateMethods }
 PMPointSeries >> primitiveRemove: aPoint [
 	"Private - Removes a point from the receiver"
-	points remove: aPoint.
+	points remove: aPoint
 ]
 
 { #category : #'public methods' }

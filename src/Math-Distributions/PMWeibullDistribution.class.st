@@ -38,14 +38,14 @@ PMWeibullDistribution class >> new [
 ]
 
 { #category : #creation }
-PMWeibullDistribution class >> shape: aNumber1 scale: aNumber2 [ 
+PMWeibullDistribution class >> shape: aNumber1 scale: aNumber2 [
 	"Create an instance of the receiver with given shape and scale parameters."
 
 	^super new initialize: aNumber1 scale: aNumber2
 ]
 
 { #category : #creation }
-PMWeibullDistribution class >> solve: lowX acc: lowAcc upper: highX acc: highAcc [ 
+PMWeibullDistribution class >> solve: lowX acc: lowAcc upper: highX acc: highAcc [
 	"Private"
 
 	| lowLnAcc highLnAcc deltaLnAcc lowLnX highLnX |
@@ -69,13 +69,13 @@ PMWeibullDistribution >> changeParametersBy: aVector [
 		"Modify the parameters of the receiver by aVector."
 	alpha := alpha + ( aVector at: 1).
 	beta := beta + ( aVector at: 2).
-	self computeNorm.
+	self computeNorm
 ]
 
 { #category : #initialization }
 PMWeibullDistribution >> computeNorm [
 		"Private - Compute the norm of the receiver because its parameters have changed."
-	norm := alpha/ ( beta raisedTo: alpha).
+	norm := alpha/ ( beta raisedTo: alpha)
 ]
 
 { #category : #information }

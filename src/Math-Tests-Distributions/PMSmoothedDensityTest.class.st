@@ -8,8 +8,8 @@ Class {
 }
 
 { #category : #running }
-PMSmoothedDensityTest >> setUp [ 
-density:=PMKernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4).
+PMSmoothedDensityTest >> setUp [
+density:=PMKernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4)
 ]
 
 { #category : #tests }
@@ -90,7 +90,7 @@ PMSmoothedDensityTest >> testNormal [
 	density normal.
 	r := 0.2419707245.
 	self assert:
-		((#( 1 0 -1 -2.9 ) collect: [ :x | density kernel value: x ]) 
+		((#( 1 0 -1 -2.9 ) collect: [ :x | density kernel value: x ])
 			 closeTo: (Array
 					  with: r
 					  with: 0.3989422804
@@ -109,8 +109,7 @@ density printOn: aStream .
 s :=aStream contents .
 self assert: ((s findString: 'normal')>0).
 self assert: ((s findString: '6')>0).
-self assert: ((s findString: '0.50589967')>0).
-
+self assert: ((s findString: '0.50589967')>0)
 ]
 
 { #category : #tests }

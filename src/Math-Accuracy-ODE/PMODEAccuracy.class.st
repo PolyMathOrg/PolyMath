@@ -9,7 +9,7 @@ Class {
 		'endTime',
 		'standard'
 	],
-	#category : 'Math-Accuracy-ODE'
+	#category : #'Math-Accuracy-ODE'
 }
 
 { #category : #'as yet unclassified' }
@@ -29,29 +29,26 @@ PMODEAccuracy class >> runToXML [
 	writer
 		enablePrettyPrinting;
 		xml.
-	writer tag: 'accuracy' with: [ 
+	writer tag: 'accuracy' with: [
 		self run keysAndValuesDo:  [ :key :value |
 			writer tag: key with: value asString]].
 
-	^ writer 
+	^ writer
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAB2 [
 	^ self checkSolverClass: PMAB2Solver systemClass: PMExplicitSystem stepperClass: PMAB2Stepper
-
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAB3 [
 	^ self checkSolverClass: PMAB3Solver systemClass: PMExplicitSystem stepperClass: PMAB3Stepper
-	
 ]
 
 { #category : #checks }
 PMODEAccuracy >> checkAB4 [
 	^ self checkSolverClass: PMAB4Solver systemClass: PMExplicitSystem stepperClass: PMAB4Stepper
-	
 ]
 
 { #category : #checks }
@@ -60,8 +57,6 @@ PMODEAccuracy >> checkAM3 [
 		checkSolverClass: PMAM3Solver
 		systemClass: PMImplicitSystem
 		stepperClass: PMAM3Stepper
-		
-	
 ]
 
 { #category : #checks }
@@ -167,12 +162,12 @@ PMODEAccuracy >> initialize [
 	function :=  [:x :t | (t ** 4) * (t sin ** (2 * t cos)) * ( (2 * t negated) * (2 * t sin) * (t sin log) + t * (2 * t cos) * (t tan reciprocal) + 5)].
 	startState := 0.
 	startTime := 0.3 .
-	endTime := Float halfPi 
+	endTime := Float halfPi
 ]
 
 { #category : #initialization }
 PMODEAccuracy >> standard [
 	standard
-		ifNil: [ standard := [ :t | t ** 5 * (t sin ** (2 * t cos)) - 0.000888511 ] value: endTime ]. 
+		ifNil: [ standard := [ :t | t ** 5 * (t sin ** (2 * t cos)) - 0.000888511 ] value: endTime ].
 	^ standard
 ]

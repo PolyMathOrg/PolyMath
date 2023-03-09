@@ -9,7 +9,7 @@ PMNumericalMethodsTestCase >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 	PMMitchellMooreGenerator reset: 0.
 	"Reset the FloatingPointMachine to make coverage consistent"
-	PMFloatingPointMachine reset.
+	PMFloatingPointMachine reset
 ]
 
 { #category : #'linear algebra' }
@@ -49,10 +49,9 @@ PMNumericalMethodsTestCase >> testDeterminant [
 
 { #category : #'linear algebra' }
 PMNumericalMethodsTestCase >> testDimension [
-	| a | 
-	a := PMMatrix rows: #( ( 1 0 1) (-1 -2 3)).	
-	self assert: a dimension equals: 2@3.
-	
+	| a |
+	a := PMMatrix rows: #( ( 1 0 1) (-1 -2 3)).
+	self assert: a dimension equals: 2@3
 ]
 
 { #category : #'linear algebra' }
@@ -382,27 +381,27 @@ PMNumericalMethodsTestCase >> testLeastSquarePolynomial [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLeastSquaresSingularMatrixError [
 	| histogram leastSquares |
-	
+
 	histogram := PMHistogram new
 		freeExtent: true;
 		yourself.
-		
+
 	1 to: 3 do: [:i| histogram accumulate: i ].
-	
+
 	leastSquares := PMLeastSquareFit
 		histogram: histogram
 		distributionClass: PMTriangularDistribution.
-		
+
 	self should: [ leastSquares evaluate ] raise: PMSingularMatrixError.
-	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError .
+	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch1 [
 	"Test line searh for an initial step of Newton solver for equation
-	
+
 	atan x = 0 with x0 = 2.
-	
+
 	D[atan x] = 1 / (1+x^2).
 	"
 	| xOld p functionBlock g0 g1 dg0 xAnswer |
@@ -419,18 +418,17 @@ PMNumericalMethodsTestCase >> testLineSearch1 [
 					valueAtOne: g1) evaluate.
 	self assert: (xAnswer <= 0.5) & (xAnswer > 1e-3).
 	self assert: (functionBlock value: xAnswer) < g0.
-	self assert: (functionBlock value: xAnswer) < g1.
-	
+	self assert: (functionBlock value: xAnswer) < g1
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch2 [
 	"Test line searh for an initial step of Newton solver for equation
-	
+
 	F(x) := sqrt(x) - x = 0 with x = 2.
-	
+
 	F'(x) = 0.5 / sqrt(x) - 1.
-	
+
 	This case does not require line search, should return 1.
 	"
 	| xOld p functionBlock g0 g1 dg0 xAnswer |
@@ -447,18 +445,17 @@ PMNumericalMethodsTestCase >> testLineSearch2 [
 					valueAtOne: g1) evaluate.
 	self assert: xAnswer equals: 1.0.
 	self assert: (functionBlock value: xAnswer) < g0.
-	self assert: (functionBlock value: xAnswer) = g1.
-	
+	self assert: (functionBlock value: xAnswer) = g1
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch3 [
 	"Test line searh for the final step of Newton solver for equation
-	
+
 	F(x) := x + 1 for x = -1 (+ small epsilon)
-	
+
 	F'(x) = 1.
-	
+
 	This case does not require line search, should return 1.
 	"
 	| xOld eps p functionBlock g0 g1 dg0 lineSearch xAnswer |
@@ -472,8 +469,7 @@ PMNumericalMethodsTestCase >> testLineSearch3 [
 	lineSearch := PMLineSearch function: functionBlock valueAtZero: g0 derivativeAtZero: dg0 valueAtOne: g1.
 	lineSearch desiredPrecision: eps.
 	xAnswer := lineSearch evaluate.
-	self assert: xAnswer equals: 1.0.
-	
+	self assert: xAnswer equals: 1.0
 ]
 
 { #category : #'linear algebra' }
@@ -743,11 +739,11 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 	"Test Newton's method for
-	
+
 	   atan x = 0, x = 5.
-	
+
 	   atan' x = 1 / (1+x^2)
-	
+
 	This case requires line search to decrease the initial step."
 	| zeroFinder result |
 	zeroFinder := PMNewtonZeroFinder
@@ -762,11 +758,11 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 	"Test Newton's method for linear function
-	
+
 	   F(x) = x + 1 = 0, x = 5.
-	
+
 	   F'(x) = 1
-	
+
 	This should converge in two iterations: the first iteration produces large step,
 	but the second iteration step is zero => convergence"
 	| zeroFinder result |
@@ -775,7 +771,7 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
 	self assert: (result + 1) abs <= zeroFinder precision.
-	self assert: zeroFinder iterations = 2.
+	self assert: zeroFinder iterations = 2
 ]
 
 { #category : #statistics }
@@ -794,7 +790,7 @@ PMNumericalMethodsTestCase >> testOptimize [
 	"General optimizer to test genetic algorithm"
 
 	| fBlock finder result |
-	fBlock := [ :x | 
+	fBlock := [ :x |
 	| r |
 	r := x * x.
 	r = 0

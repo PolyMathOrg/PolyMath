@@ -30,7 +30,7 @@ PMUniformDistribution class >> fromHistogram: aHistogram [
 	b = 0
 		ifTrue: [ ^nil].
 	c := aHistogram average.
-	^self from: ( c - b) to: ( c + b).
+	^self from: ( c - b) to: ( c + b)
 ]
 
 { #category : #public }

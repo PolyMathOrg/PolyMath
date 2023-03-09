@@ -32,7 +32,7 @@ m1 := pca transform: m.
 
 d1 := DataFrame fromRows: m1 rows.
 d1 addColumn: ((DataFrame loadIris) columnsFrom:5 to:5) asArrayOfColumns first named:''.
-d1 scatterplotMatrix.
+d1 scatterplotMatrix
 ]
 
 { #category : #accessing }
@@ -48,12 +48,12 @@ PMPrincipalComponentAnalyserSVD >> fit: aPMMatrix [
 PMPrincipalComponentAnalyserSVD >> flipEigenvectorsSign [
 	"flip eigenvectors sign to enforce deterministic output"
 	"U-based decision like : https://github.com/scikit-learn/scikit-learn/blob/4c65d8e615c9331d37cbb6225c5b67c445a5c959/sklearn/utils/extmath.py#L609"
-	
+
 	| algo |
 	algo := PMSciKitLearnSVDFlipAlgorithm flipU: u andV: v.
-	
-	u := algo uFlipped . 
-	v := algo vFlipped . 
+
+	u := algo uFlipped .
+	v := algo vFlipped .
 ]
 
 { #category : #accessing }

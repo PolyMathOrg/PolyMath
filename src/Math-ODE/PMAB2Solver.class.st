@@ -20,7 +20,7 @@ PMAB2Solver class >> stepperClass [
 
 { #category : #'as yet unclassified' }
 PMAB2Solver >> firstStepStartTime: t [
-	state := stepper doStep: state time: t stepSize: self dt.	
+	state := stepper doStep: state time: t stepSize: self dt.
 	self announceState: state time: t + self dt.
 	lastTime := t + self dt.
 	^ state
@@ -28,7 +28,7 @@ PMAB2Solver >> firstStepStartTime: t [
 
 { #category : #'as yet unclassified' }
 PMAB2Solver >> firstStepperClass [
-	^ self class firstStepperClass 
+	^ self class firstStepperClass
 ]
 
 { #category : #solving }
@@ -36,34 +36,34 @@ PMAB2Solver >> lastStepPrevState: prevState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
 	ifFalse:
-		[state := stepper 
-			lastStep: state 
+		[state := stepper
+			lastStep: state
 			prevState: prevState
-			time: lastTime 
+			time: lastTime
 			stepSize: endTime - lastTime
 			deltaT: dt.
-			self announceState: state time: endTime].			
+			self announceState: state time: endTime].
 	^ state
 ]
 
 { #category : #'as yet unclassified' }
 PMAB2Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: endTime [
 	|previousState|
-	previousState := prevState.	
+	previousState := prevState.
 	"don't go to end time to avoid overrunning"
 	(initialTime to: endTime - self dt  by: self dt) do:
 		[:time | | tempState|
 			tempState := state.
 			state := stepper
-				doStep: state 
+				doStep: state
 				prevState: previousState
-				time:  time 
+				time:  time
 				stepSize: self dt.
 			previousState := tempState.
 			"announce step results"
 			self announceState: state time: time + self dt.
 			lastTime := time + self dt].
-			
+
 	^ Array with: previousState with: state
 ]
 
@@ -77,30 +77,30 @@ PMAB2Solver >> solve: aSystem startState: initialState startTime: initialTime en
 
 	"announce initial conditions"
 	self announceState: state time: initialTime.
-	
+
 	(lastTime+dt > endTime and: lastTime < endTime)
 	ifTrue:[
 		state :=self lastStepState: state endTime: endTime].
-	
-	lastTime+dt<= endTime 
+
+	lastTime+dt<= endTime
 	ifTrue:[
 	prevState:= initialState.
-	
+
 	state := self firstStepStartTime: initialTime.
 	"announce first step"
 	self announceState: state time: (initialTime + dt).
-	
+
 	self stepper: ((self stepperClass) onSystem: self system).
-	
+
 	"step until the end"
 	statesPair := self mainStepsPrevState: prevState startTime: ( initialTime + dt) endTime: endTime.
       state:=statesPair second.
 	prevState:= statesPair first.
-	
+
 	"sanity check"
-	self assert: [(lastTime between: initialTime and: endTime) 
+	self assert: [(lastTime between: initialTime and: endTime)
 				or: [lastTime between: endTime and: initialTime]].
-		
+
 	"take another step if needed"
 	state := self lastStepPrevState: prevState endTime: endTime.].
 

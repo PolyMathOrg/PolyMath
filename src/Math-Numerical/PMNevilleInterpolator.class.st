@@ -10,24 +10,24 @@ Class {
 
 { #category : #private }
 PMNevilleInterpolator >> computeDifference: aNumber at: anInteger1 order: anInteger2 [
-	
+
 	| leftDist rightDist ratio |
 	leftDist := ( self xPointAt: anInteger1) - aNumber.
 	rightDist := (  self xPointAt: ( anInteger1 + anInteger2)) - aNumber.
 	ratio := ( ( leftErrors at: ( anInteger1 + 1)) - ( rightErrors at: anInteger1)) / ( leftDist - rightDist).
 	leftErrors at: anInteger1 put: ratio * leftDist.
-	rightErrors at: anInteger1 put: ratio * rightDist.
+	rightErrors at: anInteger1 put: ratio * rightDist
 ]
 
 { #category : #information }
 PMNevilleInterpolator >> defaultSamplePoints [
-	
+
 	^SortedCollection sortBlock: [ :a :b | a x < b x]
 ]
 
 { #category : #initialization }
 PMNevilleInterpolator >> initialize [
-	
+
 	super initialize.
 	leftErrors := Array new.
 	rightErrors := Array new

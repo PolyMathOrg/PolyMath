@@ -20,7 +20,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
 	matrix V
 	(by 'dot product' we mean send the dot: message)
 	Example here is taken from Scikit Learn
-	
+
 	U = [[-0.21956688  0.53396977]
  		 [-0.35264795 -0.45713538]
  		 [-0.57221483  0.07683439]
@@ -29,22 +29,22 @@ PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
  	    [ 0.57221483 -0.07683439]]
 
    V = [[ 0.83849224  0.54491354]
- 		 [ 0.54491354 -0.83849224]]    
+ 		 [ 0.54491354 -0.83849224]]
 	"
 
 
 	u := PMMatrix rows: #(
-		#(-0.21956688 0.53396977) 
-		#(-0.35264795 -0.45713538) 
-		#(-0.57221483  0.07683439) 
-		#( 0.21956688 -0.53396977) 
-		#( 0.35264795  0.45713538) 
+		#(-0.21956688 0.53396977)
+		#(-0.35264795 -0.45713538)
+		#(-0.57221483  0.07683439)
+		#( 0.21956688 -0.53396977)
+		#( 0.35264795  0.45713538)
 		#( 0.57221483 -0.07683439)).
 	v := PMMatrix rows: #(
-		#(0.83849224  0.54491354) 
+		#(0.83849224  0.54491354)
 		#(0.54491354 -0.83849224)).
-		
-	flipAlgorithm := PMSciKitLearnSVDFlipAlgorithm flipU: u andV: v.
+
+	flipAlgorithm := PMSciKitLearnSVDFlipAlgorithm flipU: u andV: v
 ]
 
 { #category : #'scikit-learn-example' }
@@ -54,7 +54,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 	"
 
 	| expected signs |
-	
+
 	signs := flipAlgorithm computeSignsFromU.
 
 	expected := #(-1 1) asPMVector.
@@ -65,16 +65,15 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForU [
 	| expected |
 	expected := PMMatrix rows: #(#(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1)).
-	
-	self assert: (flipAlgorithm signMatrixForU) equals: expected
 
+	self assert: (flipAlgorithm signMatrixForU) equals: expected
 ]
 
 { #category : #'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForV [
 	| expected |
 	expected := PMMatrix rows: #(#(-1 -1) #(1 1)).
-	
+
 	self assert: (flipAlgorithm signMatrixForV) equals: expected
 ]
 
@@ -90,8 +89,6 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testUFlipped [
  						#(-0.57221483 -0.07683439)).
 
 	self assert: (flipAlgorithm uFlipped) equals: expected
-
-	
 ]
 
 { #category : #'scikit-learn-example' }

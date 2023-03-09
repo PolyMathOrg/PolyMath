@@ -15,13 +15,13 @@ Class {
 
 { #category : #creation }
 PMWeightedPoint class >> point: aPoint [
-	
+
 	^ self new initialize: aPoint weight: 1
 ]
 
 { #category : #creation }
 PMWeightedPoint class >> point: aNumber count: anInteger [
-	
+
 	^ self
 		point: aNumber @ anInteger
 		weight:
@@ -32,13 +32,13 @@ PMWeightedPoint class >> point: aNumber count: anInteger [
 
 { #category : #creation }
 PMWeightedPoint class >> point: aPoint error: aNumber [
-	
+
 	^ self new initialize: aPoint error: aNumber
 ]
 
 { #category : #creation }
 PMWeightedPoint class >> point: aPoint weight: aNumber [
-	
+
 	^ self basicNew initialize: aPoint weight: aNumber
 ]
 

@@ -46,7 +46,7 @@ PMSplineInterpolator >> computeSecondDerivatives [
 
 { #category : #information }
 PMSplineInterpolator >> defaultSamplePoints [
-		
+
 	^SortedCollection sortBlock: [ :a :b | a x < b x]
 ]
 
@@ -54,13 +54,13 @@ PMSplineInterpolator >> defaultSamplePoints [
 PMSplineInterpolator >> endPointDerivative: aNumber [
 	"Defines the end point derivatives."
 	endPointDerivative := aNumber.
-	self resetCoefficients.
+	self resetCoefficients
 ]
 
 { #category : #information }
 PMSplineInterpolator >> resetEndPointDerivatives [
 	"Set the end point derivatives to undefined."
-	self setEndPointDerivatives: ( Array new: 2).
+	self setEndPointDerivatives: ( Array new: 2)
 ]
 
 { #category : #information }
@@ -68,14 +68,14 @@ PMSplineInterpolator >> setEndPointDerivatives: anArray [
 	"Defines the end point derivatives."
 	startPointDerivative := anArray at: 1.
 	endPointDerivative := anArray at: 2.
-	self resetCoefficients.
+	self resetCoefficients
 ]
 
 { #category : #information }
 PMSplineInterpolator >> startPointDerivative: aNumber [
 	"Defines the end point derivatives."
 	startPointDerivative := aNumber.
-	self resetCoefficients.
+	self resetCoefficients
 ]
 
 { #category : #information }

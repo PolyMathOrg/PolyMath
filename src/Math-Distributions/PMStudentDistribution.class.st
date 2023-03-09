@@ -12,18 +12,18 @@ Class {
 
 { #category : #creation }
 PMStudentDistribution class >> asymptoticLimit [
-	
+
 	^30
 ]
 
 { #category : #creation }
-PMStudentDistribution class >> degreeOfFreedom: anInteger [ 
+PMStudentDistribution class >> degreeOfFreedom: anInteger [
 	"Create a new instance of the receiver with anInteger degrees of freedom."
 
-	^anInteger > self asymptoticLimit 
+	^anInteger > self asymptoticLimit
 		ifTrue: [PMNormalDistribution new]
-		ifFalse: 
-			[anInteger = 1 
+		ifFalse:
+			[anInteger = 1
 				ifTrue: [PMCauchyDistribution shape: 0 scale: 1]
 				ifFalse: [super new initialize: anInteger]]
 ]
@@ -70,7 +70,7 @@ PMStudentDistribution >> average [
 PMStudentDistribution >> changeParametersBy: aVector [
 	"Modify the parameters of the receiver by aVector."
 	degreeOfFreedom := degreeOfFreedom + ( aVector at: 1).
-	self computeNorm.
+	self computeNorm
 ]
 
 { #category : #information }
@@ -84,7 +84,7 @@ PMStudentDistribution >> chiSquareDistribution [
 { #category : #private }
 PMStudentDistribution >> computeNorm [
 	"Private - Compute the norm of the receiver because its parameters have changed."
-	norm := ( ( degreeOfFreedom / 2 logBeta: ( 1 / 2) ) + ( degreeOfFreedom ln / 2)) negated.
+	norm := ( ( degreeOfFreedom / 2 logBeta: ( 1 / 2) ) + ( degreeOfFreedom ln / 2)) negated
 ]
 
 { #category : #information }
@@ -142,7 +142,7 @@ PMStudentDistribution >> random [
 
 { #category : #information }
 PMStudentDistribution >> skewness [
-		
+
 	^0
 ]
 
@@ -161,7 +161,7 @@ PMStudentDistribution >> value: aNumber [
 { #category : #information }
 PMStudentDistribution >> variance [
 	"Answer the variance of the receiver. Undefined if the degree of freedom is less than 3."
-	^degreeOfFreedom > 2 
+	^degreeOfFreedom > 2
 		ifTrue: [ degreeOfFreedom / ( degreeOfFreedom - 2)]
 		ifFalse:[ nil]
 ]

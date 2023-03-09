@@ -38,7 +38,7 @@ PMAM3StepperTest >> testSimpleSystem2 [
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo: 4.5912).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo: 4.9614).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  2.8977).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  0.5375).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  0.5375)
 ]
 
 { #category : #'tests-stepping' }
@@ -86,7 +86,7 @@ PMAM3StepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := PMImplicitSystem
-		block: [ :x :t | 
+		block: [ :x :t |
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.

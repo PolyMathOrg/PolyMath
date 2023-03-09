@@ -11,7 +11,7 @@ Class {
 PMAnotherGeneticOptimizerTest >> setUp [
 
 	| origin f |
-	f := [ :x | 
+	f := [ :x |
 	     | v |
 	     v := x asPMVector.
 	     v * v ].
@@ -40,8 +40,7 @@ go evaluate .
 r:=go computePrecision:0.
 go maximumIterations: 50 .
 go evaluate .
-self assert: (r>go computePrecision  ).
-
+self assert: (r>go computePrecision  )
 ]
 
 { #category : #tests }
@@ -56,15 +55,12 @@ PMAnotherGeneticOptimizerTest >> testEvaluate [
 PMAnotherGeneticOptimizerTest >> testInitializeIterations [
 self assert: (go bestPoints isEmpty ).
 go initializeIterations .
-self deny: (go bestPoints isEmpty ). 
+self deny: (go bestPoints isEmpty ).
 go calcStatistics: true.
 go evaluate .
 self deny: (go bestValueHistory isEmpty  ).
 go initializeIterations .
-self assert: (go bestValueHistory isEmpty  ).
-
-
-
+self assert: (go bestValueHistory isEmpty  )
 ]
 
 { #category : #tests }
@@ -95,7 +91,7 @@ PMAnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
 	9
-		timesRepeat: [ 
+		timesRepeat: [
 			self setUp.
 			go maximumIterations: 500.
 			go rangeScale: true.
@@ -115,7 +111,7 @@ PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
 	3
-		timesRepeat: [ 
+		timesRepeat: [
 			self setUp.
 			go maximumIterations: 1000.
 			go removeLast: true.
@@ -141,8 +137,7 @@ self setUp .
 go steadyState:  true.
 go maximumIterations: 1000.
 r2 :=go evaluate norm.
-self assert: (r1>r2  ).
-
+self assert: (r1>r2  )
 ]
 
 { #category : #tests }
@@ -191,6 +186,5 @@ PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 PMAnotherGeneticOptimizerTest >> testresetBestPoints [
 go evaluate .
 go resetBestPoints .
-self assert: (go bestPoints isEmpty  ).
-
+self assert: (go bestPoints isEmpty  )
 ]

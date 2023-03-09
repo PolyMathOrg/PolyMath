@@ -14,9 +14,9 @@ Class {
 }
 
 { #category : #creation }
-PMCongruentialRandomNumberGenerator class >> constant: aNumber1 multiplicator: aNumber2 modulus: aNumber3 [ 
+PMCongruentialRandomNumberGenerator class >> constant: aNumber1 multiplicator: aNumber2 modulus: aNumber3 [
 
-	^super new 
+	^super new
 		initialize: aNumber1
 		multiplicator: aNumber2
 		modulus: aNumber3
@@ -46,17 +46,17 @@ PMCongruentialRandomNumberGenerator >> floatValue [
 
 { #category : #initialization }
 PMCongruentialRandomNumberGenerator >> initialize [
-	
-	self initialize: 2718281829.0 multiplicator: 3141592653.0 modulus: 4294967296.0.
+
+	self initialize: 2718281829.0 multiplicator: 3141592653.0 modulus: 4294967296.0
 ]
 
 { #category : #initialization }
 PMCongruentialRandomNumberGenerator >> initialize: aNumber1 multiplicator: aNumber2 modulus: aNumber3 [
-	
+
 	constant := aNumber1.
 	modulus := aNumber2.
 	multiplicator := aNumber3.
-	self setSeed: 1.
+	self setSeed: 1
 ]
 
 { #category : #information }
@@ -68,7 +68,7 @@ PMCongruentialRandomNumberGenerator >> integerValue: anInteger [
 { #category : #transformation }
 PMCongruentialRandomNumberGenerator >> setSeed: aNumber [
 	"Set the seed of the receiver to aNumber."
-	seed := aNumber.
+	seed := aNumber
 ]
 
 { #category : #information }

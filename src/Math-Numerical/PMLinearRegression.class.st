@@ -24,11 +24,11 @@ PMLinearRegression class >> new [
 { #category : #transformation }
 PMLinearRegression >> add: aPoint [
 		"Accumulate aPoint into of the receiver."
-	self add: aPoint weight: 1.
+	self add: aPoint weight: 1
 ]
 
 { #category : #transformation }
-PMLinearRegression >> add: aPoint weight: aNumber [ 
+PMLinearRegression >> add: aPoint weight: aNumber [
 	"Accumulate aPoint into of the receiver."
 
 	sum1 := sum1 + aNumber.
@@ -70,7 +70,7 @@ PMLinearRegression >> computeResults [
 	xyNorm := sumXY * sum1 - (sumX * sumY).
 	slope := xyNorm / xNorm.
 	intercept := (sumXX * sumY - (sumXY * sumX)) / xNorm.
-	correlationCoefficient := xyNorm 
+	correlationCoefficient := xyNorm
 				/ (xNorm * (sumYY * sum1 - (sumY * sumY))) sqrt
 ]
 
@@ -115,7 +115,7 @@ PMLinearRegression >> intercept [
 ]
 
 { #category : #transformation }
-PMLinearRegression >> remove: aPoint [ 
+PMLinearRegression >> remove: aPoint [
 	"Remove aPoint which was accumulated into of the receiver."
 
 	sum1 := sum1 - 1.

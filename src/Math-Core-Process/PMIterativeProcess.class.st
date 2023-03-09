@@ -41,7 +41,7 @@ PMIterativeProcess >> desiredPrecision: aNumber [
 	"Defines the desired precision for the result."
 	aNumber > 0
 		ifFalse: [ ^self error: 'Illegal precision: ', aNumber printString].
-	desiredPrecision := aNumber.
+	desiredPrecision := aNumber
 ]
 
 { #category : #operation }
@@ -50,10 +50,10 @@ PMIterativeProcess >> evaluate [
 
 	iterations := 0.
 	self initializeIterations.
-	
+
 	[iterations := iterations + 1.
 	precision := self evaluateIteration.
-	self hasConverged or: [iterations >= maximumIterations]] 
+	self hasConverged or: [iterations >= maximumIterations]]
 			whileFalse: [].
 	self finalizeIterations.
 	^self result
@@ -108,7 +108,7 @@ PMIterativeProcess >> maximumIterations: anInteger [
 	"Defines the maximum number of iterations."
 	( anInteger isInteger and: [ anInteger > 1])
 		ifFalse: [ ^self error: 'Invalid maximum number of iteration: ', anInteger printString].
-	maximumIterations := anInteger.
+	maximumIterations := anInteger
 ]
 
 { #category : #information }
@@ -119,7 +119,7 @@ PMIterativeProcess >> precision [
 
 { #category : #information }
 PMIterativeProcess >> precisionOf: aNumber1 relativeTo: aNumber2 [
-	
+
 	^aNumber2 > PMFloatingPointMachine new defaultNumericalPrecision
 		ifTrue: [ aNumber1 / aNumber2]
 		ifFalse:[ aNumber1]

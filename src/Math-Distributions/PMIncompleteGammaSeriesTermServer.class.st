@@ -16,7 +16,7 @@ PMIncompleteGammaSeriesTermServer >> initialTerm [
 ]
 
 { #category : #initialization }
-PMIncompleteGammaSeriesTermServer >> setParameter: aNumber [ 
+PMIncompleteGammaSeriesTermServer >> setParameter: aNumber [
 	alpha := aNumber asFloat
 ]
 

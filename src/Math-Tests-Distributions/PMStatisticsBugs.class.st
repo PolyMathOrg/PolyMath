@@ -115,7 +115,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 			 0.9).
 	"zerodivide"
 	self assert:
-		((a distributionValue: (a inverseDistributionValue: 0.001)) 
+		((a distributionValue: (a inverseDistributionValue: 0.001))
 			 closeTo: 0.001).
 	"ok"
 	a := PMFisherTippettDistribution shape: -3 scale: 0.7.
@@ -139,7 +139,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 			 0.7).
 	"zerodivide"
 	self assert:
-		((a distributionValue: (a inverseDistributionValue: 0.004)) 
+		((a distributionValue: (a inverseDistributionValue: 0.004))
 			 closeTo: 0.004).
 	"zerodivide"
 	a := PMChiSquareDistribution degreeOfFreedom: 300.
@@ -148,7 +148,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 			 0.7).
 	"'Function''s derivative seems to be zero everywhere'"
 	self assert:
-		((a distributionValue: (a inverseDistributionValue: 0.004)) 
+		((a distributionValue: (a inverseDistributionValue: 0.004))
 			 closeTo: 0.004).
 	"ok"
 	self assert:
@@ -163,7 +163,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 			 0.7).
 	"zerodivide"
 	self assert:
-		((a distributionValue: (a inverseDistributionValue: 0.004)) 
+		((a distributionValue: (a inverseDistributionValue: 0.004))
 			 closeTo: 0.004).
 	"zerodivide"
 	a := PMLogNormalDistribution new: 3 sigma: 1.4.
@@ -205,7 +205,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 		((a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0).
 	"ok"
 	self assert:
-		((a distributionValue: (a inverseDistributionValue: 0.333333)) 
+		((a distributionValue: (a inverseDistributionValue: 0.333333))
 			 closeTo: 0.333333).
 	"ok"
 	a := PMWeibullDistribution shape: 0.5 scale: 1.
@@ -320,7 +320,7 @@ PMStatisticsBugs >> testProbabilityDensity [
 		((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1).
 	"ok"
 
-	"a:=KernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4). 
+	"a:=KernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4).
 a epanechnikov.
 self assert: ((a distributionValue: (a inverseDistributionValue: 0.9))equalsTo: 0.9)."
 	"'Function''s derivative seems to be zero everywhere'"
@@ -333,10 +333,10 @@ self assert: ((a distributionValue: (a inverseDistributionValue: 0.9))equalsTo: 
 	"zerod"
 	a := PMHistogram new.
 	random := Random new.
-	
+
 	20 timesRepeat: [
 		a accumulate: (random nextBetween: 0 and: 7) ].
-	
+
 	b := PMHistogrammedDistribution histogram: a.
 	self assert:
 		((b distributionValue: (b inverseDistributionValue: 0.99)) closeTo:
@@ -346,7 +346,7 @@ self assert: ((a distributionValue: (a inverseDistributionValue: 0.9))equalsTo: 
 		((b distributionValue: (b inverseDistributionValue: 0.0)) closeTo: 0).
 	"ok"
 	self assert:
-		((b distributionValue: (b inverseDistributionValue: 1.0) asFloat) 
+		((b distributionValue: (b inverseDistributionValue: 1.0) asFloat)
 			 closeTo: 1)
 	"ok"
 ]

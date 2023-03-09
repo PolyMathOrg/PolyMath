@@ -22,7 +22,7 @@ PMAsymptoticChiSquareDistribution class >> distributionName [
 
 { #category : #creation }
 PMAsymptoticChiSquareDistribution class >> new [
-	
+
 	^self error: 'Illegal creation message for this class'
 ]
 
@@ -55,7 +55,7 @@ PMAsymptoticChiSquareDistribution >> distributionValue: aNumber [
 
 	| x |
 	^ aNumber > 0
-		ifTrue: [ 
+		ifTrue: [
 			x := (aNumber * 2) sqrt.
 			PMErfApproximation new value: x - reducedDOF ]
 		ifFalse: [ 0 ]
@@ -106,7 +106,7 @@ PMAsymptoticChiSquareDistribution >> value: aNumber [
 
 	| x |
 	^ aNumber > 0
-		ifTrue: [ 
+		ifTrue: [
 			x := (aNumber * 2) sqrt.
 			(PMErfApproximation new normal: x - reducedDOF) / x ]
 		ifFalse: [ 0 ]

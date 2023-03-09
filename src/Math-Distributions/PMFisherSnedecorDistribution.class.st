@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #creation }
-PMFisherSnedecorDistribution class >> degreeOfFreedom: anInteger1 degreeOfFreedom: anInteger2 [ 
+PMFisherSnedecorDistribution class >> degreeOfFreedom: anInteger1 degreeOfFreedom: anInteger2 [
 	"Create a new instance of the receiver with given degrees of freedom."
 
 	^super new initialize: anInteger1 and: anInteger2
@@ -26,7 +26,7 @@ PMFisherSnedecorDistribution class >> distributionName [
 ]
 
 { #category : #creation }
-PMFisherSnedecorDistribution class >> fromHistogram: aHistogram [ 
+PMFisherSnedecorDistribution class >> fromHistogram: aHistogram [
 	"Create an instance of the receiver with parameters estimated from the given histogram using best guesses. This method can be used to find the initial values for a fit."
 
 	| n1 n2 a |
@@ -35,7 +35,7 @@ PMFisherSnedecorDistribution class >> fromHistogram: aHistogram [
 	n2 > 0 ifFalse: [^nil].
 	a := (n2 - 2) * (n2 - 4) * aHistogram variance / (n2 squared * 2).
 	n1 := (0.7 * (n2 - 2) / (1 - a)) rounded.
-	^n1 > 0 
+	^n1 > 0
 		ifTrue: [self degreeOfFreedom: n1 degreeOfFreedom: n2]
 		ifFalse: [nil]
 ]
@@ -46,12 +46,12 @@ PMFisherSnedecorDistribution class >> new [
 ]
 
 { #category : #creation }
-PMFisherSnedecorDistribution class >> test: aStatisticalMoment1 with: aStatisticalMoment2 [ 
+PMFisherSnedecorDistribution class >> test: aStatisticalMoment1 with: aStatisticalMoment2 [
 	"Perform a consistency Fisher test (or F-test) on the variances of two statistical moments ( or histograms).	 Answer the probability of passing the test."
 
 	^(self class degreeOfFreedom: aStatisticalMoment1 count
-		degreeOfFreedom: aStatisticalMoment2 count) 
-			distributionValue: aStatisticalMoment1 variance 
+		degreeOfFreedom: aStatisticalMoment2 count)
+			distributionValue: aStatisticalMoment1 variance
 					/ aStatisticalMoment2 variance
 ]
 
@@ -71,14 +71,14 @@ PMFisherSnedecorDistribution >> changeParametersBy: aVector [
 	self computeNorm.
 	chiSquareDistribution1 := nil.
 	chiSquareDistribution2 := nil.
-	incompleteBetaFunction := nil.
+	incompleteBetaFunction := nil
 ]
 
 { #category : #private }
 PMFisherSnedecorDistribution >> computeNorm [
 	"Private - Compute the norm of the receiver because its parameters have changed."
 	norm := ( dof1 ln * ( dof1 / 2) ) + ( dof2 ln * ( dof2 / 2) )
-						- ( ( dof1 / 2) logBeta: ( dof2 / 2) ).
+						- ( ( dof1 / 2) logBeta: ( dof2 / 2) )
 ]
 
 { #category : #information }

@@ -6,13 +6,13 @@ Class {
 
 { #category : #'as yet unclassified' }
 PMImplicitSolver class >> stepperClass [
-	^ PMImplicitStepper.
+	^ PMImplicitStepper
 ]
 
 { #category : #'announcement hooks' }
 PMImplicitSolver >> announcementClass [
 
-	^ PMImplicitSolverAnnouncement 
+	^ PMImplicitSolverAnnouncement
 ]
 
 { #category : #'announcement hooks' }

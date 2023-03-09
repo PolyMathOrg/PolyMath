@@ -35,7 +35,7 @@ PMLanczosFormula class >> new [
 
 { #category : #'instance creation' }
 PMLanczosFormula class >> reset [
-	UniqueInstance := nil.
+	UniqueInstance := nil
 ]
 
 { #category : #information }
@@ -73,7 +73,7 @@ PMLanczosFormula >> series: aNumber [
 	term := aNumber.
 	^ coefficients
 		inject: 1.000000000190015
-		into: [ :sum :each | 
+		into: [ :sum :each |
 			term := term + 1.
 			each / term + sum ]
 ]

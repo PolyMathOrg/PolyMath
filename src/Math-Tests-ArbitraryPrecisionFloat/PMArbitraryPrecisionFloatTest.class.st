@@ -24,7 +24,7 @@ PMArbitraryPrecisionFloatTest class >> defaultTimeLimit [
 { #category : #private }
 PMArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits: n [
 	"Check that doubling the precision, then rounding would lead to the same result"
-	
+
 	| anArbitraryPrecisionFloat singlePrecisionResult |
 	anArbitraryPrecisionFloat := y asArbitraryPrecisionFloatNumBits: n.
 	singlePrecisionResult := anArbitraryPrecisionFloat perform: func.
@@ -33,7 +33,7 @@ PMArbitraryPrecisionFloatTest >> checkDoublePrecision: y forFunction: func nBits
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func [ 
+PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: func [
 	^self checkDoublePrecisionSerie: serie forFunction: func nBits: Float precision
 ]
 
@@ -43,7 +43,7 @@ PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerie: serie forFunction: f
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFunction: func [ 
+PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFunction: func [
 	^serie reject: [:y |
 		| farb |
 		farb := self checkDoublePrecision: y forFunction: func nBits: Float precision.
@@ -53,12 +53,12 @@ PMArbitraryPrecisionFloatTest >> checkDoublePrecisionSerieVsFloat: serie forFunc
 { #category : #private }
 PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toDoublePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
 	"Check that doubling the precision, then rounding would lead to the same result"
-	
+
 	| n doublePrecision doublePrecisionResult lowBits |
 	n := anArbitraryPrecisionFloat numBits.
 	doublePrecision := anArbitraryPrecisionFloat asArbitraryPrecisionFloatNumBits: n * 2.
 	doublePrecisionResult := doublePrecision perform: func.
-	
+
 	"Note: the test must be guarded against double rounding error condition.
 	For example, suppose the single precision is 4 bits, double precision 8 bits.
 	If exact result is 1.001 | 0111 | 1001...
@@ -73,19 +73,17 @@ PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toDoublePreci
 			["double precision is ambiguous - retry with quadruple..."
 			^self checkThatEvaluatingFunction: func toQuadruplePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult].
 	self assert: ((doublePrecisionResult asArbitraryPrecisionFloatNumBits: n)- singlePrecisionResult) isZero
-	
-
 ]
 
 { #category : #private }
 PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toQuadruplePrecisionOf: anArbitraryPrecisionFloat equals: singlePrecisionResult [
 	"Check that quadrupling the precision, then rounding would lead to the same result"
-	
+
 	| n quadruplePrecision quadruplePrecisionResult lowBits |
 	n := anArbitraryPrecisionFloat numBits.
 	quadruplePrecision := anArbitraryPrecisionFloat asArbitraryPrecisionFloatNumBits: n * 4.
 	quadruplePrecisionResult := quadruplePrecision perform: func.
-	
+
 	"Guard against double rounding error condition (exact tie)"
 	quadruplePrecisionResult normalize.
 	lowBits := quadruplePrecisionResult mantissa bitAnd: 1<<(3*n)-1.
@@ -93,7 +91,7 @@ PMArbitraryPrecisionFloatTest >> checkThatEvaluatingFunction: func toQuadruplePr
 		ifTrue:
 			["quadruple precision is ambiguous - give up..."
 			^self].
-	self assert: ((quadruplePrecisionResult asArbitraryPrecisionFloatNumBits: n)- singlePrecisionResult) isZero.
+	self assert: ((quadruplePrecisionResult asArbitraryPrecisionFloatNumBits: n)- singlePrecisionResult) isZero
 ]
 
 { #category : #'testing-hyperbolic' }
@@ -119,7 +117,7 @@ PMArbitraryPrecisionFloatTest >> setUp [
 	half := 1/2 asArbitraryPrecisionFloatNumBits: 53.
 	minusOne := -1 asArbitraryPrecisionFloatNumBits: 53.
 	minusTwo := -2 asArbitraryPrecisionFloatNumBits: 53.
-	huge := (10 raisedTo: 100) asArbitraryPrecisionFloatNumBits: 53.
+	huge := (10 raisedTo: 100) asArbitraryPrecisionFloatNumBits: 53
 ]
 
 { #category : #'testing-hyperbolic' }
@@ -132,7 +130,7 @@ PMArbitraryPrecisionFloatTest >> testArCosh [
 
 { #category : #'testing-hyperbolic' }
 PMArbitraryPrecisionFloatTest >> testArCoshDomainError [
-	self should: [(1/2 asArbitraryPrecisionFloatNumBits: 24) arCosh] raise: DomainError.
+	self should: [(1/2 asArbitraryPrecisionFloatNumBits: 24) arCosh] raise: DomainError
 ]
 
 { #category : #'testing-hyperbolic' }
@@ -154,7 +152,7 @@ PMArbitraryPrecisionFloatTest >> testArTanh [
 { #category : #'testing-hyperbolic' }
 PMArbitraryPrecisionFloatTest >> testArTanhDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arTanh] raise: DomainError.
-	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arTanh] raise: DomainError.
+	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arTanh] raise: DomainError
 ]
 
 { #category : #'testing-trigonometry' }
@@ -168,7 +166,7 @@ PMArbitraryPrecisionFloatTest >> testArcCos [
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testArcCosDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arcCos] raise: DomainError.
-	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcCos] raise: DomainError.
+	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcCos] raise: DomainError
 ]
 
 { #category : #'testing-trigonometry' }
@@ -182,7 +180,7 @@ PMArbitraryPrecisionFloatTest >> testArcSin [
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testArcSinDomainError [
 	self should: [(2 asArbitraryPrecisionFloatNumBits: 24) arcSin] raise: DomainError.
-	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcSin] raise: DomainError.
+	self should: [(-3 asArbitraryPrecisionFloatNumBits: 24) arcSin] raise: DomainError
 ]
 
 { #category : #'testing-trigonometry' }
@@ -206,13 +204,13 @@ PMArbitraryPrecisionFloatTest >> testArcTan2 [
 			| xf xd  |
 			xf := x asArbitraryPrecisionFloatNumBits: Float precision.
 			xd := xf asArbitraryPrecisionFloatNumBits: Float precision * 2.
-			self assert: ((yd arcTan: xd) asFloat - (yf arcTan: xf) asFloat) isZero]].
+			self assert: ((yd arcTan: xd) asFloat - (yf arcTan: xf) asFloat) isZero]]
 ]
 
 { #category : #'testing-converting' }
 PMArbitraryPrecisionFloatTest >> testAsFloat [
 	self assert: (half asArbitraryPrecisionFloatNumBits: Float precision) asFloat = 0.5e0.
-	self assert: (half asArbitraryPrecisionFloatNumBits: Float precision * 2) asFloat = 0.5e0.
+	self assert: (half asArbitraryPrecisionFloatNumBits: Float precision * 2) asFloat = 0.5e0
 ]
 
 { #category : #'testing-converting' }
@@ -221,7 +219,7 @@ PMArbitraryPrecisionFloatTest >> testAsFloatWithUnderflow [
 	fmin := Float fmin.
 	fminA := fmin asArbitraryPrecisionFloatNumBits: one numBits.
 	Float emin - Float precision + 1 to: Float emin + 1 do: [:n |
-		self assert: ((one timesTwoPower: n) + fminA) asFloat = ((1.0e0 timesTwoPower: n) + fmin)].
+		self assert: ((one timesTwoPower: n) + fminA) asFloat = ((1.0e0 timesTwoPower: n) + fmin)]
 ]
 
 { #category : #'testing-converting' }
@@ -231,19 +229,19 @@ PMArbitraryPrecisionFloatTest >> testAsMinimalDecimalFraction [
 	leadingOne := 1<<10.
 	emin := -14.
 	emax := 15.
-	
+
 	"Test all normal finite half precision float"
-	emin to: emax do: [:e | 
+	emin to: emax do: [:e |
 		significands do: [:s |
 			| f |
 			f := (leadingOne + s asArbitraryPrecisionFloatNumBits: 11) timesTwoPower: e - 10.
 			self assert: (f asMinimalDecimalFraction asArbitraryPrecisionFloatNumBits: 11) = f]].
-	
+
 	"Test all subnormal finite half precision float"
 	significands do: [:s |
 		| f |
 		f := (s asArbitraryPrecisionFloatNumBits: s highBit) timesTwoPower: emin - 10.
-		self assert: (f asMinimalDecimalFraction asArbitraryPrecisionFloatNumBits: s highBit) = f].
+		self assert: (f asMinimalDecimalFraction asArbitraryPrecisionFloatNumBits: s highBit) = f]
 ]
 
 { #category : #'testing-coercing' }
@@ -261,7 +259,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingDivide [
 	self assert: (one / 2) numBits = one numBits.
 	self assert: -2 / two = minusOne.
 	self assert: (-2 / two) class = two class.
-	self assert: (-2 / two) numBits = two numBits.
+	self assert: (-2 / two) numBits = two numBits
 ]
 
 { #category : #'testing-coercing' }
@@ -284,7 +282,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingEqual [
 	self assert: half = (0.5s1).
 	self assert: (0.5s1) = half.
 	self deny: half = (0.33s2).
-	self deny: (0.33s2) = half.
+	self deny: (0.33s2) = half
 ]
 
 { #category : #'testing-coercing' }
@@ -315,7 +313,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingLessThan [
 	self assert: half < (0.66s2).
 	self deny: (0.5s1) < half.
 	self assert: (0.33s2) < half.
-	self deny: (0.66s2) < half.
+	self deny: (0.66s2) < half
 ]
 
 { #category : #'testing-coercing' }
@@ -333,7 +331,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingMultiply [
 	self assert: (minusOne * 2) numBits = minusOne numBits.
 	self assert: 2 * one = two.
 	self assert: (2 * one) class = one class.
-	self assert: (2 * one) numBits = one numBits.
+	self assert: (2 * one) numBits = one numBits
 ]
 
 { #category : #'testing-coercing' }
@@ -351,7 +349,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingSubtract [
 	self assert: (one - 1) numBits = minusOne numBits.
 	self assert: -2 - minusTwo = zero.
 	self assert: (-2 - minusTwo) class = minusTwo class.
-	self assert: (-2 - minusTwo) numBits = minusTwo numBits.
+	self assert: (-2 - minusTwo) numBits = minusTwo numBits
 ]
 
 { #category : #'testing-coercing' }
@@ -369,7 +367,7 @@ PMArbitraryPrecisionFloatTest >> testCoercingSum [
 	self assert: (minusOne + 1) numBits = minusOne numBits.
 	self assert: 2 + minusTwo = zero.
 	self assert: (2 + minusTwo) class = minusTwo class.
-	self assert: (2 + minusTwo) numBits = minusTwo numBits.
+	self assert: (2 + minusTwo) numBits = minusTwo numBits
 ]
 
 { #category : #'testing-trigonometry' }
@@ -404,7 +402,7 @@ PMArbitraryPrecisionFloatTest >> testDivide [
 			da := den asArbitraryPrecisionFloatNumBits: Float precision.
 			ff := nf / df.
 			fa := na / da.
-			self assert: ff = fa]].
+			self assert: ff = fa]]
 ]
 
 { #category : #'testing-compare' }
@@ -461,19 +459,19 @@ PMArbitraryPrecisionFloatTest >> testExpLn [
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testGreaterThan [
-	
+
 	self assert: zero < one.
 	self deny: one > two.
 	self deny: two > huge.
 	self deny: minusOne > one.
 	self deny: minusTwo > minusOne.
 	self deny: minusTwo > huge.
-	
+
 	self assert: huge > one.
 	self assert: huge > zero.
 	self assert: huge > minusOne.
 	self assert: one > minusOne.
-	self assert: minusOne > minusTwo.
+	self assert: minusOne > minusTwo
 ]
 
 { #category : #'testing-arithmetic' }
@@ -484,7 +482,7 @@ PMArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusFloat [
 	ops
 		do: [:op | floats
 				do: [:f1 | floats
-						do: [:f2 | 
+						do: [:f2 |
 							ref := f1 perform: op with: f2.
 							new := (f1 asArbitraryPrecisionFloatNumBits: 53)
 										perform: op
@@ -499,21 +497,21 @@ PMArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusIntegerAndFraction [
 	because our exponent is unlimited"
 
 	| floats ops ref new intAndFractions |
-	floats := #(1.0e0 2.0e0 3.0e0 5.0e0 10.0e0) 
-				, (#(52 53 54 -52 -53 -54) collect: [:e | 1.0e0 timesTwoPower: e]) 
+	floats := #(1.0e0 2.0e0 3.0e0 5.0e0 10.0e0)
+				, (#(52 53 54 -52 -53 -54) collect: [:e | 1.0e0 timesTwoPower: e])
 					, #(0.5e0 0.25e0 1.0e60 0.1e0 1.1e-30 1.0e-60) copyWith: Float pi.
 	intAndFractions := #(1 3 5 10 12345678901234567890 -1 -22 -3 1.2s1) copyWith: 7/9.
 	intAndFractions := intAndFractions , (intAndFractions collect: [:e | e reciprocal]).
-	
+
 	ops := 1/10 = 0.1
 		ifTrue: [#(#+ #- #* #/)]
 		ifFalse: [#(#+ #- #* #/ #= #< #>)]. "BEWARE: ArbitraryPrecisionFloat compare exactly, Float don't, unless http://bugs.squeak.org/view.php?id=3374"
-	ops do: 
-			[:op | 
-			floats do: 
-					[:f1 | 
-					intAndFractions do: 
-							[:f2 | 
+	ops do:
+			[:op |
+			floats do:
+					[:f1 |
+					intAndFractions do:
+							[:f2 |
 							ref := f1 perform: op with: f2 asFloat.
 							new := (f1 asArbitraryPrecisionFloatNumBits: 53) perform: op
 										with: (f2 asArbitraryPrecisionFloatNumBits: 53).
@@ -521,19 +519,19 @@ PMArbitraryPrecisionFloatTest >> testIEEEArithmeticVersusIntegerAndFraction [
 							new := f1 perform: op
 										with: (f2 asArbitraryPrecisionFloatNumBits: 53).
 							self assert: new = ref.
-							
+
 							ref := f1 perform: op with: f2.
 							new := (f1 asArbitraryPrecisionFloatNumBits: 53) perform: op
 										with: f2.
 							self assert: new = ref.
-							
+
 							ref := f2 asFloat perform: op with: f1.
 							new := (f2 asArbitraryPrecisionFloatNumBits: 53) perform: op
 										with: (f1 asArbitraryPrecisionFloatNumBits: 53).
 							self assert: new = ref.
 							new := (f2 asArbitraryPrecisionFloatNumBits: 53) perform: op with: f1.
 							self assert: new = ref.
-							
+
 							ref := f2 perform: op with: f1.
 							new := f2 perform: op
 										with: (f1 asArbitraryPrecisionFloatNumBits: 53).
@@ -546,7 +544,7 @@ PMArbitraryPrecisionFloatTest >> testInfinityAndNaN [
 	inf := Float infinity.
 	nan := Float nan.
 	self assert: inf + two equals: inf.
-	self assert: half + inf negated equals: inf negated.	
+	self assert: half + inf negated equals: inf negated.
 	self assert: (nan + minusOne)  isNaN .
 	self assert: inf - huge equals: inf.
 	self assert: half - inf equals: inf negated.
@@ -557,10 +555,10 @@ PMArbitraryPrecisionFloatTest >> testInfinityAndNaN [
 	self assert: inf negated * minusOne equals: inf.
 	self assert: (huge * nan) isNaN.
 	self assert: inf negated / minusTwo equals: inf.
-	self assert: zero / inf negated equals: 0.	
+	self assert: zero / inf negated equals: 0.
 	self assert: one / inf equals: 0.
-	self should: [inf / zero] raise: ZeroDivide.	
-	self assert: (nan  / two) isNaN.	
+	self should: [inf / zero] raise: ZeroDivide.
+	self assert: (nan  / two) isNaN.
 	self assert: (inf raisedTo: huge) equals: inf.
 	self assert: (huge raisedTo: inf) equals: inf.
 	self assert: (nan raisedTo: two) isNaN.
@@ -569,31 +567,31 @@ PMArbitraryPrecisionFloatTest >> testInfinityAndNaN [
 	self deny: zero >= nan.
 	self assert: one < inf.
 	self assert: zero ~= nan.
-	self deny: nan = one.
+	self deny: nan = one
 ]
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testIsZero [
 	self assert: zero isZero.
 	self deny: one isZero.
-	self deny: minusTwo isZero.
+	self deny: minusTwo isZero
 ]
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testLessThan [
-	
+
 	self assert: zero < one.
 	self assert: one < two.
 	self assert: two < huge.
 	self assert: minusOne < one.
 	self assert: minusTwo < minusOne.
 	self assert: minusTwo < huge.
-	
+
 	self deny: huge < one.
 	self deny: huge < zero.
 	self deny: huge < minusOne.
 	self deny: one < minusOne.
-	self deny: minusOne < minusTwo.
+	self deny: minusOne < minusTwo
 ]
 
 { #category : #'testing-functions' }
@@ -612,7 +610,7 @@ PMArbitraryPrecisionFloatTest >> testLn [
 
 { #category : #'testing-functions' }
 PMArbitraryPrecisionFloatTest >> testLnDomainError [
-	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) ln] raise: DomainError.
+	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) ln] raise: DomainError
 ]
 
 { #category : #'testing-arithmetic' }
@@ -621,15 +619,15 @@ PMArbitraryPrecisionFloatTest >> testMultiply [
 	self assert: zero * minusOne = zero.
 	self assert: huge * zero = zero.
 	self assert: one * zero = zero.
-	
+
 	self assert: one * two = two.
 	self assert: minusOne * one = minusOne.
 	self assert: minusOne * minusTwo = two.
-	
+
 	self assert: half * two = one.
-	
+
 	"check rounding"
-	self assert: huge * one = huge.
+	self assert: huge * one = huge
 ]
 
 { #category : #'testing-arithmetic' }
@@ -637,31 +635,30 @@ PMArbitraryPrecisionFloatTest >> testNegated [
 	self assert: zero negated = zero.
 	self assert: one negated = minusOne.
 	self assert: minusTwo negated = two.
-	self assert: huge negated negated = huge.
-
+	self assert: huge negated negated = huge
 ]
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testNegative [
-	
+
 	self deny: zero negative.
 	self deny: two negative.
-	self assert: minusTwo negative.
+	self assert: minusTwo negative
 ]
 
 { #category : #'testing-arithmetic' }
 PMArbitraryPrecisionFloatTest >> testPi [
 	"check computation of pi"
 
-	self assert: (1 asArbitraryPrecisionFloatNumBits: 53) pi = Float pi.
+	self assert: (1 asArbitraryPrecisionFloatNumBits: 53) pi = Float pi
 ]
 
 { #category : #'testing-compare' }
 PMArbitraryPrecisionFloatTest >> testPositive [
-	
+
 	self assert: zero positive.
 	self assert: one positive.
-	self deny: minusOne positive.
+	self deny: minusOne positive
 ]
 
 { #category : #'testing-converting' }
@@ -676,9 +673,9 @@ PMArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
 	emax := 15.
 
 	"Test all normal finite half precision float"
-	emin to: emax do: [ :e | 
+	emin to: emax do: [ :e |
 		significands
-			do: [ :s | 
+			do: [ :s |
 				| f |
 				f := (leadingOne + s asArbitraryPrecisionFloatNumBits: 11)
 					timesTwoPower: e - 10.
@@ -691,7 +688,7 @@ PMArbitraryPrecisionFloatTest >> testPrintAndEvaluate [
 
 	"Test all subnormal finite half precision float"
 	significands
-		do: [ :s | 
+		do: [ :s |
 			| f |
 			f := (s asArbitraryPrecisionFloatNumBits: s highBit)
 				timesTwoPower: emin - 10.
@@ -705,7 +702,7 @@ PMArbitraryPrecisionFloatTest >> testRaisedToNegativeInteger [
 	n := 11.
 	1 to: 1<<n-1 do: [:i |
 		self assert: ((i asArbitraryPrecisionFloatNumBits: n) raisedToInteger: -49)
-			equals: ((i raisedToInteger: -49) asArbitraryPrecisionFloatNumBits: n) ].
+			equals: ((i raisedToInteger: -49) asArbitraryPrecisionFloatNumBits: n) ]
 ]
 
 { #category : #'testing-arithmetic' }
@@ -714,7 +711,7 @@ PMArbitraryPrecisionFloatTest >> testRaisedToPositiveInteger [
 	n := 11.
 	1 to: 1<<n-1 do: [:i |
 		self assert: ((i asArbitraryPrecisionFloatNumBits: n) raisedToInteger: 49)
-			equals: ((i raisedToInteger: 49) asArbitraryPrecisionFloatNumBits: n) ].
+			equals: ((i raisedToInteger: 49) asArbitraryPrecisionFloatNumBits: n) ]
 ]
 
 { #category : #'testing-arithmetic' }
@@ -733,24 +730,24 @@ PMArbitraryPrecisionFloatTest >> testReciprocal [
 PMArbitraryPrecisionFloatTest >> testRoundToNearestEven [
 	"Check that IEEE default rounding mode is honoured,
 	that is rounding to nearest even"
-		
+
 	self assert: ((one timesTwoPower: 52)+(0+(1/4))) asTrueFraction = ((1 bitShift: 52)+0).
 	self assert: ((one timesTwoPower: 52)+(0+(1/2))) asTrueFraction = ((1 bitShift: 52)+0).
 	self assert: ((one timesTwoPower: 52)+(0+(3/4))) asTrueFraction = ((1 bitShift: 52)+1).
 	self assert: ((one timesTwoPower: 52)+(1+(1/4))) asTrueFraction = ((1 bitShift: 52)+1).
 	self assert: ((one timesTwoPower: 52)+(1+(1/2))) asTrueFraction = ((1 bitShift: 52)+2).
-	self assert: ((one timesTwoPower: 52)+(1+(3/4))) asTrueFraction = ((1 bitShift: 52)+2).
+	self assert: ((one timesTwoPower: 52)+(1+(3/4))) asTrueFraction = ((1 bitShift: 52)+2)
 ]
 
 { #category : #'testing-arithmetic' }
 PMArbitraryPrecisionFloatTest >> testRoundToNearestEvenAgainstIEEEDouble [
 	"Check that IEEE default rounding mode is honoured"
 
-	#(1 2 3 5 6 7) do: 
-			[:i | 
-			self assert: ((one timesTwoPower: 52) + (i / 4)) asTrueFraction 
+	#(1 2 3 5 6 7) do:
+			[:i |
+			self assert: ((one timesTwoPower: 52) + (i / 4)) asTrueFraction
 						= ((1 asFloat timesTwoPower: 52) + (i / 4)) asTrueFraction.
-			self assert: ((one timesTwoPower: 52) - (i / 4)) asTrueFraction 
+			self assert: ((one timesTwoPower: 52) - (i / 4)) asTrueFraction
 						= ((1 asFloat timesTwoPower: 52) - (i / 4)) asTrueFraction]
 ]
 
@@ -802,7 +799,7 @@ PMArbitraryPrecisionFloatTest >> testSqrt [
 
 { #category : #'testing-functions' }
 PMArbitraryPrecisionFloatTest >> testSqrtDomainError [
-	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) sqrt] raise: DomainError.
+	self should: [(-2 asArbitraryPrecisionFloatNumBits: 24) sqrt] raise: DomainError
 ]
 
 { #category : #'testing-arithmetic' }
@@ -811,13 +808,13 @@ PMArbitraryPrecisionFloatTest >> testSubtract [
 	self assert: zero - minusOne = one.
 	self assert: huge - zero = huge.
 	self assert: one - zero = one.
-	
+
 	self assert: one - minusOne = two.
 	self assert: minusOne - minusTwo = one.
 	self assert: minusOne - one = minusTwo.
-	
+
 	"check rounding"
-	self assert: huge - one = huge.
+	self assert: huge - one = huge
 ]
 
 { #category : #'testing-arithmetic' }
@@ -826,13 +823,13 @@ PMArbitraryPrecisionFloatTest >> testSum [
 	self assert: zero + minusOne = minusOne.
 	self assert: huge + zero = huge.
 	self assert: one + zero = one.
-	
+
 	self assert: one + minusOne = zero.
 	self assert: minusOne + two = one.
 	self assert: one + minusTwo = minusOne.
-	
+
 	"check rounding"
-	self assert: huge + one = huge.
+	self assert: huge + one = huge
 ]
 
 { #category : #'testing-trigonometry' }
@@ -852,19 +849,19 @@ PMArbitraryPrecisionFloatTest >> testTanh [
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testVeryLargeCos [
 	<timeout: 10 "seconds">
-	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #cos.
+	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #cos
 ]
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testVeryLargeSin [
 	<timeout: 10 "seconds">
-	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #sin.
+	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #sin
 ]
 
 { #category : #'testing-trigonometry' }
 PMArbitraryPrecisionFloatTest >> testVeryLargeTan [
 	<timeout: 10 "seconds">
-	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #tan.
+	self checkDoublePrecisionSerie: self largeTrigonometricSerie forFunction: #tan
 ]
 
 { #category : #'testing-arithmetic' }
@@ -874,7 +871,7 @@ PMArbitraryPrecisionFloatTest >> testZeroOne [
 	self assert: (312 asArbitraryPrecisionFloatNumBits: 24) zero isZero.
 
 	self assert: (312 asArbitraryPrecisionFloatNumBits: 53) one asInteger = 1.
-	self assert: (312 asArbitraryPrecisionFloatNumBits: 24) zero asInteger isZero.
+	self assert: (312 asArbitraryPrecisionFloatNumBits: 24) zero asInteger isZero
 ]
 
 { #category : #'testing-trigonometry' }

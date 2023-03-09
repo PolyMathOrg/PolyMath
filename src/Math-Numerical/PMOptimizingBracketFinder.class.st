@@ -14,7 +14,7 @@ PMOptimizingBracketFinder class >> initialPoints: aSortedCollection function: aF
 PMOptimizingBracketFinder >> computeInitialValues [
 	| random |
 	random := Random new.
-	
+
 	[ bestPoints size < 2 ] whileTrue: [
 		self addPointAt: random next ]
 ]

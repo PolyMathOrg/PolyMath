@@ -13,7 +13,7 @@ PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 	| n |
 	test populationDistribution: aDistribution.
 	n := 0.
-	1 to: 100 do: [ :j | 
+	1 to: 100 do: [ :j |
 		test data: ((1 to: 300) collect: [ :i | distribution random ]).
 		(test rejectEqualityHypothesisWithAlpha: 0.05)
 			ifTrue: [ n := n + 1 ] ].
@@ -44,7 +44,7 @@ PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusD
 	test := PMKolmogorovSmirnov1Sample
 		compareData: sample
 		withDistribution: distribution.
-	
+
 	self
 		assert: (test rejectEqualityHypothesisWithAlpha: 0.05)
 		equals: false

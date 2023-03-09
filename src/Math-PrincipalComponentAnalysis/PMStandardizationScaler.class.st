@@ -32,7 +32,7 @@ PMStandardizationScaler >> scale [
 { #category : #transforming }
 PMStandardizationScaler >> transform: aPMMatrix [
 	"Perform standardization by centering and scaling"
-	
+
 	|mean scale|
 	mean := self mean.
 	scale := self scale.

@@ -35,16 +35,16 @@ PMNewtonInterpolator >> computeCoefficients [
 				do: [ :k |
 					  k1 := k - 1.
 					  kn := k - n.
-					  coefficients at: k put: ( (( coefficients at: k) - ( coefficients at: k1)) 
+					  coefficients at: k put: ( (( coefficients at: k) - ( coefficients at: k1))
 											/ ((self xPointAt: k) - (self xPointAt: kn))).
 					].
-			].
+			]
 ]
 
 { #category : #transformation }
 PMNewtonInterpolator >> resetCoefficients [
 	"Private - Reset the coefficients of the receiver to force a new computation."
-	coefficients := nil.
+	coefficients := nil
 ]
 
 { #category : #information }

@@ -14,7 +14,7 @@ Class {
 
 { #category : #'instance creation' }
 PMExplicitSolverSubscriber class >> forAnnouncer: anAnnouncer [
-	^ self new forAnnouncer: anAnnouncer.
+	^ self new forAnnouncer: anAnnouncer
 ]
 
 { #category : #'instance creation' }
@@ -24,7 +24,7 @@ PMExplicitSolverSubscriber class >> forSolver: anODESolver [
 
 { #category : #accessing }
 PMExplicitSolverSubscriber >> announcers [
-	
+
 	^ announcers
 ]
 
@@ -35,18 +35,18 @@ PMExplicitSolverSubscriber >> block [
 
 { #category : #accessing }
 PMExplicitSolverSubscriber >> block: aFormatBlock [
-	block := aFormatBlock 
+	block := aFormatBlock
 ]
 
 { #category : #accessing }
 PMExplicitSolverSubscriber >> defaultBlock [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #subscription }
 PMExplicitSolverSubscriber >> forAnnouncer: anAnnouncer [
 	anAnnouncer when: PMExplicitSolverAnnouncement do: self block.
-	announcers add: anAnnouncer.
+	announcers add: anAnnouncer
 ]
 
 { #category : #'initialize-release' }
@@ -61,17 +61,16 @@ PMExplicitSolverSubscriber >> initialize [
 PMExplicitSolverSubscriber >> release [
 	"stop announcers from sending messages"
 	self unsubscribe.
-	super release.
+	super release
 ]
 
 { #category : #subscription }
 PMExplicitSolverSubscriber >> unsubscribe [
-	announcers do: [:ea | self unsubscribe: ea].
-
+	announcers do: [:ea | self unsubscribe: ea]
 ]
 
 { #category : #subscription }
 PMExplicitSolverSubscriber >> unsubscribe: anAnnouncer [
 	anAnnouncer unsubscribe: self.
-	announcers remove: anAnnouncer ifAbsent: [].
+	announcers remove: anAnnouncer ifAbsent: []
 ]

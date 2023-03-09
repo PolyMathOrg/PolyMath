@@ -45,12 +45,12 @@ PMProjectedOneVariableFunction >> initialize: aFunction [
 
 { #category : #initialization }
 PMProjectedOneVariableFunction >> setArgument: anArrayOrVector [
-	argument := anArrayOrVector copy.
+	argument := anArrayOrVector copy
 ]
 
 { #category : #initialization }
 PMProjectedOneVariableFunction >> setIndex: anInteger [
-	index := anInteger.
+	index := anInteger
 ]
 
 { #category : #information }

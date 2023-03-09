@@ -38,28 +38,28 @@ PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d rand
 	| dist randomNumberGenerator |
 	dist := 1.0 / n.
 	randomNumberGenerator := Random new.
-	
+
 	^(1 to: n) collect: [ :number |
 		(1 to: d) collect: [ :dim |
 			(dim=1)
 				ifTrue: [ aBoolean
 					ifTrue: [ (number/n) - (randomNumberGenerator nextBetween: 0 and: dist) ]
 					ifFalse: [ number/n ] ]
-				ifFalse: [ |sum prime| 
+				ifFalse: [ |sum prime|
 					sum := 0.
 					prime := Primes at: dim - 1.
-					
+
 					(self integerDigitsFor: number base: prime) reverse withIndexDo: [ :i :index |
 						sum := i / (prime raisedToInteger: index) + sum ].
-					
+
 					aBoolean
 						ifTrue: [ sum + (randomNumberGenerator nextBetween: 0 and: dist) ]
-						ifFalse: [ sum ] ] ]]. 
+						ifFalse: [ sum ] ] ]].
 ]
 
 { #category : #'instance creation' }
 PMAnotherChromosomeManager class >> origin: anArray range: anotherArray [
-^self new origin: anArray; range: anotherArray; yourself  
+^self new origin: anArray; range: anotherArray; yourself
 ]
 
 { #category : #operation }
@@ -67,20 +67,20 @@ PMAnotherChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
 "the Discrete Recombination  operator
 that does not prefer schemata of certain parameters based on their position"
 	| new1 new2 |
-	
+
 	aChromosome1 = aChromosome2 ifTrue:[
 		^ Array
 			with: (self mutate: aChromosome2)
 			with: (self mutate: aChromosome1) ].
-	
+
 	new1 := self clone: aChromosome1.
 	new2 := self clone: aChromosome2.
-	
+
 	2 to: new1 size do: [ :i |
 		(randomNumberGenerator next < 0.5) ifTrue: [
 			new1 at: i put: (aChromosome2 at: i).
 			new2 at: i put: (aChromosome1 at: i) ] ].
-	
+
 	^ Array with: new1 with: new2
 ]
 
@@ -89,26 +89,25 @@ PMAnotherChromosomeManager >> eirCrossover: aChromosome1 and: aChromosome2 [
 	"the Extended Intermediate Recombination  0.5 operator, slightly changed to make it more similar to linecrossover (distribution is more centered around Chromosome1, which is better than C2)"
 	| randomNumbers new1 new2 dif |
 	dif := aChromosome2 - aChromosome1.
-	
+
 	dif norm = 0 ifTrue: [
 		^ { self mutate: aChromosome2 . self mutate: aChromosome1 } ].
-	
+
 	randomNumbers := (1 to: aChromosome1 size) collect: [ :i |
 		randomNumberGenerator nextBetween: -0.5 and: 1.5 ].
-	
+
 	new1 := aChromosome1 + (randomNumbers * dif).
-	
+
 	randomNumbers := (1 to: aChromosome1 size) collect: [ :i |
 		randomNumberGenerator nextBetween: -0.5 and: 0.5 ].
-	
-	new2 := aChromosome1 + (randomNumbers * dif).
-	
-	^ { new1 . new2 }
 
+	new2 := aChromosome1 + (randomNumbers * dif).
+
+	^ { new1 . new2 }
 ]
 
 { #category : #initialization }
-PMAnotherChromosomeManager >> initialize [ 
+PMAnotherChromosomeManager >> initialize [
 super initialize .
 populationSize :=100.
 hammersley :=true.
@@ -117,14 +116,12 @@ rateOfLC:=0.29.
 rateOfMutation :=0.4.
 rateOfCrossover :=0.15.
 Primes  ifNil:[Primes :=Integer primesUpTo: 500].	"sufficient for up to 95 dimensions (parameters)"
-
-
 ]
 
 { #category : #information }
-PMAnotherChromosomeManager >> isFullyPopulated [ 
+PMAnotherChromosomeManager >> isFullyPopulated [
 population ifNil: [^false].
-^super isFullyPopulated 
+^super isFullyPopulated
 ]
 
 { #category : #operation }
@@ -144,29 +141,29 @@ PMAnotherChromosomeManager >> lineCrossOver: aChromosome1 and: aChromosome2 [
 PMAnotherChromosomeManager >> mutate: aVector [
 	"BGA mutation"
 	| isMutated threshold new index |
-	
+
 	isMutated := false.
 	threshold := 1 / aVector size asFloat.
 	new := aVector copy.
-	
+
 	1 to: aVector size do: [ :i |
 		randomNumberGenerator next < threshold ifTrue: [
 			isMutated := true.
-			new at: i put: (new at: i) + 
+			new at: i put: (new at: i) +
 				((randomNumberGenerator next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: i)) ] ].
-	
+
 	isMutated ifFalse: [
 		index := randomNumberGenerator nextIntegerBetween: 1 and: aVector size.
-		new at: index put: (new at: index) + 
+		new at: index put: (new at: index) +
 			((randomNumberGenerator next < 0.5 ifTrue: [ 0.5 ] ifFalse:[ -0.5 ]) * (self randomRangeAt: index)) ].
-	
+
 	^ new
 ]
 
 { #category : #accessing }
-PMAnotherChromosomeManager >> populationSize [ 
+PMAnotherChromosomeManager >> populationSize [
 "AnotherGeneticOptimizer needs these data"
-^populationSize 
+^populationSize
 ]
 
 { #category : #printing }
@@ -181,27 +178,27 @@ PMAnotherChromosomeManager >> printOn: aStream [
         nextPutAll: ' CORate: ';print: rateOfCrossover ;
 	  nextPutAll: ' LCRate: ';print: rateOfLC ;
 	  nextPutAll: ' EIRRate: ';print: rateOfEir;
-	  nextPut: $) .
+	  nextPut: $)
 ]
 
 { #category : #operation }
-PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
+PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [
 	| roll |
 	roll := randomNumberGenerator next.
-	roll < rateOfCrossover 
+	roll < rateOfCrossover
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
-		ifFalse: 
-			[roll < (rateOfCrossover + rateOfMutation) 
-				ifTrue: 
+		ifFalse:
+			[roll < (rateOfCrossover + rateOfMutation)
+				ifTrue:
 					[population
 						add: (self mutate: aChromosome1);
 						add: (self mutate: aChromosome2)]
-				ifFalse: 
-					[roll < (rateOfCrossover + rateOfMutation+rateOfEir) 
-						ifTrue: 
+				ifFalse:
+					[roll < (rateOfCrossover + rateOfMutation+rateOfEir)
+						ifTrue:
 							[population addAll: (self eirCrossover: aChromosome1 and: aChromosome2)]
-						ifFalse: [roll < (rateOfCrossover + rateOfMutation+rateOfEir+rateOfLC) 
-							ifTrue: 
+						ifFalse: [roll < (rateOfCrossover + rateOfMutation+rateOfEir+rateOfLC)
+							ifTrue:
 								[population addAll: (self lineCrossOver: aChromosome1 and: aChromosome2)]
 							ifFalse: [population
 								add: (self clone: aChromosome1);
@@ -223,25 +220,25 @@ population := population collect: [:aChr| aChr *range +origin ]
 { #category : #accessing }
 PMAnotherChromosomeManager >> range [
 "AnotherGeneticOptimizer needs these data"
-^range 
+^range
 ]
 
 { #category : #initialization }
-PMAnotherChromosomeManager >> rateOfCrossover: aNumber [  
+PMAnotherChromosomeManager >> rateOfCrossover: aNumber [
 
 	self testRate: aNumber oldRate: rateOfCrossover name: 'rateOfCrossover'.
 	rateOfCrossover := aNumber
 ]
 
 { #category : #initialization }
-PMAnotherChromosomeManager >> rateOfEir: aNumber [ 
+PMAnotherChromosomeManager >> rateOfEir: aNumber [
 
 	self testRate: aNumber oldRate: rateOfEir name: 'rateOfEir'.
 	rateOfEir := aNumber
 ]
 
 { #category : #initialization }
-PMAnotherChromosomeManager >> rateOfLC: aNumber [ 
+PMAnotherChromosomeManager >> rateOfLC: aNumber [
 
 	self testRate: aNumber oldRate: rateOfLC name: 'rateOfLC'.
 	rateOfLC := aNumber
@@ -263,7 +260,7 @@ PMAnotherChromosomeManager >> smallDistribution [
 PMAnotherChromosomeManager >> testRate:aFloat oldRate: asecondFloat name:aString [
 (aFloat between: 0 and: 1) ifFalse: [(DomainError new)from:0;to:1;messageText: 'Value outside [0 , 1]';signalIn: thisContext sender].
 (rateOfCrossover + rateOfMutation + rateOfLC + rateOfEir + aFloat - asecondFloat)>1.000000000000001 "for Float inaccuracies"
-	ifTrue: [Warning  signal:'All rates together are higher than 1, if ' , aString, ' is set to ',aFloat asString ].
+	ifTrue: [Warning  signal:'All rates together are higher than 1, if ' , aString, ' is set to ',aFloat asString ]
 ]
 
 { #category : #initialization }

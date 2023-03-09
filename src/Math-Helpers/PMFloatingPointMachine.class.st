@@ -62,7 +62,7 @@ PMFloatingPointMachine >> computeLargestNumber [
 
 { #category : #information }
 PMFloatingPointMachine >> computeMachinePrecision [
-	
+
 	| one zero inverseRadix tmp |
 	one := 1.0.
 	zero := 0.0.
@@ -75,7 +75,7 @@ PMFloatingPointMachine >> computeMachinePrecision [
 
 { #category : #information }
 PMFloatingPointMachine >> computeNegativeMachinePrecision [
-	
+
 	| one zero floatingRadix inverseRadix tmp |
 	one := 1.0.
 	zero := 0.0.
@@ -89,7 +89,7 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 
 { #category : #information }
 PMFloatingPointMachine >> computeRadix [
-	
+
 	| one zero a b tmp1 tmp2|
 	one := 1.0.
 	zero := 0.0.
@@ -107,7 +107,7 @@ PMFloatingPointMachine >> computeRadix [
 
 { #category : #information }
 PMFloatingPointMachine >> computeSmallestNumber [
-	
+
 	| one floatingRadix inverseRadix fullMantissaNumber |
 	one := 1 asFloat.
 	floatingRadix := self radix asFloat.

@@ -9,7 +9,7 @@ Class {
 
 { #category : #running }
 PMSimpleParameterFunctionTest >> setUp [
-	f:=[:a :x :cc :b|x].
+	f:=[:a :x :cc :b|x]
 ]
 
 { #category : #tests }
@@ -37,8 +37,7 @@ s :=aStream contents .
 self assert: ((s beginsWith: 'a PMSimpleParameterFunction')).
 self assert: (s includesSubstring: '1').
 self assert: (s includesSubstring: ' 2').
-self assert: (s includesSubstring: ' 3').
-
+self assert: (s includesSubstring: ' 3')
 ]
 
 { #category : #tests }

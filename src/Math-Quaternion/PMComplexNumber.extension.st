@@ -1,7 +1,7 @@
 Extension { #name : #PMComplexNumber }
 
 { #category : #'*Math-Quaternion' }
-PMComplexNumber >> adaptToQuaternion: rcvr andSend: selector [ 
+PMComplexNumber >> adaptToQuaternion: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Quaternion, convert me to a Quaternion."
 	^ rcvr perform: selector with: self asQuaternion
 ]
@@ -19,7 +19,7 @@ PMComplexNumber >> asQuaternion [
 PMComplexNumber >> j [
 	"same as self * 1 j"
 
-	^PMQuaternion 
+	^PMQuaternion
 		qr: 0
 		qi: 0
 		qj: real
@@ -30,7 +30,7 @@ PMComplexNumber >> j [
 PMComplexNumber >> k [
 	"same as self * 1 k"
 
-	^PMQuaternion 
+	^PMQuaternion
 		qr: 0
 		qi: 0
 		qj: imaginary negated

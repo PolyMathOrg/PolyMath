@@ -23,16 +23,16 @@ PMImplicitMidpointSolver >> solve: aSystem startState: initialState startTime: i
 
 	"announce initial conditions"
 	self announceState: state time: initialTime.
-	
-	
+
+
 	"step until the end"
 
 	state := self mainStepsState: state startTime: initialTime endTime: endTime.
-	
+
 	"sanity check"
-	self assert: [(lastTime between: initialTime and: endTime) 
+	self assert: [(lastTime between: initialTime and: endTime)
 				or: [lastTime between: endTime and: initialTime]].
-	
+
 	"take another step if needed"
 	state := self lastStepState: state endTime: endTime.
 

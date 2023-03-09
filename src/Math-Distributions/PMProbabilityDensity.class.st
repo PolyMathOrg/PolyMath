@@ -9,7 +9,7 @@ Class {
 
 { #category : #information }
 PMProbabilityDensity class >> distributionName [
-	
+
 	^'Unknown distribution'
 ]
 
@@ -23,7 +23,7 @@ PMProbabilityDensity class >> fromHistogram: aHistogram [
 { #category : #information }
 PMProbabilityDensity >> acceptanceBetween: aNumber1 and: aNumber2 [
 	"Answers the probability of observing a random variable distributed according to the receiver with a value larger than aNumber 1 and lower than or equal to aNumber2. "
-	
+
 	^ (self distributionValue: aNumber2) - (self distributionValue: aNumber1)
 ]
 
@@ -54,11 +54,11 @@ PMProbabilityDensity >> approximatedValueAndGradient: aNumber [
 { #category : #information }
 PMProbabilityDensity >> average [
 	"Answer the average of the receiver."
-	self subclassResponsibility.
+	self subclassResponsibility
 ]
 
 { #category : #transformation }
-PMProbabilityDensity >> changeParametersBy: aVector [ 
+PMProbabilityDensity >> changeParametersBy: aVector [
 	self subclassResponsibility
 ]
 
@@ -78,7 +78,7 @@ PMProbabilityDensity >> distributionValue: aNumber [
 PMProbabilityDensity >> flatGenerator: aGenerator [
 	"To change the default generator (which by default is flat between 0 and 1).
 	aGenerator should know how to answer floatValue."
-	
+
 	flatGenerator := aGenerator
 ]
 
@@ -86,7 +86,7 @@ PMProbabilityDensity >> flatGenerator: aGenerator [
 PMProbabilityDensity >> initialize [
 
 	super initialize.
-	flatGenerator := PMMitchellMooreGenerator new.
+	flatGenerator := PMMitchellMooreGenerator new
 ]
 
 { #category : #information }
@@ -109,7 +109,7 @@ PMProbabilityDensity >> kurtosis [
 { #category : #information }
 PMProbabilityDensity >> parameters [
 
-	"Returns an Array containing the parameters of the distribution. 
+	"Returns an Array containing the parameters of the distribution.
 	It is used to print out the distribution and for fitting."
 
 	self subclassResponsibility

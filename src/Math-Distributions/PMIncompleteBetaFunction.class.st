@@ -12,7 +12,7 @@ Class {
 }
 
 { #category : #creation }
-PMIncompleteBetaFunction class >> shape: aNumber1 shape: aNumber2 [ 
+PMIncompleteBetaFunction class >> shape: aNumber1 shape: aNumber2 [
 	"Create an instance of the receiver with given shape parameters."
 
 	^self new initialize: aNumber1 shape: aNumber2
@@ -43,7 +43,7 @@ PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [
 ]
 
 { #category : #initialization }
-PMIncompleteBetaFunction >> initialize: aNumber1 shape: aNumber2 [ 
+PMIncompleteBetaFunction >> initialize: aNumber1 shape: aNumber2 [
 
 	alpha1 := aNumber1.
 	alpha2 := aNumber2.

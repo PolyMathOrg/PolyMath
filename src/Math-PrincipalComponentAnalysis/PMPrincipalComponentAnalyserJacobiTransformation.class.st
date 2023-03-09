@@ -20,7 +20,7 @@ Class {
 { #category : #'instance creation' }
 PMPrincipalComponentAnalyserJacobiTransformation class >> new: anInteger [
 	"anInteger is the size of the elements you will accumulate: the elements you want to compare using the component analysis."
-	^ self basicNew initialize: anInteger; yourself.
+	^ self basicNew initialize: anInteger; yourself
 ]
 
 { #category : #transformation }

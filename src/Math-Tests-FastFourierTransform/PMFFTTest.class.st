@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 PMFFTTest >> generateCosineWaveSignal: sampleSize [
 
-	^ (1 to: sampleSize) collect: [ :i | 
+	^ (1 to: sampleSize) collect: [ :i |
 		  (Float pi * (i - 1) / (sampleSize / 8)) cos ]
 ]
 
@@ -71,30 +71,30 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
 
 	| random cosineWaveSignal randomizedCosineWaveSignal fourier |
-	
+
 	cosineWaveSignal := self generateCosineWaveSignal: 256.
 	random := Random new.
-	
+
 	randomizedCosineWaveSignal := cosineWaveSignal collect: [ :i |
 		i + (random nextBetween: 0 and: 0.001) - 0.0005 ].
-	
+
 	fourier := PMFastFourierTransform data: randomizedCosineWaveSignal.
 
 	fourier transform.
 	fourier chop: 0.01.
 	fourier inverseTransform.
-	
+
 	fourier realData with: cosineWaveSignal do: [ :expected :actual |
-		self assert: actual closeTo: expected ].
+		self assert: actual closeTo: expected ]
 ]
 
 { #category : #tests }
-PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance [ 
+PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance [
 	| inputSignal f |
 	inputSignal := #(-2 -2 -2 3 3 3 1 -2).
 	f := PMFastFourierTransform data: inputSignal.
 	f chop: 1.01.
 	self assert: f realData equals: #(-2 -2 -2 3 3 3 0 -2).
 	f chop: 2.01.
-	self assert: f realData equals: #(0 0 0 3 3 3 0 0).
+	self assert: f realData equals: #(0 0 0 3 3 3 0 0)
 ]

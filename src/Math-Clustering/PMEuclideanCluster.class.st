@@ -4,12 +4,12 @@ Class {
 	#instVars : [
 		'center'
 	],
-	#category : 'Math-Clustering'
+	#category : #'Math-Clustering'
 }
 
 { #category : #initialization }
 PMEuclideanCluster >> centerOn: aVector [
-	
+
 	center := aVector.
 	accumulator := PMVectorAccumulator new: (aVector ifNil:[0]ifNotNil:[ aVector size ])
 ]
@@ -22,19 +22,19 @@ PMEuclideanCluster >> collectAccumulatorResults [
 
 { #category : #information }
 PMEuclideanCluster >> distanceTo: aVector [
-	
+
 	^(aVector - center) norm
 ]
 
 { #category : #testing }
 PMEuclideanCluster >> isUndefined [
-	
+
 	^ center isNil
 ]
 
 { #category : #printing }
 PMEuclideanCluster >> printOn: aStream [
-	
+
 	accumulator count printOn: aStream.
 	aStream nextPutAll: ': '.
 	center printOn: aStream

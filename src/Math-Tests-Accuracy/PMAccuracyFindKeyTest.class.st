@@ -16,17 +16,16 @@ PMAccuracyFindKeyTest >> assertKeyFor: selector equals: expected [
 ]
 
 { #category : #running }
-PMAccuracyFindKeyTest >> setUp [ 
+PMAccuracyFindKeyTest >> setUp [
 	super setUp.
-	accuracy := PMAccuracyTestExample new.
-	
+	accuracy := PMAccuracyTestExample new
 ]
 
 { #category : #tests }
 PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorCorrespondsToNonExistentProperty [
 	| selector |
 	selector := 'NonExistent'.
-	
+
 	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
@@ -34,7 +33,7 @@ PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorCorrespon
 PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorIsInitialize [
 	| selector |
 	selector := 'initialize'.
-	
+
 	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
@@ -42,6 +41,6 @@ PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorIsInitial
 PMAccuracyFindKeyTest >> testFindKeyReturnsPropertyWhenSelectorIsSuffixOfInitializePropertyMessage [
 	| selector |
 	selector := 'Aaa'.
-	
+
 	self assertKeyFor: selector equals: 'Aaa'
 ]

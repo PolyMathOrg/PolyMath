@@ -14,7 +14,7 @@ Class {
 }
 
 { #category : #private }
-PMAccuracyTestExample >> argumentWith: key [ 
+PMAccuracyTestExample >> argumentWith: key [
 	| theArgument |
 	theArgument := self argumentAt: key.
 	numberOfResults ifNotNil: [ :rn | theArgument := theArgument at: rn ].
@@ -112,7 +112,7 @@ PMAccuracyTestExample >> initializeDdd [
 	"this overrides defaults in initialize"
 
 	self result: #(1.1 2.2).
-	self map: 'Ddd' to: #(). 
+	self map: 'Ddd' to: #().
 	self parameter: #()
 ]
 

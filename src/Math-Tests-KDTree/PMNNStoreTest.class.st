@@ -184,8 +184,8 @@ PMNNStoreTest >> testWithAll [
 	self assert: n isFull.
 	n add: #( 3 6 ) copy.
 
-	"one has to be a bit carefull when one uses 
-				 PMNNStore withAll:, as sortfor: changes this data. 
+	"one has to be a bit carefull when one uses
+				 PMNNStore withAll:, as sortfor: changes this data.
 				 n add: #(3 6) is not possible here!"
 	self assert: n data equals: #( 2 6 4 ).
 	n sortFor: nil.

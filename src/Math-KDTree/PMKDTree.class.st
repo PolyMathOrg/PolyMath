@@ -17,20 +17,20 @@ Class {
 PMKDTree class >> withAll: aCollectionOfCollections [
 "make a KDTree from a Collection of SequenceableCollections ,which is a Collection of points in a n-dimensional space"
 (aCollectionOfCollections allSatisfy: [:c|c isCollection ])ifFalse: 			"isSequenceable does not work here in a simple way"
-	[self error: 'KDTree withAll: expects a collection of collections']. 
+	[self error: 'KDTree withAll: expects a collection of collections'].
 aCollectionOfCollections first ifEmpty: [self error: 'KDTree withAll: error'  ].
-^self new addData: aCollectionOfCollections asOrderedCollection at:1.     
+^self new addData: aCollectionOfCollections asOrderedCollection at:1.
 ]
 
 { #category : #private }
 PMKDTree >> add: aDistance to: aNNStore [
-aNNStore add: (Array with: aDistance with: value) .
+aNNStore add: (Array with: aDistance with: value)
 ]
 
 { #category : #initialize }
 PMKDTree >> addData: aSequenceableCollection at: dimension [
 |sorted cut nextDimension|
-dim :=dimension . 
+dim :=dimension .
 aSequenceableCollection size =1 ifTrue: [value :=aSequenceableCollection first . self adjustValue . ^self ].
 sorted :=self sort: aSequenceableCollection .
 cut :=sorted size + 1// 2.
@@ -38,13 +38,12 @@ value :=sorted at: cut .
 self adjustValue .
 nextDimension :=dimension  \\(value size) +1.
 cut >1 ifTrue: [left :=self class new addData: (sorted copyFrom: 1 to: cut -1 )  at: nextDimension].
-right :=self class new addData: (sorted copyFrom: cut +1 to: sorted size)  at: nextDimension.
+right :=self class new addData: (sorted copyFrom: cut +1 to: sorted size)  at: nextDimension
 ]
 
 { #category : #private }
 PMKDTree >> adjustValue [
 	"necessary for IndexedKDTree "
-
 ]
 
 { #category : #accessing }
@@ -64,7 +63,7 @@ PMKDTree >> nnSearch: aSequenceableCollection i: anInt [
 n :=PMNNStore new: anInt .
 self nnSearch: aSequenceableCollection asFloatArray near: n .
 n :=n data .
-^anInt =1 ifTrue: [n first ] ifFalse:   [n]  
+^anInt =1 ifTrue: [n first ] ifFalse:   [n]
 ]
 
 { #category : #private }
@@ -90,12 +89,12 @@ PMKDTree >> printOn: aStream [
 	 print: value ;
 	 nextPutAll: ' left: ';
 	 print: left ;
-	 nextPutAll: ' right: '; 
+	 nextPutAll: ' right: ';
 	 print: right ;
-	 nextPut: $) .
+	 nextPut: $)
 ]
 
 { #category : #private }
 PMKDTree >> sort: aSequenceableCollection [
-^ aSequenceableCollection sort:  [:a :b| (a  at: dim) < (b at: dim)] 
+^ aSequenceableCollection sort:  [:a :b| (a  at: dim) < (b at: dim)]
 ]

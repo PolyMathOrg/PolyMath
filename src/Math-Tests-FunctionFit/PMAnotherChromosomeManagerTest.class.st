@@ -17,15 +17,15 @@ PMAnotherChromosomeManagerTest >> setHammersleyTest: aBoolean [
 	self assert: (cm population anySatisfy: [ :g | g second < 2 ]).
 	self assert: (cm population anySatisfy: [ :g | g second > 3 ]).
 	cm population
-		do: [ :i | 
+		do: [ :i |
 			self assert: i size equals: 2.
 			self assert: (i first between: 0 and: 2).
 			self assert: (i second between: 1 and: 4) ]
 ]
 
 { #category : #running }
-PMAnotherChromosomeManagerTest >> setUp [ 
-cm:=(PMAnotherChromosomeManager origin: #(0 1) range: #( 2 3)).
+PMAnotherChromosomeManagerTest >> setUp [
+cm:=(PMAnotherChromosomeManager origin: #(0 1) range: #( 2 3))
 ]
 
 { #category : #tests }
@@ -48,7 +48,7 @@ PMAnotherChromosomeManagerTest >> testCrossOver [
 	self deny: (((a at: 1)at: 3)=((a at: 2)at: 3)).
 	a].
 a:= a collect: [:g|g first].
-self assert: ((a occurrencesOf: #(1 2 3))<20).
+self assert: ((a occurrencesOf: #(1 2 3))<20)
 ]
 
 { #category : #tests }
@@ -74,8 +74,7 @@ self shouldnt: [a:=cm eirCrossover: #(1 -3) and: #(1 -3)] raise: Error.
 		self assert: (((a at: 1)at:2) between: -2 and: 2).
 		self assert: (((a at: 2)at:1) between: -2 and: 0).
 		self assert: (((a at: 2)at:2) between: -2 and: 0).
-		].	
-
+		].
 ]
 
 { #category : #tests }
@@ -117,8 +116,7 @@ self assert: (s size between: 15 and: 60).
 s :=f select:[:i|i=(4)].
 self assert: (s size >20).
 s :=f select:[:i|i<(3.8)or:[i>(4.2)]].
-self assert: (s size between: 3 and: 20).
-
+self assert: (s size between: 3 and: 20)
 ]
 
 { #category : #tests }
@@ -128,8 +126,7 @@ aStream :=ReadWriteStream with:''.
 cm printOn: aStream .
 s :=aStream contents .
 self assert: (s includesSubstring: '#(0 1)').
-self assert: (s includesSubstring: '#(2 3)').
-
+self assert: (s includesSubstring: '#(2 3)')
 ]
 
 { #category : #tests }
@@ -152,8 +149,7 @@ self setHammersleyTest: false.
 self deny: (cm population first =g).
 g :=cm population first.
 self setHammersleyTest: false.
-self deny: (cm population first =g).
-
+self deny: (cm population first =g)
 ]
 
 { #category : #tests }
@@ -170,14 +166,13 @@ self should: [cm rateOfEir: 0.26] raise:  Warning    .
 self should: [cm rateOfMutation: 1] raise:  Warning .
 "usual floating point inaccuracies should be accepted:"
 self shouldnt: [cm rateOfCrossover:  0.15000000000000001 ] raise:  Warning .
-self should: [cm rateOfCrossover:  0.1500001] raise:  Warning .
-
+self should: [cm rateOfCrossover:  0.1500001] raise:  Warning
 ]
 
 { #category : #tests }
 PMAnotherChromosomeManagerTest >> testlineCrossOver [
 	| a |
-	1 to: 10 do: [ :i | 
+	1 to: 10 do: [ :i |
 		a := cm lineCrossOver: #(-2 2) and: #(-4 4).
 		self assert: ((a at: 1) at: 2) equals: ((a at: 1) at: 1) negated.
 		self assert: ((a at: 2) at: 2) equals: ((a at: 2) at: 1) negated ]
@@ -221,7 +216,7 @@ PMAnotherChromosomeManagerTest >> testnumberOfHamersleyPoints [
 				dimension: 4
 				randomized: true).
 	rand
-		do: [ :i | 
+		do: [ :i |
 			self assert: i first >= 0.
 			self assert: (i at: 2) < 0.
 			self assert: (i at: 3) < 0 ].

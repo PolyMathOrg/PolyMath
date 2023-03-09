@@ -11,9 +11,9 @@ PMAM4SolverTest >> testSimpleSystem2 [
 	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
 	stepper := PMAM4Stepper onSystem: system.
 	solver := (PMAM4Solver new) stepper: stepper; system: system; dt: dt.
-	
+
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.6231).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8577).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8577)
 ]
 
 { #category : #'tests-solving' }
@@ -61,7 +61,7 @@ PMAM4SolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := PMImplicitSystem
-		block: [ :x :t | 
+		block: [ :x :t |
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.

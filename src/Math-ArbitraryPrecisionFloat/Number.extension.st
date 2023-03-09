@@ -1,10 +1,10 @@
 Extension { #name : #Number }
 
 { #category : #'*Math-ArbitraryPrecisionFloat' }
-Number >> adaptToArbitraryPrecisionFloat: rcvr andCompare: selector [ 
+Number >> adaptToArbitraryPrecisionFloat: rcvr andCompare: selector [
 	"If I am involved in comparison with a Float, convert rcvr to a
 	Fraction. This way, no bit is lost and comparison is exact."
-	
+
 	^ rcvr asTrueFraction perform: selector with: self
 ]
 
@@ -17,7 +17,7 @@ Number >> adaptToArbitraryPrecisionFloat: rcvr andSend: selector [
 ]
 
 { #category : #'*Math-ArbitraryPrecisionFloat' }
-Number >> asArbitraryPrecisionFloatNumBits: n [ 
+Number >> asArbitraryPrecisionFloatNumBits: n [
 	self subclassResponsibility
 ]
 

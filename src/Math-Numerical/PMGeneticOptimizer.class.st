@@ -20,11 +20,11 @@ PMGeneticOptimizer class >> defaultPrecision [
 ]
 
 { #category : #transformation }
-PMGeneticOptimizer >> addPointAt: aNumber [ 
+PMGeneticOptimizer >> addPointAt: aNumber [
 	"necessary since nan's and infinites can throw off calculations. and calculations become a tiny bit more efficient"
 	| p |
  	p:=optimizingPointClass vector: aNumber function: functionBlock.
- 	((p value isInfinite)or:[p value isNaN]) ifFalse: [bestPoints add: p].
+ 	((p value isInfinite)or:[p value isNaN]) ifFalse: [bestPoints add: p]
 ]
 
 { #category : #initialization }
@@ -81,7 +81,7 @@ PMGeneticOptimizer >> randomIndex: aNumberArray [
 	random := Random new.
 	x := random next.
 	n := 1.
-	aNumberArray do: 
+	aNumberArray do:
 		[ :each |
 		  x < each
 			ifTrue: [ ^n].

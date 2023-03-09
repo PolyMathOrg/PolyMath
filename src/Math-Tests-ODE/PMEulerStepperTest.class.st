@@ -52,7 +52,7 @@ PMEulerStepperTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.001.
 	system := PMExplicitSystem
-		block: [ :x :t | 
+		block: [ :x :t |
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.

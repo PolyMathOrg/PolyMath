@@ -49,12 +49,12 @@ PMStateRecorder class >> demo [
 
 { #category : #accessing }
 PMStateRecorder >> add: aState at: aTime [
-	states add:  (PMStateTime state: aState time: aTime).
+	states add:  (PMStateTime state: aState time: aTime)
 ]
 
 { #category : #accessing }
 PMStateRecorder >> defaultBlock [
-	^ [:ann | self add: ann state at: ann time].
+	^ [:ann | self add: ann state at: ann time]
 ]
 
 { #category : #'initialize-release' }

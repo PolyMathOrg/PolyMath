@@ -66,7 +66,7 @@ PMTSNE class >> example1 [
 PMTSNE class >> exampleGridWithVizualization [
 	| points tsne v rec xscale yscale s elements |
 	points := self gridDataGeneratorOf: 12.
-	
+
 	tsne := (self new)
 		perplexity: 10;
 		learningRate: 50;
@@ -78,7 +78,7 @@ PMTSNE class >> exampleGridWithVizualization [
 
 	v := RSView new.
 	"We assign a color to the elements"
-	rec := Rectangle encompassing: (tsne y rows 
+	rec := Rectangle encompassing: (tsne y rows
 		collect: [:row | row first @ row second ]).
 	xscale := TSScale linear domain: (Array with rec origin x with: rec corner x).
 	yscale := TSScale linear domain: (Array with rec origin y with: rec corner y).
@@ -99,15 +99,14 @@ PMTSNE class >> exampleGridWithVizualization [
 	        e position: (point first @ point second) * 20 ].
 	     ].
 	v addAll: elements.
-	v open setLabel: 'tSNE example: Points arranged in a grid'.
-	
+	v open setLabel: 'tSNE example: Points arranged in a grid'
 ]
 
 { #category : #examples }
 PMTSNE class >> exampleLinkedRingWithVizualization [
 	| points tsne v counter s elements |
 	points := self linkedRingsDataGeneratorOf: 50.
-	
+
 	"Perplexity near 10 and learningRate <= 10 gives best results"
 	tsne := (self new)
 		perplexity: 3;
@@ -140,8 +139,7 @@ PMTSNE class >> exampleLinkedRingWithVizualization [
 		 (Delay forMilliseconds: 10) wait.
 	     ].
 	v addAll: elements.
-	v open setLabel: 'tSNE example: Two 3D linked rings'.
-	
+	v open setLabel: 'tSNE example: Two 3D linked rings'
 ]
 
 { #category : #'data sets' }
@@ -149,9 +147,9 @@ PMTSNE class >> gridDataGeneratorOf: size [
 	"Demos from https://github.com/distillpub/post--misread-tsne/blob/master/public/assets/demo-configs.js"
 	"A square grid with equal spacing between points."
 	"Returns a PMMatrix"
-	
+
 	| array i |
-	array := Array new: size*size. 
+	array := Array new: size*size.
 	i := 1.
 	1 to: size do: [ :x | 1 to: size do: [ :y | array at: i put: (Array with: x with: y).
 														i:=i+1] ].
@@ -195,8 +193,8 @@ PMTSNE >> computeGradient [
 			].
 
 	pq := p - q.
-	
-	dY := OrderedCollection new. 
+
+	dY := OrderedCollection new.
 	1 to: (x dimension x) do: [ :i |
 		tmp := (pq rowAt: i) hadamardProduct: (num rowAt: i).
 		"Create a matrix of rows filled with 'tmp'"
@@ -256,7 +254,7 @@ PMTSNE >> computePairwiseAffinities [
 	It identifies required precision (beta = (1/ variance**2)) for each row using a
 	binary search. The precision is selected based on input perplexity.
 	"
-	
+
 	| d beta logU n betaMin betaMax distanceVector pVector entropy tries entropyDiff |
 	n := x numberOfRows.
 	d := self computePairwiseDistances.
@@ -265,25 +263,25 @@ PMTSNE >> computePairwiseAffinities [
 	logU := self perplexity ln.
 	distanceVector := PMVector new: n - 1.
 	pVector := PMVector new: n - 1.
-	
+
 	job title: 'Step 2/3: Computing joint probablity for point 1 of ', n asString.
 	job progress: 0.0.
-	
+
 	1 to: n do: [ :i |
 		"Job progress gets updated every 10 rows"
 		(i % 10 = 0) ifTrue: [
 			job title: ('Step 2/3: Computing joint probablity for point {1} of {2}' format: (Array with: i with: n)).
 			job progress: (i/n).
 		 ].
-		
+
 		"Set minimum and maximum value of precision"
 		betaMin := Float infinity negated.
 		betaMax := Float infinity.
-		
+
 		"Ignore i-th element of the row d[i] and copy rest in distanceVector.
 		 Also initialize pVector to 0"
 		1 to: n do: [ :index |
-			(index = i) ifFalse: [ 
+			(index = i) ifFalse: [
 				(index < i)
 					ifTrue: [ distanceVector at: index put: (d rowAt: i columnAt: index).
 								 pVector at: index put: 0. ]
@@ -294,16 +292,16 @@ PMTSNE >> computePairwiseAffinities [
 		entropy := self class entropyOf: distanceVector andPRow: pVector withBeta: (beta at: i).
 		entropyDiff := entropy - logU.
 		tries := 0.
-		[ (entropyDiff abs > 1e-5) & (tries < 50)]	whileTrue: [ 
+		[ (entropyDiff abs > 1e-5) & (tries < 50)]	whileTrue: [
 			(entropyDiff > 0)
-				ifTrue: [ 
+				ifTrue: [
 					betaMin := beta at: i.
 					((betaMax = Float infinity) | (betaMin = Float infinity negated))
 						ifTrue: [ beta at: i put: ((beta at: i) * 2) ]
 						ifFalse: [ beta at: i put: (((beta at: i) + betaMax) / 2)
 						].
 					 ]
-				ifFalse: [ 
+				ifFalse: [
 					betaMax := beta at: i.
 					((betaMax = Float infinity) | (betaMin = Float infinity negated))
 						ifTrue: [ beta at: i put: ((beta at: i) / 2) ]
@@ -360,12 +358,12 @@ PMTSNE >> gradientDescent [
 	1 to: maxIter do: [ :i |
 		self step.
 		self postStep.
-		].
+		]
 ]
 
 { #category : #accessing }
 PMTSNE >> initialDims [
-	^ initialDims 
+	^ initialDims
 ]
 
 { #category : #accessing }
@@ -404,26 +402,25 @@ PMTSNE >> initialize [
 	updateProgressEvery := self updateProgressEveryDefaultValue.
 	updateError := self updateErrorDefaultValue.
 	iterations := 0.
-	self initializeJob.
-	
+	self initializeJob
 ]
 
 { #category : #initialization }
 PMTSNE >> initializeJob [
 	"This job represents all the steps in t-SNE"
-	job := [ 
+	job := [
 		self initializeUninitializedParameters.
 		self reduceXToInputDims.
 		self initializeYWithRandomValues.
 		self gradientDescent.
-	 ] asJob.
+	 ] asJob
 ]
 
 { #category : #initialization }
 PMTSNE >> initializeStateVariables [
     p := self computePValues.
     gains := PMMatrix onesRows: x dimension x cols: outputDims.
-    iY := PMMatrix zerosRows: x dimension x cols: outputDims.
+    iY := PMMatrix zerosRows: x dimension x cols: outputDims
 ]
 
 { #category : #initialization }
@@ -439,15 +436,15 @@ PMTSNE >> initializeYWithRandomValues [
 	"We should add this to PMMatrix API later"
 
 	| numberOfRows numberOfColumns distribution rows |
-	
+
 	numberOfRows := x dimension x.
 	numberOfColumns := outputDims.
 	distribution := PMNormalDistribution new: 0 sigma: 1.
-	
-	rows := (1 to: numberOfRows) collect: [ :i | 
+
+	rows := (1 to: numberOfRows) collect: [ :i |
 		(1 to: numberOfColumns) collect: [ :j |
 			distribution random ] ].
-	
+
 	y := PMMatrix rows: rows
 ]
 
@@ -458,7 +455,7 @@ PMTSNE >> iterations [
 
 { #category : #accessing }
 PMTSNE >> learningRate [
-	^ learningRate 
+	^ learningRate
 ]
 
 { #category : #accessing }
@@ -541,7 +538,7 @@ PMTSNE >> postStep [
 PMTSNE >> reduceXToInputDims [
 	"Runs PCA on X in order to reduce its dimensionality to initialDims dimensions."
 
-	self reduceXToInputDimsUsing: PMPrincipalComponentAnalyserJacobiTransformation.
+	self reduceXToInputDimsUsing: PMPrincipalComponentAnalyserJacobiTransformation
 ]
 
 { #category : #running }
@@ -558,45 +555,45 @@ PMTSNE >> reduceXToInputDimsUsing: aClass [
 
 { #category : #running }
 PMTSNE >> start [
-	job run.
+	job run
 ]
 
 { #category : #'stepping and presenter' }
 PMTSNE >> step [
 	| dY momentum yMeanAccumulator |
-	
+
 	dY := self computeGradient.
-	
+
 	"Momentum accelerates gradient descent by dampening one direction"
 	momentum := iterations < 20
 		ifTrue: [ initialMomentum ]
 		ifFalse: [ finalMomentum ].
-	
+
 	"Compute gain based on direction of descent"
-	1 to: x dimension x do: [ :i | 
-		1 to: outputDims do: [ :j | 
+	1 to: x dimension x do: [ :i |
+		1 to: outputDims do: [ :j |
 			(dY rowAt: i columnAt: j) > 0 = ((iY rowAt: i columnAt: j) > 0)
 				ifTrue: [ gains
 						rowAt: i
 						columnAt: j
 						put: ((gains rowAt: i columnAt: j) * 0.8 max: minGain) ]
 				ifFalse: [ gains rowAt: i columnAt: j put: (gains rowAt: i columnAt: j) + 0.2 ] ] ].
-	
+
 	"Update y according to gradient, momentum and gain"
 	iY := iY * momentum - ((dY hadamardProduct: gains) * learningRate).
 	y := y + iY.
-	
+
 	"Center y by subtracting mean"
 	yMeanAccumulator := PMVectorAccumulator new: outputDims.
 	y rowsDo: [ :row | yMeanAccumulator accumulate: row ].
 	y := PMMatrix
 		rows: (y rowsCollect: [ :row | row - yMeanAccumulator average ]).
-	
+
 	iterations := iterations + 1.
 	"Stop early exaggeration on 100th iteration"
 	iterations = 100
 		ifFalse: [ ^ self ].
-	p := p * (1 / 4).
+	p := p * (1 / 4)
 ]
 
 { #category : #'stepping and presenter' }
@@ -607,7 +604,7 @@ PMTSNE >> step: aNumber [
 
 { #category : #accessing }
 PMTSNE >> updateError [
-	^ updateError 
+	^ updateError
 ]
 
 { #category : #accessing }
@@ -622,7 +619,7 @@ PMTSNE >> updateErrorDefaultValue [
 
 { #category : #accessing }
 PMTSNE >> updateProgressEvery [
-	^ updateProgressEvery 
+	^ updateProgressEvery
 ]
 
 { #category : #accessing }

@@ -19,7 +19,7 @@ PMBetaDistribution class >> distributionName [
 ]
 
 { #category : #creation }
-PMBetaDistribution class >> fromHistogram: aHistogram [ 
+PMBetaDistribution class >> fromHistogram: aHistogram [
 	"Create an instance of the receiver with parameters estimated from the given histogram using best guesses. This method can be used to find the initial values for a fit."
 
 	| average variance a b |
@@ -41,7 +41,7 @@ PMBetaDistribution class >> new [
 ]
 
 { #category : #creation }
-PMBetaDistribution class >> shape: aNumber1 shape: aNumber2 [ 
+PMBetaDistribution class >> shape: aNumber1 shape: aNumber2 [
 	"Create an instance of the receiver with given shape parameters."
 
 	^super new initialize: aNumber1 shape: aNumber2
@@ -61,14 +61,14 @@ PMBetaDistribution >> changeParametersBy: aVector [
 	self computeNorm.
 	gamma1 := nil.
 	gamma2 := nil.
-	incompleteBetaFunction := nil.
+	incompleteBetaFunction := nil
 ]
 
 { #category : #private }
 PMBetaDistribution >> computeNorm [
 	"Compute the norm of the receiver because its parameters have changed."
-		 
-	logNorm := (alpha1 + alpha2) logGamma - alpha1 logGamma - alpha2 logGamma.
+
+	logNorm := (alpha1 + alpha2) logGamma - alpha1 logGamma - alpha2 logGamma
 ]
 
 { #category : #information }
@@ -92,9 +92,9 @@ PMBetaDistribution >> firstGammaDistribution [
 ]
 
 { #category : #initialization }
-PMBetaDistribution >> initialize: aNumber1 shape: aNumber2 [ 
+PMBetaDistribution >> initialize: aNumber1 shape: aNumber2 [
 
-	(aNumber1 > 0 and: [aNumber2 > 0]) 
+	(aNumber1 > 0 and: [aNumber2 > 0])
 		ifFalse: [self error: 'Illegal distribution parameters'].
 	alpha1 := aNumber1.
 	alpha2 := aNumber2.
@@ -137,11 +137,11 @@ PMBetaDistribution >> skewness [
 ]
 
 { #category : #information }
-PMBetaDistribution >> value: aNumber [ 
+PMBetaDistribution >> value: aNumber [
 	"Answers the probability that a random variable distributed according to the receiver gives a value between aNumber and aNumber + espilon (infinitesimal interval)."
 
-	^(aNumber > 0 and: [ aNumber < 1]) 
-		ifTrue: 
+	^(aNumber > 0 and: [ aNumber < 1])
+		ifTrue:
 			[( ( aNumber ln * (alpha1 - 1) ) + ( ( 1 - aNumber) ln * ( alpha2 - 1)) + logNorm) exp]
 		ifFalse: [0]
 ]

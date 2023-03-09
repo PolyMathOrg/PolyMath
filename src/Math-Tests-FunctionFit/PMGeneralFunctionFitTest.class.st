@@ -74,7 +74,7 @@ PMGeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
 	correct := 0.
 	fit populationSize: 20.
 	7
-		timesRepeat: [ 
+		timesRepeat: [
 			fit resetBestPoints.
 			fit maximumIterations: 200.
 			r := (fit evaluate - #(0.1 0.4)) abs.
@@ -104,10 +104,7 @@ PMGeneralFunctionFitTest >> testPrecision [
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 self assert:fit precision isNil.
 fit evaluate .
-self assert: (fit precision < 1e-6 ).
-
-
-
+self assert: (fit precision < 1e-6 )
 ]
 
 { #category : #tests }
@@ -125,7 +122,7 @@ fit evaluate .
 aStream :=ReadWriteStream with:''.
 fit printOn: aStream .
 s :=aStream contents .
-self assert: (s includesSubstring: '#(0.').
+self assert: (s includesSubstring: '#(0.')
 ]
 
 { #category : #tests }
@@ -157,7 +154,7 @@ PMGeneralFunctionFitTest >> testResetBestPoints [
 fit:=PMGeneralFunctionFit function: f data: col minimumValues: 0 maximumValues: 5 .
 fit evaluate .
 fit resetBestPoints.
-self assert: (fit optimizer bestPoints isEmpty ).
+self assert: (fit optimizer bestPoints isEmpty )
 ]
 
 { #category : #tests }

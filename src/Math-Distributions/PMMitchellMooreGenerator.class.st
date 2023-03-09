@@ -43,7 +43,7 @@ PMMitchellMooreGenerator class >> new [
 { #category : #creation }
 PMMitchellMooreGenerator class >> reset: anInteger [
 	"Reset the unique instance used for the default series"
-	UniqueInstance := self seed: anInteger.
+	UniqueInstance := self seed: anInteger
 ]
 
 { #category : #creation }

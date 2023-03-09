@@ -18,25 +18,25 @@ PMSimplexOptimizer >> buildInitialSimplex [
 	"Private"
 
 	| projectedFunction finder partialResult |
-	projectedFunction := PMProjectedOneVariableFunction 
+	projectedFunction := PMProjectedOneVariableFunction
 				function: functionBlock.
 	finder := PMOneVariableFunctionOptimizer forOptimizer: self.
 	finder setFunction: projectedFunction.
-	[bestPoints size < (result size + 1)] whileTrue: 
+	[bestPoints size < (result size + 1)] whileTrue:
 			[projectedFunction
 				setArgument: result;
 				bumpIndex.
 			partialResult := finder
 						reset;
 						evaluate.
-			bestPoints add: (optimizingPointClass 
+			bestPoints add: (optimizingPointClass
 						vector: (projectedFunction argumentWith: partialResult)
 						function: functionBlock)]
 ]
 
 { #category : #initialization }
 PMSimplexOptimizer >> computeInitialValues [
-	bestPoints 
+	bestPoints
 		add: (optimizingPointClass vector: result function: functionBlock).
 	self buildInitialSimplex.
 	worstVector := bestPoints removeLast position
@@ -66,10 +66,10 @@ PMSimplexOptimizer >> contract [
 ]
 
 { #category : #operation }
-PMSimplexOptimizer >> contract: aVector around: bestVector [ 
+PMSimplexOptimizer >> contract: aVector around: bestVector [
 	"Private"
 
-	bestPoints 
+	bestPoints
 		add: (optimizingPointClass vector: bestVector * 0.5 + (aVector * 0.5)
 				function: functionBlock)
 ]
@@ -83,14 +83,14 @@ PMSimplexOptimizer >> evaluateIteration [
 				into: [:sum :each | each position + sum]) * (1 / bestPoints size).
 	newPoint := optimizingPointClass vector: 2 * centerOfGravity - worstVector
 				function: functionBlock.
-	(newPoint betterThan: bestPoints first) 
-		ifTrue: 
-			[nextPoint := optimizingPointClass 
+	(newPoint betterThan: bestPoints first)
+		ifTrue:
+			[nextPoint := optimizingPointClass
 						vector: newPoint position * 2 - centerOfGravity
 						function: functionBlock.
 			(nextPoint betterThan: newPoint) ifTrue: [newPoint := nextPoint]]
-		ifFalse: 
-			[newPoint := optimizingPointClass 
+		ifFalse:
+			[newPoint := optimizingPointClass
 						vector: centerOfGravity * 0.666667 + (worstVector * 0.333333)
 						function: functionBlock.
 			(newPoint betterThan: bestPoints first) ifFalse: [^self contract]].
@@ -103,6 +103,6 @@ PMSimplexOptimizer >> evaluateIteration [
 { #category : #display }
 PMSimplexOptimizer >> printOn: aStream [
 	super printOn: aStream.
-	aStream cr. 
+	aStream cr.
 	worstVector printOn: aStream
 ]

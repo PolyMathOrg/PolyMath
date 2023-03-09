@@ -12,19 +12,19 @@ PMCovarianceCluster >> centerOn: aVector [
 
 { #category : #transformation }
 PMCovarianceCluster >> collectAccumulatorResults [
-	
-	accumulator computeParameters.
+
+	accumulator computeParameters
 ]
 
 { #category : #information }
 PMCovarianceCluster >> distanceTo: aVector [
-	
+
 	^ accumulator distanceTo: aVector
 ]
 
 { #category : #testing }
 PMCovarianceCluster >> isUndefined [
-		
+
 	^accumulator isNil
 ]
 

@@ -37,7 +37,7 @@ PMTrapezoidStepper >> doStep: aState time: t [
 PMTrapezoidStepper >> doStep: aState time: t stepSize: timeStep [
 	"This method should take one step from inState at time t of size dt, and modify the state, then answer it. "
 	self stepSize: timeStep.
-	^ self doStep: aState  time:  t.
+	^ self doStep: aState  time:  t
 ]
 
 { #category : #stepping }
@@ -61,5 +61,5 @@ PMTrapezoidStepper >> lastStep: aState time: t deltaT: incrementOfTime [
 PMTrapezoidStepper >> lastStep: aState time: t stepSize: timeStep deltaT: incrementOfTime [
 	"This method should take one step from inState at time t of size dt, and modify the state, then answer it. "
 	self stepSize: timeStep.
-	^ self lastStep: aState  time:  t deltaT: incrementOfTime.
+	^ self lastStep: aState  time:  t deltaT: incrementOfTime
 ]

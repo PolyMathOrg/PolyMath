@@ -6,7 +6,7 @@ Class {
 
 { #category : #'as yet unclassified' }
 PMExplicitSolver class >> stepperClass [
-	^ PMExplicitStepper.
+	^ PMExplicitStepper
 ]
 
 { #category : #'announcement hooks' }
@@ -17,5 +17,5 @@ PMExplicitSolver >> announcementClass [
 { #category : #'announcement hooks' }
 PMExplicitSolver >> announcerClass [
 
-	^ PMExplicitAnnouncer 
+	^ PMExplicitAnnouncer
 ]

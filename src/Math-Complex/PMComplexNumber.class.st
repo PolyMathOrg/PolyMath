@@ -102,10 +102,10 @@ PMComplexNumber class >> one [
 
 { #category : #information }
 PMComplexNumber class >> random [
-	"Answers a random number with abs between 0 and 1." 
+	"Answers a random number with abs between 0 and 1."
 	| random |
 	random := Random new.
-	
+
 	^ self
 		abs: random next
 		arg: 2 * (random nextBetween: 0 and: Float pi)
@@ -184,7 +184,7 @@ PMComplexNumber >> / aNumber [
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
 		^ self class real: newReal imaginary: newImaginary].
-	^ aNumber adaptToComplex: self andSend: #/.
+	^ aNumber adaptToComplex: self andSend: #/
 ]
 
 { #category : #comparing }
@@ -210,7 +210,7 @@ PMComplexNumber >> absSecure [
 
 	| scale |
 	scale := real abs max: imaginary abs.
-	^scale isZero 
+	^scale isZero
 		ifTrue: [scale]
 		ifFalse: [(self class real: real / scale imaginary: imaginary / scale) squaredNorm sqrt * scale]
 ]
@@ -257,7 +257,7 @@ PMComplexNumber >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh.
 	Some possible implementations:
-	^imaginary > 0 
+	^imaginary > 0
 		ifTrue: [(self + (self * self - 1) sqrt) ln]
 		ifFalse: [(self + (self * self - 1) sqrt) ln negated]
 	^self arcCos i
@@ -292,7 +292,7 @@ PMComplexNumber >> arSinh [
 
 	"Some possible implementation:
 
-	^imaginary * real < 0 
+	^imaginary * real < 0
 		ifTrue: [(self + (self * self + 1) sqrt) ln]
 		ifFalse: [(self - (self * self + 1) sqrt) ln]"
 
@@ -374,24 +374,24 @@ PMComplexNumber >> arcTan [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> arcTan: denominator [ 
+PMComplexNumber >> arcTan: denominator [
 	"Answer the  four quadrants arc tangent of receiver over denominator."
 
-	^denominator isZero 
-		ifTrue: 
-			[self isZero 
-				ifTrue: 
+	^denominator isZero
+		ifTrue:
+			[self isZero
+				ifTrue:
 					["shouldn't it be an error ? ^DomainError signal: '0 arcTan: 0'"
 					^self class real: 0 imaginary: 0]
-				ifFalse: 
+				ifFalse:
 					[self class
 						real: Float pi / (real copySignTo: 2)
 						imaginary: 0]]
-		ifFalse: 
+		ifFalse:
 			[| res |
 			res := (self / denominator) arcTan.
 			denominator real < 0 ifTrue: [res := res + Float pi].
-			res real > Float pi 
+			res real > Float pi
 				ifTrue: [res := res - (Float pi * 2)].
 			res]
 ]
@@ -414,14 +414,14 @@ PMComplexNumber >> closeTo: aNumber precision: aPrecision [
 	"A complex number self is close to a complex number other with precision epsilon if both
 	self real is close to other real with precision epsilon and
 	self imaginary is close to other imaginary with precision epsilon.
-	
+
 	In case aNumber is real and not complex, we convert it to a complex number
 	other = aNumber + 0i"
 	| other |
 	other := aNumber asComplex.
-	
-	^ (real closeTo: other real precision: aPrecision) and: [ 
-		imaginary closeTo: other imaginary precision: aPrecision ].
+
+	^ (real closeTo: other real precision: aPrecision) and: [
+		imaginary closeTo: other imaginary precision: aPrecision ]
 ]
 
 { #category : #arithmetic }
@@ -456,7 +456,7 @@ PMComplexNumber >> cosh [
 	Hyperbolic cosine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp + self negated exp) / 2.
 	This implementation avoids creating intermediate objects."
-	
+
 	^self class
 		real: real cosh * imaginary cos
 		imaginary: real sinh * imaginary sin
@@ -466,7 +466,7 @@ PMComplexNumber >> cosh [
 PMComplexNumber >> divideFastAndSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
 
-	" Both operands are scaled to avoid arithmetic overflow. 
+	" Both operands are scaled to avoid arithmetic overflow.
 	  This algorithm works for a wide range of values, and it needs only three divisions.
 	  Note: #reciprocal uses #/ for devision "
 
@@ -491,11 +491,11 @@ PMComplexNumber >> divideFastAndSecureBy: anObject [
 { #category : #arithmetic }
 PMComplexNumber >> divideSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
-	" Both operands are scaled to avoid arithmetic overflow. This algorithm 
-	  works for a wide range of values, but it requires six divisions.  
+	" Both operands are scaled to avoid arithmetic overflow. This algorithm
+	  works for a wide range of values, but it requires six divisions.
 	  #divideFastAndSecureBy:  is also quite good, but it uses only 3 divisions.
 	   Note: #reciprocal uses #/ for devision"
-	 
+
 	| s ars ais brs bis newReal newImaginary |
 	anObject isComplexNumber ifTrue:
 		[s := anObject real abs + anObject imaginary abs.
@@ -504,11 +504,11 @@ PMComplexNumber >> divideSecureBy: anObject [
 		 brs := anObject real / s.
 		 bis := anObject imaginary / s.
 		 s := brs squared + bis squared.
-		
+
 		newReal := ars*brs + (ais*bis) /s.
 		newImaginary := ais*brs - (ars*bis)/s.
 		^ PMComplexNumber real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+	^ anObject adaptToComplex: self andSend: #/
 ]
 
 { #category : #'double dispatch' }
@@ -536,8 +536,8 @@ PMComplexNumber >> floatClass [
 { #category : #comparing }
 PMComplexNumber >> hash [
 	"Hash is reimplemented because = is implemented."
-	
-	^ real hash bitXor: imaginary hash.
+
+	^ real hash bitXor: imaginary hash
 ]
 
 { #category : #arithmetic }
@@ -587,7 +587,7 @@ PMComplexNumber >> ln [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> log: aNumber [ 
+PMComplexNumber >> log: aNumber [
 	"Answer the log base aNumber of the receiver."
 
 	^self ln / aNumber ln
@@ -611,7 +611,6 @@ PMComplexNumber >> printOn: aStream [
 	imaginary abs printOn: aStream.
 	aStream nextPut: Character space.
 	aStream nextPut: $i
-
 ]
 
 { #category : #'double dispatch' }
@@ -637,7 +636,7 @@ PMComplexNumber >> raisedTo: aNumber [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedToInteger: operand [ 
+PMComplexNumber >> raisedToInteger: operand [
 	"Answer the receiver raised to the power operand, an Integer."
 
 	"implementation note: this code is copied from Number.
@@ -653,7 +652,7 @@ PMComplexNumber >> raisedToInteger: operand [
 	count := 1 bitShift: (operand-1) highBit.
 	result := self class one.
 	[count > 0]
-		whileTrue: 
+		whileTrue:
 			[result := result squared.
 			(operand bitAnd: count)
 				= 0 ifFalse: [result := result * self].
@@ -665,7 +664,6 @@ PMComplexNumber >> raisedToInteger: operand [
 PMComplexNumber >> random [
 	"analog to Number>>random. However, the only bound is that the abs of the produced complex is less than the length of the receive. The receiver effectively defines a disc within which the random element can be produced."
 	^ self class random * self
-	
 ]
 
 { #category : #accessing }
@@ -677,12 +675,12 @@ PMComplexNumber >> real [
 PMComplexNumber >> real: aNumber1 imaginary: aNumber2 [
 	"Private - initialize the real and imaginary parts of a Complex"
 	real := aNumber1.
-	imaginary := aNumber2.
+	imaginary := aNumber2
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> reciprocal [
-	"Answer 1 divided by the receiver. Create an error notification if the 
+	"Answer 1 divided by the receiver. Create an error notification if the
 	receiver is 0."
 
 	^ self = 0
@@ -713,7 +711,7 @@ PMComplexNumber >> sinh [
 	Hyperbolic sine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp - self negated exp) / 2.
 	This implementation avoids creating intermediate objects."
-	
+
 	^self class
 		real: real sinh * imaginary cos
 		imaginary: real cosh * imaginary sin
@@ -725,13 +723,13 @@ PMComplexNumber >> sqrt [
 	Implementation based on: https://en.wikipedia.org/wiki/Complex_number#Square_root"
 
 	| newReal newImaginary imaginarySign |
-	
+
 	imaginarySign := imaginary sign = 0
 		ifTrue: [ 1 ] ifFalse: [ imaginary sign ].
-	
+
 	newReal := ((self abs + real) / 2) sqrt.
 	newImaginary := imaginarySign * ((self abs - real) / 2) sqrt.
-	
+
 	^ newReal + newImaginary i
 ]
 

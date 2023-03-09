@@ -32,7 +32,7 @@ PMAB4Stepper >> doStep3State: thirdState secondState: secondState firstState: fi
 { #category : #stepping }
 PMAB4Stepper >> doStep3State: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime  stepSize: timeStep [
 	self stepSize: timeStep.
-	^ self doStep3State: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime  .
+	^ self doStep3State: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime
 ]
 
 { #category : #stepping }
@@ -57,6 +57,5 @@ PMAB4Stepper >> lastStep: thirdState secondState: secondState firstState: firstS
 PMAB4Stepper >> lastStep: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime deltaT: incrementOfTime stepSize: timeStep [
 
 	self stepSize: timeStep.
-	^ self lastStep: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime deltaT: incrementOfTime .
-
+	^ self lastStep: thirdState secondState:secondState firstState: firstState initState: initState initTime: initTime deltaT: incrementOfTime
 ]

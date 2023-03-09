@@ -7,19 +7,19 @@ Class {
 	#instVars : [
 		'fast'
 	],
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #tests }
 PMGAAccuracy >> checkDamavandi [
 	| g origin range optimizer  |
-	g := [:x| |x1 x2| 
-				x1:=x at:1. 
+	g := [:x| |x1 x2|
+				x1:=x at:1.
 				x2:=x at:2.
 				( 1 - ( ( ((x1 - 2)* Float pi)sin * ((x2 - 2) * Float pi)sin /(Float pi squared *(x1 - 2)*(x2 - 2)) )abs raisedToInteger: 5)) *(2 + (x1 - 7) squared + (2 * (x2 -7)squared)) ].
 	origin := #(0 0 ).
 	range :=#(  14    14 ).
-	optimizer:= PMAnotherGeneticOptimizer function: g minimumValues: origin maximumValues: range. 
+	optimizer:= PMAnotherGeneticOptimizer function: g minimumValues: origin maximumValues: range.
 	optimizer chromosomeManager populationSize: 570.
 	self setManager: optimizer chromosomeManager with: self parameter.
 	^g value: optimizer evaluate
@@ -29,18 +29,18 @@ PMGAAccuracy >> checkDamavandi [
 PMGAAccuracy >> checkDeVilliersGlasser2 [
 	| ti yi g origin range optimizer |
 	ti := [ :x | (x - 1) / 10 ].
-	yi := [ :i | 
+	yi := [ :i |
 	53.81 * (1.27 raisedTo: (ti value: i)) * (3.012 * (ti value: i) + (2.13 * (ti value: i)) sin) tanh
 		* (0.507 exp * (ti value: i)) cos ].
-	g := [ :x | 
+	g := [ :x |
 	| xc |
 	xc := x
-		collect: [ :i | 
+		collect: [ :i |
 			i < 0
 				ifTrue: [ i negated ]
 				ifFalse: [ i ] ].
 	((1 to: 24)
-		collect: [ :i | 
+		collect: [ :i |
 			(((xc at: 2) raisedTo: (ti value: i)) * (xc at: 1)
 				* ((xc at: 3) * (ti value: i) + ((xc at: 4) * (ti value: i)) sin) tanh * ((xc at: 5) exp * (ti value: i)) cos
 				- (yi value: i)) squared ]) sum ].
@@ -57,7 +57,7 @@ PMGAAccuracy >> checkDeVilliersGlasser2 [
 { #category : #tests }
 PMGAAccuracy >> checkF1 [
 	| f origin optimizer |
-	f := [ :x | 
+	f := [ :x |
 	| v |
 	v := x asPMVector.
 	v * v ].
@@ -65,7 +65,7 @@ PMGAAccuracy >> checkF1 [
 	optimizer := PMAnotherGeneticOptimizer function: f minimumValues: origin maximumValues: origin negated.
 	self setManager: optimizer chromosomeManager with: self parameter.
 	fast
-		ifTrue: [ 
+		ifTrue: [
 			optimizer chromosomeManager populationSize: 50.
 			optimizer maximumIterations: 50 ].
 	^ f value: optimizer evaluate
@@ -76,12 +76,12 @@ PMGAAccuracy >> checkF2 [
 	| g origin optimizer r |
 	g := [ :x | (x overlappingPairsCollect: [ :f :s | (s - f squared) squared * 100 + (1 - f) squared ]) sum ].
 	r := #(2 3 4)
-		collect: [ :i | 
+		collect: [ :i |
 			origin := Array new: i withAll: -2.048.
 			optimizer := PMAnotherGeneticOptimizer function: g minimumValues: origin maximumValues: origin negated.
 			self setManager: optimizer chromosomeManager with: self parameter.
 			fast
-				ifTrue: [ 
+				ifTrue: [
 					optimizer chromosomeManager populationSize: 60.
 					optimizer maximumIterations: 70 ].
 			g value: optimizer evaluate ].
@@ -96,10 +96,10 @@ PMGAAccuracy >> checkF3 [
 	optimizer := PMAnotherGeneticOptimizer function: g minimumValues: origin maximumValues: origin negated.
 	self setManager: optimizer chromosomeManager with: self parameter.
 	fast
-		ifTrue: [ 
+		ifTrue: [
 			optimizer chromosomeManager populationSize: 20.
 			optimizer maximumIterations: 70 ]
-		ifFalse: [ 
+		ifFalse: [
 			optimizer chromosomeManager populationSize: 30.
 			optimizer maximumIterations: 90 ].
 	^ g value: optimizer evaluate
@@ -108,14 +108,14 @@ PMGAAccuracy >> checkF3 [
 { #category : #tests }
 PMGAAccuracy >> checkF5 [
 	| g origin optimizer |
-	g := [ :x | 
+	g := [ :x |
 	| x1 x2 |
 	x1 := x at: 1.
 	x2 := x at: 2.
 	1
 		/
 			(((-2 to: 2)
-				collect: [ :i | 
+				collect: [ :i |
 					((-2 to: 2)
 						collect: [ :j | 1 / ((i + 2) * 5 + j + 3 + (x1 - (16 * j) raisedToInteger: 6) + (x2 - (16 * i) raisedToInteger: 6)) ])
 						sum ]) sum + 0.002) ].
@@ -148,7 +148,7 @@ PMGAAccuracy >> fast [
 { #category : #accessing }
 PMGAAccuracy >> fast: aBoolean [
 	"default is false"
-	fast := aBoolean 
+	fast := aBoolean
 ]
 
 { #category : #'initialize-release' }
@@ -161,12 +161,12 @@ PMGAAccuracy >> initialize [
 
 { #category : #initialization }
 PMGAAccuracy >> initializeDamavandi [
-	self result: 0.
+	self result: 0
 ]
 
 { #category : #initialization }
 PMGAAccuracy >> initializeDeVilliersGlasser2 [
-	self result: 0.
+	self result: 0
 ]
 
 { #category : #initialization }
@@ -177,7 +177,7 @@ PMGAAccuracy >> initializeF1 [
 
 { #category : #initialization }
 PMGAAccuracy >> initializeF2 [
-	self result: #(0 0 0).
+	self result: #(0 0 0)
 ]
 
 { #category : #initialization }
@@ -200,19 +200,19 @@ PMGAAccuracy >> initializeGriewank [
 PMGAAccuracy >> runFast [
 	"fast is an euphemism here, but at least its fast to type"
 	fast := true.
-	^ self run: #('F1' 'F2' 'F3' 'F5' 'Griewank').
+	^ self run: #('F1' 'F2' 'F3' 'F5' 'Griewank')
 ]
 
 { #category : #running }
 PMGAAccuracy >> setManager:aManager with: rates [
 	"set everything to zero first, so that you dont get warnings"
-	aManager 
-		rateOfMutation: 0; 
-		rateOfCrossover: 0; 
+	aManager
+		rateOfMutation: 0;
+		rateOfCrossover: 0;
 		rateOfLC: 0;
 		rateOfEir: 0;
-		rateOfMutation: rates first; 
-		rateOfCrossover: (rates at:2); 
+		rateOfMutation: rates first;
+		rateOfCrossover: (rates at:2);
 		rateOfLC: (rates at:3);
-		rateOfEir: (rates at:4). 
+		rateOfEir: (rates at:4).
 ]

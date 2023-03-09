@@ -45,7 +45,7 @@ PMArbitraryPrecisionFloatForTrigonometry >> cos [
 PMArbitraryPrecisionFloatForTrigonometry >> cos: x [
 	"Evaluate the cosine of x by recursive cos(2x) formula and power series expansion.
 	Note that it is better to use this method with x <= pi/4."
-	
+
 	| one cos fraction power |
 	x isZero ifTrue: [^x one].
 	power := ((nBits bitShift: -1) + x exponent max: 0) highBit.
@@ -122,7 +122,7 @@ PMArbitraryPrecisionFloatForTrigonometry >> sin [
 { #category : #private }
 PMArbitraryPrecisionFloatForTrigonometry >> sin: x [
 	"Evaluate the sine of x by sin(5x) formula and power series expansion."
-	
+
 	| sin sin2 sin4 fifth five |
 	x isZero ifTrue: [^x zero].
 	five := 5 asArbitraryPrecisionFloatNumBits: x numBits.
@@ -169,7 +169,7 @@ PMArbitraryPrecisionFloatForTrigonometry >> sincos [
 PMArbitraryPrecisionFloatForTrigonometry >> sincos: x [
 	"Evaluate the sine and cosine of x by recursive sin(2x) and cos(2x) formula and power series expansion.
 	Note that it is better to use this method with x <= pi/4."
-	
+
 	| one sin cos sincos fraction power |
 	x isZero ifTrue: [^Array with: x zero with: x one].
 	power := ((nBits bitShift: -1) + x exponent max: 0) highBit.

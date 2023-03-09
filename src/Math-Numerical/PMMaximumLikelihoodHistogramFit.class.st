@@ -39,15 +39,15 @@ PMMaximumLikelihoodHistogramFit >> computeNormalization [
 	| numerator denominator temp |
 	numerator := 0.
 	denominator := 0.
-	dataHolder pointsAndErrorsDo: 
-			[:each | 
+	dataHolder pointsAndErrorsDo:
+			[:each |
 			temp := result value: each xValue.
-			temp = 0 
-				ifFalse: 
+			temp = 0
+				ifFalse:
 					[numerator := numerator + (each yValue squared / temp).
 					denominator := denominator + temp]].
 	count := ( numerator / denominator) sqrt.
-	countVariance := numerator / ( 4 * count).
+	countVariance := numerator / ( 4 * count)
 ]
 
 { #category : #operation }
@@ -94,7 +94,7 @@ PMMaximumLikelihoodHistogramFit >> numberOfParameters [
 ]
 
 { #category : #information }
-PMMaximumLikelihoodHistogramFit >> valueAndError: aNumber [ 
+PMMaximumLikelihoodHistogramFit >> valueAndError: aNumber [
 
 	| valueGradient gradient gVar |
 	valueGradient := result valueAndGradient: aNumber.

@@ -12,10 +12,9 @@ Class {
 }
 
 { #category : #'initialize-release' }
-PMAccuracyTest >> initialize [ 
+PMAccuracyTest >> initialize [
 	super initialize.
 	dp := PMAccuracyTestExample decimalPlaces
-
 ]
 
 { #category : #running }
@@ -28,7 +27,7 @@ PMAccuracyTest >> setUp [
 { #category : #running }
 PMAccuracyTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
-	super tearDown.
+	super tearDown
 ]
 
 { #category : #tests }
@@ -89,7 +88,7 @@ PMAccuracyTest >> testExtractFromResultsReturnsAllElementsWhenOnlyOneIsTrue [
 		extractFromResults: #('bla' 'blah')
 		which: 1
 		onlyOne: true.
-	
+
 	self assert: results equals: #('bla' 'blah').
 	argument := a testGetterAaa second.
 	self assert: argument equals: #(#(false) #(true))

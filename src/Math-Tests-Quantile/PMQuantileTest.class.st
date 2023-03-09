@@ -40,7 +40,6 @@ PMQuantileTest >> testError [
 		raise: Error
 		whoseDescriptionIncludes: 'SubscriptOutOfBounds'
 		description: 'Wrong error message'
-
 ]
 
 { #category : #tests }
@@ -60,10 +59,10 @@ PMQuantileTest >> testExtremeCase [
 
 { #category : #tests }
 PMQuantileTest >> testFloatProbability [
-	"tests that input quantile probabilities can be a float"	
-			
+	"tests that input quantile probabilities can be a float"
+
 	self assert: (c quantile: 0.25) equals: 2.
-	
+
 	self assert: (c quantile: 0.27) equals: 2.08
 ]
 

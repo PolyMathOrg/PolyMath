@@ -31,7 +31,7 @@ PMBeckwardEulerSolverTest >> testSimpleSystem2 [
 	stepper := PMImplicitStepper onSystem: system.
 	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.16567).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: -0.5306).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: -0.5306)
 ]
 
 { #category : #'tests-solving' }
@@ -39,7 +39,7 @@ PMBeckwardEulerSolverTest >> testVectorSystem [
 	| solver stepper system dt |
 	dt := 0.01.
 	system := PMImplicitSystem
-		block: [ :x :t | 
+		block: [ :x :t |
 			| c |
 			c := PMVector new: 2.
 			c at: 1 put: t sin.

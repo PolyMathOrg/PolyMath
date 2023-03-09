@@ -72,7 +72,7 @@ PMOneVariableFunctionOptimizer >> indexOfOuterPoint [
 							ifTrue: [ ^n].
 						  superior := true.
 						].
-		].
+		]
 ]
 
 { #category : #information }

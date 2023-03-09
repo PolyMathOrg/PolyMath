@@ -59,7 +59,6 @@ PMTranscriptRecorder >> defaultBlock [
 					show: ann state asString ;
 					tab; tab;
 					show: ' time: ';
-					show: ann time asString; 
+					show: ann time asString;
 					cr ]
-
 ]

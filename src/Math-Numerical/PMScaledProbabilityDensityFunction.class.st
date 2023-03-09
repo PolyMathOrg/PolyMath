@@ -10,9 +10,9 @@ Class {
 }
 
 { #category : #creation }
-PMScaledProbabilityDensityFunction class >> histogram: aHistogram against: aProbabilityDensityFunction [ 
+PMScaledProbabilityDensityFunction class >> histogram: aHistogram against: aProbabilityDensityFunction [
 	"Create a new instance of the receiver with given probability density function and histogram."
-		^self new 
+		^self new
 		initialize: aProbabilityDensityFunction
 		binWidth: aHistogram binWidth
 		count: aHistogram totalCount
@@ -30,7 +30,7 @@ PMScaledProbabilityDensityFunction class >> histogram: aHistogram distributionCl
 PMScaledProbabilityDensityFunction >> changeParametersBy: aVector [
 		"Modify the parameters of the receiver by aVector"
 	count := count + aVector last.
-	probabilityDensityFunction changeParametersBy: aVector.
+	probabilityDensityFunction changeParametersBy: aVector
 ]
 
 { #category : #information }
@@ -39,7 +39,7 @@ PMScaledProbabilityDensityFunction >> distributionFunction [
 ]
 
 { #category : #initialization }
-PMScaledProbabilityDensityFunction >> initialize: aProbabilityDensityFunction binWidth: aNumber count: anInteger [ 
+PMScaledProbabilityDensityFunction >> initialize: aProbabilityDensityFunction binWidth: aNumber count: anInteger [
 	"Private"
 
 	probabilityDensityFunction := aProbabilityDensityFunction.
@@ -58,12 +58,12 @@ PMScaledProbabilityDensityFunction >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPut: $[;
 			nextPutAll: probabilityDensityFunction class distributionName;
-			nextPut: $].
+			nextPut: $]
 ]
 
 { #category : #transformation }
 PMScaledProbabilityDensityFunction >> setCount: aNumber [
-	count := aNumber.
+	count := aNumber
 ]
 
 { #category : #information }
@@ -73,7 +73,7 @@ PMScaledProbabilityDensityFunction >> value: aNumber [
 ]
 
 { #category : #information }
-PMScaledProbabilityDensityFunction >> valueAndGradient: aNumber [ 
+PMScaledProbabilityDensityFunction >> valueAndGradient: aNumber [
 	"Answers an Array containing the value of the receiver at aNumber
 		 and the gradient of the receiver's respective to the receiver's
 		 parameters evaluated at aNumber."

@@ -29,7 +29,7 @@ PMKernelSmoothedDensity class >> fromData: aCollectionOfNumbers [
 |result|
 result := self new.
 result  data: aCollectionOfNumbers; normal; ruleOfThumbBandWidth.
-^result  
+^result
 ]
 
 { #category : #information }
@@ -46,12 +46,12 @@ PMKernelSmoothedDensity >> bandWidth [
 { #category : #accessing }
 PMKernelSmoothedDensity >> bandWidth: aNumber [
 
-^bandwidth := aNumber 
+^bandwidth := aNumber
 ]
 
 { #category : #transformation }
-PMKernelSmoothedDensity >> changeParametersBy: aVector [ 
-	^self shouldNotImplement .
+PMKernelSmoothedDensity >> changeParametersBy: aVector [
+	^self shouldNotImplement
 ]
 
 { #category : #accessing }
@@ -62,50 +62,45 @@ PMKernelSmoothedDensity >> data [
 { #category : #accessing }
 PMKernelSmoothedDensity >> data: aCollectionOfNumbers [
 	"sample data"
-^data := SortedCollection withAll: aCollectionOfNumbers .
+^data := SortedCollection withAll: aCollectionOfNumbers
 ]
 
 { #category : #information }
 PMKernelSmoothedDensity >> distributionValue: aNumber [
 ^(data collect:[:x|
-			ikernel value: (aNumber - x / bandwidth) ])sum / data size 
+			ikernel value: (aNumber - x / bandwidth) ])sum / data size
 ]
 
 { #category : #accessing }
 PMKernelSmoothedDensity >> epanechnikov [
 kernelName:= #epanechnikov.
 ikernel:=[:x|x < 5 sqrt negated  ifTrue:[0]ifFalse:[x > 5 sqrt ifTrue:[1]ifFalse:[(x - ((x raisedToInteger: 3) / 15)) * (3/(4* 5 sqrt))+(1/2)]]].
-^kernel := [:x|x abs >= 5 sqrt ifTrue:[0]ifFalse: [1 - (x squared /5) * (3/(4* 5 sqrt))]].
-
+^kernel := [:x|x abs >= 5 sqrt ifTrue:[0]ifFalse: [1 - (x squared /5) * (3/(4* 5 sqrt))]]
 ]
 
 { #category : #accessing }
 PMKernelSmoothedDensity >> iKernel: aBlock [
 "the integral of the kernel, necessary to set for '#distributionValue:' if you set '#kernel:'."
-^ikernel := aBlock 
-
+^ikernel := aBlock
 ]
 
 { #category : #accessing }
 PMKernelSmoothedDensity >> kernel [
 ^kernel
-
 ]
 
 { #category : #accessing }
 PMKernelSmoothedDensity >> kernel: aBlock [
 "set also ikernel by hand"
 kernelName:= 'unknown'.
-^kernel := aBlock 
-
+^kernel := aBlock
 ]
 
 { #category : #accessing }
 PMKernelSmoothedDensity >> normal [
 kernelName :='normal'.
 ikernel:=[:x|PMErfApproximation new value:x].
-^kernel:=[:x|(x squared / -2.0)exp / Float twoPi sqrt].
-
+^kernel:=[:x|(x squared / -2.0)exp / Float twoPi sqrt]
 ]
 
 { #category : #information }
@@ -122,7 +117,7 @@ PMKernelSmoothedDensity >> printOn: aStream [
 	 print: (kernelName='unknown' ifTrue:[kernel]ifFalse: [kernelName]);
 	 nextPutAll: ' bandWidth: ';
 	 print: bandwidth ;
-	 nextPut: $) .
+	 nextPut: $)
 ]
 
 { #category : #accessing }
@@ -137,11 +132,10 @@ PMKernelSmoothedDensity >> ruleOfThumbBandWidth [
 PMKernelSmoothedDensity >> value: aNumber [
 	"smoothed result"
 ^(data collect:[:x|
-			kernel value: (aNumber - x / bandwidth)])sum / (data size * bandwidth) 
-
+			kernel value: (aNumber - x / bandwidth)])sum / (data size * bandwidth)
 ]
 
 { #category : #information }
-PMKernelSmoothedDensity >> variance [ 
+PMKernelSmoothedDensity >> variance [
 ^data stdev squared + bandwidth squared
 ]

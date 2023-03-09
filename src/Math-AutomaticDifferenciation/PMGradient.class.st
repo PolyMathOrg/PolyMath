@@ -28,11 +28,11 @@ PMGradient >> function: aBlock [
 ]
 
 { #category : #printing }
-PMGradient >> printOn: aStream [ 
+PMGradient >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: ' of: ' ;
-		print: function 
+		print: function
 ]
 
 { #category : #accessing }
@@ -40,7 +40,7 @@ PMGradient >> value: anArray [
 	| dualValueTemplate dualValue |
 	dualValueTemplate := anArray collect: [ :i | PMDualNumber value: i ].
 	^ (1 to: anArray size)
-		collect: [ :i | 
+		collect: [ :i |
 			dualValue := dualValueTemplate deepCopy.
 			(dualValue at: i) eps: 1.
 			(function value: dualValue) eps ]

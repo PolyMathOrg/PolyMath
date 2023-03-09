@@ -10,13 +10,13 @@ Class {
 { #category : #running }
 PMFixpointTest >> setUp [
 fp:=PMFixpoint new.
-fp verbose: false.
+fp verbose: false
 ]
 
 { #category : #tests }
 PMFixpointTest >> testBug [
 	fp
-		block: [ :x | 
+		block: [ :x |
 			x < 64
 				ifTrue: [ x bitShift: 2 ]
 				ifFalse: [ 1 ] ];
@@ -38,7 +38,7 @@ PMFixpointTest >> testBug [
 { #category : #tests }
 PMFixpointTest >> testCheckForLongerCycles [
 	fp := PMFixpoint
-		block: [ :x | 
+		block: [ :x |
 			| d |
 			d := x - 1.
 			d < -2
@@ -62,7 +62,7 @@ PMFixpointTest >> testCheckForLongerCycles [
 { #category : #tests }
 PMFixpointTest >> testCheckStrongEquality [
 	fp
-		block: [ :x | 
+		block: [ :x |
 			| d |
 			d := x - 1.
 			d < -2
@@ -78,7 +78,7 @@ PMFixpointTest >> testCheckStrongEquality [
 { #category : #tests }
 PMFixpointTest >> testEqualityTest [
 	fp
-		block: [ :x | 
+		block: [ :x |
 			| d |
 			d := x - 1.
 			d < -2
