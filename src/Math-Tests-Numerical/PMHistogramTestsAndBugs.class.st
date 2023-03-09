@@ -14,9 +14,11 @@ PMHistogramTestsAndBugs >> readMe [
 
 { #category : #running }
 PMHistogramTestsAndBugs >> setUp [
-h:=PMHistogram new.
-h freeExtent: true.
-1to:3 do: [:i |h accumulate: i]
+
+	super setUp.
+	h := PMHistogram new.
+	h freeExtent: true.
+	1 to: 3 do: [ :i | h accumulate: i ]
 ]
 
 { #category : #tests }

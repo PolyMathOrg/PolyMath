@@ -9,8 +9,10 @@ Class {
 
 { #category : #running }
 PMFixpointTest >> setUp [
-fp:=PMFixpoint new.
-fp verbose: false
+
+	super setUp.
+	fp := PMFixpoint new.
+	fp verbose: false
 ]
 
 { #category : #tests }

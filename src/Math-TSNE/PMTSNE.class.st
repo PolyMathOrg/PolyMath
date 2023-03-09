@@ -394,6 +394,8 @@ PMTSNE >> initialMomentumDefaultValue [
 { #category : #initialization }
 PMTSNE >> initialize [
 	"These parameters rarely need to be modified"
+
+	super initialize.
 	maxIter := self maxIterDefaultValue.
 	initialMomentum := self initialMomentumDefaultValue.
 	finalMomentum := self finalMomentumDefaultValue.

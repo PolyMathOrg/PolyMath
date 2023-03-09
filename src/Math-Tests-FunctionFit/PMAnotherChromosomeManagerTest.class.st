@@ -25,7 +25,9 @@ PMAnotherChromosomeManagerTest >> setHammersleyTest: aBoolean [
 
 { #category : #running }
 PMAnotherChromosomeManagerTest >> setUp [
-cm:=(PMAnotherChromosomeManager origin: #(0 1) range: #( 2 3))
+
+	super setUp.
+	cm := PMAnotherChromosomeManager origin: #( 0 1 ) range: #( 2 3 )
 ]
 
 { #category : #tests }

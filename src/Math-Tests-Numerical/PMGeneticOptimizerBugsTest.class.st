@@ -11,11 +11,13 @@ Class {
 
 { #category : #running }
 PMGeneticOptimizerBugsTest >> setUp [
-manager:= PMChromosomeManager new.
-manager populationSize:3.
-function:=[:x| (x*x)sum].
-optimizer:= PMGeneticOptimizer minimizingFunction: function.
-optimizer chromosomeManager: manager
+
+	super setUp.
+	manager := PMChromosomeManager new.
+	manager populationSize: 3.
+	function := [ :x | (x * x) sum ].
+	optimizer := PMGeneticOptimizer minimizingFunction: function.
+	optimizer chromosomeManager: manager
 ]
 
 { #category : #tests }

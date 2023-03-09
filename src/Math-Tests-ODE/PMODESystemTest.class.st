@@ -13,6 +13,8 @@ Class {
 { #category : #running }
 PMODESystemTest >> setUp [
 	"create a dummy system"
+
+	super setUp.
 	sys := PMODESystem new
 ]
 

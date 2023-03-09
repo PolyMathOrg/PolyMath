@@ -27,6 +27,8 @@ tree := simpleTree ifTrue: [ PMKDTree withAll: aCollection ] ifFalse: [PMIndexed
 
 { #category : #running }
 PMKDTreeTest >> setUp [
+
+	super setUp.
 	rand := Random new
 ]
 

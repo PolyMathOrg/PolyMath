@@ -9,6 +9,8 @@ Class {
 
 { #category : #running }
 PMPCASingularValueDecompositionTest >> setUp [
+
+	super setUp.
 	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2
 ]
 

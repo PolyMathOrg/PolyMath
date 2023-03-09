@@ -9,7 +9,9 @@ Class {
 
 { #category : #running }
 PMSmoothedDensityTest >> setUp [
-density:=PMKernelSmoothedDensity fromData: #(1 2 3 1 2.3 2.4)
+
+	super setUp.
+	density := PMKernelSmoothedDensity fromData: #( 1 2 3 1 2.3 2.4 )
 ]
 
 { #category : #tests }

@@ -79,9 +79,11 @@ PMIterativeProcess >> hasConverged [
 { #category : #initialization }
 PMIterativeProcess >> initialize [
 
+	super initialize.
+
 	desiredPrecision := self class defaultPrecision.
 	maximumIterations := self class defaultMaximumIterations.
-	^self
+	^ self
 ]
 
 { #category : #operation }

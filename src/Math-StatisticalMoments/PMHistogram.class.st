@@ -331,6 +331,8 @@ PMHistogram >> growPositiveContents: anInteger [
 PMHistogram >> initialize [
 	"Private - initializes the receiver with standard settings."
 
+	super initialize.
+
 	freeExtent := false.
 	cacheSize := self class defaultCacheSize.
 	desiredNumberOfBins := self class defaultNumberOfBins.

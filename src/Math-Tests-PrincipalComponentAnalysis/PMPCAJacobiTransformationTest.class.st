@@ -9,6 +9,7 @@ Class {
 
 { #category : #running }
 PMPCAJacobiTransformationTest >> setUp [
-	pca := PMPrincipalComponentAnalyserJacobiTransformation new
-		componentsNumber: 2
+
+	super setUp.
+	pca := PMPrincipalComponentAnalyserJacobiTransformation new componentsNumber: 2
 ]

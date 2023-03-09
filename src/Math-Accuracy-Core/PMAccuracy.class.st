@@ -269,6 +269,8 @@ PMAccuracy >> initSubclassSelectorNames [
 
 { #category : #initialization }
 PMAccuracy >> initialize [
+
+	super initialize.
 	parameters := Dictionary new.
 	arguments := Dictionary new.
 	results := Dictionary new.
