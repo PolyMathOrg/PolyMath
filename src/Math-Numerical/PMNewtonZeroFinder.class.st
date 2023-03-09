@@ -92,7 +92,7 @@ PMNewtonZeroFinder >> initialValue: aNumber [
 	result := aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 PMNewtonZeroFinder >> initialize [
 	"Initialize lineSearchFunction and lineSearch: it depends on other variables only indirectly,
 	can be initialized once at the begining"

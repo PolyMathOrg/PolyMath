@@ -62,7 +62,7 @@ PMODESolver >> dt: aFloat [
 	dt := aFloat
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 PMODESolver >> initialize [
 
 	super initialize.

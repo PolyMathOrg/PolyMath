@@ -13,7 +13,7 @@ Class {
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
 "  We compute a matrix of signs for U with which
 	we perform a 'dot product' with the original

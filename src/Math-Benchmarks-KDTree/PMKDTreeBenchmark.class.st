@@ -105,7 +105,7 @@ PMKDTreeBenchmark >> collType: aSequencableCollectionClass [
 	^ collType := aSequencableCollectionClass
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMKDTreeBenchmark >> initialize [
 	super initialize.
 	collType := Float32Array.

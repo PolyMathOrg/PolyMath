@@ -8,7 +8,7 @@ Class {
 	#category : #'Math-Tests-Clustering'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection [
 	"Private - Generate a random point around the given center and insert it into the collection.
 	aNumber is the sigma for the distance to the center"
@@ -28,7 +28,7 @@ PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection
 	aCollection add: (localVector + aVector)
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 PMClusterFinderTest >> generatedPoints: anInteger [
 	"Private - Generate random points into aCollection. 3 clusters are used"
 	| centers results randomNumber |
@@ -47,7 +47,7 @@ PMClusterFinderTest >> generatedPoints: anInteger [
 	^ results
 ]
 
-{ #category : #setUp }
+{ #category : #running }
 PMClusterFinderTest >> setUp [
 	super setUp.
 	randomNumberGenerator := Random seed: 3.

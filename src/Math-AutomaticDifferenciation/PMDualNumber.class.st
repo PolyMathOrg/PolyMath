@@ -71,7 +71,7 @@ PMDualNumber >> < aDualNumber [
 	^ value < aDualNumber value
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 PMDualNumber >> = aMagnitude [
 	^ aMagnitude = value
 ]

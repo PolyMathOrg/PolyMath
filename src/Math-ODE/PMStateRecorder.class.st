@@ -57,7 +57,7 @@ PMStateRecorder >> defaultBlock [
 	^ [:ann | self add: ann state at: ann time]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMStateRecorder >> initialize [
 	super initialize.
 	states := SortedCollection sortBlock: [:x :y | x time < y time].

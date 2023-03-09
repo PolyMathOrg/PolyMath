@@ -48,7 +48,7 @@ PMPointSeries >> firstPoint [
 	^self at: 1
 ]
 
-{ #category : #'public methods' }
+{ #category : #initialization }
 PMPointSeries >> initialize [
 	"Create the point collection"
 	points := SortedCollection sortBlock: self sortBlock.

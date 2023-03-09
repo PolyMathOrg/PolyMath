@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-Tests-ODE'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 PMODESystemTest >> setUp [
 	"create a dummy system"
 	sys := PMODESystem new

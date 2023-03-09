@@ -11,7 +11,7 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTest >> initialize [
 	super initialize.
 	dp := PMAccuracyTestExample decimalPlaces

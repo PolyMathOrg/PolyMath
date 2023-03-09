@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Numerical'
 }
 
-{ #category : #privateMethods }
+{ #category : #running }
 PMNumericalMethodsTestCase >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 	PMMitchellMooreGenerator reset: 0.

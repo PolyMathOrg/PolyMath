@@ -20,7 +20,7 @@ Class {
 	#category : #'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #initialization }
+{ #category : #running }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> setUp [
 	u:= PMMatrix rows: #(
 	 		 #(-3.37888092e-01  7.97390517e-01 -5.00000000e-01 -7.29361893e-17)

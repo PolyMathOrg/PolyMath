@@ -151,7 +151,7 @@ PMGAAccuracy >> fast: aBoolean [
 	fast := aBoolean
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMGAAccuracy >> initialize [
 	super initialize.
 	fast :=false.

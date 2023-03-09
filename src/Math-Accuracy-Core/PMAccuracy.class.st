@@ -100,7 +100,7 @@ PMAccuracy class >> floatAsShortString: aFloat digitCount: digitCount [
 	^ aStream contents
 ]
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 PMAccuracy class >> initialize [
 DecimalPlaces ifNil: [DecimalPlaces :=3]
 ]
@@ -250,7 +250,7 @@ PMAccuracy >> ifSeveralterations: aBlock [
 	iterations >1 ifTrue:[ ^aBlock value ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initRest: aName [
 	| initializationMessage |
 	initializationMessage := ('initialize' , aName) asSymbol.
@@ -259,7 +259,7 @@ PMAccuracy >> initRest: aName [
 	self perform: initializationMessage
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initSubclassSelectorNames [
 	names := (self class allSelectorsBelow: Object)
 		select: [ :selectorName | selectorName beginsWith: #check ]
@@ -267,7 +267,7 @@ PMAccuracy >> initSubclassSelectorNames [
 	names := names asArray sort
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initialize [
 	parameters := Dictionary new.
 	arguments := Dictionary new.

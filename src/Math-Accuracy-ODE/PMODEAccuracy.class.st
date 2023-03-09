@@ -139,7 +139,7 @@ PMODEAccuracy >> checkRungeKutta [
 		stepperClass: PMRungeKuttaStepper
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 PMODEAccuracy >> checkSolverClass: solverClass systemClass: systemClass stepperClass: stepperClass [
 	| solver stepper system |
 	system := systemClass block: function.

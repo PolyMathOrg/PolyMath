@@ -24,7 +24,7 @@ Class {
 	#category : #'Math-Core-Process'
 }
 
-{ #category : #'instance-creation' }
+{ #category : #'instance creation' }
 PMFixpoint class >> block: aBlock value: anObject [
 ^self new block: aBlock ;value: anObject; yourself
 ]

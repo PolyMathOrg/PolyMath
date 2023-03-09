@@ -49,7 +49,7 @@ PMExplicitSolverSubscriber >> forAnnouncer: anAnnouncer [
 	announcers add: anAnnouncer
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMExplicitSolverSubscriber >> initialize [
 	super initialize.
 	announcers := IdentitySet new.
@@ -57,7 +57,7 @@ PMExplicitSolverSubscriber >> initialize [
 	^ self
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMExplicitSolverSubscriber >> release [
 	"stop announcers from sending messages"
 	self unsubscribe.

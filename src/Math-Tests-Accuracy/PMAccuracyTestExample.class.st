@@ -77,7 +77,7 @@ PMAccuracyTestExample >> findKey: selector [
 	^ matchingMessage
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initialize [
 	"this is always necessarily the first thing:"
 
@@ -90,7 +90,7 @@ PMAccuracyTestExample >> initialize [
 	self parameter: #(#(1) #(3))
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initializeAaa [
 	"this overrides defaults in #initialize:"
 
@@ -99,7 +99,7 @@ PMAccuracyTestExample >> initializeAaa [
 	self parameter: #(#(1 2) #(3 2.8888))
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initializeCcc [
 	"this overrides defaults in initialize"
 
@@ -107,7 +107,7 @@ PMAccuracyTestExample >> initializeCcc [
 	self map: 'Ccc' to: #(#(1) #(1.1) #(0.9))
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initializeDdd [
 	"this overrides defaults in initialize"
 
@@ -116,14 +116,14 @@ PMAccuracyTestExample >> initializeDdd [
 	self parameter: #()
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initializeEee [
 	"this overrides defaults in initialize"
 
 	self result: #(#(1.1 2.2) #(1 3))
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> initializeFff [
 	"this overrides defaults in initialize"
 
@@ -132,7 +132,7 @@ PMAccuracyTestExample >> initializeFff [
 	self parameter: nil
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracyTestExample >> map: key to: anArgument [
 	arguments
 		at: key

@@ -16,7 +16,7 @@ Class {
 	#category : #'Math-FunctionFit'
 }
 
-{ #category : #utils }
+{ #category : #utilities }
 PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 	| n integer next result |
 	"n:=(anInteger ln / aBase ln) floor ." "does not always work because of floating point errors. next 2 lines are better"
@@ -32,7 +32,7 @@ PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 	^result
 ]
 
-{ #category : #utils }
+{ #category : #utilities }
 PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d randomized: aBoolean [
 	"a bit randomized "
 	| dist randomNumberGenerator |

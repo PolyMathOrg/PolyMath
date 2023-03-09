@@ -103,7 +103,7 @@ PMConstant class >> h [
 	^ PlanckConstant
 ]
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 PMConstant class >> initialize [
 
 	AvogadroConstant := 6.022140857e23.

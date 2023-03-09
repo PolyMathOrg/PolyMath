@@ -964,7 +964,7 @@ PMArbitraryPrecisionFloat >> mantissa [
 	^mantissa
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMArbitraryPrecisionFloat >> mantissa: m exponent: e nBits: n [
 	mantissa := m.
 	biasedExponent := e.
@@ -1525,7 +1525,7 @@ PMArbitraryPrecisionFloat >> round [
 	self truncate
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMArbitraryPrecisionFloat >> setPrecisionTo: n [
 	nBits := n.
 	self round

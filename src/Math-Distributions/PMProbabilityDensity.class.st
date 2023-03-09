@@ -82,7 +82,7 @@ PMProbabilityDensity >> flatGenerator: aGenerator [
 	flatGenerator := aGenerator
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 PMProbabilityDensity >> initialize [
 
 	super initialize.
