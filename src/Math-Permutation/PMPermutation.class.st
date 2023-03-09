@@ -48,11 +48,10 @@ Heap's algorithm, used here, seems to be just a tiny bit faster than using #perm
 
 { #category : #'instance creation' }
 PMPermutation class >> fromCycles: aCollectionofCollections [
+
 	| length |
 	length := aCollectionofCollections flattened.
-	length := length isEmpty 
-		ifTrue: [ 0 ]
-		ifFalse: [ length max ].
+	length := length ifEmpty: [ 0 ] ifNotEmpty: [ length max ].
 	^ self size: length fromCycles: aCollectionofCollections
 ]
 

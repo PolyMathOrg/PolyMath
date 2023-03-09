@@ -22,7 +22,7 @@ Class {
 		'cacheSize',
 		'desiredNumberOfBins'
 	],
-	#category : 'Math-StatisticalMoments'
+	#category : #'Math-StatisticalMoments'
 }
 
 { #category : #information }
@@ -262,21 +262,13 @@ PMHistogram >> flushCache [
 	"Private"
 
 	| maximum values |
-	minimum isNil
-		ifTrue: [ 
-			minimum := contents isEmpty
-				ifTrue: [ 0 ]
-				ifFalse: [ contents first ] ].
+	minimum isNil ifTrue: [ minimum := contents ifEmpty: [ 0 ] ifNotEmpty: [ contents first ] ].
 	maximum := minimum.
-	contents
-		do: [ :each | 
-			each < minimum
-				ifTrue: [ minimum := each ]
-				ifFalse: [ 
-					each > maximum
-						ifTrue: [ maximum := each ] ] ].
-	maximum = minimum
-		ifTrue: [ maximum := minimum + desiredNumberOfBins ].
+	contents do: [ :each |
+		each < minimum
+			ifTrue: [ minimum := each ]
+			ifFalse: [ each > maximum ifTrue: [ maximum := each ] ] ].
+	maximum = minimum ifTrue: [ maximum := minimum + desiredNumberOfBins ].
 	values := contents.
 	self adjustDimensionUpTo: maximum.
 	values do: [ :each | self accumulate: each ]
@@ -407,11 +399,10 @@ PMHistogram >> maximum [
 
 { #category : #information }
 PMHistogram >> maximumCount [
-		"Answer the maximum count of the receiver."
-	self isCached
-		ifTrue: [ self flushCache].
-	^contents inject: ( contents isEmpty ifTrue: [ 1] ifFalse:[ contents at: 1])
-					into: [ :max :each | max max: each]
+	"Answer the maximum count of the receiver."
+
+	self isCached ifTrue: [ self flushCache ].
+	^ contents inject: (contents ifEmpty: [ 1 ] ifNotEmpty: [ contents at: 1 ]) into: [ :max :each | max max: each ]
 ]
 
 { #category : #information }

@@ -463,11 +463,16 @@ PMArbitraryPrecisionFloatTest >> testEqual [
 
 { #category : #'testing-functions' }
 PMArbitraryPrecisionFloatTest >> testExp [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badExp serie |
-	serie := ((-20 to: 20) collect: [:e |e asFloat]).
+	serie := (-20 to: 20) collect: [ :e | e asFloat ].
 	badExp := self checkDoublePrecisionSerieVsFloat: serie forFunction: #exp.
-	badExp isEmpty ifFalse: [Transcript cr; show: 'bad exp for ' , badExp printString]
+	badExp ifNotEmpty: [
+		Transcript
+			cr;
+			show: 'bad exp for ' , badExp printString ]
 ]
 
 { #category : #'testing-functions' }
@@ -622,11 +627,16 @@ PMArbitraryPrecisionFloatTest >> testLessThan [
 
 { #category : #'testing-functions' }
 PMArbitraryPrecisionFloatTest >> testLn [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badLn serie |
-	serie := ((1 to: 100) collect: [:e |e asFloat]).
+	serie := (1 to: 100) collect: [ :e | e asFloat ].
 	badLn := self checkDoublePrecisionSerieVsFloat: serie forFunction: #ln.
-	badLn isEmpty ifFalse: [Transcript cr; show: 'bad ln for ' , badLn printString]
+	badLn ifNotEmpty: [
+		Transcript
+			cr;
+			show: 'bad ln for ' , badLn printString ]
 ]
 
 { #category : #'testing-functions' }
@@ -813,14 +823,19 @@ PMArbitraryPrecisionFloatTest >> testSinh [
 
 { #category : #'testing-functions' }
 PMArbitraryPrecisionFloatTest >> testSqrt [
-	<timeout: 10 "seconds">
+	"seconds"
+
+	<timeout: 10>
 	| badSqrt serie |
 	"knowing that (10**3) < (2**10), 100 bits are enough for representing 10**30 exactly"
 	self assert: ((10 raisedTo: 30) asArbitraryPrecisionFloatNumBits: 100) sqrt = (10 raisedTo: 15).
 
-	serie := ((0 to: 20) collect: [:e | e asFloat]) , ((2 to: 20) collect: [:e | e reciprocal asFloat]).
+	serie := ((0 to: 20) collect: [ :e | e asFloat ]) , ((2 to: 20) collect: [ :e | e reciprocal asFloat ]).
 	badSqrt := self checkDoublePrecisionSerieVsFloat: serie forFunction: #sqrt.
-	badSqrt isEmpty ifFalse: [Transcript cr; show: 'bad sqrt for ' , badSqrt printString]
+	badSqrt ifNotEmpty: [
+		Transcript
+			cr;
+			show: 'bad sqrt for ' , badSqrt printString ]
 ]
 
 { #category : #'testing-functions' }
