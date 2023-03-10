@@ -20,7 +20,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'defaultNumericalPrecision',
-		'radix',
 		'machinePrecision',
 		'negativeMachinePrecision',
 		'smallestNumber',
@@ -42,6 +41,8 @@ PMFloatingPointMachine class >> new [
 
 { #category : #accessing }
 PMFloatingPointMachine class >> reset [
+
+	<script>
 	UniqueInstance := nil
 ]
 
@@ -50,14 +51,17 @@ PMFloatingPointMachine >> computeLargestNumber [
 
 	| one floatingRadix fullMantissaNumber |
 	one := 1.0.
-	floatingRadix := self radix asFloat.
-	fullMantissaNumber := one - ( floatingRadix * self negativeMachinePrecision).
+	floatingRadix := Float radix asFloat.
+	fullMantissaNumber := one - (floatingRadix * self negativeMachinePrecision).
 	largestNumber := fullMantissaNumber.
-	[ [ fullMantissaNumber := fullMantissaNumber * floatingRadix.
-	    fullMantissaNumber isInfinite ifTrue: [^nil].
-	    largestNumber := fullMantissaNumber.
-		true] whileTrue: [ ].
-		] on: Error do: [ :signal | signal return: nil]
+	[
+	[
+	fullMantissaNumber := fullMantissaNumber * floatingRadix.
+	fullMantissaNumber isInfinite ifTrue: [ ^ nil ].
+	largestNumber := fullMantissaNumber.
+	true ] whileTrue: [  ] ]
+		on: Error
+		do: [ :signal | signal return: nil ]
 ]
 
 { #category : #information }
@@ -66,11 +70,11 @@ PMFloatingPointMachine >> computeMachinePrecision [
 	| one zero inverseRadix tmp |
 	one := 1.0.
 	zero := 0.0.
-	inverseRadix := one / self radix asFloat.
+	inverseRadix := one / Float radix asFloat.
 	machinePrecision := one.
-	[ tmp := one + machinePrecision.
-	  tmp - one = zero]
-		whileFalse:[  machinePrecision := machinePrecision * inverseRadix]
+	[
+	tmp := one + machinePrecision.
+	tmp - one = zero ] whileFalse: [ machinePrecision := machinePrecision * inverseRadix ]
 ]
 
 { #category : #information }
@@ -79,30 +83,12 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 	| one zero floatingRadix inverseRadix tmp |
 	one := 1.0.
 	zero := 0.0.
-	floatingRadix := self radix asFloat.
+	floatingRadix := Float radix asFloat.
 	inverseRadix := one / floatingRadix.
 	negativeMachinePrecision := one.
-	[ tmp := one - negativeMachinePrecision.
-	  tmp - one = zero]
-		whileFalse:[ negativeMachinePrecision := negativeMachinePrecision * inverseRadix]
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> computeRadix [
-
-	| one zero a b tmp1 tmp2|
-	one := 1.0.
-	zero := 0.0.
-	a := one.
-	[ a := a + a.
-	  tmp1 := a + one.
-	  tmp2 := tmp1 - a.
-	  tmp2 - one = zero] whileTrue:[].
-	b := one.
-	[ b := b + b.
-	  tmp1 := a + b.
-	  radix := ( tmp1 - a) truncated.
-	  radix = 0 ] whileTrue: []
+	[
+	tmp := one - negativeMachinePrecision.
+	tmp - one = zero ] whileFalse: [ negativeMachinePrecision := negativeMachinePrecision * inverseRadix ]
 ]
 
 { #category : #information }
@@ -110,16 +96,18 @@ PMFloatingPointMachine >> computeSmallestNumber [
 
 	| one floatingRadix inverseRadix fullMantissaNumber |
 	one := 1 asFloat.
-	floatingRadix := self radix asFloat.
+	floatingRadix := Float radix asFloat.
 	inverseRadix := one / floatingRadix.
 	fullMantissaNumber := one - (floatingRadix * self negativeMachinePrecision).
 	smallestNumber := fullMantissaNumber.
-	[[fullMantissaNumber := fullMantissaNumber * inverseRadix.
-	fullMantissaNumber = 0.0 ifTrue: [Error signal ].
+	[
+	[
+	fullMantissaNumber := fullMantissaNumber * inverseRadix.
+	fullMantissaNumber = 0.0 ifTrue: [ Error signal ].
 	smallestNumber := fullMantissaNumber.
-	true]
-		whileTrue: []]
-		on: Error do: [:signal | signal return: nil]
+	true ] whileTrue: [  ] ]
+		on: Error
+		do: [ :signal | signal return: nil ]
 ]
 
 { #category : #information }
@@ -157,21 +145,12 @@ PMFloatingPointMachine >> negativeMachinePrecision [
 	^ negativeMachinePrecision
 ]
 
-{ #category : #information }
-PMFloatingPointMachine >> radix [
-
-	radix ifNil: [ self computeRadix ].
-	^ radix
-]
-
 { #category : #display }
 PMFloatingPointMachine >> showParameters [
 
 	Transcript cr; cr;
 			nextPutAll: 'Floating-point machine parameters'; cr;
-			nextPutAll: '---------------------------------';cr;
-			nextPutAll: 'Radix: '.
-	self radix printOn: Transcript.
+			nextPutAll: '---------------------------------'.
 	Transcript cr; nextPutAll: 'Machine precision: '.
 	self machinePrecision printOn: Transcript.
 	Transcript cr; nextPutAll: 'Negative machine precision: '.
