@@ -44,9 +44,10 @@ PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberIsLargest [
 
 { #category : #precision }
 PMFloatingPointMachineTestCase >> testMachinePrecisionSmallNumberLargerThanSmallestNumber [
+
 	| mach |
 	mach := PMFloatingPointMachine new.
-	self assert: mach smallestNumber < mach smallNumber
+	self assert: Float fmin < mach smallNumber
 ]
 
 { #category : #precision }
@@ -54,13 +55,6 @@ PMFloatingPointMachineTestCase >> testMachinePrecisionSmallNumberNotZero [
 	| mach |
 	mach := PMFloatingPointMachine new.
 	self assert: mach smallNumber > 0.0
-]
-
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionSmallestNumberNotZero [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self assert: mach smallestNumber > 0.0
 ]
 
 { #category : #precision }

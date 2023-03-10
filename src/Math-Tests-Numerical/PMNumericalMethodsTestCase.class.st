@@ -98,7 +98,7 @@ PMNumericalMethodsTestCase >> testErrorFunction [
 	self assert: Float fmax errorFunction > (1 - PMFloatingPointMachine new machinePrecision).
 	"add some code to require initialize to run"
 	PMErfApproximation reset.
-	self assert: Float fmax negated errorFunction < PMFloatingPointMachine new smallestNumber
+	self assert: Float fmax negated errorFunction < Float fmin
 ]
 
 { #category : #estimation }

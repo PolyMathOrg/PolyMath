@@ -22,7 +22,6 @@ Class {
 		'defaultNumericalPrecision',
 		'machinePrecision',
 		'negativeMachinePrecision',
-		'smallestNumber',
 		'smallNumber',
 		'largestExponentArgument'
 	],
@@ -73,25 +72,6 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 ]
 
 { #category : #information }
-PMFloatingPointMachine >> computeSmallestNumber [
-
-	| one floatingRadix inverseRadix fullMantissaNumber |
-	one := 1 asFloat.
-	floatingRadix := Float radix asFloat.
-	inverseRadix := one / floatingRadix.
-	fullMantissaNumber := one - (floatingRadix * self negativeMachinePrecision).
-	smallestNumber := fullMantissaNumber.
-	[
-	[
-	fullMantissaNumber := fullMantissaNumber * inverseRadix.
-	fullMantissaNumber = 0.0 ifTrue: [ Error signal ].
-	smallestNumber := fullMantissaNumber.
-	true ] whileTrue: [  ] ]
-		on: Error
-		do: [ :signal | signal return: nil ]
-]
-
-{ #category : #information }
 PMFloatingPointMachine >> defaultNumericalPrecision [
 
 	defaultNumericalPrecision ifNil: [ defaultNumericalPrecision := self machinePrecision sqrt ].
@@ -125,40 +105,9 @@ PMFloatingPointMachine >> negativeMachinePrecision [
 	^ negativeMachinePrecision
 ]
 
-{ #category : #display }
-PMFloatingPointMachine >> showParameters [
-
-	Transcript
-		cr;
-		cr;
-		nextPutAll: 'Floating-point machine parameters';
-		cr;
-		nextPutAll: '---------------------------------'.
-	Transcript
-		cr;
-		nextPutAll: 'Machine precision: '.
-	self machinePrecision printOn: Transcript.
-	Transcript
-		cr;
-		nextPutAll: 'Negative machine precision: '.
-	self negativeMachinePrecision printOn: Transcript.
-	Transcript
-		cr;
-		nextPutAll: 'Smallest number: '.
-	self smallestNumber printOn: Transcript.
-	Transcript flush
-]
-
 { #category : #information }
 PMFloatingPointMachine >> smallNumber [
 
-	smallNumber ifNil: [ smallNumber := self smallestNumber sqrt ].
+	smallNumber ifNil: [ smallNumber := Float fmin sqrt ].
 	^ smallNumber
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> smallestNumber [
-
-	smallestNumber ifNil: [ self computeSmallestNumber ].
-	^ smallestNumber
 ]
