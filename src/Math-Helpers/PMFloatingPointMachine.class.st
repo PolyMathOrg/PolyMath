@@ -15,7 +15,6 @@ Class {
 	#superclass : #Object,
 	#instVars : [
 		'defaultNumericalPrecision',
-		'machinePrecision',
 		'negativeMachinePrecision'
 	],
 	#classVars : [
@@ -38,19 +37,6 @@ PMFloatingPointMachine class >> reset [
 ]
 
 { #category : #information }
-PMFloatingPointMachine >> computeMachinePrecision [
-
-	| one zero inverseRadix tmp |
-	one := 1.0.
-	zero := 0.0.
-	inverseRadix := one / Float radix asFloat.
-	machinePrecision := one.
-	[
-	tmp := one + machinePrecision.
-	tmp - one = zero ] whileFalse: [ machinePrecision := machinePrecision * inverseRadix ]
-]
-
-{ #category : #information }
 PMFloatingPointMachine >> computeNegativeMachinePrecision [
 
 	| one zero floatingRadix inverseRadix tmp |
@@ -67,15 +53,8 @@ PMFloatingPointMachine >> computeNegativeMachinePrecision [
 { #category : #information }
 PMFloatingPointMachine >> defaultNumericalPrecision [
 
-	defaultNumericalPrecision ifNil: [ defaultNumericalPrecision := self machinePrecision sqrt ].
+	defaultNumericalPrecision ifNil: [ defaultNumericalPrecision := Float machineEpsilon sqrt ].
 	^ defaultNumericalPrecision
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> machinePrecision [
-
-	machinePrecision ifNil: [ self computeMachinePrecision ].
-	^ machinePrecision
 ]
 
 { #category : #information }

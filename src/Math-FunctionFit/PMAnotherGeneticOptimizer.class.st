@@ -19,7 +19,8 @@ Class {
 
 { #category : #information }
 PMAnotherGeneticOptimizer class >> defaultPrecision [
-	^PMFloatingPointMachine new machinePrecision
+
+	^ Float machineEpsilon
 ]
 
 { #category : #'instance creation' }

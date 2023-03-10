@@ -32,14 +32,13 @@ PMNumericalMethodsTestCase >> testBissection [
 	"Code Example 5.1"
 
 	| zeroFinder result |
-	zeroFinder := PMBisectionZeroFinder
-		function: [ :x | x errorFunction - 0.9 ].
+	zeroFinder := PMBisectionZeroFinder function: [ :x | x errorFunction - 0.9 ].
 	zeroFinder
 		setPositiveX: 10.0;
 		setNegativeX: 0.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
-	self assert: (result - 1.28155193291605) abs < 1.0e-14
+	self assert: result closeTo: 1.28155193291605
 ]
 
 { #category : #'linear algebra' }
@@ -95,7 +94,7 @@ PMNumericalMethodsTestCase >> testErrorFunction [
 	"simple cases to expect"
 
 	self assert: 0 errorFunction equals: 1 / 2.
-	self assert: Float fmax errorFunction > (1 - PMFloatingPointMachine new machinePrecision).
+	self assert: Float fmax errorFunction > (1 - Float machineEpsilon).
 	"add some code to require initialize to run"
 	PMErfApproximation reset.
 	self assert: Float fmax negated errorFunction < Float fmin
