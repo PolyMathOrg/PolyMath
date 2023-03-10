@@ -21,7 +21,7 @@ PMLeastSquares >> pseudoinverseOfDiagonal: aMatrix [
 	diagonalSize := aMatrix numberOfRows min: aMatrix numberOfColumns.
 
 	"Inverting the elements on the main diaginal"
-	1 to: diagonalSize do: [ :i | 
+	1 to: diagonalSize do: [ :i |
 		pseudoinverse at: i at: i put: ((aMatrix at: i at: i) = 0 ifTrue: [ 0 ]
 				 ifFalse: [ 1 / (aMatrix at: i at: i) ]) ].
 
@@ -33,7 +33,7 @@ PMLeastSquares >> solveMatrixA: aMatrix matrixB: aMatrixOrVector [
 
 	"If b is a vector:
 	x' = minimize || b - Ax ||
-	
+
 	If B is a matrix:
 	X' = minimize || B - AX ||"
 

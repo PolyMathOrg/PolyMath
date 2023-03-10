@@ -13,7 +13,7 @@ Class {
 
 { #category : #creation }
 PMChromosomeManager class >> new: anInteger mutation: aNumber1 crossover: aNumber2 [
-	
+
 	^self new populationSize: anInteger; rateOfMutation: aNumber1; rateOfCrossover: aNumber2; yourself
 ]
 
@@ -25,54 +25,54 @@ PMChromosomeManager >> clone: aChromosome [
 
 { #category : #operation }
 PMChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
-	
+
 	^self subclassResponsibility
 ]
 
 { #category : #initialization }
-PMChromosomeManager >> initialize [ 
+PMChromosomeManager >> initialize [
 	super initialize.
-	randomNumberGenerator := Random new.
+	randomNumberGenerator := Random new
 ]
 
 { #category : #information }
 PMChromosomeManager >> isFullyPopulated [
-		
+
 	^population size >= populationSize
 ]
 
 { #category : #operation }
 PMChromosomeManager >> mutate: aChromosome [
-	
+
 	^self subclassResponsibility
 ]
 
 { #category : #information }
 PMChromosomeManager >> population [
-		
+
 	^population
 ]
 
 { #category : #initialization }
 PMChromosomeManager >> populationSize: anInteger [
 
-	populationSize := anInteger.
+	populationSize := anInteger
 ]
 
 { #category : #operation }
-PMChromosomeManager >> process: aChromosome1 and: aChromosome2 [ 
-	
+PMChromosomeManager >> process: aChromosome1 and: aChromosome2 [
+
 	| roll |
 	roll := randomNumberGenerator next.
-	roll < rateOfCrossover 
+	roll < rateOfCrossover
 		ifTrue: [population addAll: (self crossover: aChromosome1 and: aChromosome2)]
-		ifFalse: 
-			[roll < (rateOfCrossover + rateOfMutation) 
-				ifTrue: 
+		ifFalse:
+			[roll < (rateOfCrossover + rateOfMutation)
+				ifTrue:
 					[population
 						add: (self mutate: aChromosome1);
 						add: (self mutate: aChromosome2)]
-				ifFalse: 
+				ifFalse:
 					[population
 						add: (self clone: aChromosome1);
 						add: (self clone: aChromosome2)]]
@@ -87,28 +87,28 @@ PMChromosomeManager >> randomChromosome [
 PMChromosomeManager >> randomizePopulation [
 
 	self reset.
-	[self isFullyPopulated] 
+	[self isFullyPopulated]
 		whileFalse: [population add: self randomChromosome]
 ]
 
 { #category : #initialization }
-PMChromosomeManager >> rateOfCrossover: aNumber [ 
+PMChromosomeManager >> rateOfCrossover: aNumber [
 
-	(aNumber between: 0 and: 1) 
+	(aNumber between: 0 and: 1)
 		ifFalse: [self error: 'Illegal rate of cross-over'].
 	rateOfCrossover := aNumber
 ]
 
 { #category : #initialization }
-PMChromosomeManager >> rateOfMutation: aNumber [ 
+PMChromosomeManager >> rateOfMutation: aNumber [
 
-	(aNumber between: 0 and: 1) 
+	(aNumber between: 0 and: 1)
 		ifFalse: [self error: 'Illegal rate of mutation'].
 	rateOfMutation := aNumber
 ]
 
 { #category : #transformation }
 PMChromosomeManager >> reset [
-	
-	population := OrderedCollection new: populationSize.
+
+	population := OrderedCollection new: populationSize
 ]

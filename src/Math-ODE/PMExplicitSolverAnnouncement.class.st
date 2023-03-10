@@ -13,7 +13,7 @@ Class {
 
 { #category : #accessing }
 PMExplicitSolverAnnouncement class >> state: aState time: aTime [
-	^ self new state: aState time: aTime; yourself.
+	^ self new state: aState time: aTime; yourself
 ]
 
 { #category : #accessing }
@@ -24,7 +24,7 @@ PMExplicitSolverAnnouncement >> state [
 { #category : #accessing }
 PMExplicitSolverAnnouncement >> state: aState time: aTime [
 	state:= aState.
-	t := aTime.
+	t := aTime
 ]
 
 { #category : #accessing }

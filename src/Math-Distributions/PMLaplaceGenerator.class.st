@@ -29,7 +29,7 @@ PMLaplaceGenerator class >> shape: peakValue scale: falloffValue [
 ]
 
 { #category : #accessing }
-PMLaplaceGenerator >> next [ 
+PMLaplaceGenerator >> next [
 
 	next := laplaceDistribution random.
 	^ next

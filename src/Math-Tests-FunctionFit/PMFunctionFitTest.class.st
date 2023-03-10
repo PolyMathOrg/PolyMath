@@ -11,6 +11,8 @@ Class {
 { #category : #running }
 PMFunctionFitTest >> setUp [
 
+	super setUp.
+
 	f := [ :x :a :b | a * x / (b + x) ].
 	d := (1 to: 20) collect: [ :i | i @ (f cull: i cull: 2 cull: 0.4) ]
 ]
@@ -21,7 +23,7 @@ PMFunctionFitTest >> testFunctionFit [
 	| ff ar p |
 	ff := PMFunctionFit function: f data: d.
 	ar := ff parameters.
-	ar do: [ :i | 
+	ar do: [ :i |
 		self assert: i isNumber.
 		self assert: i ~= 0 ].
 	ff parameters: #( 1 2 ).
@@ -41,7 +43,5 @@ ff:=  PMFunctionFit function: f data: d .
 ff printOn: aStream .
 s :=aStream contents .
 self assert: (s includesSubstring: 'a * x / (b + x)').
-self assert: (s includesSubstring: '20').
-
-
+self assert: (s includesSubstring: '20')
 ]

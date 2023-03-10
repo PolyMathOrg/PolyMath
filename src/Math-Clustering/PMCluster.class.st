@@ -5,12 +5,12 @@ Class {
 		'accumulator',
 		'previousSampleSize'
 	],
-	#category : 'Math-Clustering'
+	#category : #'Math-Clustering'
 }
 
 { #category : #transformation }
 PMCluster >> accumulate: aVector [
-	
+
 	accumulator accumulate: aVector
 ]
 
@@ -39,20 +39,20 @@ PMCluster >> distanceTo: aVector [
 
 { #category : #initialization }
 PMCluster >> initialize [
-	
+
 	previousSampleSize := 0.
 	^ self
 ]
 
 { #category : #testing }
 PMCluster >> isInsignificantIn: aClusterFinder [
-		
+
 	^ self sampleSize <= aClusterFinder minimumClusterSize
 ]
 
 { #category : #testing }
 PMCluster >> isUndefined [
-	
+
 	^ self subclassResponsibility
 ]
 

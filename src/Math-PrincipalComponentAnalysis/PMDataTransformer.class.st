@@ -8,12 +8,12 @@ Class {
 	#category : #'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMDataTransformer >> fit: aPMMatrix [
 	^ self subclassResponsibility
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMDataTransformer >> fitAndTransform: aPMMatrix [
 	^ (self fit: aPMMatrix) transform: aPMMatrix
 ]

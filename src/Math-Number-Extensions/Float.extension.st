@@ -5,10 +5,10 @@ Float >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh."
 
-	self < 1 
-		ifTrue: 
+	self < 1
+		ifTrue:
 			[^DomainError signal: 'Receiver must be greater or equal to 1'].
-	^self + 1 = self 
+	^self + 1 = self
 		ifTrue: [self abs ln + 2 ln]
 		ifFalse: [((self squared - 1) sqrt + self) ln]
 ]
@@ -18,8 +18,8 @@ Float >> arSinh [
 	"Answer receiver's area hyperbolic sine.
 	That is the inverse function of sinh."
 
-	self = 0.0 ifTrue: [^self].	"Handle negativeZero"  
-	^self + 1 = self 
+	self = 0.0 ifTrue: [^self].	"Handle negativeZero"
+	^self + 1 = self
 		ifTrue: [(self abs ln + 2 ln) * self sign]
 		ifFalse: [((self squared + 1) sqrt + self) ln]
 ]
@@ -31,8 +31,8 @@ Float >> arTanh [
 
 	self = 0.0 ifTrue: [^self].	"Handle negativeZero"
 	self abs = 1 ifTrue: [^self copySignTo: Float infinity].
-	self abs > 1 
-		ifTrue: 
+	self abs > 1
+		ifTrue:
 			[^DomainError signal: 'Receiver must be between -1.0 and 1.0'].
 	^((1 + self) / (1 - self)) ln / 2
 ]
@@ -40,7 +40,7 @@ Float >> arTanh [
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> cosh [
 	"Answer receivers hyperbolic cosine."
-	
+
 	| ex |
 	ex := self exp.
 	^(ex + ex reciprocal) / 2
@@ -49,7 +49,7 @@ Float >> cosh [
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Float >> sinh [
 	"Answer receivers hyperbolic sine"
-	
+
 	| ex |
 	ex := self exp.
 	^(ex - ex reciprocal) / 2

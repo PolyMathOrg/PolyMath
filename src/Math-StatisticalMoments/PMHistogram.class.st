@@ -22,7 +22,7 @@ Class {
 		'cacheSize',
 		'desiredNumberOfBins'
 	],
-	#category : 'Math-StatisticalMoments'
+	#category : #'Math-StatisticalMoments'
 }
 
 { #category : #information }
@@ -70,7 +70,7 @@ PMHistogram >> accumulate: aNumber [
 		ifTrue: [ ^ self accumulateInCache: aNumber ].
 	bin := self binIndex: aNumber.
 	(bin between: 1 and: contents size)
-		ifTrue: [ 
+		ifTrue: [
 			contents at: bin put: (contents at: bin) + 1.
 			moments accumulate: aNumber ]
 		ifFalse: [ self processOverflows: bin for: aNumber ]
@@ -93,7 +93,7 @@ PMHistogram >> adjustDimensionUpTo: aNumber [
 	| maximum |
 	binWidth := self roundToScale: (aNumber - minimum) / desiredNumberOfBins.
 	minimum := (minimum / binWidth) floor * binWidth.
-	maximum := (aNumber / binWidth) asFloat successor ceiling * binWidth.	
+	maximum := (aNumber / binWidth) asFloat successor ceiling * binWidth.
 	contents := Array new: ((maximum - minimum) / binWidth) ceiling.
 	contents atAllPut: 0
 ]
@@ -108,7 +108,7 @@ PMHistogram >> average [
 { #category : #information }
 PMHistogram >> binIndex: aNumber [
 	"Answers the index of the bin corresponding to aNumber."
-	
+
 	^ ((aNumber - minimum) / binWidth) floor + 1
 ]
 
@@ -139,7 +139,7 @@ PMHistogram >> chi2ConfidenceLevelAgainst: aScaledDistribution [
 
 { #category : #information }
 PMHistogram >> collectIntegralPoints: aBlock [
-	"Collects the points needed to display the receiver as an integral. 
+	"Collects the points needed to display the receiver as an integral.
 	Needed to use polymorphic behavior when plotting the receiver."
 
 	| answer bin integral norm x |
@@ -151,7 +151,7 @@ PMHistogram >> collectIntegralPoints: aBlock [
 	integral := self underflow.
 	norm := self totalCount.
 	contents
-		do: [ :each | 
+		do: [ :each |
 			integral := integral + each.
 			x := integral / norm.
 			answer add: (aBlock value: bin @ x).
@@ -173,7 +173,7 @@ PMHistogram >> collectPoints: aBlock [
 	bin := self minimum.
 	answer add: (aBlock value: bin @ 0).
 	contents
-		do: [ :each | 
+		do: [ :each |
 			answer add: (aBlock value: bin @ each).
 			bin := bin + binWidth.
 			answer add: (aBlock value: bin @ each) ].
@@ -192,7 +192,7 @@ PMHistogram >> count [
 PMHistogram >> countAt: aNumber [
 		"Answer the count in the bin corresponding to aNumber or 0 if outside the limits."
 	| n |
-	self isCached 				
+	self isCached
 		ifTrue: [ self flushCache].
 	n := self binIndex: aNumber.
 	^( n between: 1 and: contents size)
@@ -262,21 +262,13 @@ PMHistogram >> flushCache [
 	"Private"
 
 	| maximum values |
-	minimum isNil
-		ifTrue: [ 
-			minimum := contents isEmpty
-				ifTrue: [ 0 ]
-				ifFalse: [ contents first ] ].
+	minimum ifNil: [ minimum := contents ifEmpty: [ 0 ] ifNotEmpty: [ contents first ] ].
 	maximum := minimum.
-	contents
-		do: [ :each | 
-			each < minimum
-				ifTrue: [ minimum := each ]
-				ifFalse: [ 
-					each > maximum
-						ifTrue: [ maximum := each ] ] ].
-	maximum = minimum
-		ifTrue: [ maximum := minimum + desiredNumberOfBins ].
+	contents do: [ :each |
+		each < minimum
+			ifTrue: [ minimum := each ]
+			ifFalse: [ each > maximum ifTrue: [ maximum := each ] ] ].
+	maximum = minimum ifTrue: [ maximum := minimum + desiredNumberOfBins ].
 	values := contents.
 	self adjustDimensionUpTo: maximum.
 	values do: [ :each | self accumulate: each ]
@@ -339,6 +331,8 @@ PMHistogram >> growPositiveContents: anInteger [
 PMHistogram >> initialize [
 	"Private - initializes the receiver with standard settings."
 
+	super initialize.
+
 	freeExtent := false.
 	cacheSize := self class defaultCacheSize.
 	desiredNumberOfBins := self class defaultNumberOfBins.
@@ -358,7 +352,7 @@ PMHistogram >> inverseDistributionValue: aNumber [
 	x := minimum.
 	integral := 0.
 	contents
-		do: [ :each | 
+		do: [ :each |
 			| delta |
 			delta := count - integral.
 			each > delta
@@ -377,7 +371,7 @@ PMHistogram >> isCached [
 
 { #category : #testing }
 PMHistogram >> isEmpty [
-	"Always false. 
+	"Always false.
 	 Needed to use polymorphic behavior when plotting the receiver. "
 
 	^ false
@@ -392,7 +386,7 @@ PMHistogram >> kurtosis [
 { #category : #information }
 PMHistogram >> lowBinLimitAt: anInteger [
 
-	self isCached 				
+	self isCached
 		ifTrue: [ self flushCache].
 	^( anInteger - 1) * binWidth + minimum
 ]
@@ -407,11 +401,10 @@ PMHistogram >> maximum [
 
 { #category : #information }
 PMHistogram >> maximumCount [
-		"Answer the maximum count of the receiver."
-	self isCached
-		ifTrue: [ self flushCache].
-	^contents inject: ( contents isEmpty ifTrue: [ 1] ifFalse:[ contents at: 1])
-					into: [ :max :each | max max: each]
+	"Answer the maximum count of the receiver."
+
+	self isCached ifTrue: [ self flushCache ].
+	^ contents inject: (contents ifEmpty: [ 1 ] ifNotEmpty: [ contents at: 1 ]) into: [ :max :each | max max: each ]
 ]
 
 { #category : #information }
@@ -441,7 +434,7 @@ PMHistogram >> pointsAndErrorsDo: aBlock [
 	| x |
 	x := self minimum - (binWidth / 2).
 	contents
-		do: [ :each | 
+		do: [ :each |
 			x := x + binWidth.
 			aBlock value: (PMWeightedPoint point: x count: each) ]
 ]
@@ -451,7 +444,7 @@ PMHistogram >> processOverflows: anInteger for: aNumber [
 	"Private"
 
 	freeExtent
-		ifTrue: [ 
+		ifTrue: [
 			self growContents: anInteger.
 			moments accumulate: aNumber ]
 		ifFalse: [ self countOverflows: anInteger ]
@@ -505,7 +498,7 @@ PMHistogram >> setWidth: aNumber1 from: aNumber2 bins: anInteger [
 		ifFalse: [ self error: 'Histogram limits cannot be redefined'].
 	minimum := aNumber2.
 	self setDesiredNumberOfBins: anInteger;
-		   adjustDimensionUpTo: ( aNumber1 * anInteger + aNumber2).
+		   adjustDimensionUpTo: ( aNumber1 * anInteger + aNumber2)
 ]
 
 { #category : #information }

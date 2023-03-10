@@ -1,32 +1,30 @@
 Class {
 	#name : #PMCovarianceCluster,
 	#superclass : #PMCluster,
-	#category : 'Math-Clustering'
+	#category : #'Math-Clustering'
 }
 
 { #category : #initialization }
-PMCovarianceCluster >> centerOn: aVector [ 
+PMCovarianceCluster >> centerOn: aVector [
 
-	accumulator := aVector isNil
-				ifTrue: [nil]
-				ifFalse: [ PMMahalanobisCenter onVector: aVector ]
+	accumulator := aVector ifNotNil: [ PMMahalanobisCenter onVector: aVector ]
 ]
 
 { #category : #transformation }
 PMCovarianceCluster >> collectAccumulatorResults [
-	
-	accumulator computeParameters.
+
+	accumulator computeParameters
 ]
 
 { #category : #information }
 PMCovarianceCluster >> distanceTo: aVector [
-	
+
 	^ accumulator distanceTo: aVector
 ]
 
 { #category : #testing }
 PMCovarianceCluster >> isUndefined [
-		
+
 	^accumulator isNil
 ]
 

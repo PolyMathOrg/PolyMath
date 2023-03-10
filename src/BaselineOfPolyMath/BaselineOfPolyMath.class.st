@@ -25,7 +25,7 @@ BaselineOfPolyMath >> baseline: spec [
 			xmlWriter: spec;
 			vectorMatrix: spec;
 			randomNumbers: spec.
-
+  
 		spec
 			package: 'ExtendedNumberParser';
 			package: 'Math-Accuracy-Core';

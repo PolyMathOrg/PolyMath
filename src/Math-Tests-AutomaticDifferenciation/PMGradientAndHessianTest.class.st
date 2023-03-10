@@ -7,7 +7,7 @@ Class {
 { #category : #tests }
 PMGradientAndHessianTest >> test [
 	| f g h r |
-	f := [ :i | 
+	f := [ :i |
 	| x y |
 	x := i first.
 	y := i second.
@@ -28,7 +28,7 @@ PMGradientAndHessianTest >> test [
 PMGradientAndHessianTest >> test2 [
 
 	| f g h r |
-	f := [ :i | 
+	f := [ :i |
 	     | x y |
 	     x := i first.
 	     y := i second.

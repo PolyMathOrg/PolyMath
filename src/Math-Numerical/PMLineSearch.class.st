@@ -45,7 +45,7 @@ Class {
 { #category : #'instance creation' }
 PMLineSearch class >> function: aBlock valueAtZero: valueAtZero derivativeAtZero: derivativeAtZero valueAtOne: valueAtOne [
 	^ self new
-		setFunction: aBlock; setValueAtZero: valueAtZero derivativeAtZero: derivativeAtZero valueAtOne: valueAtOne; 
+		setFunction: aBlock; setValueAtZero: valueAtZero derivativeAtZero: derivativeAtZero valueAtOne: valueAtOne;
 		yourself
 ]
 
@@ -71,7 +71,7 @@ PMLineSearch >> computeInitialValues [
 	extendedResult at: 3 put: 0.0.
 	extendedResult at: 4 put: (boundaryValues at: 1).
 	useCubicApproximation := false.
-	result := 1.0.
+	result := 1.0
 ]
 
 { #category : #operation }
@@ -98,7 +98,7 @@ PMLineSearch >> evaluateIteration [
 			nextX := dg0 negated * 0.5 / (g1 - g0 - dg0) max: 0.1.
 			useCubicApproximation := true ]
 		ifTrue: [
-			gamma := [ :n | 
+			gamma := [ :n |
 				((extendedResult at: (n+2)) - dg0 * (extendedResult at: n) - g0) / deltaX ].
 			tmp1 := (gamma value: 1) / x1 squared.
 			tmp2 := (gamma value: 2) / x2 squared.
@@ -106,7 +106,7 @@ PMLineSearch >> evaluateIteration [
 			b :=  x1 * tmp2 - x2 * tmp1.
 			nextX := (b negated + (b squared - (3.0 * a * dg0) sqrt)) / (3.0 * a) min: 0.5 *x1 max: 0.1 * x1.
 			nextX < failingMin ifTrue: [ self error: 'next x is too small: cannot minimize' ] ].
-	self updateResult: nextX.
+	self updateResult: nextX
 ]
 
 { #category : #accessing }
@@ -121,7 +121,7 @@ PMLineSearch >> failingMin: newFailingMin [
 	failingMin := newFailingMin
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #testing }
 PMLineSearch >> hasConverged [
 	"Customized convergence test: minimize the function as g(x)<=g(0)+alpha*g'(0)"
 	| g0 dg0 gNew |
@@ -160,5 +160,4 @@ PMLineSearch >> updateResult: nextX [
 	extendedResult at: 1 put: nextX.
 	extendedResult at: 2 put: (functionBlock value: nextX).
 	result := nextX
-	
 ]

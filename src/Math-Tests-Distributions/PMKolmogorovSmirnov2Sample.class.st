@@ -34,7 +34,7 @@ Class {
 
 { #category : #'instance creation' }
 PMKolmogorovSmirnov2Sample class >> compareData: aCollection withData: anotherCollection [
-^self new data: aCollection ;otherData: anotherCollection ;yourself 
+^self new data: aCollection ;otherData: anotherCollection ;yourself
 ]
 
 { #category : #private }
@@ -56,7 +56,7 @@ PMKolmogorovSmirnov2Sample >> data: aCollection [
 PMKolmogorovSmirnov2Sample >> initCachedUCalculation [
 	"recursive calc, slow without memoization"
 
-	uCalcBlock := [ :iandj | 
+	uCalcBlock := [ :iandj |
 	| cij i j |
 	i := iandj first.
 	j := iandj second.
@@ -99,7 +99,7 @@ PMKolmogorovSmirnov2Sample >> ksStatistic [
 		addAll: compareWith;
 		yourself.
 	cdfs
-		withIndexDo: [ :a :i | 
+		withIndexDo: [ :a :i |
 			(i < s and: [ (cdfs at: i + 1) key = a key ])
 				ifTrue: [ a value second
 						ifTrue: [ c2 := (cdfs at: i + 1) value first ]
@@ -116,14 +116,14 @@ PMKolmogorovSmirnov2Sample >> ksStatistic [
 
 { #category : #private }
 PMKolmogorovSmirnov2Sample >> makeCDFOf: aCollection intoFirst: aBoolean [
-	"if aCollection consists of numbers, 
+	"if aCollection consists of numbers,
 it returns a sorted array of (number-> (Array with: cdf with: aBoolean))"
 
 	| cd s result |
 	cd := 0.
 	s := aCollection size.
 	result := aCollection asBag sortedElements
-		do: [ :a | 
+		do: [ :a |
 			cd := a value / s + cd.
 			a value: (Array with: cd with: aBoolean) ].
 	^ aBoolean
@@ -141,7 +141,7 @@ PMKolmogorovSmirnov2Sample >> otherData: aCollection [
 PMKolmogorovSmirnov2Sample >> pValue [
 
 	"uses procedure explained in:
-Kim, P. J. & Jennrich, R. I. 
+Kim, P. J. & Jennrich, R. I.
 'Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion...'
 in 'Selected Tables in Mathematical Statistics Volume I' (1973)."
 

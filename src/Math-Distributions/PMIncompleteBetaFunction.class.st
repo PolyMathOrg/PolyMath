@@ -12,40 +12,38 @@ Class {
 }
 
 { #category : #creation }
-PMIncompleteBetaFunction class >> shape: aNumber1 shape: aNumber2 [ 
+PMIncompleteBetaFunction class >> shape: aNumber1 shape: aNumber2 [
 	"Create an instance of the receiver with given shape parameters."
 
 	^self new initialize: aNumber1 shape: aNumber2
 ]
 
 { #category : #private }
-PMIncompleteBetaFunction >> evaluateFraction: aNumber [ 
+PMIncompleteBetaFunction >> evaluateFraction: aNumber [
 
-	fraction isNil 
-		ifTrue: 
-			[fraction := PMIncompleteBetaFractionTermServer new.
-			fraction setParameter: alpha1 second: alpha2].
+	fraction ifNil: [
+		fraction := PMIncompleteBetaFractionTermServer new.
+		fraction setParameter: alpha1 second: alpha2 ].
 	fraction setArgument: aNumber.
-	^(PMContinuedFraction server: fraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	^ (PMContinuedFraction server: fraction)
+		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  evaluate
 ]
 
 { #category : #private }
-PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [ 
+PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [
 
-	inverseFraction isNil 
-		ifTrue: 
-			[inverseFraction := PMIncompleteBetaFractionTermServer new.
-			inverseFraction setParameter: alpha2 second: alpha1].
-	inverseFraction setArgument: (1 - aNumber).
-	^(PMContinuedFraction server: inverseFraction)
-		desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
-		evaluate
+	inverseFraction ifNil: [
+		inverseFraction := PMIncompleteBetaFractionTermServer new.
+		inverseFraction setParameter: alpha2 second: alpha1 ].
+	inverseFraction setArgument: 1 - aNumber.
+	^ (PMContinuedFraction server: inverseFraction)
+		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  evaluate
 ]
 
 { #category : #initialization }
-PMIncompleteBetaFunction >> initialize: aNumber1 shape: aNumber2 [ 
+PMIncompleteBetaFunction >> initialize: aNumber1 shape: aNumber2 [
 
 	alpha1 := aNumber1.
 	alpha2 := aNumber2.

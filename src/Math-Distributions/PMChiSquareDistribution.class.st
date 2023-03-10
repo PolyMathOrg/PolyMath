@@ -32,7 +32,7 @@ PMChiSquareDistribution class >> fromHistogram: aHistogram [
 
 { #category : #creation }
 PMChiSquareDistribution class >> shape: aNumber1 scale: aNumber2 [
-	
+
 	^self error: 'Illegal creation message for this class'
 ]
 

@@ -23,7 +23,7 @@ Class {
 
 { #category : #'class variables' }
 PMODESolver class >> stepperClass [
-	^ShouldBeImplemented.
+	^ShouldBeImplemented
 ]
 
 { #category : #solving }
@@ -33,7 +33,7 @@ PMODESolver >> announceState: aState time: aTime [
 
 { #category : #'announcement hooks' }
 PMODESolver >> announcementClass [
-	^ self subclassResponsibility 
+	^ self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -43,7 +43,7 @@ PMODESolver >> announcer [
 
 { #category : #accessing }
 PMODESolver >> announcer: anAnnouncer [
-	announcer  := anAnnouncer 
+	announcer  := anAnnouncer
 ]
 
 { #category : #'announcement hooks' }
@@ -58,15 +58,15 @@ PMODESolver >> dt [
 ]
 
 { #category : #accessing }
-PMODESolver >> dt: aFloat [ 
+PMODESolver >> dt: aFloat [
 	dt := aFloat
 ]
 
-{ #category : #initialize }
+{ #category : #initialization }
 PMODESolver >> initialize [
-	
+
 	super initialize.
-	announcer := self announcerClass new.
+	announcer := self announcerClass new
 ]
 
 { #category : #solving }
@@ -74,29 +74,29 @@ PMODESolver >> lastStepState: aState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
 		ifFalse:
-			[state := stepper 
-				lastStep: state 
-				time: lastTime 
+			[state := stepper
+				lastStep: state
+				time: lastTime
 				stepSize: endTime - lastTime
 				deltaT: dt.
-				self announceState: state time: endTime].			
+				self announceState: state time: endTime].
 	^ state
 ]
 
 { #category : #solving }
 PMODESolver >> mainStepsState: aState startTime: initialTime endTime: endTime [
-	state := aState.	
+	state := aState.
 	"don't go to end time to avoid overrunning"
 	(initialTime to: endTime - self dt  by: self dt) do:
-		[:time | 
-			state := stepper 
-				doStep: state 
-				time:  time 
+		[:time |
+			state := stepper
+				doStep: state
+				time:  time
 				stepSize: self dt.
 				"announce step results"
 				self announceState: state time: time + self dt.
 				lastTime := time + self dt].
-			
+
 	^ state
 ]
 
@@ -111,20 +111,20 @@ PMODESolver >> solve: aSystem startState: initialState startTime: initialTime en
 
 	"announce initial conditions"
 	self announceState: state time: initialTime.
-	
+
 	(lastTime+dt > endTime and: lastTime < endTime)
 	ifTrue:[
 		state :=self lastStepState: state endTime: endTime].
-	
-	lastTime+dt<= endTime 
-	ifTrue:[	
+
+	lastTime+dt<= endTime
+	ifTrue:[
 	"step until the end"
 	state := self mainStepsState: state startTime: initialTime endTime: endTime.
-	
+
 	"sanity check"
-	self assert: [(lastTime between: initialTime and: endTime) 
+	self assert: [(lastTime between: initialTime and: endTime)
 				or: [lastTime between: endTime and: initialTime]].
-	
+
 	"take another step if needed"
 	state := self lastStepState: state endTime: endTime.].
 
@@ -134,13 +134,14 @@ PMODESolver >> solve: aSystem startState: initialState startTime: initialTime en
 { #category : #solving }
 PMODESolver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime stepSize: timeStep [
 	self dt: timeStep.
-	^ self solve: aSystem  startState:  initialState  startTime:  initialTime endTime: endTime.
+	^ self solve: aSystem  startState:  initialState  startTime:  initialTime endTime: endTime
 ]
 
 { #category : #accessing }
-PMODESolver >> stepper: aStepper [ 
+PMODESolver >> stepper: aStepper [
+
 	stepper := aStepper.
-	system notNil ifTrue: [stepper system: system].
+	system ifNotNil: [ stepper system: system ]
 ]
 
 { #category : #private }
@@ -155,7 +156,8 @@ PMODESolver >> system [
 ]
 
 { #category : #accessing }
-PMODESolver >> system: aSystem [ 
+PMODESolver >> system: aSystem [
+
 	system := aSystem.
-	stepper notNil ifTrue: [stepper system: aSystem].
+	stepper ifNotNil: [ stepper system: aSystem ]
 ]

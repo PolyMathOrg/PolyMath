@@ -19,11 +19,11 @@ Number >> dividingPolynomial: aPolynomial [
 
 { #category : #'*Math-Numerical' }
 Number >> equalsTo: aNumber [
-		
+
 	self
 		deprecated: 'Use closeTo: instead'
 		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
-		
+
 	^ self closeTo: aNumber
 ]
 

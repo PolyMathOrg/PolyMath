@@ -11,10 +11,10 @@ Class {
 { #category : #running }
 PMErrorOfParameterFunctionTest >> setUp [
 
-	f := PMErrorOfParameterFunction new function: [ :x :a :b | 
-		     a * x / (b + x) ].
-	col := (1 to: 3) collect: [ :i | 
-		       i @ (f function cull: i cull: 1 cull: 1) ]
+	super setUp.
+
+	f := PMErrorOfParameterFunction new function: [ :x :a :b | a * x / (b + x) ].
+	col := (1 to: 3) collect: [ :i | i @ (f function cull: i cull: 1 cull: 1) ]
 ]
 
 { #category : #tests }
@@ -65,9 +65,7 @@ f printOn: aStream .
 s :=aStream contents .
 self assert: (s includesSubstring: 'a * x / (b + x)').
 self assert: (s includesSubstring: 'squared').
-self assert: (s includesSubstring: 'false').
-
-
+self assert: (s includesSubstring: 'false')
 ]
 
 { #category : #tests }

@@ -12,6 +12,6 @@ PMBulirschStoerInterpolator >> computeDifference: aNumber at: anInteger1 order: 
 							/ ( (  self xPointAt: ( anInteger1 + anInteger2)) - aNumber).
 	diff := ( ( leftErrors at: ( anInteger1 + 1)) - ( rightErrors at: anInteger1))
 							/ ( ratio - ( leftErrors at: ( anInteger1 + 1))).
-	rightErrors at: anInteger1 put: ( leftErrors at: ( anInteger1 + 1)) * diff.	
-	leftErrors at: anInteger1 put: ratio * diff.
+	rightErrors at: anInteger1 put: ( leftErrors at: ( anInteger1 + 1)) * diff.
+	leftErrors at: anInteger1 put: ratio * diff
 ]

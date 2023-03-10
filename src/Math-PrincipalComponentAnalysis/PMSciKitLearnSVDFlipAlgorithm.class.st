@@ -28,11 +28,11 @@ PMSciKitLearnSVDFlipAlgorithm >> computeSignsFromU [
 	| maxAbsCols i maxElements |
 	maxAbsCols := u abs argMaxOnColumns.
 	i := 0.
-	maxElements := u transpose 
-		rowsCollect: [ :each | 
+	maxElements := u transpose
+		rowsCollect: [ :each |
 			i := i + 1.
 			each at: (maxAbsCols at: i) ].
-	^ maxElements sign asPMVector 
+	^ maxElements sign asPMVector
 ]
 
 { #category : #initialization }
@@ -40,9 +40,7 @@ PMSciKitLearnSVDFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 	"instantiate the algorithm"
 	u := uMatrix .
 	v := vMatrix .
-	signs := self computeSignsFromU .
-
-
+	signs := self computeSignsFromU
 ]
 
 { #category : #accessing }
@@ -51,7 +49,7 @@ PMSciKitLearnSVDFlipAlgorithm >> signMatrixForU [
 		rows:
 			((1 to: u numberOfRows)
 				inject: OrderedCollection new
-				into: [ :rows :eachRow | 
+				into: [ :rows :eachRow |
 					rows
 						add: signs;
 						yourself ])
@@ -65,7 +63,7 @@ PMSciKitLearnSVDFlipAlgorithm >> signMatrixForV [
 		rows:
 			((1 to: v numberOfRows)
 				inject: OrderedCollection new
-				into: [ :rows :eachRow | 
+				into: [ :rows :eachRow |
 					rows
 						add: signsForV;
 						yourself ])) transpose
@@ -78,10 +76,10 @@ PMSciKitLearnSVDFlipAlgorithm >> signs [
 
 { #category : #accessing }
 PMSciKitLearnSVDFlipAlgorithm >> uFlipped [
-	^ u hadamardProduct: (self signMatrixForU).
+	^ u hadamardProduct: (self signMatrixForU)
 ]
 
 { #category : #accessing }
 PMSciKitLearnSVDFlipAlgorithm >> vFlipped [
-	^ v hadamardProduct: (self signMatrixForV) .
+	^ v hadamardProduct: (self signMatrixForV)
 ]

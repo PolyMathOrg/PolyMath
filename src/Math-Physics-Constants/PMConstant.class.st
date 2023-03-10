@@ -103,9 +103,9 @@ PMConstant class >> h [
 	^ PlanckConstant
 ]
 
-{ #category : #'class initialization' }
+{ #category : #initialization }
 PMConstant class >> initialize [
-	
+
 	AvogadroConstant := 6.022140857e23.
 	BoltzmannConstant := 1.38064852e-23.
 	StefanBoltzmannConstant := 5.670367e-8.
@@ -123,7 +123,7 @@ PMConstant class >> initialize [
 	speedOfLight := 299792458.0.
 	standardAccelerationOfGravity := 9.80665.
 	WienDisplacementLawConstant := 2.8977729e-3.
-	RydbergConstant := 10973731.568508.
+	RydbergConstant := 10973731.568508
 ]
 
 { #category : #constants }

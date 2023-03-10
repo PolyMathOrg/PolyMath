@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF3Stepper class >> order [
 	"BDF3 is a third order method."
 	^ 3
@@ -31,5 +31,5 @@ PMBDF3Stepper >> doStep: aState prevState: prevState prevPrevState: prevPrevStat
 { #category : #stepping }
 PMBDF3Stepper >> doStep: aState prevState: prevState prevPrevState: prevPrevState time: t  stepSize: timeStep [
 	self stepSize: timeStep.
-	^ self doStep: aState prevState: prevState prevPrevState: prevPrevState time: t 
+	^ self doStep: aState prevState: prevState prevPrevState: prevPrevState time: t
 ]

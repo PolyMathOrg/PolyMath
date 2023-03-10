@@ -14,9 +14,11 @@ PMHistogramTestsAndBugs >> readMe [
 
 { #category : #running }
 PMHistogramTestsAndBugs >> setUp [
-h:=PMHistogram new.
-h freeExtent: true.
-1to:3 do: [:i |h accumulate: i].
+
+	super setUp.
+	h := PMHistogram new.
+	h freeExtent: true.
+	1 to: 3 do: [ :i | h accumulate: i ]
 ]
 
 { #category : #tests }
@@ -43,7 +45,7 @@ PMHistogramTestsAndBugs >> testBinWidth [
 PMHistogramTestsAndBugs >> testChi2Against [
 
 self assert: ((h chi2Against: (PMScaledProbabilityDensityFunction histogram: h against:  PMNormalDistribution new))
-			closeTo:  2.937623). 
+			closeTo:  2.937623).
 ]
 
 { #category : #tests }
@@ -85,7 +87,7 @@ PMHistogramTestsAndBugs >> testCountsUpTo [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testErrorOnAverage [
-self assert: (h errorOnAverage isFloat).
+self assert: (h errorOnAverage isFloat)
 ]
 
 { #category : #tests }
@@ -107,12 +109,12 @@ PMHistogramTestsAndBugs >> testKurtosis [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testLowBinLimitAt [
-self assert: ((h lowBinLimitAt:2) isNumber).
+self assert: ((h lowBinLimitAt:2) isNumber)
 ]
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testMaximum [
-self assert: ( h maximum >=3).
+self assert: ( h maximum >=3)
 ]
 
 { #category : #tests }
@@ -124,7 +126,7 @@ PMHistogramTestsAndBugs >> testMaximumCount [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testMinimum [
-self assert: ( h minimum <=  1).
+self assert: ( h minimum <=  1)
 ]
 
 { #category : #tests }

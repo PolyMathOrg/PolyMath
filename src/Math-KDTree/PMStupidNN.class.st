@@ -15,8 +15,7 @@ PMStupidNN >> nnSearch: aCollection i:anInt [
 self sortFor: aCollection asFloatArray.
 d :=self data .
 anInt =1 ifTrue:[^d first ].
-^d size >anInt ifTrue: [d copyFrom: 1 to: anInt]ifFalse: [d]  
-  
+^d size >anInt ifTrue: [d copyFrom: 1 to: anInt]ifFalse: [d]
 ]
 
 { #category : #sorting }
@@ -24,5 +23,5 @@ PMStupidNN >> sortFor: aCollection [
 "sort nearest neighbours of aCollection "
 |i|
 self do:[:e| i :=aCollection -(e at:2) . e at: 1 put: (i*i)sum ];
-	sort .
+	sort
 ]

@@ -9,7 +9,7 @@ Class {
 		'function',
 		'varArray'
 	],
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #'instance creation' }
@@ -19,13 +19,12 @@ PMSimpleParameterFunction class >> function: aBlock [
 
 { #category : #'instance creation' }
 PMSimpleParameterFunction class >> function: aBlock parameters: anArray [
-^self new function: aBlock; parameters: anArray; yourself  
+^self new function: aBlock; parameters: anArray; yourself
 ]
 
 { #category : #accessing }
 PMSimpleParameterFunction >> changeParametersBy: aVector [
 2 to: (usedVars+1) do:[:n| varArray at: n put: ((varArray at: n)+ ( aVector at: n-1)).]
-
 ]
 
 { #category : #initialization }
@@ -34,46 +33,43 @@ PMSimpleParameterFunction >> function: aBlock [
 function:=aBlock.
 usedVars :=aBlock numArgs .
 self initializeVarArray: 2.
-usedVars :=usedVars -1.
-
+usedVars :=usedVars -1
 ]
 
 { #category : #initialization }
 PMSimpleParameterFunction >> initializeVarArray: aStart [
 varArray :=Array new: usedVars  withAll: 0.937.
-(1 + aStart) to: (usedVars min: (aStart +4)) do:[:i| varArray at: i put: ( #(0.929 0.919 0.911 0.907) at: (i - aStart ) )].
+(1 + aStart) to: (usedVars min: (aStart +4)) do:[:i| varArray at: i put: ( #(0.929 0.919 0.911 0.907) at: (i - aStart ) )]
 ]
 
 { #category : #accessing }
 PMSimpleParameterFunction >> parameterNames [
-^(function argumentNames collect:[:s| s asString ])allButFirst 
+^(function argumentNames collect:[:s| s asString ])allButFirst
 ]
 
 { #category : #accessing }
 PMSimpleParameterFunction >> parameterSize [
-^usedVars 
+^usedVars
 ]
 
 { #category : #accessing }
 PMSimpleParameterFunction >> parameters [
 ^varArray allButFirst
-
 ]
 
 { #category : #accessing }
 PMSimpleParameterFunction >> parameters: indexableCollection [
 1 to: usedVars do:[:n| varArray at: n+1 put: ( indexableCollection at: n)].
-^indexableCollection 
-
+^indexableCollection
 ]
 
 { #category : #printing }
 PMSimpleParameterFunction >> printOn: aStream [
-	super printOn: aStream.  
+	super printOn: aStream.
 	aStream nextPutAll: '( '; print: function .
-	varArray ifNotNil:[ self parameterNames with: self parameters do: 
+	varArray ifNotNil:[ self parameterNames with: self parameters do:
 		[:n :p|aStream nextPutAll: ' '; nextPutAll: n; nextPutAll:': ';print: p. ]] .
-	aStream nextPut: $).    
+	aStream nextPut: $).
 ]
 
 { #category : #evaluating }

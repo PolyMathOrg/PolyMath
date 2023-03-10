@@ -15,23 +15,23 @@ Class {
 PMNormalDistribution class >> boxMullerTransform [
 	| random v1 v2 w y |
 	random := Random new.
-	
+
 	[
 		v1 :=random next * 2 - 1.
 		v2 := random next * 2 - 1.
 		w := v1 squared + v2 squared.
 		w > 1
 	] whileTrue.
-			
+
 	y := (w ln * 2 negated / w) sqrt.
 	v1 := y * v1.
 	NextRandom := y * v2.
-	^v1.
+	^v1
 ]
 
 { #category : #information }
 PMNormalDistribution class >> distributionName [
-	
+
 	^'Normal distribution'
 ]
 
@@ -63,7 +63,7 @@ PMNormalDistribution class >> random [
 	| v1  |
 	NextRandom
 		ifNil: [
-			
+
 			v1 := self boxMullerTransform ]
 		ifNotNil: [ v1 := NextRandom.
 			NextRandom := nil ].
@@ -80,7 +80,7 @@ PMNormalDistribution >> average [
 PMNormalDistribution >> changeParametersBy: aVector [
 	"Modify the parameters of the receiver by aVector."
 	mu := mu + ( aVector at: 1).
-	sigma := sigma + ( aVector at: 2).
+	sigma := sigma + ( aVector at: 2)
 ]
 
 { #category : #information }
@@ -129,7 +129,7 @@ PMNormalDistribution >> standardDeviation [
 { #category : #information }
 PMNormalDistribution >> value: aNumber [
 	"Answers the probability that a random variable distributed according to the receiver gives a value between aNumber and aNumber + espilon (infinitesimal interval)."
-	
+
 	^( PMErfApproximation new normal: (aNumber - mu) / sigma) / sigma
 ]
 

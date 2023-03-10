@@ -20,11 +20,11 @@ PMGeneticOptimizer class >> defaultPrecision [
 ]
 
 { #category : #transformation }
-PMGeneticOptimizer >> addPointAt: aNumber [ 
+PMGeneticOptimizer >> addPointAt: aNumber [
 	"necessary since nan's and infinites can throw off calculations. and calculations become a tiny bit more efficient"
 	| p |
  	p:=optimizingPointClass vector: aNumber function: functionBlock.
- 	((p value isInfinite)or:[p value isNaN]) ifFalse: [bestPoints add: p].
+ 	((p value isInfinite)or:[p value isNaN]) ifFalse: [bestPoints add: p]
 ]
 
 { #category : #initialization }
@@ -37,10 +37,10 @@ PMGeneticOptimizer >> collectPoints [
 	"Private"
 
 	| bestPoint |
-	bestPoints isEmpty ifFalse: [bestPoint := bestPoints first].
+	bestPoints ifNotEmpty: [ bestPoint := bestPoints first ].
 	bestPoints removeAll.
-	chromosomeManager population do: [:each | self addPointAt: each].
-	bestPoint ifNotNil: [:b|bestPoints add: b].
+	chromosomeManager population do: [ :each | self addPointAt: each ].
+	bestPoint ifNotNil: [ :b | bestPoints add: b ].
 	result := bestPoints first position
 ]
 
@@ -81,7 +81,7 @@ PMGeneticOptimizer >> randomIndex: aNumberArray [
 	random := Random new.
 	x := random next.
 	n := 1.
-	aNumberArray do: 
+	aNumberArray do:
 		[ :each |
 		  x < each
 			ifTrue: [ ^n].
@@ -92,20 +92,24 @@ PMGeneticOptimizer >> randomIndex: aNumberArray [
 
 { #category : #information }
 PMGeneticOptimizer >> randomScale [
-		"Private"
-		"changes take care of divide by zero error"
-	| norm fBest fWorst answer|
+	"Private"
+
+	"changes take care of divide by zero error"
+
+	| norm fBest fWorst answer |
 	fBest := bestPoints first value.
 	fWorst := bestPoints last value.
-	norm :=fBest - fWorst.
-	norm =0 ifTrue: [
-	norm:= 1 / bestPoints size.
-	answer := bestPoints collect: [:each| norm] ] ifFalse: [
-		norm := 1 / norm.
-		answer := bestPoints collect: [ :each | (each value - fWorst) * norm] ].
-	norm := 1 / ( answer inject: 0 into: [ :sum :each | each + sum]).
+	norm := fBest - fWorst.
+	answer := norm = 0
+		          ifTrue: [
+			          norm := 1 / bestPoints size.
+			          bestPoints collect: [ :each | norm ] ]
+		          ifFalse: [
+			          norm := 1 / norm.
+			          bestPoints collect: [ :each | each value - fWorst * norm ] ].
+	norm := 1 / (answer inject: 0 into: [ :sum :each | each + sum ]).
 	fBest := 0.
-	^answer collect: [ :each | fBest := each * norm + fBest. fBest]
-
-
+	^ answer collect: [ :each |
+		  fBest := each * norm + fBest.
+		  fBest ]
 ]

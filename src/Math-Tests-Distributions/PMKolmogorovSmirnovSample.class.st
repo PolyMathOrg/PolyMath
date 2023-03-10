@@ -13,19 +13,19 @@ Class {
 
 { #category : #accessing }
 PMKolmogorovSmirnovSample >> data: aCollection [
-^self subclassResponsibility 
+^self subclassResponsibility
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnovSample >> ksStatistic [
 "the kolmogorov-smirnov statistic D"
-^self subclassResponsibility 
+^self subclassResponsibility
 ]
 
 { #category : #accessing }
 PMKolmogorovSmirnovSample >> pValue [
 "the probability of getting a ksStatistic <= the actual one"
-^self subclassResponsibility 
+^self subclassResponsibility
 ]
 
 { #category : #printing }
@@ -39,12 +39,10 @@ PMKolmogorovSmirnovSample >> printOn: aStream [
 
 { #category : #accessing }
 PMKolmogorovSmirnovSample >> rejectEqualityHypothesisWithAlpha: aFloat [
-^self pValue > (1-aFloat) 
-
+^self pValue > (1-aFloat)
 ]
 
 { #category : #private }
 PMKolmogorovSmirnovSample >> testDataComplete [
-(data isNil or:[compareWith isNil ]) ifTrue: [ self error:'data not completely set' ].
-
+(data isNil or:[compareWith isNil ]) ifTrue: [ self error:'data not completely set' ]
 ]

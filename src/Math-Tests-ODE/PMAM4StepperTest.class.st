@@ -38,7 +38,7 @@ PMAM4StepperTest >> testSimpleSystem2 [
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo:  4.5912).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  4.9614).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  2.6231).
-       self should: ((solver solve: system startState: 0.1 startTime: 2 endTime: 4.1) closeTo:  0.2908).
+       self should: ((solver solve: system startState: 0.1 startTime: 2 endTime: 4.1) closeTo:  0.2908)
 ]
 
 { #category : #'tests-stepping' }

@@ -15,9 +15,9 @@ Class {
 
 { #category : #'instance creation' }
 PMStateTime class >> state: aState time: aTime [
-	^ self new 
+	^ self new
 		state: aState;
-		time: aTime.
+		time: aTime
 ]
 
 { #category : #printing }
@@ -25,8 +25,7 @@ PMStateTime >> printOn: aStream [
 	"used for inspector. Using the point analogy"
 	state printOn: aStream.
 	aStream nextPut: $@.
-	time printOn: aStream.
-
+	time printOn: aStream
 ]
 
 { #category : #accessing }

@@ -21,8 +21,8 @@ Class {
 }
 
 { #category : #'instance creation' }
-PMStepper class >> onSystem: aSystem [ 
-	^ self new system: aSystem. 
+PMStepper class >> onSystem: aSystem [
+	^ self new system: aSystem.
 ]
 
 { #category : #accessing }
@@ -34,7 +34,7 @@ PMStepper class >> order [
 { #category : #stepping }
 PMStepper >> doStep: aState time: t stepSize: stepSize [
 	"This method should take one step from inState at time t of size dt, then answer it"
-	self subclassResponsibility 
+	self subclassResponsibility
 ]
 
 { #category : #accessing }
@@ -49,7 +49,7 @@ PMStepper >> stepSize [
 
 { #category : #accessing }
 PMStepper >> stepSize: timeStep [
-	dt := timeStep.
+	dt := timeStep
 ]
 
 { #category : #accessing }
@@ -59,5 +59,5 @@ PMStepper >> system [
 
 { #category : #accessing }
 PMStepper >> system: aSystem [
-	system := aSystem.
+	system := aSystem
 ]

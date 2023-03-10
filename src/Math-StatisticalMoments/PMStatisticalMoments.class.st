@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'moments'
 	],
-	#category : 'Math-StatisticalMoments'
+	#category : #'Math-StatisticalMoments'
 }
 
 { #category : #creation }
@@ -40,11 +40,11 @@ PMStatisticalMoments >> accumulate: aNumber [
 	cTerm := correction.
 	n1 := n / n1.
 	n := n negated.
-	3 to: moments size do: [ :k | 
+	3 to: moments size do: [ :k |
 		cTerm := cTerm * correction.
 		nTerm := n * nTerm.
 		term := cTerm * (1 + nTerm).
-		k to: 3 by: -1 do: [ :l | 
+		k to: 3 by: -1 do: [ :l |
 			pascal at: l put: (pascal at: l - 1) + (pascal at: l).
 			term := (pascal at: l) * (oldSums at: l) + term.
 			oldSums at: l put: (oldSums at: l) * correction ].
@@ -90,15 +90,15 @@ PMStatisticalMoments >> fConfidenceLevel: aStatisticalMomentsOrHistogram [
 	fValue := self variance/ aStatisticalMomentsOrHistogram variance.
 	^fValue < 1
 		ifTrue: [ (PMFisherSnedecorDistribution degreeOfFreedom: aStatisticalMomentsOrHistogram count
-						degreeOfFreedom: self count) 
+						degreeOfFreedom: self count)
 										confidenceLevel: fValue reciprocal]
 		ifFalse:[ (PMFisherSnedecorDistribution degreeOfFreedom: self count
-						degreeOfFreedom: aStatisticalMomentsOrHistogram count) 
+						degreeOfFreedom: aStatisticalMomentsOrHistogram count)
 										confidenceLevel: fValue]
 ]
 
 { #category : #initialization }
-PMStatisticalMoments >> initialize: anInteger [ 
+PMStatisticalMoments >> initialize: anInteger [
 	"Private - ( anInteger - 1) is the degree of the highest accumulated central moment."
 
 	moments := Array new: anInteger.
@@ -114,7 +114,7 @@ PMStatisticalMoments >> kurtosis [
 	n < 4 ifTrue: [^nil].
 	n23 := (n - 2) * (n - 3).
 	n1 := n - 1.
-	^((moments at: 5) * n squared * (n + 1) / (self variance squared * n1) 
+	^((moments at: 5) * n squared * (n + 1) / (self variance squared * n1)
 		- (n1 squared * 3)) / n23
 ]
 

@@ -53,13 +53,13 @@ PMGammaDistribution >> changeParametersBy: aVector [
 	beta := beta + ( aVector at: 2).
 	self computeNorm.
 	incompleteGammaFunction := nil.
-	randomCoefficients := nil.
+	randomCoefficients := nil
 ]
 
 { #category : #initialization }
 PMGammaDistribution >> computeNorm [
 	"Private - Compute the norm of the receiver because its parameters have changed."
-	norm := beta ln * alpha + alpha logGamma.
+	norm := beta ln * alpha + alpha logGamma
 ]
 
 { #category : #information }
@@ -73,10 +73,8 @@ PMGammaDistribution >> distributionValue: aNumber [
 PMGammaDistribution >> incompleteGammaFunction [
 	"Private"
 
-	incompleteGammaFunction isNil 
-		ifTrue: 
-			[incompleteGammaFunction := PMIncompleteGammaFunction shape: alpha].
-	^incompleteGammaFunction
+	incompleteGammaFunction ifNil: [ incompleteGammaFunction := PMIncompleteGammaFunction shape: alpha ].
+	^ incompleteGammaFunction
 ]
 
 { #category : #initialization }
@@ -131,17 +129,17 @@ PMGammaDistribution >> random [
 { #category : #information }
 PMGammaDistribution >> randomCoefficientsForLargeAlpha [
 	"Private"
-	randomCoefficients isNil
-		ifTrue: [ randomCoefficients := self initializeRandomCoefficientsForLargeAlpha].
-	^randomCoefficients
+
+	randomCoefficients ifNil: [ randomCoefficients := self initializeRandomCoefficientsForLargeAlpha ].
+	^ randomCoefficients
 ]
 
 { #category : #information }
 PMGammaDistribution >> randomCoefficientsForSmallAlpha [
 	"Private"
-	randomCoefficients isNil
-		ifTrue: [ randomCoefficients := self initializeRandomCoefficientsForSmallAlpha].
-	^randomCoefficients
+
+	randomCoefficients ifNil: [ randomCoefficients := self initializeRandomCoefficientsForSmallAlpha ].
+	^ randomCoefficients
 ]
 
 { #category : #information }
@@ -159,7 +157,7 @@ PMGammaDistribution >> randomForLargeAlpha [
 	w := ( c at: 3) * v + ( c at: 2) - y.
 	( c at: 4) + w >= ( 4.5 * z) ifTrue: [ ^y].
 	z ln <= w ifTrue: [ ^y].
-								].
+								]
 ]
 
 { #category : #information }
@@ -167,16 +165,16 @@ PMGammaDistribution >> randomForSmallAlpha [
 	"Private - Generate a random number distributed according to the receiver when alpha < 1. "
 
 	[ true ]
-		whileTrue: [ 
+		whileTrue: [
 			| p |
 			p := flatGenerator floatValue * self randomCoefficientsForSmallAlpha.
 			p > 1
-				ifTrue: [ 
+				ifTrue: [
 					| y |
 					y := ((self randomCoefficientsForSmallAlpha - p) / alpha) ln negated.
 					flatGenerator floatValue <= (y raisedTo: alpha - 1)
 						ifTrue: [ ^ y ] ]
-				ifFalse: [ 
+				ifFalse: [
 					| y |
 					y := p raisedTo: 1 / alpha.
 					flatGenerator  floatValue <= y negated exp

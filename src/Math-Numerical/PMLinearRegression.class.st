@@ -24,11 +24,11 @@ PMLinearRegression class >> new [
 { #category : #transformation }
 PMLinearRegression >> add: aPoint [
 		"Accumulate aPoint into of the receiver."
-	self add: aPoint weight: 1.
+	self add: aPoint weight: 1
 ]
 
 { #category : #transformation }
-PMLinearRegression >> add: aPoint weight: aNumber [ 
+PMLinearRegression >> add: aPoint weight: aNumber [
 	"Accumulate aPoint into of the receiver."
 
 	sum1 := sum1 + aNumber.
@@ -70,16 +70,16 @@ PMLinearRegression >> computeResults [
 	xyNorm := sumXY * sum1 - (sumX * sumY).
 	slope := xyNorm / xNorm.
 	intercept := (sumXX * sumY - (sumXY * sumX)) / xNorm.
-	correlationCoefficient := xyNorm 
+	correlationCoefficient := xyNorm
 				/ (xNorm * (sumYY * sum1 - (sumY * sumY))) sqrt
 ]
 
 { #category : #information }
 PMLinearRegression >> correlationCoefficient [
-		"Answers the correlation coefficient of the receiver."
-	correlationCoefficient isNil
-		ifTrue: [ self computeResults].
-	^correlationCoefficient
+	"Answers the correlation coefficient of the receiver."
+
+	correlationCoefficient ifNil: [ self computeResults ].
+	^ correlationCoefficient
 ]
 
 { #category : #information }
@@ -108,14 +108,14 @@ PMLinearRegression >> errorOnSlope [
 
 { #category : #information }
 PMLinearRegression >> intercept [
-		"Answers the intercept of the receiver."
-	intercept isNil
-		ifTrue: [ self computeResults].
-	^intercept
+	"Answers the intercept of the receiver."
+
+	intercept ifNil: [ self computeResults ].
+	^ intercept
 ]
 
 { #category : #transformation }
-PMLinearRegression >> remove: aPoint [ 
+PMLinearRegression >> remove: aPoint [
 	"Remove aPoint which was accumulated into of the receiver."
 
 	sum1 := sum1 - 1.
@@ -150,10 +150,10 @@ PMLinearRegression >> resetResults [
 
 { #category : #information }
 PMLinearRegression >> slope [
-		"Answers the slope of the receiver."
-	slope isNil
-		ifTrue: [ self computeResults].
-	^slope
+	"Answers the slope of the receiver."
+
+	slope ifNil: [ self computeResults ].
+	^ slope
 ]
 
 { #category : #information }

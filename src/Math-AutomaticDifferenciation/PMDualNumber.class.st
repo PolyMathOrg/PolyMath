@@ -71,7 +71,7 @@ PMDualNumber >> < aDualNumber [
 	^ value < aDualNumber value
 ]
 
-{ #category : #testing }
+{ #category : #comparing }
 PMDualNumber >> = aMagnitude [
 	^ aMagnitude = value
 ]
@@ -79,7 +79,6 @@ PMDualNumber >> = aMagnitude [
 { #category : #arithmetic }
 PMDualNumber >> abs [
 ^value<0 ifTrue:[self negated]ifFalse:[self]
-
 ]
 
 { #category : #arithmetic }
@@ -106,15 +105,15 @@ PMDualNumber >> addDualNumber: aDualNumber [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> arcCos [
-	^ self class 
-		value: value arcCos 
+	^ self class
+		value: value arcCos
 		eps: eps negated /  (1 - value squared)sqrt
 ]
 
 { #category : #'mathematical functions' }
 PMDualNumber >> arcSin [
-	^ self class 
-		value: value arcSin 
+	^ self class
+		value: value arcSin
 		eps: eps /  (1 - value squared)sqrt
 ]
 
@@ -136,7 +135,7 @@ PMDualNumber >> asInteger [
 { #category : #comparing }
 PMDualNumber >> closeTo: aDualNumber [
 
-	^ (value closeTo: aDualNumber value) and: [ 
+	^ (value closeTo: aDualNumber value) and: [
 		  eps closeTo: aDualNumber eps ]
 ]
 
@@ -170,7 +169,7 @@ PMDualNumber >> equalsTo: aDualNumber [
 		deprecated: 'Use closeTo: instead'
 		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
 
-	^ self closeTo: aDualNumber 
+	^ self closeTo: aDualNumber
 ]
 
 { #category : #testing }
@@ -206,13 +205,8 @@ PMDualNumber >> isNaN [
 ]
 
 { #category : #testing }
-PMDualNumber >> isNumber [
-^true
-]
-
-{ #category : #testing }
 PMDualNumber >> isZero [
-	^value = 0 
+	^value = 0
 ]
 
 { #category : #'mathematical functions' }
@@ -320,8 +314,8 @@ PMDualNumber >> squared [
 
 { #category : #'mathematical functions' }
 PMDualNumber >> tan [
-	^ self class 
-		value: value tan 
+	^ self class
+		value: value tan
 		eps: eps / value cos squared
 ]
 

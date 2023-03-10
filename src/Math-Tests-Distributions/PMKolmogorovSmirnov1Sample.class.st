@@ -24,12 +24,12 @@ Class {
 
 { #category : #'instance creation' }
 PMKolmogorovSmirnov1Sample class >> compareData: aCollection withDistribution: aDistribution [
-^self new data: aCollection ;populationDistribution: aDistribution ;yourself 
+^self new data: aCollection ;populationDistribution: aDistribution ;yourself
 ]
 
 { #category : #'instance creation' }
 PMKolmogorovSmirnov1Sample class >> data: aCollection [
-^self new data: aCollection ;yourself 
+^self new data: aCollection ;yourself
 ]
 
 { #category : #accessing }
@@ -46,7 +46,7 @@ PMKolmogorovSmirnov1Sample >> ksStatistic [
 	| s d |
 	s := data size.
 	d := (1 to: s)
-		collect: [ :i | 
+		collect: [ :i |
 			| f |
 			f := compareWith value: (data at: i).
 			f - ((i - 1) / s) max: i / s - f ].

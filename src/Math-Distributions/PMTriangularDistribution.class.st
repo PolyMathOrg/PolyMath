@@ -24,7 +24,7 @@ PMTriangularDistribution class >> fromHistogram: aHistogram [
 	b = 0
 		ifTrue: [ ^nil].
 	c := aHistogram average.
-	^self new: c from: ( c - b) to: ( c + b).
+	^self new: c from: ( c - b) to: ( c + b)
 ]
 
 { #category : #creation }

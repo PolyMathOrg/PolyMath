@@ -38,7 +38,7 @@ PMBDF3StepperTest >> testSimpleSystem2 [
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo:  1.10147).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  2.10409).
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  0.54985).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  -0.71539).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  -0.71539)
 ]
 
 { #category : #'tests-stepping' }

@@ -17,7 +17,7 @@ PMVectorProjectedFunction >> direction [
 
 { #category : #initialization }
 PMVectorProjectedFunction >> direction: aVector [
-	index := aVector.
+	index := aVector
 ]
 
 { #category : #information }
@@ -27,7 +27,7 @@ PMVectorProjectedFunction >> origin [
 
 { #category : #initialization }
 PMVectorProjectedFunction >> origin: aVector [
-	argument := aVector.
+	argument := aVector
 ]
 
 { #category : #display }
@@ -35,5 +35,5 @@ PMVectorProjectedFunction >> printOn: aStream [
 	self origin printOn: aStream.
 	aStream nextPutAll: ' ('.
 	self direction printOn: aStream.
-	aStream nextPut: $).
+	aStream nextPut: $)
 ]

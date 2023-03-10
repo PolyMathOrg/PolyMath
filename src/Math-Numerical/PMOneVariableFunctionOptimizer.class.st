@@ -17,8 +17,8 @@ PMOneVariableFunctionOptimizer class >> defaultPrecision [
 PMOneVariableFunctionOptimizer class >> goldenSection [
 	"Private"
 
-	GoldenSection isNil ifTrue: [GoldenSection := (3 - 5 sqrt) / 2].
-	^GoldenSection
+	GoldenSection ifNil: [ GoldenSection := 3 - 5 sqrt / 2 ].
+	^ GoldenSection
 ]
 
 { #category : #operation }
@@ -72,7 +72,7 @@ PMOneVariableFunctionOptimizer >> indexOfOuterPoint [
 							ifTrue: [ ^n].
 						  superior := true.
 						].
-		].
+		]
 ]
 
 { #category : #information }

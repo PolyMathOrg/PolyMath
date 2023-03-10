@@ -11,11 +11,10 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
-{ #category : #'initialize-release' }
-PMAccuracyTest >> initialize [ 
+{ #category : #initialization }
+PMAccuracyTest >> initialize [
 	super initialize.
 	dp := PMAccuracyTestExample decimalPlaces
-
 ]
 
 { #category : #running }
@@ -28,7 +27,7 @@ PMAccuracyTest >> setUp [
 { #category : #running }
 PMAccuracyTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
-	super tearDown.
+	super tearDown
 ]
 
 { #category : #tests }
@@ -89,7 +88,7 @@ PMAccuracyTest >> testExtractFromResultsReturnsAllElementsWhenOnlyOneIsTrue [
 		extractFromResults: #('bla' 'blah')
 		which: 1
 		onlyOne: true.
-	
+
 	self assert: results equals: #('bla' 'blah').
 	argument := a testGetterAaa second.
 	self assert: argument equals: #(#(false) #(true))
@@ -168,16 +167,12 @@ PMAccuracyTest >> testFormatTypePostfixTree [
 
 { #category : #tests }
 PMAccuracyTest >> testGetters [
+
 	| r |
 	r := a testGetterAaa.
-	self
-		assert: r
-		equals: #(#(#(1 2) #(3 2.8888)) #(#(false) #(true)) #(#(5 3) #(4 4)) 2 2).
+	self assert: r equals: #( #( #( 1 2 ) #( 3 2.8888 ) ) #( #( false ) #( true ) ) #( #( 5 3 ) #( 4 4 ) ) 2 2 ).
 	r := a testGetterBbb.
-	self
-		assert: r
-		equals: #(#(#(1) #(3)) #(#('a') #('AG')) #(#(2) #(3)) 2 2).
-	#(#(#(1) #(3)) #(#(1) #(2)) #(#(2) #(3)) 2 2)
+	self assert: r equals: #( #( #( 1 ) #( 3 ) ) #( #( 'a' ) #( 'AG' ) ) #( #( 2 ) #( 3 ) ) 2 2 )
 ]
 
 { #category : #tests }

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'errorMatrix'
 	],
-	#category : 'Math-Polynomials'
+	#category : #'Math-Polynomials'
 }
 
 { #category : #information }
@@ -24,7 +24,7 @@ PMEstimatedPolynomial >> errorMatrix [
 { #category : #initialization }
 PMEstimatedPolynomial >> errorMatrix: aMatrix [
 		"Defines the error matrix of the receiver."
-	errorMatrix := aMatrix.
+	errorMatrix := aMatrix
 ]
 
 { #category : #information }

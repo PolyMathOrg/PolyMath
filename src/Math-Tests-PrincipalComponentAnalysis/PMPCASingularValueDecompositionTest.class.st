@@ -9,6 +9,8 @@ Class {
 
 { #category : #running }
 PMPCASingularValueDecompositionTest >> setUp [
+
+	super setUp.
 	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2
 ]
 
@@ -20,6 +22,6 @@ PMPCASingularValueDecompositionTest >> testPCAwithPCAandJacobiTransformationRetu
 	pca1 fit: m.
 	pca2 := PMPrincipalComponentAnalyserJacobiTransformation new componentsNumber: 2.
 	pca2 fit: m.
-	
+
 	self assert: pca1 transformMatrix abs closeTo: pca2 transformMatrix abs
 ]

@@ -58,7 +58,7 @@ PMLogNormalDistribution >> average [
 { #category : #transformation }
 PMLogNormalDistribution >> changeParametersBy: aVector [
 		"Modify the parameters of the receiver by aVector."
-	normalDistribution changeParametersBy: aVector.
+	normalDistribution changeParametersBy: aVector
 ]
 
 { #category : #information }

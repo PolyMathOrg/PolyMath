@@ -10,7 +10,7 @@ An ExtendedNumberParser is extending Squeak number syntax with these rules
 Class {
 	#name : #ExtendedNumberParser,
 	#superclass : #NumberParser,
-	#category : 'ExtendedNumberParser'
+	#category : #ExtendedNumberParser
 }
 
 { #category : #accessing }
@@ -21,7 +21,7 @@ ExtendedNumberParser >> allowPlusSign [
 { #category : #accessing }
 ExtendedNumberParser >> exponentLetters [
 	"Allow uppercase exponent letter."
-	
+
 	^'edqEDQ'
 ]
 
@@ -76,135 +76,131 @@ ExtendedNumberParser >> nextFraction [
 ExtendedNumberParser >> nextNumber [
 	"main method for reading a number.
 	This one can read Float Integer and ScaledDecimal"
-	
+
 	| numberOfTrailingZeroInIntegerPart |
 	base := 10.
 	neg := self peekSignIsMinus.
 	integerPart := self nextUnsignedIntegerOrNilBase: base.
-	integerPart ifNil: [(sourceStream peekFor: $.)
-		ifTrue: [
-			"Try .1 syntax"
-			^self readNumberWithoutIntegerPart]
-		ifFalse: [
-			"This is not a regular number beginning with a digit
+	integerPart ifNil: [
+		^ (sourceStream peekFor: $.)
+			  ifTrue: [ "Try .1 syntax" self readNumberWithoutIntegerPart ]
+			  ifFalse: [ "This is not a regular number beginning with a digit
 			It is time to check for exceptional condition NaN and Infinity"
-			^self readNamedFloatOrFail]].
+				  self readNamedFloatOrFail ] ].
 	numberOfTrailingZeroInIntegerPart := nDigits - lastNonZero.
-	(sourceStream peekFor: $r)
-		ifTrue: ["<base>r<integer>"
-			| oldNeg pos |
-			pos := sourceStream position.
-			(base := integerPart) < 2
-				ifTrue: ["A radix currently need to be greater than 1, ungobble the r and return the integer part"
-					sourceStream skip: -1.
-					^neg
-						ifTrue: [base negated]
-						ifFalse: [base]].
-			oldNeg := neg.
-			self peekSignIsMinus ifTrue: [neg := neg not].
-			integerPart := self nextUnsignedIntegerOrNilBase: base.
-			integerPart ifNil: [
-				(sourceStream peekFor: $.) ifTrue: [self readNumberWithoutIntegerPartOrNil ifNotNil: [:aNumber | ^aNumber]].
-				sourceStream position: pos.
-					^oldNeg
-						ifTrue: [base negated]
-						ifFalse: [base]].
-			numberOfTrailingZeroInIntegerPart := nDigits - lastNonZero].
+	(sourceStream peekFor: $r) ifTrue: [ "<base>r<integer>"
+		| oldNeg pos |
+		pos := sourceStream position.
+		(base := integerPart) < 2 ifTrue: [ "A radix currently need to be greater than 1, ungobble the r and return the integer part"
+			sourceStream skip: -1.
+			^ neg
+				  ifTrue: [ base negated ]
+				  ifFalse: [ base ] ].
+		oldNeg := neg.
+		self peekSignIsMinus ifTrue: [ neg := neg not ].
+		integerPart := self nextUnsignedIntegerOrNilBase: base.
+		integerPart ifNil: [
+			(sourceStream peekFor: $.) ifTrue: [ self readNumberWithoutIntegerPartOrNil ifNotNil: [ :aNumber | ^ aNumber ] ].
+			sourceStream position: pos.
+			^ oldNeg
+				  ifTrue: [ base negated ]
+				  ifFalse: [ base ] ].
+		numberOfTrailingZeroInIntegerPart := nDigits - lastNonZero ].
 	^ (sourceStream peekFor: $.)
-		ifTrue: [self readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart]
-		ifFalse: [self makeIntegerOrScaledInteger]
+		  ifTrue: [ self readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart ]
+		  ifFalse: [ self makeIntegerOrScaledInteger ]
 ]
 
 { #category : #'parsing-private' }
 ExtendedNumberParser >> readFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart [
 	"at this stage, sign integerPart and a fraction point have been read.
 	try and form a number with a fractionPart"
-	
+
 	| numberOfNonZeroFractionDigits numberOfTrailingZeroInFractionPart mantissa value |
 	fractionPart := self nextUnsignedIntegerOrNilBase: base.
-	fractionPart
-		ifNil: [
-			"No fractionPart found, but can be an extended 1.e2 syntax"
-			integerPart ifNil: ["No integerPart, nor fractionPart found, ungobble the fraction point and raise an error"
-					sourceStream skip: -1.
-					^self expected: 'a digit'].
-			fractionPart := 0.
-			numberOfNonZeroFractionDigits := 0.
-			numberOfTrailingZeroInFractionPart := 0]
-		ifNotNil: [.
-			numberOfNonZeroFractionDigits := lastNonZero.
-			numberOfTrailingZeroInFractionPart := nDigits - lastNonZero].
+	numberOfTrailingZeroInFractionPart := fractionPart
+		                                      ifNil: [ "No fractionPart found, but can be an extended 1.e2 syntax"
+			                                      integerPart ifNil: [ "No integerPart, nor fractionPart found, ungobble the fraction point and raise an error"
+				                                      sourceStream skip: -1.
+				                                      ^ self expected: 'a digit' ].
+			                                      fractionPart := 0.
+			                                      numberOfNonZeroFractionDigits := 0.
+			                                      0 ]
+		                                      ifNotNil: [
+			                                      numberOfNonZeroFractionDigits := lastNonZero.
+			                                      nDigits - lastNonZero ].
 	self readExponent.
-	integerPart ifNil: [integerPart := 0].
-	
-	fractionPart isZero
-		ifTrue: [mantissa := integerPart
-						// (base raisedToInteger: numberOfTrailingZeroInIntegerPart).
-			exponent := exponent + numberOfTrailingZeroInIntegerPart]
-		ifFalse: [mantissa := integerPart
-						* (base raisedToInteger: numberOfNonZeroFractionDigits) + (fractionPart // (base raisedToInteger: numberOfTrailingZeroInFractionPart)).
-			exponent := exponent - numberOfNonZeroFractionDigits].
+	integerPart ifNil: [ integerPart := 0 ].
+	exponent := fractionPart isZero
+		            ifTrue: [
+			            mantissa := integerPart // (base raisedToInteger: numberOfTrailingZeroInIntegerPart).
+			            exponent + numberOfTrailingZeroInIntegerPart ]
+		            ifFalse: [
+			            mantissa := integerPart * (base raisedToInteger: numberOfNonZeroFractionDigits)
+			                        + (fractionPart // (base raisedToInteger: numberOfTrailingZeroInFractionPart)).
+			            exponent - numberOfNonZeroFractionDigits ].
 
 	value := exponent positive
-		ifTrue: [mantissa * (base raisedToInteger: exponent)]
-		ifFalse: [mantissa / (base raisedToInteger: exponent negated)].
+		         ifTrue: [ mantissa * (base raisedToInteger: exponent) ]
+		         ifFalse: [ mantissa / (base raisedToInteger: exponent negated) ].
 	^ neg
-		ifTrue: [value negated]
-		ifFalse: [value]
+		  ifTrue: [ value negated ]
+		  ifFalse: [ value ]
 ]
 
 { #category : #'parsing-private' }
 ExtendedNumberParser >> readNumberWithFractionPartNumberOfTrailingZeroInIntegerPart: numberOfTrailingZeroInIntegerPart [
 	"at this stage, sign integerPart and a decimal point have been read.
 	try and form a number with a fractionPart"
-	
+
 	| numberOfNonZeroFractionDigits numberOfTrailingZeroInFractionPart mantissa value |
 	fractionPart := self nextUnsignedIntegerOrNilBase: base.
-	fractionPart
-		ifNil: [
-			"No fractionPart found, but can be a 1.e2 syntax"
-			fractionPart := 0.
-			numberOfNonZeroFractionDigits := 0.
-			numberOfTrailingZeroInFractionPart := 0]
-		ifNotNil: [
-			numberOfNonZeroFractionDigits := lastNonZero.
-			numberOfTrailingZeroInFractionPart := nDigits - lastNonZero].
-	self readExponent
-		ifFalse: [self readScale
-				ifTrue: [^self makeScaledDecimalWithNumberOfNonZeroFractionDigits: numberOfNonZeroFractionDigits
-					andNumberOfTrailingZeroInFractionPart: numberOfTrailingZeroInFractionPart]].
-
-	fractionPart isZero
-		ifTrue: [mantissa := integerPart
-						// (base raisedToInteger: numberOfTrailingZeroInIntegerPart).
-			exponent := exponent + numberOfTrailingZeroInIntegerPart]
-		ifFalse: [mantissa := integerPart
-						* (base raisedToInteger: numberOfNonZeroFractionDigits) + (fractionPart // (base raisedToInteger: numberOfTrailingZeroInFractionPart)).
-			exponent := exponent - numberOfNonZeroFractionDigits].
+	numberOfTrailingZeroInFractionPart := fractionPart
+		                                      ifNil: [ "No fractionPart found, but can be a 1.e2 syntax"
+			                                      fractionPart := 0.
+			                                      numberOfNonZeroFractionDigits := 0.
+			                                      0 ]
+		                                      ifNotNil: [
+			                                      numberOfNonZeroFractionDigits := lastNonZero.
+			                                      nDigits - lastNonZero ].
+	self readExponent ifFalse: [
+		self readScale ifTrue: [
+			^ self
+				  makeScaledDecimalWithNumberOfNonZeroFractionDigits: numberOfNonZeroFractionDigits
+				  andNumberOfTrailingZeroInFractionPart: numberOfTrailingZeroInFractionPart ] ].
+	exponent := fractionPart isZero
+		            ifTrue: [
+			            mantissa := integerPart // (base raisedToInteger: numberOfTrailingZeroInIntegerPart).
+			            exponent + numberOfTrailingZeroInIntegerPart ]
+		            ifFalse: [
+			            mantissa := integerPart * (base raisedToInteger: numberOfNonZeroFractionDigits)
+			                        + (fractionPart // (base raisedToInteger: numberOfTrailingZeroInFractionPart)).
+			            exponent - numberOfNonZeroFractionDigits ].
 
 	value := self makeFloatFromMantissa: mantissa exponent: exponent base: base.
 	^ neg
-		ifTrue: [value isZero
-				ifTrue: [Float negativeZero]
-				ifFalse: [value negated]]
-		ifFalse: [value]
+		  ifTrue: [
+			  value isZero
+				  ifTrue: [ Float negativeZero ]
+				  ifFalse: [ value negated ] ]
+		  ifFalse: [ value ]
 ]
 
 { #category : #'parsing-private' }
 ExtendedNumberParser >> readNumberWithoutIntegerPart [
 	"at this stage, sign followed by a decimal point have been read, but no intergerPart
 	try and form a number with a fractionPart"
-	
+
 	^self readNumberWithoutIntegerPartOrNil ifNil: [
 		"No integer part, no fractionPart, this does not look like a number..."
-		^self expected: 'a digit between 0 and 9'].
+		^self expected: 'a digit between 0 and 9']
 ]
 
 { #category : #'parsing-private' }
 ExtendedNumberParser >> readNumberWithoutIntegerPartOrNil [
 	"at this stage, sign followed by a decimal point have been read, but no intergerPart
 	try and form a number with a fractionPart"
-	
+
 	| numberOfNonZeroFractionDigits numberOfTrailingZeroInFractionPart mantissa value |
 	integerPart := 0.
 	fractionPart := self nextUnsignedIntegerOrNilBase: base.

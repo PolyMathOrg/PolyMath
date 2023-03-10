@@ -15,10 +15,12 @@ Class {
 
 { #category : #running }
 PMQuaternionTest >> setUp [
+
+	super setUp.
 	q1234 := 1 i: 2 j: 3 k: 4.
 	q1 := 1 asQuaternion.
-	q12 := (1 + 2 i) asQuaternion .
-	q123 := (1 + 2 i + 3 j).
+	q12 := (1 + 2 i) asQuaternion.
+	q123 := 1 + 2 i + 3 j
 ]
 
 { #category : #running }
@@ -64,7 +66,7 @@ PMQuaternionTest >> testCos [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 cos - ((q1234 real cos * q1234 unreal cos) - (q1234 real sin * q1234 unreal sin))) abs < eps.
-	self assert: ((1 + 2 i) cos - (1 + 2 j k) cos) abs < eps.
+	self assert: ((1 + 2 i) cos - (1 + 2 j k) cos) abs < eps
 ]
 
 { #category : #running }
@@ -93,14 +95,15 @@ PMQuaternionTest >> testDivision [
 
 { #category : #running }
 PMQuaternionTest >> testEquality [
+
 	self assert: q1234 equals: q1234 copy.
 	self assert: 1 + 2 i equals: 1 + 2 j k.
 	self assert: 1 + 2 j k equals: 1 + 2 i.
-	self deny: 1 + 2 j = (1 + 2 i).
-	self deny: q1234 = 1.
+	self deny: 1 + 2 j equals: 1 + 2 i.
+	self deny: q1234 equals: 1.
 	self assert: 1 k k equals: -1.
 	self assert: 1 equals: -1 k k.
-	self deny: q1234 = nil
+	self deny: q1234 isNil
 ]
 
 { #category : #running }
@@ -165,9 +168,9 @@ PMQuaternionTest >> testMultiplicationByComplexNumberIsNonCommutative [
 	| quaternion complexNumber |
 	quaternion := 2 + 3 i + 4 j + 5 k.
 	complexNumber := 1 - 1 i.
-	
+
 	self assert: (quaternion * complexNumber) equals: 5 + 1 i - 1 j + 9 k.
-	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k.
+	self assert: (complexNumber * quaternion) equals: 5 + 1 i + 9 j + 1 k
 ]
 
 { #category : #'testing - arithmetic' }
@@ -185,7 +188,7 @@ PMQuaternionTest >> testMultiplicationByIntegersIsCommutative [
 	quaternion := 1 + 2 i + 3 j + 4 k.
 
 	self assert: quaternion * 5 equals: 5 + 10 i + 15 j + 20 k.
-	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k.
+	self assert: 5 * quaternion equals: 5 + 10 i + 15 j + 20 k
 ]
 
 { #category : #'testing - arithmetic' }
@@ -203,7 +206,7 @@ PMQuaternionTest >> testMultiplicationByTheBasisElements [
 
 	| quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
-	
+
 	self assert: quaternion * 1 i equals: (-2 + 1 i + 4 j - 3 k).
 	self assert: quaternion * 1 j equals: (-3 - 4 i + 1 j + 2 k).
 	self assert: quaternion * 1 k equals: (-4 + 3 i - 2 j + 1 k)
@@ -222,15 +225,15 @@ PMQuaternionTest >> testMultiplicationByVectorIsCommutative [
 
 	"This uses adaptToQuaternion:andSend:"
 	self assert: (quaternion * vec at: 1) equals: 1 + 2 i + 3 j + 4 k.
-	self assert: (quaternion * vec at: 2) equals: 2 + 4 i + 6 j + 8 k.
+	self assert: (quaternion * vec at: 2) equals: 2 + 4 i + 6 j + 8 k
 ]
 
 { #category : #'testing - arithmetic' }
 PMQuaternionTest >> testMultiplicationByZero [
 	| quaternion |
 	quaternion := 1 + 2 i + 3 j + 4 k.
-	
-	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k.
+
+	self assert: quaternion * 0 equals: 0 + 0 i + 0 j + 0 k
 ]
 
 { #category : #'testing - arithmetic' }
@@ -254,7 +257,7 @@ PMQuaternionTest >> testMultiplicationOfBasisElements [
 	self assert: 1 k i equals: 1 j.
 	self assert: 1 j i equals: -1 k.
 	self assert: 1 k j equals: -1 i.
-	self assert: 1 i k equals: -1 j.
+	self assert: 1 i k equals: -1 j
 ]
 
 { #category : #running }
@@ -283,16 +286,16 @@ PMQuaternionTest >> testNaturalLogOfQuaternion [
 { #category : #running }
 PMQuaternionTest >> testNaturalLogOfQuaternionWithNoVectorPart [
 	| expected naturalLogOfQuaternion quaternionWithNoVector |
-	
+
 	quaternionWithNoVector := 5 + 0 i + 0 j + 0 k.
-	
+
 	naturalLogOfQuaternion := quaternionWithNoVector ln.
-	
+
 	expected := 5 ln + 0 i + 0 j + 0 k.
 	self assert: naturalLogOfQuaternion qr equals: expected qr.
 	self assert: naturalLogOfQuaternion qi equals: 0.
 	self assert: naturalLogOfQuaternion qj equals: 0.
-	self assert: naturalLogOfQuaternion qk equals: 0.
+	self assert: naturalLogOfQuaternion qk equals: 0
 ]
 
 { #category : #tests }
@@ -335,7 +338,7 @@ PMQuaternionTest >> testPrintOn [
 PMQuaternionTest >> testRaisedTo [
 	| eps |
 	eps := 1.0e-6.
-	self assert: ((q1234 raisedTo: 3) - (q1234 ln * 3) exp) abs < eps.
+	self assert: ((q1234 raisedTo: 3) - (q1234 ln * 3) exp) abs < eps
 ]
 
 { #category : #running }
@@ -367,7 +370,7 @@ PMQuaternionTest >> testSin [
 	| eps |
 	eps := 1.0e-6.
 	self assert: (q1234 sin - ((q1234 real sin * q1234 unreal cos) + (q1234 real cos * q1234 unreal sin))) abs < eps.
-	self assert: ((1 + 2 i) sin - (1 + 2 j k) sin) abs < eps.
+	self assert: ((1 + 2 i) sin - (1 + 2 j k) sin) abs < eps
 ]
 
 { #category : #running }
@@ -396,6 +399,7 @@ PMQuaternionTest >> testSubtractPolynomial [
 
 { #category : #running }
 PMQuaternionTest >> testSum [
+
 	self assert: 1 + 2 i + 3 j + 4 k equals: q1234.
 	self assert: 1 + 2 i + (3 + 4 i) j equals: q1234.
 	self assert: q1234 + 5 equals: (6 i: 2 j: 3 k: 4).
@@ -404,7 +408,7 @@ PMQuaternionTest >> testSum [
 	self assert: 9 - q1234 equals: (8 i: -2 j: -3 k: -4).
 	self assert: q1234 + q1234 conjugated equals: q1234 real * 2.
 	self assert: q1234 + q1234 negated equals: 0.
-	self assert: q1234 isZero not.
+	self deny: q1234 isZero.
 	self assert: (q1234 negated + q1234) isZero
 ]
 
@@ -433,5 +437,5 @@ PMQuaternionTest >> testUnreal [
 { #category : #running }
 PMQuaternionTest >> testZero [
 	self assert: PMQuaternion zero isZero.
-	self assert: PMQuaternion zero abs isZero.
+	self assert: PMQuaternion zero abs isZero
 ]

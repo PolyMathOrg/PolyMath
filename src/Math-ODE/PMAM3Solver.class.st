@@ -8,54 +8,54 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver class >> firstStepperClass [
 	^ PMTrapezoidStepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMAM3Solver class >> stepperClass [
 	^ PMAM3Stepper
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> firstStepStartTime: t [
-	state := stepper doStep: state time: t stepSize: self dt.	
+	state := stepper doStep: state time: t stepSize: self dt.
 	self announceState: state time: t + self dt.
 	lastTime := t + self dt.
 	^ state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> firstStepperClass [
 	^ self class firstStepperClass
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Solver >> lastStepPrevState: prevState endTime: endTime [
 	"catch partial or full step at end"
 	(lastTime closeTo: endTime )
 	ifFalse:
-		[state := stepper 
-			lastStep: state 
+		[state := stepper
+			lastStep: state
 			prevState: prevState
-			time: lastTime 
+			time: lastTime
 			deltaT: dt
 			stepSize: endTime - lastTime.
-			self announceState: state time: endTime].			
+			self announceState: state time: endTime].
 	^ state
 ]
 
 { #category : #'as yet unclassified' }
 PMAM3Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: endTime [
 	|previousState|
-	previousState := prevState.	
+	previousState := prevState.
 	"don't go to end time to avoid overrunning"
 	(initialTime to: endTime - self dt  by: self dt) do:
 		[:time | | tempState|
 			tempState := state.
 			state := stepper
-				doStep: state 
+				doStep: state
 				prevState: previousState
 				time:  time -self dt
 				stepSize: self dt.
@@ -63,11 +63,11 @@ PMAM3Solver >> mainStepsPrevState: prevState startTime: initialTime endTime: end
 			"announce step results"
 			self announceState: state time: time + self dt.
 			lastTime := time + self dt].
-			
+
 	^ Array with: previousState with: state
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #solving }
 PMAM3Solver >> solve: aSystem startState: initialState startTime: initialTime endTime: endTime [
 |prevState statesPair|
 	self system: aSystem.
@@ -77,28 +77,28 @@ PMAM3Solver >> solve: aSystem startState: initialState startTime: initialTime en
 
 	"announce initial conditions"
 	self announceState: state time: initialTime.
-	
+
 (lastTime+dt > endTime and: lastTime < endTime)
 	ifTrue:[
 		state :=self lastStepState: state endTime: endTime].
-	
-	lastTime+dt<= endTime 
-	ifTrue:[	
+
+	lastTime+dt<= endTime
+	ifTrue:[
 	prevState:= initialState.
 	state := self firstStepStartTime: initialTime.
 	"announce first step"
 	self announceState: state time: initialTime + dt.
-	
+
 	self stepper: ((self stepperClass) onSystem: self system).
-	
+
 	"step until the end"
 	statesPair := self mainStepsPrevState: prevState startTime: lastTime endTime: endTime.
-	
-	
+
+
 	"sanity check"
-	self assert: [(lastTime between: initialTime and: endTime) 
+	self assert: [(lastTime between: initialTime and: endTime)
 				or: [lastTime between: endTime and: initialTime]].
-	
+
 	"take another step if needed"
 	prevState:= statesPair first.
 	state := self lastStepPrevState: prevState endTime: endTime.].

@@ -14,7 +14,7 @@ PMMinimizingPoint class >> new: aVector value: aNumber [
 ]
 
 { #category : #creation }
-PMMinimizingPoint class >> vector: aVector function: aFunction [ 
+PMMinimizingPoint class >> vector: aVector function: aFunction [
 	^self new: aVector value: (aFunction value: aVector)
 ]
 
@@ -41,7 +41,7 @@ PMMinimizingPoint >> position [
 ]
 
 { #category : #display }
-PMMinimizingPoint >> printOn: aStream [ 
+PMMinimizingPoint >> printOn: aStream [
 	position printOn: aStream.
 	aStream
 		nextPut: $:;
@@ -56,10 +56,10 @@ PMMinimizingPoint >> value [
 
 { #category : #initialization }
 PMMinimizingPoint >> value: aNumber [
-	value := aNumber.
+	value := aNumber
 ]
 
 { #category : #initialization }
-PMMinimizingPoint >> vector: aVector [ 
+PMMinimizingPoint >> vector: aVector [
 	position := aVector
 ]

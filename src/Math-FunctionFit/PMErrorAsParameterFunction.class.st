@@ -4,12 +4,12 @@ ErrorAsParameterFunction is used internally by ErrorMinimizer. it is essentially
 Class {
 	#name : #PMErrorAsParameterFunction,
 	#superclass : #PMSimpleParameterFunction,
-	#category : 'Math-FunctionFit'
+	#category : #'Math-FunctionFit'
 }
 
 { #category : #accessing }
 PMErrorAsParameterFunction >> changeParametersBy: aVector [
-varArray :=varArray + aVector .
+varArray :=varArray + aVector
 ]
 
 { #category : #initialization }
@@ -24,7 +24,7 @@ size :=size +steps //2.
 size := size min: steps.
 steps :=d size //size -1.
 steps <usedVars ifTrue:[self error: 'dataSize too small for the parameterSize'].
-function := (0 to: steps)collect: [:i| 
+function := (0 to: steps)collect: [:i|
 	f:=anErrorOfParameterFunction copy.
 	f data: (d copyFrom:( i *size+1) to:( i=steps ifTrue: [d size] ifFalse: [(i+1) *size])).
 	f]
@@ -39,33 +39,33 @@ PMErrorAsParameterFunction >> maxFunction [
 
 { #category : #accessing }
 PMErrorAsParameterFunction >> parameters [
-^varArray 
+^varArray
 ]
 
 { #category : #accessing }
 PMErrorAsParameterFunction >> parameters: indexableCollection [
-^varArray :=indexableCollection copy.
-
+^varArray :=indexableCollection copy
 ]
 
 { #category : #printing }
 PMErrorAsParameterFunction >> printOn: aStream [
+
 	aStream
 		nextPutAll: 'an ';
 		nextPutAll: self class name;
 		nextPutAll: '( function: ';
-		print: (function ifNil: [ nil ] ifNotNil: [ :f | f first ]);
+		print: (function ifNotNil: [ :f | f first ]);
 		nextPutAll: ' maxFunction: ';
 		print: self maxFunction.
-	varArray
-		ifNotNil: [ aStream
-				nextPutAll: ' parameters: ';
-				print: self parameters ].
+	varArray ifNotNil: [
+		aStream
+			nextPutAll: ' parameters: ';
+			print: self parameters ].
 	aStream nextPut: $)
 ]
 
 { #category : #evaluating }
 PMErrorAsParameterFunction >> value: aNumber [
 "aNumber chooses the data partition. it can run from 1 to maxFunction."
-^(function at: aNumber) value: varArray 
+^(function at: aNumber) value: varArray
 ]

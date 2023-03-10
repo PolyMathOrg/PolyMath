@@ -13,17 +13,17 @@ Class {
 
 { #category : #information }
 PMCauchyDistribution class >> distributionName [
-	
+
 	^'Cauchy distribution'
 ]
 
 { #category : #creation }
-PMCauchyDistribution class >> fromHistogram: aHistogram [ 
+PMCauchyDistribution class >> fromHistogram: aHistogram [
 	"Create an instance of the receiver with parameters estimated from the given histogram using best guesses. This method can be used to find the initial values for a fit."
 
 	^self shape: aHistogram average
-		scale: 4 * aHistogram variance 
-				/ (Float pi * (aHistogram maximum squared + aHistogram minimum squared)) 
+		scale: 4 * aHistogram variance
+				/ (Float pi * (aHistogram maximum squared + aHistogram minimum squared))
 						sqrt
 ]
 
@@ -35,7 +35,7 @@ PMCauchyDistribution class >> new [
 ]
 
 { #category : #creation }
-PMCauchyDistribution class >> shape: aNumber1 scale: aNumber2 [ 
+PMCauchyDistribution class >> shape: aNumber1 scale: aNumber2 [
 	"Create an instance of the receiver with given center and scale parameters."
 
 	^super new initialize: aNumber1 scale: aNumber2
@@ -51,7 +51,7 @@ PMCauchyDistribution >> average [
 PMCauchyDistribution >> changeParametersBy: aVector [
 	"Modify the parameters of the receiver by aVector."
 	mu := mu + ( aVector at: 1).
-	beta := beta + ( aVector at: 2).
+	beta := beta + ( aVector at: 2)
 ]
 
 { #category : #information }
@@ -77,7 +77,7 @@ PMCauchyDistribution >> kurtosis [
 
 { #category : #information }
 PMCauchyDistribution >> parameters [
-		
+
 	^Array with: mu with: beta
 ]
 
@@ -102,7 +102,7 @@ PMCauchyDistribution >> skewness [
 PMCauchyDistribution >> standardDeviation [
 	"The standard deviation of the receiver is not defined."
 
-self shouldNotImplement 
+self shouldNotImplement
 ]
 
 { #category : #information }
@@ -126,5 +126,5 @@ PMCauchyDistribution >> valueAndGradient: aNumber [
 PMCauchyDistribution >> variance [
 	"The variance of the receiver is not defined."
 
-	self shouldNotImplement 
+	self shouldNotImplement
 ]

@@ -28,7 +28,7 @@ Class {
 		'mantissa',
 		'biasedExponent'
 	],
-	#category : 'Math-ArbitraryPrecisionFloat'
+	#category : #'Math-ArbitraryPrecisionFloat'
 }
 
 { #category : #examples }
@@ -45,7 +45,7 @@ c := a timesTwoPower: -1.
 k := 1.
 oldpi := Float pi.
 oldExpo := 2.
-	
+
 [| am gm a2 |
 	am := a + b timesTwoPower: -1.
 	gm := (a * b) sqrt.
@@ -55,8 +55,8 @@ oldExpo := 2.
 	c inPlaceSubtract: (a2 - b squared timesTwoPower: k).
 	pi := (a2 timesTwoPower: 1) / c.
 	expo := (oldpi - pi) exponent.
-	expo isZero or: [expo > oldExpo or: [expo < (-1 - nBits)]]] 
-			whileFalse: 
+	expo isZero or: [expo > oldExpo or: [expo < (-1 - nBits)]]]
+			whileFalse:
 				[oldpi := pi.
 				oldExpo := expo.
 				k := k + 1].
@@ -67,8 +67,8 @@ str contents
 ]
 
 { #category : #'instance creation' }
-PMArbitraryPrecisionFloat class >> mantissa: mantisInteger exponent: expoInteger nBits: nbitsInteger [ 
-	^self basicNew 
+PMArbitraryPrecisionFloat class >> mantissa: mantisInteger exponent: expoInteger nBits: nbitsInteger [
+	^self basicNew
 		mantissa: mantisInteger
 		exponent: expoInteger
 		nBits: nbitsInteger
@@ -88,7 +88,7 @@ PMArbitraryPrecisionFloat class >> readFrom: aStream numBits: n [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> * aNumber [ 
+PMArbitraryPrecisionFloat >> * aNumber [
 	| n |
 	aNumber class = self class
 		ifFalse: [^ aNumber adaptToArbitraryPrecisionFloat: self andSend: #*].
@@ -98,7 +98,7 @@ PMArbitraryPrecisionFloat >> * aNumber [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> + aNumber [ 
+PMArbitraryPrecisionFloat >> + aNumber [
 	| n |
 	aNumber class = self class
 		ifFalse: [^ aNumber adaptToArbitraryPrecisionFloat: self andSend: #+].
@@ -108,7 +108,7 @@ PMArbitraryPrecisionFloat >> + aNumber [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> - aNumber [ 
+PMArbitraryPrecisionFloat >> - aNumber [
 	| n |
 	aNumber class = self class
 		ifFalse: [^ aNumber adaptToArbitraryPrecisionFloat: self andSend: #-].
@@ -118,7 +118,7 @@ PMArbitraryPrecisionFloat >> - aNumber [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> / aNumber [ 
+PMArbitraryPrecisionFloat >> / aNumber [
 	| n |
 	aNumber class = self class
 		ifFalse: [^ aNumber adaptToArbitraryPrecisionFloat: self andSend: #/].
@@ -129,39 +129,44 @@ PMArbitraryPrecisionFloat >> / aNumber [
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> < aNumber [
-	aNumber class = self class ifTrue:
-		[self negative == aNumber negative
-			ifTrue: [self negative
-						ifTrue: [^ (self digitCompare: aNumber) > 0]
-						ifFalse: [^ (self digitCompare: aNumber) < 0]]
-			ifFalse: [^ self negative]].
+
+	aNumber class = self class ifTrue: [
+		^ self negative == aNumber negative
+			  ifTrue: [
+				  self negative
+					  ifTrue: [ (self digitCompare: aNumber) > 0 ]
+					  ifFalse: [ (self digitCompare: aNumber) < 0 ] ]
+			  ifFalse: [ self negative ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #<
 ]
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> = aNumber [
-	aNumber isNumber ifFalse: [^ false].
-	aNumber class = self class ifTrue:
-		[aNumber negative == self negative
-			ifTrue: [^ (self digitCompare: aNumber) = 0]
-			ifFalse: [^ false]].
+
+	aNumber isNumber ifFalse: [ ^ false ].
+	aNumber class = self class ifTrue: [
+		^ aNumber negative == self negative
+			  ifTrue: [ (self digitCompare: aNumber) = 0 ]
+			  ifFalse: [ false ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #=
 ]
 
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> > aNumber [
-	aNumber class = self class ifTrue:
-		[self negative == aNumber negative
-			ifTrue: [self negative
-						ifTrue: [^(self digitCompare: aNumber) < 0]
-						ifFalse: [^(self digitCompare: aNumber) > 0]]
-			ifFalse: [^ aNumber negative]].
+
+	aNumber class = self class ifTrue: [
+		^ self negative == aNumber negative
+			  ifTrue: [
+				  self negative
+					  ifTrue: [ (self digitCompare: aNumber) < 0 ]
+					  ifFalse: [ (self digitCompare: aNumber) > 0 ] ]
+			  ifFalse: [ aNumber negative ] ].
 	^ aNumber adaptToArbitraryPrecisionFloat: self andCompare: #>
 ]
 
 { #category : #printing }
 PMArbitraryPrecisionFloat >> absPrintExactlyOn: aStream base: base [
-	"Print my value on a stream in the given base. 
+	"Print my value on a stream in the given base.
 	Based upon the algorithm outlined in:
 	Robert G. Burger and R. Kent Dybvig
 	Printing Floating Point Numbers Quickly and Accurately
@@ -178,69 +183,66 @@ PMArbitraryPrecisionFloat >> absPrintExactlyOn: aStream base: base [
 	exp := biasedExponent.
 	baseExpEstimate := (self exponent * fBase reciprocalLogBase2 - 1.0e-10) ceiling.
 	exp >= 0
-		ifTrue:
-			[significand isPowerOfTwo
-				ifTrue:
-					[r := significand bitShift: 2 + exp.
-					s := 4.
-					mPlus := 2 * (mMinus := 1 bitShift: exp)]
-				ifFalse:
-					[r := significand bitShift: 1 + exp.
-					s := 2.
-					mPlus := mMinus := 1 bitShift: exp]]
-		ifFalse:
-			[significand isPowerOfTwo
-				ifTrue:
-					[r := significand bitShift: 2.
+		ifTrue: [
+			mPlus := significand isPowerOfTwo
+				         ifTrue: [
+					         r := significand bitShift: 2 + exp.
+					         s := 4.
+					         2 * (mMinus := 1 bitShift: exp) ]
+				         ifFalse: [
+					         r := significand bitShift: 1 + exp.
+					         s := 2.
+					         mMinus := 1 bitShift: exp ] ]
+		ifFalse: [
+			significand isPowerOfTwo
+				ifTrue: [
+					r := significand bitShift: 2.
 					s := 1 bitShift: 2 - exp.
 					mPlus := 2.
-					mMinus := 1]
-				ifFalse:
-					[r := significand bitShift: 1.
+					mMinus := 1 ]
+				ifFalse: [
+					r := significand bitShift: 1.
 					s := 1 bitShift: 1 - exp.
-					mPlus := mMinus := 1]].
+					mPlus := mMinus := 1 ] ].
 	baseExpEstimate >= 0
-		ifTrue: [s := s * (base raisedToInteger: baseExpEstimate)]
-		ifFalse:
-			[scale := base raisedToInteger: baseExpEstimate negated.
+		ifTrue: [ s := s * (base raisedToInteger: baseExpEstimate) ]
+		ifFalse: [
+			scale := base raisedToInteger: baseExpEstimate negated.
 			r := r * scale.
 			mPlus := mPlus * scale.
-			mMinus := mMinus * scale].
-	((r + mPlus >= s) and: [roundingIncludesLimits or: [r + mPlus > s]])
-		ifTrue: [baseExpEstimate := baseExpEstimate + 1]
-		ifFalse:
-			[r := r * base.
+			mMinus := mMinus * scale ].
+	(r + mPlus >= s and: [ roundingIncludesLimits or: [ r + mPlus > s ] ])
+		ifTrue: [ baseExpEstimate := baseExpEstimate + 1 ]
+		ifFalse: [
+			r := r * base.
 			mPlus := mPlus * base.
-			mMinus := mMinus * base].
+			mMinus := mMinus * base ].
 	(fixedFormat := baseExpEstimate between: -3 and: 6)
-		ifTrue:
-			[decPointCount := baseExpEstimate.
-			baseExpEstimate <= 0
-				ifTrue: [aStream nextPutAll: ('0.000000' truncateTo: 2 - baseExpEstimate)]]
-		ifFalse:
-			[decPointCount := 1]. 
-	slowbit := 1 - s lowBit .
+		ifTrue: [
+			decPointCount := baseExpEstimate.
+			baseExpEstimate <= 0 ifTrue: [ aStream nextPutAll: ('0.000000' truncateTo: 2 - baseExpEstimate) ] ]
+		ifFalse: [ decPointCount := 1 ].
+	slowbit := 1 - s lowBit.
 	shead := s bitShift: slowbit.
-	[d := (r bitShift: slowbit) // shead.
+	[
+	d := (r bitShift: slowbit) // shead.
 	r := r - (d * s).
-	(tc1 := (r <= mMinus) and: [roundingIncludesLimits or: [r < mMinus]]) |
-	(tc2 := (r + mPlus >= s) and: [roundingIncludesLimits or: [r + mPlus > s]])] whileFalse:
-		[aStream nextPut: (Character digitValue: d).
-		r := r * base.
-		mPlus := mPlus * base.
-		mMinus := mMinus * base.
-		decPointCount := decPointCount - 1.
-		decPointCount = 0 ifTrue: [aStream nextPut: $.]].
-	tc2 ifTrue:
-		[(tc1 not or: [r * 2 >= s]) ifTrue: [d := d + 1]].
+	(tc1 := r <= mMinus and: [ roundingIncludesLimits or: [ r < mMinus ] ]) | (tc2 := r + mPlus >= s and: [ roundingIncludesLimits or: [ r + mPlus > s ] ]) ]
+		whileFalse: [
+			aStream nextPut: (Character digitValue: d).
+			r := r * base.
+			mPlus := mPlus * base.
+			mMinus := mMinus * base.
+			decPointCount := decPointCount - 1.
+			decPointCount = 0 ifTrue: [ aStream nextPut: $. ] ].
+	tc2 ifTrue: [ (tc1 not or: [ r * 2 >= s ]) ifTrue: [ d := d + 1 ] ].
 	aStream nextPut: (Character digitValue: d).
-	decPointCount > 0
-		ifTrue:
-		[decPointCount - 1 to: 1 by: -1 do: [:i | aStream nextPut: $0].
-		aStream nextPutAll: '.0'].
-	fixedFormat ifFalse:
-		[aStream nextPut: $e.
-		aStream nextPutAll: (baseExpEstimate - 1) printString]
+	decPointCount > 0 ifTrue: [
+		decPointCount - 1 to: 1 by: -1 do: [ :i | aStream nextPut: $0 ].
+		aStream nextPutAll: '.0' ].
+	fixedFormat ifFalse: [
+		aStream nextPut: $e.
+		aStream nextPutAll: (baseExpEstimate - 1) printString ]
 ]
 
 { #category : #converting }
@@ -258,7 +260,7 @@ PMArbitraryPrecisionFloat >> adaptToFloat: rcvr andSend: selector [
 ]
 
 { #category : #converting }
-PMArbitraryPrecisionFloat >> adaptToFraction: rcvr andCompare: selector [ 
+PMArbitraryPrecisionFloat >> adaptToFraction: rcvr andCompare: selector [
 	"If I am involved in comparison with a Fraction, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 
@@ -271,7 +273,7 @@ PMArbitraryPrecisionFloat >> adaptToFraction: rcvr andSend: selector [
 ]
 
 { #category : #converting }
-PMArbitraryPrecisionFloat >> adaptToInteger: rcvr andCompare: selector [ 
+PMArbitraryPrecisionFloat >> adaptToInteger: rcvr andCompare: selector [
 	"If I am involved in comparison with an Integer, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 
@@ -284,7 +286,7 @@ PMArbitraryPrecisionFloat >> adaptToInteger: rcvr andSend: selector [
 ]
 
 { #category : #converting }
-PMArbitraryPrecisionFloat >> adaptToScaledDecimal: rcvr andCompare: selector [ 
+PMArbitraryPrecisionFloat >> adaptToScaledDecimal: rcvr andCompare: selector [
 	"If I am involved in comparison with a ScaledDecimal, convert myself to a
 	Fraction. This way, no bit is lost and comparison is exact."
 
@@ -297,17 +299,17 @@ PMArbitraryPrecisionFloat >> adaptToScaledDecimal: rcvr andSend: selector [
 ]
 
 { #category : #'mathematical functions' }
-PMArbitraryPrecisionFloat >> agm: aNumber [ 
+PMArbitraryPrecisionFloat >> agm: aNumber [
 	"Answer the arithmetic geometric mean of self and aNumber"
 
 	| a b am gm |
 	a := self.
 	b := aNumber.
-	
+
 	[am := a + b timesTwoPower: -1.	"am is arithmetic mean"
 	gm := (a * b) sqrt.	"gm is geometric mean"
-	a = am or: [b = gm]] 
-			whileFalse: 
+	a = am or: [b = gm]]
+			whileFalse:
 				[a := am.
 				b := gm].
 	^am
@@ -320,18 +322,18 @@ PMArbitraryPrecisionFloat >> arCosh [
 	| arCosh x one y two |
 	x := self asArbitraryPrecisionFloatNumBits: 16 + nBits.
 	one := x one.
-	x < one ifTrue: [DomainError signal: 'cannot compute arCosh of a number less than 1'].
-	x = one ifTrue: [^self zero].
+	x < one ifTrue: [ DomainError signal: 'cannot compute arCosh of a number less than 1' ].
+	x = one ifTrue: [ ^ self zero ].
 	y := x - one.
-	y < one
-		ifTrue:
-			[y exponent * -4 >= nBits
-				ifTrue: [arCosh := (y powerExpansionArCoshp1Precision: y numBits) * (y timesTwoPower: 1) sqrt]
-				ifFalse:
-					[two := one timesTwoPower: 1.
-					arCosh := ((y * (y + two)) sqrt + y + one) ln]]
-		ifFalse: [arCosh := ((x squared - one) sqrt + x) ln].
-	^arCosh asArbitraryPrecisionFloatNumBits: nBits
+	arCosh := y < one
+		          ifTrue: [
+			          y exponent * -4 >= nBits
+				          ifTrue: [ (y powerExpansionArCoshp1Precision: y numBits) * (y timesTwoPower: 1) sqrt ]
+				          ifFalse: [
+					          two := one timesTwoPower: 1.
+					          ((y * (y + two)) sqrt + y + one) ln ] ]
+		          ifFalse: [ ((x squared - one) sqrt + x) ln ].
+	^ arCosh asArbitraryPrecisionFloatNumBits: nBits
 ]
 
 { #category : #'mathematical functions' }
@@ -339,17 +341,17 @@ PMArbitraryPrecisionFloat >> arSinh [
 	"Evaluate the area hyperbolic sine of the receiver."
 
 	| arSinh x one |
-	self isZero ifTrue: [^self].
-	self exponent negated > nBits ifTrue: [^self].
+	self isZero ifTrue: [ ^ self ].
+	self exponent negated > nBits ifTrue: [ ^ self ].
 	x := self asArbitraryPrecisionFloatNumBits: 16 + nBits.
 	x inPlaceAbs.
-	self exponent * -4 >= nBits
-		ifTrue: [arSinh := x powerExpansionArSinhPrecision: x numBits]
-		ifFalse:
-			[one := x one.
-			arSinh := ((x squared + one) sqrt + x) ln].
-	self negative ifTrue: [arSinh inPlaceNegated].
-	^arSinh asArbitraryPrecisionFloatNumBits: nBits
+	arSinh := self exponent * -4 >= nBits
+		          ifTrue: [ x powerExpansionArSinhPrecision: x numBits ]
+		          ifFalse: [
+			          one := x one.
+			          ((x squared + one) sqrt + x) ln ].
+	self negative ifTrue: [ arSinh inPlaceNegated ].
+	^ arSinh asArbitraryPrecisionFloatNumBits: nBits
 ]
 
 { #category : #'mathematical functions' }
@@ -456,7 +458,7 @@ PMArbitraryPrecisionFloat >> arcTan: denominator [
 ]
 
 { #category : #converting }
-PMArbitraryPrecisionFloat >> asArbitraryPrecisionFloatNumBits: n [ 
+PMArbitraryPrecisionFloat >> asArbitraryPrecisionFloatNumBits: n [
 	^ nBits = n
 		ifTrue: [self]
 		ifFalse: [self copy setPrecisionTo: n]
@@ -465,7 +467,7 @@ PMArbitraryPrecisionFloat >> asArbitraryPrecisionFloatNumBits: n [
 { #category : #converting }
 PMArbitraryPrecisionFloat >> asFloat [
 	"Convert to a IEEE 754 double precision floating point."
-	
+
 	nBits > Float precision ifTrue: [^(self copy setPrecisionTo: Float precision) asFloat].
 	^mantissa asFloat timesTwoPower: biasedExponent
 ]
@@ -482,8 +484,8 @@ PMArbitraryPrecisionFloat >> asMinimalDecimalFraction [
 	For example, 0.1 asMinimalDecimalFraction = (1/10)."
 
 	| significand exp baseExpEstimate r s mPlus mMinus scale roundingIncludesLimits d tc1 tc2 fixedFormat decPointCount shead slowbit numerator denominator |
-	self isZero ifTrue: [^0].
-	self negative ifTrue: [^self negated asMinimalDecimalFraction negated].
+	self isZero ifTrue: [ ^ 0 ].
+	self negative ifTrue: [ ^ self negated asMinimalDecimalFraction negated ].
 	self normalize.
 	significand := mantissa abs.
 	roundingIncludesLimits := significand even.
@@ -492,73 +494,69 @@ PMArbitraryPrecisionFloat >> asMinimalDecimalFraction [
 	numerator := 0.
 	denominator := 0.
 	exp >= 0
-		ifTrue:
-			[significand isPowerOfTwo
-				ifTrue:
-					[r := significand bitShift: 2 + exp.
-					s := 4.
-					mPlus := 2 * (mMinus := 1 bitShift: exp)]
-				ifFalse:
-					[r := significand bitShift: 1 + exp.
-					s := 2.
-					mPlus := mMinus := 1 bitShift: exp]]
-		ifFalse:
-			[significand isPowerOfTwo
-				ifTrue:
-					[r := significand bitShift: 2.
+		ifTrue: [
+			mPlus := significand isPowerOfTwo
+				         ifTrue: [
+					         r := significand bitShift: 2 + exp.
+					         s := 4.
+					         2 * (mMinus := 1 bitShift: exp) ]
+				         ifFalse: [
+					         r := significand bitShift: 1 + exp.
+					         s := 2.
+					         mMinus := 1 bitShift: exp ] ]
+		ifFalse: [
+			significand isPowerOfTwo
+				ifTrue: [
+					r := significand bitShift: 2.
 					s := 1 bitShift: 2 - exp.
 					mPlus := 2.
-					mMinus := 1]
-				ifFalse:
-					[r := significand bitShift: 1.
+					mMinus := 1 ]
+				ifFalse: [
+					r := significand bitShift: 1.
 					s := 1 bitShift: 1 - exp.
-					mPlus := mMinus := 1]].
+					mPlus := mMinus := 1 ] ].
 	baseExpEstimate >= 0
-		ifTrue: [s := s * (10 raisedToInteger: baseExpEstimate)]
-		ifFalse:
-			[scale := 10 raisedToInteger: baseExpEstimate negated.
+		ifTrue: [ s := s * (10 raisedToInteger: baseExpEstimate) ]
+		ifFalse: [
+			scale := 10 raisedToInteger: baseExpEstimate negated.
 			r := r * scale.
 			mPlus := mPlus * scale.
-			mMinus := mMinus * scale].
-	((r + mPlus >= s) and: [roundingIncludesLimits or: [r + mPlus > s]])
-		ifTrue: [baseExpEstimate := baseExpEstimate + 1]
-		ifFalse:
-			[r := r * 10.
+			mMinus := mMinus * scale ].
+	(r + mPlus >= s and: [ roundingIncludesLimits or: [ r + mPlus > s ] ])
+		ifTrue: [ baseExpEstimate := baseExpEstimate + 1 ]
+		ifFalse: [
+			r := r * 10.
 			mPlus := mPlus * 10.
-			mMinus := mMinus * 10].
+			mMinus := mMinus * 10 ].
 	(fixedFormat := baseExpEstimate between: -3 and: 6)
-		ifTrue:
-			[decPointCount := baseExpEstimate.
-			baseExpEstimate <= 0
-				ifTrue: [denominator := 10 raisedTo: baseExpEstimate negated]]
-		ifFalse:
-			[decPointCount := 1]. 
-	slowbit := 1 - s lowBit .
+		ifTrue: [
+			decPointCount := baseExpEstimate.
+			baseExpEstimate <= 0 ifTrue: [ denominator := 10 raisedTo: baseExpEstimate negated ] ]
+		ifFalse: [ decPointCount := 1 ].
+	slowbit := 1 - s lowBit.
 	shead := s bitShift: slowbit.
-	[d := (r bitShift: slowbit) // shead.
+	[
+	d := (r bitShift: slowbit) // shead.
 	r := r - (d * s).
-	(tc1 := (r <= mMinus) and: [roundingIncludesLimits or: [r < mMinus]]) |
-	(tc2 := (r + mPlus >= s) and: [roundingIncludesLimits or: [r + mPlus > s]])] whileFalse:
-		[numerator := 10 * numerator + d.
-		denominator := 10 * denominator.
-		r := r * 10.
-		mPlus := mPlus * 10.
-		mMinus := mMinus * 10.
-		decPointCount := decPointCount - 1.
-		decPointCount = 0 ifTrue: [denominator := 1]].
-	tc2 ifTrue:
-		[(tc1 not or: [r * 2 >= s]) ifTrue: [d := d + 1]].
+	(tc1 := r <= mMinus and: [ roundingIncludesLimits or: [ r < mMinus ] ]) | (tc2 := r + mPlus >= s and: [ roundingIncludesLimits or: [ r + mPlus > s ] ]) ]
+		whileFalse: [
+			numerator := 10 * numerator + d.
+			denominator := 10 * denominator.
+			r := r * 10.
+			mPlus := mPlus * 10.
+			mMinus := mMinus * 10.
+			decPointCount := decPointCount - 1.
+			decPointCount = 0 ifTrue: [ denominator := 1 ] ].
+	tc2 ifTrue: [ (tc1 not or: [ r * 2 >= s ]) ifTrue: [ d := d + 1 ] ].
 	numerator := 10 * numerator + d.
 	denominator := 10 * denominator.
-	decPointCount > 0
-		ifTrue:
-			[numerator := (10 raisedTo: decPointCount - 1) * numerator].
-			fixedFormat ifFalse:
-				[(baseExpEstimate - 1) > 0
-					ifTrue: [numerator := (10 raisedTo: baseExpEstimate - 1) * numerator]
-					ifFalse: [denominator := (10 raisedTo: 1 - baseExpEstimate) * (denominator max: 1)]].
-			denominator < 2 ifTrue: [^numerator].
-	^numerator / denominator
+	decPointCount > 0 ifTrue: [ numerator := (10 raisedTo: decPointCount - 1) * numerator ].
+	fixedFormat ifFalse: [
+		baseExpEstimate - 1 > 0
+			ifTrue: [ numerator := (10 raisedTo: baseExpEstimate - 1) * numerator ]
+			ifFalse: [ denominator := (10 raisedTo: 1 - baseExpEstimate) * (denominator max: 1) ] ].
+	denominator < 2 ifTrue: [ ^ numerator ].
+	^ numerator / denominator
 ]
 
 { #category : #converting }
@@ -567,7 +565,7 @@ PMArbitraryPrecisionFloat >> asTrueFraction [
 	"First remove lowBits from mantissa.
 	This can save a useless division and prevent gcd: cost"
 	self reduce.
-	
+
 	^ biasedExponent >= 0
 		ifTrue: [self shift: mantissa by: biasedExponent]
 		ifFalse: [
@@ -588,7 +586,6 @@ PMArbitraryPrecisionFloat >> cos [
 		mantissa: mantissa
 		exponent: biasedExponent
 		nBits: nBits) cos
-		
 ]
 
 { #category : #'mathematical functions' }
@@ -612,21 +609,20 @@ PMArbitraryPrecisionFloat >> decimalPrecision [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> digitCompare: b [ 
+PMArbitraryPrecisionFloat >> digitCompare: b [
 	"both are positive or negative.
 	answer +1 if i am of greater magnitude, -1 if i am of smaller magnitude, 0 if equal magnitude"
-	
+
 	| compare |
-	self isZero
-		ifTrue: [b isZero
-				ifTrue: [^ 0]
-				ifFalse: [^ -1]].
-	b isZero
-		ifTrue: [^ 1].
+	self isZero ifTrue: [
+		^ b isZero
+			  ifTrue: [ 0 ]
+			  ifFalse: [ -1 ] ].
+	b isZero ifTrue: [ ^ 1 ].
 	compare := (self exponent - b exponent) sign.
 	^ compare = 0
-		ifTrue: [(self abs - b abs) sign]
-		ifFalse: [compare]
+		  ifTrue: [ (self abs - b abs) sign ]
+		  ifFalse: [ compare ]
 ]
 
 { #category : #'mathematical functions' }
@@ -652,7 +648,7 @@ PMArbitraryPrecisionFloat >> exp [
 	res := ri copy.
 	n := 0.
 	maxIter := 1 + ((nBits + 16) / p) ceiling.
-	[n <= maxIter] whileTrue: 
+	[n <= maxIter] whileTrue:
 			[n := n + 1.
 			ri inPlaceMultiplyBy: r / n.
 			res inPlaceAdd: ri].
@@ -666,9 +662,9 @@ PMArbitraryPrecisionFloat >> exp [
 	res := res asArbitraryPrecisionFloatNumBits: res numBits + 32.
 	res inPlaceMultiplyBy: self - res ln + 1.
 	delta := (res - oldres) exponent.
-	delta = 0 or: [delta <= (res exponent - nBits - 8)]] 
+	delta = 0 or: [delta <= (res exponent - nBits - 8)]]
 			whileFalse.
-	
+
 	^res asArbitraryPrecisionFloatNumBits: nBits
 ]
 
@@ -677,7 +673,7 @@ PMArbitraryPrecisionFloat >> exponent [
 	"anwser the floating point like exponent e,
 	of self normalized as
 	1.mmmmmm * (2 raisedTo: e)"
-	
+
 	self isZero ifTrue: [^0].
 	^biasedExponent + self numBitsInMantissa - 1
 ]
@@ -685,7 +681,7 @@ PMArbitraryPrecisionFloat >> exponent [
 { #category : #comparing }
 PMArbitraryPrecisionFloat >> hash [
 	"Hash is reimplemented because = is implemented."
-	
+
 	^ self asTrueFraction hash
 ]
 
@@ -695,30 +691,30 @@ PMArbitraryPrecisionFloat >> inPlaceAbs [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceAdd: b [ 
+PMArbitraryPrecisionFloat >> inPlaceAdd: b [
 	| delta |
 	b isZero ifTrue: [^self round].
-	self isZero 
-		ifTrue: 
+	self isZero
+		ifTrue:
 			[mantissa := b mantissa.
 			biasedExponent := b biasedExponent]
-		ifFalse: 
-			[biasedExponent = b biasedExponent 
+		ifFalse:
+			[biasedExponent = b biasedExponent
 				ifTrue: [mantissa := mantissa + b mantissa]
-				ifFalse: 
+				ifFalse:
 					["check for early truncation. beware, keep 2 bits for rounding"
 
 					delta := self exponent - b exponent.
-					delta - 2 > (nBits max: self numBitsInMantissa) 
-						ifFalse: 
-							[delta negated - 2 > (nBits max: b numBitsInMantissa) 
-								ifTrue: 
+					delta - 2 > (nBits max: self numBitsInMantissa)
+						ifFalse:
+							[delta negated - 2 > (nBits max: b numBitsInMantissa)
+								ifTrue:
 									[mantissa := b mantissa.
 									biasedExponent := b biasedExponent]
-								ifFalse: 
+								ifFalse:
 									[delta := biasedExponent - b biasedExponent.
-									delta > 0 
-										ifTrue: 
+									delta > 0
+										ifTrue:
 											[mantissa := (self shift: mantissa by: delta) + b mantissa.
 											biasedExponent := biasedExponent - delta]
 										ifFalse: [mantissa := mantissa + (self shift: b mantissa by: delta negated)]]]]].
@@ -726,27 +722,27 @@ PMArbitraryPrecisionFloat >> inPlaceAdd: b [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceAddNoRound: b [ 
+PMArbitraryPrecisionFloat >> inPlaceAddNoRound: b [
 	| delta |
 	b isZero ifTrue: [^self].
-	self isZero 
-		ifTrue: 
+	self isZero
+		ifTrue:
 			[mantissa := b mantissa.
 			biasedExponent := b biasedExponent]
-		ifFalse: 
+		ifFalse:
 			[delta := biasedExponent - b biasedExponent.
-			delta isZero 
+			delta isZero
 				ifTrue: [mantissa := mantissa + b mantissa]
-				ifFalse: 
-					[delta > 0 
-						ifTrue: 
+				ifFalse:
+					[delta > 0
+						ifTrue:
 							[mantissa := (self shift: mantissa by: delta) + b mantissa.
 							biasedExponent := biasedExponent - delta]
 						ifFalse: [mantissa := mantissa + (self shift: b mantissa by: delta negated)]]]
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceCopy: b [ 
+PMArbitraryPrecisionFloat >> inPlaceCopy: b [
 	"copy another arbitrary precision float into self"
 
 	mantissa := b mantissa.
@@ -755,7 +751,7 @@ PMArbitraryPrecisionFloat >> inPlaceCopy: b [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceDivideBy: y [ 
+PMArbitraryPrecisionFloat >> inPlaceDivideBy: y [
 	"Reference: Accelerating Correctly Rounded
 	Floating-Point Division when the Divisor
 	Is Known in Advance - Nicolas Brisebarre,
@@ -786,10 +782,10 @@ PMArbitraryPrecisionFloat >> inPlaceMultiplyBy: b [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceMultiplyBy: b andAccumulate: c [ 
+PMArbitraryPrecisionFloat >> inPlaceMultiplyBy: b andAccumulate: c [
 	"only do rounding after the two operations.
 	This is the traditional muladd operation in aritmetic units"
-	
+
 	self inPlaceMultiplyNoRoundBy: b.
 	self inPlaceAdd: c
 ]
@@ -797,7 +793,7 @@ PMArbitraryPrecisionFloat >> inPlaceMultiplyBy: b andAccumulate: c [
 { #category : #private }
 PMArbitraryPrecisionFloat >> inPlaceMultiplyNoRoundBy: b [
 	mantissa := mantissa * b mantissa.
-	biasedExponent := biasedExponent + b biasedExponent.
+	biasedExponent := biasedExponent + b biasedExponent
 ]
 
 { #category : #private }
@@ -814,7 +810,7 @@ PMArbitraryPrecisionFloat >> inPlaceReciprocal [
 	mantissa := (1 bitShift: h + nBits) + ma quo: (self shift: mantissa by: 1).
 	biasedExponent := biasedExponent negated - h - nBits + 1.
 	self round
-	
+
 	"Implementation notes: if m is a power of 2, reciprocal is trivial.
 	Else, we have 2^h > m >2^(h-1)
 	thus 1 < 2^h/m < 2.
@@ -831,8 +827,8 @@ PMArbitraryPrecisionFloat >> inPlaceSqrt [
 	"Replace the receiver by its square root."
 
 	| guess guessSquared delta shift |
-	self negative 
-		ifTrue: 
+	self negative
+		ifTrue:
 			[^ DomainError signal: 'sqrt undefined for number less than zero.'].
 	self isZero ifTrue: [^self].
 
@@ -854,34 +850,34 @@ PMArbitraryPrecisionFloat >> inPlaceSqrt [
 			[(guessSquared - guess - mantissa) negative ifFalse: [guess := guess - 1]].
 	mantissa := guess.
 	biasedExponent := biasedExponent quo: 2.
-	self round	
+	self round
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceSubtract: b [ 
+PMArbitraryPrecisionFloat >> inPlaceSubtract: b [
 	| delta |
 	b isZero ifTrue: [^self round].
-	self isZero 
-		ifTrue: 
+	self isZero
+		ifTrue:
 			[mantissa := b mantissa negated.
 			biasedExponent := b biasedExponent]
-		ifFalse: 
+		ifFalse:
 			[biasedExponent = b biasedExponent
 				ifTrue: [mantissa := mantissa - b mantissa]
-				ifFalse: 
+				ifFalse:
 					["check for early truncation. beware, keep 2 bits for rounding"
 
 					delta := self exponent - b exponent.
-					delta - 2 > (nBits max: self numBitsInMantissa) 
-						ifFalse: 
-							[delta negated - 2 > (nBits max: b numBitsInMantissa) 
-								ifTrue: 
+					delta - 2 > (nBits max: self numBitsInMantissa)
+						ifFalse:
+							[delta negated - 2 > (nBits max: b numBitsInMantissa)
+								ifTrue:
 									[mantissa := b mantissa negated.
 									biasedExponent := b biasedExponent]
-								ifFalse: 
+								ifFalse:
 									[delta := biasedExponent - b biasedExponent.
-									delta >= 0 
-										ifTrue: 
+									delta >= 0
+										ifTrue:
 											[mantissa := (self shift: mantissa by: delta) - b mantissa.
 											biasedExponent := biasedExponent - delta]
 										ifFalse: [mantissa := mantissa - (self shift: b mantissa by: delta negated)]]]]].
@@ -889,27 +885,27 @@ PMArbitraryPrecisionFloat >> inPlaceSubtract: b [
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceSubtractNoRound: b [ 
+PMArbitraryPrecisionFloat >> inPlaceSubtractNoRound: b [
 	| delta |
 	b isZero ifTrue: [^self].
-	self isZero 
-		ifTrue: 
+	self isZero
+		ifTrue:
 			[mantissa := b mantissa negated.
 			biasedExponent := b biasedExponent]
-		ifFalse: 
+		ifFalse:
 			[delta := biasedExponent - b biasedExponent.
-			delta isZero 
+			delta isZero
 				ifTrue: [mantissa := mantissa - b mantissa]
-				ifFalse: 
-					[delta >= 0 
-						ifTrue: 
+				ifFalse:
+					[delta >= 0
+						ifTrue:
 							[mantissa := (self shift: mantissa by: delta) - b mantissa.
 							biasedExponent := biasedExponent - delta]
 						ifFalse: [mantissa := mantissa - (self shift: b mantissa by: delta negated)]]]
 ]
 
 { #category : #private }
-PMArbitraryPrecisionFloat >> inPlaceTimesTwoPower: n [ 
+PMArbitraryPrecisionFloat >> inPlaceTimesTwoPower: n [
 	self isZero
 		ifFalse: [biasedExponent := biasedExponent + n]
 ]
@@ -932,7 +928,7 @@ PMArbitraryPrecisionFloat >> ln [
 
 	| x4 one two p res selfHighRes prec e |
 	self <= self zero ifTrue: [DomainError signal: 'ln is only defined for x > 0.0'].
-	
+
 	one := self one.
 	self = one ifTrue: [^self zero].
 	two := one timesTwoPower: 1.
@@ -952,11 +948,11 @@ PMArbitraryPrecisionFloat >> ln [
 	selfHighRes := self asArbitraryPrecisionFloatNumBits: prec.
 	(selfHighRes - one) exponent * -4 >= nBits ifTrue: [^(selfHighRes powerExpansionLnPrecision: prec) asArbitraryPrecisionFloatNumBits: nBits].
 	self < one ifTrue: [selfHighRes inPlaceReciprocal].	"Use ln(1/x) => - ln(x)"
-	x4 := (4 asArbitraryPrecisionFloatNumBits: prec) 
+	x4 := (4 asArbitraryPrecisionFloatNumBits: prec)
 				inPlaceDivideBy: selfHighRes;
 				inPlaceTimesTwoPower: p negated.
 	res := selfHighRes pi / (one agm: x4) timesTwoPower: -1.
-	res := selfHighRes = two 
+	res := selfHighRes = two
 		ifTrue: [res / (p + 1)]
 		ifFalse: [p = 0 ifTrue: [res] ifFalse: [res - ((two asArbitraryPrecisionFloatNumBits: prec) ln * p)]].
 	self < one ifTrue: [res inPlaceNegated].
@@ -968,8 +964,8 @@ PMArbitraryPrecisionFloat >> mantissa [
 	^mantissa
 ]
 
-{ #category : #'initialize-release' }
-PMArbitraryPrecisionFloat >> mantissa: m exponent: e nBits: n [ 
+{ #category : #initialization }
+PMArbitraryPrecisionFloat >> mantissa: m exponent: e nBits: n [
 	mantissa := m.
 	biasedExponent := e.
 	nBits := n.
@@ -1002,10 +998,9 @@ PMArbitraryPrecisionFloat >> naiveRaisedToInteger: n [
 	"Very naive algorithm: use full precision.
 	Use only for small n"
 	| m e |
-	m := mantissa raisedToInteger: n. 
+	m := mantissa raisedToInteger: n.
 	e := biasedExponent * n.
 	^(m asArbitraryPrecisionFloatNumBits: nBits) timesTwoPower: e
-	
 ]
 
 { #category : #arithmetic }
@@ -1019,7 +1014,7 @@ PMArbitraryPrecisionFloat >> negative [
 ]
 
 { #category : #accessing }
-PMArbitraryPrecisionFloat >> nextToward: aNumber [ 
+PMArbitraryPrecisionFloat >> nextToward: aNumber [
 	"answer the nearest floating point number to self with same precision than self,
 	toward the direction of aNumber argument.
 	If the nearest one falls on the other side of aNumber, than answer a Number"
@@ -1027,17 +1022,17 @@ PMArbitraryPrecisionFloat >> nextToward: aNumber [
 	| next |
 
 	"if self is greater, decrease self, but never under aNumber"
-	self > aNumber 
-		ifTrue: 
+	self > aNumber
+		ifTrue:
 			[next := self predecessor.
-			^next >= aNumber 
+			^next >= aNumber
 				ifTrue: [next]
 				ifFalse: [aNumber]].
 
 	"if self is smaller, increase self, but never above aNumber"
-	self < aNumber 
+	self < aNumber
 		ifTrue: [next := self successor.
-			^next <= aNumber 
+			^next <= aNumber
 				ifTrue: [next]
 				ifFalse: [aNumber]].
 
@@ -1049,15 +1044,15 @@ PMArbitraryPrecisionFloat >> nextToward: aNumber [
 PMArbitraryPrecisionFloat >> normalize [
 	"normalize the receiver.
 	a normalized floating point is either 0, or has mantissa highBit = nBits"
-	
+
 	| delta |
 	mantissa isZero
 		ifTrue: [biasedExponent := 0]
-		ifFalse: 
+		ifFalse:
 			[self round.
 			delta := self numBitsInMantissa - nBits.
-			delta < 0 
-				ifTrue: 
+			delta < 0
+				ifTrue:
 					[mantissa := self shift: mantissa by: delta negated.
 					biasedExponent := biasedExponent + delta]]
 ]
@@ -1078,7 +1073,7 @@ PMArbitraryPrecisionFloat >> numBitsInMantissa [
 
 { #category : #arithmetic }
 PMArbitraryPrecisionFloat >> one [
-	^self class 
+	^self class
 		mantissa: 1
 		exponent: 0
 		nBits: nBits
@@ -1096,7 +1091,7 @@ PMArbitraryPrecisionFloat >> pi [
 	k := 1.
 	oldpi := Float pi.
 	oldExpo := 2.
-	
+
 	[| am gm a2 |
 	am := a + b timesTwoPower: -1.
 	gm := (a * b) sqrt.
@@ -1106,8 +1101,8 @@ PMArbitraryPrecisionFloat >> pi [
 	c inPlaceSubtract: (a2 - b squared timesTwoPower: k).
 	pi := (a2 timesTwoPower: 1) / c.
 	expo := (oldpi - pi) exponent.
-	expo isZero or: [expo > oldExpo or: [expo < (-1 - nBits)]]] 
-			whileFalse: 
+	expo isZero or: [expo > oldExpo or: [expo < (-1 - nBits)]]]
+			whileFalse:
 				[oldpi := pi.
 				oldExpo := expo.
 				k := k + 1].
@@ -1123,7 +1118,7 @@ PMArbitraryPrecisionFloat >> positive [
 PMArbitraryPrecisionFloat >> powerExpansionArCoshp1Precision: precBits [
 	"Evaluate arcosh(x+1)/sqrt(2*x) for the receiver x by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| one two count count2 sum term term1 term2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1132,7 +1127,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArCoshp1Precision: precBits [
 	sum := one copy.
 	term1 := one copy.
 	term2 := one copy.
-	
+
 	[term1 inPlaceMultiplyBy: self.
 	term1 inPlaceNegated.
 	term2 inPlaceMultiplyBy: count2.
@@ -1152,7 +1147,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArCoshp1Precision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionArSinhPrecision: precBits [
 	"Evaluate the area hypebolic sine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| one x2 two count sum term |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1160,7 +1155,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArSinhPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceMultiplyBy: count.
 	term inPlaceDivideBy: count + one.
@@ -1177,7 +1172,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArTanhPrecision: precBits [
 	"Evaluate the area hyperbolic tangent of the receiver by power series expansion.
 	arTanh (x) = x (1 + x^2/3 + x^4/5 + ... ) for -1 < x < 1
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| one x2 two count sum term |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1185,7 +1180,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArTanhPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	count inPlaceAdd: two.
 	sum inPlaceAdd: term / count.
@@ -1198,7 +1193,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArTanhPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionArcSinPrecision: precBits [
 	"Evaluate the arc sine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| one x2 two count sum term |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1206,7 +1201,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArcSinPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceMultiplyBy: count.
 	term inPlaceDivideBy: count + one.
@@ -1222,7 +1217,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArcTanPrecision: precBits [
 	"Evaluate the arc tangent of the receiver by power series expansion.
 	arcTan (x) = x (1 - x^2/3 + x^4/5 - ... ) for -1 < x < 1
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term two x2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1230,7 +1225,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArcTanPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceNegated.
 	count inPlaceAdd: two.
@@ -1244,7 +1239,7 @@ PMArbitraryPrecisionFloat >> powerExpansionArcTanPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionCosPrecision: precBits [
 	"Evaluate the cosine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term two x2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1252,7 +1247,7 @@ PMArbitraryPrecisionFloat >> powerExpansionCosPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceDivideBy: count * (count + one).
 	term inPlaceNegated.
@@ -1266,7 +1261,7 @@ PMArbitraryPrecisionFloat >> powerExpansionCosPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionCoshPrecision: precBits [
 	"Evaluate the hyperbolic cosine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term two x2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1274,7 +1269,7 @@ PMArbitraryPrecisionFloat >> powerExpansionCoshPrecision: precBits [
 	sum := one copy.
 	term := one copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceDivideBy: count * (count + one).
 	count inPlaceAdd: two.
@@ -1290,7 +1285,7 @@ PMArbitraryPrecisionFloat >> powerExpansionLnPrecision: precBits [
 	ln ((1+y)/(1-y)) = 2 y (1 + y^2/3 + y^4/5 + ... ) = 2 ar tanh( y )
 	(1+y)/(1-y) = self => y = (self-1)/(self+1)
 	This algorithm is interesting when the receiver is close to 1"
-	
+
 	| one |
 	one := self one.
 	^((self - one)/(self + one) powerExpansionArTanhPrecision: precBits) timesTwoPower: 1
@@ -1300,14 +1295,14 @@ PMArbitraryPrecisionFloat >> powerExpansionLnPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionSinCosPrecision: precBits [
 	"Evaluate the sine and cosine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sin cos term |
 	one := self one.
 	count := one copy.
 	cos := one copy.
 	sin := self copy.
 	term := self copy.
-	
+
 	[count inPlaceAdd: one.
 	term
 		inPlaceMultiplyBy: self;
@@ -1320,7 +1315,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinCosPrecision: precBits [
 		inPlaceMultiplyBy: self;
 		inPlaceDivideBy: count.
 	sin inPlaceAdd: term.
-	
+
 	term exponent + precBits < sin exponent] whileFalse.
 	^Array with: sin with: cos
 ]
@@ -1329,7 +1324,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinCosPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionSinPrecision: precBits [
 	"Evaluate the sine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term two x2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1337,7 +1332,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinPrecision: precBits [
 	sum := self copy.
 	term := self copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceDivideBy: count * (count + one).
 	term inPlaceNegated.
@@ -1351,7 +1346,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionSinhPrecision: precBits [
 	"Evaluate the hyperbolic sine of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term two x2 |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1359,7 +1354,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinhPrecision: precBits [
 	sum := self copy.
 	term := self copy.
 	x2 := self squared.
-	
+
 	[term inPlaceMultiplyBy: x2.
 	term inPlaceDivideBy: count * (count + one).
 	count inPlaceAdd: two.
@@ -1372,7 +1367,7 @@ PMArbitraryPrecisionFloat >> powerExpansionSinhPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionTanPrecision: precBits [
 	"Evaluate the tangent of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term pow two x2 seidel |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1382,7 +1377,7 @@ PMArbitraryPrecisionFloat >> powerExpansionTanPrecision: precBits [
 	x2 := self squared.
 	seidel := OrderedCollection new: 256.
 	seidel add: 1.
-	
+
 	[pow inPlaceMultiplyBy: x2.
 	pow inPlaceDivideBy: count * (count + one).
 	count inPlaceAdd: two.
@@ -1401,7 +1396,7 @@ PMArbitraryPrecisionFloat >> powerExpansionTanPrecision: precBits [
 PMArbitraryPrecisionFloat >> powerExpansionTanhPrecision: precBits [
 	"Evaluate the hyperbolic tangent of the receiver by power series expansion.
 	The algorithm is interesting when the receiver is close to zero"
-	
+
 	| count one sum term pow two x2 seidel |
 	one := self one.
 	two := one timesTwoPower: 1.
@@ -1411,7 +1406,7 @@ PMArbitraryPrecisionFloat >> powerExpansionTanhPrecision: precBits [
 	x2 := self squared.
 	seidel := OrderedCollection new: 256.
 	seidel add: 1.
-	
+
 	[pow inPlaceMultiplyBy: x2.
 	pow inPlaceDivideBy: count * (count + one).
 	pow inPlaceNegated.
@@ -1447,7 +1442,7 @@ PMArbitraryPrecisionFloat >> printOn: aStream [
 ]
 
 { #category : #printing }
-PMArbitraryPrecisionFloat >> printOn: aStream base: base [ 
+PMArbitraryPrecisionFloat >> printOn: aStream base: base [
 	aStream
 		nextPut: $(;
 		nextPutAll: self class name;
@@ -1469,7 +1464,7 @@ PMArbitraryPrecisionFloat >> printOn: aStream base: base [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> raisedToInteger: anInteger [ 
+PMArbitraryPrecisionFloat >> raisedToInteger: anInteger [
 	| bitProbe highPrecisionSelf n result |
 	n := anInteger abs.
 	(n < 5 or: [n * nBits < 512])
@@ -1477,11 +1472,11 @@ PMArbitraryPrecisionFloat >> raisedToInteger: anInteger [
 	bitProbe := 1 bitShift: n highBit - 1.
 	highPrecisionSelf := self asArbitraryPrecisionFloatNumBits: n highBit * 2 + nBits + 2.
 	result := highPrecisionSelf one.
-	
+
 	[(n bitAnd: bitProbe) = 0 ifFalse: [result := result * highPrecisionSelf].
 	(bitProbe := bitProbe bitShift: -1) > 0]
 		whileTrue: [result := result squared].
-		
+
 	^ (anInteger negative
 		ifTrue: [result reciprocal]
 		ifFalse: [result])
@@ -1514,7 +1509,7 @@ PMArbitraryPrecisionFloat >> round [
 
 	| excess ma carry |
 	mantissa isZero
-		ifTrue: [ 
+		ifTrue: [
 			biasedExponent := 0.
 			^ self ].
 	ma := mantissa abs.
@@ -1530,8 +1525,8 @@ PMArbitraryPrecisionFloat >> round [
 	self truncate
 ]
 
-{ #category : #'initialize-release' }
-PMArbitraryPrecisionFloat >> setPrecisionTo: n [ 
+{ #category : #initialization }
+PMArbitraryPrecisionFloat >> setPrecisionTo: n [
 	nBits := n.
 	self round
 ]
@@ -1539,7 +1534,7 @@ PMArbitraryPrecisionFloat >> setPrecisionTo: n [
 { #category : #private }
 PMArbitraryPrecisionFloat >> shift: m by: d [
 	"shift mantissa m absolute value by some d bits, then restore sign"
-	
+
 	^m negative
 		ifTrue: [(m negated bitShift: d) negated]
 		ifFalse: [m bitShift: d]
@@ -1567,7 +1562,6 @@ PMArbitraryPrecisionFloat >> sin [
 		mantissa: mantissa
 		exponent: biasedExponent
 		nBits: nBits) sin
-		
 ]
 
 { #category : #'mathematical functions' }
@@ -1576,7 +1570,6 @@ PMArbitraryPrecisionFloat >> sincos [
 		mantissa: mantissa
 		exponent: biasedExponent
 		nBits: nBits) sincos
-		
 ]
 
 { #category : #'mathematical functions' }
@@ -1599,15 +1592,15 @@ PMArbitraryPrecisionFloat >> sqrt [
 	"Answer the square root of the receiver."
 
 	| decimalPlaces n norm guess previousGuess one stopIteration |
-	self negative 
-		ifTrue: 
+	self negative
+		ifTrue:
 			[^ DomainError signal: 'sqrt undefined for number less than zero.'].
 	self isZero ifTrue: [^self].
 
 	"use additional bits"
 	decimalPlaces := nBits + 16.
 	n := self asArbitraryPrecisionFloatNumBits: decimalPlaces.
-	
+
 	"constants"
 	one := n one.
 
@@ -1616,14 +1609,14 @@ PMArbitraryPrecisionFloat >> sqrt [
 	n := n timesTwoPower: norm * -2.
 
 	"Initial guess for sqrt(1/n)"
-	previousGuess := self class 
+	previousGuess := self class
 				mantissa: 3
 				exponent: -2 - (n exponent quo: 2)
 				nBits: decimalPlaces.
 	guess := previousGuess copy.
 
 	"use iterations x(k+1) := x*( 1 +  (1-x*x*n)/2) to guess sqrt(1/n)"
-	
+
 	[guess inPlaceMultiplyNoRoundBy: guess.
 	guess inPlaceMultiplyBy: n.
 	guess inPlaceNegated.
@@ -1636,8 +1629,8 @@ PMArbitraryPrecisionFloat >> sqrt [
 	guess inPlaceMultiplyNoRoundBy: previousGuess.
 	guess negative ifTrue: [guess inPlaceNegated].
 
-	guess isZero or: [stopIteration]] 
-			whileFalse: 
+	guess isZero or: [stopIteration]]
+			whileFalse:
 				[guess round.
 				previousGuess inPlaceCopy: guess].
 
@@ -1677,7 +1670,6 @@ PMArbitraryPrecisionFloat >> tan [
 		mantissa: mantissa
 		exponent: biasedExponent
 		nBits: nBits) tan
-		
 ]
 
 { #category : #'mathematical functions' }
@@ -1699,7 +1691,7 @@ PMArbitraryPrecisionFloat >> tanh [
 ]
 
 { #category : #arithmetic }
-PMArbitraryPrecisionFloat >> timesTwoPower: n [ 
+PMArbitraryPrecisionFloat >> timesTwoPower: n [
 	^ self isZero
 		ifTrue: [self]
 		ifFalse: [self copy inPlaceTimesTwoPower: n]
@@ -1720,8 +1712,8 @@ PMArbitraryPrecisionFloat >> truncate [
 { #category : #converting }
 PMArbitraryPrecisionFloat >> truncated [
 	"answer the integer that is nearest to self in the interval between zero and self"
-	
-	^biasedExponent negated > self numBitsInMantissa 
+
+	^biasedExponent negated > self numBitsInMantissa
 		ifTrue: [0]
 		ifFalse: [self shift: mantissa by: biasedExponent]
 ]
@@ -1734,7 +1726,7 @@ PMArbitraryPrecisionFloat >> ulp [
 
 { #category : #arithmetic }
 PMArbitraryPrecisionFloat >> zero [
-	^self class 
+	^self class
 		mantissa: 0
 		exponent: 0
 		nBits: nBits

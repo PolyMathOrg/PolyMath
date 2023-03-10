@@ -19,6 +19,8 @@ PMDualNumberTest >> assertEquality: aDualNumber and: anotherDualNumber [
 
 { #category : #running }
 PMDualNumberTest >> setUp [
+
+	super setUp.
 	zero := PMDualNumber value: 0 eps: 1.
 	zeroc := PMDualNumber value: 0 eps: 0.
 	one := PMDualNumber value: 1 eps: 1.
@@ -99,16 +101,17 @@ PMDualNumberTest >> testConjugated [
 
 { #category : #tests }
 PMDualNumberTest >> testConverting [
+
 	| a |
-	self assert: zeroc asInteger == 0.
-	self assert: three asInteger == 3.
+	self assert: zeroc asInteger identicalTo: 0.
+	self assert: three asInteger identicalTo: 3.
 	self assert: onec asFloat isFloat.
 	self deny: onec isFloat.
 	self assert: onec asFloat equals: 1.
 	a := three negated asFloat.
 	self assert: a isFloat.
 	self assert: a equals: -3.
-	self assert: (PMDualNumber value: -3.7 eps: 2) asInteger == -3
+	self assert: (PMDualNumber value: -3.7 eps: 2) asInteger identicalTo: -3
 ]
 
 { #category : #'tests-mathematical functions' }
