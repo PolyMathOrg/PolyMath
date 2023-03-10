@@ -23,7 +23,6 @@ Class {
 		'machinePrecision',
 		'negativeMachinePrecision',
 		'smallestNumber',
-		'largestNumber',
 		'smallNumber',
 		'largestExponentArgument'
 	],
@@ -44,24 +43,6 @@ PMFloatingPointMachine class >> reset [
 
 	<script>
 	UniqueInstance := nil
-]
-
-{ #category : #information }
-PMFloatingPointMachine >> computeLargestNumber [
-
-	| one floatingRadix fullMantissaNumber |
-	one := 1.0.
-	floatingRadix := Float radix asFloat.
-	fullMantissaNumber := one - (floatingRadix * self negativeMachinePrecision).
-	largestNumber := fullMantissaNumber.
-	[
-	[
-	fullMantissaNumber := fullMantissaNumber * floatingRadix.
-	fullMantissaNumber isInfinite ifTrue: [ ^ nil ].
-	largestNumber := fullMantissaNumber.
-	true ] whileTrue: [  ] ]
-		on: Error
-		do: [ :signal | signal return: nil ]
 ]
 
 { #category : #information }
@@ -120,15 +101,14 @@ PMFloatingPointMachine >> defaultNumericalPrecision [
 { #category : #information }
 PMFloatingPointMachine >> largestExponentArgument [
 
-	largestExponentArgument ifNil: [ largestExponentArgument := self largestNumber ln ].
+	largestExponentArgument ifNil: [ largestExponentArgument := Float fmax ln ].
 	^ largestExponentArgument
 ]
 
 { #category : #information }
 PMFloatingPointMachine >> largestNumber [
 
-	largestNumber ifNil: [ self computeLargestNumber ].
-	^ largestNumber
+	^ Float fmax
 ]
 
 { #category : #information }
@@ -148,17 +128,24 @@ PMFloatingPointMachine >> negativeMachinePrecision [
 { #category : #display }
 PMFloatingPointMachine >> showParameters [
 
-	Transcript cr; cr;
-			nextPutAll: 'Floating-point machine parameters'; cr;
-			nextPutAll: '---------------------------------'.
-	Transcript cr; nextPutAll: 'Machine precision: '.
+	Transcript
+		cr;
+		cr;
+		nextPutAll: 'Floating-point machine parameters';
+		cr;
+		nextPutAll: '---------------------------------'.
+	Transcript
+		cr;
+		nextPutAll: 'Machine precision: '.
 	self machinePrecision printOn: Transcript.
-	Transcript cr; nextPutAll: 'Negative machine precision: '.
+	Transcript
+		cr;
+		nextPutAll: 'Negative machine precision: '.
 	self negativeMachinePrecision printOn: Transcript.
-	Transcript cr; nextPutAll: 'Smallest number: '.
+	Transcript
+		cr;
+		nextPutAll: 'Smallest number: '.
 	self smallestNumber printOn: Transcript.
-	Transcript cr; nextPutAll: 'Largest number: '.
-	self largestNumber printOn: Transcript.
 	Transcript flush
 ]
 

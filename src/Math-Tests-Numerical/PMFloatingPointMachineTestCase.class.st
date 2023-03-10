@@ -28,28 +28,18 @@ PMFloatingPointMachineTestCase >> testMachinePrecisionIsFloatPrecision [
 
 { #category : #precision }
 PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberGreaterThanAnyFractionOfItself [
+
 	| mach |
 	mach := PMFloatingPointMachine new.
-	self
-		assert:
-			mach largestNumber * (1 - mach defaultNumericalPrecision)
-				< mach largestNumber
+	self assert: Float fmax * (1 - mach defaultNumericalPrecision) < Float fmax
 ]
 
 { #category : #precision }
 PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberIsLargest [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self
-		assert: mach largestNumber * (1 + mach defaultNumericalPrecision)
-		equals: Float infinity
-]
 
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberNotInfinity [
 	| mach |
 	mach := PMFloatingPointMachine new.
-	self assert: mach largestNumber < Float infinity
+	self assert: Float fmax * (1 + mach defaultNumericalPrecision) equals: Float infinity
 ]
 
 { #category : #precision }
