@@ -11,20 +11,7 @@ SmalltalkCISpec {
       #packages : [ 'Math-.*' ]
     },
     #coverage : {
-      #packages : [
-        'Math-A*',
-	'Math-B*',
-	'Math-C*',
-	'Math-D*',
-	'Math-FunctionFit',
-	'Math-K*',
-	'Math-M*',
-	'Math-N*',
-	'Math-ODE',
-	'Math-P*',
-	'Math-Q*',
-	'Math-R*',
-	'Math-TNSE' ]
+      #packages : [ 'Math-*' ]
     }
   }
 }
