@@ -43,21 +43,6 @@ PMFloatingPointMachineTestCase >> testMachinePrecisionLargestNumberIsLargest [
 ]
 
 { #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionSmallNumberLargerThanSmallestNumber [
-
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self assert: Float fmin < mach smallNumber
-]
-
-{ #category : #precision }
-PMFloatingPointMachineTestCase >> testMachinePrecisionSmallNumberNotZero [
-	| mach |
-	mach := PMFloatingPointMachine new.
-	self assert: mach smallNumber > 0.0
-]
-
-{ #category : #precision }
 PMFloatingPointMachineTestCase >> testUniqueInstance [
 
 	| mach1 mach2 mach3 |

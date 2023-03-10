@@ -99,10 +99,13 @@ PMIterativeProcess >> iterations [
 
 { #category : #private }
 PMIterativeProcess >> limitedSmallValue: aNumber [
-	"Private - prevent aNumber from being smaller in absolute value than a small number."
-	^aNumber abs < PMFloatingPointMachine new smallNumber
-			ifTrue: [ PMFloatingPointMachine new smallNumber]
-			ifFalse:[ aNumber]
+	"Private - prevent aNumber from being smaller in absolute value than a small."
+
+	| smallestAccepted |
+	smallestAccepted := Float fmin sqrt.
+	^ aNumber abs < smallestAccepted
+		  ifTrue: [ smallestAccepted ]
+		  ifFalse: [ aNumber ]
 ]
 
 { #category : #initialization }

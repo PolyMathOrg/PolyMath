@@ -60,7 +60,7 @@ PMFisherTippettDistribution >> distributionValue: aNumber [
 		 the receiver with a value lower than or equal to aNumber."
 	| arg |
 	arg := ( aNumber - alpha) / beta.
-	arg := arg < PMFloatingPointMachine new largestExponentArgument negated
+	arg := arg < Float fmax ln negated
 					ifTrue: [ ^0]
 					ifFalse:[arg negated exp].
 	^arg negated exp
@@ -126,14 +126,17 @@ PMFisherTippettDistribution >> standardDeviation [
 
 { #category : #information }
 PMFisherTippettDistribution >> value: aNumber [
-		"Answers the probability that a random variable distributed according to the receiver
+	"Answers the probability that a random variable distributed according to the receiver
 		 gives a value between aNumber and aNumber + espilon (infinitesimal interval)."
+
 	| arg |
-	arg := ( aNumber - alpha) / beta.
-	arg := arg > PMFloatingPointMachine new largestExponentArgument ifTrue: [ ^0]
-						ifFalse:[arg negated exp + arg].
-	^arg > PMFloatingPointMachine new largestExponentArgument ifTrue: [ 0]
-						ifFalse:[ arg negated exp / beta]
+	arg := aNumber - alpha / beta.
+	arg := arg > Float fmax ln
+		       ifTrue: [ ^ 0 ]
+		       ifFalse: [ arg negated exp + arg ].
+	^ arg > Float fmax ln
+		  ifTrue: [ 0 ]
+		  ifFalse: [ arg negated exp / beta ]
 ]
 
 { #category : #information }
