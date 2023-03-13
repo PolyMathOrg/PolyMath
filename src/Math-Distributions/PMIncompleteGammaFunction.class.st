@@ -24,7 +24,7 @@ PMIncompleteGammaFunction >> evaluateFraction: aNumber [
 		fraction setParameter: alpha ].
 	fraction setArgument: aNumber.
 	^ (PMContinuedFraction server: fraction)
-		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  desiredPrecision: Float defaultComparisonPrecision;
 		  evaluate
 ]
 
@@ -36,7 +36,7 @@ PMIncompleteGammaFunction >> evaluateSeries: aNumber [
 		series setParameter: alpha ].
 	series setArgument: aNumber.
 	^ (PMInfiniteSeries server: series)
-		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  desiredPrecision: Float defaultComparisonPrecision;
 		  evaluate
 ]
 

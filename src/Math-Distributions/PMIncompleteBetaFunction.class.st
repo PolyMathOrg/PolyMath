@@ -26,7 +26,7 @@ PMIncompleteBetaFunction >> evaluateFraction: aNumber [
 		fraction setParameter: alpha1 second: alpha2 ].
 	fraction setArgument: aNumber.
 	^ (PMContinuedFraction server: fraction)
-		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  desiredPrecision: Float defaultComparisonPrecision;
 		  evaluate
 ]
 
@@ -38,7 +38,7 @@ PMIncompleteBetaFunction >> evaluateInverseFraction: aNumber [
 		inverseFraction setParameter: alpha2 second: alpha1 ].
 	inverseFraction setArgument: 1 - aNumber.
 	^ (PMContinuedFraction server: inverseFraction)
-		  desiredPrecision: PMFloatingPointMachine new defaultNumericalPrecision;
+		  desiredPrecision: Float defaultComparisonPrecision;
 		  evaluate
 ]
 
