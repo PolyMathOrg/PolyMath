@@ -31,7 +31,7 @@ PMGeneralFunctionFitTest >> setUp [
 PMGeneralFunctionFitTest >> testBasic [
 
 	| d |
-	self assert: (fit evaluate closeTo: #( 0.1 0.4 )).
+	self assert: fit evaluate closeTo: #( 0.1 0.4 ).
 	(fit result - #( 0.1 0.4 )) abs with: (fit secondaryResult - #( 0.1 0.4 )) abs do: [ :e :s | self assert: s - e > 0 ].
 	d := fit error: fit secondaryResult.
 	self assert: d < 1e-5.
@@ -44,7 +44,7 @@ PMGeneralFunctionFitTest >> testFunction [
 	| y |
 	y := fit function value: 3 value: 0.1 value: 0.4.
 	fit evaluate.
-	self assert: ((fit function value: 3) closeTo: y)
+	self assert: (fit function value: 3) closeTo: y
 ]
 
 { #category : #tests }
@@ -122,7 +122,7 @@ PMGeneralFunctionFitTest >> testRelativeError [
 	fit manager randomGenerator: (Random seed: 42).
 	fit populationSize: 10.
 	r := fit evaluate first.
-	self assert: (r closeTo: 4).
+	self assert: r closeTo: 4.
 	fit errorType: #abs.
 	fit relativeError: true.
 	r := fit evaluate first.
@@ -155,7 +155,7 @@ PMGeneralFunctionFitTest >> testTruncate [
 
 	fit manager randomGenerator: (Random seed: 42).
 	fit errorType: #quartile.
-	self assert: (fit findQuartile closeTo: #( 0.1 0.4 )).
+	self assert: fit findQuartile closeTo: #( 0.1 0.4 ).
 	self assert: fit quartile < (79 / 81).
 	self assert: fit quartile > (75 / 81).
 	self deny: fit dataTruncated.
@@ -164,7 +164,7 @@ PMGeneralFunctionFitTest >> testTruncate [
 	self assert: fit optimizer functionBlock data size equals: fit quartile * col size.
 	fit errorType: #abs.
 	self assert: fit errorType equals: #abs.
-	self assert: (fit evaluate closeTo: #( 0.1 0.4 )).
+	self assert: fit evaluate closeTo: #( 0.1 0.4 ).
 	fit resetData.
 	self assert: fit optimizer functionBlock data size equals: col size
 ]

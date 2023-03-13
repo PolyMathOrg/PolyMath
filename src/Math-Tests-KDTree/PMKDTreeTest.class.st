@@ -149,24 +149,20 @@ PMKDTreeTest >> testKDTreeExtremeCase [
 
 { #category : #tests }
 PMKDTreeTest >> testPMVectorCompatibility [
+
 	| aVector bVector r |
-	(Array lookupSelector: #asPMVector)
-		ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
-	aVector := #(0) asPMVector.
-	bVector := #(-2.0) asPMVector.
-	r := (Array with: aVector with: #(-5.0) asPMVector with:  bVector) asPMVector.
+	(Array lookupSelector: #asPMVector) ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
+	aVector := #( 0 ) asPMVector.
+	bVector := #( -2.0 ) asPMVector.
+	r := (Array with: aVector with: #( -5.0 ) asPMVector with: bVector) asPMVector.
 	self initializeTreeWith: r as: true.
-	self
-		assert: (tree nnSearch: bVector i: 2)
-		equals: (Array with: bVector with: aVector).
-	self
-		assert: (stupid nnSearch: bVector i: 2)
-		equals: (Array with: bVector with: aVector).
+	self assert: (tree nnSearch: bVector i: 2) equals: (Array with: bVector with: aVector).
+	self assert: (stupid nnSearch: bVector i: 2) equals: (Array with: bVector with: aVector).
 	self initializeTreeWith: r as: false.
 	r := tree nnSearch: bVector i: 2.
-	self assert: r first equals: #(3 0.0).
+	self assert: r first equals: #( 3 0.0 ).
 	self assert: r second first equals: 1.
-	self assert: (r second second closeTo: 4.0)
+	self assert: r second second closeTo: 4.0
 ]
 
 { #category : #tests }

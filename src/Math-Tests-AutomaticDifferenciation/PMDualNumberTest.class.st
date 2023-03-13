@@ -56,10 +56,9 @@ PMDualNumberTest >> testAdd [
 PMDualNumberTest >> testArcCos [
 
 	| a |
-	self assert:
-		(zero arcCos closeTo: (PMDualNumber value: Float halfPi eps: -1)).
+	self assert: zero arcCos closeTo: (PMDualNumber value: Float halfPi eps: -1).
 	a := (PMDualNumber value: -1.0 successor eps: 1) arcCos.
-	self assert: (a value closeTo: Float pi).
+	self assert: a value closeTo: Float pi.
 	self assert: a eps < -1e6
 ]
 
@@ -69,7 +68,7 @@ PMDualNumberTest >> testArcSin [
 	| a |
 	self assert: zero arcSin equals: zero.
 	a := (PMDualNumber value: 1.0 predecessor eps: 1) arcSin.
-	self assert: (a value closeTo: Float halfPi).
+	self assert: a value closeTo: Float halfPi.
 	self assert: a eps > 1e6.
 	a := (PMDualNumber value: -0.5 eps: 1) arcSin.
 	self assert: a value equals: -0.5 arcSin.
@@ -80,10 +79,8 @@ PMDualNumberTest >> testArcSin [
 PMDualNumberTest >> testArcTan [
 
 	self assertEquality: zero arcTan and: zero.
-	self
-		assertEquality: one negated arcTan
-		and: (PMDualNumber value: -1 arcTan eps: -1 / 2).
-	self assert: (three arcTan eps closeTo: 0.1)
+	self assertEquality: one negated arcTan and: (PMDualNumber value: -1 arcTan eps: -1 / 2).
+	self assert: three arcTan eps closeTo: 0.1
 ]
 
 { #category : #test }
@@ -117,13 +114,9 @@ PMDualNumberTest >> testConverting [
 { #category : #'tests-mathematical functions' }
 PMDualNumberTest >> testCos [
 
-	self assert:
-		((PMDualNumber value: Float halfPi negated eps: 1) cos closeTo:
-			 (PMDualNumber value: 0 eps: 1)).
-	self assert: ((PMDualNumber value: Float halfPi eps: 1) cos closeTo:
-			 (PMDualNumber value: 0 eps: -1)).
-	self assert:
-		((PMDualNumber value: Float halfPi eps: 0) cos closeTo: zeroc)
+	self assert: (PMDualNumber value: Float halfPi negated eps: 1) cos closeTo: (PMDualNumber value: 0 eps: 1).
+	self assert: (PMDualNumber value: Float halfPi eps: 1) cos closeTo: (PMDualNumber value: 0 eps: -1).
+	self assert: (PMDualNumber value: Float halfPi eps: 0) cos closeTo: zeroc
 ]
 
 { #category : #'tests-arithmetic' }
@@ -167,16 +160,13 @@ PMDualNumberTest >> testEqual [
 { #category : #tests }
 PMDualNumberTest >> testEqualsTo [
 
-	self assert: (zeroc closeTo: zeroc).
-	self deny: (zeroc closeTo: zero).
-	self assert: (zero closeTo: zero).
-	self assert:
-		(one closeTo: (PMDualNumber value: 1.0000000001 eps: 1.0000000001)).
-	self deny:
-		(one closeTo: (PMDualNumber value: 1.0000000001 eps: 1.001)).
-	self deny:
-		(one closeTo: (PMDualNumber value: 1.001 eps: 1.0000000001)).
-	self deny: (one closeTo: (PMDualNumber value: 1.001 eps: 1.001))
+	self assert: zeroc closeTo: zeroc.
+	self deny: zeroc closeTo: zero.
+	self assert: zero closeTo: zero.
+	self assert: one closeTo: (PMDualNumber value: 1.0000000001 eps: 1.0000000001).
+	self deny: one closeTo: (PMDualNumber value: 1.0000000001 eps: 1.001).
+	self deny: one closeTo: (PMDualNumber value: 1.001 eps: 1.0000000001).
+	self deny: one closeTo: (PMDualNumber value: 1.001 eps: 1.001)
 ]
 
 { #category : #'tests-mathematical functions' }
@@ -185,7 +175,7 @@ PMDualNumberTest >> testExp [
 	| a b |
 	b := 3 exp.
 	a := three exp.
-	self assert: (a eps closeTo: b).
+	self assert: a eps closeTo: b.
 	self assert: a value equals: b.
 	self assert: one equals: zero exp
 ]
@@ -209,7 +199,7 @@ PMDualNumberTest >> testLn [
 
 	| a |
 	a := three ln.
-	self assert: (a eps closeTo: 1 / 3).
+	self assert: a eps closeTo: 1 / 3.
 	self assert: a value equals: 3 ln.
 	self assert: one ln equals: zero
 ]
@@ -259,21 +249,17 @@ PMDualNumberTest >> testRaisedTo [
 	| a |
 	self assertEquality: (three raisedTo: 2) and: three squared.
 	self assertEquality: (three raisedTo: 0) and: onec.
-	self
-		assertEquality: (three + one raisedTo: 1 / 2)
-		and: (PMDualNumber value: 2 eps: 1 / 2).
-	self assert:
-		((three + one raisedTo: 3 / 2) closeTo:
-			 (PMDualNumber value: 8 eps: 6)).
+	self assertEquality: (three + one raisedTo: 1 / 2) and: (PMDualNumber value: 2 eps: 1 / 2).
+	self assert: (three + one raisedTo: 3 / 2) closeTo: (PMDualNumber value: 8 eps: 6).
 	self assertEquality: (zero raisedTo: 1.4) and: zeroc.
 	a := 2 raisedTo: three.
-	self assert: (a value closeTo: 8).
-	self assert: (a eps closeTo: 2 ln * (2 raisedTo: 3)).
+	self assert: a value closeTo: 8.
+	self assert: a eps closeTo: 2 ln * (2 raisedTo: 3).
 	self assertEquality: (1 raisedTo: three) and: onec.
 	self assertEquality: (one raisedTo: one) and: one.
 	a := three raisedTo: three.
-	self assert: (a value closeTo: 27).
-	self assert: (a eps closeTo: (3 raisedTo: 3) * (3 ln + 1))
+	self assert: a value closeTo: 27.
+	self assert: a eps closeTo: (3 raisedTo: 3) * (3 ln + 1)
 ]
 
 { #category : #'tests-mathematical functions' }
@@ -303,11 +289,8 @@ PMDualNumberTest >> testReciprocal [
 { #category : #'tests-mathematical functions' }
 PMDualNumberTest >> testSin [
 
-	self assert:
-		((PMDualNumber value: Float halfPi negated eps: 1) sin closeTo:
-			 (PMDualNumber value: -1.0 eps: 0.0)).
-	self assert: ((PMDualNumber value: Float halfPi eps: 1) sin closeTo:
-			 (PMDualNumber value: 1.0 eps: 0.0)).
+	self assert: (PMDualNumber value: Float halfPi negated eps: 1) sin closeTo: (PMDualNumber value: -1.0 eps: 0.0).
+	self assert: (PMDualNumber value: Float halfPi eps: 1) sin closeTo: (PMDualNumber value: 1.0 eps: 0.0).
 	self assertEquality: zero sin and: zero
 ]
 
@@ -359,11 +342,11 @@ PMDualNumberTest >> testTan [
 	| a b |
 	a := three tan.
 	self assert: a value equals: 3 tan.
-	self assert: (a eps closeTo: 3 tan squared + 1).
+	self assert: a eps closeTo: 3 tan squared + 1.
 	b := Float halfPi - 0.000000000001.
 	a := (PMDualNumber value: b eps: 1) tan.
 	self assert: a value equals: b tan.
-	self assert: (a eps closeTo: b tan squared + 1)
+	self assert: a eps closeTo: b tan squared + 1
 ]
 
 { #category : #'tests-testing' }

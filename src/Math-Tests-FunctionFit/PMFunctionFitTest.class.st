@@ -32,7 +32,7 @@ PMFunctionFitTest >> testFunctionFit [
 	self shouldnt: [ ff accumulate: p ] raise: Error. "function result will be NaN and should be ignored in the following calculations"
 	ff parameters: ar.
 	ff evaluate.
-	self assert: (ff parameters closeTo: #( 2 0.4 ))
+	self assert: ff parameters closeTo: #( 2 0.4 )
 ]
 
 { #category : #tests }
