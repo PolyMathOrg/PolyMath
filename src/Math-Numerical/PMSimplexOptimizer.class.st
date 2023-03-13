@@ -11,7 +11,8 @@ Class {
 PMSimplexOptimizer class >> defaultPrecision [
 	"Private"
 
-	^ Float defaultComparisonPrecision * 1000
+	self flag: #todo. "In Pharo 12 the default comparision precision of Float will be improved. When Pharo 12 will be the minimal version of Polymath we can use `Float defaultComparisonPrecision"
+	^ Float machineEpsilon sqrt * 1000
 ]
 
 { #category : #operation }
