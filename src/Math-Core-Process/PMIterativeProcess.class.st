@@ -125,9 +125,9 @@ PMIterativeProcess >> precision [
 { #category : #information }
 PMIterativeProcess >> precisionOf: aNumber1 relativeTo: aNumber2 [
 
-	^aNumber2 > PMFloatingPointMachine new defaultNumericalPrecision
-		ifTrue: [ aNumber1 / aNumber2]
-		ifFalse:[ aNumber1]
+	^ aNumber2 > Float defaultComparisonPrecision
+		  ifTrue: [ aNumber1 / aNumber2 ]
+		  ifFalse: [ aNumber1 ]
 ]
 
 { #category : #information }

@@ -9,8 +9,9 @@ Class {
 
 { #category : #information }
 PMSimplexOptimizer class >> defaultPrecision [
-		"Private"
-	^PMFloatingPointMachine new defaultNumericalPrecision * 1000
+	"Private"
+
+	^ Float defaultComparisonPrecision * 1000
 ]
 
 { #category : #operation }
