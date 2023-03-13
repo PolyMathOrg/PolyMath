@@ -60,9 +60,10 @@ PMFunctionOptimizer >> initialValue: aVector [
 
 { #category : #initialization }
 PMFunctionOptimizer >> initialize [
-		"Private"
-	bestPoints := SortedCollection sortBlock: [ :a :b | a betterThan: b].
-	^super initialize
+	"Private"
+
+	super initialize.
+	bestPoints := SortedCollection sortBlock: [ :a :b | a betterThan: b ]
 ]
 
 { #category : #initialization }

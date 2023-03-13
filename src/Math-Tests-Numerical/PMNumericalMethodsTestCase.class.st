@@ -811,6 +811,7 @@ PMNumericalMethodsTestCase >> testOptimizeOneDimension [
 	| distr finder maximum |
 	distr := PMGammaDistribution shape: 2 scale: 5.
 	finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.
+	finder randomGenerator: (Random seed: 42).
 	finder desiredPrecision: 1.0e-6.
 	maximum := finder evaluate.
 	self assert: maximum - 5 closeTo: 0.
@@ -842,6 +843,7 @@ PMNumericalMethodsTestCase >> testOptimizeSimplex [
 	fBlock := [ :x | (x * x) negated exp ].
 	educatedGuess := #( 0.5 1.0 0.5 ) asPMVector.
 	simplex := PMSimplexOptimizer maximizingFunction: fBlock.
+	simplex randomGenerator: (Random seed: 42).
 	simplex initialValue: educatedGuess.
 	simplex desiredPrecision: 1.0e-6.
 	result := simplex evaluate.
