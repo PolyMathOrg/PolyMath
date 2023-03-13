@@ -1,6 +1,12 @@
 Extension { #name : #Float }
 
 { #category : #'*Math-CompatibilityUpToPharo11' }
+Float class >> defaultComparisonPrecision [
+
+	^ self machineEpsilon sqrt
+]
+
+{ #category : #'*Math-CompatibilityUpToPharo11' }
 Float class >> machineEpsilon [
 	"Answer the machine epsilon or macheps, defined by wikipedia asCalypsoItemContext
 	https://en.wikipedia.org/wiki/Machine_epsilon
