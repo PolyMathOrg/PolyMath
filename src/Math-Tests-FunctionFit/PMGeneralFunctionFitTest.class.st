@@ -118,8 +118,8 @@ PMGeneralFunctionFitTest >> testRelativeError [
 	fit := PMGeneralFunctionFit
 		       function: f
 		       data: col
-		       minimumValues: 0
-		       maximumValues: 5.
+		       minimumValues: -6
+		       maximumValues: 6.
 
 	fit manager randomGenerator: (Random seed: 42).
 	fit populationSize: 10.
