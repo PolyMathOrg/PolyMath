@@ -29,6 +29,7 @@ PMErrorMinimizer class >> function: aBlock data: aCollection [
 
 { #category : #accessing }
 PMErrorMinimizer >> maxFunction [
-"The number of data partitions used."
-^dataHolder size
+	"The number of data partitions used."
+
+	^ dataHolder size
 ]

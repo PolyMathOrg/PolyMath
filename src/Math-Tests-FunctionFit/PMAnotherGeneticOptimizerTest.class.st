@@ -2,7 +2,7 @@ Class {
 	#name : #PMAnotherGeneticOptimizerTest,
 	#superclass : #TestCase,
 	#instVars : [
-		'go'
+		'geneticOptimizer'
 	],
 	#category : #'Math-Tests-FunctionFit'
 }
@@ -17,49 +17,50 @@ PMAnotherGeneticOptimizerTest >> setUp [
 	     v := x asPMVector.
 	     v * v ].
 	origin := #( -5 -5 -5 ).
-	go := PMAnotherGeneticOptimizer function: f minimumValues: origin maximumValues: origin negated.
-	go maximumIterations: 50.
-	go chromosomeManager populationSize: 20
+	geneticOptimizer := PMAnotherGeneticOptimizer function: f minimumValues: origin maximumValues: origin negated.
+	geneticOptimizer maximumIterations: 50.
+	geneticOptimizer chromosomeManager populationSize: 20.
+	geneticOptimizer chromosomeManager randomGenerator: (Random seed: 42)
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testChromosomeManager [
 	self
-		assert: go chromosomeManager class
+		assert: geneticOptimizer chromosomeManager class
 		equals: PMAnotherChromosomeManager.
-	self assert: go chromosomeManager populationSize equals: 20
+	self assert: geneticOptimizer chromosomeManager populationSize equals: 20
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testComputePrecision [
 |r|
-go maximumIterations: 2.
-go evaluate .
-r:=go computePrecision:0.
-go maximumIterations: 50 .
-go evaluate .
-self assert: (r>go computePrecision  )
+geneticOptimizer maximumIterations: 2.
+geneticOptimizer evaluate .
+r:=geneticOptimizer computePrecision:0.
+geneticOptimizer maximumIterations: 50 .
+geneticOptimizer evaluate .
+self assert: (r>geneticOptimizer computePrecision  )
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testEvaluate [
 
-	go maximumIterations: 170.
-	go chromosomeManager populationSize: 50.
-	self assert: (go evaluate closeTo: #( 0 0 0 ))
+	geneticOptimizer maximumIterations: 170.
+	geneticOptimizer chromosomeManager populationSize: 50.
+	self assert: (geneticOptimizer evaluate closeTo: #( 0 0 0 ))
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testInitializeIterations [
 
-	self assertEmpty: go bestPoints.
-	go initializeIterations.
-	self denyEmpty: go bestPoints.
-	go calcStatistics: true.
-	go evaluate.
-	self denyEmpty: go bestValueHistory.
-	go initializeIterations.
-	self assertEmpty: go bestValueHistory
+	self assertEmpty: geneticOptimizer bestPoints.
+	geneticOptimizer initializeIterations.
+	self denyEmpty: geneticOptimizer bestPoints.
+	geneticOptimizer calcStatistics: true.
+	geneticOptimizer evaluate.
+	self denyEmpty: geneticOptimizer bestValueHistory.
+	geneticOptimizer initializeIterations.
+	self assertEmpty: geneticOptimizer bestValueHistory
 ]
 
 { #category : #tests }
@@ -67,7 +68,7 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 
 	| aStream s |
 	aStream := ReadWriteStream with: ''.
-	go printOn: aStream.
+	geneticOptimizer printOn: aStream.
 	s := aStream contents.
 	self assert: (s includesSubstring: 'v * v').
 	self assert: (s includesSubstring: '50').
@@ -77,12 +78,12 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testRangeScale [
 
-	go initializeIterations.
-	self assert: (go rangeScale first closeTo: 0.1).
-	self assert: (go rangeScale second closeTo: 0.19473684210526315).
-	go initializeIterations.
-	self assert: (go rangeScale first closeTo: 0.1).
-	self assert: (go rangeScale second closeTo: 0.19473684210526315)
+	geneticOptimizer initializeIterations.
+	self assert: (geneticOptimizer rangeScale first closeTo: 0.1).
+	self assert: (geneticOptimizer rangeScale second closeTo: 0.19473684210526315).
+	geneticOptimizer initializeIterations.
+	self assert: (geneticOptimizer rangeScale first closeTo: 0.1).
+	self assert: (geneticOptimizer rangeScale second closeTo: 0.19473684210526315)
 ]
 
 { #category : #tests }
@@ -92,13 +93,13 @@ PMAnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 	9
 		timesRepeat: [
 			self setUp.
-			go maximumIterations: 500.
-			go rangeScale: true.
-			r1 := go evaluate norm.
+			geneticOptimizer maximumIterations: 500.
+			geneticOptimizer rangeScale: true.
+			r1 := geneticOptimizer evaluate norm.
 			self setUp.
-			go maximumIterations: 500.
-			go rangeScale: false.
-			r2 := go evaluate norm.
+			geneticOptimizer maximumIterations: 500.
+			geneticOptimizer rangeScale: false.
+			r2 := geneticOptimizer evaluate norm.
 			correct := r1 < r2
 				ifTrue: [ correct + 1 ]
 				ifFalse: [ correct - 1 ] ].
@@ -112,13 +113,13 @@ PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 	3
 		timesRepeat: [
 			self setUp.
-			go maximumIterations: 1000.
-			go removeLast: true.
-			r1 := go evaluate norm.
+			geneticOptimizer maximumIterations: 1000.
+			geneticOptimizer removeLast: true.
+			r1 := geneticOptimizer evaluate norm.
 			self setUp.
-			go maximumIterations: 1000.
-			go removeLast: false.
-			r2 := go evaluate norm.
+			geneticOptimizer maximumIterations: 1000.
+			geneticOptimizer removeLast: false.
+			r2 := geneticOptimizer evaluate norm.
 			correct := r1 > r2
 				ifTrue: [ correct + 1 ]
 				ifFalse: [ correct - 1 ] ].
@@ -129,39 +130,39 @@ PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 PMAnotherGeneticOptimizerTest >> testSteadyState [
 |r1 r2|
 "probabilistic test. not always true"
-go steadyState:  false.
-go maximumIterations: 1000.
-r1 :=go evaluate norm.
+geneticOptimizer steadyState:  false.
+geneticOptimizer maximumIterations: 1000.
+r1 :=geneticOptimizer evaluate norm.
 self setUp .
-go steadyState:  true.
-go maximumIterations: 1000.
-r2 :=go evaluate norm.
+geneticOptimizer steadyState:  true.
+geneticOptimizer maximumIterations: 1000.
+r2 :=geneticOptimizer evaluate norm.
 self assert: (r1>r2  )
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testaddPointAt [
 	| b |
-	go chromosomeManager populationSize: 2.
-	go resetBestPoints.
-	go addPointAt: #(0 1 0).
-	b := go bestPoints.
+	geneticOptimizer chromosomeManager populationSize: 2.
+	geneticOptimizer resetBestPoints.
+	geneticOptimizer addPointAt: #(0 1 0).
+	b := geneticOptimizer bestPoints.
 	self assert: b first position equals: #(0 1 0).
 	self assert: b first value equals: 1.
-	go addPointAt: (Array with: 0 with: Float nan with: 0).
-	self assert: go bestPoints equals: b.
-	go addPointAt: (Array with: (0 - Float infinity) with: 0 with: 0).
-	self assert: go bestPoints equals: b.
-	go addPointAt: #(1 1 0).
-	b := go bestPoints.
+	geneticOptimizer addPointAt: (Array with: 0 with: Float nan with: 0).
+	self assert: geneticOptimizer bestPoints equals: b.
+	geneticOptimizer addPointAt: (Array with: (0 - Float infinity) with: 0 with: 0).
+	self assert: geneticOptimizer bestPoints equals: b.
+	geneticOptimizer addPointAt: #(1 1 0).
+	b := geneticOptimizer bestPoints.
 	self assert: b size equals: 2.
-	go addPointAt: #(2 1 0).
-	self assert: go bestPoints equals: b.
-	go addPointAt: #(0 0.9 0).
+	geneticOptimizer addPointAt: #(2 1 0).
+	self assert: geneticOptimizer bestPoints equals: b.
+	geneticOptimizer addPointAt: #(0 0.9 0).
 	self assert: b first position equals: #(0 0.9 0).
 	self assert: b second position equals: #(0 1 0).	"never throw away old first position"
-	go removeLast: true.
-	go addPointAt: #(0 0.89 0).
+	geneticOptimizer removeLast: true.
+	geneticOptimizer addPointAt: #(0 0.89 0).
 	self assert: b first position equals: #(0 0.89 0).
 	self assert: b second position equals: #(0 0.9 0)
 ]
@@ -170,22 +171,22 @@ PMAnotherGeneticOptimizerTest >> testaddPointAt [
 PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 
 	| s |
-	go evaluate.
-	self assertEmpty: go bestValueHistory.
-	self assertEmpty: go worstValueHistory.
-	self assertEmpty: go whateverHistory.
-	go calcStatistics: true.
-	go evaluate.
-	s := go iterations.
-	self assert: go bestValueHistory size equals: s.
-	self assert: go worstValueHistory size equals: s.
-	self assert: go whateverHistory size equals: s
+	geneticOptimizer evaluate.
+	self assertEmpty: geneticOptimizer bestValueHistory.
+	self assertEmpty: geneticOptimizer worstValueHistory.
+	self assertEmpty: geneticOptimizer whateverHistory.
+	geneticOptimizer calcStatistics: true.
+	geneticOptimizer evaluate.
+	s := geneticOptimizer iterations.
+	self assert: geneticOptimizer bestValueHistory size equals: s.
+	self assert: geneticOptimizer worstValueHistory size equals: s.
+	self assert: geneticOptimizer whateverHistory size equals: s
 ]
 
 { #category : #tests }
 PMAnotherGeneticOptimizerTest >> testresetBestPoints [
 
-	go evaluate.
-	go resetBestPoints.
-	self assertEmpty: go bestPoints
+	geneticOptimizer evaluate.
+	geneticOptimizer resetBestPoints.
+	self assertEmpty: geneticOptimizer bestPoints
 ]

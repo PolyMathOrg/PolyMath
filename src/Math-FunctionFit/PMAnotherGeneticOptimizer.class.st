@@ -95,7 +95,8 @@ PMAnotherGeneticOptimizer >> computePrecision: whateverData [  "can be changed t
 
 { #category : #operation }
 PMAnotherGeneticOptimizer >> evaluate [
-^Cursor wait showWhile: [super evaluate]
+
+	^ Cursor wait showWhile: [ super evaluate ]
 ]
 
 { #category : #operation }
@@ -129,12 +130,12 @@ statistics :=false
 
 { #category : #operation }
 PMAnotherGeneticOptimizer >> initializeIterations [
-	bestPoints size>=chromosomeManager populationSize
-		ifTrue: [bestPoints := bestPoints copyFrom: 1 to: (bestPoints size // 2 max: 1)].
+
+	bestPoints size >= chromosomeManager populationSize ifTrue: [ bestPoints := bestPoints copyFrom: 1 to: (bestPoints size // 2 max: 1) ].
 	super initializeIterations.
-	bestValueHistory:=OrderedCollection new.
-	worstValueHistory:=OrderedCollection new.
-	whateverHistory:=OrderedCollection new
+	bestValueHistory := OrderedCollection new.
+	worstValueHistory := OrderedCollection new.
+	whateverHistory := OrderedCollection new
 ]
 
 { #category : #operation }

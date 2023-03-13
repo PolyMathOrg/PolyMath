@@ -8,7 +8,8 @@ Class {
 	#instVars : [
 		'hammersley',
 		'rateOfLC',
-		'rateOfEir'
+		'rateOfEir',
+		'randomGenerator'
 	],
 	#classVars : [
 		'Primes'
@@ -33,28 +34,29 @@ PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 ]
 
 { #category : #utilities }
-PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d randomized: aBoolean [
+PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d randomGenerator: randomGenerator [
 	"a bit randomized "
-	| dist randomNumberGenerator |
+
+	| dist |
 	dist := 1.0 / n.
-	randomNumberGenerator := Random new.
 
-	^(1 to: n) collect: [ :number |
-		(1 to: d) collect: [ :dim |
-			(dim=1)
-				ifTrue: [ aBoolean
-					ifTrue: [ (number/n) - (randomNumberGenerator nextBetween: 0 and: dist) ]
-					ifFalse: [ number/n ] ]
-				ifFalse: [ |sum prime|
-					sum := 0.
-					prime := Primes at: dim - 1.
+	^ (1 to: n) collect: [ :number |
+		  (1 to: d) collect: [ :dim |
+			  dim = 1
+				  ifTrue: [
+					  randomGenerator
+						  ifNotNil: [ number / n - (randomGenerator nextBetween: 0 and: dist) ]
+						  ifNil: [ number / n ] ]
+				  ifFalse: [
+					  | sum prime |
+					  sum := 0.
+					  prime := Primes at: dim - 1.
 
-					(self integerDigitsFor: number base: prime) reverse withIndexDo: [ :i :index |
-						sum := i / (prime raisedToInteger: index) + sum ].
+					  (self integerDigitsFor: number base: prime) reverse withIndexDo: [ :i :index | sum := i / (prime raisedToInteger: index) + sum ].
 
-					aBoolean
-						ifTrue: [ sum + (randomNumberGenerator nextBetween: 0 and: dist) ]
-						ifFalse: [ sum ] ] ]].
+					  randomGenerator
+						  ifNotNil: [ sum + (randomGenerator nextBetween: 0 and: dist) ]
+						  ifNil: [ sum ] ] ] ]
 ]
 
 { #category : #'instance creation' }
@@ -108,14 +110,15 @@ PMAnotherChromosomeManager >> eirCrossover: aChromosome1 and: aChromosome2 [
 
 { #category : #initialization }
 PMAnotherChromosomeManager >> initialize [
-super initialize .
-populationSize :=100.
-hammersley :=true.
-rateOfEir :=0.16.
-rateOfLC:=0.29.
-rateOfMutation :=0.4.
-rateOfCrossover :=0.15.
-Primes  ifNil:[Primes :=Integer primesUpTo: 500].	"sufficient for up to 95 dimensions (parameters)"
+
+	super initialize.
+	populationSize := 100.
+	hammersley := true.
+	rateOfEir := 0.16.
+	rateOfLC := 0.29.
+	rateOfMutation := 0.4.
+	rateOfCrossover := 0.15.
+	Primes ifNil: [ Primes := Integer primesUpTo: 500 ] "sufficient for up to 95 dimensions (parameters)"
 ]
 
 { #category : #information }
@@ -205,6 +208,18 @@ PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [
 								add: (self clone: aChromosome2)]]]]
 ]
 
+{ #category : #accessing }
+PMAnotherChromosomeManager >> randomGenerator [
+
+	^ randomGenerator
+]
+
+{ #category : #accessing }
+PMAnotherChromosomeManager >> randomGenerator: anObject [
+
+	randomGenerator := anObject
+]
+
 { #category : #private }
 PMAnotherChromosomeManager >> randomRangeAt: aPosition [
 ^(range at: aPosition )*(self smallDistribution )
@@ -212,9 +227,10 @@ PMAnotherChromosomeManager >> randomRangeAt: aPosition [
 
 { #category : #operation }
 PMAnotherChromosomeManager >> randomizePopulation [
-hammersley ifFalse: [^super randomizePopulation ].
-population :=self class numberOfHamersleyPoints: populationSize  dimension: origin size randomized: true.
-population := population collect: [:aChr| aChr *range +origin ]
+
+	hammersley ifFalse: [ ^ super randomizePopulation ].
+	population := self class numberOfHamersleyPoints: populationSize dimension: origin size randomGenerator: (self randomGenerator ifNil: [ Random new ]).
+	population := population collect: [ :aChr | aChr * range + origin ]
 ]
 
 { #category : #accessing }

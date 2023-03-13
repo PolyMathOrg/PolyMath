@@ -10,14 +10,14 @@ Class {
 	#name : #PMGeneralFunctionFit,
 	#superclass : #Object,
 	#instVars : [
-		'go',
 		'manager',
 		'errorFunction',
 		'result',
 		'firstResult',
 		'verbose',
 		'data',
-		'dataTruncated'
+		'dataTruncated',
+		'geneticOptimizer'
 	],
 	#category : #'Math-FunctionFit'
 }
@@ -92,27 +92,31 @@ self resetResult.
 
 { #category : #operation }
 PMGeneralFunctionFit >> evaluate [
-|ff|
-ff :=PMErrorMinimizer function: errorFunction.
-firstResult :=[ff evaluate .ff parameters]
-	onErrorDo: [ verbose ifTrue: [self inform: 'ErrorMinimizer was not successful']. nil].
-firstResult ifNotNil: [go addPointAt: firstResult] .
-firstResult := go evaluate .
-self errorType =#squared
-	ifTrue: [ff :=PMFunctionFit function: errorFunction function data: errorFunction data ].
-ff parameters: firstResult.
-ff desiredPrecision: PMFloatingPointMachine new machinePrecision.
-ff maximumIterations: 1000 .
-result:=[ff evaluate .ff parameters]
-			onErrorDo: [
-				verbose ifTrue: [self inform: 'last FunctionFit was not successful'].
-				ff result parameters].
-((errorFunction value: result) > (errorFunction value: firstResult)) ifTrue:[
-	ff:=result.
-	result :=firstResult.
-	firstResult :=ff.
-	verbose ifTrue: [self inform: 'first result was better than final result'  ] ].
-^result
+
+	| ff |
+	ff := PMErrorMinimizer function: errorFunction.
+	firstResult := [
+	               ff evaluate.
+	               ff parameters ] onErrorDo: [
+		               verbose ifTrue: [ self inform: 'ErrorMinimizer was not successful' ].
+		               nil ].
+	firstResult ifNotNil: [ geneticOptimizer addPointAt: firstResult ].
+	firstResult := geneticOptimizer evaluate.
+	self errorType = #squared ifTrue: [ ff := PMFunctionFit function: errorFunction function data: errorFunction data ].
+	ff parameters: firstResult.
+	ff desiredPrecision: PMFloatingPointMachine new machinePrecision.
+	ff maximumIterations: 1000.
+	result := [
+	          ff evaluate.
+	          ff parameters ] onErrorDo: [
+		          verbose ifTrue: [ self inform: 'last FunctionFit was not successful' ].
+		          ff result parameters ].
+	(errorFunction value: result) > (errorFunction value: firstResult) ifTrue: [
+		ff := result.
+		result := firstResult.
+		firstResult := ff.
+		verbose ifTrue: [ self inform: 'first result was better than final result' ] ].
+	^ result
 ]
 
 { #category : #operation }
@@ -165,16 +169,19 @@ errorFunction function: aBlock
 
 { #category : #initialization }
 PMGeneralFunctionFit >> initialize [
-super initialize .
-errorFunction :=PMErrorOfParameterFunction new.
-manager :=PMAnotherChromosomeManager new.
-manager populationSize: 50.
-go :=PMAnotherGeneticOptimizer minimizingFunction: errorFunction .
-go chromosomeManager: manager.
-go maximumIterations: 170.
-self errorType: #squared.
-verbose:=false.
-dataTruncated :=false
+
+	super initialize.
+	errorFunction := PMErrorOfParameterFunction new.
+	manager := PMAnotherChromosomeManager new
+		           populationSize: 50;
+		           yourself.
+	geneticOptimizer := (PMAnotherGeneticOptimizer minimizingFunction: errorFunction)
+		                    chromosomeManager: manager;
+		                    maximumIterations: 170;
+		                    yourself.
+	self errorType: #squared.
+	verbose := false.
+	dataTruncated := false
 ]
 
 { #category : #accessing }
@@ -186,7 +193,7 @@ PMGeneralFunctionFit >> manager [
 { #category : #accessing }
 PMGeneralFunctionFit >> maximumIterations: anInteger [
 "default is 170."
-go maximumIterations: anInteger.
+geneticOptimizer maximumIterations: anInteger.
 ^anInteger
 ]
 
@@ -207,7 +214,7 @@ manager range: (array2 - array1)
 { #category : #accessing }
 PMGeneralFunctionFit >> optimizer [
 "if you want to change parameters of AnotherGeneticOptimizer not directly available in GeneralFunctionFit"
-^go
+^geneticOptimizer
 ]
 
 { #category : #accessing }
@@ -221,7 +228,7 @@ manager populationSize: anInteger .
 { #category : #accessing }
 PMGeneralFunctionFit >> precision [
 "not really useful to look at, you might better look at #error"
-^go precision
+^geneticOptimizer precision
 ]
 
 { #category : #printing }
@@ -230,7 +237,7 @@ PMGeneralFunctionFit >> printOn: aStream [
 		nextPutAll: 'a ';
 		nextPutAll: self class name;
 		nextPut: $(;
-		print: go;
+		print: geneticOptimizer;
 		nextPutAll: ' with data of size: ';
 	  	print: data size .
 	 dataTruncated ifTrue:
@@ -272,7 +279,7 @@ self data: data
 PMGeneralFunctionFit >> resetResult [
 result :=nil.
 firstResult :=nil.
-go resetBestPoints
+geneticOptimizer resetBestPoints
 ]
 
 { #category : #accessing }
