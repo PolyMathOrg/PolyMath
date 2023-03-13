@@ -12,23 +12,20 @@ PMOptimizingBracketFinder class >> initialPoints: aSortedCollection function: aF
 
 { #category : #operation }
 PMOptimizingBracketFinder >> computeInitialValues [
-	| random |
-	random := Random new.
 
-	[ bestPoints size < 2 ] whileTrue: [
-		self addPointAt: random next ]
+	[ bestPoints size < 2 ] whileTrue: [ self addPointAt: self randomGenerator next ]
 ]
 
 { #category : #operation }
 PMOptimizingBracketFinder >> evaluateIteration [
+
 	| x1 x2 |
-	x1 := ( bestPoints at: 1) position.
-	x2 := ( bestPoints at: 2) position.
-	self addPointAt: ( x1 * 3 - ( x2 * 2)).
-	precision := ( x2 - x1) * ( ( bestPoints at: 3) position - x1).
-	self hasConverged
-		ifFalse:[ bestPoints removeLast].
-	^precision
+	x1 := (bestPoints at: 1) position.
+	x2 := (bestPoints at: 2) position.
+	self addPointAt: x1 * 3 - (x2 * 2).
+	precision := x2 - x1 * ((bestPoints at: 3) position - x1).
+	self hasConverged ifFalse: [ bestPoints removeLast ].
+	^ precision
 ]
 
 { #category : #operation }
@@ -37,14 +34,23 @@ PMOptimizingBracketFinder >> finalizeIterations [
 ]
 
 { #category : #initialization }
+PMOptimizingBracketFinder >> initialize [
+
+	super initialize.
+	self randomGenerator: Random new
+]
+
+{ #category : #initialization }
 PMOptimizingBracketFinder >> initializeForOptimizer: aFunctionOptimizer [
-		"Private"
+	"Private"
+
 	super initializeForOptimizer: aFunctionOptimizer.
 	bestPoints := aFunctionOptimizer bestPoints
 ]
 
 { #category : #initialization }
 PMOptimizingBracketFinder >> setInitialPoints: aSortedCollection [
-		"Private"
+	"Private"
+
 	bestPoints := aSortedCollection
 ]

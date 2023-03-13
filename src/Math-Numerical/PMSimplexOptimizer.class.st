@@ -2,7 +2,8 @@ Class {
 	#name : #PMSimplexOptimizer,
 	#superclass : #PMFunctionOptimizer,
 	#instVars : [
-		'worstVector'
+		'worstVector',
+		'randomGenerator'
 	],
 	#category : #'Math-Numerical-Math-FunctionIterator'
 }
@@ -18,26 +19,24 @@ PMSimplexOptimizer >> buildInitialSimplex [
 	"Private"
 
 	| projectedFunction finder partialResult |
-	projectedFunction := PMProjectedOneVariableFunction
-				function: functionBlock.
+	projectedFunction := PMProjectedOneVariableFunction function: functionBlock.
 	finder := PMOneVariableFunctionOptimizer forOptimizer: self.
+	self randomGenerator ifNotNil: [ :generator | finder randomGenerator: generator ].
 	finder setFunction: projectedFunction.
-	[bestPoints size < (result size + 1)] whileTrue:
-			[projectedFunction
-				setArgument: result;
-				bumpIndex.
-			partialResult := finder
-						reset;
-						evaluate.
-			bestPoints add: (optimizingPointClass
-						vector: (projectedFunction argumentWith: partialResult)
-						function: functionBlock)]
+	[ bestPoints size < (result size + 1) ] whileTrue: [
+		projectedFunction
+			setArgument: result;
+			bumpIndex.
+		partialResult := finder
+			                 reset;
+			                 evaluate.
+		bestPoints add: (optimizingPointClass vector: (projectedFunction argumentWith: partialResult) function: functionBlock) ]
 ]
 
 { #category : #initialization }
 PMSimplexOptimizer >> computeInitialValues [
-	bestPoints
-		add: (optimizingPointClass vector: result function: functionBlock).
+
+	bestPoints add: (optimizingPointClass vector: result function: functionBlock).
 	self buildInitialSimplex.
 	worstVector := bestPoints removeLast position
 ]
@@ -105,4 +104,16 @@ PMSimplexOptimizer >> printOn: aStream [
 	super printOn: aStream.
 	aStream cr.
 	worstVector printOn: aStream
+]
+
+{ #category : #accessing }
+PMSimplexOptimizer >> randomGenerator [
+
+	^ randomGenerator
+]
+
+{ #category : #accessing }
+PMSimplexOptimizer >> randomGenerator: anObject [
+
+	randomGenerator := anObject
 ]
