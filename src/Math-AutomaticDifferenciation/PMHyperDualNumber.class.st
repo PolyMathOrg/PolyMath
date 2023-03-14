@@ -97,17 +97,9 @@ PMHyperDualNumber >> arcTan [
 ]
 
 { #category : #comparing }
-PMHyperDualNumber >> closeTo: aHyperDualNumber [
-
-	^ (super closeTo: aHyperDualNumber) and: [
-		  (eps2 closeTo: aHyperDualNumber eps2) and: [
-			  eps1eps2 closeTo: aHyperDualNumber eps1eps2 ] ]
-]
-
-{ #category : #comparing }
 PMHyperDualNumber >> closeTo: aHyperDualNumber precision: aPrecision [
 
-	^ (super closeTo: aHyperDualNumber asFloat precision: aPrecision) and: [
+	^ (super closeTo: aHyperDualNumber precision: aPrecision) and: [
 		  (eps2 closeTo: aHyperDualNumber eps2 precision: aPrecision) and: [ eps1eps2 closeTo: aHyperDualNumber eps1eps2 precision: aPrecision ] ]
 ]
 

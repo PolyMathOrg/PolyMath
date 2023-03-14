@@ -135,8 +135,7 @@ PMDualNumber >> asInteger [
 { #category : #comparing }
 PMDualNumber >> closeTo: aDualNumber [
 
-	^ (value closeTo: aDualNumber value) and: [
-		  eps closeTo: aDualNumber eps ]
+	^ self closeTo: aDualNumber precision: Float defaultComparisonPrecision
 ]
 
 { #category : #comparing }
