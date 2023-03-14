@@ -139,6 +139,12 @@ PMDualNumber >> closeTo: aDualNumber [
 		  eps closeTo: aDualNumber eps ]
 ]
 
+{ #category : #comparing }
+PMDualNumber >> closeTo: aDualNumber precision: aPrecision [
+
+	^ (value closeTo: aDualNumber value precision: aPrecision) and: [ eps closeTo: aDualNumber eps precision: aPrecision ]
+]
+
 { #category : #'mathematical functions' }
 PMDualNumber >> conjugated [
 
