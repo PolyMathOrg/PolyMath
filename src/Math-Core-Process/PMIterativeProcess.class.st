@@ -82,8 +82,7 @@ PMIterativeProcess >> initialize [
 	super initialize.
 
 	desiredPrecision := self class defaultPrecision.
-	maximumIterations := self class defaultMaximumIterations.
-	^ self
+	maximumIterations := self class defaultMaximumIterations
 ]
 
 { #category : #operation }
