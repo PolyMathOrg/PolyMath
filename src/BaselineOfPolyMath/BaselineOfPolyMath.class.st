@@ -39,12 +39,12 @@ BaselineOfPolyMath >> baseline: spec [
 			package: 'Math-Complex' with: [ spec requires: #( 'Math-Numerical' 'Math-Polynomials' ) ];
 			package: 'Math-Helpers';
 			package: 'Math-Distributions' with: [ spec requires: #( 'MathVectorMatrix' 'Math-Quantile' 'Math-Core-Process' ) ];
-			package: 'Math-Core-Process' with: [ spec requires: #( 'Math-Helpers' ) ];
+			package: 'Math-Core-Process';
 			package: 'Math-Numerical'
-			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
+			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
 					   'Math-Series' ) ];
 			package: 'Math-Polynomials'
-			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Helpers' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
+			with: [ spec requires: #( 'MathVectorMatrix' 'Math-Core-Process' 'Math-Distributions' 'Math-StatisticalMoments'
 					   'Math-Series' ) ];
 			package: 'Math-FastFourierTransform' with: [ spec requires: #( 'Math-Complex' ) ];
 			package: 'Math-FunctionFit'

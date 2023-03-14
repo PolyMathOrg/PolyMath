@@ -100,11 +100,12 @@ PMGeneralFunctionFit >> evaluate [
 	               ff parameters ] onErrorDo: [
 		               verbose ifTrue: [ self inform: 'ErrorMinimizer was not successful' ].
 		               nil ].
+
 	firstResult ifNotNil: [ geneticOptimizer addPointAt: firstResult ].
 	firstResult := geneticOptimizer evaluate.
 	self errorType = #squared ifTrue: [ ff := PMFunctionFit function: errorFunction function data: errorFunction data ].
 	ff parameters: firstResult.
-	ff desiredPrecision: PMFloatingPointMachine new machinePrecision.
+	ff desiredPrecision: Float machineEpsilon.
 	ff maximumIterations: 1000.
 	result := [
 	          ff evaluate.

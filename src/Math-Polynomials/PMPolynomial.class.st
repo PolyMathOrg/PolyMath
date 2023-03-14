@@ -234,7 +234,7 @@ PMPolynomial >> reciprocal [
 { #category : #information }
 PMPolynomial >> roots [
 
-	^self roots: PMFloatingPointMachine new defaultNumericalPrecision
+	^ self roots: Float defaultComparisonPrecision
 ]
 
 { #category : #information }

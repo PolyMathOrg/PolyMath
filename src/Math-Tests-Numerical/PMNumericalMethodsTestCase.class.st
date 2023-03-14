@@ -9,9 +9,7 @@ PMNumericalMethodsTestCase >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 
 	super setUp.
-	PMMitchellMooreGenerator reset: 0.
-	"Reset the FloatingPointMachine to make coverage consistent"
-	PMFloatingPointMachine reset
+	PMMitchellMooreGenerator reset: 0
 ]
 
 { #category : #'linear algebra' }
@@ -32,14 +30,13 @@ PMNumericalMethodsTestCase >> testBissection [
 	"Code Example 5.1"
 
 	| zeroFinder result |
-	zeroFinder := PMBisectionZeroFinder
-		function: [ :x | x errorFunction - 0.9 ].
+	zeroFinder := PMBisectionZeroFinder function: [ :x | x errorFunction - 0.9 ].
 	zeroFinder
 		setPositiveX: 10.0;
 		setNegativeX: 0.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
-	self assert: (result - 1.28155193291605) abs < 1.0e-14
+	self assert: result closeTo: 1.28155193291605
 ]
 
 { #category : #'linear algebra' }
@@ -95,34 +92,26 @@ PMNumericalMethodsTestCase >> testErrorFunction [
 	"simple cases to expect"
 
 	self assert: 0 errorFunction equals: 1 / 2.
-	self
-		assert:
-			PMFloatingPointMachine new largestNumber errorFunction
-				> (1 - PMFloatingPointMachine new machinePrecision).
+	self assert: Float fmax errorFunction > (1 - Float machineEpsilon).
 	"add some code to require initialize to run"
 	PMErfApproximation reset.
-	self
-		assert:
-			PMFloatingPointMachine new largestNumber negated errorFunction
-				< PMFloatingPointMachine new smallestNumber
+	self assert: Float fmax negated errorFunction < Float fmin
 ]
 
 { #category : #estimation }
 PMNumericalMethodsTestCase >> testFTest [
+
 	| accC accMM confidenceLevel |
 	accC := PMStatisticalMoments new.
-	#(5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70)
-		do: [ :x | accC accumulate: x ].
+	#( 5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70 ) do: [ :x | accC accumulate: x ].
 	accMM := PMStatisticalMoments new.
-	#(7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58)
-		do: [ :x | accMM accumulate: x ].
+	#( 7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58 ) do: [ :x | accMM accumulate: x ].
 	confidenceLevel := accC fConfidenceLevel: accMM.
-	self assert: (accC average - 5.393) abs < 0.000000001.
-	self
-		assert: (accC standardDeviation - 1.0990809292) abs < 0.000000001.
-	self assert: (accMM average - 5.804) abs < 0.000000001.
-	self assert: (accMM standardDeviation - 1.19415428) abs < 0.000000001.
-	self assert: (confidenceLevel - 79.8147614536) abs < 0.000000001
+	self assert: accC average - 5.393 closeTo: 0.
+	self assert: accC standardDeviation - 1.0990809292 closeTo: 0.
+	self assert: accMM average - 5.804 closeTo: 0.
+	self assert: accMM standardDeviation - 1.19415428 closeTo: 0.
+	self assert: confidenceLevel - 79.8147614536 closeTo: 0
 ]
 
 { #category : #statistics }
@@ -162,10 +151,8 @@ PMNumericalMethodsTestCase >> testIncompleteBetaFunction [
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIncompleteGammaFunction [
-	| function |
-	function := PMIncompleteGammaFunction shape: 2.
-	self
-		assert: ((function value: 2) - 0.59399414981) abs < 0.00000000001
+
+	self assert: ((PMIncompleteGammaFunction shape: 2) value: 2) - 0.59399414981 closeTo: 0
 ]
 
 { #category : #'iterative algorithms' }
@@ -461,15 +448,20 @@ PMNumericalMethodsTestCase >> testLineSearch3 [
 
 	This case does not require line search, should return 1.
 	"
+
 	| xOld eps p functionBlock g0 g1 dg0 lineSearch xAnswer |
-	eps := PMFloatingPointMachine new defaultNumericalPrecision.
+	eps := Float defaultComparisonPrecision.
 	xOld := -1.0 + eps.
 	p := eps.
-	functionBlock := [  :t | 0.5 * ((t * p + xOld) + 1) squared ].
+	functionBlock := [ :t | 0.5 * (t * p + xOld + 1) squared ].
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
-	lineSearch := PMLineSearch function: functionBlock valueAtZero: g0 derivativeAtZero: dg0 valueAtOne: g1.
+	lineSearch := PMLineSearch
+		              function: functionBlock
+		              valueAtZero: g0
+		              derivativeAtZero: dg0
+		              valueAtOne: g1.
 	lineSearch desiredPrecision: eps.
 	xAnswer := lineSearch evaluate.
 	self assert: xAnswer equals: 1.0
@@ -822,7 +814,7 @@ PMNumericalMethodsTestCase >> testOptimizeOneDimension [
 	finder randomGenerator: (Random seed: 42).
 	finder desiredPrecision: 1.0e-6.
 	maximum := finder evaluate.
-	self assert: (maximum - 5) abs < 1.0e-6.
+	self assert: maximum - 5 closeTo: 0.
 	self assert: finder precision < 1.0e-6
 ]
 
@@ -856,9 +848,9 @@ PMNumericalMethodsTestCase >> testOptimizeSimplex [
 	simplex desiredPrecision: 1.0e-6.
 	result := simplex evaluate.
 	self assert: simplex precision < 1.0e-6.
-	self assert: (result at: 1) abs < 1.0e-6.
-	self assert: (result at: 2) abs < 1.0e-6.
-	self assert: (result at: 3) abs < 1.0e-6
+	self assert: (result at: 1) closeTo: 0.
+	self assert: (result at: 2) closeTo: 0.
+	self assert: (result at: 3) closeTo: 0
 ]
 
 { #category : #statistics }
@@ -954,20 +946,18 @@ PMNumericalMethodsTestCase >> testSymmetricMatrixAdd3 [
 
 { #category : #estimation }
 PMNumericalMethodsTestCase >> testTTest [
+
 	| accC accMM confidenceLevel |
 	accC := PMStatisticalMoments new.
-	#(5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70)
-		do: [ :x | accC accumulate: x ].
+	#( 5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70 ) do: [ :x | accC accumulate: x ].
 	accMM := PMStatisticalMoments new.
-	#(7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58)
-		do: [ :x | accMM accumulate: x ].
+	#( 7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58 ) do: [ :x | accMM accumulate: x ].
 	confidenceLevel := accC tConfidenceLevel: accMM.
-	self assert: (accC average - 5.393) abs < 0.000000001.
-	self
-		assert: (accC standardDeviation - 1.0990809292) abs < 0.000000001.
-	self assert: (accMM average - 5.804) abs < 0.000000001.
-	self assert: (accMM standardDeviation - 1.19415428) abs < 0.000000001.
-	self assert: (confidenceLevel - 56.6320739989) abs < 0.000000001
+	self assert: accC average - 5.393 closeTo: 0.
+	self assert: accC standardDeviation - 1.0990809292 closeTo: 0.
+	self assert: accMM average - 5.804 closeTo: 0.
+	self assert: accMM standardDeviation - 1.19415428 closeTo: 0.
+	self assert: confidenceLevel - 56.6320739989 closeTo: 0
 ]
 
 { #category : #'linear algebra' }

@@ -12,8 +12,9 @@ Class {
 
 { #category : #information }
 PMOneVariableFunctionOptimizer class >> defaultPrecision [
-		"Private"
-	^PMFloatingPointMachine new defaultNumericalPrecision * 10
+	"Private"
+
+	^ Float defaultComparisonPrecision * 10
 ]
 
 { #category : #information }

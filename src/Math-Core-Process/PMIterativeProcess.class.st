@@ -33,7 +33,9 @@ PMIterativeProcess class >> defaultMaximumIterations [
 { #category : #default }
 PMIterativeProcess class >> defaultPrecision [
 	"Private - Answers the default precision for newly created instances."
-	^PMFloatingPointMachine new defaultNumericalPrecision
+
+	self flag: #todo. "In Pharo 12 the default comparision precision of Float will be improved. When Pharo 12 will be the minimal version of Polymath we can use `Float defaultComparisonPrecision"
+	^ Float machineEpsilon sqrt
 ]
 
 { #category : #initialization }
@@ -98,10 +100,13 @@ PMIterativeProcess >> iterations [
 
 { #category : #private }
 PMIterativeProcess >> limitedSmallValue: aNumber [
-	"Private - prevent aNumber from being smaller in absolute value than a small number."
-	^aNumber abs < PMFloatingPointMachine new smallNumber
-			ifTrue: [ PMFloatingPointMachine new smallNumber]
-			ifFalse:[ aNumber]
+	"Private - prevent aNumber from being smaller in absolute value than a small."
+
+	| smallestAccepted |
+	smallestAccepted := Float fmin sqrt.
+	^ aNumber abs < smallestAccepted
+		  ifTrue: [ smallestAccepted ]
+		  ifFalse: [ aNumber ]
 ]
 
 { #category : #initialization }
@@ -121,9 +126,9 @@ PMIterativeProcess >> precision [
 { #category : #information }
 PMIterativeProcess >> precisionOf: aNumber1 relativeTo: aNumber2 [
 
-	^aNumber2 > PMFloatingPointMachine new defaultNumericalPrecision
-		ifTrue: [ aNumber1 / aNumber2]
-		ifFalse:[ aNumber1]
+	^ aNumber2 > Float defaultComparisonPrecision
+		  ifTrue: [ aNumber1 / aNumber2 ]
+		  ifFalse: [ aNumber1 ]
 ]
 
 { #category : #information }
