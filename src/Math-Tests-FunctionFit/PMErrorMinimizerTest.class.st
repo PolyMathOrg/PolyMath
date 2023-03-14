@@ -19,5 +19,5 @@ PMErrorMinimizerTest >> testErrorMinimizer [
 	fit := PMErrorMinimizer function: er.
 	fit evaluate.
 	self assert: fit maxFunction > 2.
-	self assert: (fit parameters closeTo: #( 2 0.4 ))
+	self assert: fit parameters closeTo: #( 2 0.4 )
 ]

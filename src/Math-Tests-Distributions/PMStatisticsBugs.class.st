@@ -9,7 +9,7 @@ PMStatisticsBugs >> testAsymptoticChiSquareDistribution [
 
 	| a |
 	a := PMAsymptoticChiSquareDistribution degreeOfFreedom: 18.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8
 	"Supplied derivative is not correct"
 ]
 
@@ -24,31 +24,31 @@ PMStatisticsBugs >> testBetaDistribution [
 	self assert: (d distributionValue: -2) equals: 0.
 
 	a := PMBetaDistribution shape: 2 shape: 3.1.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"zerodivide"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1).
+	self assert: (a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1.
 	"zerod"
 	a := PMBetaDistribution shape: 0.9 shape: 0.9.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a inverseDistributionValue: 0) closeTo: 0).
+	self assert: (a inverseDistributionValue: 0) closeTo: 0.
 	"zerod"
-	self assert: ((a inverseDistributionValue: 1) closeTo: 1).
+	self assert: (a inverseDistributionValue: 1) closeTo: 1.
 	"zerod"
 	a := PMBetaDistribution shape: 9 shape: 0.29.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((a inverseDistributionValue: 1.0) closeTo: 1)
+	self assert: (a inverseDistributionValue: 1.0) closeTo: 1
 	"zerod"
 ]
 
@@ -61,13 +61,13 @@ PMStatisticsBugs >> testCauchyDistribution [
 	self assert: (a inverseDistributionValue: 0) equals: Float infinity negated.
 	self assert: (a inverseDistributionValue: 1) equals: Float infinity.
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"ok"
 	self assert: (a inverseDistributionValue: 0.5) equals: -40.2.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"zerod, which in this case is ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"ok"
 ]
 
@@ -76,23 +76,23 @@ PMStatisticsBugs >> testChiSquareDistribution [
 
 	| a |
 	a := PMChiSquareDistribution degreeOfFreedom: 3.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7.
 	"zerodivide"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004.
 	"zerodivide"
 
 	a := PMChiSquareDistribution degreeOfFreedom: 300.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7.
 	"'Function''s derivative seems to be zero everywhere'"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004.
 	"ok"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerodivide"
 ]
 
@@ -101,13 +101,13 @@ PMStatisticsBugs >> testExponentialDistribution [
 
 	| a |
 	a := PMExponentialDistribution new.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99.
 	"ok "
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"ok"
 ]
 
@@ -116,27 +116,28 @@ PMStatisticsBugs >> testFisherSnedecorDistribution [
 
 	| a |
 	a := PMFisherSnedecorDistribution degreeOfFreedom: 100 degreeOfFreedom: 200.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8.
 	"'Function''s derivative seems to be zero everywhere'"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6.
 	"zerodivide"
 
 	a := PMFisherSnedecorDistribution degreeOfFreedom: 5 degreeOfFreedom: 6.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8.
 	"'Function''s derivative seems to be zero everywhere'"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6
 	"zerodivide"
 ]
 
 { #category : #tests }
 PMStatisticsBugs >> testFisherTippet [
+
 	| d |
 	d := PMFisherTippettDistribution new.
-	self assert: ((d integralFrom: -10 to: -0.1) closeTo: (d distributionValue: -0.1)).
-	self assert: ((d integralUpTo: -0.1) closeTo: (d distributionValue: -0.1)).
-	self assert: ((d integralFrom: -10 to: 0.1) closeTo: (d distributionValue: 0.1))
+	self assert: (d integralFrom: -10 to: -0.1) closeTo: (d distributionValue: -0.1).
+	self assert: (d integralUpTo: -0.1) closeTo: (d distributionValue: -0.1).
+	self assert: (d integralFrom: -10 to: 0.1) closeTo: (d distributionValue: 0.1)
 ]
 
 { #category : #tests }
@@ -155,23 +156,23 @@ PMStatisticsBugs >> testFisherTippetDistribution [
 
 	| a |
 	a := PMFisherTippettDistribution new.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"zerodivide"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.001)) closeTo: 0.001).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.001)) closeTo: 0.001.
 	"ok"
 
 	a := PMFisherTippettDistribution shape: -3 scale: 0.7.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"zerodivide"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.4)) closeTo: 0.4).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.4)) closeTo: 0.4.
 	"zerodivide"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerodivide"
 ]
 
@@ -187,13 +188,13 @@ PMStatisticsBugs >> testGammaDistribution [
 
 
 	a := PMGammaDistribution shape: 2 scale: 1.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"zerod"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"zerod"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerod"
 ]
 
@@ -207,11 +208,11 @@ PMStatisticsBugs >> testHistogramDistribution [
 	20 timesRepeat: [ a accumulate: (random nextBetween: 0 and: 7) ].
 
 	b := PMHistogrammedDistribution histogram: a.
-	self assert: ((b distributionValue: (b inverseDistributionValue: 0.99)) closeTo: 0.99).
+	self assert: (b distributionValue: (b inverseDistributionValue: 0.99)) closeTo: 0.99.
 	"ok"
-	self assert: ((b distributionValue: (b inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (b distributionValue: (b inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((b distributionValue: (b inverseDistributionValue: 1.0) asFloat) closeTo: 1)
+	self assert: (b distributionValue: (b inverseDistributionValue: 1.0) asFloat) closeTo: 1
 	"ok"
 ]
 
@@ -221,14 +222,14 @@ PMStatisticsBugs >> testKernelSmoothingDensity [
 	| a |
 	a := PMKernelSmoothedDensity fromData: #( 1 2 3 1 2.3 2.4 ).
 	a epanechnikov.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.9)) closeTo: 0.9.
 	"'Function''s derivative seems to be zero everywhere'"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"zerod"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	" -0.13122605895944042"
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerod"
 ]
 
@@ -237,11 +238,11 @@ PMStatisticsBugs >> testLeplaceDistribution [
 
 	| a |
 	a := PMLaplaceDistribution new.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerod"
 ]
 
@@ -250,19 +251,19 @@ PMStatisticsBugs >> testLogNormalDistribution [
 
 	| a |
 	a := PMLogNormalDistribution new.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7.
 	"zerodivide"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.004)) closeTo: 0.004.
 	"zerodivide"
 	a := PMLogNormalDistribution new: 3 sigma: 1.4.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7.
 	"zerodivide"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"zerodivide"
 	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) - 1) abs < 3e-7.
 	"equalsTo: is a too strong condition in this case"
 	a := PMLogNormalDistribution new: 3 sigma: 3.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.7)) closeTo: 0.7
 	"zerodivide"
 ]
 
@@ -275,24 +276,25 @@ PMStatisticsBugs >> testNormalDistribution [
 	"ocassionally 'Supplied derivative is not correct'"
 
 	a := PMNormalDistribution new: 2 sigma: 0.7.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.8)) closeTo: 0.8.
 	"'Function''s derivative seems to be zero everywhere'"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.6)) closeTo: 0.6.
 	"zerodivide"
 
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"zerodivide"
 ]
 
 { #category : #tests }
 PMStatisticsBugs >> testProbabilityDensityWithUnknownDistribution [
+
 	| d |
 	d := PMLogNormalDistribution new.
-	self assert: ((d distributionValue: 1) closeTo: 0.5).
-	self assert: ((d distributionValue: 3.602) closeTo: 0.9).
-	self assert: ((d acceptanceBetween: 1 and: 3.602) closeTo: 0.4)
+	self assert: (d distributionValue: 1) closeTo: 0.5.
+	self assert: (d distributionValue: 3.602) closeTo: 0.9.
+	self assert: (d acceptanceBetween: 1 and: 3.602) closeTo: 0.4
 ]
 
 { #category : #tests }
@@ -300,9 +302,9 @@ PMStatisticsBugs >> testStudentDistribution [
 
 	| a |
 	a := PMStudentDistribution degreeOfFreedom: 5.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1).
+	self assert: (a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1.
 	"zerodivide"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0
 	"well, ok"
 ]
 
@@ -314,9 +316,9 @@ PMStatisticsBugs >> testTriangularDistribution [
 
 	| a |
 	a := PMTriangularDistribution new: 0.6 from: -1 to: 3.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1).
+	self assert: (a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0
 	"ok"
 ]
 
@@ -325,11 +327,11 @@ PMStatisticsBugs >> testUniformDistribution [
 
 	| a |
 	a := PMUniformDistribution from: 0 to: 3.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1).
+	self assert: (a distributionValue: (a inverseDistributionValue: 1)) closeTo: 1.
 	"ok "
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0)) closeTo: 0.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.333333)) closeTo: 0.333333)
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.333333)) closeTo: 0.333333
 	"ok"
 ]
 
@@ -338,12 +340,12 @@ PMStatisticsBugs >> testWeibullDistribution [
 
 	| a |
 	a := PMWeibullDistribution shape: 0.5 scale: 1.
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.99)) closeTo: 0.99.
 	"ok "
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.5)) closeTo: 0.5.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0).
+	self assert: (a distributionValue: (a inverseDistributionValue: 0.0)) closeTo: 0.
 	"ok"
-	self assert: ((a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1)
+	self assert: (a distributionValue: (a inverseDistributionValue: 1.0)) closeTo: 1
 	"ok"
 ]

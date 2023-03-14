@@ -102,7 +102,7 @@ PMFixpointTest >> testRest [
 
 	fp := PMFixpoint block: [ :x | 1 / (1 + x) ] value: 20.0.
 	self assert: fp cycle equals: #(  ).
-	self assert: (fp evaluate closeTo: 0.6180339887).
+	self assert: fp evaluate closeTo: 0.6180339887.
 	fp verbose: false.
 	self assert: fp cycle size equals: 1.
 	self assert: fp hasConverged.

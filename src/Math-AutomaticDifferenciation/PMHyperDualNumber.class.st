@@ -97,11 +97,10 @@ PMHyperDualNumber >> arcTan [
 ]
 
 { #category : #comparing }
-PMHyperDualNumber >> closeTo: aHyperDualNumber [
+PMHyperDualNumber >> closeTo: aHyperDualNumber precision: aPrecision [
 
-	^ (super closeTo: aHyperDualNumber) and: [
-		  (eps2 closeTo: aHyperDualNumber eps2) and: [
-			  eps1eps2 closeTo: aHyperDualNumber eps1eps2 ] ]
+	^ (super closeTo: aHyperDualNumber precision: aPrecision) and: [
+		  (eps2 closeTo: aHyperDualNumber eps2 precision: aPrecision) and: [ eps1eps2 closeTo: aHyperDualNumber eps1eps2 precision: aPrecision ] ]
 ]
 
 { #category : #'mathematical functions' }

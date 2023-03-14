@@ -47,7 +47,7 @@ PMAnotherGeneticOptimizerTest >> testEvaluate [
 
 	geneticOptimizer maximumIterations: 170.
 	geneticOptimizer chromosomeManager populationSize: 50.
-	self assert: (geneticOptimizer evaluate closeTo: #( 0 0 0 ))
+	self assert: geneticOptimizer evaluate closeTo: #( 0 0 0 )
 ]
 
 { #category : #tests }
@@ -79,11 +79,11 @@ PMAnotherGeneticOptimizerTest >> testPrint [
 PMAnotherGeneticOptimizerTest >> testRangeScale [
 
 	geneticOptimizer initializeIterations.
-	self assert: (geneticOptimizer rangeScale first closeTo: 0.1).
-	self assert: (geneticOptimizer rangeScale second closeTo: 0.19473684210526315).
+	self assert: geneticOptimizer rangeScale first closeTo: 0.1.
+	self assert: geneticOptimizer rangeScale second closeTo: 0.19473684210526315.
 	geneticOptimizer initializeIterations.
-	self assert: (geneticOptimizer rangeScale first closeTo: 0.1).
-	self assert: (geneticOptimizer rangeScale second closeTo: 0.19473684210526315)
+	self assert: geneticOptimizer rangeScale first closeTo: 0.1.
+	self assert: geneticOptimizer rangeScale second closeTo: 0.19473684210526315
 ]
 
 { #category : #tests }

@@ -23,14 +23,13 @@ PMComplexNumberTest >> testAbs [
 
 { #category : #'testing - arithmetic' }
 PMComplexNumberTest >> testAbsSecure [
-
 	"self run: #testAbsSecure"
 
 	"using equalsTo since absSecure returns a slightly different Float"
 
 	| c |
 	c := 6 - 6 i.
-	self assert: (c absSecure closeTo: 72 sqrt)
+	self assert: c absSecure closeTo: 72 sqrt
 ]
 
 { #category : #'testing - arithmetic' }
@@ -79,91 +78,98 @@ PMComplexNumberTest >> testAddingTwoComplexNumbers [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArCosh [
+
 	| c |
-	c := (2.5 + 0 i).
-	self assert: (c arCosh real closeTo: c real arCosh).
-	self assert: (c arCosh imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arCosh cosh real closeTo: c real).
-		self assert: (c arCosh cosh imaginary closeTo: c imaginary).
-		self deny: c arCosh real negative]]
+	c := 2.5 + 0 i.
+	self assert: c arCosh real closeTo: c real arCosh.
+	self assert: c arCosh imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arCosh cosh real closeTo: c real.
+			self assert: c arCosh cosh imaginary closeTo: c imaginary.
+			self deny: c arCosh real negative ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArSinh [
+
 	| c |
-	c := (2.5 + 0 i).
-	self assert: (c arSinh real closeTo: c real arSinh).
-	self assert: (c arSinh imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arSinh sinh real closeTo: c real).
-		self assert: (c arSinh sinh imaginary closeTo: c imaginary)]]
+	c := 2.5 + 0 i.
+	self assert: c arSinh real closeTo: c real arSinh.
+	self assert: c arSinh imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arSinh sinh real closeTo: c real.
+			self assert: c arSinh sinh imaginary closeTo: c imaginary ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArTanh [
+
 	| c |
-	c := (0.5 + 0 i).
-	self assert: (c arTanh real closeTo: c real arTanh).
-	self assert: (c arTanh imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arTanh tanh real closeTo: c real).
-		self assert: (c arTanh tanh imaginary closeTo: c imaginary)]]
+	c := 0.5 + 0 i.
+	self assert: c arTanh real closeTo: c real arTanh.
+	self assert: c arTanh imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arTanh tanh real closeTo: c real.
+			self assert: c arTanh tanh imaginary closeTo: c imaginary ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArcCos [
+
 	| c |
-	c := (0.5 + 0 i).
-	self assert: (c arcCos real closeTo: c real arcCos).
-	self assert: (c arcCos imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arcCos cos real closeTo: c real).
-		self assert: (c arcCos cos imaginary closeTo: c imaginary)]]
+	c := 0.5 + 0 i.
+	self assert: c arcCos real closeTo: c real arcCos.
+	self assert: c arcCos imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arcCos cos real closeTo: c real.
+			self assert: c arcCos cos imaginary closeTo: c imaginary ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArcCosPlusArcSin [
+
 	| c |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: ((c arcCos + c arcSin) real closeTo: Float halfPi).
-		self assert: ((c arcCos + c arcSin) imaginary closeTo: 0.0)]]
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: (c arcCos + c arcSin) real closeTo: Float halfPi.
+			self assert: (c arcCos + c arcSin) imaginary closeTo: 0.0 ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArcSin [
+
 	| c |
-	c := (0.5 + 0 i).
-	self assert: (c arcSin real closeTo: c real arcSin).
-	self assert: (c arcSin imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arcSin sin real closeTo: c real).
-		self assert: (c arcSin sin imaginary closeTo: c imaginary)]]
+	c := 0.5 + 0 i.
+	self assert: c arcSin real closeTo: c real arcSin.
+	self assert: c arcSin imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arcSin sin real closeTo: c real.
+			self assert: c arcSin sin imaginary closeTo: c imaginary ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testArcTan [
+
 	| c |
-	c := (0.5 + 0 i).
-	self assert: (c arcTan real closeTo: c real arcTan).
-	self assert: (c arcTan imaginary closeTo: 0).
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: (c arcTan tan real closeTo: c real).
-		self assert: (c arcTan tan imaginary closeTo: c imaginary)]]
+	c := 0.5 + 0 i.
+	self assert: c arcTan real closeTo: c real arcTan.
+	self assert: c arcTan imaginary closeTo: 0.
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: c arcTan tan real closeTo: c real.
+			self assert: c arcTan tan imaginary closeTo: c imaginary ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
@@ -249,49 +255,53 @@ PMComplexNumberTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqua
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testCos [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c cos real closeTo: c real cos).
-	self assert: (c cos imaginary closeTo: 0).
-	c := (2 + 3 i).
+	c := 2 + 0 i.
+	self assert: c cos real closeTo: c real cos.
+	self assert: c cos imaginary closeTo: 0.
+	c := 2 + 3 i.
 	c2 := c i exp + c i negated exp / 2.
-	self assert: (c cos real closeTo: c2 real).
-	self assert: (c cos imaginary closeTo: c2 imaginary)
+	self assert: c cos real closeTo: c2 real.
+	self assert: c cos imaginary closeTo: c2 imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testCos2PlusSin2 [
+
 	| c |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: ((c cos squared + c sin squared) real closeTo: 1).
-		self assert: ((c cos squared + c sin squared) imaginary closeTo: 0.0)]]
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: (c cos squared + c sin squared) real closeTo: 1.
+			self assert: (c cos squared + c sin squared) imaginary closeTo: 0.0 ] ]
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testCosh [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c cosh real closeTo: c real cosh).
-	self assert: (c cosh imaginary closeTo: 0).
-	c := (2 + 3 i).
+	c := 2 + 0 i.
+	self assert: c cosh real closeTo: c real cosh.
+	self assert: c cosh imaginary closeTo: 0.
+	c := 2 + 3 i.
 	c2 := c exp + c negated exp / 2.
-	self assert: (c cosh real closeTo: c2 real).
-	self assert: (c cosh imaginary closeTo: c2 imaginary).
+	self assert: c cosh real closeTo: c2 real.
+	self assert: c cosh imaginary closeTo: c2 imaginary.
 	c2 := c i cos.
-	self assert: (c cosh real closeTo: c2 real).
-	self assert: (c cosh imaginary closeTo: c2 imaginary)
+	self assert: c cosh real closeTo: c2 real.
+	self assert: c cosh imaginary closeTo: c2 imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testCosh2MinusSinh2 [
+
 	| c |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:real |
-	#(-0.5 -2 -3 0 0.5 2 3) do: [:imag |
-		c := real + imag i.
-		self assert: ((c cosh squared - c sinh squared) real closeTo: 1).
-		self assert: ((c cosh squared - c sinh squared) imaginary closeTo: 0.0)]]
+	#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :real |
+		#( -0.5 -2 -3 0 0.5 2 3 ) do: [ :imag |
+			c := real + imag i.
+			self assert: (c cosh squared - c sinh squared) real closeTo: 1.
+			self assert: (c cosh squared - c sinh squared) imaginary closeTo: 0.0 ] ]
 ]
 
 { #category : #'testing - expressing complex numbers' }
@@ -621,10 +631,10 @@ PMComplexNumberTest >> testQuotientsOfComplexNumbersCannotBeWritten [
 PMComplexNumberTest >> testRaisedTo [
 
 	| c c3 |
-	c := (5 - 6 i).
+	c := 5 - 6 i.
 	c3 := (c raisedTo: 0.2) raisedTo: 5.
-	self assert: (c3 real closeTo: c real).
-	self assert: (c3 imaginary closeTo: c imaginary)
+	self assert: c3 real closeTo: c real.
+	self assert: c3 imaginary closeTo: c imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
@@ -683,32 +693,34 @@ PMComplexNumberTest >> testSecureDivision2 [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testSin [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c sin real closeTo: c real sin).
-	self assert: (c sin imaginary closeTo: 0).
+	c := 2 + 0 i.
+	self assert: c sin real closeTo: c real sin.
+	self assert: c sin imaginary closeTo: 0.
 	c := 2 + 3 i.
 	c2 := c i exp - c i negated exp / 2 i.
-	self assert: (c sin real closeTo: c2 real).
-	self assert: (c sin imaginary closeTo: c2 imaginary)
+	self assert: c sin real closeTo: c2 real.
+	self assert: c sin imaginary closeTo: c2 imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testSinh [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c sinh real closeTo: c real sinh).
-	self assert: (c sinh imaginary closeTo: 0).
+	c := 2 + 0 i.
+	self assert: c sinh real closeTo: c real sinh.
+	self assert: c sinh imaginary closeTo: 0.
 	c := 2 + 3 i.
 	c := c cosh squared - c sinh squared.
-	self assert: (c real closeTo: 1).
-	self assert: (c imaginary closeTo: 0).
+	self assert: c real closeTo: 1.
+	self assert: c imaginary closeTo: 0.
 	c2 := c exp - c negated exp / 2.
-	self assert: (c sinh real closeTo: c2 real).
-	self assert: (c sinh imaginary closeTo: c2 imaginary).
+	self assert: c sinh real closeTo: c2 real.
+	self assert: c sinh imaginary closeTo: c2 imaginary.
 	c2 := c i sin i negated.
-	self assert: (c sinh real closeTo: c2 real).
-	self assert: (c sinh imaginary closeTo: c2 imaginary)
+	self assert: c sinh real closeTo: c2 real.
+	self assert: c sinh imaginary closeTo: c2 imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
@@ -843,26 +855,28 @@ PMComplexNumberTest >> testSubtractingPolynomials [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testTan [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c tan real closeTo: c real tan).
-	self assert: (c tan imaginary closeTo: 0).
+	c := 2 + 0 i.
+	self assert: c tan real closeTo: c real tan.
+	self assert: c tan imaginary closeTo: 0.
 	c := 2 + 3 i.
 	c2 := c sin / c cos.
-	self assert: (c2 real closeTo: c tan real).
-	self assert: (c2 imaginary closeTo: c tan imaginary)
+	self assert: c2 real closeTo: c tan real.
+	self assert: c2 imaginary closeTo: c tan imaginary
 ]
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testTanh [
+
 	| c c2 |
-	c := (2 + 0 i).
-	self assert: (c tanh real closeTo: c real tanh).
-	self assert: (c tanh imaginary closeTo: 0).
+	c := 2 + 0 i.
+	self assert: c tanh real closeTo: c real tanh.
+	self assert: c tanh imaginary closeTo: 0.
 	c := 2 + 3 i.
 	c2 := c sinh / c cosh.
-	self assert: (c2 real closeTo: c tanh real).
-	self assert: (c2 imaginary closeTo: c tanh imaginary)
+	self assert: c2 real closeTo: c tanh real.
+	self assert: c2 imaginary closeTo: c tanh imaginary
 ]
 
 { #category : #'testing - equality' }

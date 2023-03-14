@@ -27,8 +27,8 @@ PMGeneticOptimizerBugsTest >> testBug1 [
 	optimizer addPointAt: #( 2 3 ).
 	optimizer addPointAt: #( 2 3 ).
 	self shouldnt: [ r := optimizer randomScale ] raise: Error.
-	self assert: (r first closeTo: 1 / 2).
-	self assert: (r last closeTo: 1)
+	self assert: r first closeTo: 1 / 2.
+	self assert: r last closeTo: 1
 ]
 
 { #category : #tests }

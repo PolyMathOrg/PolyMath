@@ -19,15 +19,13 @@ PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
+
 	| stepper sys dt |
-	sys := PMExplicitSystem
-		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+	sys := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
 	stepper := PMRungeKuttaStepper onSystem: sys.
 	dt := 0.1.
-	self
-		assert: ((stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.0638).
-	self
-		assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 9.7109)
+	self assert: (stepper doStep: 1 time: 1 stepSize: dt) closeTo: 1.0638.
+	self assert: (stepper doStep: 10 time: 1 stepSize: dt) closeTo: 9.7109
 ]
 
 { #category : #'tests-stepping' }
@@ -37,78 +35,77 @@ PMRungeKuttaStepperTest >> testOrderIsFour [
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testSimpleSystem [
+
 	| solver stepper system dt |
 	dt := 0.01.
 	system := PMExplicitSystem block: [ :x :t | t sin ].
 	stepper := PMRungeKuttaStepper onSystem: system.
 	solver := PMExplicitSolver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: -1
-				startTime: 0
-				endTime: Float pi) closeTo: 1)
+		assert: (solver
+				 solve: system
+				 startState: -1
+				 startTime: 0
+				 endTime: Float pi)
+		closeTo: 1
 ]
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testSimpleSystem2 [
+
 	| solver stepper system dt |
 	dt := 1.5.
-	system := PMExplicitSystem
-		block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+	system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
 	stepper := PMRungeKuttaStepper onSystem: system.
 	solver := PMExplicitSolver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 5
-				startTime: 0
-				endTime: 1.5) closeTo: 4.3646).
-	self
-		should:
-			((solver
-				solve: system
-				startState: 0
-				startTime: 1
-				endTime: 2.5) closeTo: 0.5951)
+		assert: (solver
+				 solve: system
+				 startState: 5
+				 startTime: 0
+				 endTime: 1.5)
+		closeTo: 4.3646.
+	self should: ((solver
+			  solve: system
+			  startState: 0
+			  startTime: 1
+			  endTime: 2.5) closeTo: 0.5951)
 ]
 
 { #category : #'tests-stepping' }
 PMRungeKuttaStepperTest >> testVectorSystem [
+
 	| solver stepper system dt |
 	dt := 0.01.
-	system := PMExplicitSystem
-		block: [ :x :t |
-			| c |
-			c := PMVector new: 2.
-			c at: 1 put: t sin.
-			c at: 2 put: t cos.
-			c ].
+	system := PMExplicitSystem block: [ :x :t |
+		          | c |
+		          c := PMVector new: 2.
+		          c at: 1 put: t sin.
+		          c at: 2 put: t cos.
+		          c ].
 	stepper := PMRungeKuttaStepper onSystem: system.
 	solver := PMExplicitSolver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			(((solver
-				solve: system
-				startState: #(-1 0)
-				startTime: 0
-				endTime: Float pi) at: 1) closeTo: 1).
+		assert: ((solver
+				  solve: system
+				  startState: #( -1 0 )
+				  startTime: 0
+				  endTime: Float pi) at: 1)
+		closeTo: 1.
 	self
-		assert:
-			(((solver
-				solve: system
-				startState: #(-1 0)
-				startTime: 0
-				endTime: Float pi / 2) at: 2) closeTo: 1)
+		assert: ((solver
+				  solve: system
+				  startState: #( -1 0 )
+				  startTime: 0
+				  endTime: Float pi / 2) at: 2)
+		closeTo: 1
 ]

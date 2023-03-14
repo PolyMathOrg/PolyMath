@@ -18,72 +18,73 @@ PMAM4SolverTest >> testSimpleSystem2 [
 
 { #category : #'tests-solving' }
 PMAM4SolverTest >> testSimpleSystem3 [
+
 	| solver stepper system dt |
 	dt := 0.5.
 	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
 	stepper := PMAM4Stepper onSystem: system.
 	solver := PMAM4Solver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1
-				startTime: 0
-				endTime: 1.5) closeTo: 15.2741).
+		assert: (solver
+				 solve: system
+				 startState: 1
+				 startTime: 0
+				 endTime: 1.5)
+		closeTo: 15.2741.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1.25
-				startTime: 0.5
-				endTime: 2.2) closeTo: 191.3011).
+		assert: (solver
+				 solve: system
+				 startState: 1.25
+				 startTime: 0.5
+				 endTime: 2.2)
+		closeTo: 191.3011.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 0.5
-				startTime: 1
-				endTime: 2.5) closeTo: 112.8325).
+		assert: (solver
+				 solve: system
+				 startState: 0.5
+				 startTime: 1
+				 endTime: 2.5)
+		closeTo: 112.8325.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 0.5
-				startTime: 1
-				endTime: 2.8) closeTo: 535.8236)
+		assert: (solver
+				 solve: system
+				 startState: 0.5
+				 startTime: 1
+				 endTime: 2.8)
+		closeTo: 535.8236
 ]
 
 { #category : #'tests-solving' }
 PMAM4SolverTest >> testVectorSystem [
+
 	| solver stepper system dt |
 	dt := 0.01.
-	system := PMImplicitSystem
-		block: [ :x :t |
-			| c |
-			c := PMVector new: 2.
-			c at: 1 put: t sin.
-			c at: 2 put: t cos.
-			c ].
+	system := PMImplicitSystem block: [ :x :t |
+		          | c |
+		          c := PMVector new: 2.
+		          c at: 1 put: t sin.
+		          c at: 2 put: t cos.
+		          c ].
 	stepper := PMAM4Stepper onSystem: system.
 	solver := PMAM4Solver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			(((solver
-				solve: system
-				startState: #(-1 0)
-				startTime: 0
-				endTime: Float pi) at: 1) closeTo: 1).
+		assert: ((solver
+				  solve: system
+				  startState: #( -1 0 )
+				  startTime: 0
+				  endTime: Float pi) at: 1)
+		closeTo: 1.
 	self
-		assert:
-			(((solver
-				solve: system
-				startState: #(-1 0)
-				startTime: 0
-				endTime: Float pi / 2) at: 2) closeTo: 1)
+		assert: ((solver
+				  solve: system
+				  startState: #( -1 0 )
+				  startTime: 0
+				  endTime: Float pi / 2) at: 2)
+		closeTo: 1
 ]

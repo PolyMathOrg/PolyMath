@@ -50,19 +50,20 @@ PMBeckwardEulerStepperTest >> testSimpleSystem2 [
 
 { #category : #'tests-stepping' }
 PMBeckwardEulerStepperTest >> testSimpleSystem3 [
+
 	| solver stepper system dt |
 	dt := 0.5.
 	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
 	stepper := PMImplicitStepper onSystem: system.
 	solver := PMImplicitSolver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1
-				startTime: 0
-				endTime: 0.5) closeTo: 1.75)
+		assert: (solver
+				 solve: system
+				 startState: 1
+				 startTime: 0
+				 endTime: 0.5)
+		closeTo: 1.75
 ]
