@@ -38,8 +38,7 @@ PMDecimalFloatingNumber class >> defaultDigits: anInteger [
 PMDecimalFloatingNumber class >> digits [
 	"Private"
 
-	Digits isNil
-		ifTrue: [ Digits := self defaultDigits ].
+	Digits ifNil: [ Digits := self defaultDigits ].
 	^ Digits
 ]
 

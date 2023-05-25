@@ -35,7 +35,9 @@ PMLagrangeInterpolator >> defaultSamplePoints [
 { #category : #initialization }
 PMLagrangeInterpolator >> initialize [
 
-	^self initialize: self defaultSamplePoints
+	super initialize.
+
+	^ self initialize: self defaultSamplePoints
 ]
 
 { #category : #initialization }

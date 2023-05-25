@@ -2,15 +2,18 @@ Class {
 	#name : #PMSimplexOptimizer,
 	#superclass : #PMFunctionOptimizer,
 	#instVars : [
-		'worstVector'
+		'worstVector',
+		'randomGenerator'
 	],
 	#category : #'Math-Numerical-Math-FunctionIterator'
 }
 
 { #category : #information }
 PMSimplexOptimizer class >> defaultPrecision [
-		"Private"
-	^PMFloatingPointMachine new defaultNumericalPrecision * 1000
+	"Private"
+
+	self flag: #todo. "In Pharo 12 the default comparision precision of Float will be improved. When Pharo 12 will be the minimal version of Polymath we can use `Float defaultComparisonPrecision"
+	^ Float machineEpsilon sqrt * 1000
 ]
 
 { #category : #operation }
@@ -18,26 +21,24 @@ PMSimplexOptimizer >> buildInitialSimplex [
 	"Private"
 
 	| projectedFunction finder partialResult |
-	projectedFunction := PMProjectedOneVariableFunction 
-				function: functionBlock.
+	projectedFunction := PMProjectedOneVariableFunction function: functionBlock.
 	finder := PMOneVariableFunctionOptimizer forOptimizer: self.
+	self randomGenerator ifNotNil: [ :generator | finder randomGenerator: generator ].
 	finder setFunction: projectedFunction.
-	[bestPoints size < (result size + 1)] whileTrue: 
-			[projectedFunction
-				setArgument: result;
-				bumpIndex.
-			partialResult := finder
-						reset;
-						evaluate.
-			bestPoints add: (optimizingPointClass 
-						vector: (projectedFunction argumentWith: partialResult)
-						function: functionBlock)]
+	[ bestPoints size < (result size + 1) ] whileTrue: [
+		projectedFunction
+			setArgument: result;
+			bumpIndex.
+		partialResult := finder
+			                 reset;
+			                 evaluate.
+		bestPoints add: (optimizingPointClass vector: (projectedFunction argumentWith: partialResult) function: functionBlock) ]
 ]
 
 { #category : #initialization }
 PMSimplexOptimizer >> computeInitialValues [
-	bestPoints 
-		add: (optimizingPointClass vector: result function: functionBlock).
+
+	bestPoints add: (optimizingPointClass vector: result function: functionBlock).
 	self buildInitialSimplex.
 	worstVector := bestPoints removeLast position
 ]
@@ -66,10 +67,10 @@ PMSimplexOptimizer >> contract [
 ]
 
 { #category : #operation }
-PMSimplexOptimizer >> contract: aVector around: bestVector [ 
+PMSimplexOptimizer >> contract: aVector around: bestVector [
 	"Private"
 
-	bestPoints 
+	bestPoints
 		add: (optimizingPointClass vector: bestVector * 0.5 + (aVector * 0.5)
 				function: functionBlock)
 ]
@@ -83,14 +84,14 @@ PMSimplexOptimizer >> evaluateIteration [
 				into: [:sum :each | each position + sum]) * (1 / bestPoints size).
 	newPoint := optimizingPointClass vector: 2 * centerOfGravity - worstVector
 				function: functionBlock.
-	(newPoint betterThan: bestPoints first) 
-		ifTrue: 
-			[nextPoint := optimizingPointClass 
+	(newPoint betterThan: bestPoints first)
+		ifTrue:
+			[nextPoint := optimizingPointClass
 						vector: newPoint position * 2 - centerOfGravity
 						function: functionBlock.
 			(nextPoint betterThan: newPoint) ifTrue: [newPoint := nextPoint]]
-		ifFalse: 
-			[newPoint := optimizingPointClass 
+		ifFalse:
+			[newPoint := optimizingPointClass
 						vector: centerOfGravity * 0.666667 + (worstVector * 0.333333)
 						function: functionBlock.
 			(newPoint betterThan: bestPoints first) ifFalse: [^self contract]].
@@ -103,6 +104,18 @@ PMSimplexOptimizer >> evaluateIteration [
 { #category : #display }
 PMSimplexOptimizer >> printOn: aStream [
 	super printOn: aStream.
-	aStream cr. 
+	aStream cr.
 	worstVector printOn: aStream
+]
+
+{ #category : #accessing }
+PMSimplexOptimizer >> randomGenerator [
+
+	^ randomGenerator
+]
+
+{ #category : #accessing }
+PMSimplexOptimizer >> randomGenerator: anObject [
+
+	randomGenerator := anObject
 ]

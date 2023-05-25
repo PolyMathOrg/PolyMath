@@ -14,7 +14,7 @@ Class {
 PMCDFNewtonZeroFinder >> computeInitialValues [
 
 	"super computeInitialValues." "the original testing there is skipped for speed reasons, not because of the error,that is produced here, which is completely eliminated"
-	old:=result-1.0.
+	old:=result-1.0
 ]
 
 { #category : #operation }
@@ -23,7 +23,7 @@ PMCDFNewtonZeroFinder >> evaluateIteration [
 	| delta new |
 	delta :=( functionBlock value: result) / (derivativeBlock value: result).
 	new := result - delta.
-	old<result 
+	old<result
 		ifTrue: [	new <= old ifTrue:[new:=old+result /2.0]]
 		ifFalse:[	new>=old ifTrue: [new:=old+result /2.0]].
 	[0.0 = (derivativeBlock value: new )] whileTrue: [new:=new +result /2.0].
@@ -33,7 +33,7 @@ PMCDFNewtonZeroFinder >> evaluateIteration [
 ]
 
 { #category : #initialization }
-PMCDFNewtonZeroFinder >> setDerivative: aBlock [ 
+PMCDFNewtonZeroFinder >> setDerivative: aBlock [
 	"the original testing is skipped for speed reasons, not because of the error (which is largely eliminated anyway)."
 
 	derivativeBlock := aBlock

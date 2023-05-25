@@ -25,17 +25,17 @@ Class {
 
 { #category : #creation }
 PMLanczosFormula class >> new [
-		"Answer a unique instance. Create it if it does not exist."
-	UniqueInstance isNil
-		ifTrue: [ UniqueInstance := super new.
-					 UniqueInstance initialize.
-					].
-	^UniqueInstance
+	"Answer a unique instance. Create it if it does not exist."
+
+	UniqueInstance ifNil: [
+		UniqueInstance := super new.
+		UniqueInstance initialize ].
+	^ UniqueInstance
 ]
 
 { #category : #'instance creation' }
 PMLanczosFormula class >> reset [
-	UniqueInstance := nil.
+	UniqueInstance := nil
 ]
 
 { #category : #information }
@@ -47,8 +47,10 @@ PMLanczosFormula >> gamma: aNumber [
 PMLanczosFormula >> initialize [
 	"Private"
 
+	super initialize.
+
 	sqrt2Pi := (Float pi * 2) sqrt.
-	coefficients := #(76.18009172947146 -86.50532032941677 24.01409824083091 -1.231739572450155 0.1208650973866179e-2 -0.5395239384953e-5)
+	coefficients := #( 76.18009172947146 -86.50532032941677 24.01409824083091 -1.231739572450155 0.1208650973866179e-2 -0.5395239384953e-5 )
 ]
 
 { #category : #information }
@@ -73,7 +75,7 @@ PMLanczosFormula >> series: aNumber [
 	term := aNumber.
 	^ coefficients
 		inject: 1.000000000190015
-		into: [ :sum :each | 
+		into: [ :sum :each |
 			term := term + 1.
 			each / term + sum ]
 ]

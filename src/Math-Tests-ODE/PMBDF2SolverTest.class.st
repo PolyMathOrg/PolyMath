@@ -11,49 +11,50 @@ PMBDF2SolverTest >> testSimpleSystem2 [
 	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
 	stepper := PMBDF2Stepper onSystem: system.
 	solver := (PMBDF2Solver new) stepper: stepper; system: system; dt: dt.
-	
+
 	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.54985).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306).
+       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306)
 ]
 
 { #category : #'tests-solving' }
 PMBDF2SolverTest >> testSimpleSystem3 [
+
 	| solver stepper system dt |
 	dt := 0.5.
 	system := PMImplicitSystem block: [ :x :t | 2 * t * x ].
 	stepper := PMBDF2Stepper onSystem: system.
 	solver := PMBDF2Solver new
-		stepper: stepper;
-		system: system;
-		dt: dt.
+		          stepper: stepper;
+		          system: system;
+		          dt: dt.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1
-				startTime: 0
-				endTime: 1.5) closeTo: 11.9167).
+		assert: (solver
+				 solve: system
+				 startState: 1
+				 startTime: 0
+				 endTime: 1.5)
+		closeTo: 11.9167.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1.25
-				startTime: 0.5
-				endTime: 1.5) closeTo: 9.5833).
+		assert: (solver
+				 solve: system
+				 startState: 1.25
+				 startTime: 0.5
+				 endTime: 1.5)
+		closeTo: 9.5833.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 0
-				startTime: 1
-				endTime: 2.5) closeTo: 21.9166).
+		assert: (solver
+				 solve: system
+				 startState: 0
+				 startTime: 1
+				 endTime: 2.5)
+		closeTo: 21.9166.
 	self
-		assert:
-			((solver
-				solve: system
-				startState: 1.25
-				startTime: 0.5
-				endTime: 2.5) closeTo: 273.7129)
+		assert: (solver
+				 solve: system
+				 startState: 1.25
+				 startTime: 0.5
+				 endTime: 2.5)
+		closeTo: 273.7129
 ]
 
 { #category : #'tests-solving' }

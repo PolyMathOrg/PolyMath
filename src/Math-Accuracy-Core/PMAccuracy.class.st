@@ -28,8 +28,8 @@ PMAccuracy class >> decimalPlaces [
 ]
 
 { #category : #accessing }
-PMAccuracy class >> decimalPlaces: anInteger [ 
-^DecimalPlaces:=anInteger 
+PMAccuracy class >> decimalPlaces: anInteger [
+^DecimalPlaces:=anInteger
 ]
 
 { #category : #util }
@@ -38,20 +38,20 @@ PMAccuracy class >> floatAsShortString: aFloat [
 ]
 
 { #category : #util }
-PMAccuracy class >> floatAsShortString: aFloat digitCount: digitCount [ 
+PMAccuracy class >> floatAsShortString: aFloat digitCount: digitCount [
 "essentially copied fromFloat>>absPrintOn:base:digitCount:"
 	| fuzz x exp q fBase scale logScale xi aStream posFloat |
 	aFloat isNaN ifTrue:[^'NaN'].
 	aFloat =0 ifTrue:[^'0.0'].
 	aStream:=WriteStream on:''.
-	posFloat :=aFloat <0 
+	posFloat :=aFloat <0
 		ifTrue:[aStream nextPut: $-.aFloat negated]
 		ifFalse:[aFloat ].
 	posFloat isInfinite ifTrue: [aStream nextPutAll: 'Infinity'.
 		^ aStream contents].
 	fBase := 10.0.
 	"x is myself normalized to [1.0, fBase), exp is my exponent"
-	exp := 
+	exp :=
 		posFloat  < 1.0
 			ifTrue: [posFloat reciprocalFloorLog: fBase]
 			ifFalse: [posFloat floorLog: fBase].
@@ -66,21 +66,21 @@ PMAccuracy class >> floatAsShortString: aFloat digitCount: digitCount [
 	"round the last digit to be printed"
 	x := 0.5 * fuzz + x.
 	x >= fBase
-		ifTrue: 
+		ifTrue:
 			["check if rounding has unnormalized x"
 			x := x / fBase.
 			exp := exp + 1].
 	(exp < (digitCount-1) and: [exp > (-2) ])
-		ifTrue: 
+		ifTrue:
 			["decimal notation"
 			q := 0.
 			exp < 0 ifTrue: [1 to: 1 - exp do: [:i | aStream nextPut: ('0.' at:i)]]]
-		ifFalse: 
+		ifFalse:
 			["scientific notation"
 			q := exp.
 			exp := 0].
 	[x >= fuzz]
-		whileTrue: 
+		whileTrue:
 			["use fuzz to track significance"
 			xi := x asInteger.
 			aStream nextPut: (Character digitValue: xi).
@@ -89,20 +89,20 @@ PMAccuracy class >> floatAsShortString: aFloat digitCount: digitCount [
 			exp := exp - 1.
 			exp = -1 ifTrue: [aStream nextPut: $.]].
 	[exp >= -1]
-		whileTrue: 
+		whileTrue:
 			[aStream nextPut: $0.
 			exp := exp - 1.
 			exp = -1 ifTrue: [aStream nextPut: $.]].
 	q ~= 0
-		ifTrue: 
+		ifTrue:
 			[aStream nextPut: $e.
 			q printOn: aStream].
 	^ aStream contents
 ]
 
-{ #category : #'class initialization' }
-PMAccuracy class >> initialize [ 
-DecimalPlaces ifNil: [DecimalPlaces :=3].
+{ #category : #initialization }
+PMAccuracy class >> initialize [
+DecimalPlaces ifNil: [DecimalPlaces :=3]
 ]
 
 { #category : #accessing }
@@ -131,9 +131,9 @@ PMAccuracy >> argumentAt: aName [
 ]
 
 { #category : #private }
-PMAccuracy >> asArray: aCol [ 
-	^(aCol isCollection and: [ aCol isSequenceable and: [aCol isString not] ])  
-		ifTrue: [ aCol asArray ] 
+PMAccuracy >> asArray: aCol [
+	^(aCol isCollection and: [ aCol isSequenceable and: [aCol isString not] ])
+		ifTrue: [ aCol asArray ]
 		ifFalse: [ Array with: aCol ]
 ]
 
@@ -141,21 +141,21 @@ PMAccuracy >> asArray: aCol [
 PMAccuracy >> calcDeviations: aValue in: aCol max: aBoolean [
 	| c |
 	c := self extremeCollection: aCol max:aBoolean .
- 	c := aCol inject: c into: [:a :b| a with: b collect: [:a1 :b1| 
-		aBoolean 
-			ifTrue: [ a1 max: b1 ] 
+ 	c := aCol inject: c into: [:a :b| a with: b collect: [:a1 :b1|
+		aBoolean
+			ifTrue: [ a1 max: b1 ]
 			ifFalse: [a1 min: b1]]].
 	^ c with: aValue collect: [:rr :r| self calcErrorOf: r realResult: rr ]
 ]
 
 { #category : #private }
 PMAccuracy >> calcErrorOf: aResult realResult: aRResult [
-	^ aResult = 0 
-		ifTrue: [aRResult =0 
-			ifTrue: [0] 
-			ifFalse: [aRResult >0 
+	^ aResult = 0
+		ifTrue: [aRResult =0
+			ifTrue: [0]
+			ifFalse: [aRResult >0
 				ifTrue: [ Float infinity]
-				ifFalse: [Float infinity negated ]]] 
+				ifFalse: [Float infinity negated ]]]
 		ifFalse:[ 100.0 * ( aRResult - aResult ) /aResult ]
 ]
 
@@ -168,7 +168,7 @@ PMAccuracy >> calcResult: aName tree: aTree [
 	self ifSeveralterations: [aStream <<'mean '] .
 	(self format: aResult type: 'result' postfix: nil tree: aTree)space.
 	self ifSeveralterations: [ self streamDeviationsOfResult: aResult inCollection: c tree: aTree].
-	^ aResult 
+	^ aResult
 ]
 
 { #category : #accessing }
@@ -179,9 +179,9 @@ PMAccuracy >> dataTree [
 { #category : #running }
 PMAccuracy >> displayProgress: anArrayOfNames [
 	'Checking'
-		displayProgressFrom: 1 
-		to: anArrayOfNames size 
-		during: [ :bar | anArrayOfNames do: [ :n | 
+		displayProgressFrom: 1
+		to: anArrayOfNames size
+		during: [ :bar | anArrayOfNames do: [ :n |
 					bar label: 'Checking ' , n.
 					bar increment.
 					self streamTest: n ] ].
@@ -191,19 +191,19 @@ PMAccuracy >> displayProgress: anArrayOfNames [
 { #category : #private }
 PMAccuracy >> extractFromResults: theResults which: num onlyOne: aBoolean [
 	| aResult |
-	numberOfResults := aBoolean 
+	numberOfResults := aBoolean
 		ifTrue: [ aResult := theResults. nil ]
 		ifFalse: [ aResult := theResults at: num.	num ].
 	^ aResult
 ]
 
 { #category : #private }
-PMAccuracy >> extremeCollection: acol max:aBoolean [ 
+PMAccuracy >> extremeCollection: acol max:aBoolean [
 	|c|
 	c := acol first.
-	c := c isCollection ifTrue: [c size] ifFalse: [1]. 
-	^ Array new: c withAll: (aBoolean 
-										ifTrue: [ Float infinity negated ] 
+	c := c isCollection ifTrue: [c size] ifFalse: [1].
+	^ Array new: c withAll: (aBoolean
+										ifTrue: [ Float infinity negated ]
 										ifFalse: [ Float infinity ])
 ]
 
@@ -224,10 +224,9 @@ PMAccuracy >> findKey [
 PMAccuracy >> format: aCollection [
 	|col|
 	col:= self asArray: aCollection.
-	^col collect: [ :a | a isNumber 
+	^col collect: [ :a | a isNumber
 			ifTrue: [ self class floatAsShortString: a ]
-			ifFalse: [ a ] ].
-
+			ifFalse: [ a ] ]
 ]
 
 { #category : #printing }
@@ -236,23 +235,22 @@ PMAccuracy >> format: aCollection type: aString postfix: pf [
 	c := self format: aCollection.
 	aStream << aString <<': '<< (c joinUsing: (pf ifNil: [ ' , ' ] ifNotNil: [ pf , ' , ' ])).
 	pf ifNotNil: [ aStream << pf ].
-	^aStream space.
+	^aStream space
 ]
 
 { #category : #printing }
 PMAccuracy >> format: aCollection type: aString postfix: pf tree: aTree [
 	self format: aCollection type: aString postfix: pf.
 	aTree at:aString put: (aCollection size=1 ifTrue:[aCollection first] ifFalse:[aCollection]).
-	^aStream 
+	^aStream
 ]
 
 { #category : #private }
 PMAccuracy >> ifSeveralterations: aBlock [
-	iterations >1 ifTrue:[ ^aBlock value ].
-
+	iterations >1 ifTrue:[ ^aBlock value ]
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initRest: aName [
 	| initializationMessage |
 	initializationMessage := ('initialize' , aName) asSymbol.
@@ -261,7 +259,7 @@ PMAccuracy >> initRest: aName [
 	self perform: initializationMessage
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initSubclassSelectorNames [
 	names := (self class allSelectorsBelow: Object)
 		select: [ :selectorName | selectorName beginsWith: #check ]
@@ -269,8 +267,10 @@ PMAccuracy >> initSubclassSelectorNames [
 	names := names asArray sort
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMAccuracy >> initialize [
+
+	super initialize.
 	parameters := Dictionary new.
 	arguments := Dictionary new.
 	results := Dictionary new.
@@ -278,14 +278,13 @@ PMAccuracy >> initialize [
 	names do: [ :name | self initRest: name ].
 	aStream := WriteStream with: ''.
 	iterations := 1.
-	dataTree := KeyedTree new.
-	
+	dataTree := KeyedTree new
 ]
 
 { #category : #accessing }
-PMAccuracy >> iterations: anInteger [ 
+PMAccuracy >> iterations: anInteger [
 anInteger <1 ifTrue:[^iterations].
-^iterations :=anInteger 
+^iterations :=anInteger
 ]
 
 { #category : #accessing }
@@ -325,7 +324,7 @@ PMAccuracy >> parameter: aParameter [
 		ifFalse: [ self error: 'parameter must be an Array' ].
 	(aParameter isArray and: [ aParameter size = 1 ])
 		ifTrue: [ self error: 'parameter of size 1 is not possible' ].
-	^ parameters at: self findKey put: aParameter 
+	^ parameters at: self findKey put: aParameter
 ]
 
 { #category : #accessing }
@@ -334,7 +333,7 @@ PMAccuracy >> parameterAt: aName [
 	par := parameters at: aName ifAbsent: [ parameters at: 'AllTheRest' ifAbsent: [ nil ] ].
 	(par isCollection and: [ par isEmpty ])
 		ifTrue: [ par := nil ].
-	^ par 
+	^ par
 ]
 
 { #category : #running }
@@ -349,7 +348,7 @@ PMAccuracy >> printOn: aStream1 [
 	super printOn: aStream1.
 	self report
 		ifEmpty: [ aStream1 nextPutAll: ' ()' ]
-		ifNotEmpty: [ :c | 
+		ifNotEmpty: [ :c |
 			aStream1
 				nextPutAll:
 					' (
@@ -364,7 +363,7 @@ PMAccuracy >> putExpectedResult: anExpectedResult totree: aTree [
 	e := anExpectedResult.
 	[ (aTree at: e ifPresent: [ Array new: e size + 1 ])
 		ifNil: [ ^ aTree at: e put: KeyedTree new ]
-		ifNotNil: [ :a | 
+		ifNotNil: [ :a |
 			a
 				replaceFrom: 1
 					to: e size
@@ -377,20 +376,18 @@ PMAccuracy >> putExpectedResult: anExpectedResult totree: aTree [
 
 { #category : #printing }
 PMAccuracy >> report [
-	^ aStream contents  
-
+	^ aStream contents
 ]
 
 { #category : #accessing }
 PMAccuracy >> result: aResult [
 	results at: self findKey put: (self asArray: aResult).
-	^ aResult 
-
+	^ aResult
 ]
 
 { #category : #accessing }
 PMAccuracy >> resultsAt: aName [
-	^ results at: aName ifAbsent: [ results at: 'AllTheRest' ifAbsent: [ nil ] ] 
+	^ results at: aName ifAbsent: [ results at: 'AllTheRest' ifAbsent: [ nil ] ]
 ]
 
 { #category : #accessing }
@@ -447,8 +444,7 @@ PMAccuracy >> severalChecksOn: aName with: anExpectedResult tree: aTree [
 	error := aResult isCollection
 		ifTrue: [ aResult with: anExpectedResult collect: [ :r :e | self calcErrorOf: r realResult: e ] ]
 		ifFalse: [ self calcErrorOf: aResult realResult: anExpectedResult ].
-	(self format: error type: 'error' postfix: '%' tree: aTree) cr; cr.
-
+	(self format: error type: 'error' postfix: '%' tree: aTree) cr; cr
 ]
 
 { #category : #streaming }
@@ -457,7 +453,7 @@ PMAccuracy >> streamArgumentsAt: anInteger for: aName tree: aTree [
 	ar := self argumentAt: aName.
 	ar
 		ifNil: [ aStream cr ]
-		ifNotNil: [ :a | 
+		ifNotNil: [ :a |
 			(self
 				format: (a at: anInteger)
 				type: 'arguments'
@@ -467,19 +463,19 @@ PMAccuracy >> streamArgumentsAt: anInteger for: aName tree: aTree [
 
 { #category : #streaming }
 PMAccuracy >> streamDeviationsOfResult: aResult inCollection: aCollection tree: aTree [
-	|sd| 
+	|sd|
 	self format: (self calcDeviations: aResult in: aCollection max: true) type:'+dev' postfix:'%'tree: aTree.
 	(self format: (self calcDeviations: aResult in: aCollection max: false) type: '-dev' postfix:'%'tree: aTree) cr.
-	sd := aCollection first isCollection 
-		ifTrue: [(1 to: aCollection first size) collect: [:k| (aCollection collect:[:j| j at: k ]) stdev ]. ] 
+	sd := aCollection first isCollection
+		ifTrue: [(1 to: aCollection first size) collect: [:k| (aCollection collect:[:j| j at: k ]) stdev ]. ]
 		ifFalse:[aCollection stdev].
-	(self format:  sd type: 'standard deviation' postfix:nil tree: aTree) cr.
+	(self format:  sd type: 'standard deviation' postfix:nil tree: aTree) cr
 ]
 
 { #category : #streaming }
 PMAccuracy >> streamResultsFor: aName tree: aTree single: oneResult [
 	| anExpectedResult aNewTree |
-	1 to: (self numberOfDifferentResultsAt: aName) do: [ :num | 
+	1 to: (self numberOfDifferentResultsAt: aName) do: [ :num |
 		anExpectedResult := self extractFromResults: (self resultsAt: aName) which: num onlyOne: oneResult.
 		aNewTree := oneResult ifTrue: [ aTree ] ifFalse: [ self putExpectedResult: anExpectedResult totree: aTree ].
 		self format: anExpectedResult type: 'expected result' postfix: nil tree: aNewTree.
@@ -494,10 +490,10 @@ PMAccuracy >> streamTest: aName [
 	pno := self numberOfDifferentParametersAt: aName.
 	oneResult := (self numberOfDifferentResultsAt: aName) = 1.
 	aStream << 'test '	<< aName;	cr.
-	1 to: pno do: [ :parameterNo | 
+	1 to: pno do: [ :parameterNo |
 		pno > 1 ifTrue: [ subTree:=self streamTest: aName withParameter: parameterNo tree: namesTree ].
 		oneResult ifFalse: [ self tree: subTree type: 'expected result' data: (self resultsAt: aName) ].
-		self streamResultsFor: aName tree: subTree single: oneResult ] 
+		self streamResultsFor: aName tree: subTree single: oneResult ]
 ]
 
 { #category : #streaming }
@@ -518,7 +514,7 @@ PMAccuracy >> tearDown [
 ]
 
 { #category : #private }
-PMAccuracy >> tree: aTree type: aString data: aData [ 
+PMAccuracy >> tree: aTree type: aString data: aData [
 	aTree at: 'type' put: aString.
 	aTree at: 'data' put: aData.
 	^ aTree

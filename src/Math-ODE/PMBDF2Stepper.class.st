@@ -10,7 +10,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMBDF2Stepper class >> order [
 	"BDF2 is a second order method."
 	^ 2

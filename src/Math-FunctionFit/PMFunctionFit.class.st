@@ -13,17 +13,17 @@ Class {
 }
 
 { #category : #creation }
-PMFunctionFit class >> function: aBlock data: aDataHolder [ 
+PMFunctionFit class >> function: aBlock data: aDataHolder [
 ^super points: aDataHolder  function:  (PMSimpleParameterFunction function: aBlock)
 ]
 
 { #category : #creation }
-PMFunctionFit class >> histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass [ 
+PMFunctionFit class >> histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass [
 ^self shouldNotImplement
 ]
 
 { #category : #creation }
-PMFunctionFit class >> points: aDataHolder function: aBlock [ 
+PMFunctionFit class >> points: aDataHolder function: aBlock [
 ^self shouldNotImplement
 ]
 
@@ -38,12 +38,17 @@ PMFunctionFit >> accumulate: aWeightedPoint [
 	1 to: g size do:
 		[ :k |
 		  ( equations at: k) accumulate: g * ( ( g at: k) * aWeightedPoint weight).
-		].
+		]
 ]
 
 { #category : #operation }
 PMFunctionFit >> computeChanges [
-	^[super computeChanges]on: PMSingularMatrixError  do:[:signal|signal messageText: 'singular error matrix, set better parameters'.signal pass]
+
+	^ [ super computeChanges ]
+		  on: PMSingularMatrixError
+		  do: [ :signal |
+			  signal messageText: 'singular error matrix, set better parameters'.
+			  signal pass ]
 ]
 
 { #category : #information }
@@ -52,12 +57,12 @@ PMFunctionFit >> computeChiSquare [
 	chiSquare := 0.
 	degreeOfFreedom := self numberOfFreeParameters negated.
 	dataHolder pointsAndErrorsDo:
-		[ :each | |y| 
+		[ :each | |y|
 		  y :=result value: each xValue .
 		  (y closeTo: 0) ifFalse:
 		  	[chiSquare := (each yValue - y) squared / y abs +chiSquare  .
 		  	degreeOfFreedom := degreeOfFreedom + 1].
-		].
+		]
 ]
 
 { #category : #initialization }
@@ -72,15 +77,15 @@ PMFunctionFit >> initialize: aDataHolder data: aParametricFunction [
 ]
 
 { #category : #information }
-PMFunctionFit >> parameters [ 
-^result parameters 
+PMFunctionFit >> parameters [
+^result parameters
 ]
 
 { #category : #initialization }
 PMFunctionFit >> parameters: indexableCollection [
 
-	indexableCollection do: [ :e | 
-		(e closeTo: 0.0) ifTrue: [ 
+	indexableCollection do: [ :e |
+		(e closeTo: 0.0) ifTrue: [
 			self error: 'parameters shouldnt be set to practically zero' ] ].
 	result parameters: indexableCollection.
 	self finalizeIterations
@@ -88,8 +93,8 @@ PMFunctionFit >> parameters: indexableCollection [
 
 { #category : #printing }
 PMFunctionFit >> printOn: aStream [
-	super printOn: aStream.  
+	super printOn: aStream.
 	aStream nextPutAll: ' for '.
 	result printOn: aStream .
-	aStream nextPutAll: ' with data of size: '; print: dataHolder size.
+	aStream nextPutAll: ' with data of size: '; print: dataHolder size
 ]

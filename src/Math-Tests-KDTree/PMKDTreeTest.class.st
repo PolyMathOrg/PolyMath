@@ -19,14 +19,16 @@ self assert:  ( (aResult  with: bResult   collect: [:a :b|a hasEqualElements: b]
 ]
 
 { #category : #running }
-PMKDTreeTest >> initializeTreeWith: aCollection as: simpleTree [ 
+PMKDTreeTest >> initializeTreeWith: aCollection as: simpleTree [
 "used to initialize all tests"
 stupid :=PMStupidNN withAll: aCollection.
-tree := simpleTree ifTrue: [ PMKDTree withAll: aCollection ] ifFalse: [PMIndexedKDTree  withAll: aCollection ].
+tree := simpleTree ifTrue: [ PMKDTree withAll: aCollection ] ifFalse: [PMIndexedKDTree  withAll: aCollection ]
 ]
 
 { #category : #running }
 PMKDTreeTest >> setUp [
+
+	super setUp.
 	rand := Random new
 ]
 
@@ -50,8 +52,8 @@ PMKDTreeTest >> testIndexedKDTree1Dimension [
 	self initializeTreeWith: m as: false.
 	1 to: 11 do: [:v | aVector := Array with: 1 / v asFloat.
 		aResult := stupid nnSearch: aVector i: 3.			"3 nearest numbers to aVector "
-		bResult := m atAll: ((tree nnSearch: aVector i: 3) collect: [:a | a first]).	
-		self equalityTest: aResult and: bResult].
+		bResult := m atAll: ((tree nnSearch: aVector i: 3) collect: [:a | a first]).
+		self equalityTest: aResult and: bResult]
 ]
 
 { #category : #tests }
@@ -62,8 +64,7 @@ PMKDTreeTest >> testIndexedKDTree4Dimensions [
 	50 timesRepeat: [aVector := (rand next: 4) - 0.5.
 		aResult := stupid nnSearch: aVector i: 2.			"2 nearest neighbours"
 		bResult := m atAll: ((tree nnSearch: aVector i: 2)collect: [:a | a first]).
-		self equalityTest: aResult and: bResult]. 
-
+		self equalityTest: aResult and: bResult].
 ]
 
 { #category : #tests }
@@ -80,10 +81,10 @@ PMKDTreeTest >> testIndexedKDTreeSimple [
 	| r n aTree bTree |
 	r := rand next: 200.
 	aTree := PMIndexedKDTree
-		withAll: (r collect: [ :i | FloatArray with: i with: i ]).	"2-dimensional data"
+		withAll: (r collect: [ :i | Float32Array with: i with: i ]).	"2-dimensional data"
 	bTree := PMIndexedKDTree
-		withAll: (r collect: [ :i | FloatArray with: i ]).	"1-dimensional data"
-	1 to: 20 do: [ :v | 
+		withAll: (r collect: [ :i | Float32Array with: i ]).	"1-dimensional data"
+	1 to: 20 do: [ :v |
 		n := 1 / v.
 		self
 			assert: (aTree nnSearch: (Array with: n with: n) i: 1)
@@ -97,8 +98,8 @@ PMKDTreeTest >> testKDTree1Dimension [
 	self initializeTreeWith: m as: true .
 	1 to: 11 do: [:v | aVector := Array with: 1 / v asFloat.
 		aResult := stupid nnSearch: aVector i: 3.				"3 nearest numbers to aVector "
-		bResult := tree nnSearch: aVector i: 3.							
-		self equalityTest: aResult and: bResult].
+		bResult := tree nnSearch: aVector i: 3.
+		self equalityTest: aResult and: bResult]
 ]
 
 { #category : #tests }
@@ -109,7 +110,7 @@ PMKDTreeTest >> testKDTree1DimensionIntegers [
 	0 to: 11 do:[:v | aVector := Array with: v.
 		aResult :=(aVector first - (stupid nnSearch: aVector i: 3)) abs.		"distances between 3 nearest numbers and aVector "
 		bResult :=(aVector first - (tree nnSearch: aVector i: 3)) abs.		"distances using KDTree"
-		self equalityTest: aResult and: bResult ]  .
+		self equalityTest: aResult and: bResult ]
 ]
 
 { #category : #tests }
@@ -119,7 +120,7 @@ self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:2)]) as: true 
 100 timesRepeat: [aVector :=rand next:2.
 	aResult :=stupid nnSearch: aVector  i:3.
 	bResult :=tree nnSearch: aVector  i:3.
-	self equalityTest: aResult and: bResult  ] . 
+	self equalityTest: aResult and: bResult  ] .
 ]
 
 { #category : #tests }
@@ -127,9 +128,9 @@ PMKDTreeTest >> testKDTree4Dimensions [
 |aVector|
 self initializeTreeWith: ((1 to: 2000) collect:   [:n| (rand next:4)-0.5]) as: true . 	"4-dimensional data"
 50 timesRepeat: [aVector :=(rand next: 4)- 0.5.								"2 nearest neighbours"
-	self equalityTest: (stupid nnSearch: aVector  i:2) and: (tree nnSearch: aVector  i:2)  ] . 
+	self equalityTest: (stupid nnSearch: aVector  i:2) and: (tree nnSearch: aVector  i:2)  ] .
 50 timesRepeat: [aVector :=(rand next: 4)-0.5.									"just 1 nearest neighbour"
-	self assert: ( (stupid nnSearch: aVector  i:1)  hasEqualElements: (tree nnSearch: aVector  i:1) )    ] .  
+	self assert: ( (stupid nnSearch: aVector  i:1)  hasEqualElements: (tree nnSearch: aVector  i:1) )    ] .
 ]
 
 { #category : #tests }
@@ -148,24 +149,20 @@ PMKDTreeTest >> testKDTreeExtremeCase [
 
 { #category : #tests }
 PMKDTreeTest >> testPMVectorCompatibility [
+
 	| aVector bVector r |
-	(Array lookupSelector: #asPMVector)
-		ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
-	aVector := #(0) asPMVector.
-	bVector := #(-2.0) asPMVector.
-	r := (Array with: aVector with: #(-5.0) asPMVector with:  bVector) asPMVector.
+	(Array lookupSelector: #asPMVector) ifNil: [ ^ self skip: 'necessary PM package not loaded' ].
+	aVector := #( 0 ) asPMVector.
+	bVector := #( -2.0 ) asPMVector.
+	r := (Array with: aVector with: #( -5.0 ) asPMVector with: bVector) asPMVector.
 	self initializeTreeWith: r as: true.
-	self
-		assert: (tree nnSearch: bVector i: 2)
-		equals: (Array with: bVector with: aVector).
-	self
-		assert: (stupid nnSearch: bVector i: 2)
-		equals: (Array with: bVector with: aVector).
+	self assert: (tree nnSearch: bVector i: 2) equals: (Array with: bVector with: aVector).
+	self assert: (stupid nnSearch: bVector i: 2) equals: (Array with: bVector with: aVector).
 	self initializeTreeWith: r as: false.
 	r := tree nnSearch: bVector i: 2.
-	self assert: r first equals: #(3 0.0).
+	self assert: r first equals: #( 3 0.0 ).
 	self assert: r second first equals: 1.
-	self assert: (r second second closeTo: 4.0)
+	self assert: r second second closeTo: 4.0
 ]
 
 { #category : #tests }

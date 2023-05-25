@@ -12,9 +12,9 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMImplicitSolverAnnouncement class >> state: aState time: aTime [
-	^ self new state: aState time: aTime; yourself.
+	^ self new state: aState time: aTime; yourself
 ]
 
 { #category : #accessing }
@@ -25,7 +25,7 @@ PMImplicitSolverAnnouncement >> state [
 { #category : #accessing }
 PMImplicitSolverAnnouncement >> state: aState time: aTime [
 	state:= aState.
-	t := aTime.
+	t := aTime
 ]
 
 { #category : #accessing }

@@ -13,7 +13,7 @@ Class {
 }
 
 { #category : #creation }
-PMLeastSquareFit class >> histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass [ 
+PMLeastSquareFit class >> histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass [
 	^self points: aHistogram
 		function: (PMScaledProbabilityDensityFunction histogram: aHistogram
 				distributionClass: aProbabilityDensityFunctionClass)
@@ -21,9 +21,8 @@ PMLeastSquareFit class >> histogram: aHistogram distributionClass: aProbabilityD
 
 { #category : #creation }
 PMLeastSquareFit class >> points: aDataHolder function: aParametricFunction [
-	^aParametricFunction isNil
-		ifTrue: [nil]
-		ifFalse: [self new initialize: aDataHolder data: aParametricFunction]
+
+	^ aParametricFunction ifNotNil: [ self new initialize: aDataHolder data: aParametricFunction ]
 ]
 
 { #category : #operation }
@@ -48,9 +47,9 @@ PMLeastSquareFit >> accumulateEquationSystem [
 
 { #category : #information }
 PMLeastSquareFit >> chiSquare [
-	chiSquare isNil
-		ifTrue: [ self computeChiSquare].
-	^chiSquare
+
+	chiSquare ifNil: [ self computeChiSquare ].
+	^ chiSquare
 ]
 
 { #category : #operation }
@@ -69,7 +68,7 @@ PMLeastSquareFit >> computeChiSquare [
 		[ :each |
 		  chiSquare := ( each chi2Contribution: result) + chiSquare.
 		  degreeOfFreedom := degreeOfFreedom + 1.
-		].
+		]
 ]
 
 { #category : #operation }
@@ -77,7 +76,7 @@ PMLeastSquareFit >> computeEquationSystem [
 		"Private"
 	constants atAllPut: 0.
 	equations do: [ :each | each atAllPut: 0].
-	self accumulateEquationSystem.
+	self accumulateEquationSystem
 ]
 
 { #category : #information }
@@ -87,9 +86,9 @@ PMLeastSquareFit >> confidenceLevel [
 
 { #category : #information }
 PMLeastSquareFit >> degreeOfFreedom [
-	degreeOfFreedom isNil
-		ifTrue: [ self computeChiSquare].
-	^degreeOfFreedom
+
+	degreeOfFreedom ifNil: [ self computeChiSquare ].
+	^ degreeOfFreedom
 ]
 
 { #category : #information }
@@ -107,7 +106,7 @@ PMLeastSquareFit >> evaluateIteration [
 	changes := self computeChanges.
 	result changeParametersBy: changes.
 	maxChange := 0.
-	result parameters with: changes do: 
+	result parameters with: changes do:
 		[ :r :d | maxChange := ( d / r) abs max: maxChange].
 	^maxChange
 ]
@@ -140,8 +139,8 @@ PMLeastSquareFit >> initializeIterations [
 	constants := (PMVector new: n)
 				atAllPut: 0;
 				yourself.
-	equations := (1 to: n) collect: 
-					[:k | 
+	equations := (1 to: n) collect:
+					[:k |
 					(PMVector new: n)
 						atAllPut: 0;
 						yourself]

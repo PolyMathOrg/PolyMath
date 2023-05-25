@@ -1,0 +1,27 @@
+name: Release
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  release:
+    types: [created, edited]
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        smalltalk: [ Pharo64-9.0, Pharo64-10, Pharo64-11 ]
+        os: [ macos-latest, windows-latest, ubuntu-latest]
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.smalltalk }} on ${{ matrix.os }}
+    env:
+      PROJECT_NAME: PolyMath-${{ matrix.smalltalk }}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: hpi-swa/setup-smalltalkCI@v1
+        with:
+          smalltalk-image: ${{ matrix.smalltalk }}
+      - run: smalltalkci -s ${{ matrix.smalltalk }}
+        shell: bash
+        timeout-minutes: 15

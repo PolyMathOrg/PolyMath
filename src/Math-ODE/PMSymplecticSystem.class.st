@@ -52,9 +52,9 @@ PMSymplecticSystem >> dqdt: anObject [
 ]
 
 { #category : #evaluation }
-PMSymplecticSystem >> first: pState [ 
+PMSymplecticSystem >> first: pState [
 	dqdt := firstBlock value: pState.
-	^ dqdt.
+	^ dqdt
 ]
 
 { #category : #accessing }
@@ -70,7 +70,7 @@ PMSymplecticSystem >> firstBlock: anObject [
 { #category : #evaluation }
 PMSymplecticSystem >> second: qState [
 	dpdt := secondBlock value: qState.
-	^ dpdt.
+	^ dpdt
 ]
 
 { #category : #accessing }

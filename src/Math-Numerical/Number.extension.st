@@ -19,11 +19,11 @@ Number >> dividingPolynomial: aPolynomial [
 
 { #category : #'*Math-Numerical' }
 Number >> equalsTo: aNumber [
-		
+
 	self
 		deprecated: 'Use closeTo: instead'
 		transformWith: '`@rec equalsTo: `@arg' -> '`@rec closeTo: `@arg'.
-		
+
 	^ self closeTo: aNumber
 ]
 
@@ -60,16 +60,6 @@ Number >> logGamma [
 						ifTrue: [ ( PMLanczosFormula new logGamma: ( self + 1) ) - self ln ]
 						ifFalse: [ ^self error: 'Argument for the log gamma function must be positive']
 					]
-]
-
-{ #category : #'*Math-Numerical' }
-Number >> relativelyEqualsTo: aNumber upTo: aSmallNumber [
-		"compare to Float>>closeTo:
-		generally called from Number>>equalsTo:"
-	| norm |
-	norm := self abs max: aNumber abs.
-	^norm <= PMFloatingPointMachine new defaultNumericalPrecision
-		or: [ (self - aNumber) abs < ( aSmallNumber * norm)]
 ]
 
 { #category : #'*Math-Numerical' }

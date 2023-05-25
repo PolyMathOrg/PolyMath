@@ -10,8 +10,8 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
-PMODESystem class >> block: aBlock [ 
+{ #category : #accessing }
+PMODESystem class >> block: aBlock [
 	^ (self new block: aBlock; yourself)
 ]
 
@@ -29,5 +29,5 @@ PMODESystem >> block: aBlock [
 
 { #category : #evaluation }
 PMODESystem >> state: aState time: aTime [
-	^ self block value: aState value: aTime 
+	^ self block value: aState value: aTime
 ]

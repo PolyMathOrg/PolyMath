@@ -14,9 +14,11 @@ PMHistogramTestsAndBugs >> readMe [
 
 { #category : #running }
 PMHistogramTestsAndBugs >> setUp [
-h:=PMHistogram new.
-h freeExtent: true.
-1to:3 do: [:i |h accumulate: i].
+
+	super setUp.
+	h := PMHistogram new.
+	h freeExtent: true.
+	1 to: 3 do: [ :i | h accumulate: i ]
 ]
 
 { #category : #tests }
@@ -42,8 +44,7 @@ PMHistogramTestsAndBugs >> testBinWidth [
 { #category : #tests }
 PMHistogramTestsAndBugs >> testChi2Against [
 
-self assert: ((h chi2Against: (PMScaledProbabilityDensityFunction histogram: h against:  PMNormalDistribution new))
-			closeTo:  2.937623). 
+	self assert: (h chi2Against: (PMScaledProbabilityDensityFunction histogram: h against: PMNormalDistribution new)) closeTo: 2.937623
 ]
 
 { #category : #tests }
@@ -58,6 +59,7 @@ PMHistogramTestsAndBugs >> testCountAt [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testCountsBetween [
+
 	self assert: (h countsBetween: 2 and: 4) equals: 2.
 	"here is a bug in the original method: h countsBetween: 2 and: 3 resulted in -50"
 	self assert: (h countsBetween: 2 and: 3) equals: 1.
@@ -65,27 +67,28 @@ PMHistogramTestsAndBugs >> testCountsBetween [
 	self assert: (h countsBetween: 2 and: 4) equals: 2.
 	self assert: (h countsBetween: 1 and: 4) equals: 3.
 	self assert: (h countsBetween: 2.1 and: 2.2) equals: 0.
-	self assert: (h countsBetween: 2 and: 2.04) equals: 1.	"binWidth is 0.04"
-	self assert: ((h countsBetween: 2 and: 2.01) closeTo: 0.25).	"hence this the correct result"
-	self assert: ((h countsBetween: 2.01 and: 3) closeTo: 0.75).	"and so on..."
-	self assert: ((h countsBetween: 1.01 and: 2.01) closeTo: 1).
-	self assert: ((h countsBetween: 2.01 and: 2.02) closeTo: 0.25)
+	self assert: (h countsBetween: 2 and: 2.04) equals: 1. "binWidth is 0.04"
+	self assert: (h countsBetween: 2 and: 2.01) closeTo: 0.25. "hence this the correct result"
+	self assert: (h countsBetween: 2.01 and: 3) closeTo: 0.75. "and so on..."
+	self assert: (h countsBetween: 1.01 and: 2.01) closeTo: 1.
+	self assert: (h countsBetween: 2.01 and: 2.02) closeTo: 0.25
 ]
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testCountsUpTo [
+
 	self assert: (h countsUpTo: 4) equals: 3.
 	self assert: (h countsUpTo: 2.1) equals: 2.
 	self assert: (h countsUpTo: 3) equals: 2.
 	self assert: (h countsUpTo: 2) equals: 1.
-	self assert: (h countsUpTo: 1.04) equals: 1.	"at 1.04 a new bin starts"
-	self assert: ((h countsUpTo: 1.02) closeTo: 0.5).	"hence this is correct"
+	self assert: (h countsUpTo: 1.04) equals: 1. "at 1.04 a new bin starts"
+	self assert: (h countsUpTo: 1.02) closeTo: 0.5. "hence this is correct"
 	self assert: (h countsUpTo: 1) equals: 0
 ]
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testErrorOnAverage [
-self assert: (h errorOnAverage isFloat).
+self assert: (h errorOnAverage isFloat)
 ]
 
 { #category : #tests }
@@ -107,12 +110,12 @@ PMHistogramTestsAndBugs >> testKurtosis [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testLowBinLimitAt [
-self assert: ((h lowBinLimitAt:2) isNumber).
+self assert: ((h lowBinLimitAt:2) isNumber)
 ]
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testMaximum [
-self assert: ( h maximum >=3).
+self assert: ( h maximum >=3)
 ]
 
 { #category : #tests }
@@ -124,7 +127,7 @@ PMHistogramTestsAndBugs >> testMaximumCount [
 
 { #category : #tests }
 PMHistogramTestsAndBugs >> testMinimum [
-self assert: ( h minimum <=  1).
+self assert: ( h minimum <=  1)
 ]
 
 { #category : #tests }

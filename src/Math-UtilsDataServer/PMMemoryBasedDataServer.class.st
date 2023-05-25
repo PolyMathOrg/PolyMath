@@ -9,7 +9,7 @@ Class {
 		'data',
 		'position'
 	],
-	#category : 'Math-UtilsDataServer'
+	#category : #'Math-UtilsDataServer'
 }
 
 { #category : #information }
@@ -20,7 +20,7 @@ PMMemoryBasedDataServer >> atEnd [
 
 { #category : #initialization }
 PMMemoryBasedDataServer >> data: anOrderedCollection [
-	
+
 	data := anOrderedCollection.
 	self reset
 ]
@@ -49,5 +49,5 @@ PMMemoryBasedDataServer >> open [
 { #category : #operation }
 PMMemoryBasedDataServer >> reset [
 	"Reset the position of the data stream to the beginning."
-	position := 1.
+	position := 1
 ]

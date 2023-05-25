@@ -36,19 +36,19 @@ PMFunctionalIterator >> computeInitialValues [
 { #category : #operation }
 PMFunctionalIterator >> initializeIterations [
 	"If no initial value has been defined, take 0 as the starting point (for lack of anything better)."
-
-	functionBlock isNil ifTrue: [self error: 'No function supplied'].
+	super initializeIterations.
+	functionBlock ifNil: [self error: 'No function supplied'].
 	self computeInitialValues
 ]
 
 { #category : #information }
 PMFunctionalIterator >> relativePrecision: aNumber [
-	^self precisionOf: aNumber relativeTo: result abs
+
+	^ self precisionOf: aNumber relativeTo: result abs
 ]
 
 { #category : #initialization }
 PMFunctionalIterator >> setFunction: aBlock [
-	( aBlock respondsTo: #value:)
-		ifFalse:[ self error: 'Function block must implement the method value:'].
+
 	functionBlock := aBlock
 ]

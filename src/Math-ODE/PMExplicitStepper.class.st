@@ -15,7 +15,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMExplicitStepper class >> order [
 	"the default ExplicitStepper is a Euler Method, order 1"
 	^ 1
@@ -33,17 +33,17 @@ PMExplicitStepper >> doStep: aState time: t [
 { #category : #stepping }
 PMExplicitStepper >> doStep: aState time: t stepSize: timeStep [
 	"This method should take one step from inState at time t of size dt, and modify the state, then answer it. The default implementation here is Euler Method. Subclasses should override"
-	| dxdt |
+
 	self stepSize: timeStep.
-	^ self doStep: aState  time:  t.
+	^ self doStep: aState time: t
 ]
 
 { #category : #stepping }
 PMExplicitStepper >> lastStep: aState time: t deltaT: incrementOfTime [
 	"This method should take one step from inState at time t of size dt, and modify the state, then answer it. The default implementation here is Euler Method. Subclasses should override"
-	self stepSize isNil ifTrue: [self error: 'step size required by stepper'].
-	^ self stepSize * (system state: aState time: t- self stepSize + incrementOfTime) + aState 
-	
+
+	self stepSize ifNil: [ self error: 'step size required by stepper' ].
+	^ self stepSize * (system state: aState time: t - self stepSize + incrementOfTime) + aState
 ]
 
 { #category : #stepping }
@@ -51,5 +51,5 @@ PMExplicitStepper >> lastStep: aState time: t stepSize: timeStep deltaT: increme
 	"This method should take one step from inState at time t of size dt, and modify the state, then answer it. The default implementation here is Euler Method. Subclasses should override"
 	| |
 	self stepSize: timeStep.
-	^ self lastStep: aState  time:  t deltaT: incrementOfTime.
+	^ self lastStep: aState  time:  t deltaT: incrementOfTime
 ]

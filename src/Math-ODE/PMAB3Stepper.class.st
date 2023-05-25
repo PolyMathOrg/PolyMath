@@ -8,7 +8,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB3Stepper class >> order [
 	"AB3 is a third order method."
 	^ 3
@@ -31,7 +31,7 @@ PMAB3Stepper >> doStep: thisState prevState: prevState prevPrevState: prevPrevSt
 { #category : #stepping }
 PMAB3Stepper >> doStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime  stepSize: timeStep [
 	self stepSize: timeStep.
-	^ self doStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime  .
+	^ self doStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime
 ]
 
 { #category : #stepping }
@@ -52,5 +52,5 @@ PMAB3Stepper >> lastStep: thisState prevState: prevState prevPrevState: prevPrev
 { #category : #stepping }
 PMAB3Stepper >> lastStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime  stepSize: timeStep deltaT: incrementOfTime [
 	self stepSize: timeStep.
-	^ self lastStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime deltaT: incrementOfTime  .
+	^ self lastStep: thisState prevState: prevState prevPrevState: prevPrevState prevPrevTime: prevPrevTime deltaT: incrementOfTime
 ]

@@ -5,7 +5,7 @@ Class {
 }
 
 { #category : #tests }
-PMStandardizationScalerTest >> testMean [	
+PMStandardizationScalerTest >> testMean [
 	| aMatrix t |
 	aMatrix := PMMatrix rows: #((0.0 0.0) #(0.0 0.0) #(1.0 1.0) #(1.0 1.0)).
 	t := PMStandardizationScaler new.
@@ -61,7 +61,7 @@ PMStandardizationScalerTest >> testVariance [
 PMStandardizationScalerTest >> testZeroScale [
 	"Tests if PMStandardizationScaler handles case when scale is 0, by changing it to 1.
 	 Happens when one feature is constant eg: 8.0 in this test."
-	
+
 	| aMatrix t |
 	aMatrix := PMMatrix rows: #((8.0 0.0) #(8.0 0.0) #(8.0 1.0) #(8.0 1.0)).
 	t := PMStandardizationScaler new.

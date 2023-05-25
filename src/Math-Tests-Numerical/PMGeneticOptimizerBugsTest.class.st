@@ -11,11 +11,13 @@ Class {
 
 { #category : #running }
 PMGeneticOptimizerBugsTest >> setUp [
-manager:= PMChromosomeManager new.
-manager populationSize:3.
-function:=[:x| (x*x)sum].
-optimizer:= PMGeneticOptimizer minimizingFunction: function.
-optimizer chromosomeManager: manager.
+
+	super setUp.
+	manager := PMChromosomeManager new.
+	manager populationSize: 3.
+	function := [ :x | (x * x) sum ].
+	optimizer := PMGeneticOptimizer minimizingFunction: function.
+	optimizer chromosomeManager: manager
 ]
 
 { #category : #tests }
@@ -25,8 +27,8 @@ PMGeneticOptimizerBugsTest >> testBug1 [
 	optimizer addPointAt: #( 2 3 ).
 	optimizer addPointAt: #( 2 3 ).
 	self shouldnt: [ r := optimizer randomScale ] raise: Error.
-	self assert: (r first closeTo: 1 / 2).
-	self assert: (r last closeTo: 1)
+	self assert: r first closeTo: 1 / 2.
+	self assert: r last closeTo: 1
 ]
 
 { #category : #tests }
@@ -37,5 +39,5 @@ optimizer addPointAt: #(2 3).
 optimizer addPointAt: (Array with: Float nan with: 3).
 "if you inspect r here you will see that a _single nan result can _completely throw off the ga calculations"
 r:=optimizer randomScale.
-self deny: r first isNaN.
+self deny: r first isNaN
 ]

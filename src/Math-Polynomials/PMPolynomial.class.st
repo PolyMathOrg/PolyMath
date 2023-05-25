@@ -17,7 +17,7 @@ Class {
 	#instVars : [
 		'coefficients'
 	],
-	#category : 'Math-Polynomials'
+	#category : #'Math-Polynomials'
 }
 
 { #category : #creation }
@@ -34,7 +34,7 @@ PMPolynomial >> * aNumberOrPolynomial [
 
 { #category : #operation }
 PMPolynomial >> + aNumberOrPolynomial [
-		
+
 	^aNumberOrPolynomial addPolynomial: self
 ]
 
@@ -46,12 +46,12 @@ PMPolynomial >> - aNumberOrPolynomial [
 
 { #category : #operation }
 PMPolynomial >> / aNumberOrPolynomial [
-	
+
 	^aNumberOrPolynomial dividingPolynomial: self
 ]
 
 { #category : #comparing }
-PMPolynomial >> = aNumberOrPolynomial [ 
+PMPolynomial >> = aNumberOrPolynomial [
 	^(aNumberOrPolynomial class = self class) and: [self coefficients = aNumberOrPolynomial coefficients]
 ]
 
@@ -62,7 +62,7 @@ PMPolynomial >> adaptToNumber: rcvr andSend: selector [
 
 { #category : #'double dispatching' }
 PMPolynomial >> addNumber: aNumber [
-	
+
 	| newCoefficients |
 	newCoefficients := coefficients reverse.
 	newCoefficients at: 1 put: newCoefficients first + aNumber.
@@ -71,7 +71,7 @@ PMPolynomial >> addNumber: aNumber [
 
 { #category : #'double dispatching' }
 PMPolynomial >> addPolynomial: aPolynomial [
-	
+
 	^self class coefficients: ( ( 0 to: (self degree max: aPolynomial degree)) collect: [ :n | ( aPolynomial at: n) + ( self at: n)])
 ]
 
@@ -96,7 +96,7 @@ PMPolynomial >> deflatedAt: aNumber [
 	remainder := 0.
 	newCoefficients := coefficients collect:
 						[ :each |
-						  next := remainder. 
+						  next := remainder.
 						  remainder := remainder * aNumber + each.
 						  next].
 	^self class coefficients: ( newCoefficients copyFrom: 2 to: newCoefficients size) reverse
@@ -118,13 +118,13 @@ PMPolynomial >> derivative [
 
 { #category : #'double dispatching' }
 PMPolynomial >> dividingPolynomial: aPolynomial [
-		
+
 	^( self dividingPolynomialWithRemainder: aPolynomial) first
 ]
 
 { #category : #'double dispatching' }
 PMPolynomial >> dividingPolynomialWithRemainder: aPolynomial [
-	
+
 	| remainderCoefficients quotientCoefficients n m norm quotientDegree |
 	n := self degree.
 	m := aPolynomial degree.
@@ -140,8 +140,8 @@ PMPolynomial >> dividingPolynomialWithRemainder: aPolynomial [
 			  x := ( remainderCoefficients at: n + k + 1) * norm.
 			  quotientCoefficients at: (quotientDegree + 1 - k) put: x.
 			  (n + k - 1) to: k by: -1
-				do: [ :j | 
-				remainderCoefficients at: j + 1 put: 
+				do: [ :j |
+				remainderCoefficients at: j + 1 put:
 							( ( remainderCoefficients at: j + 1) - ( x * (self at: j - k)))
 				].
 			].
@@ -164,7 +164,7 @@ PMPolynomial >> initialize [
 
 { #category : #initialization }
 PMPolynomial >> initialize: anArray [
-	
+
 	coefficients := anArray.
 	^self
 ]
@@ -185,28 +185,28 @@ PMPolynomial >> integral: aValue [
 
 { #category : #operation }
 PMPolynomial >> isZero [
-	^ self coefficients allSatisfy: [:ea | ea = 0].
+	^ self coefficients allSatisfy: [:ea | ea = 0]
 ]
 
 { #category : #operation }
 PMPolynomial >> negated [
-	^ self * -1.
+	^ self * -1
 ]
 
 { #category : #printing }
-PMPolynomial >> printOn: aStream [ 
+PMPolynomial >> printOn: aStream [
 	"Append to aStream a written representation of the receiver."
 
 	| n firstNonZeroCoefficientPrinted |
 	n := 0.
 	firstNonZeroCoefficientPrinted := false.
 	coefficients
-		reverseDo: 
-			[:each | 
+		reverseDo:
+			[:each |
 			each = 0
-				ifFalse: 
+				ifFalse:
 					[firstNonZeroCoefficientPrinted
-						ifTrue: 
+						ifTrue:
 							[aStream space.
 							((each respondsTo: #< ) and: [each < 0]) ifFalse: [aStream nextPut: $+].
 							aStream space]
@@ -214,16 +214,16 @@ PMPolynomial >> printOn: aStream [
 					(each = 1 and: [n > 0])
 						ifFalse: [each printOn: aStream].
 					n > 0
-						ifTrue: 
+						ifTrue:
 							[aStream nextPutAll: ' X'.
 							n > 1
-								ifTrue: 
+								ifTrue:
 									[aStream nextPut: $^.
 									n printOn: aStream]]].
 			n := n + 1].
-		
+
 	"add a quick check, print a zero if the polynomial has all zero coefficients"
-	firstNonZeroCoefficientPrinted ifFalse: [0 printOn: aStream].
+	firstNonZeroCoefficientPrinted ifFalse: [0 printOn: aStream]
 ]
 
 { #category : #operation }
@@ -233,8 +233,8 @@ PMPolynomial >> reciprocal [
 
 { #category : #information }
 PMPolynomial >> roots [
-	
-	^self roots: PMFloatingPointMachine new defaultNumericalPrecision
+
+	^ self roots: Float defaultComparisonPrecision
 ]
 
 { #category : #information }
@@ -248,8 +248,8 @@ PMPolynomial >> roots: aNumber [
 	[ rootFinder setFunction: pol; setDerivative: pol derivative.
 	  x := rootFinder evaluate.
 	  rootFinder hasConverged
-		] whileTrue: [ roots add: x. 
-					   pol := pol deflatedAt: x. 
+		] whileTrue: [ roots add: x.
+					   pol := pol deflatedAt: x.
 					   pol degree > 0
 						 ifFalse: [ ^roots].
 					 ].
@@ -264,13 +264,13 @@ PMPolynomial >> subtractToPolynomial: aPolynomial [
 
 { #category : #'double dispatching' }
 PMPolynomial >> timesNumber: aNumber [
-	
+
 	^self class coefficients: ( coefficients reverse collect: [ :each | each * aNumber])
 ]
 
 { #category : #'double dispatching' }
 PMPolynomial >> timesPolynomial: aPolynomial [
-	
+
 	| productCoefficients degree|
 	degree := aPolynomial degree + self degree.
 	productCoefficients := ( degree to: 0 by: -1)

@@ -4,7 +4,7 @@ Class {
 	#instVars : [
 		'system'
 	],
-	#category : 'Math-Benchmarks-ODE'
+	#category : #'Math-Benchmarks-ODE'
 }
 
 { #category : #benchmarking }
@@ -12,7 +12,7 @@ PMImplicitBenchmark >> benchBeckwardEuler [
 	| solver stepper |
 	stepper := PMImplicitStepper onSystem: system.
 	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
-	 1 to: self problemSize do: [  :i 
+	 1 to: self problemSize do: [  :i
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
 
@@ -21,12 +21,12 @@ PMImplicitBenchmark >> benchImplicitMidpoint [
 	| solver stepper |
 	stepper := PMImplicitMidpointStepper onSystem: system.
 	solver := (PMImplicitMidpointSolver new) stepper: stepper; system: system; dt: dt.
-	 1 to: self problemSize do: [  :i 
+	 1 to: self problemSize do: [  :i
 		 |solver solve: system startState: startState startTime:startTime endTime: endTime]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #running }
 PMImplicitBenchmark >> setUp [
 	super setUp.
-	system := PMImplicitSystem block: function.
+	system := PMImplicitSystem block: function
 ]

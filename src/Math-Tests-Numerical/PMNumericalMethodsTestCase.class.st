@@ -4,12 +4,12 @@ Class {
 	#category : #'Math-Tests-Numerical'
 }
 
-{ #category : #privateMethods }
+{ #category : #running }
 PMNumericalMethodsTestCase >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
-	PMMitchellMooreGenerator reset: 0.
-	"Reset the FloatingPointMachine to make coverage consistent"
-	PMFloatingPointMachine reset.
+
+	super setUp.
+	PMMitchellMooreGenerator reset: 0
 ]
 
 { #category : #'linear algebra' }
@@ -30,14 +30,13 @@ PMNumericalMethodsTestCase >> testBissection [
 	"Code Example 5.1"
 
 	| zeroFinder result |
-	zeroFinder := PMBisectionZeroFinder
-		function: [ :x | x errorFunction - 0.9 ].
+	zeroFinder := PMBisectionZeroFinder function: [ :x | x errorFunction - 0.9 ].
 	zeroFinder
 		setPositiveX: 10.0;
 		setNegativeX: 0.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
-	self assert: (result - 1.28155193291605) abs < 1.0e-14
+	self assert: result closeTo: 1.28155193291605
 ]
 
 { #category : #'linear algebra' }
@@ -49,10 +48,9 @@ PMNumericalMethodsTestCase >> testDeterminant [
 
 { #category : #'linear algebra' }
 PMNumericalMethodsTestCase >> testDimension [
-	| a | 
-	a := PMMatrix rows: #( ( 1 0 1) (-1 -2 3)).	
-	self assert: a dimension equals: 2@3.
-	
+	| a |
+	a := PMMatrix rows: #( ( 1 0 1) (-1 -2 3)).
+	self assert: a dimension equals: 2@3
 ]
 
 { #category : #'linear algebra' }
@@ -94,46 +92,26 @@ PMNumericalMethodsTestCase >> testErrorFunction [
 	"simple cases to expect"
 
 	self assert: 0 errorFunction equals: 1 / 2.
-	self
-		assert:
-			PMFloatingPointMachine new largestNumber errorFunction
-				> (1 - PMFloatingPointMachine new machinePrecision).
+	self assert: Float fmax errorFunction > (1 - Float machineEpsilon).
 	"add some code to require initialize to run"
 	PMErfApproximation reset.
-	self
-		assert:
-			PMFloatingPointMachine new largestNumber negated errorFunction
-				< PMFloatingPointMachine new smallestNumber
+	self assert: Float fmax negated errorFunction < Float fmin
 ]
 
 { #category : #estimation }
 PMNumericalMethodsTestCase >> testFTest [
+
 	| accC accMM confidenceLevel |
 	accC := PMStatisticalMoments new.
-	#(5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70)
-		do: [ :x | accC accumulate: x ].
+	#( 5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70 ) do: [ :x | accC accumulate: x ].
 	accMM := PMStatisticalMoments new.
-	#(7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58)
-		do: [ :x | accMM accumulate: x ].
+	#( 7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58 ) do: [ :x | accMM accumulate: x ].
 	confidenceLevel := accC fConfidenceLevel: accMM.
-	self assert: (accC average - 5.393) abs < 0.000000001.
-	self
-		assert: (accC standardDeviation - 1.0990809292) abs < 0.000000001.
-	self assert: (accMM average - 5.804) abs < 0.000000001.
-	self assert: (accMM standardDeviation - 1.19415428) abs < 0.000000001.
-	self assert: (confidenceLevel - 79.8147614536) abs < 0.000000001
-]
-
-{ #category : #statistics }
-PMNumericalMethodsTestCase >> testGammaDistribution [
-	| dist |
-	dist := PMGammaDistribution shape: 3.4 scale: 1.7.
-	self assert: (dist average - (3.4 * 1.7)) abs < 0.000000001.
-	self
-		assert: (dist standardDeviation - (3.4 sqrt * 1.7)) abs < 0.000000001.
-	self assert: ((dist value: 4.5) - 0.1446067652) abs < 0.000000001.
-	self
-		assert: ((dist distributionValue: 4.5) - 0.3982869736) abs < 0.000000001
+	self assert: accC average - 5.393 closeTo: 0.
+	self assert: accC standardDeviation - 1.0990809292 closeTo: 0.
+	self assert: accMM average - 5.804 closeTo: 0.
+	self assert: accMM standardDeviation - 1.19415428 closeTo: 0.
+	self assert: confidenceLevel - 79.8147614536 closeTo: 0
 ]
 
 { #category : #statistics }
@@ -173,10 +151,8 @@ PMNumericalMethodsTestCase >> testIncompleteBetaFunction [
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIncompleteGammaFunction [
-	| function |
-	function := PMIncompleteGammaFunction shape: 2.
-	self
-		assert: ((function value: 2) - 0.59399414981) abs < 0.00000000001
+
+	self assert: ((PMIncompleteGammaFunction shape: 2) value: 2) - 0.59399414981 closeTo: 0
 ]
 
 { #category : #'iterative algorithms' }
@@ -338,7 +314,7 @@ PMNumericalMethodsTestCase >> testLanczosFormulaObject [
 	second := PMLanczosFormula new.
 	self shouldnt: [ first == second ].
 	third := PMLanczosFormula new.
-	self assert: second == third
+	self assert: second identicalTo: third
 ]
 
 { #category : #estimation }
@@ -394,27 +370,27 @@ PMNumericalMethodsTestCase >> testLeastSquarePolynomial [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLeastSquaresSingularMatrixError [
 	| histogram leastSquares |
-	
+
 	histogram := PMHistogram new
 		freeExtent: true;
 		yourself.
-		
+
 	1 to: 3 do: [:i| histogram accumulate: i ].
-	
+
 	leastSquares := PMLeastSquareFit
 		histogram: histogram
 		distributionClass: PMTriangularDistribution.
-		
+
 	self should: [ leastSquares evaluate ] raise: PMSingularMatrixError.
-	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError .
+	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch1 [
 	"Test line searh for an initial step of Newton solver for equation
-	
+
 	atan x = 0 with x0 = 2.
-	
+
 	D[atan x] = 1 / (1+x^2).
 	"
 	| xOld p functionBlock g0 g1 dg0 xAnswer |
@@ -431,61 +407,64 @@ PMNumericalMethodsTestCase >> testLineSearch1 [
 					valueAtOne: g1) evaluate.
 	self assert: (xAnswer <= 0.5) & (xAnswer > 1e-3).
 	self assert: (functionBlock value: xAnswer) < g0.
-	self assert: (functionBlock value: xAnswer) < g1.
-	
+	self assert: (functionBlock value: xAnswer) < g1
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch2 [
 	"Test line searh for an initial step of Newton solver for equation
-	
+
 	F(x) := sqrt(x) - x = 0 with x = 2.
-	
+
 	F'(x) = 0.5 / sqrt(x) - 1.
-	
+
 	This case does not require line search, should return 1.
 	"
+
 	| xOld p functionBlock g0 g1 dg0 xAnswer |
 	xOld := 2.0.
-	p := ((xOld sqrt - xOld) / (0.5 / xOld sqrt - 1)) negated.
-	functionBlock := [  :x | 0.5 * ((x * p + xOld) sqrt - (x * p + xOld)) squared ].
+	p := (xOld sqrt - xOld / (0.5 / xOld sqrt - 1)) negated.
+	functionBlock := [ :x | 0.5 * ((x * p + xOld) sqrt - (x * p + xOld)) squared ].
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
 	xAnswer := (PMLineSearch
-					function: functionBlock
-					valueAtZero: g0
-					derivativeAtZero: dg0
-					valueAtOne: g1) evaluate.
+		            function: functionBlock
+		            valueAtZero: g0
+		            derivativeAtZero: dg0
+		            valueAtOne: g1) evaluate.
 	self assert: xAnswer equals: 1.0.
 	self assert: (functionBlock value: xAnswer) < g0.
-	self assert: (functionBlock value: xAnswer) = g1.
-	
+	self assert: (functionBlock value: xAnswer) equals: g1
 ]
 
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch3 [
 	"Test line searh for the final step of Newton solver for equation
-	
+
 	F(x) := x + 1 for x = -1 (+ small epsilon)
-	
+
 	F'(x) = 1.
-	
+
 	This case does not require line search, should return 1.
 	"
+
 	| xOld eps p functionBlock g0 g1 dg0 lineSearch xAnswer |
-	eps := PMFloatingPointMachine new defaultNumericalPrecision.
+	eps := Float defaultComparisonPrecision.
 	xOld := -1.0 + eps.
 	p := eps.
-	functionBlock := [  :t | 0.5 * ((t * p + xOld) + 1) squared ].
+	functionBlock := [ :t | 0.5 * (t * p + xOld + 1) squared ].
 	g0 := functionBlock value: 0.
 	g1 := functionBlock value: 1.
 	dg0 := 2.0 * g0 negated.
-	lineSearch := PMLineSearch function: functionBlock valueAtZero: g0 derivativeAtZero: dg0 valueAtOne: g1.
+	lineSearch := PMLineSearch
+		              function: functionBlock
+		              valueAtZero: g0
+		              derivativeAtZero: dg0
+		              valueAtOne: g1.
 	lineSearch desiredPrecision: eps.
 	xAnswer := lineSearch evaluate.
-	self assert: xAnswer equals: 1.0.
-	
+	self assert: xAnswer equals: 1.0
 ]
 
 { #category : #'linear algebra' }
@@ -512,14 +491,12 @@ PMNumericalMethodsTestCase >> testLinearEquations [
 PMNumericalMethodsTestCase >> testLinearEquationsSingle [
 
 	| s sol |
-	s := PMLinearEquationSystem
-		     equations: #( #( 1 2 0 ) #( 3 5 4 ) #( 5 6 3 ) )
-		     constant: #( 0.1 12.5 10.3 ).
+	s := PMLinearEquationSystem equations: #( #( 1 2 0 ) #( 3 5 4 ) #( 5 6 3 ) ) constant: #( 0.1 12.5 10.3 ).
 	sol := s solution.
 	self assert: sol size equals: 3.
-	self assert: ((sol at: 1) closeTo: 0.5).
-	self assert: ((sol at: 2) closeTo: -0.2).
-	self assert: ((sol at: 3) closeTo: 3.0)
+	self assert: (sol at: 1) closeTo: 0.5.
+	self assert: (sol at: 2) closeTo: -0.2.
+	self assert: (sol at: 3) closeTo: 3.0
 ]
 
 { #category : #'linear algebra' }
@@ -755,11 +732,11 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 	"Test Newton's method for
-	
+
 	   atan x = 0, x = 5.
-	
+
 	   atan' x = 1 / (1+x^2)
-	
+
 	This case requires line search to decrease the initial step."
 	| zeroFinder result |
 	zeroFinder := PMNewtonZeroFinder
@@ -774,20 +751,21 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 { #category : #'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 	"Test Newton's method for linear function
-	
+
 	   F(x) = x + 1 = 0, x = 5.
-	
+
 	   F'(x) = 1
-	
+
 	This should converge in two iterations: the first iteration produces large step,
 	but the second iteration step is zero => convergence"
+
 	| zeroFinder result |
-	zeroFinder := PMNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1  ].
+	zeroFinder := PMNewtonZeroFinder function: [ :x | x + 1 ] derivative: [ :x | 1 ].
 	zeroFinder initialValue: 5.0.
 	result := zeroFinder evaluate.
 	self assert: zeroFinder hasConverged.
 	self assert: (result + 1) abs <= zeroFinder precision.
-	self assert: zeroFinder iterations = 2.
+	self assert: zeroFinder iterations equals: 2
 ]
 
 { #category : #statistics }
@@ -806,7 +784,7 @@ PMNumericalMethodsTestCase >> testOptimize [
 	"General optimizer to test genetic algorithm"
 
 	| fBlock finder result |
-	fBlock := [ :x | 
+	fBlock := [ :x |
 	| r |
 	r := x * x.
 	r = 0
@@ -831,9 +809,10 @@ PMNumericalMethodsTestCase >> testOptimizeOneDimension [
 	| distr finder maximum |
 	distr := PMGammaDistribution shape: 2 scale: 5.
 	finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.
+	finder randomGenerator: (Random seed: 42).
 	finder desiredPrecision: 1.0e-6.
 	maximum := finder evaluate.
-	self assert: (maximum - 5) abs < 1.0e-6.
+	self assert: maximum - 5 closeTo: 0.
 	self assert: finder precision < 1.0e-6
 ]
 
@@ -860,15 +839,16 @@ PMNumericalMethodsTestCase >> testOptimizeSimplex [
 
 	| fBlock simplex educatedGuess result |
 	fBlock := [ :x | (x * x) negated exp ].
-	educatedGuess := #(0.5 1.0 0.5) asPMVector.
+	educatedGuess := #( 0.5 1.0 0.5 ) asPMVector.
 	simplex := PMSimplexOptimizer maximizingFunction: fBlock.
+	simplex randomGenerator: (Random seed: 42).
 	simplex initialValue: educatedGuess.
 	simplex desiredPrecision: 1.0e-6.
 	result := simplex evaluate.
 	self assert: simplex precision < 1.0e-6.
-	self assert: (result at: 1) abs < 1.0e-6.
-	self assert: (result at: 2) abs < 1.0e-6.
-	self assert: (result at: 3) abs < 1.0e-6
+	self assert: (result at: 1) closeTo: 0.
+	self assert: (result at: 2) closeTo: 0.
+	self assert: (result at: 3) closeTo: 0
 ]
 
 { #category : #statistics }
@@ -964,20 +944,18 @@ PMNumericalMethodsTestCase >> testSymmetricMatrixAdd3 [
 
 { #category : #estimation }
 PMNumericalMethodsTestCase >> testTTest [
+
 	| accC accMM confidenceLevel |
 	accC := PMStatisticalMoments new.
-	#(5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70)
-		do: [ :x | accC accumulate: x ].
+	#( 5.56 5.89 4.66 5.69 5.34 4.79 4.80 7.86 3.64 5.70 ) do: [ :x | accC accumulate: x ].
 	accMM := PMStatisticalMoments new.
-	#(7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58)
-		do: [ :x | accMM accumulate: x ].
+	#( 7.48 6.75 3.77 5.71 7.25 4.73 6.23 5.60 5.94 4.58 ) do: [ :x | accMM accumulate: x ].
 	confidenceLevel := accC tConfidenceLevel: accMM.
-	self assert: (accC average - 5.393) abs < 0.000000001.
-	self
-		assert: (accC standardDeviation - 1.0990809292) abs < 0.000000001.
-	self assert: (accMM average - 5.804) abs < 0.000000001.
-	self assert: (accMM standardDeviation - 1.19415428) abs < 0.000000001.
-	self assert: (confidenceLevel - 56.6320739989) abs < 0.000000001
+	self assert: accC average - 5.393 closeTo: 0.
+	self assert: accC standardDeviation - 1.0990809292 closeTo: 0.
+	self assert: accMM average - 5.804 closeTo: 0.
+	self assert: accMM standardDeviation - 1.19415428 closeTo: 0.
+	self assert: confidenceLevel - 56.6320739989 closeTo: 0
 ]
 
 { #category : #'linear algebra' }

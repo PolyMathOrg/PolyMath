@@ -17,7 +17,7 @@ Class {
 { #category : #examples }
 PMHillClimbingOptimizer class >> exampleFindOptimumOnVectorFunction [
 	| fBlock educatedGuess hillClimber result |
-	fBlock := [ :v | 
+	fBlock := [ :v |
 	| x y |
 	x := v at: 1.
 	y := v at: 2.
@@ -41,7 +41,7 @@ PMHillClimbingOptimizer >> computeInitialValues [
 															at: n put: 1;
 															yourself);
 											yourself
-									 ].
+									 ]
 ]
 
 { #category : #operation }
@@ -64,11 +64,10 @@ PMHillClimbingOptimizer >> evaluateIteration [
 
 { #category : #operation }
 PMHillClimbingOptimizer >> finalizeIterations [
-
 ]
 
 { #category : #operation }
-PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction [ 
+PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction [
 	^unidimensionalFinder
 		reset;
 		setFunction: aVectorFunction;
@@ -79,7 +78,7 @@ PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction [
 ]
 
 { #category : #operation }
-PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction from: aVector [ 
+PMHillClimbingOptimizer >> minimizeDirection: aVectorFunction from: aVector [
 
 	^aVectorFunction
 		origin: aVector;
@@ -92,7 +91,7 @@ PMHillClimbingOptimizer >> shiftDirections [
 	firstDirection := bestPoints first direction.
 	bestPoints
 		inject: nil
-		into: [ :prev :each | 
+		into: [ :prev :each |
 			position
 				ifNil: [ position := each origin ]
 				ifNotNil: [ prev direction: each direction ].

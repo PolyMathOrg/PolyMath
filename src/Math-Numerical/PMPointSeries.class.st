@@ -48,11 +48,13 @@ PMPointSeries >> firstPoint [
 	^self at: 1
 ]
 
-{ #category : #'public methods' }
+{ #category : #initialization }
 PMPointSeries >> initialize [
 	"Create the point collection"
+
+	super initialize.
 	points := SortedCollection sortBlock: self sortBlock.
-	^self
+	^ self
 ]
 
 { #category : #'public methods' }
@@ -62,7 +64,8 @@ PMPointSeries >> isEmpty [
 
 { #category : #'public methods' }
 PMPointSeries >> notEmpty [
-	^points notEmpty
+
+	^ points isNotEmpty
 ]
 
 { #category : #'public methods' }
@@ -73,19 +76,19 @@ PMPointSeries >> pointCollection [
 
 { #category : #'public methods' }
 PMPointSeries >> pointsDo: aBlock [
-	points do: aBlock.
+	points do: aBlock
 ]
 
 { #category : #privateMethods }
 PMPointSeries >> primitiveAdd: aPoint [
 	"Private - Add a point to the receiver"
-	points add: aPoint.
+	points add: aPoint
 ]
 
 { #category : #privateMethods }
 PMPointSeries >> primitiveRemove: aPoint [
 	"Private - Removes a point from the receiver"
-	points remove: aPoint.
+	points remove: aPoint
 ]
 
 { #category : #'public methods' }

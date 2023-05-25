@@ -7,7 +7,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAB2Stepper class >> order [
 	"AB2 is a second order method."
 	^ 2
@@ -25,7 +25,7 @@ PMAB2Stepper >> doStep: aState prevState: prevState time: t [
 PMAB2Stepper >> doStep: aState prevState: prevState time: t  stepSize: timeStep [
 
 	self stepSize: timeStep.
-	^ self doStep: aState prevState: prevState time:  t  .
+	^ self doStep: aState prevState: prevState time:  t
 ]
 
 { #category : #stepping }
@@ -41,5 +41,5 @@ PMAB2Stepper >> lastStep: aState prevState: prevState time: t deltaT: incrementO
 PMAB2Stepper >> lastStep: aState prevState: prevState time: t  stepSize: timeStep deltaT: incrementOfTime [
 
 	self stepSize: timeStep.
-	^ self lastStep: aState prevState: prevState time:  t deltaT: incrementOfTime .
+	^ self lastStep: aState prevState: prevState time:  t deltaT: incrementOfTime
 ]

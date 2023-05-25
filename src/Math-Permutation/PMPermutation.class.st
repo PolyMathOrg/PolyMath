@@ -24,58 +24,59 @@ Class {
 
 { #category : #accessing }
 PMPermutation class >> allOfSize: anInteger [
-"generates all permutations of the given size, in other words it produces the symmetric group of degree anInteger.
+	"generates all permutations of the given size, in other words it produces the symmetric group of degree anInteger.
 Heap's algorithm, used here, seems to be just a tiny bit faster than using #permutationsDo:"
-	| result perm c i ci|
-	anInteger = 0 ifTrue:[^#()].
+
+	| result perm c i ci |
+	anInteger = 0 ifTrue: [ ^ #(  ) ].
 	perm := self identity: anInteger.
-	(result := WriteStream on:(Array new: anInteger factorial)) nextPut: perm copy.
+	(result := WriteStream on: (Array new: anInteger factorial)) nextPut: perm copy.
 	c := Array new: anInteger withAll: 1.
 	i := 1.
-	[ i <= anInteger ]
-		whileTrue: [ 
-			(ci :=(c at: i)) < i
-				ifTrue: [ 
-					i odd
-						ifTrue: [ perm swap: 1 with: i ]
-						ifFalse: [ perm swap: ci with: i ].
-					result nextPut: perm copy.
-					c at: i put: ci + 1.
-					i := 1 ]
-				ifFalse: [ c at: i put: 1. i := i + 1 ] ].
+	[ i <= anInteger ] whileTrue: [
+		i := (ci := c at: i) < i
+			     ifTrue: [
+				     i odd
+					     ifTrue: [ perm swap: 1 with: i ]
+					     ifFalse: [ perm swap: ci with: i ].
+				     result nextPut: perm copy.
+				     c at: i put: ci + 1.
+				     1 ]
+			     ifFalse: [
+				     c at: i put: 1.
+				     i + 1 ] ].
 	^ result contents
 ]
 
 { #category : #'instance creation' }
 PMPermutation class >> fromCycles: aCollectionofCollections [
+
 	| length |
 	length := aCollectionofCollections flattened.
-	length := length isEmpty 
-		ifTrue: [ 0 ]
-		ifFalse: [ length max ].
+	length := length ifEmpty: [ 0 ] ifNotEmpty: [ length max ].
 	^ self size: length fromCycles: aCollectionofCollections
 ]
 
 { #category : #accessing }
-PMPermutation class >> generator:arrayOfPermutations [
-|f max generators|
-max:=(arrayOfPermutations collect:[:g|g size])max.
-generators:=arrayOfPermutations collect:[:g| g extendTo: max].
-f:=PMFixpoint 
-  block: [ :s| |aSet|
-				aSet:=Set newFrom: s.
-				s do:[:p|s do:[:q|
-						aSet add:(p permute:q)]].
-				aSet]
-  value: generators.
-f verbose:false.
-^f evaluate asArray.
+PMPermutation class >> generator: arrayOfPermutations [
 
+	| f max generators |
+	max := (arrayOfPermutations collect: [ :g | g size ]) max.
+	generators := arrayOfPermutations collect: [ :g | g extendTo: max ].
+	f := PMFixpoint
+		     block: [ :s |
+			     | aSet |
+			     aSet := Set newFrom: s.
+			     s do: [ :p | s do: [ :q | aSet add: (p permute: q) ] ].
+			     aSet ]
+		     value: generators.
+	f verbose: false.
+	^ f evaluate asArray
 ]
 
 { #category : #'instance creation' }
 PMPermutation class >> identity: size [
-^ super withAll: (1 to: size) 
+^ super withAll: (1 to: size)
 ]
 
 { #category : #'instance creation' }
@@ -87,27 +88,36 @@ uses super withAll: since this way a primitive can be used, which is generally m
 
 { #category : #'instance creation' }
 PMPermutation class >> ordering: aCollection [
-"use #newFrom: for an unreduced Permutation! but then most things won't work before you call #reduce.
+	"use #newFrom: for an unreduced Permutation! but then most things won't work before you call #reduce.
 aCollection must consist of elements that can be sorted via #<="
-^( super withAll:  aCollection ) reduce
+
+	^ (super withAll: aCollection) reduce
 ]
 
 { #category : #accessing }
 PMPermutation class >> randomGenerator [
-^RandomGenerator ifNil: [ RandomGenerator := Random new ]
+
+	^ RandomGenerator ifNil: [ RandomGenerator := Random new ]
+]
+
+{ #category : #accessing }
+PMPermutation class >> randomGenerator: aGenerator [
+
+	^ RandomGenerator := aGenerator
 ]
 
 { #category : #'instance creation' }
 PMPermutation class >> randomPermutation: size [
-^self ordering: (self randomGenerator next:size)
+
+	^ self newFrom: ((1 to: size) asArray shuffleBy: self randomGenerator)
 ]
 
 { #category : #'instance creation' }
 PMPermutation class >> size: anInteger fromCycles: aCollectionofCollections [
 	| result |
 	result := self identity: anInteger.
-	aCollectionofCollections do: [ :cycle | 
-		1 to: cycle size do: [ :i | 
+	aCollectionofCollections do: [ :cycle |
+		1 to: cycle size do: [ :i |
 			result at: (cycle at: i) put: (cycle atWrap: i + 1) ] ].
 	^ result
 ]
@@ -127,7 +137,7 @@ block:=[:nandk||n k|
 	k:=nandk second.
 	(n=k and:[n isZero])
 		ifTrue:[1]
-		ifFalse:[	(n * k) isZero 
+		ifFalse:[	(n * k) isZero
 			ifTrue:[0]
 			ifFalse:[ (block value: (Array with: n-1 with: k-1))+((n-1)*(block value:(Array with: n-1 with: k)))]]]memoized .
 ^block value: (Array with: anInteger with: anotherInteger)
@@ -139,7 +149,7 @@ PMPermutation >> asCycles [
 	unused := (1 to: self size) asOrderedCollection.
 	result := OrderedCollection new.
 	[ unused isEmpty ]
-		whileFalse: [ 
+		whileFalse: [
 			next := start := unused first.
 			cycle := OrderedCollection new.
 			[ cycle add: (unused remove: next).
@@ -153,7 +163,7 @@ PMPermutation >> asMatrix [
 	^ PMMatrix
 		rows:
 		  (self asPMVector
-				collect: [ :n | 
+				collect: [ :n |
 					(PMVector new: self size)
 						atAllPut: 0;
 						at: n put: 1;
@@ -166,7 +176,7 @@ PMPermutation >> discriminant [
 ]
 
 { #category : #testing }
-PMPermutation >> even [ 
+PMPermutation >> even [
 ^self odd not
 ]
 
@@ -200,16 +210,17 @@ PMPermutation >> isCollection [
 { #category : #testing }
 PMPermutation >> odd [
 "using the number of transpositions is faster than using the number of inversions"
-^self discriminant odd.
+^self discriminant odd
 ]
 
 { #category : #applying }
 PMPermutation >> permute: aSequentialCollection [
+
 	| s c |
-	(s := aSequentialCollection size) < self size
-		ifTrue: [ aSequentialCollection class==self class 
-			ifTrue: [ ^ self permute: (aSequentialCollection extendTo: self size) ] 
-			ifFalse: [ ^ SizeMismatch signal ] ].
+	(s := aSequentialCollection size) < self size ifTrue: [
+		^ aSequentialCollection class == self class
+			  ifTrue: [ self permute: (aSequentialCollection extendTo: self size) ]
+			  ifFalse: [ SizeMismatch signal ] ].
 	c := aSequentialCollection copy.
 	1 to: self size do: [ :i | c at: i put: (aSequentialCollection at: (self at: i)) ].
 	^ c
@@ -252,5 +263,5 @@ PMPermutation >> shift: anInteger [
 
 { #category : #private }
 PMPermutation >> species [
-	^ Array 
+	^ Array
 ]

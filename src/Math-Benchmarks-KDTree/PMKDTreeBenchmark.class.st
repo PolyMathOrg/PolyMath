@@ -15,7 +15,7 @@ Class {
 		'collType',
 		'm'
 	],
-	#category : 'Math-Benchmarks-KDTree'
+	#category : #'Math-Benchmarks-KDTree'
 }
 
 { #category : #defaults }
@@ -28,26 +28,25 @@ PMKDTreeBenchmark class >> defaultProblemSize [
 PMKDTreeBenchmark class >> fastRun: nIterations with: aSequentalCollectionClass [
 "omits the slow StupidNNSearch, that generally isnt interesting"
 |b|
-(b:=self new) 
-	selectedBenchmarks: 
+(b:=self new)
+	selectedBenchmarks:
 		{ #benchBuildTree1Dim. #benchBuildTree4Dim. #benchSearchTree1Dim. #benchSearchTree4Dim};
 	collType: aSequentalCollectionClass .
-^self defaultRunner execute: b with: nIterations. 
-
+^self defaultRunner execute: b with: nIterations.
 ]
 
 { #category : #benchmarking }
 PMKDTreeBenchmark class >> run: nIterations with: aSequentalCollectionClass [
 |b|
 (b:=self new) collType: aSequentalCollectionClass .
-^self defaultRunner execute: b with: nIterations. 
+^self defaultRunner execute: b with: nIterations.
 ]
 
 { #category : #benchmarking }
 PMKDTreeBenchmark >> benchBuildAndSearchStupidNN1Dim [
 	| n s |
 	s := PMStupidNN withAll: r.
-	1 to: self class defaultProblemSize do: [ :v | 
+	1 to: self class defaultProblemSize do: [ :v |
 		n := 1.0 / v.
 		s nnSearch: (collType with: n) i: 10 ]
 ]
@@ -56,7 +55,7 @@ PMKDTreeBenchmark >> benchBuildAndSearchStupidNN1Dim [
 PMKDTreeBenchmark >> benchBuildAndSearchStupidNN4Dim [
 	| n s |
 	s := PMStupidNN withAll: m.
-	1 to: self class defaultProblemSize do: [ :v | 
+	1 to: self class defaultProblemSize do: [ :v |
 		n := 1.0 / v.
 		s
 			nnSearch:
@@ -70,18 +69,18 @@ PMKDTreeBenchmark >> benchBuildAndSearchStupidNN4Dim [
 
 { #category : #benchmarking }
 PMKDTreeBenchmark >> benchBuildTree1Dim [
-	bTree :=PMIndexedKDTree withAll: r.
+	bTree :=PMIndexedKDTree withAll: r
 ]
 
 { #category : #benchmarking }
 PMKDTreeBenchmark >> benchBuildTree4Dim [
-	aTree :=PMIndexedKDTree withAll: m.
+	aTree :=PMIndexedKDTree withAll: m
 ]
 
 { #category : #benchmarking }
 PMKDTreeBenchmark >> benchSearchTree1Dim [
 	| n |
-	1 to: self class defaultProblemSize do: [ :v | 
+	1 to: self class defaultProblemSize do: [ :v |
 		n := 1.0 / v.
 		bTree nnSearch: (collType with: n) i: 10 ]
 ]
@@ -89,7 +88,7 @@ PMKDTreeBenchmark >> benchSearchTree1Dim [
 { #category : #benchmarking }
 PMKDTreeBenchmark >> benchSearchTree4Dim [
 	| n |
-	1 to: self class defaultProblemSize do: [ :v | 
+	1 to: self class defaultProblemSize do: [ :v |
 		n := 1.0 / v.
 		aTree
 			nnSearch:
@@ -106,10 +105,10 @@ PMKDTreeBenchmark >> collType: aSequencableCollectionClass [
 	^ collType := aSequencableCollectionClass
 ]
 
-{ #category : #'initialize-release' }
+{ #category : #initialization }
 PMKDTreeBenchmark >> initialize [
 	super initialize.
-	collType := FloatArray.
+	collType := Float32Array.
 	rand := Random new
 ]
 

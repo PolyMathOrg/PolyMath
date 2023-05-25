@@ -44,22 +44,22 @@ PMNewtonZeroFinder >> computeInitialValues [
 	"Private - If no derivative has been defined, take an ad-hoc definition.
 	 If no initial value has been defined, take 0 as the starting point (for lack of anything better)."
 	| n random |
-	
+
 	result ifNil: [ result := 0].
 	derivativeBlock ifNil: [ derivativeBlock := self defaultDerivativeBlock].
-	
+
 	n := 0.
 	random := Random new.
-	
+
 	[ (derivativeBlock value: result) closeTo: 0] whileTrue: [
 		n := n + 1.
-		
+
 		n > maximumIterations ifTrue: [
 			self error: 'Function''s derivative seems to be zero everywhere' ].
-		
+
 		result := random next + result ].
-	
-	newFunctionValue := functionBlock value: result.
+
+	newFunctionValue := functionBlock value: result
 ]
 
 { #category : #information }
@@ -84,16 +84,15 @@ PMNewtonZeroFinder >> evaluateIteration [
 	searchStep := coefficient * searchStep.
 	result := result + searchStep.
 	^ self relativePrecision: (searchStep abs max: newFunctionValue abs)
-	
 ]
 
 { #category : #initialization }
 PMNewtonZeroFinder >> initialValue: aNumber [
 	"Defines the initial value for the iterations."
-	result := aNumber.
+	result := aNumber
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : #initialization }
 PMNewtonZeroFinder >> initialize [
 	"Initialize lineSearchFunction and lineSearch: it depends on other variables only indirectly,
 	can be initialized once at the begining"
@@ -107,25 +106,25 @@ PMNewtonZeroFinder >> initialize [
 ]
 
 { #category : #initialization }
-PMNewtonZeroFinder >> setDerivative: aBlock [ 
+PMNewtonZeroFinder >> setDerivative: aBlock [
 	"Defines the derivative of the function for which zeroes will be found.
 	Tests if provided block indeed implements the derivative of the function"
 	| x random |
-	
+
 	(aBlock respondsTo: #value:) ifFalse: [
 		self error: 'Derivative block must implement the method value:' ].
-	
+
 	random := Random new.
-	
+
 	x := result
 		ifNil: [ random next ]
 		ifNotNil: [ result + random next ].
-		
+
 	((aBlock value: x)
 		closeTo: (self defaultDerivativeBlock value: x)
 		precision: 1.0e-4)
 		ifFalse: [ self error: 'Supplied derivative is not correct' ].
-	
+
 	derivativeBlock := aBlock
 ]
 
@@ -133,5 +132,5 @@ PMNewtonZeroFinder >> setDerivative: aBlock [
 PMNewtonZeroFinder >> setFunction: aBlock [
 	"Sets the function block (delegates to superclass). Resets the derivative"
 	super setFunction: aBlock.
-	derivativeBlock := nil.
+	derivativeBlock := nil
 ]

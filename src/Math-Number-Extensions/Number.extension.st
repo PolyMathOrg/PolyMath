@@ -27,14 +27,14 @@ Number >> arTanh [
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> cosh [
 	"Answer receivers hyperbolic cosine."
-	
+
 	^self asFloat cosh
 ]
 
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> sinc [
 	"Answer receivers cardinal sine."
-	
+
 	^ self isZero
 		ifTrue: [self class one]
 		ifFalse: [self sin / self]
@@ -43,13 +43,13 @@ Number >> sinc [
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> sinh [
 	"Answer receivers hyperbolic sine"
-	
+
 	^self asFloat sinh
 ]
 
 { #category : #'*Math-Number-Extensions-mathematical functions' }
 Number >> tanh [
 	"Answer receivers hyperbolic tangent"
-	
+
 	^self asFloat tanh
 ]

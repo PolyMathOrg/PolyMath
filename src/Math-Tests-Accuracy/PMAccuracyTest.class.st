@@ -11,11 +11,10 @@ Class {
 	#category : #'Math-Tests-Accuracy'
 }
 
-{ #category : #'initialize-release' }
-PMAccuracyTest >> initialize [ 
+{ #category : #initialization }
+PMAccuracyTest >> initialize [
 	super initialize.
 	dp := PMAccuracyTestExample decimalPlaces
-
 ]
 
 { #category : #running }
@@ -28,7 +27,7 @@ PMAccuracyTest >> setUp [
 { #category : #running }
 PMAccuracyTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
-	super tearDown.
+	super tearDown
 ]
 
 { #category : #tests }
@@ -89,7 +88,7 @@ PMAccuracyTest >> testExtractFromResultsReturnsAllElementsWhenOnlyOneIsTrue [
 		extractFromResults: #('bla' 'blah')
 		which: 1
 		onlyOne: true.
-	
+
 	self assert: results equals: #('bla' 'blah').
 	argument := a testGetterAaa second.
 	self assert: argument equals: #(#(false) #(true))
@@ -168,16 +167,12 @@ PMAccuracyTest >> testFormatTypePostfixTree [
 
 { #category : #tests }
 PMAccuracyTest >> testGetters [
+
 	| r |
 	r := a testGetterAaa.
-	self
-		assert: r
-		equals: #(#(#(1 2) #(3 2.8888)) #(#(false) #(true)) #(#(5 3) #(4 4)) 2 2).
+	self assert: r equals: #( #( #( 1 2 ) #( 3 2.8888 ) ) #( #( false ) #( true ) ) #( #( 5 3 ) #( 4 4 ) ) 2 2 ).
 	r := a testGetterBbb.
-	self
-		assert: r
-		equals: #(#(#(1) #(3)) #(#('a') #('AG')) #(#(2) #(3)) 2 2).
-	#(#(#(1) #(3)) #(#(1) #(2)) #(#(2) #(3)) 2 2)
+	self assert: r equals: #( #( #( 1 ) #( 3 ) ) #( #( 'a' ) #( 'AG' ) ) #( #( 2 ) #( 3 ) ) 2 2 )
 ]
 
 { #category : #tests }
@@ -190,21 +185,21 @@ PMAccuracyTest >> testIfSeveralterations [
 
 { #category : #tests }
 PMAccuracyTest >> testIterations [
+
 	| s d |
 	a
 		iterations: 2;
 		run.
 	d := a dataTree at: 'names'.
-	s := (d atPath: #('Aaa' #(1 2) #(5 3) '+dev')) first negated.
-	self
-		assert: ((d atPath: #('Aaa' #(1 2) #(5 3) '-dev')) first closeTo: s).
-	s := d atPath: #('Aaa' #(3 2.8888) #(5 3) 'standard deviation').
+	s := (d atPath: #( 'Aaa' #( 1 2 ) #( 5 3 ) '+dev' )) first negated.
+	self assert: (d atPath: #( 'Aaa' #( 1 2 ) #( 5 3 ) '-dev' )) first closeTo: s.
+	s := d atPath: #( 'Aaa' #( 3 2.8888 ) #( 5 3 ) 'standard deviation' ).
 	self assert: s first > 0.
 	self assert: s second equals: 0.
-	self assert: (d atPath: #('Ddd' 'data')) equals: #(#(2 3) #(2 3)).
-	s := d atPath: #('Ddd' 'error').
-	self assert: (s first closeTo: -45).
-	self assert: (s second closeTo: -26.6666667)
+	self assert: (d atPath: #( 'Ddd' 'data' )) equals: #( #( 2 3 ) #( 2 3 ) ).
+	s := d atPath: #( 'Ddd' 'error' ).
+	self assert: s first closeTo: -45.
+	self assert: s second closeTo: -26.6666667
 ]
 
 { #category : #tests }

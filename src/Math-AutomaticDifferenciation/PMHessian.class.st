@@ -16,7 +16,7 @@ Class {
 		'result',
 		'gradient'
 	],
-	#category : 'Math-AutomaticDifferenciation'
+	#category : #'Math-AutomaticDifferenciation'
 }
 
 { #category : #'instance creation' }
@@ -36,11 +36,11 @@ PMHessian >> gradient [
 ]
 
 { #category : #printing }
-PMHessian >> printOn: aStream [ 
+PMHessian >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: ' of: ' ;
-		print: function 
+		print: function
 ]
 
 { #category : #accessing }
@@ -55,15 +55,15 @@ PMHessian >> value: anArray [
 	hDualValueTemplate := anArray collect: [ :i | PMHyperDualNumber value: i ].
 	^ result := PMSymmetricMatrix
 		new: anArray size
-		function: [ :x :y | 
+		function: [ :x :y |
 			| r |
 			hDualValue := hDualValueTemplate deepCopy.
 			x = y
-				ifTrue: [ 
+				ifTrue: [
 					(hDualValue at: x)
 						eps: 1;
 						eps2: 1 ]
-				ifFalse: [ 
+				ifFalse: [
 					(hDualValue at: x) eps: 1.
 					(hDualValue at: y) eps2: 1 ].
 			r := function value: hDualValue.

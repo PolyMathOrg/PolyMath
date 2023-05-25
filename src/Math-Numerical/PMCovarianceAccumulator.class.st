@@ -25,7 +25,7 @@ PMCovarianceAccumulator >> accumulate: anArray [
 				  [ :m |
 					( covariance at: n) at: m put: ( count1 * ( delta at: n) * ( delta at: m) + ( r * ( ( covariance at: n) at: m))).
 				  ].
-			].
+			]
 ]
 
 { #category : #information }

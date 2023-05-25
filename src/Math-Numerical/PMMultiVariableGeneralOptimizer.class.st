@@ -6,8 +6,8 @@ Class {
 
 { #category : #operation }
 PMMultiVariableGeneralOptimizer >> computeInitialValues [
-	self range notNil
-		ifTrue: [ self performGeneticOptimization].
+
+	self range ifNotNil: [ self performGeneticOptimization ].
 	self performSimplexOptimization
 ]
 
@@ -33,7 +33,7 @@ PMMultiVariableGeneralOptimizer >> origin [
 
 { #category : #initialization }
 PMMultiVariableGeneralOptimizer >> origin: anArrayOrVector [
-	result := anArrayOrVector.
+	result := anArrayOrVector
 ]
 
 { #category : #operation }
@@ -44,7 +44,7 @@ PMMultiVariableGeneralOptimizer >> performGeneticOptimization [
 	manager := PMVectorChromosomeManager new: 100 mutation: 0.1 crossover: 0.1.
 	manager origin: self origin asPMVector; range: self range asPMVector.
 	optimizer chromosomeManager: manager.
-	result := optimizer evaluate.
+	result := optimizer evaluate
 ]
 
 { #category : #operation }

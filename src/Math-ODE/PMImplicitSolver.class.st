@@ -4,15 +4,15 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #private }
 PMImplicitSolver class >> stepperClass [
-	^ PMImplicitStepper.
+	^ PMImplicitStepper
 ]
 
 { #category : #'announcement hooks' }
 PMImplicitSolver >> announcementClass [
 
-	^ PMImplicitSolverAnnouncement 
+	^ PMImplicitSolverAnnouncement
 ]
 
 { #category : #'announcement hooks' }

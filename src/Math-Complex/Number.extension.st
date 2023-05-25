@@ -14,16 +14,6 @@ Number >> asComplex [
 ]
 
 { #category : #'*Math-Complex' }
-Number >> complexConjugate [
-	"The complex conjugate of a complex number (a + bi) is another complex number (a - bi).
-	Every real number x is also a complex number with imaginary part equal to 0.
-	In other words, x = x + 0i and x = x - 0i.
-	Therefore, the complex conjugate of a real number is the same real number"
-	
-	^ self
-]
-
-{ #category : #'*Math-Complex' }
 Number >> i [
 	^ PMComplexNumber real: 0 imaginary: self
 ]

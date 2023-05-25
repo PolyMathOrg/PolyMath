@@ -100,12 +100,12 @@ PMComplexNumber class >> one [
 	^ self real: 1 imaginary: 0
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #information }
 PMComplexNumber class >> random [
-	"Answers a random number with abs between 0 and 1." 
+	"Answers a random number with abs between 0 and 1."
 	| random |
 	random := Random new.
-	
+
 	^ self
 		abs: random next
 		arg: 2 * (random nextBetween: 0 and: Float pi)
@@ -124,52 +124,52 @@ PMComplexNumber class >> zero [
 { #category : #arithmetic }
 PMComplexNumber >> * anObject [
 	"Answer the result of multiplying the receiver by aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := (a * c) - (b * d).
-			newImaginary := (a * d) + (b * c).
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #*]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a * c - (b * d).
+			  newImaginary := a * d + (b * c).
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #* ]
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> + anObject [
 	"Answer the sum of the receiver and aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := a + c.
-			newImaginary := b + d.
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #+]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a + c.
+			  newImaginary := b + d.
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #+ ]
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> - anObject [
 	"Answer the difference between the receiver and aNumber."
+
 	| a b c d newReal newImaginary |
-	anObject isComplexNumber
-		ifTrue:
-			[a := self real.
-			b := self imaginary.
-			c := anObject real.
-			d := anObject imaginary.
-			newReal := a - c.
-			newImaginary := b - d.
-			^ PMComplexNumber real: newReal imaginary: newImaginary]
-		ifFalse:
-			[^ anObject adaptToComplex: self andSend: #-]
+	^ anObject isComplexNumber
+		  ifTrue: [
+			  a := self real.
+			  b := self imaginary.
+			  c := anObject real.
+			  d := anObject imaginary.
+			  newReal := a - c.
+			  newImaginary := b - d.
+			  PMComplexNumber real: newReal imaginary: newImaginary ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #- ]
 ]
 
 { #category : #arithmetic }
@@ -184,15 +184,16 @@ PMComplexNumber >> / aNumber [
 		newReal := ((a * c) + (b * d)) / ((c * c) + (d * d)).
 		newImaginary := ((b * c) - (a * d)) / ((c * c) + (d * d)).
 		^ self class real: newReal imaginary: newImaginary].
-	^ aNumber adaptToComplex: self andSend: #/.
+	^ aNumber adaptToComplex: self andSend: #/
 ]
 
 { #category : #comparing }
 PMComplexNumber >> = anObject [
-	anObject isNumber ifFalse: [^false].
-	anObject isComplexNumber
-		ifTrue: [^ (real = anObject real) & (imaginary = anObject imaginary)]
-		ifFalse: [^ anObject adaptToComplex: self andSend: #=]
+
+	anObject isNumber ifFalse: [ ^ false ].
+	^ anObject isComplexNumber
+		  ifTrue: [ real = anObject real & (imaginary = anObject imaginary) ]
+		  ifFalse: [ anObject adaptToComplex: self andSend: #= ]
 ]
 
 { #category : #arithmetic }
@@ -209,7 +210,7 @@ PMComplexNumber >> absSecure [
 
 	| scale |
 	scale := real abs max: imaginary abs.
-	^scale isZero 
+	^scale isZero
 		ifTrue: [scale]
 		ifFalse: [(self class real: real / scale imaginary: imaginary / scale) squaredNorm sqrt * scale]
 ]
@@ -246,7 +247,7 @@ PMComplexNumber >> adaptToInteger: rcvr andSend: selector [
 	^ rcvr asComplex perform: selector with: self
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> addPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self
 ]
@@ -256,22 +257,23 @@ PMComplexNumber >> arCosh [
 	"Answer receiver's area hyperbolic cosine.
 	That is the inverse function of cosh.
 	Some possible implementations:
-	^imaginary > 0 
+	^imaginary > 0
 		ifTrue: [(self + (self * self - 1) sqrt) ln]
 		ifFalse: [(self + (self * self - 1) sqrt) ln negated]
 	^self arcCos i
 	This implementation provides an answer with a positive real part.
 	It also avoids creating intermediate Complex."
-	
+
 	| x y tmp sh2x shx delta ch2x chx |
-	imaginary = 0 ifTrue: [real abs > 1
-			ifTrue: 
-				[y := real < 0
-					ifTrue: [Float pi]
-					ifFalse: [0].
-				x := real abs arCosh.
-				^self class real: x imaginary: y]
-			ifFalse: [^self class real: 0 imaginary: real arcCos]].
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  y := real < 0
+					       ifTrue: [ Float pi ]
+					       ifFalse: [ 0 ].
+				  x := real abs arCosh.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: 0 imaginary: real arcCos ] ].
 	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2x := tmp + delta sqrt.
@@ -280,7 +282,7 @@ PMComplexNumber >> arCosh [
 	chx := ch2x sqrt.
 	x := shx arSinh.
 	y := imaginary copySignTo: (real / chx) arcCos.
-	^self class real: x imaginary: y
+	^ self class real: x imaginary: y
 ]
 
 { #category : #'mathematical functions' }
@@ -290,7 +292,7 @@ PMComplexNumber >> arSinh [
 
 	"Some possible implementation:
 
-	^imaginary * real < 0 
+	^imaginary * real < 0
 		ifTrue: [(self + (self * self + 1) sqrt) ln]
 		ifFalse: [(self - (self * self + 1) sqrt) ln]"
 
@@ -315,14 +317,15 @@ PMComplexNumber >> arcCos [
 	This is the inverse function of cos."
 
 	| x y tmp sh2y shy delta ch2y chy |
-	imaginary = 0 ifTrue: [real abs > 1
-			ifTrue: 
-				[x := real < 0
-					ifTrue: [Float pi]
-					ifFalse: [0].
-				y := real copySignTo: real abs arCosh.
-				^self class real: x imaginary: y]
-			ifFalse: [^self class real: real arcCos imaginary: 0]].
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  x := real < 0
+					       ifTrue: [ Float pi ]
+					       ifFalse: [ 0 ].
+				  y := real copySignTo: real abs arCosh.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: real arcCos imaginary: 0 ] ].
 	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2y := tmp + delta sqrt.
@@ -331,7 +334,7 @@ PMComplexNumber >> arcCos [
 	chy := ch2y sqrt.
 	y := imaginary copySignTo: shy arSinh.
 	x := (real / chy) arcCos.
-	^self class real: x imaginary: y negated
+	^ self class real: x imaginary: y negated
 ]
 
 { #category : #'mathematical functions' }
@@ -340,15 +343,14 @@ PMComplexNumber >> arcSin [
 	This is the inverse function of sin."
 
 	| x y tmp delta sh2y shy ch2y chy |
-	imaginary = 0 
-		ifTrue: 
-			[real abs > 1 
-				ifTrue: 
-					[x := Float pi / 2 * real sign.
-					y := (real copySignTo: real abs arCosh) negated.
-					^self class real: x imaginary: y]
-				ifFalse: [^self class real: real arcSin imaginary: 0]].
-	tmp := (self squaredNorm - 1) / 2.
+	imaginary = 0 ifTrue: [
+		^ real abs > 1
+			  ifTrue: [
+				  x := Float pi / 2 * real sign.
+				  y := (real copySignTo: real abs arCosh) negated.
+				  self class real: x imaginary: y ]
+			  ifFalse: [ self class real: real arcSin imaginary: 0 ] ].
+	tmp := self squaredNorm - 1 / 2.
 	delta := tmp squared + imaginary squared.
 	sh2y := tmp + delta sqrt.
 	shy := sh2y sqrt.
@@ -356,7 +358,7 @@ PMComplexNumber >> arcSin [
 	chy := ch2y sqrt.
 	y := imaginary copySignTo: shy arSinh.
 	x := (real / chy) arcSin.
-	^self class real: x imaginary: y
+	^ self class real: x imaginary: y
 ]
 
 { #category : #'mathematical functions' }
@@ -372,24 +374,24 @@ PMComplexNumber >> arcTan [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> arcTan: denominator [ 
+PMComplexNumber >> arcTan: denominator [
 	"Answer the  four quadrants arc tangent of receiver over denominator."
 
-	^denominator isZero 
-		ifTrue: 
-			[self isZero 
-				ifTrue: 
+	^denominator isZero
+		ifTrue:
+			[self isZero
+				ifTrue:
 					["shouldn't it be an error ? ^DomainError signal: '0 arcTan: 0'"
 					^self class real: 0 imaginary: 0]
-				ifFalse: 
+				ifFalse:
 					[self class
 						real: Float pi / (real copySignTo: 2)
 						imaginary: 0]]
-		ifFalse: 
+		ifFalse:
 			[| res |
 			res := (self / denominator) arcTan.
 			denominator real < 0 ifTrue: [res := res + Float pi].
-			res real > Float pi 
+			res real > Float pi
 				ifTrue: [res := res - (Float pi * 2)].
 			res]
 ]
@@ -412,14 +414,14 @@ PMComplexNumber >> closeTo: aNumber precision: aPrecision [
 	"A complex number self is close to a complex number other with precision epsilon if both
 	self real is close to other real with precision epsilon and
 	self imaginary is close to other imaginary with precision epsilon.
-	
+
 	In case aNumber is real and not complex, we convert it to a complex number
 	other = aNumber + 0i"
 	| other |
 	other := aNumber asComplex.
-	
-	^ (real closeTo: other real precision: aPrecision) and: [ 
-		imaginary closeTo: other imaginary precision: aPrecision ].
+
+	^ (real closeTo: other real precision: aPrecision) and: [
+		imaginary closeTo: other imaginary precision: aPrecision ]
 ]
 
 { #category : #arithmetic }
@@ -454,7 +456,7 @@ PMComplexNumber >> cosh [
 	Hyperbolic cosine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp + self negated exp) / 2.
 	This implementation avoids creating intermediate objects."
-	
+
 	^self class
 		real: real cosh * imaginary cos
 		imaginary: real sinh * imaginary sin
@@ -463,38 +465,37 @@ PMComplexNumber >> cosh [
 { #category : #arithmetic }
 PMComplexNumber >> divideFastAndSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
-	" Both operands are scaled to avoid arithmetic overflow. 
+
+	" Both operands are scaled to avoid arithmetic overflow.
 	  This algorithm works for a wide range of values, and it needs only three divisions.
 	  Note: #reciprocal uses #/ for devision "
-	 
+
 	| r d newReal newImaginary |
-	anObject isComplexNumber ifTrue:
-		[anObject real abs > anObject imaginary abs
-		  ifTrue:
-		    [r := anObject imaginary / anObject real.
-			d := r*anObject imaginary + anObject real.
-			newReal := r*imaginary + real/d.
-			newImaginary := r negated * real + imaginary/d.
-		    ]
-		  ifFalse:
-		    [r := anObject real / anObject imaginary.
-			d := r*anObject real + anObject imaginary.
-			newReal := r*real + imaginary/d.
-			newImaginary := r*imaginary - real/d.
-		    ].
-		
-		^ PMComplexNumber real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+	anObject isComplexNumber ifTrue: [
+		newImaginary := anObject real abs > anObject imaginary abs
+			                ifTrue: [
+				                r := anObject imaginary / anObject real.
+				                d := r * anObject imaginary + anObject real.
+				                newReal := r * imaginary + real / d.
+				                r negated * real + imaginary / d ]
+			                ifFalse: [
+				                r := anObject real / anObject imaginary.
+				                d := r * anObject real + anObject imaginary.
+				                newReal := r * real + imaginary / d.
+				                r * imaginary - real / d ].
+
+		^ PMComplexNumber real: newReal imaginary: newImaginary ].
+	^ anObject adaptToComplex: self andSend: #/
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> divideSecureBy: anObject [
 	"Answer the result of dividing receiver by aNumber"
-	" Both operands are scaled to avoid arithmetic overflow. This algorithm 
-	  works for a wide range of values, but it requires six divisions.  
+	" Both operands are scaled to avoid arithmetic overflow. This algorithm
+	  works for a wide range of values, but it requires six divisions.
 	  #divideFastAndSecureBy:  is also quite good, but it uses only 3 divisions.
 	   Note: #reciprocal uses #/ for devision"
-	 
+
 	| s ars ais brs bis newReal newImaginary |
 	anObject isComplexNumber ifTrue:
 		[s := anObject real abs + anObject imaginary abs.
@@ -503,14 +504,14 @@ PMComplexNumber >> divideSecureBy: anObject [
 		 brs := anObject real / s.
 		 bis := anObject imaginary / s.
 		 s := brs squared + bis squared.
-		
+
 		newReal := ars*brs + (ais*bis) /s.
 		newImaginary := ais*brs - (ars*bis)/s.
 		^ PMComplexNumber real: newReal imaginary: newImaginary].
-	^ anObject adaptToComplex: self andSend: #/.
+	^ anObject adaptToComplex: self andSend: #/
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> dividingPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: 1 / self
 ]
@@ -535,8 +536,8 @@ PMComplexNumber >> floatClass [
 { #category : #comparing }
 PMComplexNumber >> hash [
 	"Hash is reimplemented because = is implemented."
-	
-	^ real hash bitXor: imaginary hash.
+
+	^ real hash bitXor: imaginary hash
 ]
 
 { #category : #arithmetic }
@@ -586,7 +587,7 @@ PMComplexNumber >> ln [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> log: aNumber [ 
+PMComplexNumber >> log: aNumber [
 	"Answer the log base aNumber of the receiver."
 
 	^self ln / aNumber ln
@@ -610,10 +611,9 @@ PMComplexNumber >> printOn: aStream [
 	imaginary abs printOn: aStream.
 	aStream nextPut: Character space.
 	aStream nextPut: $i
-
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> productWithVector: aVector [
 	"Answers a new vector product of the receiver with aVector."
 
@@ -621,24 +621,22 @@ PMComplexNumber >> productWithVector: aVector [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedTo: aNumber [ 
+PMComplexNumber >> raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue:
-		["Do the special case of integer power"
-		^ self raisedToInteger: aNumber].
-	
-	0 = aNumber ifTrue: [^ self class one].	"Special case of exponent=0"
-	1 = aNumber ifTrue: [^ self].	"Special case of exponent=1"
-	0 = self ifTrue: [				"Special case of self = 0"
-		aNumber < 0
-			ifTrue: [^ (ZeroDivide dividend: self) signal]
-			ifFalse: [^ self]].
-	^ (aNumber * self ln) exp		"Otherwise use logarithms"
+	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+
+	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
+	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
+	0 = self ifTrue: [ "Special case of self = 0"
+		^ aNumber < 0
+			  ifTrue: [ (ZeroDivide dividend: self) signal ]
+			  ifFalse: [ self ] ].
+	^ (aNumber * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedToInteger: operand [ 
+PMComplexNumber >> raisedToInteger: operand [
 	"Answer the receiver raised to the power operand, an Integer."
 
 	"implementation note: this code is copied from Number.
@@ -654,7 +652,7 @@ PMComplexNumber >> raisedToInteger: operand [
 	count := 1 bitShift: (operand-1) highBit.
 	result := self class one.
 	[count > 0]
-		whileTrue: 
+		whileTrue:
 			[result := result squared.
 			(operand bitAnd: count)
 				= 0 ifFalse: [result := result * self].
@@ -662,11 +660,10 @@ PMComplexNumber >> raisedToInteger: operand [
 	^ result
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #information }
 PMComplexNumber >> random [
 	"analog to Number>>random. However, the only bound is that the abs of the produced complex is less than the length of the receive. The receiver effectively defines a disc within which the random element can be produced."
 	^ self class random * self
-	
 ]
 
 { #category : #accessing }
@@ -678,18 +675,17 @@ PMComplexNumber >> real [
 PMComplexNumber >> real: aNumber1 imaginary: aNumber2 [
 	"Private - initialize the real and imaginary parts of a Complex"
 	real := aNumber1.
-	imaginary := aNumber2.
+	imaginary := aNumber2
 ]
 
 { #category : #arithmetic }
 PMComplexNumber >> reciprocal [
-	"Answer 1 divided by the receiver. Create an error notification if the 
+	"Answer 1 divided by the receiver. Create an error notification if the
 	receiver is 0."
 
-	self = 0
-		ifTrue: [^ (ZeroDivide dividend: self) signal]
-		ifFalse: [^1 / self]
-		
+	^ self = 0
+		  ifTrue: [ (ZeroDivide dividend: self) signal ]
+		  ifFalse: [ 1 / self ]
 ]
 
 { #category : #testing }
@@ -715,7 +711,7 @@ PMComplexNumber >> sinh [
 	Hyperbolic sine is defined by same power serie expansion as for real numbers, that is in term of exponential:
 	^ (self exp - self negated exp) / 2.
 	This implementation avoids creating intermediate objects."
-	
+
 	^self class
 		real: real sinh * imaginary cos
 		imaginary: real cosh * imaginary sin
@@ -727,13 +723,13 @@ PMComplexNumber >> sqrt [
 	Implementation based on: https://en.wikipedia.org/wiki/Complex_number#Square_root"
 
 	| newReal newImaginary imaginarySign |
-	
+
 	imaginarySign := imaginary sign = 0
 		ifTrue: [ 1 ] ifFalse: [ imaginary sign ].
-	
+
 	newReal := ((self abs + real) / 2) sqrt.
 	newImaginary := imaginarySign * ((self abs - real) / 2) sqrt.
-	
+
 	^ newReal + newImaginary i
 ]
 
@@ -751,7 +747,7 @@ PMComplexNumber >> squaredNorm [
 	^real * real + (imaginary * imaginary)
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> subtractToPolynomial: aPolynomial [
 	^ aPolynomial addNumber: self negated
 ]
@@ -779,7 +775,7 @@ PMComplexNumber >> tanh [
 	^self i tan i negated
 ]
 
-{ #category : #'*Math-Complex' }
+{ #category : #'double dispatch' }
 PMComplexNumber >> timesPolynomial: aPolynomial [
 	^ aPolynomial timesNumber: self
 ]

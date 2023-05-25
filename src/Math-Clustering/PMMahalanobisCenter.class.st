@@ -6,12 +6,12 @@ Class {
 		'inverseCovariance',
 		'accumulator'
 	],
-	#category : 'Math-Clustering'
+	#category : #'Math-Clustering'
 }
 
 { #category : #creation }
 PMMahalanobisCenter class >> new: anInteger [
-	
+
 	^ self new initialize: anInteger ; yourself
 ]
 
@@ -23,7 +23,7 @@ PMMahalanobisCenter class >> onVector: aVector [
 
 { #category : #transformation }
 PMMahalanobisCenter >> accumulate: aVector [
-	
+
 	accumulator accumulate: aVector
 ]
 
@@ -33,7 +33,6 @@ PMMahalanobisCenter >> center: aVector [
 	accumulator := PMCovarianceAccumulator new: aVector size.
 	center := aVector.
 	inverseCovariance := PMSymmetricMatrix identity: aVector size
-
 ]
 
 { #category : #transformation }
@@ -60,18 +59,17 @@ PMMahalanobisCenter >> distanceTo: aVector [
 PMMahalanobisCenter >> initialize: anInteger [
 
 	accumulator := PMCovarianceAccumulator new: anInteger
-	
 ]
 
 { #category : #printing }
 PMMahalanobisCenter >> printOn: aStream [
 	accumulator count printOn: aStream.
 	aStream nextPutAll: ': '.
-	center printOn: aStream.
+	center printOn: aStream
 ]
 
 { #category : #transformation }
 PMMahalanobisCenter >> reset [
-	
+
 	accumulator reset
 ]

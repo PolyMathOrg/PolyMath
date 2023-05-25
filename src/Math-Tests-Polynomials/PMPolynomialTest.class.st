@@ -1,7 +1,7 @@
 Class {
 	#name : #PMPolynomialTest,
 	#superclass : #TestCase,
-	#category : 'Math-Tests-Polynomials'
+	#category : #'Math-Tests-Polynomials'
 }
 
 { #category : #comparing }
@@ -56,11 +56,11 @@ PMPolynomialTest >> testPolynomialDivision [
 { #category : #'function evaluation' }
 PMPolynomialTest >> testPolynomialDivisionBug [
 	"identify an error when trying to create a zero dividend"
-	| pol1 pol2 polynomial |
-	pol1 := PMPolynomial coefficients: #(2 -3 1).
-	pol2 := PMPolynomial coefficients: #(-6 23 -20 3 -1 1).
-	self shouldnt: [polynomial := pol1 / pol2] raise: Error.
-	
+
+	| pol1 pol2 |
+	pol1 := PMPolynomial coefficients: #( 2 -3 1 ).
+	pol2 := PMPolynomial coefficients: #( -6 23 -20 3 -1 1 ).
+	self shouldnt: [ pol1 / pol2 ] raise: Error
 ]
 
 { #category : #arithmetic }
@@ -234,21 +234,12 @@ PMPolynomialTest >> testPolynomialRoots [
 	"Code Example 5.5"
 
 	| polynomial roots |
-	polynomial := PMPolynomial coefficients: #(-10 -13 -2 1).
+	polynomial := PMPolynomial coefficients: #( -10 -13 -2 1 ).
 	roots := polynomial roots asSortedCollection asArray.
 	self assert: roots size equals: 3.
-	self
-		assert:
-			((roots at: 1) + 2) abs
-				< PMFloatingPointMachine new defaultNumericalPrecision.
-	self
-		assert:
-			((roots at: 2) + 1) abs
-				< PMFloatingPointMachine new defaultNumericalPrecision.
-	self
-		assert:
-			((roots at: 3) - 5) abs
-				< PMFloatingPointMachine new defaultNumericalPrecision
+	self assert: (roots at: 1) + 2 closeTo: 0.
+	self assert: (roots at: 2) + 1 closeTo: 0.
+	self assert: (roots at: 3) - 5 closeTo: 0
 ]
 
 { #category : #'function evaluation' }

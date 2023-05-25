@@ -39,7 +39,7 @@ Class {
 
 { #category : #'constants access' }
 PMQuaternion class >> one [
-	^self 
+	^self
 		qr: 1
 		qi: 0
 		qj: 0
@@ -47,30 +47,30 @@ PMQuaternion class >> one [
 ]
 
 { #category : #'instance creation' }
-PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [ 
-	^self basicNew 
+PMQuaternion class >> qr: qr qi: qi qj: qj qk: qk [
+	^self basicNew
 		qr: qr
 		qi: qi
 		qj: qj
 		qk: qk
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #information }
 PMQuaternion class >> random [
 	"Answers a random quaternion with abs at most one."
-	
+
 	| random |
 	random := Random new.
 
-	^ (0.5 - random next) 
+	^ (0.5 - random next)
 		i: (0.5 - random next)
 		j: (0.5 - random next)
-		k: (0.5 - random next).
+		k: (0.5 - random next)
 ]
 
 { #category : #'constants access' }
 PMQuaternion class >> zero [
-	^self 
+	^self
 		qr: 0
 		qi: 0
 		qj: 0
@@ -83,11 +83,11 @@ PMQuaternion >> * multiplier [
 	"Answer the result of multiplying self with aQuaternion.
 	Distribute the product (qr + qi i +qj j + qk k)*(tr+ti i + tj j + tk k)
 	with rules i*i=j*j=k*k=-1 and i*j=-k, j*k=-i, k*i=-j"
-	^ multiplier multiplyByQuaternion: self.
+	^ multiplier multiplyByQuaternion: self
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> + aQuaternion [ 
+PMQuaternion >> + aQuaternion [
 	^ aQuaternion isQuaternion
 		ifTrue: [self species
 				qr: qr + aQuaternion qr
@@ -98,7 +98,7 @@ PMQuaternion >> + aQuaternion [
 ]
 
 { #category : #arithmetic }
-PMQuaternion >> - aQuaternion [ 
+PMQuaternion >> - aQuaternion [
 	^ aQuaternion isQuaternion
 		ifTrue: [self species
 				qr: qr - aQuaternion qr
@@ -114,7 +114,7 @@ PMQuaternion >> / aQuaternion [
 ]
 
 { #category : #comparing }
-PMQuaternion >> = aQuaternion [ 
+PMQuaternion >> = aQuaternion [
 	"Answer true if both quaternion are equals.
 	A quaternion might also equal a Complex or a Number or other kind of numbers.
 	Implementation note: only work if Complex Octonion or other kind answer true to isNumber."
@@ -135,10 +135,10 @@ PMQuaternion >> abs [
 
 	| scale |
 	scale := (qr abs max: qi abs) max: (qj abs max: qk abs).
-	^scale isZero 
+	^scale isZero
 		ifTrue: [scale]
-		ifFalse: 
-			[(self species 
+		ifFalse:
+			[(self species
 				qr: qr / scale
 				qi: qi / scale
 				qj: qj / scale
@@ -146,30 +146,30 @@ PMQuaternion >> abs [
 ]
 
 { #category : #converting }
-PMQuaternion >> adaptToComplex: rcvr andSend: selector [ 
+PMQuaternion >> adaptToComplex: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Complex, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-PMQuaternion >> adaptToFloat: rcvr andSend: selector [ 
+PMQuaternion >> adaptToFloat: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Float, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-PMQuaternion >> adaptToFraction: rcvr andSend: selector [ 
+PMQuaternion >> adaptToFraction: rcvr andSend: selector [
 	"If I am involved in arithmetic with a Fraction, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
 { #category : #converting }
-PMQuaternion >> adaptToInteger: rcvr andSend: selector [ 
+PMQuaternion >> adaptToInteger: rcvr andSend: selector [
 	"If I am involved in arithmetic with an Integer, convert it to a Quaternion."
 	^ rcvr asQuaternion perform: selector with: self
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> addPolynomial: aPolynomial [
 	^aPolynomial addNumber: self
 ]
@@ -203,7 +203,7 @@ PMQuaternion >> asQuaternion [
 PMQuaternion >> conjugated [
 	"Return the conjugate of this quaternion number."
 
-	^self species 
+	^self species
 		qr: qr
 		qi: qi negated
 		qj: qj negated
@@ -219,7 +219,7 @@ PMQuaternion >> cos [
 	w := z isZero
 		ifTrue: [z]
 		ifFalse: [qr sin negated * z sinh / z].
-	^(self species 
+	^(self species
 				qr: qr cos * z cosh
 				qi: qi * w
 				qj: qj * w
@@ -233,7 +233,7 @@ PMQuaternion >> cosh [
 	^(self exp + self negated exp) / 2
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> dividingPolynomial: aPolynomial [
 	^aPolynomial timesNumber: (1 / self)
 ]
@@ -247,7 +247,7 @@ PMQuaternion >> exp [
 	w := z isZero
 		ifTrue: [z]
 		ifFalse: [z sin / z].
-	^qr exp * (self species 
+	^qr exp * (self species
 				qr: z cos
 				qi: qi * w
 				qj: qj * w
@@ -274,7 +274,7 @@ PMQuaternion >> i [
 	"Answer the product of the receiver with pure imaginary i.
 	This is the same as self * 1 i"
 
-	^self species 
+	^self species
 		qr: qi negated
 		qi: qr
 		qj: qk
@@ -309,7 +309,7 @@ PMQuaternion >> j [
 	This is the same as self * 1 j"
 
 
-	^self species 
+	^self species
 		qr: qj negated
 		qi: qk negated
 		qj: qr
@@ -322,7 +322,7 @@ PMQuaternion >> k [
 	This is the same as self * 1 k"
 
 
-	^self species 
+	^self species
 		qr: qk negated
 		qi: qj
 		qj: qi negated
@@ -337,11 +337,11 @@ PMQuaternion >> ln [
 	| z |
 	z := self unreal abs.
 	^ z isZero
-		  ifTrue: [ 
+		  ifTrue: [
 			  | vectorPart |
 			  vectorPart := 0 + (z arcTan: qr) i + qj j + qk k.
 			  self abs ln + vectorPart ]
-		  ifFalse: [ 
+		  ifFalse: [
 			  | theta vectorPart |
 			  theta := (z arcTan: qr) / z.
 			  vectorPart := theta * (0 + qi i + qj j + qk k).
@@ -373,7 +373,7 @@ PMQuaternion >> multiplyByQuaternion: multiplier [
 
 { #category : #arithmetic }
 PMQuaternion >> negated [
-	^self species 
+	^self species
 		qr: qr negated
 		qi: qi negated
 		qj: qj negated
@@ -381,13 +381,13 @@ PMQuaternion >> negated [
 ]
 
 { #category : #printing }
-PMQuaternion >> printOn: aStream [ 
+PMQuaternion >> printOn: aStream [
 	"Print a representation of the receiver onto aStream"
 
 	self storeOn: aStream
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> productWithVector: aVector [
 		"Answers a new vector product of the receiver with aVector."
 	^aVector collect: [ :each | each * self]
@@ -414,7 +414,7 @@ PMQuaternion >> qr [
 ]
 
 { #category : #private }
-PMQuaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [ 
+PMQuaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [
 	qr := a0.
 	qi := a1.
 	qj := a2.
@@ -422,24 +422,22 @@ PMQuaternion >> qr: a0 qi: a1 qj: a2 qk: a3 [
 ]
 
 { #category : #'mathematical functions' }
-PMQuaternion >> raisedTo: aNumber [ 
+PMQuaternion >> raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue:
-		["Do the special case of integer power"
-		^ self raisedToInteger: aNumber].
-	
-	0 = aNumber ifTrue: [^ self class one].	"Special case of exponent=0"
-	1 = aNumber ifTrue: [^ self].	"Special case of exponent=1"
-	0 = self ifTrue: [				"Special case of self = 0"
-		aNumber < 0
-			ifTrue: [^ (ZeroDivide dividend: self) signal]
-			ifFalse: [^ self]].
-	^ (aNumber * self ln) exp		"Otherwise use logarithms"
+	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+
+	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
+	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
+	0 = self ifTrue: [ "Special case of self = 0"
+		^ aNumber < 0
+			  ifTrue: [ (ZeroDivide dividend: self) signal ]
+			  ifFalse: [ self ] ].
+	^ (aNumber * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }
-PMQuaternion >> raisedToInteger: operand [ 
+PMQuaternion >> raisedToInteger: operand [
 	"Answer the receiver raised to the power operand, an Integer."
 
 	"implementation note: this code is copied from Number.
@@ -455,7 +453,7 @@ PMQuaternion >> raisedToInteger: operand [
 	count := 1 bitShift: (operand-1) highBit.
 	result := self class one.
 	[count > 0]
-		whileTrue: 
+		whileTrue:
 			[result := result * result.
 			(operand bitAnd: count)
 				= 0 ifFalse: [result := result * self].
@@ -463,10 +461,10 @@ PMQuaternion >> raisedToInteger: operand [
 	^ result
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #information }
 PMQuaternion >> random [
 	"analog to Number>>random. The resulting quaternion will have abs at most that of the receiver"
-	^ self class random * self.
+	^ self class random * self
 ]
 
 { #category : #accessing }
@@ -484,8 +482,8 @@ PMQuaternion >> reciprocal [
 
 	| qn qrn qin qjn qkn qn2 |
 	qn := (qr abs max: qi abs) max: (qj abs max: qk abs).
-	qn isZero 
-		ifTrue: 
+	qn isZero
+		ifTrue:
 			[^ZeroDivide signal: 'Cannot take reciprocal of null quaternion'].
 	qrn := qr / qn.
 	qin := qi / qn.
@@ -516,7 +514,7 @@ PMQuaternion >> sin [
 	w := z isZero
 		ifTrue: [z]
 		ifFalse: [qr cos * z sinh / z].
-	^(self species 
+	^(self species
 				qr: qr sin * z cosh
 				qi: qi * w
 				qj: qj * w
@@ -541,7 +539,7 @@ PMQuaternion >> squaredNorm [
 ]
 
 { #category : #printing }
-PMQuaternion >> storeOn: aStream [ 
+PMQuaternion >> storeOn: aStream [
 	"Store a representation of the receiver onto aStream that can be interpreted.
 	Two possible forms are:
 	a + b i + c j + d k
@@ -568,7 +566,7 @@ PMQuaternion >> storeOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> subtractToPolynomial: aPolynomial [
 	^aPolynomial addNumber: self negated
 ]
@@ -606,10 +604,10 @@ PMQuaternion >> timesComplexNumber: complexNumber [
 
 { #category : #arithmetic }
 PMQuaternion >> timesNumber: multiplier [
-	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier).
+	^ self class qr: (qr * multiplier) qi: (qi * multiplier) qj: (qj * multiplier)  qk: (qk * multiplier)
 ]
 
-{ #category : #'*Math-Quaternion' }
+{ #category : #'double dispatch' }
 PMQuaternion >> timesPolynomial: aPolynomial [
 	^aPolynomial timesNumber: self
 ]
@@ -618,7 +616,7 @@ PMQuaternion >> timesPolynomial: aPolynomial [
 PMQuaternion >> unreal [
 	"answer the unreal part of the receiver"
 
-	^self species 
+	^self species
 		qr: 0
 		qi: qi
 		qj: qj

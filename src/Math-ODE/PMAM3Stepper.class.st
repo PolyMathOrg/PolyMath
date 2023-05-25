@@ -9,7 +9,7 @@ Class {
 	#category : #'Math-ODE'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : #accessing }
 PMAM3Stepper class >> order [
 	"AM3 is a third order method."
 	^ 3

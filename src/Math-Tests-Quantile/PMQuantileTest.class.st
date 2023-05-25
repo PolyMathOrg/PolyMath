@@ -26,11 +26,18 @@ PMQuantileTest >> resultCollect: aSortedColl withProbs: aMethod [
 
 { #category : #running }
 PMQuantileTest >> setUp [
-	a := #(1 3 2 4) asSortedCollection.
-	c := #(1 3 2 4 5) asSortedCollection.
-	d := #(1 3 2 4 5 6) asSortedCollection.
-	b := #(2 4 5 7 8 9 10 12 15 16 18) asSortedCollection.
-	q := Array with: 0 with: (1 / 4) with: (1 / 2) with: (3 / 4) with: 1
+
+	super setUp.
+	a := #( 1 3 2 4 ) asSortedCollection.
+	c := #( 1 3 2 4 5 ) asSortedCollection.
+	d := #( 1 3 2 4 5 6 ) asSortedCollection.
+	b := #( 2 4 5 7 8 9 10 12 15 16 18 ) asSortedCollection.
+	q := Array
+		     with: 0
+		     with: 1 / 4
+		     with: 1 / 2
+		     with: 3 / 4
+		     with: 1
 ]
 
 { #category : #tests }
@@ -40,7 +47,6 @@ PMQuantileTest >> testError [
 		raise: Error
 		whoseDescriptionIncludes: 'SubscriptOutOfBounds'
 		description: 'Wrong error message'
-
 ]
 
 { #category : #tests }
@@ -60,10 +66,10 @@ PMQuantileTest >> testExtremeCase [
 
 { #category : #tests }
 PMQuantileTest >> testFloatProbability [
-	"tests that input quantile probabilities can be a float"	
-			
+	"tests that input quantile probabilities can be a float"
+
 	self assert: (c quantile: 0.25) equals: 2.
-	
+
 	self assert: (c quantile: 0.27) equals: 2.08
 ]
 

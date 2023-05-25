@@ -8,5 +8,5 @@ PMVector >> adaptToQuaternion: aQuaternion andSend: aByteSymbol [
 { #category : #'*Math-Quaternion' }
 PMVector >> multiplyByQuaternion: quaternion [
 
-	^ self * quaternion.
+	^ self * quaternion
 ]
