@@ -15,12 +15,22 @@ Class {
 	#category : #BaselineOfPolyMath
 }
 
+{ #category : #dependencies }
+BaselineOfPolyMath >> aiDatasets: spec [
+
+	spec 
+	   baseline: 'AIDatasets' 
+		with: [ spec repository: 'github://pharo-ai/datasets:v1.0.0/src' ].
+
+]
+
 { #category : #baseline }
 BaselineOfPolyMath >> baseline: spec [
 
 	<baseline>
 	spec for: #common do: [ "External dependencies"
 		self
+			aiDatasets: spec;
 			sMark: spec;
 			xmlWriter: spec;
 			vectorMatrix: spec;
@@ -60,6 +70,7 @@ BaselineOfPolyMath >> baseline: spec [
 			package: 'Math-Series';
 			package: 'Math-StatisticalMoments' with: [ spec requires: #( 'Math-Helpers' 'Math-Distributions' ) ];
 			package: 'Math-TSNE';
+			package: 'Math-Visualizations' with: [ spec requires: #('Roassal3' 'AI-Datasets' 'Math-PrincipalComponentAnalysis') ];
 			package: 'Math-Tests-Accuracy' with: [ spec requires: #( 'Math-Accuracy-Core' ) ];
 			package: 'Math-Tests-ArbitraryPrecisionFloat' with: [ spec requires: #( 'Math-ArbitraryPrecisionFloat' ) ];
 			package: 'Math-Tests-AutomaticDifferenciation' with: [ spec requires: #( 'Math-AutomaticDifferenciation' 'MathVectorMatrix' ) ];

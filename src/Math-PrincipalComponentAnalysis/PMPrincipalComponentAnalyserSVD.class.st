@@ -9,32 +9,6 @@ Class {
 	#category : #'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #examples }
-PMPrincipalComponentAnalyserSVD class >> example1 [
-
-"Extract 4 columns from original data"
-| d m pca m1 d1 |
-d := (DataFrame loadIris) columnsFrom: 1 to: 4.
-
-"Transform DF  as matrix"
-m := PMMatrix rows: (d asArrayOfRows).
-
-"Data standardization (mean = 0 and variance = 1)"
-m := (PMStandardizationScaler new) fitAndTransform: m.
-
-"Compute PCA components"
-pca := PMPrincipalComponentAnalyserSVD    new.
-pca componentsNumber: 2.
-pca fit: m.
-pca transformMatrix.
-
-m1 := pca transform: m.
-
-d1 := DataFrame fromRows: m1 rows.
-d1 addColumn: ((DataFrame loadIris) columnsFrom:5 to:5) asArrayOfColumns first named:''.
-d1 scatterplotMatrix
-]
-
 { #category : #accessing }
 PMPrincipalComponentAnalyserSVD >> fit: aPMMatrix [
 
