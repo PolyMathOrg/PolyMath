@@ -245,11 +245,11 @@ PMPolynomialTest >> testPolynomialRoots [
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialRootsConstantsHaveNoRoots [
 
-	| polynomial |
+	| constant |
 	"Here, compute the roots of the constant C = 1"
-	polynomial := PMPolynomial coefficients: #( 1 ).
+	constant := PMPolynomial coefficients: #( 1 ).
 	self
-		should: [ polynomial roots ]
+		should: [ constant roots ]
 		raise: Error
 		description: 'Function''s derivative seems to be zero everywhere'
 ]
@@ -257,10 +257,10 @@ PMPolynomialTest >> testPolynomialRootsConstantsHaveNoRoots [
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialRootsForLinear [
 
-	| polynomial roots |
+	| linearPolynomial roots |
 	"Here, compute the roots of the linear (2x + 1)"
-	polynomial := PMPolynomial coefficients: #( 1 2 ).
-	roots := polynomial roots.
+	linearPolynomial := PMPolynomial coefficients: #( 1 2 ).
+	roots := linearPolynomial roots.
 	self assert: roots size equals: 1.
 	self assert: (roots at: 1) closeTo: -0.5
 ]
@@ -279,10 +279,10 @@ PMPolynomialTest >> testPolynomialSubtraction [
 
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialWithRepeatedRoots [
-	| polynomial roots |
+	| polynomialWithRepeatedRoots roots |
 	"Here, compute the roots of the quadratic (2x + 1)^2 = 4 x^2 + 4 x + 1"
-	polynomial := PMPolynomial coefficients: #(1 4 4).
-	roots := polynomial roots .
+	polynomialWithRepeatedRoots := PMPolynomial coefficients: #(1 4 4).
+	roots := polynomialWithRepeatedRoots roots .
 	self assert: roots size equals: 2.
 	self assert: (roots at: 1) closeTo: -0.5 .
 	self assert: (roots at: 2) closeTo: -0.5 .
