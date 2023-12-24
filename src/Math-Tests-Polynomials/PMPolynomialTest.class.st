@@ -242,6 +242,16 @@ PMPolynomialTest >> testPolynomialRoots [
 	self assert: (roots at: 3) - 5 closeTo: 0
 ]
 
+{ #category : #'iterative algorithms' }
+PMPolynomialTest >> testPolynomialRootsForQuadratic [
+	| polynomial roots |
+	polynomial := PMPolynomial coefficients: #(1 2 1).
+	roots := polynomial roots .
+	self assert: roots size equals: 2.
+	self assert: (roots at: 1) closeTo: -1 .
+	self assert: (roots at: 2) closeTo: -1 .
+]
+
 { #category : #'function evaluation' }
 PMPolynomialTest >> testPolynomialSubtraction [
 	| polynomial |
