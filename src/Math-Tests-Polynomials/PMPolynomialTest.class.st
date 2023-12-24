@@ -244,11 +244,14 @@ PMPolynomialTest >> testPolynomialRoots [
 
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialRootsForConstant [
+
 	| polynomial |
-	"Here, compute the roots of the quadratic (2x + 1)"
-	polynomial := PMPolynomial coefficients: #(1).
-	self should: [ polynomial roots ] raise: Error description: 'Function''s derivative seems to be zero everywhere'.
-	
+	"Here, compute the roots of the constant C = 1"
+	polynomial := PMPolynomial coefficients: #( 1 ).
+	self
+		should: [ polynomial roots ]
+		raise: Error
+		description: 'Function''s derivative seems to be zero everywhere'
 ]
 
 { #category : #'iterative algorithms' }
