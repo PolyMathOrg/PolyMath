@@ -26,6 +26,15 @@ PMPolynomial class >> coefficients: anArray [
 	^self new initialize: anArray reverse
 ]
 
+{ #category : #information }
+PMPolynomial class >> rootFindingAlgorithmWith: precision [
+
+	| rootFinder |
+	rootFinder := PMNewtonZeroFinder new.
+	rootFinder desiredPrecision: precision.
+	^ rootFinder
+]
+
 { #category : #operation }
 PMPolynomial >> * aNumberOrPolynomial [
 
@@ -240,12 +249,8 @@ PMPolynomial >> reciprocal [
 ]
 
 { #category : #information }
-PMPolynomial >> rootFindingAlgorithmWith: precision [
-
-	| rootFinder |
-	rootFinder := PMNewtonZeroFinder new.
-	rootFinder desiredPrecision: precision.
-	^ rootFinder
+PMPolynomial >> rootFindingAlgorithmWith: precision [ 
+	^ self class rootFindingAlgorithmWith: precision 
 ]
 
 { #category : #information }
