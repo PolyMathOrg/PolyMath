@@ -240,11 +240,6 @@ PMPolynomial >> reciprocal [
 ]
 
 { #category : #information }
-PMPolynomial >> rootFindingAlgorithmWith: precision [ 
-	^ PMNewtonZeroFinder rootFindingAlgorithmWith: precision 
-]
-
-{ #category : #information }
 PMPolynomial >> roots [
 
 	^ self roots: Float defaultComparisonPrecision
@@ -254,7 +249,7 @@ PMPolynomial >> roots [
 PMPolynomial >> roots: aNumber [
 
 	| pol roots x rootFinder |
-	rootFinder := self rootFindingAlgorithmWith: aNumber.
+	rootFinder := PMNewtonZeroFinder rootFindingAlgorithmWith: aNumber.
 	pol := self class coefficients:
 		       (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.
