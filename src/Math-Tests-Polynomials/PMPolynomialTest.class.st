@@ -235,7 +235,7 @@ PMPolynomialTest >> testPolynomialRoots [
 
 	| polynomial roots |
 	polynomial := PMPolynomial coefficients: #( -10 -13 -2 1 ).
-	roots := polynomial roots asSortedCollection asArray.
+	roots := polynomial orderedRoots .
 	self assert: roots size equals: 3.
 	self assert: (roots at: 1) + 2 closeTo: 0.
 	self assert: (roots at: 2) + 1 closeTo: 0.
