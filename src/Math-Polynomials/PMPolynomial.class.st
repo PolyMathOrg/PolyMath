@@ -249,7 +249,7 @@ PMPolynomial >> roots [
 PMPolynomial >> roots: aNumber [
 
 	| pol roots x rootFinder |
-	rootFinder := PMNewtonZeroFinder rootFindingAlgorithmWith: aNumber.
+	rootFinder := PMNewtonZeroFinder with: aNumber.
 	pol := self class coefficients:
 		       (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.

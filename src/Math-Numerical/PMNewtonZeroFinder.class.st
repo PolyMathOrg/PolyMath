@@ -40,7 +40,7 @@ PMNewtonZeroFinder class >> function: aBlock1 derivative: aBlock2 [
 ]
 
 { #category : #information }
-PMNewtonZeroFinder class >> rootFindingAlgorithmWith: precision [
+PMNewtonZeroFinder class >> with: precision [
 
 	| rootFinder |
 	rootFinder := PMNewtonZeroFinder new.
