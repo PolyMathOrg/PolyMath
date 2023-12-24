@@ -43,7 +43,7 @@ PMNewtonZeroFinder class >> function: aBlock1 derivative: aBlock2 [
 PMNewtonZeroFinder class >> with: precision [
 
 	| rootFinder |
-	rootFinder := PMNewtonZeroFinder new.
+	rootFinder := self new.
 	rootFinder desiredPrecision: precision.
 	^ rootFinder
 ]
