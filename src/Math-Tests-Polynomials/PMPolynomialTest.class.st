@@ -245,11 +245,12 @@ PMPolynomialTest >> testPolynomialRoots [
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialRootsForQuadratic [
 	| polynomial roots |
-	polynomial := PMPolynomial coefficients: #(1 2 1).
+	"Here, compute the roots of the quadratic (2x + 1)^2 = 4 x^2 + 4 x + 1"
+	polynomial := PMPolynomial coefficients: #(1 4 4).
 	roots := polynomial roots .
 	self assert: roots size equals: 2.
-	self assert: (roots at: 1) closeTo: -1 .
-	self assert: (roots at: 2) closeTo: -1 .
+	self assert: (roots at: 1) closeTo: -0.5 .
+	self assert: (roots at: 2) closeTo: -0.5 .
 ]
 
 { #category : #'function evaluation' }
