@@ -264,17 +264,6 @@ PMPolynomialTest >> testPolynomialRootsForLinear [
 	self assert: (roots at: 1) closeTo: -0.5 .
 ]
 
-{ #category : #'iterative algorithms' }
-PMPolynomialTest >> testPolynomialRootsForQuadratic [
-	| polynomial roots |
-	"Here, compute the roots of the quadratic (2x + 1)^2 = 4 x^2 + 4 x + 1"
-	polynomial := PMPolynomial coefficients: #(1 4 4).
-	roots := polynomial roots .
-	self assert: roots size equals: 2.
-	self assert: (roots at: 1) closeTo: -0.5 .
-	self assert: (roots at: 2) closeTo: -0.5 .
-]
-
 { #category : #'function evaluation' }
 PMPolynomialTest >> testPolynomialSubtraction [
 	| polynomial |
@@ -285,4 +274,15 @@ PMPolynomialTest >> testPolynomialSubtraction [
 	self assert: (polynomial at: 2) equals: -1.
 	self assert: (polynomial at: 3) equals: -1.
 	self assert: (polynomial at: 4) equals: 0
+]
+
+{ #category : #'iterative algorithms' }
+PMPolynomialTest >> testPolynomialWithRepeatedRoots [
+	| polynomial roots |
+	"Here, compute the roots of the quadratic (2x + 1)^2 = 4 x^2 + 4 x + 1"
+	polynomial := PMPolynomial coefficients: #(1 4 4).
+	roots := polynomial roots .
+	self assert: roots size equals: 2.
+	self assert: (roots at: 1) closeTo: -0.5 .
+	self assert: (roots at: 2) closeTo: -0.5 .
 ]
