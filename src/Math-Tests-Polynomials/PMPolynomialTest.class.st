@@ -256,12 +256,13 @@ PMPolynomialTest >> testPolynomialRootsForConstant [
 
 { #category : #'iterative algorithms' }
 PMPolynomialTest >> testPolynomialRootsForLinear [
+
 	| polynomial roots |
-	"Here, compute the roots of the quadratic (2x + 1)"
-	polynomial := PMPolynomial coefficients: #(1 2).
-	roots := polynomial roots .
+	"Here, compute the roots of the linear (2x + 1)"
+	polynomial := PMPolynomial coefficients: #( 1 2 ).
+	roots := polynomial roots.
 	self assert: roots size equals: 1.
-	self assert: (roots at: 1) closeTo: -0.5 .
+	self assert: (roots at: 1) closeTo: -0.5
 ]
 
 { #category : #'function evaluation' }
