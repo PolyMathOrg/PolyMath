@@ -193,14 +193,6 @@ PMPolynomial >> negated [
 	^ self * -1
 ]
 
-{ #category : #information }
-PMPolynomial >> orderedRoots [
-	"comment stating purpose of instance-side method"
-	"scope: class-variables  &  instance-variables"
-
-	^ (self roots: Float defaultComparisonPrecision) asSortedCollection asArray
-]
-
 { #category : #printing }
 PMPolynomial >> printOn: aStream [
 	"Append to aStream a written representation of the receiver."
@@ -237,6 +229,14 @@ PMPolynomial >> printOn: aStream [
 { #category : #operation }
 PMPolynomial >> reciprocal [
 	^ (PMPolynomial coefficients: #(1)) / self
+]
+
+{ #category : #information }
+PMPolynomial >> roots [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"
+
+	^ (self roots: Float defaultComparisonPrecision) asSortedCollection asArray
 ]
 
 { #category : #information }
