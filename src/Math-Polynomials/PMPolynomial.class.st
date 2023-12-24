@@ -198,7 +198,7 @@ PMPolynomial >> orderedRoots [
 	"comment stating purpose of instance-side method"
 	"scope: class-variables  &  instance-variables"
 
-	^ self roots asSortedCollection asArray
+	^ (self roots: Float defaultComparisonPrecision) asSortedCollection asArray
 ]
 
 { #category : #printing }
