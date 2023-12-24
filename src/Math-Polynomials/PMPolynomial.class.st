@@ -240,12 +240,6 @@ PMPolynomial >> reciprocal [
 ]
 
 { #category : #information }
-PMPolynomial >> roots [
-
-	^ self roots: Float defaultComparisonPrecision
-]
-
-{ #category : #information }
 PMPolynomial >> roots: aNumber [
 
 	| pol roots x rootFinder |
