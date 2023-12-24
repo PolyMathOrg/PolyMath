@@ -243,7 +243,7 @@ PMPolynomialTest >> testPolynomialRoots [
 ]
 
 { #category : #'iterative algorithms' }
-PMPolynomialTest >> testPolynomialRootsForConstant [
+PMPolynomialTest >> testPolynomialRootsConstantsHaveNoRoots [
 
 	| polynomial |
 	"Here, compute the roots of the constant C = 1"
