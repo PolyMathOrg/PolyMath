@@ -240,6 +240,15 @@ PMPolynomial >> reciprocal [
 ]
 
 { #category : #information }
+PMPolynomial >> rootFindingAlgorithmWith: precision [
+
+	| rootFinder |
+	rootFinder := PMNewtonZeroFinder new.
+	rootFinder desiredPrecision: precision.
+	^ rootFinder
+]
+
+{ #category : #information }
 PMPolynomial >> roots [
 
 	^ self roots: Float defaultComparisonPrecision
@@ -249,19 +258,20 @@ PMPolynomial >> roots [
 PMPolynomial >> roots: aNumber [
 
 	| pol roots x rootFinder |
-	rootFinder := PMNewtonZeroFinder new.
-	rootFinder desiredPrecision: aNumber.
-	pol := self class coefficients: ( coefficients reverse collect: [ :each | each asFloat]).
+	rootFinder := self rootFindingAlgorithmWith: aNumber.
+	pol := self class coefficients:
+		       (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.
-	[ rootFinder setFunction: pol; setDerivative: pol derivative.
-	  x := rootFinder evaluate.
-	  rootFinder hasConverged
-		] whileTrue: [ roots add: x.
-					   pol := pol deflatedAt: x.
-					   pol degree > 0
-						 ifFalse: [ ^roots].
-					 ].
-	^roots
+	[
+	rootFinder
+		setFunction: pol;
+		setDerivative: pol derivative.
+	x := rootFinder evaluate.
+	rootFinder hasConverged ] whileTrue: [
+		roots add: x.
+		pol := pol deflatedAt: x.
+		pol degree > 0 ifFalse: [ ^ roots ] ].
+	^ roots
 ]
 
 { #category : #'double dispatching' }
