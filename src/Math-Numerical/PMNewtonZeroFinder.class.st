@@ -39,6 +39,15 @@ PMNewtonZeroFinder class >> function: aBlock1 derivative: aBlock2 [
 	^(self new) setFunction: aBlock1; setDerivative: aBlock2; yourself
 ]
 
+{ #category : #information }
+PMNewtonZeroFinder class >> rootFindingAlgorithmWith: precision [
+
+	| rootFinder |
+	rootFinder := PMNewtonZeroFinder new.
+	rootFinder desiredPrecision: precision.
+	^ rootFinder
+]
+
 { #category : #operation }
 PMNewtonZeroFinder >> computeInitialValues [
 	"Private - If no derivative has been defined, take an ad-hoc definition.
