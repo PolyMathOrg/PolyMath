@@ -150,6 +150,19 @@ PMPolynomialTest >> testPolynomialMultiplication [
 	self assert: (polynomial at: 6) equals: 0
 ]
 
+{ #category : #'algebra - multiplication' }
+PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
+
+	| expected product commutationProduct p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	product := p * 2.
+	commutationProduct := 2 * p.
+	expected := PMPolynomial coefficients: #( 4 -6 2 ).
+	
+	self assert: product equals: expected.
+	self assert: commutationProduct equals: expected
+]
+
 { #category : #algebra }
 PMPolynomialTest >> testPolynomialNumberAddition [
 	| polynomial |
