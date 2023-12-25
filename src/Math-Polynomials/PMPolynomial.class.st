@@ -245,10 +245,7 @@ PMPolynomial >> roots: aNumber [
 		       (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.
 	[
-	rootFinder
-		setFunction: pol;
-		setDerivative: pol derivative.
-	root := rootFinder evaluate.
+	root := rootFinder rootOf: pol.
 	rootFinder hasConverged ] whileTrue: [
 		roots add: root.
 		pol := pol deflatedAt: root.

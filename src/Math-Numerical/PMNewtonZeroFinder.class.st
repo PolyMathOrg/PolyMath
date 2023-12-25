@@ -114,6 +114,13 @@ PMNewtonZeroFinder >> initialize [
 	^ self
 ]
 
+{ #category : #operation }
+PMNewtonZeroFinder >> rootOf: function [
+self setFunction: function;
+		setDerivative: function derivative.
+	^ self evaluate.
+]
+
 { #category : #initialization }
 PMNewtonZeroFinder >> setDerivative: aBlock [
 	"Defines the derivative of the function for which zeroes will be found.
