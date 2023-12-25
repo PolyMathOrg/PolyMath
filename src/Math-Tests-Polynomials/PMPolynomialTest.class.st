@@ -153,14 +153,13 @@ PMPolynomialTest >> testPolynomialMultiplication [
 { #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
 
-	| expected product commutationProduct p |
+	| expected p q |
 	p := PMPolynomial coefficients: #( 2 -3 1 ).
-	product := p * 2.
-	commutationProduct := 2 * p.
+	q := PMPolynomial coefficients: #( 2 ).
 	expected := PMPolynomial coefficients: #( 4 -6 2 ).
-	
-	self assert: product equals: expected.
-	self assert: commutationProduct equals: expected
+
+	self assert: p * q equals: expected.
+	self assert: q * p equals: expected
 ]
 
 { #category : #algebra }
