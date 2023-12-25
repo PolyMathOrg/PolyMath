@@ -239,17 +239,17 @@ PMPolynomial >> roots [
 { #category : #information }
 PMPolynomial >> roots: aNumber [
 
-	| pol roots root rootFinder |
+	| polynomial roots root rootFinder |
 	rootFinder := PMNewtonZeroFinder with: aNumber.
-	pol := self class coefficients:
+	polynomial := self class coefficients:
 		       (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.
 	[
-	root := rootFinder rootOf: pol.
+	root := rootFinder rootOf: polynomial.
 	rootFinder hasConverged ] whileTrue: [
 		roots add: root.
-		pol := pol deflatedAt: root.
-		pol degree > 0 ifFalse: [ ^ roots ] ].
+		polynomial := polynomial deflatedAt: root.
+		polynomial degree > 0 ifFalse: [ ^ roots ] ].
 	^ roots
 ]
 
