@@ -13,7 +13,7 @@ PMPolynomialTest >> testIsZero [
 	self shouldnt: [ p2 isZero ]
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - addition' }
 PMPolynomialTest >> testPolynomialAddition [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1))
@@ -165,7 +165,7 @@ PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
 	self assert: q * p equals: expected
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - addition' }
 PMPolynomialTest >> testPolynomialNumberAddition [
 	| polynomial |
 	polynomial := 2 + (PMPolynomial coefficients: #(2 -3 1)).
@@ -175,7 +175,7 @@ PMPolynomialTest >> testPolynomialNumberAddition [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - addition' }
 PMPolynomialTest >> testPolynomialNumberAdditionInverse [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) + 2.
