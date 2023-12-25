@@ -38,7 +38,7 @@ PMPolynomialTest >> testPolynomialDerivative [
 	self assert: (polynomial at: 4) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - division' }
 PMPolynomialTest >> testPolynomialDivision [
 	| pol1 pol2 polynomial |
 	pol1 := PMPolynomial coefficients: #(2 -3 1).
@@ -53,7 +53,7 @@ PMPolynomialTest >> testPolynomialDivision [
 	self assert: (polynomial at: 6) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - division' }
 PMPolynomialTest >> testPolynomialDivisionBug [
 	"identify an error when trying to create a zero dividend"
 
@@ -185,7 +185,7 @@ PMPolynomialTest >> testPolynomialNumberAdditionInverse [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - division' }
 PMPolynomialTest >> testPolynomialNumberDivision [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) / 2.
@@ -215,7 +215,7 @@ PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtraction [
 	| polynomial |
 	polynomial := 2 - (PMPolynomial coefficients: #(2 -3 1)).
@@ -225,7 +225,7 @@ PMPolynomialTest >> testPolynomialNumberSubtraction [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtractionInverse [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) - 2.
@@ -280,7 +280,7 @@ PMPolynomialTest >> testPolynomialRootsForLinear [
 	self assert: (roots at: 1) closeTo: -0.5
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - subtraction' }
 PMPolynomialTest >> testPolynomialSubtraction [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1))
