@@ -242,14 +242,14 @@ PMPolynomial >> roots: aNumber [
 	| polynomial roots root rootFinder |
 	rootFinder := PMNewtonZeroFinder with: aNumber.
 	polynomial := self class coefficients:
-		       (coefficients reverse collect: [ :each | each asFloat ]).
+		              (coefficients reverse collect: [ :each | each asFloat ]).
 	roots := OrderedCollection new: self degree.
 	[
 	root := rootFinder rootOf: polynomial.
 	rootFinder hasConverged ] whileTrue: [
 		roots add: root.
 		polynomial := polynomial deflatedAt: root.
-		polynomial degree > 0 ifFalse: [ ^ roots ] ].
+		polynomial degree strictlyPositive ifFalse: [ ^ roots ] ].
 	^ roots
 ]
 
