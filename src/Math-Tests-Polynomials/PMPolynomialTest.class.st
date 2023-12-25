@@ -133,7 +133,7 @@ PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	self assert: (polynomial at: 5) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplication [
 	"Code example 2.3"
 
@@ -180,7 +180,7 @@ PMPolynomialTest >> testPolynomialNumberDivision [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplication [
 	| polynomial |
 	polynomial := 2 * (PMPolynomial coefficients: #(2 -3 1)).
@@ -190,7 +190,7 @@ PMPolynomialTest >> testPolynomialNumberMultiplication [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) * 2.
