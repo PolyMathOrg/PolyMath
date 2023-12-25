@@ -137,12 +137,12 @@ PMPolynomialTest >> testPolynomialIntegralWithConstant [
 PMPolynomialTest >> testPolynomialMultiplication [
 	"Code example 2.3"
 
-	| pol1 pol2 polynomial expected |
-	pol1 := PMPolynomial coefficients: #( 2 -3 1 ).
-	pol2 := PMPolynomial coefficients: #( -3 7 2 1 ).
-	polynomial := pol1 * pol2.
+	| p q product expected |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	q := PMPolynomial coefficients: #( -3 7 2 1 ).
+	product := p * q.
 	expected := PMPolynomial coefficients: #( -6 23 -20 3 -1 1 ).
-	self assert: polynomial equals: expected.
+	self assert: product equals: expected.
 ]
 
 { #category : #'algebra - multiplication' }
