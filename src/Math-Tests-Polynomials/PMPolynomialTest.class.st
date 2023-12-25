@@ -152,14 +152,15 @@ PMPolynomialTest >> testPolynomialMultiplication [
 
 { #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
+
 	| expected p q |
 	"p(x) = (x - 3) (x - 4), q(x) = x^3 + 1 therefore:
 	
 	p(x) * q(x) = q(x) * p(x) = x^5 - 7 x^4 + 12 x^3 + x^2 - 7x + 12"
 	p := PMPolynomial coefficients: #( 12 -7 1 ).
 	q := PMPolynomial coefficients: #( 1 0 0 1 ).
+	
 	expected := PMPolynomial coefficients: #( 12 -7 1 12 -7 1 ).
-
 	self assert: p * q equals: expected.
 	self assert: q * p equals: expected
 ]
