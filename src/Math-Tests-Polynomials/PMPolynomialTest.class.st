@@ -193,11 +193,11 @@ PMPolynomialTest >> testPolynomialNumberDivision [
 { #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplication [
 
-	| polynomial expected |
-	polynomial := 2 * (PMPolynomial coefficients: #( 2 -3 1 )).
+	| product expected |
+	product := 2 * (PMPolynomial coefficients: #( 2 -3 1 )).
 	
 	expected := PMPolynomial coefficients: #( 4 -6 2 ).
-	self assert: polynomial equals: expected
+	self assert: product equals: expected
 ]
 
 { #category : #'algebra - multiplication' }
