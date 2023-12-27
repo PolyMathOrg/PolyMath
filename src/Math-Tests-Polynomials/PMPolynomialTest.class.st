@@ -213,9 +213,10 @@ PMPolynomialTest >> testPolynomialNumberDivision [
 { #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplication [
 
-	| product expected |
-	product := 2 * (PMPolynomial coefficients: #( 2 -3 1 )).
-	
+	| product expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	product := 2 * p.
+
 	expected := PMPolynomial coefficients: #( 4 -6 2 ).
 	self assert: product equals: expected
 ]
@@ -223,9 +224,10 @@ PMPolynomialTest >> testPolynomialNumberMultiplication [
 { #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 
-	| product expected |
-	product := (PMPolynomial coefficients: #( 2 -3 1 )) * 2.
-	
+	| product expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	product := p * 2.
+
 	expected := PMPolynomial coefficients: #( 4 -6 2 ).
 	self assert: product equals: expected
 ]
