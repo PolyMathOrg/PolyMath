@@ -3,22 +3,23 @@ PMDataTransformer is the abstract root class of transformers. All data transform
 
 "
 Class {
-	#name : #PMDataTransformer,
-	#superclass : #Object,
-	#category : #'Math-PrincipalComponentAnalysis'
+	#name : 'PMDataTransformer',
+	#superclass : 'Object',
+	#category : 'Math-PrincipalComponentAnalysis',
+	#package : 'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMDataTransformer >> fit: aPMMatrix [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMDataTransformer >> fitAndTransform: aPMMatrix [
 	^ (self fit: aPMMatrix) transform: aPMMatrix
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 PMDataTransformer >> transform: aPMMatrix [
 	^ self subclassResponsibility
 ]

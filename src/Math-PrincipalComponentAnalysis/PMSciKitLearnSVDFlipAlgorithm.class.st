@@ -6,24 +6,25 @@ This class uses the SciKit-Learn SVD flip algorithm to ensure the signs of the e
 
 "
 Class {
-	#name : #PMSciKitLearnSVDFlipAlgorithm,
-	#superclass : #Object,
+	#name : 'PMSciKitLearnSVDFlipAlgorithm',
+	#superclass : 'Object',
 	#instVars : [
 		'u',
 		'v',
 		'signs'
 	],
-	#category : #'Math-PrincipalComponentAnalysis'
+	#category : 'Math-PrincipalComponentAnalysis',
+	#package : 'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMSciKitLearnSVDFlipAlgorithm class >> flipU: u andV: v [
 	^ self new
 		initializeWithU: u andV: v;
 		yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> computeSignsFromU [
 	| maxAbsCols i maxElements |
 	maxAbsCols := u abs argMaxOnColumns.
@@ -35,7 +36,7 @@ PMSciKitLearnSVDFlipAlgorithm >> computeSignsFromU [
 	^ maxElements sign asPMVector
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMSciKitLearnSVDFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 	"instantiate the algorithm"
 	u := uMatrix .
@@ -43,7 +44,7 @@ PMSciKitLearnSVDFlipAlgorithm >> initializeWithU: uMatrix andV: vMatrix [
 	signs := self computeSignsFromU
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> signMatrixForU [
 	^ PMMatrix
 		rows:
@@ -55,7 +56,7 @@ PMSciKitLearnSVDFlipAlgorithm >> signMatrixForU [
 						yourself ])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> signMatrixForV [
 	| signsForV |
 	signsForV := self signs copyFrom: 1 to: v numberOfColumns.
@@ -69,17 +70,17 @@ PMSciKitLearnSVDFlipAlgorithm >> signMatrixForV [
 						yourself ])) transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> signs [
 	^ signs
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> uFlipped [
 	^ u hadamardProduct: (self signMatrixForU)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMSciKitLearnSVDFlipAlgorithm >> vFlipped [
 	^ v hadamardProduct: (self signMatrixForV)
 ]

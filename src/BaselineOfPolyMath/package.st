@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfPolyMath }
+Package { #name : 'BaselineOfPolyMath' }

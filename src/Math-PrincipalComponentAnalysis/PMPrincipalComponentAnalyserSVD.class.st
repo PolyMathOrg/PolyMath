@@ -1,15 +1,16 @@
 Class {
-	#name : #PMPrincipalComponentAnalyserSVD,
-	#superclass : #PMPrincipalComponentAnalyser,
+	#name : 'PMPrincipalComponentAnalyserSVD',
+	#superclass : 'PMPrincipalComponentAnalyser',
 	#instVars : [
 		'svd',
 		'u',
 		'v'
 	],
-	#category : #'Math-PrincipalComponentAnalysis'
+	#category : 'Math-PrincipalComponentAnalysis',
+	#package : 'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #examples }
+{ #category : 'examples' }
 PMPrincipalComponentAnalyserSVD class >> example1 [
 	"Extract 4 columns from original data"
 
@@ -37,7 +38,7 @@ PMPrincipalComponentAnalyserSVD class >> example1 [
 		addColumn: (irisDataFrame columnsFrom: 5 to: 5) asArrayOfColumns first
 		named: 'type'.
 		
-	roassalChart := RSChart new
+	roassalChart := RSCompositeChart new
 		title: 'PCA of Iris Data Frame';
 		addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3);
 		addDecoration: RSVerticalTick new;
@@ -58,7 +59,7 @@ PMPrincipalComponentAnalyserSVD class >> example1 [
 	
 ]
 
-{ #category : #examples }
+{ #category : 'examples' }
 PMPrincipalComponentAnalyserSVD class >> example2 [
 	"Extract 4 columns from original data. This example uses Random colors for each flower type"
 
@@ -91,7 +92,7 @@ PMPrincipalComponentAnalyserSVD class >> example2 [
 		forColumn: 'type'.
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserSVD >> fit: aPMMatrix [
 
 	svd := aPMMatrix decomposeSV.
@@ -100,7 +101,7 @@ PMPrincipalComponentAnalyserSVD >> fit: aPMMatrix [
 	self flipEigenvectorsSign
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserSVD >> flipEigenvectorsSign [
 	"flip eigenvectors sign to enforce deterministic output"
 	"U-based decision like : https://github.com/scikit-learn/scikit-learn/blob/4c65d8e615c9331d37cbb6225c5b67c445a5c959/sklearn/utils/extmath.py#L609"
@@ -112,14 +113,14 @@ PMPrincipalComponentAnalyserSVD >> flipEigenvectorsSign [
 	v := algo vFlipped .
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserSVD >> transform: aPMMatrix [
 	"Apply dimensionality reduction to aPMMatrix"
 
 	^ aPMMatrix * self transformMatrix transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserSVD >> transformMatrix [
 	"Return a matrix that can be applied to any data vector to extract the relevant component of the data vector"
 

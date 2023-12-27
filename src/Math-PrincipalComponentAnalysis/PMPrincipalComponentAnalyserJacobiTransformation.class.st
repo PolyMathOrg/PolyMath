@@ -8,53 +8,54 @@ Clients should first
 
 "
 Class {
-	#name : #PMPrincipalComponentAnalyserJacobiTransformation,
-	#superclass : #PMPrincipalComponentAnalyser,
+	#name : 'PMPrincipalComponentAnalyserJacobiTransformation',
+	#superclass : 'PMPrincipalComponentAnalyser',
 	#instVars : [
 		'accumulatorForCovarianceMatrix',
 		'jacobiTransform'
 	],
-	#category : #'Math-PrincipalComponentAnalysis'
+	#category : 'Math-PrincipalComponentAnalysis',
+	#package : 'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMPrincipalComponentAnalyserJacobiTransformation class >> new: anInteger [
 	"anInteger is the size of the elements you will accumulate: the elements you want to compare using the component analysis."
 	^ self basicNew initialize: anInteger; yourself
 ]
 
-{ #category : #transformation }
+{ #category : 'transformation' }
 PMPrincipalComponentAnalyserJacobiTransformation >> accumulate: aPMVectorOrArray [
 	accumulatorForCovarianceMatrix accumulate: aPMVectorOrArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserJacobiTransformation >> components [
 	"Precondition: accumulate: should have been used."
 
 	^ self jacobiTransform evaluate copyFrom: 1 to: componentsNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserJacobiTransformation >> fit: aPMMatrix [
 	accumulatorForCovarianceMatrix := PMCovarianceAccumulator new: aPMMatrix numberOfColumns.
 	aPMMatrix rowsDo: [ :eachRow | self accumulate: eachRow ].
 	self components
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserJacobiTransformation >> jacobiTransform [
 	^ jacobiTransform ifNil: [ jacobiTransform := PMJacobiTransformation matrix: accumulatorForCovarianceMatrix covarianceMatrix ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserJacobiTransformation >> transform: aPMMatrix [
 	"Apply dimensionality reduction to aPMMatrix"
 
 	^ aPMMatrix * self transformMatrix transpose
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMPrincipalComponentAnalyserJacobiTransformation >> transformMatrix [
 	"Return a matrix that can be applied to any data vector to extract the relevant component of the data vector"
 
