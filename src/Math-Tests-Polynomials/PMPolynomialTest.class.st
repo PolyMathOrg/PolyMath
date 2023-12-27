@@ -127,13 +127,15 @@ PMPolynomialTest >> testPolynomialHash [
 PMPolynomialTest >> testPolynomialIntegral [
 	"Code example 2.3"
 
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral.
-	self assert: (polynomial at: 0) equals: 0.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 7 / 2.
-	self assert: (polynomial at: 3) equals: 2 / 3.
-	self assert: (polynomial at: 4) equals: 1 / 4.
+	| polynomial expectedCoefficients expected |
+	polynomial := (PMPolynomial coefficients: #( -3 7 2 1 )) integral.
+	expectedCoefficients := Array
+		                        with: 0
+		                        with: -3
+		                        with: 7 / 2
+		                        with: 2 / 3
+		                        with: 1 / 4.
+	expected := PMPolynomial coefficients: expectedCoefficients.
 	self assert: (polynomial at: 5) equals: 0
 ]
 
