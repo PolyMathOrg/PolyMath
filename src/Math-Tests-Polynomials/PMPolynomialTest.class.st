@@ -16,9 +16,10 @@ PMPolynomialTest >> testIsZero [
 { #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialAddition [
 
-	| polynomial expected |
-	polynomial := (PMPolynomial coefficients: #( 2 -3 1 ))
-	              + (PMPolynomial coefficients: #( -3 7 2 1 )).
+	| polynomial expected p q |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	q := PMPolynomial coefficients: #( -3 7 2 1 ).
+	polynomial := p + q.
 	expected := PMPolynomial coefficients: #( -1 4 3 1 ).
 	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 4) equals: 0
