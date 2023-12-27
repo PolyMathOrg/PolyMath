@@ -295,14 +295,12 @@ PMPolynomialTest >> testPolynomialRootsForLinear [
 { #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialSubtraction [
 
-	| polynomial p q |
+	| polynomial p q expected |
 	p := PMPolynomial coefficients: #( 2 -3 1 ).
 	q := PMPolynomial coefficients: #( -3 7 2 1 ).
 	polynomial := p - q.
-	self assert: (polynomial at: 0) equals: 5.
-	self assert: (polynomial at: 1) equals: -10.
-	self assert: (polynomial at: 2) equals: -1.
-	self assert: (polynomial at: 3) equals: -1.
+	expected := PMPolynomial coefficients: #( 5 -10 -1 -1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 4) equals: 0
 ]
 
