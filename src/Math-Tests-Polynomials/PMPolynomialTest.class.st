@@ -24,6 +24,18 @@ PMPolynomialTest >> testPolynomialAddition [
 	self assert: (polynomial at: 4) equals: 0
 ]
 
+{ #category : #'testing - addition' }
+PMPolynomialTest >> testPolynomialAdditionIsCommutative [
+
+	| p q expected |
+	p := PMPolynomial coefficients: #(1 2 4 8).
+	q := PMPolynomial coefficients: #(-1 3 7 -4).
+
+	expected := PMPolynomial coefficients: #(0 5 11 4).	
+	self assert: p + q equals: expected.
+	self assert: q + p equals: expected
+]
+
 { #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialDerivative [
 	"Code example 2.3"
@@ -171,11 +183,11 @@ PMPolynomialTest >> testPolynomialNumberAddition [
 
 { #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialNumberAdditionInverse [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1)) + 2.
-	self assert: (polynomial at: 0) equals: 4.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 1.
+
+	| polynomial expected |
+	polynomial := (PMPolynomial coefficients: #( 2 -3 1 )) + 2.
+	expected := PMPolynomial coefficients: #( 4 -3 1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
