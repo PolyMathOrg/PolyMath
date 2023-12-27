@@ -13,7 +13,7 @@ PMPolynomialTest >> testIsZero [
 	self shouldnt: [ p2 isZero ]
 ]
 
-{ #category : #'algebra - addition' }
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialAddition [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1))
@@ -38,7 +38,7 @@ PMPolynomialTest >> testPolynomialDerivative [
 	self assert: (polynomial at: 4) equals: 0
 ]
 
-{ #category : #'algebra - division' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialDivision [
 	| pol1 pol2 polynomial |
 	pol1 := PMPolynomial coefficients: #(2 -3 1).
@@ -53,7 +53,7 @@ PMPolynomialTest >> testPolynomialDivision [
 	self assert: (polynomial at: 6) equals: 0
 ]
 
-{ #category : #'algebra - division' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialDivisionBug [
 	"identify an error when trying to create a zero dividend"
 
@@ -133,7 +133,7 @@ PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	self assert: (polynomial at: 5) equals: 0
 ]
 
-{ #category : #'algebra - multiplication' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplication [
 	"Code example 2.3"
 
@@ -145,7 +145,7 @@ PMPolynomialTest >> testPolynomialMultiplication [
 	self assert: product equals: expected.
 ]
 
-{ #category : #'algebra - multiplication' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
 
 	| expected p q |
@@ -160,7 +160,7 @@ PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
 	self assert: q * p equals: expected
 ]
 
-{ #category : #'algebra - addition' }
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialNumberAddition [
 	| polynomial |
 	polynomial := 2 + (PMPolynomial coefficients: #(2 -3 1)).
@@ -170,7 +170,7 @@ PMPolynomialTest >> testPolynomialNumberAddition [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'algebra - addition' }
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialNumberAdditionInverse [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) + 2.
@@ -180,7 +180,7 @@ PMPolynomialTest >> testPolynomialNumberAdditionInverse [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'algebra - division' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialNumberDivision [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) / 2.
@@ -190,7 +190,7 @@ PMPolynomialTest >> testPolynomialNumberDivision [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'algebra - multiplication' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplication [
 
 	| product expected |
@@ -200,7 +200,7 @@ PMPolynomialTest >> testPolynomialNumberMultiplication [
 	self assert: product equals: expected
 ]
 
-{ #category : #'algebra - multiplication' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 
 	| product expected |
@@ -210,7 +210,7 @@ PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 	self assert: product equals: expected
 ]
 
-{ #category : #'algebra - subtraction' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtraction [
 	| polynomial |
 	polynomial := 2 - (PMPolynomial coefficients: #(2 -3 1)).
@@ -220,7 +220,7 @@ PMPolynomialTest >> testPolynomialNumberSubtraction [
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'algebra - subtraction' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtractionInverse [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1)) - 2.
@@ -275,7 +275,7 @@ PMPolynomialTest >> testPolynomialRootsForLinear [
 	self assert: (roots at: 1) closeTo: -0.5
 ]
 
-{ #category : #'algebra - subtraction' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialSubtraction [
 	| polynomial |
 	polynomial := (PMPolynomial coefficients: #(2 -3 1))
