@@ -203,11 +203,11 @@ PMPolynomialTest >> testPolynomialNumberMultiplication [
 { #category : #'algebra - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 
-	| polynomial expected |
-	polynomial := (PMPolynomial coefficients: #( 2 -3 1 )) * 2.
+	| product expected |
+	product := (PMPolynomial coefficients: #( 2 -3 1 )) * 2.
 	
 	expected := PMPolynomial coefficients: #( 4 -6 2 ).
-	self assert: polynomial equals: expected
+	self assert: product equals: expected
 ]
 
 { #category : #'algebra - subtraction' }
