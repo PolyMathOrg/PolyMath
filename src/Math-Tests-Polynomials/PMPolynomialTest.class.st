@@ -203,8 +203,9 @@ PMPolynomialTest >> testPolynomialNumberAdditionInverse [
 { #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialNumberDivision [
 
-	| polynomial expected expectedCoefficients |
-	polynomial := (PMPolynomial coefficients: #( 2 -3 1 )) / 2.
+	| polynomial expected expectedCoefficients p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	polynomial := p / 2.
 	expectedCoefficients := Array with: 1 with: -3 / 2 with: 1 / 2.
 	expected := PMPolynomial coefficients: expectedCoefficients.
 	self assert: polynomial equals: expected.
