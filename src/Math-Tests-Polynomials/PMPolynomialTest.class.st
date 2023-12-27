@@ -229,11 +229,11 @@ PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
 
 { #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtraction [
-	| polynomial |
-	polynomial := 2 - (PMPolynomial coefficients: #(2 -3 1)).
-	self assert: (polynomial at: 0) equals: 0.
-	self assert: (polynomial at: 1) equals: 3.
-	self assert: (polynomial at: 2) equals: -1.
+
+	| polynomial expected |
+	polynomial := 2 - (PMPolynomial coefficients: #( 2 -3 1 )).
+	expected := PMPolynomial coefficients: #( 0 3 -1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
