@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Polynomials'
 }
 
-{ #category : #comparing }
+{ #category : #'testing - comparing' }
 PMPolynomialTest >> testIsZero [
 	| p1 p2 |
 	p1 := PMPolynomial coefficients: #(0 0 0 0 0).
@@ -25,7 +25,7 @@ PMPolynomialTest >> testPolynomialAddition [
 	self assert: (polynomial at: 4) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialDerivative [
 	"Code example 2.3"
 
@@ -63,7 +63,7 @@ PMPolynomialTest >> testPolynomialDivisionBug [
 	self shouldnt: [ pol1 / pol2 ] raise: Error
 ]
 
-{ #category : #arithmetic }
+{ #category : #'testing - arithmetic' }
 PMPolynomialTest >> testPolynomialDoubleDispatch [
 	| n p |
 	n := 3.2.
@@ -80,7 +80,7 @@ PMPolynomialTest >> testPolynomialDoubleDispatch [
 	self assert: n - p equals: (p - n) negated
 ]
 
-{ #category : #algebra }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialEvaluation [
 	"Code example 2.2"
 
@@ -89,7 +89,7 @@ PMPolynomialTest >> testPolynomialEvaluation [
 	self assert: 0 equals: (polynomial value: 1)
 ]
 
-{ #category : #comparing }
+{ #category : #'testing - comparing' }
 PMPolynomialTest >> testPolynomialHash [
 	"polynomial hash is hash of coefficient array"
 
@@ -105,7 +105,7 @@ PMPolynomialTest >> testPolynomialHash [
 	self assert: p3 hash equals: p2 hash
 ]
 
-{ #category : #algebra }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialIntegral [
 	"Code example 2.3"
 
@@ -119,7 +119,7 @@ PMPolynomialTest >> testPolynomialIntegral [
 	self assert: (polynomial at: 5) equals: 0
 ]
 
-{ #category : #algebra }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	"Code example 2.3"
 
