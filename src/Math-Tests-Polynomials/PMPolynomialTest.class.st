@@ -39,6 +39,10 @@ PMPolynomialTest >> testPolynomialAdditionIsCommutative [
 { #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialDerivative [
 	"Code example 2.3"
+	"
+	p(x) = x^3 + 2x^2 + 7x - 3, therefore:
+	p'(x) = 3x^2 + 4x + 7
+	"
 
 	| p derivative expectedDerivative |
 	p := PMPolynomial coefficients: #( -3 7 2 1 ).
