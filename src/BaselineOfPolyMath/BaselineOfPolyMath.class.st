@@ -27,6 +27,7 @@ BaselineOfPolyMath >> baseline: spec [
 			vectorMatrix: spec;
 			randomNumbers: spec;
 			datasets: spec;
+			roassal: spec;
 			dataFrameInspector: spec.
   
 		self 
@@ -215,6 +216,14 @@ BaselineOfPolyMath >> projectClass [
 BaselineOfPolyMath >> randomNumbers: spec [
 
 	spec baseline: 'MathRandomNumbers' with: [ spec repository: 'github://PolyMathOrg/random-numbers:v1.x.x/src' ]
+]
+
+{ #category : 'dependencies' }
+BaselineOfPolyMath >> roassal: spec [
+
+	spec 
+		baseline: 'Roassal' 
+		with: [ spec repository: 'github://pharo-graphics/Roassal' ].
 ]
 
 { #category : 'dependencies' }
