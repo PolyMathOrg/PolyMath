@@ -40,12 +40,15 @@ PMPolynomialTest >> testPolynomialAdditionIsCommutative [
 PMPolynomialTest >> testPolynomialDerivative [
 	"Code example 2.3"
 
-	| polynomial expectedDerivative |
-	polynomial := (PMPolynomial coefficients: #( -3 7 2 1 )) derivative.
+	| p derivative expectedDerivative |
+	p := PMPolynomial coefficients: #( -3 7 2 1 ).
+
+	derivative := p derivative.
+
 	expectedDerivative := PMPolynomial coefficients: #( 7 4 3 ).
-	self assert: polynomial equals: expectedDerivative.
-	self assert: (polynomial at: 3) equals: 0.
-	self assert: (polynomial at: 4) equals: 0
+	self assert: derivative equals: expectedDerivative.
+	self assert: (derivative at: 3) equals: 0.
+	self assert: (derivative at: 4) equals: 0
 ]
 
 { #category : #'testing - division' }
