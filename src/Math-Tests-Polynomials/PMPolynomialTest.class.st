@@ -143,15 +143,18 @@ PMPolynomialTest >> testPolynomialIntegral [
 PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	"Code example 2.3"
 
-	| polynomial arbitraryConstant integrand |
+	| polynomial arbitraryConstant integrand expectedCoefficients expected |
 	arbitraryConstant := 5.
 	integrand := PMPolynomial coefficients: #( -3 7 2 1 ).
 	polynomial := integrand integral: arbitraryConstant.
-	self assert: (polynomial at: 0) equals: 5.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 7 / 2.
-	self assert: (polynomial at: 3) equals: 2 / 3.
-	self assert: (polynomial at: 4) equals: 1 / 4.
+	expectedCoefficients := Array
+		                        with: 5
+		                        with: -3
+		                        with: 7 / 2
+		                        with: 2 / 3
+		                        with: 1 / 4.
+	expected := PMPolynomial coefficients: expectedCoefficients.
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 5) equals: 0
 ]
 
