@@ -202,7 +202,7 @@ BaselineOfPolyMath >> packages: spec [
 		with: [ spec requires: #( 'Math-TSNE' ) ];
 		package: 'Math-UtilsDataServer';
 		package: 'Math-Visualizations'
-		with: [ spec requires: #( 'Roassal' 'AIDatasets' 'AIDataInspector') ]
+		with: [ spec requires: #( 'AIDatasets' 'AIDataInspector') ]
 ]
 
 { #category : 'accessing' }
