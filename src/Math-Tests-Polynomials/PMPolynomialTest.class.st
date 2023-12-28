@@ -143,8 +143,10 @@ PMPolynomialTest >> testPolynomialIntegral [
 PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	"Code example 2.3"
 
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral: 5.
+	| polynomial arbitraryConstant p |
+	arbitraryConstant := 5.
+	p := PMPolynomial coefficients: #( -3 7 2 1 ).
+	polynomial := p integral: arbitraryConstant.
 	self assert: (polynomial at: 0) equals: 5.
 	self assert: (polynomial at: 1) equals: -3.
 	self assert: (polynomial at: 2) equals: 7 / 2.
