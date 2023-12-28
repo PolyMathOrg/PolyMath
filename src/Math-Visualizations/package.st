@@ -1,1 +1,1 @@
-Package { #name : 'Math-Visualizations' }
+Package { #name : #'Math-Visualizations' }

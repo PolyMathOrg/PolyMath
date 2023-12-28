@@ -1,6 +1,6 @@
-Extension { #name : 'PMPrincipalComponentAnalyserSVD' }
+Extension { #name : #PMPrincipalComponentAnalyserSVD }
 
-{ #category : '*Math-Visualizations' }
+{ #category : #'*Math-Visualizations' }
 PMPrincipalComponentAnalyserSVD class >> example1 [
 	"Extract 4 columns from original data"
 
@@ -28,7 +28,7 @@ PMPrincipalComponentAnalyserSVD class >> example1 [
 		addColumn: (irisDataFrame columnsFrom: 5 to: 5) asArrayOfColumns first
 		named: 'type'.
 		
-	roassalChart := RSCompositeChart new
+	roassalChart := self roassalChartClass new
 		title: 'PCA of Iris Data Frame';
 		addDecoration: (RSHorizontalTick new doNotUseNiceLabel asFloat: 3);
 		addDecoration: RSVerticalTick new;
@@ -49,7 +49,7 @@ PMPrincipalComponentAnalyserSVD class >> example1 [
 	
 ]
 
-{ #category : '*Math-Visualizations' }
+{ #category : #'*Math-Visualizations' }
 PMPrincipalComponentAnalyserSVD class >> example2 [
 	"Extract 4 columns from original data. This example uses Random colors for each flower type"
 
@@ -80,4 +80,13 @@ PMPrincipalComponentAnalyserSVD class >> example2 [
 	d1 	
 		openScatterPlotWithTitle: 'PCA of Iris data set' 
 		forColumn: 'type'.
+]
+
+{ #category : #'*Math-Visualizations' }
+PMPrincipalComponentAnalyserSVD class >> roassalChartClass [
+
+	^ SystemVersion current major < 12
+		ifTrue: [ Smalltalk at: #RSChart ]
+		ifFalse: [ Smalltalk at: #RSCompositeChart ]
+	
 ]
