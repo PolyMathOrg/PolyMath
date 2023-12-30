@@ -142,6 +142,7 @@ PMPolynomialTest >> testPolynomialIntegral [
 		                        with: 2 / 3
 		                        with: 1 / 4.
 	expected := PMPolynomial coefficients: expectedCoefficients.
+	self assert: polynomial equals: expected .
 	self assert: (polynomial at: 5) equals: 0
 ]
 
