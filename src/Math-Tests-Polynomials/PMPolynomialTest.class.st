@@ -126,9 +126,10 @@ PMPolynomialTest >> testPolynomialHash [
 { #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialIntegral [
 	"Code example 2.3"
+
 	"
 	Given p(x) = x^3 + 2x^2 + 7x - 3
-	then the integral is I(x) = 1/4 x^3 + 2/3 x^3 + 7/2 x^2 - 3x + C, where C is an arbitary
+	then the integral is I(x) = 1/4 x^4 + 2/3 x^3 + 7/2 x^2 - 3x + C, where C is an arbitary
 	constant.
 	"
 
