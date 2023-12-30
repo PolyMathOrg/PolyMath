@@ -155,7 +155,7 @@ PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	integrand := PMPolynomial coefficients: #( -3 7 2 1 ).
 	polynomial := integrand integral: arbitraryConstant.
 	expectedCoefficients := Array
-		                        with: 5
+		                        with: arbitraryConstant 
 		                        with: -3
 		                        with: 7 / 2
 		                        with: 2 / 3
