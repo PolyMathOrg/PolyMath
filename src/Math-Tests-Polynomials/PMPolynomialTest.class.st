@@ -4,7 +4,7 @@ Class {
 	#category : #'Math-Tests-Polynomials'
 }
 
-{ #category : #comparing }
+{ #category : #'testing - comparing' }
 PMPolynomialTest >> testIsZero [
 	| p1 p2 |
 	p1 := PMPolynomial coefficients: #(0 0 0 0 0).
@@ -13,32 +13,50 @@ PMPolynomialTest >> testIsZero [
 	self shouldnt: [ p2 isZero ]
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialAddition [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1))
-		+ (PMPolynomial coefficients: #(-3 7 2 1)).
-	self assert: (polynomial at: 0) equals: -1.
-	self assert: (polynomial at: 1) equals: 4.
-	self assert: (polynomial at: 2) equals: 3.
-	self assert: (polynomial at: 3) equals: 1.
+
+	| polynomial expected p q |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	q := PMPolynomial coefficients: #( -3 7 2 1 ).
+	polynomial := p + q.
+	expected := PMPolynomial coefficients: #( -1 4 3 1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 4) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - addition' }
+PMPolynomialTest >> testPolynomialAdditionIsCommutative [
+
+	| p q expected |
+	p := PMPolynomial coefficients: #(1 2 4 8).
+	q := PMPolynomial coefficients: #(-1 3 7 -4).
+
+	expected := PMPolynomial coefficients: #(0 5 11 4).	
+	self assert: p + q equals: expected.
+	self assert: q + p equals: expected
+]
+
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialDerivative [
 	"Code example 2.3"
+	"
+	p(x) = x^3 + 2x^2 + 7x - 3, therefore:
+	p'(x) = 3x^2 + 4x + 7
+	"
 
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) derivative.
-	self assert: (polynomial at: 0) equals: 7.
-	self assert: (polynomial at: 1) equals: 4.
-	self assert: (polynomial at: 2) equals: 3.
-	self assert: (polynomial at: 3) equals: 0.
-	self assert: (polynomial at: 4) equals: 0
+	| p derivative expectedDerivative |
+	p := PMPolynomial coefficients: #( -3 7 2 1 ).
+
+	derivative := p derivative.
+
+	expectedDerivative := PMPolynomial coefficients: #( 7 4 3 ).
+	self assert: derivative equals: expectedDerivative.
+	self assert: (derivative at: 3) equals: 0.
+	self assert: (derivative at: 4) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialDivision [
 	| pol1 pol2 polynomial |
 	pol1 := PMPolynomial coefficients: #(2 -3 1).
@@ -53,7 +71,7 @@ PMPolynomialTest >> testPolynomialDivision [
 	self assert: (polynomial at: 6) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialDivisionBug [
 	"identify an error when trying to create a zero dividend"
 
@@ -63,7 +81,7 @@ PMPolynomialTest >> testPolynomialDivisionBug [
 	self shouldnt: [ pol1 / pol2 ] raise: Error
 ]
 
-{ #category : #arithmetic }
+{ #category : #'testing - arithmetic' }
 PMPolynomialTest >> testPolynomialDoubleDispatch [
 	| n p |
 	n := 3.2.
@@ -80,7 +98,7 @@ PMPolynomialTest >> testPolynomialDoubleDispatch [
 	self assert: n - p equals: (p - n) negated
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialEvaluation [
 	"Code example 2.2"
 
@@ -89,7 +107,7 @@ PMPolynomialTest >> testPolynomialEvaluation [
 	self assert: 0 equals: (polynomial value: 1)
 ]
 
-{ #category : #comparing }
+{ #category : #'testing - comparing' }
 PMPolynomialTest >> testPolynomialHash [
 	"polynomial hash is hash of coefficient array"
 
@@ -105,118 +123,148 @@ PMPolynomialTest >> testPolynomialHash [
 	self assert: p3 hash equals: p2 hash
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialIntegral [
 	"Code example 2.3"
 
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral.
-	self assert: (polynomial at: 0) equals: 0.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 7 / 2.
-	self assert: (polynomial at: 3) equals: 2 / 3.
-	self assert: (polynomial at: 4) equals: 1 / 4.
+	"
+	Given p(x) = x^3 + 2x^2 + 7x - 3
+	then the integral is I(x) = 1/4 x^4 + 2/3 x^3 + 7/2 x^2 - 3x + C, where C is an arbitary
+	constant.
+	"
+
+	| polynomial expectedCoefficients expected |
+	polynomial := (PMPolynomial coefficients: #( -3 7 2 1 )) integral.
+	expectedCoefficients := Array
+		                        with: 0
+		                        with: -3
+		                        with: 7 / 2
+		                        with: 2 / 3
+		                        with: 1 / 4.
+	expected := PMPolynomial coefficients: expectedCoefficients.
+	self assert: polynomial equals: expected .
 	self assert: (polynomial at: 5) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - algebra' }
 PMPolynomialTest >> testPolynomialIntegralWithConstant [
 	"Code example 2.3"
 
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(-3 7 2 1)) integral: 5.
-	self assert: (polynomial at: 0) equals: 5.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 7 / 2.
-	self assert: (polynomial at: 3) equals: 2 / 3.
-	self assert: (polynomial at: 4) equals: 1 / 4.
+	| polynomial arbitraryConstant integrand expectedCoefficients expected |
+	arbitraryConstant := 5.
+	integrand := PMPolynomial coefficients: #( -3 7 2 1 ).
+	polynomial := integrand integral: arbitraryConstant.
+	expectedCoefficients := Array
+		                        with: arbitraryConstant 
+		                        with: -3
+		                        with: 7 / 2
+		                        with: 2 / 3
+		                        with: 1 / 4.
+	expected := PMPolynomial coefficients: expectedCoefficients.
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 5) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialMultiplication [
 	"Code example 2.3"
 
-	| pol1 pol2 polynomial |
-	pol1 := PMPolynomial coefficients: #(2 -3 1).
-	pol2 := PMPolynomial coefficients: #(-3 7 2 1).
-	polynomial := pol1 * pol2.
-	self assert: (polynomial at: 0) equals: -6.
-	self assert: (polynomial at: 1) equals: 23.
-	self assert: (polynomial at: 2) equals: -20.
-	self assert: (polynomial at: 3) equals: 3.
-	self assert: (polynomial at: 4) equals: -1.
-	self assert: (polynomial at: 5) equals: 1.
-	self assert: (polynomial at: 6) equals: 0
+	| p q product expected |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	q := PMPolynomial coefficients: #( -3 7 2 1 ).
+	product := p * q.
+	expected := PMPolynomial coefficients: #( -6 23 -20 3 -1 1 ).
+	self assert: product equals: expected.
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - multiplication' }
+PMPolynomialTest >> testPolynomialMultiplicationIsCommutative [
+
+	| expected p q |
+	"p(x) = (x - 3) (x - 4), q(x) = x^3 + 1 therefore:
+	
+	p(x) * q(x) = q(x) * p(x) = x^5 - 7 x^4 + 12 x^3 + x^2 - 7x + 12"
+	p := PMPolynomial coefficients: #( 12 -7 1 ).
+	q := PMPolynomial coefficients: #( 1 0 0 1 ).
+	
+	expected := PMPolynomial coefficients: #( 12 -7 1 12 -7 1 ).
+	self assert: p * q equals: expected.
+	self assert: q * p equals: expected
+]
+
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialNumberAddition [
-	| polynomial |
-	polynomial := 2 + (PMPolynomial coefficients: #(2 -3 1)).
-	self assert: (polynomial at: 0) equals: 4.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 1.
+
+	| polynomial expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	polynomial := 2 + p.
+	expected := PMPolynomial coefficients: #( 4 -3 1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - addition' }
 PMPolynomialTest >> testPolynomialNumberAdditionInverse [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1)) + 2.
-	self assert: (polynomial at: 0) equals: 4.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 1.
+
+	| polynomial expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	polynomial := p + 2.
+	expected := PMPolynomial coefficients: #( 4 -3 1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - division' }
 PMPolynomialTest >> testPolynomialNumberDivision [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1)) / 2.
-	self assert: (polynomial at: 0) equals: 1.
-	self assert: (polynomial at: 1) equals: -3 / 2.
-	self assert: (polynomial at: 2) equals: 1 / 2.
+
+	| polynomial expected expectedCoefficients p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	polynomial := p / 2.
+	expectedCoefficients := Array with: 1 with: -3 / 2 with: 1 / 2.
+	expected := PMPolynomial coefficients: expectedCoefficients.
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplication [
-	| polynomial |
-	polynomial := 2 * (PMPolynomial coefficients: #(2 -3 1)).
-	self assert: (polynomial at: 0) equals: 4.
-	self assert: (polynomial at: 1) equals: -6.
-	self assert: (polynomial at: 2) equals: 2.
-	self assert: (polynomial at: 3) equals: 0
+
+	| product expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	product := 2 * p.
+
+	expected := PMPolynomial coefficients: #( 4 -6 2 ).
+	self assert: product equals: expected
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - multiplication' }
 PMPolynomialTest >> testPolynomialNumberMultiplicationInverse [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1)) * 2.
-	self assert: (polynomial at: 0) equals: 4.
-	self assert: (polynomial at: 1) equals: -6.
-	self assert: (polynomial at: 2) equals: 2.
-	self assert: (polynomial at: 3) equals: 0
+
+	| product expected p |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	product := p * 2.
+
+	expected := PMPolynomial coefficients: #( 4 -6 2 ).
+	self assert: product equals: expected
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtraction [
-	| polynomial |
-	polynomial := 2 - (PMPolynomial coefficients: #(2 -3 1)).
-	self assert: (polynomial at: 0) equals: 0.
-	self assert: (polynomial at: 1) equals: 3.
-	self assert: (polynomial at: 2) equals: -1.
+
+	| polynomial expected |
+	polynomial := 2 - (PMPolynomial coefficients: #( 2 -3 1 )).
+	expected := PMPolynomial coefficients: #( 0 3 -1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialNumberSubtractionInverse [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1)) - 2.
-	self assert: (polynomial at: 0) equals: 0.
-	self assert: (polynomial at: 1) equals: -3.
-	self assert: (polynomial at: 2) equals: 1.
+
+	| polynomial expected |
+	polynomial := (PMPolynomial coefficients: #( 2 -3 1 )) - 2.
+	expected := PMPolynomial coefficients: #( 0 -3 1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 3) equals: 0
 ]
 
@@ -265,15 +313,15 @@ PMPolynomialTest >> testPolynomialRootsForLinear [
 	self assert: (roots at: 1) closeTo: -0.5
 ]
 
-{ #category : #'function evaluation' }
+{ #category : #'testing - subtraction' }
 PMPolynomialTest >> testPolynomialSubtraction [
-	| polynomial |
-	polynomial := (PMPolynomial coefficients: #(2 -3 1))
-		- (PMPolynomial coefficients: #(-3 7 2 1)).
-	self assert: (polynomial at: 0) equals: 5.
-	self assert: (polynomial at: 1) equals: -10.
-	self assert: (polynomial at: 2) equals: -1.
-	self assert: (polynomial at: 3) equals: -1.
+
+	| polynomial p q expected |
+	p := PMPolynomial coefficients: #( 2 -3 1 ).
+	q := PMPolynomial coefficients: #( -3 7 2 1 ).
+	polynomial := p - q.
+	expected := PMPolynomial coefficients: #( 5 -10 -1 -1 ).
+	self assert: polynomial equals: expected.
 	self assert: (polynomial at: 4) equals: 0
 ]
 
