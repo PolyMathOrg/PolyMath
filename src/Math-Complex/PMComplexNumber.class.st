@@ -484,7 +484,7 @@ PMComplexNumber >> divideFastAndSecureBy: anObject [
 				                newReal := r * real + imaginary / d.
 				                r * imaginary - real / d ].
 
-		^ PMComplexNumber real: newReal imaginary: newImaginary ].
+		^ self class real: newReal imaginary: newImaginary ].
 	^ anObject adaptToComplex: self andSend: #/
 ]
 
@@ -507,7 +507,7 @@ PMComplexNumber >> divideSecureBy: anObject [
 
 		newReal := ars*brs + (ais*bis) /s.
 		newImaginary := ais*brs - (ars*bis)/s.
-		^ PMComplexNumber real: newReal imaginary: newImaginary].
+		^ self class real: newReal imaginary: newImaginary].
 	^ anObject adaptToComplex: self andSend: #/
 ]
 
