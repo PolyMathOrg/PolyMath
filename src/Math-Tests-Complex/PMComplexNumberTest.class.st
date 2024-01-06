@@ -639,15 +639,40 @@ PMComplexNumberTest >> testRaisedTo [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToInteger [
-	| c c3 z expected |
+
+	| c c3 |
 	c := 5 - 6 i.
 	c3 := c * c * c.
-	self assert: (c raisedToInteger: -3) equals: c3 reciprocal.
-	
-	z := (3 sqrt / 2) + (1/2) i.
+	self assert: (c raisedToInteger: -3) equals: c3 reciprocal
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToNegativeInteger [
+
+	| z expected |
+	z := 3 sqrt / 2 + (1 / 2) i.
+	"Here, we appeal to de Moivre's theorem to compute the expected answer"
+	expected := 0  - 1 i.
+	self assert: (z raisedTo: -3) closeTo: expected
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToPositiveNumber [
+| z expected |
+z := (3 sqrt / 2) + (1/2) i.
 	"Here, we appeal to de Moivre's theorem to compute the expected answer"
 	expected := 0 + 1 i.
 	self assert: (z raisedTo: 3) closeTo: expected.
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToZero [
+
+	| z expected |
+	z := 3 sqrt / 2 + (1 / 2) i.
+	"Here, we appeal to de Moivre's theorem to compute the expected answer"
+	expected := 1 .
+	self assert: (z raisedTo: 0) equals: expected
 ]
 
 { #category : #tests }
