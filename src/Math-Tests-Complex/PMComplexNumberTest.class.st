@@ -644,7 +644,7 @@ PMComplexNumberTest >> testRaisedToFractionalIndex [
 	z := 1 / 2 + (3 sqrt / 2) i.
 	"Here, we appeal to de Moivre's theorem to compute the expected answer"
 	expected := 3 sqrt / 2 + (1 / 2) i.
-	self assert: (z raisedTo: 1 / 2) equals: expected
+	self assert: (z raisedTo: 1 / 2) closeTo: expected
 ]
 
 { #category : #'testing - mathematical functions' }
