@@ -630,12 +630,11 @@ PMComplexNumberTest >> testQuotientsOfComplexNumbersCannotBeWritten [
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedTo [
 
-	| c squareRootOfZSquared z |
-	c := 5 - 6 i.
+	| expected squareRootOfZSquared z |
 	z := 5 - 6 i.
-	squareRootOfZSquared := (c raisedTo: 1 / 2) raisedTo: 2.
-	self assert: squareRootOfZSquared real closeTo: c real.
-	self assert: squareRootOfZSquared imaginary closeTo: c imaginary
+	squareRootOfZSquared := (z raisedTo: 1 / 2) raisedTo: 2.
+	expected := 5 - 6 i.
+	self assert: squareRootOfZSquared closeTo: expected
 ]
 
 { #category : #'testing - mathematical functions' }
