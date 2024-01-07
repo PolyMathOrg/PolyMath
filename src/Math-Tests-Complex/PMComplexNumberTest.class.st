@@ -965,3 +965,12 @@ PMComplexNumberTest >> testZeroComplexNumberIsEqualToIntegerZero [
 PMComplexNumberTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
 	self should: [ PMComplexNumber zero reciprocal ] raise: ZeroDivide
 ]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testZeroRaisedToPowerOfZero [
+
+	| z expected |
+	z := PMComplexNumber zero.
+	expected := PMComplexNumber one.
+	self assert: (z raisedTo: 0) equals: expected
+]
