@@ -967,6 +967,15 @@ PMComplexNumberTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
 ]
 
 { #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testZeroRaisedToNegativePowerRaisesAZeroDivisionError [
+
+	| z expected |
+	z := PMComplexNumber zero.
+	expected := 0 + 1 i.
+	self should: [ z raisedTo: -3 ] raise: ZeroDivide
+]
+
+{ #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testZeroRaisedToPowerOfZero [
 
 	| z expected |
