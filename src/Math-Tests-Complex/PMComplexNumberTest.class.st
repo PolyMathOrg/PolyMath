@@ -646,6 +646,14 @@ PMComplexNumberTest >> testRaisedToInteger [
 	self assert: c3 reciprocal equals: (c raisedToInteger: -3)
 ]
 
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToPositiveInteger [
+	| z zCubed |
+	z := (3 sqrt / 2) + (1 / 2) i.
+	zCubed := (z raisedTo: 3) .
+	self assert: zCubed closeTo: (0 + 1 i).
+]
+
 { #category : #tests }
 PMComplexNumberTest >> testRandom [
 	| random c r |
