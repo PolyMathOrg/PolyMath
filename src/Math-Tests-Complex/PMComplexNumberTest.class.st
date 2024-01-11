@@ -637,7 +637,7 @@ PMComplexNumberTest >> testRaisedTo [
 	self assert: c3 imaginary closeTo: c imaginary
 ]
 
-{ #category : #tests }
+{ #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToFractionalPower [
 
 	| z expected |
