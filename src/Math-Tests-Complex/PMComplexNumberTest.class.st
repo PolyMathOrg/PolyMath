@@ -637,6 +637,15 @@ PMComplexNumberTest >> testRaisedTo [
 	self assert: c3 imaginary closeTo: c imaginary
 ]
 
+{ #category : #tests }
+PMComplexNumberTest >> testRaisedToFractionalPower [
+
+	| z expected |
+	z := 0 + 1 i.
+	expected := 3 sqrt / 2 + (1 / 2) i.
+	self assert: (z raisedTo: 1 / 3) closeTo: expected 
+]
+
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToInteger [
 	| c c3 |
@@ -644,6 +653,13 @@ PMComplexNumberTest >> testRaisedToInteger [
 	c3 := c * c * c.
 	self assert: c3 equals: (c raisedToInteger: 3).
 	self assert: c3 reciprocal equals: (c raisedToInteger: -3)
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToNegativeInteger [
+	| z |
+	z := (3 sqrt / 2) + (1 / 2) i.
+	self assert: (z raisedTo: -3) closeTo: (0 - 1 i).
 ]
 
 { #category : #'testing - mathematical functions' }
