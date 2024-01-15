@@ -656,6 +656,13 @@ PMComplexNumberTest >> testRaisedToInteger [
 ]
 
 { #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToIntegerWithFloats [
+	|z|
+	z := 5 - 9 i.
+	self should: [ z raisedToInteger: 3.0 ] raise: ArithmeticError .
+]
+
+{ #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToNegativeInteger [
 	"
 	Suppose z = cos(pi / 3) + i sin(pi / 3). By De Moivre's theorem, z**-3 is
