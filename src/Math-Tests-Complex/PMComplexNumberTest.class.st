@@ -657,6 +657,11 @@ PMComplexNumberTest >> testRaisedToInteger [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToNegativeInteger [
+	"
+	Suppose z = cos(pi / 3) + i sin(pi / 3). By De Moivre's theorem, z**-3 is
+	z ** 3 = cos(-3 pi / 3) + i sin(-3 pi / 3) = cos(-pi) + sin(pi) = cos(pi) - i sin(pi)
+	z ** 3 = 0 - i
+	"
 	| z |
 	z := (1 / 2) + (3 sqrt / 2) i.
 	self assert: (z raisedTo: -3) closeTo: (-1 + 0 i).
@@ -665,6 +670,10 @@ PMComplexNumberTest >> testRaisedToNegativeInteger [
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToPositiveInteger [
 	| z zCubed |
+	"
+	Suppose z = cos(pi / 6) + i sin(pi / 6). By De Moivre's theorem, z**3 is
+	z ** 3 = cos(3 pi / 6) + i sin(3 pi / 6) = cos(pi / 2) + sin(pi / 2) = 0 + i
+	"
 	z := (3 sqrt / 2) + (1 / 2) i.
 	zCubed := (z raisedTo: 3) .
 	self assert: zCubed closeTo: (0 + 1 i).
