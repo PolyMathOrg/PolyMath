@@ -880,8 +880,7 @@ PMComplexNumberTest >> testSquared [
 	| c c2 |
 	c := 6 - 6 i.
 	c2 := c squared.
-	self assert: c2 imaginary equals: -72.
-	self assert: c2 real equals: 0
+	self assert: c2 equals: (0 - 72 i)
 ]
 
 { #category : #'testing - arithmetic' }
