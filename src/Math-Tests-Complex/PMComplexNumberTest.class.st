@@ -877,10 +877,10 @@ PMComplexNumberTest >> testSquareRootOfZeroIsZero [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testSquared [
-	| c c2 |
+
+	| c |
 	c := 6 - 6 i.
-	c2 := c squared.
-	self assert: c2 equals: (0 - 72 i)
+	self assert: c squared equals: 0 - 72 i
 ]
 
 { #category : #'testing - arithmetic' }
