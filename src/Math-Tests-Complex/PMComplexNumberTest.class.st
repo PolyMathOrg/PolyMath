@@ -656,7 +656,7 @@ PMComplexNumberTest >> testRaisedToInteger [
 ]
 
 { #category : #'testing - mathematical functions' }
-PMComplexNumberTest >> testRaisedToIntegerWithFloats [
+PMComplexNumberTest >> testRaisedToIntegerWithNonIntegersRaisesAnError [
 	|z|
 	z := 5 - 9 i.
 	self should: [ z raisedToInteger: 3.0 ] raise: ArithmeticError .
