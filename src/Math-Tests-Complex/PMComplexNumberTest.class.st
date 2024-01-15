@@ -254,6 +254,14 @@ PMComplexNumberTest >> testComplexNumberAndIntegerAreUnequalEvenIfRealPartIsEqua
 ]
 
 { #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testComplexNumberZeroRaisedToThePowerOfZero [
+
+	| zeroRaisedToZero |
+	zeroRaisedToZero := (PMComplexNumber zero) raisedTo: 0.
+	self assert: zeroRaisedToZero equals: PMComplexNumber one.
+]
+
+{ #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testCos [
 
 	| c c2 |
