@@ -658,8 +658,8 @@ PMComplexNumberTest >> testRaisedToInteger [
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToNegativeInteger [
 	| z |
-	z := (3 sqrt / 2) + (1 / 2) i.
-	self assert: (z raisedTo: -3) closeTo: (0 - 1 i).
+	z := (1 / 2) + (3 sqrt / 2) i.
+	self assert: (z raisedTo: -3) closeTo: (-1 + 0 i).
 ]
 
 { #category : #'testing - mathematical functions' }
