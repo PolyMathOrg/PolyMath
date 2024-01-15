@@ -660,7 +660,7 @@ PMComplexNumberTest >> testRaisedToNegativeInteger [
 	"
 	Suppose z = cos(pi / 3) + i sin(pi / 3). By De Moivre's theorem, z**-3 is
 	z ** 3 = cos(-3 pi / 3) + i sin(-3 pi / 3) = cos(-pi) + sin(pi) = cos(pi) - i sin(pi)
-	z ** 3 = 0 - i
+	z ** 3 = -1 + 0 i
 	"
 	| z |
 	z := (1 / 2) + (3 sqrt / 2) i.
