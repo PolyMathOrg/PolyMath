@@ -938,7 +938,7 @@ PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 ]
 
 { #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testWritingComplexNumbersInRadialCoordinates [
+PMComplexNumberTest >> testWritingComplexNumbersInPolarCoordinates [
 	| c |
 
 	c := PMComplexNumber abs: 5 arg: Float pi / 2.
