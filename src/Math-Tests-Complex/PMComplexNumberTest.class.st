@@ -308,23 +308,6 @@ PMComplexNumberTest >> testCosh2MinusSinh2 [
 			self assert: (c cosh squared - c sinh squared) imaginary closeTo: 0.0 ] ]
 ]
 
-{ #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testCreation [
-	| c |
-	c := 5 i.
-	self assert: c real equals: 0.
-	self assert: c imaginary equals: 5.
-	c := 6 + 7 i.
-	self assert: c real equals: 6.
-	self assert: c imaginary equals: 7.
-	c := 5.6 - 8 i.
-	self assert: c real equals: 5.6.
-	self assert: c imaginary equals: -8.
-	c := PMComplexNumber real: 10 imaginary: 5.
-	self assert: c real equals: 10.
-	self assert: c imaginary equals: 5.
-]
-
 { #category : #'testing - arithmetic' }
 PMComplexNumberTest >> testDividingALargeComplexNumbersByItself [
 	| c1 c2 quotient |
@@ -935,6 +918,23 @@ PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
  	w := -7 + 3 i.
 
  	self deny: z equals: w
+]
+
+{ #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testWritingComplexNumbersInCartesianCoordinates [
+	| c |
+	c := 5 i.
+	self assert: c real equals: 0.
+	self assert: c imaginary equals: 5.
+	c := 6 + 7 i.
+	self assert: c real equals: 6.
+	self assert: c imaginary equals: 7.
+	c := 5.6 - 8 i.
+	self assert: c real equals: 5.6.
+	self assert: c imaginary equals: -8.
+	c := PMComplexNumber real: 10 imaginary: 5.
+	self assert: c real equals: 10.
+	self assert: c imaginary equals: 5.
 ]
 
 { #category : #'testing - expressing complex numbers' }
