@@ -206,7 +206,11 @@ PMComplexNumberTest >> testArgumentOfPureNegativeImaginaryNumber [
 
 { #category : #'testing - bugs' }
 PMComplexNumberTest >> testBug1 [
-	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
+	| logOfRootTwo logRootTwo |
+	logOfRootTwo := (0.5 * (2 + 0 i) ln).
+	self assert: logOfRootTwo exp closeTo: 2 sqrt + 0.0 i.
+	logRootTwo := (0.5 * 2 ln).
+	self assert: logOfRootTwo exp equals: logRootTwo exp
 ]
 
 { #category : #'testing - close to' }
