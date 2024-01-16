@@ -323,9 +323,6 @@ PMComplexNumberTest >> testCreation [
 	c := PMComplexNumber real: 10 imaginary: 5.
 	self assert: c real equals: 10.
 	self assert: c imaginary equals: 5.
-	c := PMComplexNumber abs: 5 arg: Float pi / 2.
-	self assert: c real rounded equals: 0.
-	self assert: c imaginary equals: 5
 ]
 
 { #category : #'testing - arithmetic' }
@@ -938,6 +935,15 @@ PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
  	w := -7 + 3 i.
 
  	self deny: z equals: w
+]
+
+{ #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testWritingComplexNumbersInRadialCoordinates [
+	| c |
+
+	c := PMComplexNumber abs: 5 arg: Float pi / 2.
+	self assert: c real rounded equals: 0.
+	self assert: c imaginary equals: 5
 ]
 
 { #category : #'testing - expressing complex numbers' }
