@@ -622,7 +622,7 @@ PMComplexNumber >> productWithVector: aVector [
 
 { #category : #'mathematical functions' }
 PMComplexNumber >> raisedTo: index [
-	"Answer the receiver raised to aNumber."
+	"Answer the receiver raised to the power of an index."
 
 	index isInteger ifTrue: [ ^ self raisedToInteger: index ].
 
