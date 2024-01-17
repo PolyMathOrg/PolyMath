@@ -624,7 +624,7 @@ PMComplexNumber >> productWithVector: aVector [
 PMComplexNumber >> raisedTo: aNumber [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+	aNumber isInteger ifTrue: [ ^ self raisedToInteger: aNumber ].
 
 	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
 	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
