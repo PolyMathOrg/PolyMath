@@ -672,10 +672,10 @@ PMComplexNumber >> real [
 ]
 
 { #category : #private }
-PMComplexNumber >> real: aNumber1 imaginary: aNumber2 [
+PMComplexNumber >> real: realPart imaginary: imaginaryPart [
 	"Private - initialize the real and imaginary parts of a Complex"
-	real := aNumber1.
-	imaginary := aNumber2
+	real := realPart.
+	imaginary := imaginaryPart
 ]
 
 { #category : #arithmetic }
