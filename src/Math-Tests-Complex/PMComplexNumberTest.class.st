@@ -990,3 +990,13 @@ PMComplexNumberTest >> testZeroRaisedToThePowerOfZero [
 	zeroRaisedToZero := (PMComplexNumber zero) raisedTo: 0.
 	self assert: zeroRaisedToZero equals: PMComplexNumber one.
 ]
+
+{ #category : #tests }
+PMComplexNumberTest >> testZeroToThePowerOfZero [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"
+
+	| zero |
+	zero := PMComplexNumber zero.
+	self assert: (zero raisedTo: 0) equals: PMComplexNumber one.
+]
