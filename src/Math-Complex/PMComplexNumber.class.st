@@ -626,9 +626,9 @@ PMComplexNumber >> raisedTo: index [
 
 	index isInteger ifTrue: [ ^ self raisedToInteger: index ].
 
-	0 = index ifTrue: [ ^ self class one ]. "Special case of exponent=0"
-	1 = index ifTrue: [ ^ self ]. "Special case of exponent=1"
-	0 = self ifTrue: [ "Special case of self = 0"
+	0 = index ifTrue: [ ^ self class one ].
+	1 = index ifTrue: [ ^ self ].
+	0 = self ifTrue: [
 		^ index < 0
 			  ifTrue: [ (ZeroDivide dividend: self) signal ]
 			  ifFalse: [ self ] ].

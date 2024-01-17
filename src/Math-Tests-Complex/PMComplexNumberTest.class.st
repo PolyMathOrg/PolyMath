@@ -670,6 +670,13 @@ PMComplexNumberTest >> testRaisedToPositiveInteger [
 	self assert: zCubed closeTo: (0 + 1 i).
 ]
 
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisingZeroToThePowerOfNegativeIndex [
+	| zero |
+	zero := PMComplexNumber zero.
+	self should: [ zero raisedTo: -4 ] raise: ZeroDivide  
+]
+
 { #category : #tests }
 PMComplexNumberTest >> testRandom [
 	| random c r |
