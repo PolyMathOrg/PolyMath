@@ -621,18 +621,18 @@ PMComplexNumber >> productWithVector: aVector [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedTo: aNumber [
+PMComplexNumber >> raisedTo: index [
 	"Answer the receiver raised to aNumber."
 
-	aNumber isInteger ifTrue: [ ^ self raisedToInteger: aNumber ].
+	index isInteger ifTrue: [ ^ self raisedToInteger: index ].
 
-	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
-	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
+	0 = index ifTrue: [ ^ self class one ]. "Special case of exponent=0"
+	1 = index ifTrue: [ ^ self ]. "Special case of exponent=1"
 	0 = self ifTrue: [ "Special case of self = 0"
-		^ aNumber < 0
+		^ index < 0
 			  ifTrue: [ (ZeroDivide dividend: self) signal ]
 			  ifFalse: [ self ] ].
-	^ (aNumber * self ln) exp "Otherwise use logarithms"
+	^ (index * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }
