@@ -621,18 +621,18 @@ PMComplexNumber >> productWithVector: aVector [
 ]
 
 { #category : #'mathematical functions' }
-PMComplexNumber >> raisedTo: aNumber [
-	"Answer the receiver raised to aNumber."
+PMComplexNumber >> raisedTo: index [
+	"Answer the receiver raised to the power of an index."
 
-	aNumber isInteger ifTrue: [ "Do the special case of integer power" ^ self raisedToInteger: aNumber ].
+	index isInteger ifTrue: [ ^ self raisedToInteger: index ].
 
-	0 = aNumber ifTrue: [ ^ self class one ]. "Special case of exponent=0"
-	1 = aNumber ifTrue: [ ^ self ]. "Special case of exponent=1"
-	0 = self ifTrue: [ "Special case of self = 0"
-		^ aNumber < 0
+	0 = index ifTrue: [ ^ self class one ].
+	1 = index ifTrue: [ ^ self ].
+	0 = self ifTrue: [
+		^ index < 0
 			  ifTrue: [ (ZeroDivide dividend: self) signal ]
 			  ifFalse: [ self ] ].
-	^ (aNumber * self ln) exp "Otherwise use logarithms"
+	^ (index * self ln) exp "Otherwise use logarithms"
 ]
 
 { #category : #'mathematical functions' }
@@ -672,10 +672,10 @@ PMComplexNumber >> real [
 ]
 
 { #category : #private }
-PMComplexNumber >> real: aNumber1 imaginary: aNumber2 [
+PMComplexNumber >> real: realPart imaginary: imaginaryPart [
 	"Private - initialize the real and imaginary parts of a Complex"
-	real := aNumber1.
-	imaginary := aNumber2
+	real := realPart.
+	imaginary := imaginaryPart
 ]
 
 { #category : #arithmetic }

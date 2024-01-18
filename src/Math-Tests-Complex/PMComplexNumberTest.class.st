@@ -17,7 +17,7 @@ PMComplexNumberTest >> testAbs [
 	"self debug: #testAbs"
 
 	| c |
-	c := 6 i: -6.
+	c := 6 - 6 i.
 	self assert: c abs equals: 72 sqrt
 ]
 
@@ -206,7 +206,11 @@ PMComplexNumberTest >> testArgumentOfPureNegativeImaginaryNumber [
 
 { #category : #'testing - bugs' }
 PMComplexNumberTest >> testBug1 [
-	self assert: (0.5 * (2 + 0 i) ln) exp equals: (0.5 * 2 ln) exp
+	| logOfRootTwo logRootTwo |
+	logOfRootTwo := (0.5 * (2 + 0 i) ln).
+	self assert: logOfRootTwo exp closeTo: 2 sqrt + 0.0 i.
+	logRootTwo := (0.5 * 2 ln).
+	self assert: logOfRootTwo exp equals: logRootTwo exp
 ]
 
 { #category : #'testing - close to' }
@@ -302,26 +306,6 @@ PMComplexNumberTest >> testCosh2MinusSinh2 [
 			c := real + imag i.
 			self assert: (c cosh squared - c sinh squared) real closeTo: 1.
 			self assert: (c cosh squared - c sinh squared) imaginary closeTo: 0.0 ] ]
-]
-
-{ #category : #'testing - expressing complex numbers' }
-PMComplexNumberTest >> testCreation [
-	| c |
-	c := 5 i.
-	self assert: c real equals: 0.
-	self assert: c imaginary equals: 5.
-	c := 6 + 7 i.
-	self assert: c real equals: 6.
-	self assert: c imaginary equals: 7.
-	c := 5.6 - 8 i.
-	self assert: c real equals: 5.6.
-	self assert: c imaginary equals: -8.
-	c := PMComplexNumber real: 10 imaginary: 5.
-	self assert: c real equals: 10.
-	self assert: c imaginary equals: 5.
-	c := PMComplexNumber abs: 5 arg: Float pi / 2.
-	self assert: c real rounded equals: 0.
-	self assert: c imaginary equals: 5
 ]
 
 { #category : #'testing - arithmetic' }
@@ -638,12 +622,59 @@ PMComplexNumberTest >> testRaisedTo [
 ]
 
 { #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToFractionalPower [
+
+	| z expected |
+	z := 0 + 1 i.
+	expected := 3 sqrt / 2 + (1 / 2) i.
+	self assert: (z raisedTo: 1 / 3) closeTo: expected 
+]
+
+{ #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testRaisedToInteger [
 	| c c3 |
 	c := 5 - 6 i.
 	c3 := c * c * c.
 	self assert: c3 equals: (c raisedToInteger: 3).
 	self assert: c3 reciprocal equals: (c raisedToInteger: -3)
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToIntegerWithNonIntegersRaisesAnError [
+	|z|
+	z := 5 - 9 i.
+	self should: [ z raisedToInteger: 3.0 ] raise: ArithmeticError .
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToNegativeInteger [
+	"
+	Suppose z = cos(pi / 3) + i sin(pi / 3). By De Moivre's theorem, z**-3 is
+	z ** 3 = cos(-3 pi / 3) + i sin(-3 pi / 3) = cos(-pi) + sin(pi) = cos(pi) - i sin(pi)
+	z ** 3 = -1 + 0 i
+	"
+	| z |
+	z := (1 / 2) + (3 sqrt / 2) i.
+	self assert: (z raisedTo: -3) closeTo: (-1 + 0 i).
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisedToPositiveInteger [
+	| z zCubed |
+	"
+	Suppose z = cos(pi / 6) + i sin(pi / 6). By De Moivre's theorem, z**3 is
+	z ** 3 = cos(3 pi / 6) + i sin(3 pi / 6) = cos(pi / 2) + sin(pi / 2) = 0 + i
+	"
+	z := (3 sqrt / 2) + (1 / 2) i.
+	zCubed := (z raisedTo: 3) .
+	self assert: zCubed closeTo: (0 + 1 i).
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testRaisingZeroToThePowerOfNegativeIndex [
+	| zero |
+	zero := PMComplexNumber zero.
+	self should: [ zero raisedTo: -4 ] raise: ZeroDivide  
 ]
 
 { #category : #tests }
@@ -837,11 +868,10 @@ PMComplexNumberTest >> testSquareRootOfZeroIsZero [
 
 { #category : #'testing - mathematical functions' }
 PMComplexNumberTest >> testSquared [
-	| c c2 |
+
+	| c |
 	c := 6 - 6 i.
-	c2 := c squared.
-	self assert: c2 imaginary equals: -72.
-	self assert: c2 real equals: 0
+	self assert: c squared equals: 0 - 72 i
 ]
 
 { #category : #'testing - arithmetic' }
@@ -898,6 +928,32 @@ PMComplexNumberTest >> testTwoComplexNumbersWithDifferentRealPartsAreNotEqual [
 ]
 
 { #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testWritingComplexNumbersInCartesianCoordinates [
+	| c |
+	c := 5 i.
+	self assert: c real equals: 0.
+	self assert: c imaginary equals: 5.
+	c := 6 + 7 i.
+	self assert: c real equals: 6.
+	self assert: c imaginary equals: 7.
+	c := 5.6 - 8 i.
+	self assert: c real equals: 5.6.
+	self assert: c imaginary equals: -8.
+	c := PMComplexNumber real: 10 imaginary: 5.
+	self assert: c real equals: 10.
+	self assert: c imaginary equals: 5.
+]
+
+{ #category : #'testing - expressing complex numbers' }
+PMComplexNumberTest >> testWritingComplexNumbersInPolarCoordinates [
+	| c |
+
+	c := PMComplexNumber abs: 5 arg: Float pi / 2.
+	self assert: c real rounded equals: 0.
+	self assert: c imaginary equals: 5
+]
+
+{ #category : #'testing - expressing complex numbers' }
 PMComplexNumberTest >> testWritingComplexNumbersWhoseRealAndImaginaryPartsAreFractions [
 	| z |
 	z := PMComplexNumber real: 3 / 5 imaginary: 4 / 5.
@@ -925,4 +981,22 @@ PMComplexNumberTest >> testZeroComplexNumberIsEqualToIntegerZero [
 { #category : #'testing - arithmetic' }
 PMComplexNumberTest >> testZeroComplexNumbersDoNotHaveAReciprocal [
 	self should: [ PMComplexNumber zero reciprocal ] raise: ZeroDivide
+]
+
+{ #category : #'testing - mathematical functions' }
+PMComplexNumberTest >> testZeroRaisedToThePowerOfZero [
+
+	| zeroRaisedToZero |
+	zeroRaisedToZero := (PMComplexNumber zero) raisedTo: 0.
+	self assert: zeroRaisedToZero equals: PMComplexNumber one.
+]
+
+{ #category : #tests }
+PMComplexNumberTest >> testZeroToThePowerOfZero [
+	"comment stating purpose of instance-side method"
+	"scope: class-variables  &  instance-variables"
+
+	| zero |
+	zero := PMComplexNumber zero.
+	self assert: (zero raisedTo: 0) equals: PMComplexNumber one.
 ]
