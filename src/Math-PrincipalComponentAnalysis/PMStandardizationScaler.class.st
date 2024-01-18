@@ -1,13 +1,14 @@
 Class {
-	#name : #PMStandardizationScaler,
-	#superclass : #PMDataTransformer,
+	#name : 'PMStandardizationScaler',
+	#superclass : 'PMDataTransformer',
 	#instVars : [
 		'accumulator'
 	],
-	#category : #'Math-PrincipalComponentAnalysis'
+	#category : 'Math-PrincipalComponentAnalysis',
+	#package : 'Math-PrincipalComponentAnalysis'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMStandardizationScaler >> fit: aPMMatrix [
 	"Compute the mean and the scale of a PMMatrix (in order to have a std of 1)"
 
@@ -15,12 +16,12 @@ PMStandardizationScaler >> fit: aPMMatrix [
 	aPMMatrix rowsDo: [ :each | accumulator accumulate: each ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMStandardizationScaler >> mean [
 	^ accumulator average
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMStandardizationScaler >> scale [
 	^ self variance collect: [ :element |
 		| root |
@@ -29,7 +30,7 @@ PMStandardizationScaler >> scale [
 		 ]
 ]
 
-{ #category : #transforming }
+{ #category : 'transforming' }
 PMStandardizationScaler >> transform: aPMMatrix [
 	"Perform standardization by centering and scaling"
 
@@ -39,7 +40,7 @@ PMStandardizationScaler >> transform: aPMMatrix [
 	^ PMMatrix rows: ((PMMatrix rows: (aPMMatrix rowsCollect: [ :each | each - mean ]))  rowsCollect: [ :each| each / scale])
 ]
 
-{ #category : #information }
+{ #category : 'information' }
 PMStandardizationScaler >> variance [
 	"Return the diagonal of the covarianceMatrix"
 
