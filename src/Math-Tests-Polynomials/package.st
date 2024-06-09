@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-Polynomials' }
+Package { #name : 'Math-Tests-Polynomials' }
