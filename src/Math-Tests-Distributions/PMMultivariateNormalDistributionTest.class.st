@@ -1,15 +1,17 @@
 Class {
-	#name : #PMMultivariateNormalDistributionTest,
-	#superclass : #TestCase,
+	#name : 'PMMultivariateNormalDistributionTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'meanVector',
 		'covarianceMatrix',
 		'distribution'
 	],
-	#category : #'Math-Tests-Distributions-Normal'
+	#category : 'Math-Tests-Distributions-Normal',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'Normal'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMMultivariateNormalDistributionTest >> setUp [
 	super setUp.
 
@@ -24,22 +26,22 @@ PMMultivariateNormalDistributionTest >> setUp [
 		covarianceMatrix: covarianceMatrix
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMMultivariateNormalDistributionTest >> testAverage [
 	self assert: distribution average equals: meanVector
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMMultivariateNormalDistributionTest >> testPower [
 	self assert: distribution power equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMMultivariateNormalDistributionTest >> testRandom [
 	self assert: distribution random size equals: distribution power
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMMultivariateNormalDistributionTest >> testValue [
 	| interval points expectedPDF |
 

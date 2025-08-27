@@ -1,15 +1,16 @@
 Class {
-	#name : #PMAB2StepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAB2StepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB2StepperTest >> testOrderIsTwo [
 	self assert: PMAB2Stepper order equals: 2
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB2StepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,7 +30,7 @@ PMAB2StepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB2StepperTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -51,10 +52,10 @@ PMAB2StepperTest >> testSimpleSystem2 [
 			  solve: system
 			  startState: 0
 			  startTime: 1
-			  endTime: 2.5) closeTo: 0.28534)
+			  endTime: 2.5) closeTo: 0.28534 precision: 0.00001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB2StepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |

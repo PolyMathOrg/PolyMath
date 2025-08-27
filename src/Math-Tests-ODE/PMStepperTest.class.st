@@ -2,22 +2,23 @@
 A StepperTest is a test class for testing the behavior of Stepper
 "
 Class {
-	#name : #PMStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStepperTest >> testOrderIsNilForBaseClass [
 	self assert: PMStepper order isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStepperTest >> testOrderIsNilForInstanceOfBaseClass [
 	self assert: PMStepper new order isNil
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStepperTest >> testSystem [
 	| stepper sys |
 	sys := PMExplicitSystem new.

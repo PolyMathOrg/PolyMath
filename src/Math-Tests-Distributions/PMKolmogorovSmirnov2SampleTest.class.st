@@ -1,19 +1,21 @@
 Class {
-	#name : #PMKolmogorovSmirnov2SampleTest,
-	#superclass : #TestCase,
+	#name : 'PMKolmogorovSmirnov2SampleTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'k'
 	],
-	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
+	#category : 'Math-Tests-Distributions-KolmogorovSmirnov',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KolmogorovSmirnov'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMKolmogorovSmirnov2SampleTest >> setUp [
 	super setUp .
 	k := PMKolmogorovSmirnov2Sample new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	"The data below are taken from http://www.stats.ox.ac.uk/~massa/Lecture%2013.pdf
 	According to that paper Dn = 0.6 and Dcrit = 0.645 so the null hypothesis is retained.
@@ -25,7 +27,7 @@ PMKolmogorovSmirnov2SampleTest >> testRejectOfEqualityHypothesesForTwoSamples [
 	self assert: (ks rejectEqualityHypothesisWithAlpha: 0.05)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov2SampleTest >> testSecondSmallSample [
 	"sample from Kim, P. J. & Jennrich, R. I.
 	Tables of the exact sampling distribution of the two-sample Kolmogorov–Smirnov criterion
@@ -47,7 +49,7 @@ PMKolmogorovSmirnov2SampleTest >> testSecondSmallSample [
 	self deny: (k rejectEqualityHypothesisWithAlpha: 0.01)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov2SampleTest >> testSmallSample [
 	"sample from http://www.math.montana.edu/~jobo/st431/ho2b.pdf"
 
@@ -62,7 +64,7 @@ PMKolmogorovSmirnov2SampleTest >> testSmallSample [
 	self assert: (k rejectEqualityHypothesisWithAlpha: 0.07)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov2SampleTest >> testkdStatistic [
 	"extreme case"
 

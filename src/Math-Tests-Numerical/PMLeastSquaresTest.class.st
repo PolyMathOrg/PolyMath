@@ -2,22 +2,23 @@
 A PMLeastSquaresTest is a test class for testing the behavior of PMLeastSquares
 "
 Class {
-	#name : #PMLeastSquaresTest,
-	#superclass : #TestCase,
+	#name : 'PMLeastSquaresTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'leastSquares'
 	],
-	#category : #'Math-Tests-Numerical'
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMLeastSquaresTest >> setUp [
 
 	super setUp.
 	leastSquares := PMLeastSquares new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrix [
 
 	| matrix expectedInverse inverse |
@@ -38,7 +39,7 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrix [
 	self assert: inverse closeTo: expectedInverse
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrixWithZeros [
 
 	| matrix expectedInverse inverse |
@@ -59,7 +60,7 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalSquareMatrixWithZeros [
 	self assert: inverse closeTo: expectedInverse
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMLeastSquaresTest >> testPseudoinverseOfDiagonalTallMatrix [
 
 	| matrix expectedInverse inverse |
@@ -82,7 +83,7 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalTallMatrix [
 	self assert: inverse closeTo: expectedInverse
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMLeastSquaresTest >> testPseudoinverseOfDiagonalWideMatrix [
 
 	| matrix expectedInverse inverse |
@@ -105,7 +106,7 @@ PMLeastSquaresTest >> testPseudoinverseOfDiagonalWideMatrix [
 	self assert: inverse closeTo: expectedInverse
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMLeastSquaresTest >> testSolveSmallOneSolution [
 	"Small example of least squares system (AX = B) with one solution taken from here: https://textbooks.math.gatech.edu/ila/least-squares.html"
 	| matrixA vectorB expectedSolution solution |

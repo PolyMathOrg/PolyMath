@@ -1,10 +1,11 @@
 Class {
-	#name : #PMMidpointSolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMMidpointSolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMMidpointSolverTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -24,7 +25,7 @@ PMMidpointSolverTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMMidpointSolverTest >> testSimpleSystem1 [
 
 	| solver stepper system dt |
@@ -58,7 +59,7 @@ PMMidpointSolverTest >> testSimpleSystem1 [
 		closeTo: 0.3048
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMMidpointSolverTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -92,7 +93,7 @@ PMMidpointSolverTest >> testSimpleSystem2 [
 		closeTo: 2.14437
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMMidpointSolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -133,7 +134,7 @@ PMMidpointSolverTest >> testSimpleSystem3 [
 		closeTo: 6.9629
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMMidpointSolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

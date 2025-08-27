@@ -2,26 +2,27 @@
 This test case exercises the findKey: message with some regression tests.
 "
 Class {
-	#name : #PMAccuracyFindKeyTest,
-	#superclass : #TestCase,
+	#name : 'PMAccuracyFindKeyTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'accuracy'
 	],
-	#category : #'Math-Tests-Accuracy'
+	#category : 'Math-Tests-Accuracy',
+	#package : 'Math-Tests-Accuracy'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyFindKeyTest >> assertKeyFor: selector equals: expected [
 	self assert: (accuracy findKey: selector) equals: expected
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMAccuracyFindKeyTest >> setUp [
 	super setUp.
 	accuracy := PMAccuracyTestExample new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorCorrespondsToNonExistentProperty [
 	| selector |
 	selector := 'NonExistent'.
@@ -29,7 +30,7 @@ PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorCorrespon
 	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorIsInitialize [
 	| selector |
 	selector := 'initialize'.
@@ -37,7 +38,7 @@ PMAccuracyFindKeyTest >> testFindKeyReturnsAllTheRestStringWhenSelectorIsInitial
 	self assertKeyFor: selector equals: 'AllTheRest'
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyFindKeyTest >> testFindKeyReturnsPropertyWhenSelectorIsSuffixOfInitializePropertyMessage [
 	| selector |
 	selector := 'Aaa'.

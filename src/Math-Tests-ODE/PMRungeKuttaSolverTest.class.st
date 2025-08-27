@@ -1,10 +1,11 @@
 Class {
-	#name : #PMRungeKuttaSolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMRungeKuttaSolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMRungeKuttaSolverTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -24,7 +25,7 @@ PMRungeKuttaSolverTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMRungeKuttaSolverTest >> testSimpleSystem1 [
 
 	| solver stepper system dt |
@@ -58,7 +59,7 @@ PMRungeKuttaSolverTest >> testSimpleSystem1 [
 		closeTo: 0.3048
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMRungeKuttaSolverTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -92,7 +93,7 @@ PMRungeKuttaSolverTest >> testSimpleSystem2 [
 		closeTo: 2.1997
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMRungeKuttaSolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -133,7 +134,7 @@ PMRungeKuttaSolverTest >> testSimpleSystem3 [
 		closeTo: 9.3723
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMRungeKuttaSolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

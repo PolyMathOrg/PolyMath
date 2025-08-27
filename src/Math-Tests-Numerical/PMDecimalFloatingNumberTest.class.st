@@ -2,12 +2,13 @@
 A DhbDecimalFloatingNumberTest is a test class for testing the behavior of DhbDecimalFloatingNumber
 "
 Class {
-	#name : #PMDecimalFloatingNumberTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Numerical'
+	#name : 'PMDecimalFloatingNumberTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testAdd [
 	| a b sum |
 	a := PMDecimalFloatingNumber new: 0.10101.
@@ -19,7 +20,7 @@ PMDecimalFloatingNumberTest >> testAdd [
 	self assert: sum value asFloat equals: 0.30101
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testDigits [
 	self
 		assert: PMDecimalFloatingNumber digits
@@ -33,7 +34,7 @@ PMDecimalFloatingNumberTest >> testDigits [
 	PMDecimalFloatingNumber resetDigits
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testDisplay [
 	| a |
 	a := PMDecimalFloatingNumber new: 1.
@@ -46,7 +47,7 @@ PMDecimalFloatingNumberTest >> testDisplay [
 		equals: a class digits negated - 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testDivide [
 	| a b |
 	a := PMDecimalFloatingNumber new: 0.10101.
@@ -56,7 +57,7 @@ PMDecimalFloatingNumberTest >> testDivide [
 	self assert: (b / b) value equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testMultiply [
 	| a b |
 	a := PMDecimalFloatingNumber new: 0.10101.
@@ -67,7 +68,7 @@ PMDecimalFloatingNumberTest >> testMultiply [
 	self assert: (b * b) value asFloat equals: 0.04
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testRoundingErrors [
 	| a b |
 	a := PMDecimalFloatingNumber new: (2 raisedTo: 64).
@@ -75,7 +76,7 @@ PMDecimalFloatingNumberTest >> testRoundingErrors [
 	self assert: (a + b) value equals: a value
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testSqrt [
 	| a aSqrt |
 	a := PMDecimalFloatingNumber new: 0.01.
@@ -84,7 +85,7 @@ PMDecimalFloatingNumberTest >> testSqrt [
 	self assert: aSqrt value equals: 1 / 10
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDecimalFloatingNumberTest >> testSubtract [
 	| a b difference |
 	a := PMDecimalFloatingNumber new: 0.1.

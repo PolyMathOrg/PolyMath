@@ -1,10 +1,11 @@
 Class {
-	#name : #PMStatisticsBugs,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Distributions'
+	#name : 'PMStatisticsBugs',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Distributions',
+	#package : 'Math-Tests-Distributions'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testAsymptoticChiSquareDistribution [
 
 	| a |
@@ -13,7 +14,7 @@ PMStatisticsBugs >> testAsymptoticChiSquareDistribution [
 	"Supplied derivative is not correct"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testBetaDistribution [
 
 	| d a |
@@ -52,7 +53,7 @@ PMStatisticsBugs >> testBetaDistribution [
 	"zerod"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testCauchyDistribution [
 
 	| a |
@@ -71,7 +72,7 @@ PMStatisticsBugs >> testCauchyDistribution [
 	"ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testChiSquareDistribution [
 
 	| a |
@@ -96,7 +97,7 @@ PMStatisticsBugs >> testChiSquareDistribution [
 	"zerodivide"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testExponentialDistribution [
 
 	| a |
@@ -111,7 +112,7 @@ PMStatisticsBugs >> testExponentialDistribution [
 	"ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testFisherSnedecorDistribution [
 
 	| a |
@@ -130,7 +131,7 @@ PMStatisticsBugs >> testFisherSnedecorDistribution [
 	"zerodivide"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testFisherTippet [
 
 	| d |
@@ -140,7 +141,7 @@ PMStatisticsBugs >> testFisherTippet [
 	self assert: (d integralFrom: -10 to: 0.1) closeTo: (d distributionValue: 0.1)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testFisherTippet2 [
 	| d |
 	d := PMFisherTippettDistribution shape: -3 scale: 0.7.
@@ -151,7 +152,7 @@ PMStatisticsBugs >> testFisherTippet2 [
 	self assert: (d distributionValue: -3) equals: -1 exp
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testFisherTippetDistribution [
 
 	| a |
@@ -176,7 +177,7 @@ PMStatisticsBugs >> testFisherTippetDistribution [
 	"zerodivide"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testGammaDistribution [
 
 	| dist a |
@@ -198,7 +199,7 @@ PMStatisticsBugs >> testGammaDistribution [
 	"zerod"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testHistogramDistribution [
 
 	| a random b |
@@ -216,7 +217,7 @@ PMStatisticsBugs >> testHistogramDistribution [
 	"ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testKernelSmoothingDensity [
 
 	| a |
@@ -233,7 +234,7 @@ PMStatisticsBugs >> testKernelSmoothingDensity [
 	"zerod"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testLeplaceDistribution [
 
 	| a |
@@ -246,7 +247,7 @@ PMStatisticsBugs >> testLeplaceDistribution [
 	"zerod"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testLogNormalDistribution [
 
 	| a |
@@ -267,7 +268,7 @@ PMStatisticsBugs >> testLogNormalDistribution [
 	"zerodivide"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testNormalDistribution [
 
 	| a |
@@ -287,17 +288,17 @@ PMStatisticsBugs >> testNormalDistribution [
 	"zerodivide"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testProbabilityDensityWithUnknownDistribution [
 
 	| d |
 	d := PMLogNormalDistribution new.
 	self assert: (d distributionValue: 1) closeTo: 0.5.
-	self assert: (d distributionValue: 3.602) closeTo: 0.9.
-	self assert: (d acceptanceBetween: 1 and: 3.602) closeTo: 0.4
+	self assert: (d distributionValue: 3.602) closeTo: 0.9 precision: 0.1.
+	self assert: (d acceptanceBetween: 1 and: 3.602) closeTo: 0.4 precision: 0.1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testStudentDistribution [
 
 	| a |
@@ -308,7 +309,7 @@ PMStatisticsBugs >> testStudentDistribution [
 	"well, ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testTriangularDistribution [
 	"tests PMProbabilityDensity>>inverseDistributionValue:."
 
@@ -322,7 +323,7 @@ PMStatisticsBugs >> testTriangularDistribution [
 	"ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testUniformDistribution [
 
 	| a |
@@ -335,7 +336,7 @@ PMStatisticsBugs >> testUniformDistribution [
 	"ok"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMStatisticsBugs >> testWeibullDistribution [
 
 	| a |

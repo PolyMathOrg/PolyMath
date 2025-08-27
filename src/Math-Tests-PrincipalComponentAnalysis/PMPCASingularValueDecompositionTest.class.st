@@ -2,19 +2,20 @@
 This test checks that the SVD transform based PCA meets the acceptance requirements defined in PMPrincipalComponentAnalysisTest
 "
 Class {
-	#name : #PMPCASingularValueDecompositionTest,
-	#superclass : #PMPrincipalComponentAnalyserTest,
-	#category : #'Math-Tests-PrincipalComponentAnalysis'
+	#name : 'PMPCASingularValueDecompositionTest',
+	#superclass : 'PMPrincipalComponentAnalyserTest',
+	#category : 'Math-Tests-PrincipalComponentAnalysis',
+	#package : 'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMPCASingularValueDecompositionTest >> setUp [
 
 	super setUp.
 	pca := PMPrincipalComponentAnalyserSVD new componentsNumber: 2
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMPCASingularValueDecompositionTest >> testPCAwithPCAandJacobiTransformationReturnSame [
 	| m pca1 pca2 |
 	m := PMMatrix rows: #(#(-1 -1) #(-2 -1) #(-3 -2) #(1 1) #(2 1) #(3 2)).

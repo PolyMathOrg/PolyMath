@@ -1,35 +1,35 @@
 Class {
-	#name : #PMAB4SolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAB4SolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB4SolverTest >> testSimpleSystem2 [
 
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := PMAB4Stepper onSystem: system.
-	solver := PMAB4Solver new
-		          stepper: stepper;
-		          system: system;
-		          dt: dt.
-	self
-		assert: (solver
-				 solve: system
-				 startState: 5
-				 startTime: 0
-				 endTime: 3)
-		closeTo: 1.1237.
-	self should: ((solver
-			  solve: system
-			  startState: 0
-			  startTime: 1
-			  endTime: 4) closeTo: -0.2451)
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMAB4Stepper onSystem: system.
+    solver := PMAB4Solver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self
+        assert: (solver solve: system
+                 startState: 5
+                 startTime: 0
+                 endTime: 3)
+        closeTo: 1.1237
+        precision: 0.0001.
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 4) closeTo: -0.2451 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB4SolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -77,7 +77,7 @@ PMAB4SolverTest >> testSimpleSystem3 [
 		closeTo: 95.5152
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB4SolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

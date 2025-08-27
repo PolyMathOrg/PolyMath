@@ -21,23 +21,25 @@ in 'Selected Tables in Mathematical Statistics Volume I' (1973).
 no aproximation is at the moment used for bigger datasizes, hence calcs will be too slow in that case.
 "
 Class {
-	#name : #PMKolmogorovSmirnov2Sample,
-	#superclass : #PMKolmogorovSmirnovSample,
+	#name : 'PMKolmogorovSmirnov2Sample',
+	#superclass : 'PMKolmogorovSmirnovSample',
 	#instVars : [
 		'uCalcBlock',
 		'smallSize',
 		'bigSize',
 		'ksStatistic'
 	],
-	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
+	#category : 'Math-Tests-Distributions-KolmogorovSmirnov',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KolmogorovSmirnov'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMKolmogorovSmirnov2Sample class >> compareData: aCollection withData: anotherCollection [
 ^self new data: aCollection ;otherData: anotherCollection ;yourself
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMKolmogorovSmirnov2Sample >> cFrom: i and: j [
 	"needs ksStatistic!"
 
@@ -46,13 +48,13 @@ PMKolmogorovSmirnov2Sample >> cFrom: i and: j [
 		ifFalse: [ 0 ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov2Sample >> data: aCollection [
 	ksStatistic := nil.
 	^ self makeCDFOf: aCollection intoFirst: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMKolmogorovSmirnov2Sample >> initCachedUCalculation [
 	"recursive calc, slow without memoization"
 
@@ -70,7 +72,7 @@ PMKolmogorovSmirnov2Sample >> initCachedUCalculation [
 		) ] ] memoized
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMKolmogorovSmirnov2Sample >> initKSStatistic [
 	| t |
 	ksStatistic := 0.
@@ -84,7 +86,7 @@ PMKolmogorovSmirnov2Sample >> initKSStatistic [
 	bigSize := t
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov2Sample >> ksStatistic [
 	"the kolmogorov-smirnov statistic D"
 
@@ -114,7 +116,7 @@ PMKolmogorovSmirnov2Sample >> ksStatistic [
 	^ ksStatistic
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMKolmogorovSmirnov2Sample >> makeCDFOf: aCollection intoFirst: aBoolean [
 	"if aCollection consists of numbers,
 it returns a sorted array of (number-> (Array with: cdf with: aBoolean))"
@@ -131,13 +133,13 @@ it returns a sorted array of (number-> (Array with: cdf with: aBoolean))"
 		ifFalse: [ compareWith := result ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov2Sample >> otherData: aCollection [
 	ksStatistic := nil.
 	^ self makeCDFOf: aCollection intoFirst: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov2Sample >> pValue [
 
 	"uses procedure explained in:
@@ -150,7 +152,7 @@ in 'Selected Tables in Mathematical Statistics Volume I' (1973)."
 	  / (smallSize + bigSize numberOfCombinationsTaken: smallSize)
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMKolmogorovSmirnov2Sample >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' otherDataSize: '.

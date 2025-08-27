@@ -1,10 +1,11 @@
 Class {
-	#name : #PMTrapezoidStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMTrapezoidStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
@@ -23,7 +24,7 @@ PMTrapezoidStepperTest >> testDoStepTime [
 	self assert: (stepper doStep: 10 time: 1 stepSize: 0.2) closeTo: 12.4928
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
 
 	| stepper sys dt |
@@ -36,7 +37,7 @@ PMTrapezoidStepperTest >> testDoStepTimeStepSize1 [
 	self assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.11 precision: 0.01)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMTrapezoidStepperTest >> testDoStepTimeStepSize2 [
 
 	| stepper sys dt |
@@ -47,12 +48,12 @@ PMTrapezoidStepperTest >> testDoStepTimeStepSize2 [
 	self assert: (stepper doStep: 10 time: 1 stepSize: dt) closeTo: 9.7109
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMTrapezoidStepperTest >> testOrderIsTwo [
 	self assert: PMTrapezoidStepper order equals: 2
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMTrapezoidStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

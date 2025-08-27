@@ -1,15 +1,16 @@
 Class {
-	#name : #PMGeneticOptimizerBugsTest,
-	#superclass : #TestCase,
+	#name : 'PMGeneticOptimizerBugsTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'manager',
 		'function',
 		'optimizer'
 	],
-	#category : #'Math-Tests-Numerical'
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMGeneticOptimizerBugsTest >> setUp [
 
 	super setUp.
@@ -20,7 +21,7 @@ PMGeneticOptimizerBugsTest >> setUp [
 	optimizer chromosomeManager: manager
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneticOptimizerBugsTest >> testBug1 [
 
 	| r |
@@ -31,7 +32,7 @@ PMGeneticOptimizerBugsTest >> testBug1 [
 	self assert: r last closeTo: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneticOptimizerBugsTest >> testBug2 [
 | r |
 optimizer addPointAt: #(2 3).

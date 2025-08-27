@@ -1,10 +1,11 @@
 Class {
-	#name : #PMCovarianceAccumulatorTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Numerical'
+	#name : 'PMCovarianceAccumulatorTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMCovarianceAccumulatorTest >> testCovarianceAccumulation [
 	"Code example 12.2"
 

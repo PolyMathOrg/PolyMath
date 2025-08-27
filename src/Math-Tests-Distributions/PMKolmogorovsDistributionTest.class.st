@@ -2,12 +2,14 @@
 data are taken from: http://www.ism.ac.jp/editsec/aism/pdf/054_3_0577.pdf  
 "
 Class {
-	#name : #PMKolmogorovsDistributionTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
+	#name : 'PMKolmogorovsDistributionTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Distributions-KolmogorovSmirnov',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KolmogorovSmirnov'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovsDistributionTest >> testBig [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 1000.
@@ -21,7 +23,7 @@ PMKolmogorovsDistributionTest >> testBig [
 	self assert: ((kd distributionValue: 0.0605) round: 3) equals: 0.95
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovsDistributionTest >> testMedium [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 100.
@@ -37,7 +39,7 @@ PMKolmogorovsDistributionTest >> testMedium [
 	self assert: kd parameters equals: #(100)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovsDistributionTest >> testSmall [
 	| kd |
 	kd := PMKolmogorovsDistribution exampleSize: 10.

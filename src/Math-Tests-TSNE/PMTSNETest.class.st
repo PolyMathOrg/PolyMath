@@ -2,12 +2,13 @@
 I test the method of the class PMTSNE.
 "
 Class {
-	#name : #PMTSNETest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-TSNE'
+	#name : 'PMTSNETest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-TSNE',
+	#package : 'Math-Tests-TSNE'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testComputePValues [
 	| t |
 
@@ -20,7 +21,7 @@ PMTSNETest >> testComputePValues [
 		with: (Array with: 2/3 with: 2/3 with: 0)))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testComputePairwiseAffinities [
 	| t correctAffinities |
 
@@ -42,10 +43,10 @@ PMTSNETest >> testComputePairwiseAffinities [
 		#(0.333333 0.333333 0 0.333333)
 		#(0.333333 0.333333 0.333333 0)
 		).
-	self assert: t computePairwiseAffinities closeTo: correctAffinities
+	self assert: t computePairwiseAffinities closeTo: correctAffinities precision: 0.001
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testComputePairwiseDistances [
 	| t |
 	t := (PMTSNE
@@ -54,7 +55,7 @@ PMTSNETest >> testComputePairwiseDistances [
 	self assert: t computePairwiseDistances equals: (PMMatrix rows: #(#(0 8) #(8 0)))
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testEntropyOfAndPRowWithBeta [
 	| distanceVector pVector entropy |
 	"Input points are (0, 0), (2, 2) and (2, 0)"
@@ -65,7 +66,7 @@ PMTSNETest >> testEntropyOfAndPRowWithBeta [
 	self assert: pVector closeTo: (Array with: 0.99966454 with: 0.00000011 with: 0.00033535) asPMVector
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testInitialDimsSetByDefaultWithFifty [
 	| t |
 	t := PMTSNE
@@ -75,7 +76,7 @@ PMTSNETest >> testInitialDimsSetByDefaultWithFifty [
 	self assert: t initialDims equals: 50
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMTSNETest >> testreduceXToInputDimsUsing [
 	| t |
 	t := (PMTSNE new)

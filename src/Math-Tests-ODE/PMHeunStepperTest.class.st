@@ -1,15 +1,16 @@
 Class {
-	#name : #PMHeunStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMHeunStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMHeunStepperTest >> testOrderIsTwo [
 	self assert: PMHeunStepper order equals: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMHeunStepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,7 +30,7 @@ PMHeunStepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMHeunStepperTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -51,10 +52,10 @@ PMHeunStepperTest >> testSimpleSystem2 [
 			  solve: system
 			  startState: 0
 			  startTime: 1
-			  endTime: 1.5) closeTo: 0.3881)
+			  endTime: 1.5) closeTo: 0.3881 precision: 0.0001)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMHeunStepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -81,7 +82,7 @@ PMHeunStepperTest >> testSimpleSystem3 [
 		closeTo: 2.5
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMHeunStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

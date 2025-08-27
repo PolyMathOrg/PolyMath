@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-Distributions' }
+Package { #name : 'Math-Tests-Distributions' }

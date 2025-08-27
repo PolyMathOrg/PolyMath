@@ -1,15 +1,16 @@
 Class {
-	#name : #PMImplicitMidpointStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMImplicitMidpointStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMImplicitMidpointStepperTest >> testOrderIsTwo [
 	self assert: PMImplicitMidpointStepper order equals: 2
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMImplicitMidpointStepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,18 +30,28 @@ PMImplicitMidpointStepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMImplicitMidpointStepperTest >> testSimpleSystem2 [
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := PMImplicitMidpointStepper onSystem: system.
-	solver := (PMImplicitMidpointSolver new) stepper: stepper; system: system; dt: dt.
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  5.9805).
-      self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  0.8242)
+
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMImplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMImplicitMidpointStepper onSystem: system.
+    solver := PMImplicitMidpointSolver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self should: ((solver solve: system
+              startState: 5
+              startTime: 0
+              endTime: 1.5) closeTo: 5.9805 precision: 0.0001).
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 2.5) closeTo: 0.8242 precision: 0.0001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMImplicitMidpointStepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -60,7 +71,7 @@ PMImplicitMidpointStepperTest >> testSimpleSystem3 [
 		closeTo: 2.6348
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMImplicitMidpointStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

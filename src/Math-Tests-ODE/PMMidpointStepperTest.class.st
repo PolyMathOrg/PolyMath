@@ -1,15 +1,16 @@
 Class {
-	#name : #PMMidpointStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMMidpointStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testOrderIsTwo [
 	self assert: PMMidpointStepper order equals: 2
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,7 +30,7 @@ PMMidpointStepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -56,7 +57,7 @@ PMMidpointStepperTest >> testSimpleSystem2 [
 		closeTo: 2.3049
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -90,7 +91,7 @@ PMMidpointStepperTest >> testSimpleSystem3 [
 		closeTo: 2.4219
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testSimpleSystem4 [
 
 	| solver stepper system dt |
@@ -110,7 +111,7 @@ PMMidpointStepperTest >> testSimpleSystem4 [
 		closeTo: 4.3724
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMMidpointStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

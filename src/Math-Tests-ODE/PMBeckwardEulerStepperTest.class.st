@@ -1,10 +1,11 @@
 Class {
-	#name : #PMBeckwardEulerStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMBeckwardEulerStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMBeckwardEulerStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
@@ -25,7 +26,7 @@ PMBeckwardEulerStepperTest >> testDoStepTime [
 		equals: 12.448
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMBeckwardEulerStepperTest >> testDoStepTimeStepSize [
 	| stepper sys dt |
 	sys := PMImplicitSystem block: [ :x :t | x * t ].
@@ -37,18 +38,28 @@ PMBeckwardEulerStepperTest >> testDoStepTimeStepSize [
 	self assert: (stepper doStep: 10 time: 1 stepSize: dt) equals: 11.111
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMBeckwardEulerStepperTest >> testSimpleSystem2 [
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := PMImplicitStepper onSystem: system.
-	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo:  2.10408).
-      self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306)
+
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMImplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMImplicitStepper onSystem: system.
+    solver := PMImplicitSolver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self should: ((solver solve: system
+              startState: 5
+              startTime: 0
+              endTime: 1.5) closeTo: 2.10408 precision: 0.0001).
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 2.5) closeTo: -0.5306 precision: 0.0001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMBeckwardEulerStepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |

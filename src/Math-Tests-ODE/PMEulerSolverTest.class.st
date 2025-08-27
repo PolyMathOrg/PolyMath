@@ -2,12 +2,13 @@
 An ODESolverTest is a test class for testing the behavior of ODESolver
 "
 Class {
-	#name : #PMEulerSolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMEulerSolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMEulerSolverTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -29,10 +30,10 @@ PMEulerSolverTest >> testSimpleSystem2 [
 			  solve: system
 			  startState: 0
 			  startTime: 1
-			  endTime: 2.5) closeTo: 0.5158)
+			  endTime: 2.5) closeTo: 0.5158 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMEulerSolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	| solver stepper system dt finalState |
 	dt := 0.2.
@@ -51,7 +52,7 @@ PMEulerSolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	self assert: finalState isFloat
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMEulerSolverTest >> testSolveX0T0T1 [
 	| solver stepper system dt finalState |
 	dt := 0.1.

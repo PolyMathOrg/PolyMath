@@ -1,35 +1,35 @@
 Class {
-	#name : #PMAB3SolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAB3SolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB3SolverTest >> testSimpleSystem2 [
 
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := PMAB3Stepper onSystem: system.
-	solver := PMAB3Solver new
-		          stepper: stepper;
-		          system: system;
-		          dt: dt.
-	self
-		assert: (solver
-				 solve: system
-				 startState: 5
-				 startTime: 0
-				 endTime: 3)
-		closeTo: 1.1237.
-	self should: ((solver
-			  solve: system
-			  startState: 0
-			  startTime: 1
-			  endTime: 4) closeTo: -0.2451)
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMAB3Stepper onSystem: system.
+    solver := PMAB3Solver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self
+        assert: (solver solve: system
+                 startState: 5
+                 startTime: 0
+                 endTime: 3)
+        closeTo: 1.1237
+        precision: 0.0001.
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 4) closeTo: -0.2451 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB3SolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -56,7 +56,7 @@ PMAB3SolverTest >> testSimpleSystem3 [
 		closeTo: 19.2822
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB3SolverTest >> testSimpleSystem4 [
 
 	| solver stepper system dt |
@@ -76,7 +76,7 @@ PMAB3SolverTest >> testSimpleSystem4 [
 		closeTo: -1.6539239077654698e49
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB3SolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

@@ -1,22 +1,33 @@
 Class {
-	#name : #PMTrapezoidSolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMTrapezoidSolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMTrapezoidSolverTest >> testSimpleSystem2 [
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := PMTrapezoidStepper onSystem: system.
-	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
 
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  3.1299).
-   self should: ((solver solve: system startState: 0.1 startTime: 1 endTime: 2.5) closeTo:  0.9103)
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMImplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMTrapezoidStepper onSystem: system.
+    solver := PMImplicitSolver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+
+    self should: ((solver solve: system
+              startState: 5
+              startTime: 0
+              endTime: 3) closeTo: 3.1299 precision: 0.0001).
+    self should: ((solver solve: system
+              startState: 0.1
+              startTime: 1
+              endTime: 2.5) closeTo: 0.9103 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMTrapezoidSolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -57,7 +68,7 @@ PMTrapezoidSolverTest >> testSimpleSystem3 [
 		closeTo: 20.6718
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMTrapezoidSolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

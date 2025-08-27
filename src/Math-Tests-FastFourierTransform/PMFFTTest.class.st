@@ -1,17 +1,18 @@
 Class {
-	#name : #PMFFTTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-FastFourierTransform'
+	#name : 'PMFFTTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-FastFourierTransform',
+	#package : 'Math-Tests-FastFourierTransform'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> generateCosineWaveSignal: sampleSize [
 
 	^ (1 to: sampleSize) collect: [ :i |
 		  (Float pi * (i - 1) / (sampleSize / 8)) cos ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> testBitReverse [
 	self should: [ 1 bitReverse: 0 ] raise: Error.
 	self should: [ 2 bitReverse: 1 ] raise: Error.
@@ -27,7 +28,7 @@ PMFFTTest >> testBitReverse [
 	self assert: ((17 bitReverse: 17) bitReverse: 17) equals: 17
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForLargeDataSets [
 
 	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
@@ -48,7 +49,7 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	PMMitchellMooreGenerator reset: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithoutLossOfSignalForSmallDataSets [
 
 	| inputSequence f zeroedImaginaryData inputOutputDiff zeroedRealData |
@@ -67,7 +68,7 @@ PMFFTTest >> testFastFourierTransformCalculatesTheDiscreteFourierTransformWithou
 	self assert: zeroedRealData equals: 8
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosely [
 
 	| random cosineWaveSignal randomizedCosineWaveSignal fourier |
@@ -85,10 +86,10 @@ PMFFTTest >> testFrequencyDomainRepresentationMatchesRandomizedInputSignalClosel
 	fourier inverseTransform.
 
 	fourier realData with: cosineWaveSignal do: [ :expected :actual |
-		self assert: actual closeTo: expected ]
+		self assert: actual closeTo: expected precision: 0.0001 ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFFTTest >> testThatChopSuccessivelyRemovesInputSignalPointsLowerThanTolerance [
 	| inputSignal f |
 	inputSignal := #(-2 -2 -2 3 3 3 1 -2).

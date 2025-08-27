@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-PrincipalComponentAnalysis' }
+Package { #name : 'Math-Tests-PrincipalComponentAnalysis' }

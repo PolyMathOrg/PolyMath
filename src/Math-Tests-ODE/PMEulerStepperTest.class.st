@@ -2,12 +2,13 @@
 An ExplicitStepperTest is a test class for testing the behavior of ExplicitStepper
 "
 Class {
-	#name : #PMEulerStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMEulerStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMEulerStepperTest >> testDoStepTime [
 	"this is identical to testDoStepTimeStepSize except dt is stored."
 
@@ -26,7 +27,7 @@ PMEulerStepperTest >> testDoStepTime [
 	self assert: (stepper doStep: 10 time: 1 stepSize: 0.2) equals: 12.0
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMEulerStepperTest >> testDoStepTimeStepSize [
 	| stepper sys dt |
 	sys := PMExplicitSystem block: [ :x :t | x * t ].
@@ -38,7 +39,7 @@ PMEulerStepperTest >> testDoStepTimeStepSize [
 	self assert: (stepper doStep: 10 time: 1 stepSize: dt) equals: 11.0
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMEulerStepperTest >> testOrderOfBaseExplicitStepperIsOne [
 
 	| order |
@@ -47,7 +48,7 @@ PMEulerStepperTest >> testOrderOfBaseExplicitStepperIsOne [
 	self assert: order equals: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMEulerStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

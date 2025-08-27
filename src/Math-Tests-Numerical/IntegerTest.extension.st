@@ -1,6 +1,6 @@
-Extension { #name : #IntegerTest }
+Extension { #name : 'IntegerTest' }
 
-{ #category : #'*Math-Tests-Numerical' }
+{ #category : '*Math-Tests-Numerical' }
 IntegerTest >> testFindNK [
 
 	self assert: 6 inverseBinomialCoefficient equals:  #(6 1 6 5 4 2).

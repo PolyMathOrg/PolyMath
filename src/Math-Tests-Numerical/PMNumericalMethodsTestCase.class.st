@@ -1,10 +1,11 @@
 Class {
-	#name : #PMNumericalMethodsTestCase,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Numerical'
+	#name : 'PMNumericalMethodsTestCase',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMNumericalMethodsTestCase >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 
@@ -12,7 +13,7 @@ PMNumericalMethodsTestCase >> setUp [
 	PMMitchellMooreGenerator reset: 0
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testAtRowPutAtColumnPut [
 	| a |
 	a := PMMatrix rows: #(#(11 12 13) #(21 22 23)).
@@ -25,7 +26,7 @@ PMNumericalMethodsTestCase >> testAtRowPutAtColumnPut [
 	self should: [ a atColumn: 1 put: (a rowAt: 2) ] raise: Error
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testBissection [
 	"Code Example 5.1"
 
@@ -39,21 +40,21 @@ PMNumericalMethodsTestCase >> testBissection [
 	self assert: result closeTo: 1.28155193291605
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testDeterminant [
 	| m |
 	m := PMMatrix rows: #(#(3 2 4) #(2 -5 -1) #(1 -2 2)).
 	self assert: m determinant equals: -42
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testDimension [
 	| a |
 	a := PMMatrix rows: #( ( 1 0 1) (-1 -2 3)).
 	self assert: a dimension equals: 2@3
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testEigenvalues [
 	"Code Example 8.15"
 
@@ -70,7 +71,7 @@ PMNumericalMethodsTestCase >> testEigenvalues [
 	self assert: ((roots at: 3) - (eigenvalues at: 3)) abs < 1.0e-09
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testEigenvaluesLargest [
 	"Code Example 8.13"
 
@@ -87,7 +88,7 @@ PMNumericalMethodsTestCase >> testEigenvaluesLargest [
 	self assert: ((roots at: 2) - eigenvalue) abs < 1.0e-08
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testErrorFunction [
 	"simple cases to expect"
 
@@ -98,7 +99,7 @@ PMNumericalMethodsTestCase >> testErrorFunction [
 	self assert: Float fmax negated errorFunction < Float fmin
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testFTest [
 
 	| accC accMM confidenceLevel |
@@ -114,7 +115,7 @@ PMNumericalMethodsTestCase >> testFTest [
 	self assert: confidenceLevel - 79.8147614536 closeTo: 0
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 PMNumericalMethodsTestCase >> testHistogram [
 	| histogram |
 	histogram := PMHistogram new.
@@ -142,20 +143,20 @@ PMNumericalMethodsTestCase >> testHistogram [
 	self assert: (histogram kurtosis + 1.004665562311) abs < 0.000000001
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIncompleteBetaFunction [
 	| function |
 	function := PMIncompleteBetaFunction shape: 2 shape: 5.
 	self assert: ((function value: 0.8) - 0.9984) abs < 0.00001
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIncompleteGammaFunction [
 
 	self assert: ((PMIncompleteGammaFunction shape: 2) value: 2) - 0.59399414981 closeTo: 0
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIntegrationRomberg [
 	| integrator ln2 ln3 |
 	integrator := PMRombergIntegrator
@@ -169,7 +170,7 @@ PMNumericalMethodsTestCase >> testIntegrationRomberg [
 	self assert: (3.0 ln - ln3) abs < (2 * integrator precision)
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIntegrationSimpson [
 	| integrator ln2 ln3 |
 	integrator := PMSimpsonIntegrator
@@ -183,7 +184,7 @@ PMNumericalMethodsTestCase >> testIntegrationSimpson [
 	self assert: (3.0 ln - ln3) abs < integrator precision
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testIntegrationTrapeze [
 	"Code Example 6.1"
 
@@ -199,7 +200,7 @@ PMNumericalMethodsTestCase >> testIntegrationTrapeze [
 	self assert: (3.0 ln - ln3) abs < integrator precision
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationBulirschStoer [
 	| interpolator |
 	interpolator := PMBulirschStoerInterpolator new.
@@ -208,7 +209,7 @@ PMNumericalMethodsTestCase >> testInterpolationBulirschStoer [
 		assert: ((interpolator value: 8) - 8 degreesToRadians sin) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationLagrange [
 	"Code example 3.2"
 
@@ -219,7 +220,7 @@ PMNumericalMethodsTestCase >> testInterpolationLagrange [
 		assert: ((interpolator value: 8) - 8 degreesToRadians sin) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationLagrangeLinear [
 	"Code example 3.1"
 
@@ -229,7 +230,7 @@ PMNumericalMethodsTestCase >> testInterpolationLagrangeLinear [
 	self assert: ((interpolator value: 2.2) - 1.4) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationNeville [
 	| interpolator |
 	interpolator := PMNevilleInterpolator new.
@@ -238,7 +239,7 @@ PMNumericalMethodsTestCase >> testInterpolationNeville [
 		assert: ((interpolator value: 8) - 8 degreesToRadians sin) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationNevilleLinear [
 	"Code example 3.1"
 
@@ -248,7 +249,7 @@ PMNumericalMethodsTestCase >> testInterpolationNevilleLinear [
 	self assert: ((interpolator value: 2.2) - 1.4) abs < 1.0e-14
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testInterpolationNewton [
 	| interpolator |
 	interpolator := PMNewtonInterpolator new.
@@ -257,7 +258,7 @@ PMNumericalMethodsTestCase >> testInterpolationNewton [
 		assert: ((interpolator value: 8) - 8 degreesToRadians sin) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationNewtonLinear [
 	"Code example 3.1"
 
@@ -267,7 +268,7 @@ PMNumericalMethodsTestCase >> testInterpolationNewtonLinear [
 	self assert: ((interpolator value: 2.2) - 1.4) abs < 1.0e-14
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationSpline [
 	| interpolator |
 	interpolator := PMSplineInterpolator new.
@@ -276,7 +277,7 @@ PMNumericalMethodsTestCase >> testInterpolationSpline [
 		assert: ((interpolator value: 8) - 8 degreesToRadians sin) abs < 1.0e-7
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testInterpolationSplineLinear [
 	"Code example 3.1"
 
@@ -286,7 +287,7 @@ PMNumericalMethodsTestCase >> testInterpolationSplineLinear [
 	self assert: ((interpolator value: 2.2) - 1.4) abs < 1.0e-14
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testLUPDecomposition [
 	"Code Example 8.10"
 
@@ -304,7 +305,7 @@ PMNumericalMethodsTestCase >> testLUPDecomposition [
 	self assert: (sol2 at: 3) equals: 2
 ]
 
-{ #category : #'function evaluation' }
+{ #category : 'function evaluation' }
 PMNumericalMethodsTestCase >> testLanczosFormulaObject [
 	"verify that initialize is sent at least once per test run"
 
@@ -317,7 +318,7 @@ PMNumericalMethodsTestCase >> testLanczosFormulaObject [
 	self assert: second identicalTo: third
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testLeastSquare [
 	"Code example 10.9"
 
@@ -341,7 +342,7 @@ PMNumericalMethodsTestCase >> testLeastSquare [
 	self assert: ((parameters at: 3) - count) abs < 100
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testLeastSquarePolynomial [
 	"Code example 10.5"
 
@@ -367,7 +368,7 @@ PMNumericalMethodsTestCase >> testLeastSquarePolynomial [
 				< (estimation error: 7.15)
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLeastSquaresSingularMatrixError [
 	| histogram leastSquares |
 
@@ -385,7 +386,7 @@ PMNumericalMethodsTestCase >> testLeastSquaresSingularMatrixError [
 	self should: [ leastSquares errorMatrix ] raise: PMSingularMatrixError
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch1 [
 	"Test line searh for an initial step of Newton solver for equation
 
@@ -410,7 +411,7 @@ PMNumericalMethodsTestCase >> testLineSearch1 [
 	self assert: (functionBlock value: xAnswer) < g1
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch2 [
 	"Test line searh for an initial step of Newton solver for equation
 
@@ -438,7 +439,7 @@ PMNumericalMethodsTestCase >> testLineSearch2 [
 	self assert: (functionBlock value: xAnswer) equals: g1
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testLineSearch3 [
 	"Test line searh for the final step of Newton solver for equation
 
@@ -467,7 +468,7 @@ PMNumericalMethodsTestCase >> testLineSearch3 [
 	self assert: xAnswer equals: 1.0
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testLinearEquations [
 	"Code Example 8.6"
 
@@ -487,7 +488,7 @@ PMNumericalMethodsTestCase >> testLinearEquations [
 	self assert: (sol2 at: 3) equals: 2
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testLinearEquationsSingle [
 
 	| s sol |
@@ -499,7 +500,7 @@ PMNumericalMethodsTestCase >> testLinearEquationsSingle [
 	self assert: (sol at: 3) closeTo: 3.0
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testLinearEquationsSingular [
 	| s sol |
 	s := PMLinearEquationSystem
@@ -509,7 +510,7 @@ PMNumericalMethodsTestCase >> testLinearEquationsSingular [
 	self assert: sol isNil
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testLinearRegression [
 	"Code example 10.5"
 
@@ -537,7 +538,7 @@ PMNumericalMethodsTestCase >> testLinearRegression [
 		assert: ((estimation value: 7.15) - 16.1823) abs < 0.000000000001
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixAdd [
 	| a b c |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
@@ -553,7 +554,7 @@ PMNumericalMethodsTestCase >> testMatrixAdd [
 	self assert: ((c rowAt: 2) at: 3) equals: 10
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixDo [
 	| a |
 	a := PMMatrix rows: #(#(1 2 3) #(1 2 3) #(1 2 3)).
@@ -563,7 +564,7 @@ PMNumericalMethodsTestCase >> testMatrixDo [
 	self assert: (a rowAt: 1) equals: #(2 3 3) asPMVector
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixEquality [
 	| a c |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
@@ -573,7 +574,7 @@ PMNumericalMethodsTestCase >> testMatrixEquality [
 	self assert: (c = a and: [ a = c ])
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixExtensions [
 	"testing at:at: and at:at:put:"
 
@@ -585,7 +586,7 @@ PMNumericalMethodsTestCase >> testMatrixExtensions [
 	self shouldnt: [ (c at: 1 at: 1) = (a at: 1 at: 1) ]
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixExtensionsAtColumn [
 	"testing at:at: and at:at:put:"
 
@@ -604,7 +605,7 @@ PMNumericalMethodsTestCase >> testMatrixExtensionsAtColumn [
 	self shouldnt: [ (c at: 1 at: 1) = (a at: 1 at: 1) ]
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixExtensionsAtRow [
 	"testing at:at: and at:at:put:"
 
@@ -622,7 +623,7 @@ PMNumericalMethodsTestCase >> testMatrixExtensionsAtRow [
 	self shouldnt: [ (c at: 1 at: 2) = (a at: 1 at: 2) ]
 ]
 
-{ #category : #comparing }
+{ #category : 'comparing' }
 PMNumericalMethodsTestCase >> testMatrixHash [
 	| a b c |
 	a := PMMatrix rows: #(#(1 0) #(0 1)).
@@ -632,7 +633,7 @@ PMNumericalMethodsTestCase >> testMatrixHash [
 	self shouldnt: [ a hash = c hash ]
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixInitializeSquare [
 	| aPMMatrix |
 	aPMMatrix := PMMatrix new initializeSquare:  2.
@@ -640,7 +641,7 @@ PMNumericalMethodsTestCase >> testMatrixInitializeSquare [
 	self assert: aPMMatrix numberOfColumns equals: 2
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixInversionSmall [
 	| m c |
 	m := PMMatrix rows: #(#(3 2 4) #(2 -5 -1) #(1 -2 2)).
@@ -658,7 +659,7 @@ PMNumericalMethodsTestCase >> testMatrixInversionSmall [
 	self assert: ((c rowAt: 3) at: 3) equals: 1
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixMultiply [
 	"Code Example 8.1"
 
@@ -676,7 +677,7 @@ PMNumericalMethodsTestCase >> testMatrixMultiply [
 	self assert: ((c rowAt: 2) at: 3) equals: 4
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testMatrixSubtract [
 	| a b c |
 	a := PMMatrix rows: #(#(1 0 1) #(-1 -2 3)).
@@ -692,7 +693,7 @@ PMNumericalMethodsTestCase >> testMatrixSubtract [
 	self assert: ((c rowAt: 2) at: 3) equals: -4
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testMaximumLikelihood [
 	"Code example 10.11"
 
@@ -716,7 +717,7 @@ PMNumericalMethodsTestCase >> testMaximumLikelihood [
 	self assert: ((parameters at: 3) - count) abs < 100
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder [
 	"Code Example 5.3"
 
@@ -729,7 +730,7 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder [
 	self assert: (result - 1.28155193867885) abs < zeroFinder precision
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 	"Test Newton's method for
 
@@ -748,7 +749,7 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder2 [
 	self assert: result abs < zeroFinder precision
 ]
 
-{ #category : #'iterative algorithms' }
+{ #category : 'iterative algorithms' }
 PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 	"Test Newton's method for linear function
 
@@ -768,7 +769,7 @@ PMNumericalMethodsTestCase >> testNewtonZeroFinder3 [
 	self assert: zeroFinder iterations equals: 2
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 PMNumericalMethodsTestCase >> testNormalDistribution [
 	| dist |
 	dist := PMNormalDistribution new: 3.4 sigma: 1.7.
@@ -779,7 +780,7 @@ PMNumericalMethodsTestCase >> testNormalDistribution [
 		assert: ((dist distributionValue: 4.5) - 0.7412031298) abs < 0.000000001
 ]
 
-{ #category : #optimization }
+{ #category : 'optimization' }
 PMNumericalMethodsTestCase >> testOptimize [
 	"General optimizer to test genetic algorithm"
 
@@ -802,21 +803,21 @@ PMNumericalMethodsTestCase >> testOptimize [
 	self assert: (result at: 3) abs < 1.0e-6
 ]
 
-{ #category : #optimization }
+{ #category : 'optimization' }
 PMNumericalMethodsTestCase >> testOptimizeOneDimension [
-	"Code example 11.1"
+    "Code example 11.1"
 
-	| distr finder maximum |
-	distr := PMGammaDistribution shape: 2 scale: 5.
-	finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.
-	finder randomGenerator: (Random seed: 42).
-	finder desiredPrecision: 1.0e-6.
-	maximum := finder evaluate.
-	self assert: maximum - 5 closeTo: 0.
-	self assert: finder precision < 1.0e-6
+    | distr finder maximum |
+    distr := PMGammaDistribution shape: 2 scale: 5.
+    finder := PMOneVariableFunctionOptimizer maximizingFunction: distr.
+    finder randomGenerator: (Random seed: 42).
+    finder desiredPrecision: 1.0e-6.
+    maximum := finder evaluate.
+    self assert: maximum - 5 closeTo: 0 precision: 0.000001.
+    self assert: finder precision < 1.0e-6
 ]
 
-{ #category : #optimization }
+{ #category : 'optimization' }
 PMNumericalMethodsTestCase >> testOptimizePowell [
 	"Code example 11.3"
 
@@ -833,7 +834,7 @@ PMNumericalMethodsTestCase >> testOptimizePowell [
 	self assert: (result at: 3) abs < 1.0e-6
 ]
 
-{ #category : #optimization }
+{ #category : 'optimization' }
 PMNumericalMethodsTestCase >> testOptimizeSimplex [
 	"Code example 11.5"
 
@@ -851,7 +852,7 @@ PMNumericalMethodsTestCase >> testOptimizeSimplex [
 	self assert: (result at: 3) closeTo: 0
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 PMNumericalMethodsTestCase >> testStatisticalMoments [
 	"comment"
 
@@ -868,7 +869,7 @@ PMNumericalMethodsTestCase >> testStatisticalMoments [
 		assert: (accumulator kurtosis + 1.004665562311) abs < 0.000000001
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 PMNumericalMethodsTestCase >> testStatisticalMomentsFast [
 	| accumulator |
 	accumulator := PMFastStatisticalMoments new.
@@ -883,7 +884,7 @@ PMNumericalMethodsTestCase >> testStatisticalMomentsFast [
 		assert: (accumulator kurtosis + 1.004665562311) abs < 0.000000001
 ]
 
-{ #category : #statistics }
+{ #category : 'statistics' }
 PMNumericalMethodsTestCase >> testStatisticalMomentsFixed [
 	| accumulator |
 	accumulator := PMFixedStatisticalMoments new.
@@ -898,7 +899,7 @@ PMNumericalMethodsTestCase >> testStatisticalMomentsFixed [
 		assert: (accumulator kurtosis + 1.004665562311) abs < 0.000000001
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testSymmetricMatrixAdd [
 	| a b c |
 	a := (PMMatrix rows: #(#(11 12 13) #(12 22 23) #(13 23 33)))
@@ -912,7 +913,7 @@ PMNumericalMethodsTestCase >> testSymmetricMatrixAdd [
 	self assert: ((c rowAt: 1) at: 3) equals: 16
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testSymmetricMatrixAdd2 [
 	| a b c |
 	a := PMSymmetricMatrix rows: #(#(11 12 13) #(12 22 23) #(13 23 33)).
@@ -925,7 +926,7 @@ PMNumericalMethodsTestCase >> testSymmetricMatrixAdd2 [
 	self assert: ((c rowAt: 1) at: 3) equals: 16
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testSymmetricMatrixAdd3 [
 	| a b c |
 	a := PMMatrix rows: #(#(11 12 13) #(21 22 23) #(31 32 33)).
@@ -942,7 +943,7 @@ PMNumericalMethodsTestCase >> testSymmetricMatrixAdd3 [
 	self assert: ((c rowAt: 3) at: 1) equals: 31
 ]
 
-{ #category : #estimation }
+{ #category : 'estimation' }
 PMNumericalMethodsTestCase >> testTTest [
 
 	| accC accMM confidenceLevel |
@@ -958,7 +959,7 @@ PMNumericalMethodsTestCase >> testTTest [
 	self assert: confidenceLevel - 56.6320739989 closeTo: 0
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testVectorMatrixOperation [
 	"Code Example 8.1"
 
@@ -971,7 +972,7 @@ PMNumericalMethodsTestCase >> testVectorMatrixOperation [
 	self assert: (v at: 2) equals: 4
 ]
 
-{ #category : #'linear algebra' }
+{ #category : 'linear algebra' }
 PMNumericalMethodsTestCase >> testVectorTransposeMatrixOperation [
 	"Code Example 8.1"
 

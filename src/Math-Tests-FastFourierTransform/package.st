@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-FastFourierTransform' }
+Package { #name : 'Math-Tests-FastFourierTransform' }

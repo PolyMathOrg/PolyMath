@@ -2,12 +2,13 @@
 A DhbExponentialDistributionTest is a test class for testing the behavior of DhbExponentialDistribution
 "
 Class {
-	#name : #PMExponentialDistributionTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-Numerical'
+	#name : 'PMExponentialDistributionTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-Numerical',
+	#package : 'Math-Tests-Numerical'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMExponentialDistributionTest >> testSampleMeanConvergesToDistributionMean [
 	"testing a random sample seems suspect. We use a 5% interval here"
 

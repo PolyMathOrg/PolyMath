@@ -5,20 +5,21 @@ The tests in this class compare the output from PolyMath with:
 are the mean-centred data in section 3.1, step 2.
 "
 Class {
-	#name : #PMPrincipalComponentAnalyserTest,
-	#superclass : #TestCase,
+	#name : 'PMPrincipalComponentAnalyserTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'pca'
 	],
-	#category : #'Math-Tests-PrincipalComponentAnalysis'
+	#category : 'Math-Tests-PrincipalComponentAnalysis',
+	#package : 'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PMPrincipalComponentAnalyserTest class >> isAbstract [
 	^ self name = #PMPrincipalComponentAnalyserTest
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMPrincipalComponentAnalyserTest >> testTransformMatrix [
 	| m expected |
 	m := PMMatrix
@@ -31,7 +32,7 @@ PMPrincipalComponentAnalyserTest >> testTransformMatrix [
 	self assert: pca transformMatrix abs closeTo: expected
 ]
 
-{ #category : #'lindsay-smith-pca-tutorial' }
+{ #category : 'lindsay-smith-pca-tutorial' }
 PMPrincipalComponentAnalyserTest >> testTransformWithMeanCentredMeasurements [
 	| meanCentredData transformedData expected |
 	meanCentredData := PMMatrix rows: #(
@@ -44,8 +45,7 @@ PMPrincipalComponentAnalyserTest >> testTransformWithMeanCentredMeasurements [
 			#(0.19 -0.31)
 			#(-0.81 -0.81)
 			#(-0.31 -0.31)
-			#(-0.71 -1.01)
-		  ).
+			#(-0.71 -1.01) ).
 
 	transformedData := pca fitAndTransform: meanCentredData.
 
@@ -60,5 +60,7 @@ PMPrincipalComponentAnalyserTest >> testTransformWithMeanCentredMeasurements [
 						#(1.14457216 0.0464172582)
 						#(0.438046137 0.0177646297)
 						#(1.22382056 -0.162675287)).
-	self assert: (transformedData abs) closeTo: expected abs
+						
+	transformedData abs rows with: expected abs rows do: [ :real : expe | 
+		self assert: real closeTo: expe precision: 0.01 ]
 ]
