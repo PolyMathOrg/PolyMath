@@ -2,15 +2,16 @@
 An ODESystemTest is a test class for testing the behavior of ODESystem
 "
 Class {
-	#name : #PMODESystemTest,
-	#superclass : #TestCase,
+	#name : 'PMODESystemTest',
+	#superclass : 'PMAbstractTest',
 	#instVars : [
 		'sys'
 	],
-	#category : #'Math-Tests-ODE'
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMODESystemTest >> setUp [
 	"create a dummy system"
 
@@ -18,7 +19,7 @@ PMODESystemTest >> setUp [
 	sys := PMODESystem new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMODESystemTest >> testBlock [
 	| aBlock |
 	aBlock := [ :x :t | t ].
@@ -26,7 +27,7 @@ PMODESystemTest >> testBlock [
 	self assert: sys block equals: aBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMODESystemTest >> testVectorBlock [
 	"this illustrates using a block that operates on a collection"
 
@@ -36,7 +37,7 @@ PMODESystemTest >> testVectorBlock [
 	self assert: sys block equals: aBlock
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMODESystemTest >> testVectorXT [
 	"a simple example of using a collection as state"
 
@@ -47,7 +48,7 @@ PMODESystemTest >> testVectorXT [
 	self assert: (sys state: #(0 0) time: 2) equals: #(2 2)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMODESystemTest >> testXT [
 	| aBlock |
 	aBlock := [ :x :t | t ].

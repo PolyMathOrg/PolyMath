@@ -1,26 +1,28 @@
 Class {
-	#name : #PMSmoothedDensityTest,
-	#superclass : #TestCase,
+	#name : 'PMSmoothedDensityTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'density'
 	],
-	#category : #'Math-Tests-Distributions-KernelSmoothing'
+	#category : 'Math-Tests-Distributions-KernelSmoothing',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KernelSmoothing'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMSmoothedDensityTest >> setUp [
 
 	super setUp.
 	density := PMKernelSmoothedDensity fromData: #( 1 2 3 1 2.3 2.4 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testAverage [
 
 	self assert: density data average closeTo: density average
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testBandWidth [
 
 	density bandWidth: 2.
@@ -37,7 +39,7 @@ PMSmoothedDensityTest >> testBandWidth [
 	self assert: density bandWidth closeTo: 0.753301158
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testDistributionValue [
 
 	self assert: (density distributionValue: 500) equals: 1.
@@ -50,7 +52,7 @@ PMSmoothedDensityTest >> testDistributionValue [
 	self assert: (density distributionValue: 2) closeTo: 0.506985855
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testEpanechnikov [
 
 	| f |
@@ -67,14 +69,14 @@ PMSmoothedDensityTest >> testEpanechnikov [
 	self assert: (f contents findString: 'epanechnikov') > 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testIKernel [
 
 	density iKernel: [ :x | x ].
 	self assert: (density distributionValue: 1) closeTo: -1.87784268
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testKernelAndData [
 	| b |
 	b := [ :x | x ].
@@ -85,7 +87,7 @@ PMSmoothedDensityTest >> testKernelAndData [
 	self assert: (density value: 2) equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testNormal [
 
 	| r |
@@ -98,7 +100,7 @@ PMSmoothedDensityTest >> testNormal [
 			 with: 0.0059525324197)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testPrint [
 |aStream  s|
 aStream :=ReadWriteStream with:''.
@@ -112,7 +114,7 @@ self assert: ((s findString: '6')>0).
 self assert: ((s findString: '0.50589967')>0)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testValue [
 
 	self assert: (density value: 0.5) closeTo: 0.1632610644.
@@ -123,7 +125,7 @@ PMSmoothedDensityTest >> testValue [
 	self assert: (density value: 5) equals: 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSmoothedDensityTest >> testVariance [
 
 	| v |

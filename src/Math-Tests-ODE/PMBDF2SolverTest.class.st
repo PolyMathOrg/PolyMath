@@ -1,10 +1,11 @@
 Class {
-	#name : #PMBDF2SolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMBDF2SolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBDF2SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
@@ -12,11 +13,11 @@ PMBDF2SolverTest >> testSimpleSystem2 [
 	stepper := PMBDF2Stepper onSystem: system.
 	solver := (PMBDF2Solver new) stepper: stepper; system: system; dt: dt.
 
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.54985).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306)
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.54985 precision: 0.00001).
+   self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo:  -0.5306 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBDF2SolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -57,7 +58,7 @@ PMBDF2SolverTest >> testSimpleSystem3 [
 		closeTo: 273.7129
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBDF2SolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	| solver stepper system dt finalState |
 	dt := 0.2.
@@ -76,7 +77,7 @@ PMBDF2SolverTest >> testSolveStartStateStartTimeEndTimeStepSize [
 	self assert: finalState isFloat
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBDF2SolverTest >> testSolveX0T0T1 [
 	| solver stepper system dt finalState |
 	dt := 0.1.

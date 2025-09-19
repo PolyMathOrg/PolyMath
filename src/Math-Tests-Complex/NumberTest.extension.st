@@ -1,6 +1,6 @@
-Extension { #name : #NumberTest }
+Extension { #name : 'NumberTest' }
 
-{ #category : #'*Math-Tests-Complex' }
+{ #category : '*Math-Tests-Complex' }
 NumberTest >> testComplexConjugate [
 
 	self assert: 5 complexConjugate equals: 5

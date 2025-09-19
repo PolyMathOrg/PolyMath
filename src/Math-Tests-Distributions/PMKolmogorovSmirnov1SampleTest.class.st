@@ -1,14 +1,16 @@
 Class {
-	#name : #PMKolmogorovSmirnov1SampleTest,
-	#superclass : #TestCase,
+	#name : 'PMKolmogorovSmirnov1SampleTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'distribution',
 		'test'
 	],
-	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
+	#category : 'Math-Tests-Distributions-KolmogorovSmirnov',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KolmogorovSmirnov'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 	| n |
 	test populationDistribution: aDistribution.
@@ -20,14 +22,14 @@ PMKolmogorovSmirnov1SampleTest >> numberOfRejectionsFor: aDistribution [
 	^ n
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMKolmogorovSmirnov1SampleTest >> setUp [
 	super setUp .
 	distribution := PMNormalDistribution new.
 	test := PMKolmogorovSmirnov1Sample new
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov1SampleTest >> testCorrectPopulationProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 
@@ -36,7 +38,7 @@ PMKolmogorovSmirnov1SampleTest >> testCorrectPopulationProbabilistic [
 	self assert: numberOfRejections < 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusDistribution [
 
 	| sample |
@@ -47,7 +49,7 @@ PMKolmogorovSmirnov1SampleTest >> testRejectOfEqualityHypothesesForSampleVersusD
 	self deny: (test rejectEqualityHypothesisWithAlpha: 0.05)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov1SampleTest >> testWrongAverageProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen not too often"
 
@@ -56,7 +58,7 @@ PMKolmogorovSmirnov1SampleTest >> testWrongAverageProbabilistic [
 	self assert: d > 97
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov1SampleTest >> testWrongDistributionProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 
@@ -69,7 +71,7 @@ PMKolmogorovSmirnov1SampleTest >> testWrongDistributionProbabilistic [
 	self assert: d > 60
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMKolmogorovSmirnov1SampleTest >> testWrongStandardDeviationProbabilistic [
 	"is a probabilistic test that occasionally fails, but it should happen rarely"
 

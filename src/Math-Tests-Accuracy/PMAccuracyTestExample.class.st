@@ -5,15 +5,16 @@ AccuracyTestExample new run.
 
 "
 Class {
-	#name : #PMAccuracyTestExample,
-	#superclass : #PMAccuracy,
+	#name : 'PMAccuracyTestExample',
+	#superclass : 'PMAccuracy',
 	#instVars : [
 		'count'
 	],
-	#category : #'Math-Tests-Accuracy'
+	#category : 'Math-Tests-Accuracy',
+	#package : 'Math-Tests-Accuracy'
 }
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> argumentWith: key [
 	| theArgument |
 	theArgument := self argumentAt: key.
@@ -21,44 +22,44 @@ PMAccuracyTestExample >> argumentWith: key [
 	^ theArgument
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkAaa [
 	(self argumentWith: 'Aaa') first
 		ifTrue: [ ^ #(1 1) ].
 	^ Array with: (4 + (0.4 * Random new next)) with: 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkBbb [
 	^ (self argumentWith: 'Bbb') first size + self parameter first
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkCcc [
 	^ (self argumentWith: 'Ccc') first + (0.01 * self parameter first)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkDdd [
 	^ OrderedCollection with: 2 with: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkEee [
 	^ Array with: self parameter first with: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAccuracyTestExample >> checkFff [
 	^ Array with: 0 with: 0 with: 1 with: 0 with: Float nan
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> count [
 	^ count
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> findKey [
 	| s selector |
 	s := thisContext sender.
@@ -66,7 +67,7 @@ PMAccuracyTestExample >> findKey [
 	^ self findKey: selector
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> findKey: selector [
 	| matchingMessage |
 	selector = 'initialize'
@@ -77,7 +78,7 @@ PMAccuracyTestExample >> findKey: selector [
 	^ matchingMessage
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initialize [
 	"this is always necessarily the first thing:"
 
@@ -90,7 +91,7 @@ PMAccuracyTestExample >> initialize [
 	self parameter: #(#(1) #(3))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initializeAaa [
 	"this overrides defaults in #initialize:"
 
@@ -99,7 +100,7 @@ PMAccuracyTestExample >> initializeAaa [
 	self parameter: #(#(1 2) #(3 2.8888))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initializeCcc [
 	"this overrides defaults in initialize"
 
@@ -107,7 +108,7 @@ PMAccuracyTestExample >> initializeCcc [
 	self map: 'Ccc' to: #(#(1) #(1.1) #(0.9))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initializeDdd [
 	"this overrides defaults in initialize"
 
@@ -116,14 +117,14 @@ PMAccuracyTestExample >> initializeDdd [
 	self parameter: #()
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initializeEee [
 	"this overrides defaults in initialize"
 
 	self result: #(#(1.1 2.2) #(1 3))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> initializeFff [
 	"this overrides defaults in initialize"
 
@@ -132,7 +133,7 @@ PMAccuracyTestExample >> initializeFff [
 	self parameter: nil
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAccuracyTestExample >> map: key to: anArgument [
 	arguments
 		at: key
@@ -140,17 +141,17 @@ PMAccuracyTestExample >> map: key to: anArgument [
 	^ anArgument
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMAccuracyTestExample >> setUp [
 	count := count + 1
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMAccuracyTestExample >> tearDown [
 	count := count - (1 / 5)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> testGetterAaa [
 ^Array
 	with: self parameter
@@ -160,7 +161,7 @@ PMAccuracyTestExample >> testGetterAaa [
 	with: (self numberOfDifferentResultsAt: 'Aaa')
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAccuracyTestExample >> testGetterBbb [
 ^Array
 	with: self parameter

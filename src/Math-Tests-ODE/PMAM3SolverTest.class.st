@@ -1,10 +1,11 @@
 Class {
-	#name : #PMAM3SolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAM3SolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAM3SolverTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
@@ -12,11 +13,11 @@ PMAM3SolverTest >> testSimpleSystem2 [
 	stepper := PMAM3Stepper onSystem: system.
 	solver := (PMAM3Solver new) stepper: stepper; system: system; dt: dt.
 
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.8978).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: 0.8577)
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  2.8978 precision: 0.0001).
+   self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: 0.8577 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAM3SolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -57,7 +58,7 @@ PMAM3SolverTest >> testSimpleSystem3 [
 		closeTo: 415.6194
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAM3SolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

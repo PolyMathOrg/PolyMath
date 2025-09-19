@@ -10,17 +10,18 @@ X =  [  4  22   3    5]
 The expected output is the computation carried out by Scikit-Learn's SVD flip algorithm.
 "
 Class {
-	#name : #PMScikitLearnSVDFlipAlgorithmSandiaTest,
-	#superclass : #TestCase,
+	#name : 'PMScikitLearnSVDFlipAlgorithmSandiaTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'u',
 		'v',
 		'flipAlgorithm'
 	],
-	#category : #'Math-Tests-PrincipalComponentAnalysis'
+	#category : 'Math-Tests-PrincipalComponentAnalysis',
+	#package : 'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> setUp [
 
 	super setUp.
@@ -35,7 +36,7 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> setUp [
 	flipAlgorithm := PMSciKitLearnSVDFlipAlgorithm flipU: u andV: v
 ]
 
-{ #category : #'sandia-example' }
+{ #category : 'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForU [
 	| expected |
 
@@ -46,7 +47,7 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForU [
 	self assert: flipAlgorithm signMatrixForU equals: expected
 ]
 
-{ #category : #'sandia-example' }
+{ #category : 'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForV [
 	| expected |
 	expected := PMMatrix
@@ -56,7 +57,7 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> testSignMatrixForV [
 	self assert: flipAlgorithm signMatrixForV equals: expected
 ]
 
-{ #category : #'sandia-example' }
+{ #category : 'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testUFlipped [
 	| expected |
 	expected := PMMatrix rows: #(
@@ -68,7 +69,7 @@ PMScikitLearnSVDFlipAlgorithmSandiaTest >> testUFlipped [
 	self assert: flipAlgorithm uFlipped equals: expected
 ]
 
-{ #category : #'sandia-example' }
+{ #category : 'sandia-example' }
 PMScikitLearnSVDFlipAlgorithmSandiaTest >> testVFlipped [
 	| expected |
 	expected := PMMatrix rows: #(

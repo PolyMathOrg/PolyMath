@@ -13,33 +13,35 @@ ks rejectEqualityHypothesisWithAlpha: 0.05.""--> false""
 
 "
 Class {
-	#name : #PMKolmogorovSmirnov1Sample,
-	#superclass : #PMKolmogorovSmirnovSample,
+	#name : 'PMKolmogorovSmirnov1Sample',
+	#superclass : 'PMKolmogorovSmirnovSample',
 	#instVars : [
 		'distribution',
 		'popDistribution'
 	],
-	#category : #'Math-Tests-Distributions-KolmogorovSmirnov'
+	#category : 'Math-Tests-Distributions-KolmogorovSmirnov',
+	#package : 'Math-Tests-Distributions',
+	#tag : 'KolmogorovSmirnov'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMKolmogorovSmirnov1Sample class >> compareData: aCollection withDistribution: aDistribution [
 ^self new data: aCollection ;populationDistribution: aDistribution ;yourself
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMKolmogorovSmirnov1Sample class >> data: aCollection [
 ^self new data: aCollection ;yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov1Sample >> data: aCollection [
 	distribution := PMKolmogorovsDistribution
 		exampleSize: aCollection size.
 	^ data := aCollection asSortedCollection
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov1Sample >> ksStatistic [
 	"the kolmogorov-smirnov statistic D"
 
@@ -53,14 +55,14 @@ PMKolmogorovSmirnov1Sample >> ksStatistic [
 	^ d max
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov1Sample >> pValue [
 	"the probability of getting a ksStatistic <= the actual one"
 
 	^ distribution distributionValue: self ksStatistic
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMKolmogorovSmirnov1Sample >> populationDistribution: aDistribution [
 	"utility, a simple alternative method to set cdf."
 
@@ -69,7 +71,7 @@ PMKolmogorovSmirnov1Sample >> populationDistribution: aDistribution [
 	compareWith := [ :x | popDistribution distributionValue: x ]
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMKolmogorovSmirnov1Sample >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' cdf: '.

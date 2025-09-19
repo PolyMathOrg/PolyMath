@@ -1,10 +1,11 @@
 Class {
-	#name : #PMAB2SolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAB2SolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB2SolverTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -31,7 +32,7 @@ PMAB2SolverTest >> testSimpleSystem2 [
 		closeTo: -0.2451
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB2SolverTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -58,7 +59,7 @@ PMAB2SolverTest >> testSimpleSystem3 [
 		closeTo: 17.4512
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB2SolverTest >> testSimpleSystem4 [
 
 	| solver stepper system dt |
@@ -78,7 +79,7 @@ PMAB2SolverTest >> testSimpleSystem4 [
 		closeTo: 22.3431
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMAB2SolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

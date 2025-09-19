@@ -1,15 +1,16 @@
 Class {
-	#name : #PMAB3StepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAB3StepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB3StepperTest >> testOrderIsThree [
 	self assert: PMAB3Stepper order equals: 3
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB3StepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,32 +30,31 @@ PMAB3StepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB3StepperTest >> testSimpleSystem2 [
 
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
-	stepper := PMAB3Stepper onSystem: system.
-	solver := PMAB3Solver new
-		          stepper: stepper;
-		          system: system;
-		          dt: dt.
-	self
-		assert: (solver
-				 solve: system
-				 startState: 5
-				 startTime: 0
-				 endTime: 1.5)
-		closeTo: 3.67565.
-	self should: ((solver
-			  solve: system
-			  startState: 0
-			  startTime: 1
-			  endTime: 2.5) closeTo: 0.28534)
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMExplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMAB3Stepper onSystem: system.
+    solver := PMAB3Solver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self
+        assert: (solver solve: system
+                 startState: 5
+                 startTime: 0
+                 endTime: 1.5)
+        closeTo: 3.67565
+        precision: 0.00001.
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 2.5) closeTo: 0.28534 precision: 0.00001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAB3StepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |

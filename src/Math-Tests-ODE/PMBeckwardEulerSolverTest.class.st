@@ -1,10 +1,11 @@
 Class {
-	#name : #PMBeckwardEulerSolverTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMBeckwardEulerSolverTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBeckwardEulerSolverTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -24,18 +25,28 @@ PMBeckwardEulerSolverTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBeckwardEulerSolverTest >> testSimpleSystem2 [
-	| solver stepper system dt |
-	dt := 1.5.
-	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
-	stepper := PMImplicitStepper onSystem: system.
-	solver := (PMImplicitSolver new) stepper: stepper; system: system; dt: dt.
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3) closeTo:  0.16567).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 2.5) closeTo: -0.5306)
+
+    | solver stepper system dt |
+    dt := 1.5.
+    system := PMImplicitSystem block: [ :x :t | 3 * t negated exp - (0.4 * x) ].
+    stepper := PMImplicitStepper onSystem: system.
+    solver := PMImplicitSolver new
+                  stepper: stepper;
+                  system: system;
+                  dt: dt.
+    self should: ((solver solve: system
+              startState: 5
+              startTime: 0
+              endTime: 3) closeTo: 0.16567 precision: 0.00001).
+    self should: ((solver solve: system
+              startState: 0
+              startTime: 1
+              endTime: 2.5) closeTo: -0.5306 precision: 0.0001)
 ]
 
-{ #category : #'tests-solving' }
+{ #category : 'tests-solving' }
 PMBeckwardEulerSolverTest >> testVectorSystem [
 
 	| solver stepper system dt |

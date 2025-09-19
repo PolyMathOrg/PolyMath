@@ -1,15 +1,16 @@
 Class {
-	#name : #PMAM3StepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMAM3StepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAM3StepperTest >> testOrderIsThree [
 	self assert: PMAM3Stepper order equals: 3
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAM3StepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -29,20 +30,20 @@ PMAM3StepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAM3StepperTest >> testSimpleSystem2 [
 	| solver stepper system dt |
 	dt := 1.5.
 	system := PMImplicitSystem block: [:x :t | 3 * (t negated exp) - (0.4 * x)].
 	stepper := PMAM3Stepper onSystem: system.
 	solver := (PMAM3Solver new) stepper: stepper; system: system; dt: dt.
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo: 4.5912).
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo: 4.9614).
-	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  2.8977).
-       self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  0.5375)
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.7) closeTo: 4.5912 precision: 0.0001).
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 1.5) closeTo: 4.9614 precision: 0.0001).
+	self should: ((solver solve: system startState: 5 startTime: 0 endTime: 3.0) closeTo:  2.8977 precision: 0.0001).
+   self should: ((solver solve: system startState: 0 startTime: 1 endTime: 4.0) closeTo:  0.5375 precision: 0.0001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAM3StepperTest >> testSimpleSystem3 [
 
 	| solver stepper system dt |
@@ -83,7 +84,7 @@ PMAM3StepperTest >> testSimpleSystem3 [
 		closeTo: 6.76035
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMAM3StepperTest >> testVectorSystem [
 
 	| solver stepper system dt |

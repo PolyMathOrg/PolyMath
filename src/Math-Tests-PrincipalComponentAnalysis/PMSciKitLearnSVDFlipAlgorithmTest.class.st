@@ -3,17 +3,18 @@ This is the test class that exercises scikit-learn Eigenvector Flip Algorithm
 
 "
 Class {
-	#name : #PMSciKitLearnSVDFlipAlgorithmTest,
-	#superclass : #TestCase,
+	#name : 'PMSciKitLearnSVDFlipAlgorithmTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'u',
 		'v',
 		'flipAlgorithm'
 	],
-	#category : #'Math-Tests-PrincipalComponentAnalysis'
+	#category : 'Math-Tests-PrincipalComponentAnalysis',
+	#package : 'Math-Tests-PrincipalComponentAnalysis'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
 	"  We compute a matrix of signs for U with which
 	we perform a 'dot product' with the original
@@ -43,7 +44,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> setUp [
 	flipAlgorithm := PMSciKitLearnSVDFlipAlgorithm flipU: u andV: v
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 	"The purpose is to compare the output from fligEigenVectorsSign in
 	PolyMath with scikit-learn
@@ -57,7 +58,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testComputeSignsFromU [
 	self assert: signs equals: expected
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForU [
 	| expected |
 	expected := PMMatrix rows: #(#(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1) #(-1 1)).
@@ -65,7 +66,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForU [
 	self assert: (flipAlgorithm signMatrixForU) equals: expected
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForV [
 	| expected |
 	expected := PMMatrix rows: #(#(-1 -1) #(1 1)).
@@ -73,7 +74,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testSignMatrixForV [
 	self assert: (flipAlgorithm signMatrixForV) equals: expected
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testUFlipped [
 	| expected |
 	expected := PMMatrix rows: #(
@@ -87,7 +88,7 @@ PMSciKitLearnSVDFlipAlgorithmTest >> testUFlipped [
 	self assert: (flipAlgorithm uFlipped) equals: expected
 ]
 
-{ #category : #'scikit-learn-example' }
+{ #category : 'scikit-learn-example' }
 PMSciKitLearnSVDFlipAlgorithmTest >> testVFlipped [
 	| expected |
 	expected := PMMatrix rows: #(#(-0.83849224 -0.54491354) #(0.54491354 -0.83849224)).

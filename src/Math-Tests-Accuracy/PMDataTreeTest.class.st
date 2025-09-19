@@ -7,35 +7,36 @@ dataTree message
 Collaborators: PMAccuracyTestExample 
 "
 Class {
-	#name : #PMDataTreeTest,
-	#superclass : #TestCase,
+	#name : 'PMDataTreeTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'dp',
 		'a'
 	],
-	#category : #'Math-Tests-Accuracy'
+	#category : 'Math-Tests-Accuracy',
+	#package : 'Math-Tests-Accuracy'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMDataTreeTest >> initialize [
 	super initialize.
 	dp := PMAccuracyTestExample decimalPlaces
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMDataTreeTest >> setUp [
 	super setUp.
 	a := PMAccuracyTestExample new.
 	PMAccuracyTestExample decimalPlaces: 3
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMDataTreeTest >> tearDown [
 	PMAccuracyTestExample decimalPlaces: dp.
 	super tearDown
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testDataTree [
 	| keyedTree |
 	a run.
@@ -43,7 +44,7 @@ PMDataTreeTest >> testDataTree [
 	self assert: keyedTree keys size equals: 5
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatDataForAaaIsTheCorrespondingParameter [
 	| parameterForAaa |
 	a run.
@@ -54,7 +55,7 @@ PMDataTreeTest >> testThatDataForAaaIsTheCorrespondingParameter [
 		equals: parameterForAaa
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatKeyedTreeContainsArgsDataErrorResultsAndType [
 	"SMELL - it's not easy to determine the true purpose of the
 	test and, perhaps with the exception of the 'expected result',
@@ -75,14 +76,14 @@ PMDataTreeTest >> testThatKeyedTreeContainsArgsDataErrorResultsAndType [
 				yourself)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatRunIncrementsTheNumberOfIterations [
 	"SMELL - we're really testing run, it seems."
 	a run.
 	self assert: (a dataTree atPath: #('iterations')) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatTheDataForBbbIsTheDefaultResult [
 	"SMELL - magic number. This may be coincidental, but the
 	expected result in this test is that set in
@@ -96,7 +97,7 @@ PMDataTreeTest >> testThatTheDataForBbbIsTheDefaultResult [
 		equals: defaultResultAtInitialisation
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatTheErrorForFffIsCorrect [
 	| error |
 	a run.
@@ -107,7 +108,7 @@ PMDataTreeTest >> testThatTheErrorForFffIsCorrect [
 	self assert: (error at: 5) isNaN
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataTreeTest >> testThatTheNamesAreInitialisationKeys [
 	a run.
 	self

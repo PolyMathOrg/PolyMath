@@ -1,10 +1,11 @@
 Class {
-	#name : #PMRungeKuttaStepperTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-ODE'
+	#name : 'PMRungeKuttaStepperTest',
+	#superclass : 'PMAbstractTest',
+	#category : 'Math-Tests-ODE',
+	#package : 'Math-Tests-ODE'
 }
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 
 	| stepper sys dt |
@@ -17,7 +18,7 @@ PMRungeKuttaStepperTest >> testDoStepTimeStepSize1 [
 	self assert: ((stepper doStep: 10 time: 1 stepSize: dt) closeTo: 11.1071 precision: 0.01)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 
 	| stepper sys dt |
@@ -28,12 +29,12 @@ PMRungeKuttaStepperTest >> testDoStepTimeStepSize2 [
 	self assert: (stepper doStep: 10 time: 1 stepSize: dt) closeTo: 9.7109
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testOrderIsFour [
 	self assert: PMRungeKuttaStepper order equals: 4
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testSimpleSystem [
 
 	| solver stepper system dt |
@@ -53,7 +54,7 @@ PMRungeKuttaStepperTest >> testSimpleSystem [
 		closeTo: 1
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testSimpleSystem2 [
 
 	| solver stepper system dt |
@@ -70,15 +71,15 @@ PMRungeKuttaStepperTest >> testSimpleSystem2 [
 				 startState: 5
 				 startTime: 0
 				 endTime: 1.5)
-		closeTo: 4.3646.
+		closeTo: 4.3646 precision: 0.0001.
 	self should: ((solver
 			  solve: system
 			  startState: 0
 			  startTime: 1
-			  endTime: 2.5) closeTo: 0.5951)
+			  endTime: 2.5) closeTo: 0.5951 precision: 0.0001)
 ]
 
-{ #category : #'tests-stepping' }
+{ #category : 'tests-stepping' }
 PMRungeKuttaStepperTest >> testVectorSystem [
 
 	| solver stepper system dt |
