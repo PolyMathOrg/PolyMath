@@ -33,7 +33,7 @@ PMPrincipalComponentAnalyserJacobiTransformation >> accumulate: aPMVectorOrArray
 PMPrincipalComponentAnalyserJacobiTransformation >> components [
 	"Precondition: accumulate: should have been used."
 
-	^ self jacobiTransform evaluate copyFrom: 1 to: componentsNumber
+	^ self jacobiTransform eigenValues copyFrom: 1 to: componentsNumber
 ]
 
 { #category : 'accessing' }
@@ -59,5 +59,5 @@ PMPrincipalComponentAnalyserJacobiTransformation >> transform: aPMMatrix [
 PMPrincipalComponentAnalyserJacobiTransformation >> transformMatrix [
 	"Return a matrix that can be applied to any data vector to extract the relevant component of the data vector"
 
-	^ PMMatrix rows: (self jacobiTransform transform rows copyFrom:1 to: componentsNumber )
+	^ PMMatrix rows: (self jacobiTransform eigenVectors rows copyFrom:1 to: componentsNumber )
 ]
