@@ -10,12 +10,13 @@ PolyMath is a Smalltalk project, similar to existing scientific libraries like N
 
 "
 Class {
-	#name : #BaselineOfPolyMath,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfPolyMath
+	#name : 'BaselineOfPolyMath',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfPolyMath',
+	#package : 'BaselineOfPolyMath'
 }
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPolyMath >> baseline: spec [
 
 	<baseline>
@@ -41,7 +42,7 @@ BaselineOfPolyMath >> baseline: spec [
 			package: 'Math-CompatibilityUpToPharo11' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> dataFrameInspector: spec [
 
 	spec
@@ -49,7 +50,7 @@ BaselineOfPolyMath >> dataFrameInspector: spec [
 		with: [ spec repository: 'github://pharo-ai/data-inspector/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> datasets: spec [
 
 	spec 
@@ -57,7 +58,7 @@ BaselineOfPolyMath >> datasets: spec [
 		with: [ spec repository: 'github://pharo-ai/datasets' ].
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPolyMath >> groups: spec [
 
 	spec
@@ -98,7 +99,7 @@ BaselineOfPolyMath >> groups: spec [
 		with: #( 'Core' 'Extensions' 'Tests' 'Benchmarks' 'Accuracy' )
 ]
 
-{ #category : #baselines }
+{ #category : 'baselines' }
 BaselineOfPolyMath >> packages: spec [
 
 	spec
@@ -204,20 +205,20 @@ BaselineOfPolyMath >> packages: spec [
 		with: [ spec requires: #( 'AIDatasets' 'AIDataFrameInspector') ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfPolyMath >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> randomNumbers: spec [
 
 	spec baseline: 'MathRandomNumbers' with: [ spec repository: 'github://PolyMathOrg/random-numbers:v1.x.x/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> roassal: spec [
 
 	spec 
@@ -225,19 +226,19 @@ BaselineOfPolyMath >> roassal: spec [
 		with: [ spec repository: 'github://pharo-graphics/Roassal' ].
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> sMark: spec [
 
 	spec baseline: 'SMark' with: [ spec repository: 'github://smarr/SMark:v1.0.4' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> vectorMatrix: spec [
 
-	spec baseline: 'MathVectorMatrix' with: [ spec repository: 'github://PolyMathOrg/vector-matrix:v1.x.x/src' ]
+	spec baseline: 'MathVectorMatrix' with: [ spec repository: 'github://PolyMathOrg/vector-matrix/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPolyMath >> xmlWriter: spec [
 
 	spec baseline: 'XMLWriter' with: [ spec repository: 'github://pharo-contributions/XML-XMLWriter:2.9.x/src' ]
