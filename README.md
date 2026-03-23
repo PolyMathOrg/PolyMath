@@ -67,4 +67,8 @@ To add PolyMath to your baseline just add this:
 
 ## How to contribute to PolyMath
 
-We welcome submissions! A google group exists for this project at http://groups.google.com/group/polymath-project
+We welcome submissions and contributions !
+
+You can contact us by Discord. Check: pharo.org
+
+Also google group exists for this project at http://groups.google.com/group/polymath-project (No activity since 2022)
