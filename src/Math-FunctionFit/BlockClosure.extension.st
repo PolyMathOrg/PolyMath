@@ -1,7 +1,7 @@
-Extension { #name : 'CleanBlockClosure' }
+Extension { #name : 'BlockClosure' }
 
 { #category : '*Math-FunctionFit' }
-CleanBlockClosure >> functionString [
+BlockClosure >> functionString [
 
 	^ self sourceNode value sourceCode asString
 ]
