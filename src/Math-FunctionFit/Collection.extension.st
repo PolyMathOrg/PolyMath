@@ -1,6 +1,6 @@
-Extension { #name : #Collection }
+Extension { #name : 'Collection' }
 
-{ #category : #'*Math-FunctionFit' }
+{ #category : '*Math-FunctionFit' }
 Collection >> norm [
 ^(self*self)sum sqrt
 ]

@@ -7,8 +7,8 @@ fit evaluate .
 fit result  .  --> #(2.0000000000000413 3.000000000000014)
 "
 Class {
-	#name : #PMGeneralFunctionFit,
-	#superclass : #Object,
+	#name : 'PMGeneralFunctionFit',
+	#superclass : 'Object',
 	#instVars : [
 		'manager',
 		'errorFunction',
@@ -19,10 +19,11 @@ Class {
 		'dataTruncated',
 		'geneticOptimizer'
 	],
-	#category : #'Math-FunctionFit'
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMGeneralFunctionFit class >> function: aBlock data: aCollectionOfPoints minimumValues: anArray maximumValues: anotherArray [
 (aBlock isBlock and:[aBlock numArgs > 1]) ifFalse:
 	[^self error: 'aBlock must be a Block with one independent variable and at least one parameter' ].
@@ -33,7 +34,7 @@ PMGeneralFunctionFit class >> function: aBlock data: aCollectionOfPoints minimum
 	yourself
 ]
 
-{ #category : #util }
+{ #category : 'util' }
 PMGeneralFunctionFit class >> range: anArray size: anInteger type: string [
 ^anArray isNumber
 	ifTrue: [Array new: anInteger withAll: anArray ]
@@ -44,7 +45,7 @@ PMGeneralFunctionFit class >> range: anArray size: anInteger type: string [
 		ifFalse: [self error: (string, ' values is no collection or number')]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> data: aCollectionOfPoints [
 "the data, a collection of x@f(x), used to estimate the parameters"
 self resetResult .
@@ -53,44 +54,44 @@ dataTruncated:=false.
 ^errorFunction data: aCollectionOfPoints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> dataTruncated [
 ^dataTruncated
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> error [
 "returns the sqrt of the mean of the sum of squared errors, or the mean abs error, or the quartile error, or the insensitive error"
 result ifNil: [^nil].
 ^self error: result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> error: parameters [
 "returns the error for any parameter array; for example if you want to compare the error of the result with the error of the 'real' parameters"
 ^errorFunction realValue: parameters
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> errorCollection [
 	^ result
 		ifNil: [ Error signal: 'run "self evaluate" first' ]
 		ifNotNil: [ :r | self optimizer functionBlock errorCollection: r ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> errorType [
 ^errorFunction errorType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> errorType: aSymbol [
 	"defines what kind of fitting should be used. valid errorTypes are: #squared, #abs, #insensitive, #quartile, #median. Default is #squared"
 self resetResult.
 ^errorFunction errorType: aSymbol
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMGeneralFunctionFit >> evaluate [
 
 	| ff |
@@ -120,7 +121,7 @@ PMGeneralFunctionFit >> evaluate [
 	^ result
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMGeneralFunctionFit >> findQuartile [
 | errorCol d2 max v n|
 (#(#quartile #insensitive) includes: self errorType ) ifFalse:
@@ -153,7 +154,7 @@ verbose :=v.
 ^self evaluate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> function [
 "does usually not return the originally entered block, but a SimpleParameterFunction with the parameters set to the result"
 |f|
@@ -161,14 +162,14 @@ f :=errorFunction function .
 ^result ifNil: [f] ifNotNil: [PMSimpleParameterFunction function: f parameters: result]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> function: aBlock [
 	"sets the function to be fitted. the first value has to be the independent variable, further values are the parameters to be fitted. only one independent variable is allowed (if you have several independent vars or eg a function of a vector, that returns another vector, have a look at the 'spiral' example)."
 self resetResult.
 errorFunction function: aBlock
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGeneralFunctionFit >> initialize [
 
 	super initialize.
@@ -185,20 +186,20 @@ PMGeneralFunctionFit >> initialize [
 	dataTruncated := false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> manager [
 "if you want to change parameters of AnotherChromosomeManager, that are not directly available in GeneralFunctionFit"
 ^manager
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> maximumIterations: anInteger [
 "default is 170."
 geneticOptimizer maximumIterations: anInteger.
 ^anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> minValues: anArray maxValues: anotherArray [
 "instead of an array one can also use a number, an array will then be filled with this number. eg one can use 0 instead of the tiresome #(0 0 0 0). minValues and maxValues need not  be absolutely correct. also results outside of this range, but nearby, will often be found."
 	|array1 array2 aSize|
@@ -212,13 +213,13 @@ manager origin: array1.
 manager range: (array2 - array1)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> optimizer [
 "if you want to change parameters of AnotherGeneticOptimizer not directly available in GeneralFunctionFit"
 ^geneticOptimizer
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> populationSize: anInteger [
 " if you have a lot of parameters (essentially beginning with 3 parameters), you may want to enlarge the populationsize. default is only 50. eg for 3 parameters, you might want set this to 300"
 self resetResult.
@@ -226,13 +227,13 @@ manager populationSize: anInteger .
 ^anInteger
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> precision [
 "not really useful to look at, you might better look at #error"
 ^geneticOptimizer precision
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMGeneralFunctionFit >> printOn: aStream [
 	aStream
 		nextPutAll: 'a ';
@@ -246,57 +247,57 @@ PMGeneralFunctionFit >> printOn: aStream [
        aStream nextPut: $)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> quartile [
 ^errorFunction quartile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> quartile: aFloat [
 "quartile: is used by errortypes #quartile and #insensitive. if you set quartile to 1, it does not make much sense to use #insensitive, since #insensitive is much slower than #quartile and calculating the tube radius is not quite correct for #insensitive in this special case (it will leave out one datapoint )."
 self resetResult.
 ^errorFunction quartile: aFloat
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> relativeError: aBoolean [
 "by default false"
 self resetResult .
 ^errorFunction relativeError: aBoolean
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMGeneralFunctionFit >> resetBestPoints [
 "for repeated evaluating with different starting populations"
 self resetResult
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMGeneralFunctionFit >> resetData [
 self data: data
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMGeneralFunctionFit >> resetResult [
 result :=nil.
 firstResult :=nil.
 geneticOptimizer resetBestPoints
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> result [
 "the fitted parameters"
 result ifNil: [self evaluate ].
 ^result
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> secondaryResult [
 "not really necessary"
 ^firstResult
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMGeneralFunctionFit >> truncateData [
 |ec ei |
 dataTruncated ifTrue: [^Error signal:'data is already truncated'].
@@ -309,7 +310,7 @@ dataTruncated:=true.
 ^self optimizer functionBlock data: (ei collect: [:i|self optimizer functionBlock data at: i])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> verbose: aBoolean [
 " by default false. if set it to true, you will get some tiresome messages"
 verbose :=aBoolean

@@ -2,15 +2,16 @@
 GAAccuracy tests standard problems
 "
 Class {
-	#name : #PMGAAccuracy,
-	#superclass : #PMAccuracy,
+	#name : 'PMGAAccuracy',
+	#superclass : 'PMAccuracy',
 	#instVars : [
 		'fast'
 	],
-	#category : #'Math-FunctionFit'
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkDamavandi [
 	| g origin range optimizer  |
 	g := [:x| |x1 x2|
@@ -25,7 +26,7 @@ PMGAAccuracy >> checkDamavandi [
 	^g value: optimizer evaluate
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkDeVilliersGlasser2 [
 	| ti yi g origin range optimizer |
 	ti := [ :x | (x - 1) / 10 ].
@@ -54,7 +55,7 @@ PMGAAccuracy >> checkDeVilliersGlasser2 [
 	^ g value: optimizer evaluate
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkF1 [
 	| f origin optimizer |
 	f := [ :x |
@@ -71,7 +72,7 @@ PMGAAccuracy >> checkF1 [
 	^ f value: optimizer evaluate
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkF2 [
 	| g origin optimizer r |
 	g := [ :x | (x overlappingPairsCollect: [ :f :s | (s - f squared) squared * 100 + (1 - f) squared ]) sum ].
@@ -88,7 +89,7 @@ PMGAAccuracy >> checkF2 [
 	^ r
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkF3 [
 	| g origin optimizer |
 	g := [ :x | (x floor + 0.5) squared sum ].
@@ -105,7 +106,7 @@ PMGAAccuracy >> checkF3 [
 	^ g value: optimizer evaluate
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkF5 [
 	| g origin optimizer |
 	g := [ :x |
@@ -127,7 +128,7 @@ PMGAAccuracy >> checkF5 [
 	^ g value: optimizer evaluate
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGAAccuracy >> checkGriewank [
 	| g origin range optimizer |
 	g := [ :x | x squared sum / 4000 - ((x withIndexCollect: [ :xi :i | (xi / i sqrt) cos ]) reduce: [ :a :b | a * b ]) + 1 ].
@@ -140,18 +141,18 @@ PMGAAccuracy >> checkGriewank [
 	^ g value: optimizer evaluate
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGAAccuracy >> fast [
 	^fast
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMGAAccuracy >> fast: aBoolean [
 	"default is false"
 	fast := aBoolean
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initialize [
 	super initialize.
 	fast :=false.
@@ -159,51 +160,51 @@ PMGAAccuracy >> initialize [
 	self parameter: #(#(0.4 0.15 0.29 0.16) #(0.40 0.15 0.28 0.17))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeDamavandi [
 	self result: 0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeDeVilliersGlasser2 [
 	self result: 0
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeF1 [
 	self result: #((0) (0) (0)).
 	self argument: #((4) (8) (12))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeF2 [
 	self result: #(0 0 0)
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeF3 [
 	self argument: #(#(16) #(20)).
 	self result: #(#(4) #(5))
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeF5 [
 	self result: 0.99800383779444
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMGAAccuracy >> initializeGriewank [
 	self result: 0
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMGAAccuracy >> runFast [
 	"fast is an euphemism here, but at least its fast to type"
 	fast := true.
 	^ self run: #('F1' 'F2' 'F3' 'F5' 'Griewank')
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMGAAccuracy >> setManager:aManager with: rates [
 	"set everything to zero first, so that you dont get warnings"
 	aManager
