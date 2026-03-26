@@ -24,6 +24,13 @@ PMErrorOfParameterFunction class >> function: aBlock data: aCollectionOfPoints [
 ]
 
 { #category : 'accessing' }
+PMErrorOfParameterFunction >> compiledBlock [
+	"This method only exists for polymorphic message send"
+
+	^ self asString
+]
+
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> data [
 ^data
 ]
@@ -88,12 +95,6 @@ PMErrorOfParameterFunction >> function [
 PMErrorOfParameterFunction >> function: aBlock [
 function :=aBlock .
 varArray :=Array new: aBlock numArgs
-]
-
-{ #category : 'accessing' }
-PMErrorOfParameterFunction >> functionString [
-
-	^ self asString
 ]
 
 { #category : 'initialization' }

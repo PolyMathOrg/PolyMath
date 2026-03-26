@@ -169,17 +169,12 @@ PMAnotherGeneticOptimizer >> nextGeneration [
 ]
 
 { #category : 'printing' }
-PMAnotherGeneticOptimizer >> printOn1: aStream [
+PMAnotherGeneticOptimizer >> printOn: aStream [
 
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: '( function: ';
-		nextPutAll: originalFunction functionString
-]
-
-{ #category : 'printing' }
-PMAnotherGeneticOptimizer >> printOn2: aStream [
-	aStream
+		nextPutAll: originalFunction compiledBlock asString;
 		nextPutAll: ' manager: ';
 		print: chromosomeManager;
 		nextPutAll: ' maxIterations: ';
@@ -195,12 +190,6 @@ PMAnotherGeneticOptimizer >> printOn2: aStream [
 		nextPutAll: ' result: ';
 		print: result;
 		nextPut: $)
-]
-
-{ #category : 'printing' }
-PMAnotherGeneticOptimizer >> printOn: aStream [
-	self printOn1: aStream.
-	self printOn2: aStream
 ]
 
 { #category : 'operation' }
@@ -251,7 +240,7 @@ result :=nil
 PMAnotherGeneticOptimizer >> setFunction: aBlock [
 	( aBlock respondsTo: #value:)
 		ifFalse:[ self error: 'Function block must implement the method value:'].
-	originalFunction :=aBlock . "necessary for subclass; do not delete that nonsense!"
+	originalFunction := aBlock . "necessary for subclass; do not delete that nonsense!"
 	functionBlock := aBlock.
 	self resetBestPoints
 ]
