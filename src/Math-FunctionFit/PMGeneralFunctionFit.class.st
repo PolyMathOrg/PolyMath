@@ -46,6 +46,12 @@ PMGeneralFunctionFit class >> range: anArray size: anInteger type: string [
 ]
 
 { #category : 'accessing' }
+PMGeneralFunctionFit >> compiledBlock [
+
+	^ errorFunction function
+]
+
+{ #category : 'accessing' }
 PMGeneralFunctionFit >> data: aCollectionOfPoints [
 "the data, a collection of x@f(x), used to estimate the parameters"
 self resetResult .
@@ -237,16 +243,19 @@ PMGeneralFunctionFit >> precision [
 
 { #category : 'printing' }
 PMGeneralFunctionFit >> printOn: aStream [
+
 	aStream
 		nextPutAll: 'a ';
 		nextPutAll: self class name;
 		nextPut: $(;
 		print: geneticOptimizer;
 		nextPutAll: ' with data of size: ';
-	  	print: data size .
-	 dataTruncated ifTrue:
-		[aStream nextPutAll: ' truncated to: '; print: self optimizer functionBlock data size] .
-       aStream nextPut: $)
+		print: data size.
+	dataTruncated ifTrue: [
+			aStream
+				nextPutAll: ' truncated to: ';
+				print: self optimizer functionBlock data size ].
+	aStream nextPut: $)
 ]
 
 { #category : 'accessing' }

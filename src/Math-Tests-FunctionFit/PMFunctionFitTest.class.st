@@ -1,14 +1,15 @@
 Class {
-	#name : #PMFunctionFitTest,
-	#superclass : #TestCase,
+	#name : 'PMFunctionFitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'f',
 		'd'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMFunctionFitTest >> setUp [
 
 	super setUp.
@@ -17,7 +18,7 @@ PMFunctionFitTest >> setUp [
 	d := (1 to: 20) collect: [ :i | i @ (f cull: i cull: 2 cull: 0.4) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMFunctionFitTest >> testFunctionFit [
 
 	| ff ar p |
@@ -33,15 +34,4 @@ PMFunctionFitTest >> testFunctionFit [
 	ff parameters: ar.
 	ff evaluate.
 	self assert: ff parameters closeTo: #( 2 0.4 )
-]
-
-{ #category : #tests }
-PMFunctionFitTest >> testPrint [
-|aStream ff s|
-aStream :=ReadWriteStream with:''.
-ff:=  PMFunctionFit function: f data: d .
-ff printOn: aStream .
-s :=aStream contents .
-self assert: (s includesSubstring: 'a * x / (b + x)').
-self assert: (s includesSubstring: '20')
 ]

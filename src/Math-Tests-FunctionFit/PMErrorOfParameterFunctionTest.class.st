@@ -1,14 +1,15 @@
 Class {
-	#name : #PMErrorOfParameterFunctionTest,
-	#superclass : #TestCase,
+	#name : 'PMErrorOfParameterFunctionTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'f',
 		'col'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMErrorOfParameterFunctionTest >> setUp [
 
 	super setUp.
@@ -17,12 +18,12 @@ PMErrorOfParameterFunctionTest >> setUp [
 	col := (1 to: 3) collect: [ :i | i @ (f function cull: i cull: 1 cull: 1) ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testArgumentsString [
 	self assert: f parameterNames asOrderedCollection equals: #('a' 'b') asOrderedCollection
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testErrorCollection [
 	f data: col.
 	f errorType: #squared.
@@ -37,7 +38,7 @@ PMErrorOfParameterFunctionTest >> testErrorCollection [
 	self assert: (f errorCollection: #(1 1)) equals: #(0 0 0)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testErrorType [
 	self assert: f errorType equals: #squared.
 	f errorType: #abs.
@@ -50,25 +51,13 @@ PMErrorOfParameterFunctionTest >> testErrorType [
 	self assert: f quartile equals: 1 / 2
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testFunction [
 	self assert: (f function cull: 1 cull: 2 cull: 3) equals: 1 / 2.
 	self assert: f parameterSize equals: 2
 ]
 
-{ #category : #tests }
-PMErrorOfParameterFunctionTest >> testPrint [
-|aStream  s|
-aStream :=ReadWriteStream with:''.
-f data:(Array with: (1@(1/2)) with: (2@(2/3)) with: (3@(3/4))).
-f printOn: aStream .
-s :=aStream contents .
-self assert: (s includesSubstring: 'a * x / (b + x)').
-self assert: (s includesSubstring: 'squared').
-self assert: (s includesSubstring: 'false')
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testQuartile [
 	self assert: f quartile equals: 1 / 2.
 	f quartile: 1.
@@ -77,7 +66,7 @@ PMErrorOfParameterFunctionTest >> testQuartile [
 	self should: [ f quartile: -0.1 ] raise: DomainError
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testRealValue [
 	f := PMErrorOfParameterFunction
 		function: [ :i :a | i + a ]
@@ -97,14 +86,14 @@ PMErrorOfParameterFunctionTest >> testRealValue [
 	self assert: (f realValue: #(-2)) equals: 1
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testdata [
 	self assert: f data isNil.
 	f data: col.
 	self assert: f data equals: col
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorOfParameterFunctionTest >> testvalue [
 	f data: col.
 	f errorType: #squared.

@@ -27,7 +27,7 @@ PMErrorOfParameterFunction class >> function: aBlock data: aCollectionOfPoints [
 PMErrorOfParameterFunction >> compiledBlock [
 	"This method only exists for polymorphic message send"
 
-	^ self asString
+	^ function
 ]
 
 { #category : 'accessing' }
@@ -117,9 +117,11 @@ PMErrorOfParameterFunction >> parameterSize [
 
 { #category : 'printing' }
 PMErrorOfParameterFunction >> printOn: aStream [
-	super printOn: aStream.
 	aStream
-		nextPutAll: '( function: '; print: function compiledBlock;
+		nextPutAll: 'a ';
+		nextPutAll: self class name;
+		nextPutAll: '( function: '; 
+		nextPutAll: (PMFunctionPrinter new printFunction: function);
 		nextPutAll: ' relativeError: '; print: relative;
 		nextPutAll: ' errorType: '; print: errorType.
 	(#(#quartile #insensitive) includes: errorType)ifTrue:[

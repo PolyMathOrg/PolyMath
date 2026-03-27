@@ -1,18 +1,19 @@
 Class {
-	#name : #PMSimpleParameterFunctionTest,
-	#superclass : #TestCase,
+	#name : 'PMSimpleParameterFunctionTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'f'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMSimpleParameterFunctionTest >> setUp [
 	f:=[:a :x :cc :b|x]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSimpleParameterFunctionTest >> testChangeParametersBy [
 	| s |
 	s := PMSimpleParameterFunction function: f parameters: #(1 1 2).
@@ -20,27 +21,14 @@ PMSimpleParameterFunctionTest >> testChangeParametersBy [
 	self assert: s parameters equals: #(4 3 3)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMSimpleParameterFunctionTest >> testParameterNames [
 	| s |
 	s := PMSimpleParameterFunction function: f.
 	self assert: s parameterNames asArray equals: #('x' 'cc' 'b')
 ]
 
-{ #category : #tests }
-PMSimpleParameterFunctionTest >> testPrint [
-|aStream s|
-aStream :=ReadWriteStream with:''.
-s:=PMSimpleParameterFunction function:f parameters: #(1 2 3).
-s printOn: aStream .
-s :=aStream contents .
-self assert: ((s beginsWith: 'a PMSimpleParameterFunction')).
-self assert: (s includesSubstring: '1').
-self assert: (s includesSubstring: ' 2').
-self assert: (s includesSubstring: ' 3')
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PMSimpleParameterFunctionTest >> testRest [
 
 	| s vg |

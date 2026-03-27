@@ -174,7 +174,7 @@ PMAnotherGeneticOptimizer >> printOn: aStream [
 	aStream
 		nextPutAll: self class name;
 		nextPutAll: '( function: ';
-		nextPutAll: originalFunction compiledBlock asString;
+		nextPutAll: (PMFunctionPrinter new printFunction: originalFunction);
 		nextPutAll: ' manager: ';
 		print: chromosomeManager;
 		nextPutAll: ' maxIterations: ';
