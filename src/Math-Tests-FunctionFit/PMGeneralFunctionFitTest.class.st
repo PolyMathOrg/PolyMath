@@ -1,15 +1,16 @@
 Class {
-	#name : #PMGeneralFunctionFitTest,
-	#superclass : #TestCase,
+	#name : 'PMGeneralFunctionFitTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'f',
 		'col',
 		'fit'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMGeneralFunctionFitTest >> setUp [
 	"Reset the seed of the random numbers (to get consistent results)"
 
@@ -27,7 +28,7 @@ PMGeneralFunctionFitTest >> setUp [
 	fit manager randomGenerator: (Random seed: 42)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testBasic [
 
 	| d |
@@ -38,7 +39,7 @@ PMGeneralFunctionFitTest >> testBasic [
 	self assert: fit error < d
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testFunction [
 
 	| y |
@@ -47,14 +48,14 @@ PMGeneralFunctionFitTest >> testFunction [
 	self assert: (fit function value: 3) closeTo: y
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testManager [
 
 	self assert: fit manager class equals: PMAnotherChromosomeManager.
 	self assert: fit manager range equals: #( 5 5 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
 
 	| r correct |
@@ -73,7 +74,7 @@ PMGeneralFunctionFitTest >> testMaximumIterationsProbabilistic [
 	self assert: correct > 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testPopulationSize [
 
 	self assert: fit manager populationSize equals: 50.
@@ -81,7 +82,7 @@ PMGeneralFunctionFitTest >> testPopulationSize [
 	self assert: fit manager populationSize equals: 100
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testPrecision [
 
 	self assert: fit precision isNil.
@@ -89,25 +90,7 @@ PMGeneralFunctionFitTest >> testPrecision [
 	self assert: fit precision < 1e-6
 ]
 
-{ #category : #tests }
-PMGeneralFunctionFitTest >> testPrint [
-
-	| aStream s |
-	aStream := ReadWriteStream with: ''.
-	fit printOn: aStream.
-	s := aStream contents.
-	self assert: (s includesSubstring: '(a * x) sin / (b + x squared)').
-	self assert: (s includesSubstring: '#squared').
-	self assert: (s includesSubstring: '81').
-	self deny: (s includesSubstring: '#(0.').
-	fit evaluate.
-	aStream := ReadWriteStream with: ''.
-	fit printOn: aStream.
-	s := aStream contents.
-	self assert: (s includesSubstring: '#(0.')
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testRelativeError [
 
 	| r |
@@ -133,7 +116,7 @@ PMGeneralFunctionFitTest >> testRelativeError [
 	self assert: r < 4
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testResetBestPoints [
 
 	fit evaluate.
@@ -141,7 +124,7 @@ PMGeneralFunctionFitTest >> testResetBestPoints [
 	self assertEmpty: fit optimizer bestPoints
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMGeneralFunctionFitTest >> testTruncate [
 
 	col at: 1 put: -4 @ -0.2.

@@ -3,8 +3,8 @@ ErrorOfParameterFunction wants a function with parameters as a block and a Colle
 ErrorOfParameterFunction>>value: anArrayOfParameters returns a sum of squared errors or similar error measures. it can be used in MultiVariableOptimizers to calculate parameters.
 "
 Class {
-	#name : #PMErrorOfParameterFunction,
-	#superclass : #Object,
+	#name : 'PMErrorOfParameterFunction',
+	#superclass : 'Object',
 	#instVars : [
 		'data',
 		'function',
@@ -14,20 +14,28 @@ Class {
 		'qPosition',
 		'relative'
 	],
-	#category : #'Math-FunctionFit'
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMErrorOfParameterFunction class >> function: aBlock data: aCollectionOfPoints [
 ^self new function: aBlock; data: aCollectionOfPoints; yourself
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
+PMErrorOfParameterFunction >> compiledBlock [
+	"This method only exists for polymorphic message send"
+
+	^ function
+]
+
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> data [
 ^data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> data: aCollectionOfPoints [
 "a collection of points x@f(x)"
 (aCollectionOfPoints isCollection and: [aCollectionOfPoints allSatisfy: [:aPoint| aPoint isPoint]]) ifFalse:
@@ -38,7 +46,7 @@ quartile ifNotNil:[ self quartile: quartile] .
 ^data
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> errorCollection: parameters [
 "returns a collection of squared errors or of abs errors"
 "this is used often and should and could be a bit optimized"
@@ -63,12 +71,12 @@ PMErrorOfParameterFunction >> errorCollection: parameters [
 					ifFalse: [ err abs ] ]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> errorType [
 ^errorType
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> errorType: aSymbol [
 "valid errorTypes are: #squared, #abs, #insensitive, #quartile, #median. Default is #squared"
 (aSymbol isSymbol and:[#(#squared #abs #insensitive #quartile #median) includes: aSymbol]) ifFalse:
@@ -78,18 +86,18 @@ aSymbol =#median ifTrue: [^errorType :=#quartile] .
 ^errorType :=aSymbol
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> function [
 ^function
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> function: aBlock [
 function :=aBlock .
 varArray :=Array new: aBlock numArgs
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMErrorOfParameterFunction >> initialize [
 super initialize .
 relative :=false.
@@ -97,21 +105,23 @@ errorType :=#squared.
 quartile:= 1/2
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> parameterNames [
 ^(function argumentNames collect:[:s| s asString ])allButFirst
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> parameterSize [
 ^varArray size -1
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMErrorOfParameterFunction >> printOn: aStream [
-	super printOn: aStream.
 	aStream
-		nextPutAll: '( function: '; print: function;
+		nextPutAll: 'a ';
+		nextPutAll: self class name;
+		nextPutAll: '( function: '; 
+		nextPutAll: (PMFunctionPrinter new printFunction: function);
 		nextPutAll: ' relativeError: '; print: relative;
 		nextPutAll: ' errorType: '; print: errorType.
 	(#(#quartile #insensitive) includes: errorType)ifTrue:[
@@ -119,12 +129,12 @@ PMErrorOfParameterFunction >> printOn: aStream [
 	aStream nextPut: $).
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> quartile [
 ^quartile
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> quartile: aFloat [
 "quartile: is used by errortypes #quartile and #insensitive."
 aFloat >1 | (aFloat <0) ifTrue:[^DomainError signal:'quartile must be between 0 and 1'].
@@ -132,7 +142,7 @@ data ifNotNil: [qPosition :=(data size -1.00001 * aFloat )rounded+1]. "-1.00001 
 ^quartile := aFloat
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PMErrorOfParameterFunction >> realValue: parameters [
 "returns the sqrt of the mean of the sum of squared errors, or the mean abs error, or the quartile error, or the insensitive error"
 |e|
@@ -142,13 +152,13 @@ errorType = #squared ifTrue: [e := e sqrt]  . "if relativeError=true this is not
 ^e
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorOfParameterFunction >> relativeError: aBoolean [
 " default is false"
 ^relative :=aBoolean
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PMErrorOfParameterFunction >> value: parameters [
 	"returns the sum of squared errors, or the sum of abs errors, or the quartile error. insensitive is an experimental quartile error that centers a tube around its quartile and returns the (estimated) radius of the tube like quartile"
 

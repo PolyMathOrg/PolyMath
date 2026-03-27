@@ -2,12 +2,13 @@
 ErrorMinimizerTest tests indirectly also ErrorAsParameterFunction.
 "
 Class {
-	#name : #PMErrorMinimizerTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-FunctionFit'
+	#name : 'PMErrorMinimizerTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMErrorMinimizerTest >> testErrorMinimizer [
 
 	| f col er fit |

@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-FunctionFit' }
+Package { #name : 'Math-Tests-FunctionFit' }

@@ -7,27 +7,28 @@ fit evaluate .
 fit result parameters .   --->  #(1.9999999999999998 0.39999999999999863)
 "
 Class {
-	#name : #PMFunctionFit,
-	#superclass : #PMLeastSquareFit,
-	#category : #'Math-FunctionFit'
+	#name : 'PMFunctionFit',
+	#superclass : 'PMLeastSquareFit',
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMFunctionFit class >> function: aBlock data: aDataHolder [
 ^super points: aDataHolder  function:  (PMSimpleParameterFunction function: aBlock)
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMFunctionFit class >> histogram: aHistogram distributionClass: aProbabilityDensityFunctionClass [
 ^self shouldNotImplement
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMFunctionFit class >> points: aDataHolder function: aBlock [
 ^self shouldNotImplement
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMFunctionFit >> accumulate: aWeightedPoint [
 	| f g |
 	f := result valueAndGradient: aWeightedPoint xValue.
@@ -41,7 +42,7 @@ PMFunctionFit >> accumulate: aWeightedPoint [
 		]
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMFunctionFit >> computeChanges [
 
 	^ [ super computeChanges ]
@@ -51,7 +52,7 @@ PMFunctionFit >> computeChanges [
 			  signal pass ]
 ]
 
-{ #category : #information }
+{ #category : 'information' }
 PMFunctionFit >> computeChiSquare [
 "does not make much sense to use in most cases, but then, the superclass has it and if its here, the calculation should be correct and the superclass's way does not work here eg because of the way DataHolder>>pointsAndErrorsDo: works"
 	chiSquare := 0.
@@ -65,7 +66,7 @@ PMFunctionFit >> computeChiSquare [
 		]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMFunctionFit >> initialize: aDataHolder data: aParametricFunction [
 	(aDataHolder isCollection and: [aDataHolder allSatisfy: [:aPoint| aPoint isPoint]])
 			ifTrue:  [dataHolder:= aDataHolder as: PMDataHolder ]
@@ -76,12 +77,12 @@ PMFunctionFit >> initialize: aDataHolder data: aParametricFunction [
 	^self
 ]
 
-{ #category : #information }
+{ #category : 'information' }
 PMFunctionFit >> parameters [
 ^result parameters
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMFunctionFit >> parameters: indexableCollection [
 
 	indexableCollection do: [ :e |
@@ -91,7 +92,7 @@ PMFunctionFit >> parameters: indexableCollection [
 	self finalizeIterations
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMFunctionFit >> printOn: aStream [
 	super printOn: aStream.
 	aStream nextPutAll: ' for '.

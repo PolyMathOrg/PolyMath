@@ -1,10 +1,11 @@
 Class {
-	#name : #PMDataHolderTest,
-	#superclass : #TestCase,
-	#category : #'Math-Tests-FunctionFit'
+	#name : 'PMDataHolderTest',
+	#superclass : 'TestCase',
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMDataHolderTest >> testpointsAndErrorsDo [
 |g|
 g:=PMDataHolder new: 2 withAll: 2@3.

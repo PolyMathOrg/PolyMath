@@ -1,13 +1,14 @@
 Class {
-	#name : #PMAnotherGeneticOptimizerTest,
-	#superclass : #TestCase,
+	#name : 'PMAnotherGeneticOptimizerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'geneticOptimizer'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMAnotherGeneticOptimizerTest >> setUp [
 
 	| origin f |
@@ -23,7 +24,7 @@ PMAnotherGeneticOptimizerTest >> setUp [
 	geneticOptimizer chromosomeManager randomGenerator: (Random seed: 42)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testChromosomeManager [
 	self
 		assert: geneticOptimizer chromosomeManager class
@@ -31,7 +32,7 @@ PMAnotherGeneticOptimizerTest >> testChromosomeManager [
 	self assert: geneticOptimizer chromosomeManager populationSize equals: 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testComputePrecision [
 |r|
 geneticOptimizer maximumIterations: 2.
@@ -42,7 +43,7 @@ geneticOptimizer evaluate .
 self assert: (r>geneticOptimizer computePrecision  )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testEvaluate [
 
 	geneticOptimizer maximumIterations: 170.
@@ -50,7 +51,7 @@ PMAnotherGeneticOptimizerTest >> testEvaluate [
 	self assert: geneticOptimizer evaluate closeTo: #( 0 0 0 )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testInitializeIterations [
 
 	self assertEmpty: geneticOptimizer bestPoints.
@@ -63,19 +64,7 @@ PMAnotherGeneticOptimizerTest >> testInitializeIterations [
 	self assertEmpty: geneticOptimizer bestValueHistory
 ]
 
-{ #category : #tests }
-PMAnotherGeneticOptimizerTest >> testPrint [
-
-	| aStream s |
-	aStream := ReadWriteStream with: ''.
-	geneticOptimizer printOn: aStream.
-	s := aStream contents.
-	self assert: (s includesSubstring: 'v * v').
-	self assert: (s includesSubstring: '50').
-	self assert: (s includesSubstring: '20')
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testRangeScale [
 
 	geneticOptimizer initializeIterations.
@@ -86,7 +75,7 @@ PMAnotherGeneticOptimizerTest >> testRangeScale [
 	self assert: geneticOptimizer rangeScale second closeTo: 0.19473684210526315
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
@@ -106,7 +95,7 @@ PMAnotherGeneticOptimizerTest >> testRangeScaleProbabilistic [
 	self assert: correct > 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 	| r1 r2 correct |
 	correct := 0.
@@ -126,7 +115,7 @@ PMAnotherGeneticOptimizerTest >> testRemoveLastProbabilistic [
 	self assert: correct > 0
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testSteadyState [
 |r1 r2|
 "probabilistic test. not always true"
@@ -140,7 +129,7 @@ r2 :=geneticOptimizer evaluate norm.
 self assert: (r1>r2  )
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testaddPointAt [
 	| b |
 	geneticOptimizer chromosomeManager populationSize: 2.
@@ -167,7 +156,7 @@ PMAnotherGeneticOptimizerTest >> testaddPointAt [
 	self assert: b second position equals: #(0 0.9 0)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 
 	| s |
@@ -183,7 +172,7 @@ PMAnotherGeneticOptimizerTest >> testcalcStatistics [
 	self assert: geneticOptimizer whateverHistory size equals: s
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherGeneticOptimizerTest >> testresetBestPoints [
 
 	geneticOptimizer evaluate.

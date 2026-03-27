@@ -2,17 +2,18 @@
 ErrorAsParameterFunction is used internally by ErrorMinimizer. it is essentially a wrapper around an ErrorOfParameterFunction .
 "
 Class {
-	#name : #PMErrorAsParameterFunction,
-	#superclass : #PMSimpleParameterFunction,
-	#category : #'Math-FunctionFit'
+	#name : 'PMErrorAsParameterFunction',
+	#superclass : 'PMSimpleParameterFunction',
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorAsParameterFunction >> changeParametersBy: aVector [
 varArray :=varArray + aVector
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMErrorAsParameterFunction >> function: anErrorOfParameterFunction [
 |d f size steps|
 d :=anErrorOfParameterFunction data.
@@ -30,24 +31,24 @@ function := (0 to: steps)collect: [:i|
 	f]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorAsParameterFunction >> maxFunction [
 	"The number of data partitions used. The highest number that can be send to #value:"
 
 	^ function ifNil: [ 0 ] ifNotNil: [ :f | f size ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorAsParameterFunction >> parameters [
 ^varArray
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorAsParameterFunction >> parameters: indexableCollection [
 ^varArray :=indexableCollection copy
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMErrorAsParameterFunction >> printOn: aStream [
 
 	aStream
@@ -64,7 +65,7 @@ PMErrorAsParameterFunction >> printOn: aStream [
 	aStream nextPut: $)
 ]
 
-{ #category : #evaluating }
+{ #category : 'evaluating' }
 PMErrorAsParameterFunction >> value: aNumber [
 "aNumber chooses the data partition. it can run from 1 to maxFunction."
 ^(function at: aNumber) value: varArray

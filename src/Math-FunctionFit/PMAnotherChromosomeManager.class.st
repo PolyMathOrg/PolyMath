@@ -3,8 +3,8 @@ AnotherChromosomeManager implements more specific operations for Floats.
 Is used by AnotherGeneticOptimizer
 "
 Class {
-	#name : #PMAnotherChromosomeManager,
-	#superclass : #PMVectorChromosomeManager,
+	#name : 'PMAnotherChromosomeManager',
+	#superclass : 'PMVectorChromosomeManager',
 	#instVars : [
 		'hammersley',
 		'rateOfLC',
@@ -14,10 +14,11 @@ Class {
 	#classVars : [
 		'Primes'
 	],
-	#category : #'Math-FunctionFit'
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 	| n integer next result |
 	"n:=(anInteger ln / aBase ln) floor ." "does not always work because of floating point errors. next 2 lines are better"
@@ -33,7 +34,7 @@ PMAnotherChromosomeManager class >> integerDigitsFor: anInteger base: aBase [
 	^result
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d randomGenerator: randomGenerator [
 	"a bit randomized "
 
@@ -59,12 +60,12 @@ PMAnotherChromosomeManager class >> numberOfHamersleyPoints: n dimension: d rand
 						  ifNil: [ sum ] ] ] ]
 ]
 
-{ #category : #'instance creation' }
+{ #category : 'instance creation' }
 PMAnotherChromosomeManager class >> origin: anArray range: anotherArray [
 ^self new origin: anArray; range: anotherArray; yourself
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> crossover: aChromosome1 and: aChromosome2 [
 "the Discrete Recombination  operator
 that does not prefer schemata of certain parameters based on their position"
@@ -86,7 +87,7 @@ that does not prefer schemata of certain parameters based on their position"
 	^ Array with: new1 with: new2
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> eirCrossover: aChromosome1 and: aChromosome2 [
 	"the Extended Intermediate Recombination  0.5 operator, slightly changed to make it more similar to linecrossover (distribution is more centered around Chromosome1, which is better than C2)"
 	| randomNumbers new1 new2 dif |
@@ -108,7 +109,7 @@ PMAnotherChromosomeManager >> eirCrossover: aChromosome1 and: aChromosome2 [
 	^ { new1 . new2 }
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> initialize [
 
 	super initialize.
@@ -121,13 +122,13 @@ PMAnotherChromosomeManager >> initialize [
 	Primes ifNil: [ Primes := Integer primesUpTo: 500 ] "sufficient for up to 95 dimensions (parameters)"
 ]
 
-{ #category : #information }
+{ #category : 'information' }
 PMAnotherChromosomeManager >> isFullyPopulated [
 population ifNil: [^false].
 ^super isFullyPopulated
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> lineCrossOver: aChromosome1 and: aChromosome2 [
 "BGA Line Recombination; expects C1 to be better than C2, which is not correct at the moment, need to change that!!! mhm i think i did that."
 	| new1 new2 line norm|
@@ -140,7 +141,7 @@ PMAnotherChromosomeManager >> lineCrossOver: aChromosome1 and: aChromosome2 [
 	^Array with: new1 with: new2
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> mutate: aVector [
 	"BGA mutation"
 	| isMutated threshold new index |
@@ -163,13 +164,13 @@ PMAnotherChromosomeManager >> mutate: aVector [
 	^ new
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMAnotherChromosomeManager >> populationSize [
 "AnotherGeneticOptimizer needs these data"
 ^populationSize
 ]
 
-{ #category : #printing }
+{ #category : 'printing' }
 PMAnotherChromosomeManager >> printOn: aStream [
     aStream
         nextPutAll: self class name;
@@ -184,7 +185,7 @@ PMAnotherChromosomeManager >> printOn: aStream [
 	  nextPut: $)
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [
 	| roll |
 	roll := randomNumberGenerator next.
@@ -208,24 +209,24 @@ PMAnotherChromosomeManager >> process: aChromosome1 and: aChromosome2 [
 								add: (self clone: aChromosome2)]]]]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMAnotherChromosomeManager >> randomGenerator [
 
 	^ randomGenerator
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMAnotherChromosomeManager >> randomGenerator: anObject [
 
 	randomGenerator := anObject
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAnotherChromosomeManager >> randomRangeAt: aPosition [
 ^(range at: aPosition )*(self smallDistribution )
 ]
 
-{ #category : #operation }
+{ #category : 'operation' }
 PMAnotherChromosomeManager >> randomizePopulation [
 
 	hammersley ifFalse: [ ^ super randomizePopulation ].
@@ -233,53 +234,53 @@ PMAnotherChromosomeManager >> randomizePopulation [
 	population := population collect: [ :aChr | aChr * range + origin ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMAnotherChromosomeManager >> range [
 "AnotherGeneticOptimizer needs these data"
 ^range
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> rateOfCrossover: aNumber [
 
 	self testRate: aNumber oldRate: rateOfCrossover name: 'rateOfCrossover'.
 	rateOfCrossover := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> rateOfEir: aNumber [
 
 	self testRate: aNumber oldRate: rateOfEir name: 'rateOfEir'.
 	rateOfEir := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> rateOfLC: aNumber [
 
 	self testRate: aNumber oldRate: rateOfLC name: 'rateOfLC'.
 	rateOfLC := aNumber
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> rateOfMutation: aNumber [
 	self testRate: aNumber oldRate: rateOfMutation name: 'rateOfMutation'.
 	rateOfMutation := aNumber
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAnotherChromosomeManager >> smallDistribution [
 	"an exponential distribution as used by H. Mühlenbein"
 	^ 2 raisedTo: (16 * randomNumberGenerator next negated)
 ]
 
-{ #category : #private }
+{ #category : 'private' }
 PMAnotherChromosomeManager >> testRate:aFloat oldRate: asecondFloat name:aString [
 (aFloat between: 0 and: 1) ifFalse: [(DomainError new)from:0;to:1;messageText: 'Value outside [0 , 1]';signalIn: thisContext sender].
 (rateOfCrossover + rateOfMutation + rateOfLC + rateOfEir + aFloat - asecondFloat)>1.000000000000001 "for Float inaccuracies"
 	ifTrue: [Warning  signal:'All rates together are higher than 1, if ' , aString, ' is set to ',aFloat asString ]
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PMAnotherChromosomeManager >> useHammersley:  aBoolean [
 "default is true"
 hammersley :=aBoolean

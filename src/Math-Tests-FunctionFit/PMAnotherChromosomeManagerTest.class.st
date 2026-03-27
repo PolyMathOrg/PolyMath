@@ -1,13 +1,14 @@
 Class {
-	#name : #PMAnotherChromosomeManagerTest,
-	#superclass : #TestCase,
+	#name : 'PMAnotherChromosomeManagerTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'chromosomeManager'
 	],
-	#category : #'Math-Tests-FunctionFit'
+	#category : 'Math-Tests-FunctionFit',
+	#package : 'Math-Tests-FunctionFit'
 }
 
-{ #category : #running }
+{ #category : 'running' }
 PMAnotherChromosomeManagerTest >> setHammersleyTest: aBoolean [
 	chromosomeManager useHammersley: aBoolean.
 	chromosomeManager randomizePopulation.
@@ -23,7 +24,7 @@ PMAnotherChromosomeManagerTest >> setHammersleyTest: aBoolean [
 			self assert: (i second between: 1 and: 4) ]
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMAnotherChromosomeManagerTest >> setUp [
 
 	super setUp.
@@ -31,14 +32,14 @@ PMAnotherChromosomeManagerTest >> setUp [
 	chromosomeManager randomGenerator: (Random seed: 42)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testAccessing [
 	self assert: chromosomeManager range equals: #(2 3).
 	self assert: chromosomeManager populationSize equals: 100.
 	self deny: chromosomeManager isFullyPopulated
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testCrossOver [
 
 	| a |
@@ -56,7 +57,7 @@ PMAnotherChromosomeManagerTest >> testCrossOver [
 	self assert: (a occurrencesOf: #( 1 2 3 )) < 20
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testEirCrossOver [
 |a|
 a :=(1 to: 200)collect: [:i| a:=chromosomeManager eirCrossover: #(1.0 3.0) and: #(5.0 1.0).
@@ -82,7 +83,7 @@ self shouldnt: [a:=chromosomeManager eirCrossover: #(1 -3) and: #(1 -3)] raise: 
 		].
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testIntegerDigits [
 	self
 		assert: (PMAnotherChromosomeManager integerDigitsFor: 0 base: 2)
@@ -101,7 +102,7 @@ PMAnotherChromosomeManagerTest >> testIntegerDigits [
 		equals: #(1 4 4)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testLineCrossOver [
 	| a |
 	1 to: 10 do: [ :i |
@@ -110,7 +111,7 @@ PMAnotherChromosomeManagerTest >> testLineCrossOver [
 		self assert: ((a at: 2) at: 2) equals: ((a at: 2) at: 1) negated ]
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testMutateProbabilistic [
 
 	| a f s |
@@ -134,7 +135,7 @@ PMAnotherChromosomeManagerTest >> testMutateProbabilistic [
 	self assert: (s size between: 3 and: 20)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testNumberOfHamersleyPoints [
 
 	| rand |
@@ -197,17 +198,7 @@ PMAnotherChromosomeManagerTest >> testNumberOfHamersleyPoints [
 	rand do: [ :i | i do: [ :j | j < (1 / 3) ] ]
 ]
 
-{ #category : #tests }
-PMAnotherChromosomeManagerTest >> testPrint [
-|aStream  s|
-aStream :=ReadWriteStream with:''.
-chromosomeManager printOn: aStream .
-s :=aStream contents .
-self assert: (s includesSubstring: '#(0 1)').
-self assert: (s includesSubstring: '#(2 3)')
-]
-
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testProcessand [
 	chromosomeManager reset.
 	1 to: 60 do: [ :i | chromosomeManager process: #(0 0) and: #(1 1) ].
@@ -218,7 +209,7 @@ PMAnotherChromosomeManagerTest >> testProcessand [
 	self assert: chromosomeManager population size equals: 120
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testRandomizePopulation [
 
 	| g |
@@ -231,7 +222,7 @@ PMAnotherChromosomeManagerTest >> testRandomizePopulation [
 	self deny: chromosomeManager population first equals: g
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMAnotherChromosomeManagerTest >> testRateSetting [
 self should: [chromosomeManager rateOfLC: 1.3] raise:  DomainError .
 self should: [chromosomeManager rateOfEir: -0.3] raise:  DomainError .

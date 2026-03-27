@@ -9,12 +9,13 @@ fit evaluate .
 fit  parameters. 	-->  #(2.0 0.39999999999903596)
 "
 Class {
-	#name : #PMErrorMinimizer,
-	#superclass : #PMFunctionFit,
-	#category : #'Math-FunctionFit'
+	#name : 'PMErrorMinimizer',
+	#superclass : 'PMFunctionFit',
+	#category : 'Math-FunctionFit',
+	#package : 'Math-FunctionFit'
 }
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMErrorMinimizer class >> function: anErrorOfParameterFunction [
 |f d|
 f := PMErrorAsParameterFunction function: anErrorOfParameterFunction.
@@ -22,12 +23,12 @@ d :=( 1 to:( f maxFunction ))collect: [:i| i@0].
 ^self new initialize: d data: f
 ]
 
-{ #category : #creation }
+{ #category : 'creation' }
 PMErrorMinimizer class >> function: aBlock data: aCollection [
 ^self shouldNotImplement
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PMErrorMinimizer >> maxFunction [
 	"The number of data partitions used."
 

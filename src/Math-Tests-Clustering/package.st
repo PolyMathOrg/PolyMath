@@ -1,1 +1,1 @@
-Package { #name : #'Math-Tests-Clustering' }
+Package { #name : 'Math-Tests-Clustering' }

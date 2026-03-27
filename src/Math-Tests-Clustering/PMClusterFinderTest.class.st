@@ -1,14 +1,15 @@
 Class {
-	#name : #PMClusterFinderTest,
-	#superclass : #TestCase,
+	#name : 'PMClusterFinderTest',
+	#superclass : 'TestCase',
 	#instVars : [
 		'dataServer',
 		'randomNumberGenerator'
 	],
-	#category : #'Math-Tests-Clustering'
+	#category : 'Math-Tests-Clustering',
+	#package : 'Math-Tests-Clustering'
 }
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection [
 	"Private - Generate a random point around the given center and insert it into the collection.
 	aNumber is the sigma for the distance to the center"
@@ -28,7 +29,7 @@ PMClusterFinderTest >> accumulateAround: aVector size: aNumber into: aCollection
 	aCollection add: (localVector + aVector)
 ]
 
-{ #category : #utilities }
+{ #category : 'utilities' }
 PMClusterFinderTest >> generatedPoints: anInteger [
 	"Private - Generate random points into aCollection. 3 clusters are used"
 	| centers results randomNumber |
@@ -47,16 +48,16 @@ PMClusterFinderTest >> generatedPoints: anInteger [
 	^ results
 ]
 
-{ #category : #running }
+{ #category : 'running' }
 PMClusterFinderTest >> setUp [
 	super setUp.
-	randomNumberGenerator := Random seed: 3.
+	randomNumberGenerator := Random seed: 29.
 
 	dataServer := PMMemoryBasedDataServer new.
 	dataServer data: (self generatedPoints: 1000)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMClusterFinderTest >> testClusterCovariance [
 
 	| clusters finder |
@@ -66,7 +67,7 @@ PMClusterFinderTest >> testClusterCovariance [
 	self assert: clusters size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMClusterFinderTest >> testClusterEuclidean [
 
 	| clusters finder |
@@ -76,7 +77,7 @@ PMClusterFinderTest >> testClusterEuclidean [
 	self assert: clusters size equals: 3
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PMClusterFinderTest >> testMahalanobisCenter [
 	"Code example 12.5"
 
