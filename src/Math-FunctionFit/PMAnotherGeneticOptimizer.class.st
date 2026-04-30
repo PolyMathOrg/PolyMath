@@ -96,12 +96,6 @@ PMAnotherGeneticOptimizer >> computePrecision: whateverData [  "can be changed t
 ]
 
 { #category : 'operation' }
-PMAnotherGeneticOptimizer >> evaluate [
-
-	^ Cursor wait showWhile: [ super evaluate ]
-]
-
-{ #category : 'operation' }
 PMAnotherGeneticOptimizer >> evaluateIteration [
 	self nextGeneration.
 	self mixupGeneration.
