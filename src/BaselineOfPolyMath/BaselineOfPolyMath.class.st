@@ -137,6 +137,7 @@ BaselineOfPolyMath >> packages: spec [
 					   'Math-StatisticalMoments' 'Math-Series' ) ];
 		package: 'Math-FastFourierTransform'
 		with: [ spec requires: #( 'Math-Complex' ) ];
+		package: 'Math-UI';
 		package: 'Math-FunctionFit' with: [
 			spec requires:
 					#( 'Math-Numerical' 'Math-Chromosome' 'Math-Accuracy-Core'
