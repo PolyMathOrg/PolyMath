@@ -176,18 +176,6 @@ PMGeneralFunctionFit >> function: aBlock [
 	errorFunction function: aBlock
 ]
 
-{ #category : 'as yet unclassified' }
-PMGeneralFunctionFit >> functionPlotTab: anObject [
-
-	<inspectorPresentationOrder: 1 title: 'Function plot'>
-	| plot |
-	plot := self render.
-	plot build.
-	^ (anObject instantiate: SpRoassalInspectorPresenter)
-		canvas: plot canvas;
-		yourself
-]
-
 { #category : 'initialization' }
 PMGeneralFunctionFit >> initialize [
 
@@ -287,16 +275,6 @@ PMGeneralFunctionFit >> relativeError: aBoolean [
 "by default false"
 self resetResult .
 ^errorFunction relativeError: aBoolean
-]
-
-{ #category : 'rendering' }
-PMGeneralFunctionFit >> render [
-
-	| x y plot |
-	x := data collect: #x.
-	y := data collect: #y.
-	plot := RSLinePlot new x: x y: y.
-	^ plot
 ]
 
 { #category : 'operation' }
