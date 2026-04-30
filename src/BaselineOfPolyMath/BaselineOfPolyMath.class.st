@@ -216,7 +216,7 @@ BaselineOfPolyMath >> projectClass [
 { #category : 'dependencies' }
 BaselineOfPolyMath >> randomNumbers: spec [
 
-	spec baseline: 'MathRandomNumbers' with: [ spec repository: 'github://PolyMathOrg/random-numbers:v1.x.x/src' ]
+	spec baseline: 'MathRandomNumbers' with: [ spec repository: 'github://PolyMathOrg/random-numbers:main' ]
 ]
 
 { #category : 'dependencies' }
