@@ -8,5 +8,5 @@ Class {
 { #category : 'printing' }
 PMFunctionPrinter >> printFunction: aFunction [
 
-	^ aFunction compiledBlock sourceNode sourceCode
+	^ aFunction compiledBlock sourceNode body sourceCode
 ]

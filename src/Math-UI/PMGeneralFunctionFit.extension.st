@@ -4,10 +4,28 @@ Extension { #name : 'PMGeneralFunctionFit' }
 PMGeneralFunctionFit >> inspectorFunctionPlotTab: aBuilder [
 
     <inspectorPresentationOrder: 1 title: 'Function plot'>
-    | plot |
-    plot := RSLinePlot points: data.
-    plot build.
-    ^ (aBuilder instantiate: SpRoassalInspectorPresenter)
-          canvas: plot canvas;
-          yourself
+    ^ (PMFunctionPlotter onData: data) buildPlotPresenter: aBuilder
+]
+
+{ #category : '*Math-UI' }
+PMGeneralFunctionFit >> inspectorTable: aBuilder [
+
+    <inspectorPresentationOrder: 2 title: 'Function parameters'>
+
+    ^ PMTablePresenterInspectorBuilder new
+        tableItems: self inspectorTableParametersItems;
+        buildTable: aBuilder
+]
+
+{ #category : '*Math-UI' }
+PMGeneralFunctionFit >> inspectorTableParametersItems [
+
+    | items |
+    items := {
+                 ('Generic optimizer' -> geneticOptimizer).
+                 ('Data' -> data) }.
+    items := items collect: [ :e | StInspectorAssociationNode hostObject: e ].
+    dataTruncated ifTrue: [
+            items add: (StInspectorAssociationNode hostObject: 'Truncated to' -> geneticOptimizer functionBlock data size) ].
+    ^ items
 ]

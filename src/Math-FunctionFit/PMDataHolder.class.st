@@ -15,3 +15,19 @@ PMDataHolder >> pointsAndErrorsDo: aBlock [
 	self do:
 		[ :each | aBlock value: (PMWeightedPoint point: each)]
 ]
+
+{ #category : 'printing' }
+PMDataHolder >> printOn: aStream [
+
+    aStream << 'Data size '.
+    self size printOn: aStream.
+    aStream << ' '.
+
+    self shouldBePrintedAsLiteral ifTrue: [ 
+	    self printAsLiteralFormOn: aStream. 
+	    ^ self ].
+    self isSelfEvaluating ifTrue: [ 
+        self printAsSelfEvaluatingFormOn: aStream ].
+    [ self printElementsOn: aStream ]
+        on: Error do: [ aStream << 'Failing printOn: is getting printed.' ]
+]
