@@ -236,7 +236,7 @@ BaselineOfPolyMath >> sMark: spec [
 { #category : 'dependencies' }
 BaselineOfPolyMath >> vectorMatrix: spec [
 
-	spec baseline: 'MathVectorMatrix' with: [ spec repository: 'github://PolyMathOrg/vector-matrix/src' ]
+	spec baseline: 'MathVectorMatrix' with: [ spec repository: 'github://PolyMathOrg/vector-matrix:master' ]
 ]
 
 { #category : 'dependencies' }
